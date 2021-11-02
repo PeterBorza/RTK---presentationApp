@@ -1,0 +1,30 @@
+.generalWrapper {
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.closeIcon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	color: rgb(221, 203, 203);
+	top: 5%;
+	right: 5%;
+	&:hover {
+		color: red;
+	}
+}
+
+.buttons {
+	margin-left: auto;
+	& > * {
+		margin: 0.3rem;
+	}
+}

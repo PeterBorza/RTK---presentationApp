@@ -1,0 +1,26 @@
+.container {
+	width: 100%;
+	height: auto;
+	border: 1px solid red;
+}
+.empty {
+	width: 40%;
+	height: 20vh;
+	background-color: dodgerblue;
+	display: grid;
+	place-items: center;
+	margin: auto;
+	color: rgb(216, 195, 6);
+}
+
+.full {
+	width: 40%;
+	height: 20vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: dodgerblue;
+	margin: auto;
+	color: rgb(216, 195, 6);
+}

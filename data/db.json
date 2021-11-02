@@ -1,0 +1,20 @@
+{
+	"colorSets": [
+		{
+			"id": 1001,
+			"palet": ["D3C1C3", "E2D0BE", "EEE5BF", "E8F8C1", "D1FFC6"]
+		},
+		{
+			"id": 1002,
+			"palet": ["3E4E50", "FACFAD", "F8BD7F", "F5AC72", "F2AA7E"]
+		},
+		{
+			"id": 1003,
+			"palet": ["D8D4F2", "C4B2BC", "A29587", "846C5B", "332E3C"]
+		},
+		{
+			"id": 1004,
+			"palet": ["ECC8AF", "E7AD99", "CE796B", "C18C5D", "495867"]
+		}
+	]
+}

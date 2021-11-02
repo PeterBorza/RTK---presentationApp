@@ -1,0 +1,17 @@
+.defaultStyle {
+	background: transparent;
+	border: none;
+	outline: none;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+	transition: all 120ms ease-out;
+	&:hover {
+		background-color: rgb(68, 61, 61);
+		color: rgb(162, 172, 182);
+	}
+	&:active {
+		transform: scale(0.95);
+	}
+}

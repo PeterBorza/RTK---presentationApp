@@ -1,0 +1,20 @@
+.bubbleStyle {
+	position: absolute;
+	background: linear-gradient(135deg, transparent, cadetblue 85%);
+	border-radius: 50%;
+	aspect-ratio: 1;
+	box-shadow: 4px 6px 25px rgba(0, 0, 0, 0.3),
+		-3px -3px 5px rgba(240, 240, 240, 0.7);
+	display: grid;
+	place-items: center;
+	color: rgba(206, 69, 19, 0.753);
+	text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
+	font-size: 2rem;
+	font-family: fantasy;
+	margin: 5px;
+	z-index: 10;
+}
+
+.active {
+	color: yellow;
+}
