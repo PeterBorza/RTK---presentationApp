@@ -62,9 +62,11 @@ const BubbleWrapper: React.FC = () => {
 			) : (
 				bubbles.map(item => (
 					<Bubble
-						onClick={() => handleBubbleClick(item.id)}
 						key={item.id}
-						props={item}
+						onClick={() => handleBubbleClick(item.id)}
+						selected={item.selected}
+						cssProps={item.cssProps}
+						id={item.id}
 					/>
 				))
 			)}

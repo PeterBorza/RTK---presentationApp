@@ -1,30 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pending, Error } from "../../app/constants";
-
-export interface BubbleCssProps {
-	left: string;
-	top: string;
-	size: string;
-	opacity: string;
-}
-
-export interface Bubble {
-	id: number;
-	selected: boolean;
-	cssProps: BubbleCssProps;
-}
-
-interface PendingState {
-	isLoading: boolean;
-	message: string;
-}
-type ErrorState = string | null;
-
-interface BubbleState {
-	bubbles: Bubble[];
-	loading: PendingState;
-	error: ErrorState;
-}
+import { BubbleState, Bubble } from "./types";
 
 const initialState: BubbleState = {
 	bubbles: [],

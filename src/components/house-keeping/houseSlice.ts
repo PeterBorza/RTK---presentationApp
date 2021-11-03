@@ -1,50 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-
-export interface GasUnits {
-	gasUnitsReadingDate: string;
-	gasUnits: number;
-	gasUsage: number;
-	sumOfGasBill: number;
-	isGasBillPayed: boolean;
-}
-export interface LightUnits {
-	lightUnitsReadingDate: string;
-	lightUnits: number;
-	lightUsage: number;
-	sumOfLightBill: number;
-	isLightBillPayed: boolean;
-}
-
-export interface GasState {
-	id: string;
-	units: GasUnits;
-	selected: boolean;
-}
-
-export interface LightState {
-	id: string;
-	units: LightUnits;
-	selected: boolean;
-}
-
-export interface WaterState {
-	id: string;
-	kitchenUnits: number;
-	bathUnits: number;
-	waterReadingDate: string;
-	expences: number;
-	month: string;
-	isExpencesPayed: boolean;
-	selected: boolean;
-}
-
-interface MyExpences {
-	gas: GasState[];
-	light: LightState[];
-	water: WaterState[];
-	labels: string[];
-}
+import { MyExpences } from "./types";
 
 const initialState: MyExpences = {
 	gas: [
@@ -112,5 +68,4 @@ export const houseSlice = createSlice({
 });
 
 export const { selectGas, selectLight } = houseSlice.actions;
-
 export default houseSlice.reducer;

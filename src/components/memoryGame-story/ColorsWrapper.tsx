@@ -2,11 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAsyncColors } from "./thunks";
-import {
-	paletSelector,
-	colorSelector,
-	MemoryGameState,
-} from "./memoryGameSlice";
+import { paletSelector, colorSelector } from "./selectors";
+import { MemoryGameState } from "./types";
 
 import styles from "./ColorsWrapper.module.scss";
 
