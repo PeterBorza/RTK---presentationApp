@@ -3,7 +3,6 @@ import Form from "../Form";
 import Button from "../../reusables/Button";
 
 import styles from "./FormWrapper.module.scss";
-
 export interface FormWrapProp {
 	formWidth: string;
 }
