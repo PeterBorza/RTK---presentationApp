@@ -137,7 +137,7 @@
 
 @mixin shadow {
 	transition: box-shadow 100ms ease;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 	&:hover {
 		box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
 	}
