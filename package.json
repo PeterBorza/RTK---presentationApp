@@ -11,6 +11,7 @@
 		"@types/node": "^16.9.6",
 		"@types/react": "^17.0.24",
 		"@types/react-dom": "^17.0.9",
+		"@types/uuid": "^8.3.1",
 		"axios": "^0.22.0",
 		"classnames": "^2.3.1",
 		"date-fns": "^2.25.0",
@@ -21,7 +22,8 @@
 		"react-redux": "^7.2.5",
 		"react-scripts": "4.0.3",
 		"sass": "^1.42.1",
-		"typescript": "^4.4.3"
+		"typescript": "^4.4.3",
+		"uuid": "^8.3.2"
 	},
 	"scripts": {
 		"start": "react-scripts start",

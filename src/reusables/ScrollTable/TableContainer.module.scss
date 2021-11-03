@@ -1,0 +1,35 @@
+.wrapper {
+	width: 35%;
+	height: 80vh;
+	border: 1px solid black;
+}
+
+.header {
+	width: 100%;
+	height: 35px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	align-items: center;
+	background-color: slategray;
+	span {
+		width: 100%;
+		text-align: center;
+		display: block;
+		text-transform: uppercase;
+		color: wheat;
+	}
+}
+
+.body {
+	width: 100%;
+	height: calc(100% - 35px);
+	// background-color: rgba(143, 173, 228, 0.774);
+	overflow: hidden;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	text-align: center;
+}

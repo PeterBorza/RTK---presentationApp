@@ -1,0 +1,32 @@
+@use "../../../css/variables" as *;
+@use "../../../css/mixins" as *;
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	@include shadow();
+
+	.data {
+		padding: 0 15px;
+		font-weight: 400;
+		font-size: 1rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	span {
+		color: green;
+	}
+}
+
+.green {
+	color: limegreen;
+}
+
+.red {
+	color: crimson;
+}
