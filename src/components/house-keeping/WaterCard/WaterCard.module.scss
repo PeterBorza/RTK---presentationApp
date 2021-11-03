@@ -1,0 +1,32 @@
+.container {
+	width: 100%;
+	background-color: chocolate;
+	margin: 5px;
+}
+p > span {
+	color: white;
+}
+
+.units {
+	background-color: cornflowerblue;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.readDate {
+	background-color: cyan;
+}
+
+.expence {
+	background-color: darksalmon;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.green {
+	color: limegreen;
+}
+
+.red {
+	color: crimson;
+}
