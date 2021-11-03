@@ -1,5 +1,5 @@
 import React from "react";
-import { GasState } from "../houseSlice";
+import { GasState } from "../types";
 import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
 import styles from "./GasCard.module.scss";

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./WaterCard.module.scss";
-import { WaterState } from "../houseSlice";
+import { WaterState } from "../types";
 import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
 const WaterCard: React.FC<WaterState> = ({

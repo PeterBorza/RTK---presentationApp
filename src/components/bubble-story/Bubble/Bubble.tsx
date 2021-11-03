@@ -1,15 +1,19 @@
-import styles from "./Bubble.module.scss";
-import { Bubble as Props } from "../bubbleSlice";
-import classNames from "classnames";
 import React from "react";
+
+import styles from "./Bubble.module.scss";
+import { Bubble as Props } from "../types";
+import classNames from "classnames";
 
 interface BubbleProps {
 	onClick: () => void;
-	props: Props;
 }
 
-const Bubble: React.FC<BubbleProps> = ({ onClick, props }): JSX.Element => {
-	const { id, selected, cssProps } = props;
+const Bubble: React.FC<BubbleProps & Props> = ({
+	onClick,
+	id,
+	selected,
+	cssProps,
+}) => {
 	const { left, top, size, opacity } = cssProps;
 	const bubbleClassNames = classNames(styles.bubbleStyle, {
 		[styles.active]: selected,

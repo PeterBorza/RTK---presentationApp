@@ -1,5 +1,5 @@
 import React from "react";
-import { LightState } from "../houseSlice";
+import { LightState } from "../types";
 import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
 import styles from "./LightCard.module.scss";

@@ -5,11 +5,10 @@ import {
 	setBubbles,
 	setPending,
 	setError,
-	Bubble,
-	BubbleCssProps,
 	deleteBub,
 	addBubble,
 } from "./bubbleSlice";
+import { Bubble, BubbleCssProps } from "./types";
 
 export const getAsyncBubbles = createAsyncThunk(
 	"bubbles/getAsyncBubbles",
