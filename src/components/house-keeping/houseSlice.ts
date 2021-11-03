@@ -8,6 +8,13 @@ export interface GasUnits {
 	sumOfGasBill: number;
 	isGasBillPayed: boolean;
 }
+export interface LightUnits {
+	lightUnitsReadingDate: string;
+	lightUnits: number;
+	lightUsage: number;
+	sumOfLightBill: number;
+	isLightBillPayed: boolean;
+}
 
 export interface GasState {
 	id: string;
@@ -17,11 +24,7 @@ export interface GasState {
 
 export interface LightState {
 	id: string;
-	lightUnits: number;
-	lightUnitsReadingDate: string;
-	sumOfLightBill: number;
-	isLightBillPayed: boolean;
-	lightUsage: number;
+	units: LightUnits;
 	selected: boolean;
 }
 
@@ -40,7 +43,7 @@ interface MyExpences {
 	gas: GasState[];
 	light: LightState[];
 	water: WaterState[];
-	gasLabels: string[];
+	labels: string[];
 }
 
 const initialState: MyExpences = {
@@ -56,301 +59,17 @@ const initialState: MyExpences = {
 			},
 			selected: false,
 		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: true,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
-		{
-			id: uuid(),
-			units: {
-				gasUnits: 450,
-				gasUnitsReadingDate: "02/09/2021",
-				sumOfGasBill: 389,
-				gasUsage: 1100,
-				isGasBillPayed: false,
-			},
-			selected: false,
-		},
 	],
 	light: [
 		{
 			id: uuid(),
-			lightUnits: 200,
-			lightUnitsReadingDate: "",
-			sumOfLightBill: 176.5,
-			isLightBillPayed: true,
-			lightUsage: 250,
+			units: {
+				lightUnits: 200,
+				lightUnitsReadingDate: "29/10/2021",
+				sumOfLightBill: 176.5,
+				isLightBillPayed: true,
+				lightUsage: 250,
+			},
 			selected: false,
 		},
 	],
@@ -366,7 +85,7 @@ const initialState: MyExpences = {
 			selected: false,
 		},
 	],
-	gasLabels: ["data", "citire", "consum", "factura", "platit?"],
+	labels: ["data", "citire", "consum", "factura", "platit?"],
 };
 
 export const houseSlice = createSlice({
@@ -381,9 +100,17 @@ export const houseSlice = createSlice({
 				item => (item.selected = item.id === payload ? true : false)
 			);
 		},
+		selectLight: (
+			{ light }: MyExpences,
+			{ payload }: PayloadAction<string>
+		) => {
+			light.map(
+				item => (item.selected = item.id === payload ? true : false)
+			);
+		},
 	},
 });
 
-export const { selectGas } = houseSlice.actions;
+export const { selectGas, selectLight } = houseSlice.actions;
 
 export default houseSlice.reducer;

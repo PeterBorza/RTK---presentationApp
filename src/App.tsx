@@ -6,7 +6,7 @@ import { Building } from "./components/building-story";
 import { FormModal } from "./components/FormWrapper";
 
 import styles from "./App.module.scss";
-import TableContainer from "./components/house-keeping/GasTableContainer";
+import { GasExpences, LightExpences } from "./components/house-keeping";
 
 const App: React.FC = () => {
 	return (
@@ -15,7 +15,8 @@ const App: React.FC = () => {
 			{/* <Colors /> */}
 			{/* <Building /> */}
 			{/* <FormModal formWidth='80' /> */}
-			<TableContainer />
+			<GasExpences />
+			<LightExpences />
 		</div>
 	);
 };

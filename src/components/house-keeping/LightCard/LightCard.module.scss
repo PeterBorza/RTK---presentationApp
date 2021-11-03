@@ -4,23 +4,33 @@
 .wrapper {
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	border-radius: 5px;
 	margin: 5px;
 	padding: 5px;
 	@include shadow();
-
-	.data {
-		padding: 0 15px;
-		font-weight: 400;
-		font-size: 1rem;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+	transition: all 120ms ease-out;
+	p {
+		width: 100%;
 	}
+
 	span {
 		color: green;
 	}
+	&:hover {
+		background-color: rgb(245, 239, 239);
+	}
+}
+
+.data {
+	padding: 0 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.selected {
+	background-color: rgb(168, 161, 161);
 }
 
 .green {
