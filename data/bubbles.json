@@ -29,6 +29,36 @@
         "size": "120px",
         "opacity": ".3"
       }
+    },
+    {
+      "id": 6,
+      "selected": false,
+      "cssProps": {
+        "left": "76%",
+        "top": "89%",
+        "size": "50px",
+        "opacity": ".9"
+      }
+    },
+    {
+      "id": 7,
+      "selected": false,
+      "cssProps": {
+        "left": "78%",
+        "top": "45%",
+        "size": "150px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 8,
+      "selected": false,
+      "cssProps": {
+        "left": "90%",
+        "top": "90%",
+        "size": "75px",
+        "opacity": ".5"
+      }
     }
   ]
 }
