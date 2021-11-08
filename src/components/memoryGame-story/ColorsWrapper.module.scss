@@ -1,7 +1,7 @@
 .container {
 	width: 100%;
 	padding: 5px;
-	height: 25vh;
+	height: calc(100vh - 35px);
 }
 .colorWrapper {
 	display: flex;

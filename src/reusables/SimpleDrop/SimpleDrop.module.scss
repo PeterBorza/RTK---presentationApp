@@ -1,0 +1,43 @@
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
+
+.dropdown-container {
+	width: 200px;
+	height: 300px;
+	position: relative;
+	background-color: transparent;
+	overflow: hidden;
+
+	.header {
+		position: absolute;
+		background-color: black;
+		left: 0;
+		top: 0;
+		width: 100%;
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
+		height: 8%;
+		z-index: 100;
+		cursor: pointer;
+		user-select: none;
+		@include fCenter();
+		h3 {
+			color: white;
+		}
+	}
+	.content {
+		position: absolute;
+		left: 2%;
+		top: 8%;
+		width: 96%;
+		height: 100%;
+		transform: translateY(-115%);
+		transition: all 250ms ease;
+		&--drop {
+			transform: translateY(0%);
+		}
+	}
+	.white-bg {
+		background-color: white;
+	}
+}
