@@ -1,27 +1,29 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState, FormEvent } from "react";
 import Form from "../Form";
 import Button from "../../reusables/Button";
 
 import styles from "./FormWrapper.module.scss";
 export interface FormWrapProp {
-	formWidth: string;
+	formWidth?: string;
+	render?: () => ReactNode;
+	onSubmit?: (e: FormEvent) => void;
+	onCancel?: () => void;
+	buttonLabel?: string;
 }
 
-const FormWrapper: React.FC<FormWrapProp> = ({ formWidth }) => {
+const FormWrapper: React.FC<FormWrapProp> = ({
+	formWidth,
+	render,
+	onSubmit,
+	onCancel,
+	buttonLabel = "FORM",
+}) => {
 	const [openModal, setIsOpenModal] = useState(false);
-
-	const onSubmitHandler = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log("Submitted");
-	};
 
 	const onCancelHandler = () => {
 		console.log("Canceled");
+		onCancel && onCancel();
 		setIsOpenModal(false);
-	};
-
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e.target.value);
 	};
 
 	const onOpenHandler = () => {
@@ -29,25 +31,28 @@ const FormWrapper: React.FC<FormWrapProp> = ({ formWidth }) => {
 		setIsOpenModal(true);
 	};
 
+	const submitHandler = (e: FormEvent) => {
+		e.preventDefault();
+		onSubmit && onSubmit(e);
+		setIsOpenModal(false);
+	};
+
 	// const validName =
 	// 	input.split("").length > 3 ? "valid" : "please enter a valid name";
 
 	return openModal ? (
 		<div className={styles.generalWrapper}>
-			<Form onSubmit={onSubmitHandler} width={formWidth}>
-				<Form.TextInput
-					value={"name"}
-					title={"name"}
-					onChange={onChangeHandler}
-				/>
-				<div className={styles.buttons}>
-					<Button type='submit' value='Submit' />
-					<Button value='Cancel' onClick={onCancelHandler} />
-				</div>
-			</Form>
+			<Form
+				onSubmit={submitHandler}
+				width={formWidth}
+				render={() => render && render()}
+				onCancel={onCancelHandler}
+			></Form>
 		</div>
 	) : (
-		<div className={styles.activateForm}><Button value='Open Form' onClick={onOpenHandler} /></div>
+		<div className={styles.activateForm}>
+			<Button value={buttonLabel} onClick={onOpenHandler} />
+		</div>
 	);
 };
 

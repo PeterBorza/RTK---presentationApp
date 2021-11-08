@@ -1,8 +1,16 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 import styles from "./NavBar.module.scss";
 
-const NavBar: React.FC = ({ children }) => {
-	return <nav className={styles.nav}>{children}</nav>;
+interface Props {
+	renderBody: () => ReactNode;
+}
+
+const NavBar: FC<Props> = ({ renderBody }) => {
+	return (
+		<nav className={styles.nav}>
+			<ul>{renderBody()}</ul>
+		</nav>
+	);
 };
 
 export default NavBar;

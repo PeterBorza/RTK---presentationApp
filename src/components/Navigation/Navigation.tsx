@@ -1,32 +1,32 @@
-import React from "react";
+import { useContext } from "react";
 import NavBar from "../../reusables/NavBar";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { LinkContext } from "../../utils/link-context";
 
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
+	const links = useContext(LinkContext);
+
+	const renderBody = () => {
+		return links?.map(item => (
+			<li key={item.id}>
+				<NavLink
+					className={({ isActive }) =>
+						isActive ? styles.active : styles.inActive
+					}
+					to={item.to}
+				>
+					{item.label}
+				</NavLink>
+			</li>
+		));
+	};
+
 	return (
 		<div className={styles.navigation}>
-			<NavBar>
-				<NavLink className={styles.links} to='/building'>
-					building
-				</NavLink>
-				<NavLink className={styles.links} to='/bubbles'>
-					bubbles
-				</NavLink>
-				<NavLink className={styles.links} to='/gas'>
-					gas
-				</NavLink>
-				<NavLink className={styles.links} to='/light'>
-					light
-				</NavLink>
-				<NavLink className={styles.links} to='/colors'>
-					colors
-				</NavLink>
-				<NavLink className={styles.links} to='/form'>
-					form
-				</NavLink>
-			</NavBar>
+			<NavBar renderBody={() => renderBody()} />
+			<Outlet />
 		</div>
 	);
 };
