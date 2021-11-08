@@ -1,0 +1,25 @@
+.title {
+	position: relative;
+	width: 50%;
+	height: 7vh;
+	display: inline-block;
+	margin: auto;
+	overflow: hidden;
+	&__span {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		line-height: 1.5;
+		transform: translateY(100%);
+		color: white;
+		animation: slide-up 2000ms ease-out forwards 200ms;
+	}
+}
+@keyframes slide-up {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}

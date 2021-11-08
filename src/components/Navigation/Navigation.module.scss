@@ -7,9 +7,18 @@
 	z-index: 1;
 	background-color: teal;
 }
-.links {
+.inActive {
 	color: white;
+	text-transform: uppercase;
 	&:hover {
-		color: red;
+		color: rgb(216, 201, 201);
+	}
+}
+
+.active {
+	color: red;
+	text-transform: uppercase;
+	&:hover {
+		color: rgb(211, 35, 35);
 	}
 }

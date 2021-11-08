@@ -14,10 +14,20 @@
       "id": 4,
       "selected": false,
       "cssProps": {
-        "left": "15%",
-        "top": "75%",
-        "size": "80px",
+        "left": "35%",
+        "top": "90%",
+        "size": "100px",
         "opacity": "1"
+      }
+    },
+    {
+      "id": 5,
+      "selected": false,
+      "cssProps": {
+        "left": "76%",
+        "top": "15%",
+        "size": "120px",
+        "opacity": ".3"
       }
     }
   ]

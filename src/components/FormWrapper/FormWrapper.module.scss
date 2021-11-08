@@ -8,31 +8,5 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.closeIcon {
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	color: rgb(221, 203, 203);
-	top: 5%;
-	right: 5%;
-	&:hover {
-		color: red;
-	}
-}
-
-.buttons {
-	margin-left: auto;
-	& > * {
-		margin: 0.3rem;
-	}
-}
-
-.activateForm {
-	width: 100%;
-	height: calc(100vh - 35px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	z-index: 100;
 }
