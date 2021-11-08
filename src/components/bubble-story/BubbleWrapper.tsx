@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -8,101 +7,20 @@ import {
 	selectedBubble,
 } from "./selectors";
 
-import { getAsyncBubbles, postBubble, deleteBubble } from "./thunks";
-import Bubble from "./Bubble/Bubble";
-import Loader from "../../reusables/Loader";
+import { getAsyncBubbles, deleteBubble } from "./thunks";
+import Bubble from "./Bubble";
+import BubbleForm from "./BubbleForm";
+import { Loader, Button, Error } from "../../reusables";
 import { selectBubble } from "./bubbleSlice";
 
 import styles from "./BubbleWrapper.module.scss";
-import { FormModal } from "../FormWrapper";
-import Form from "../Form";
-import { BubbleCssProps } from "./types";
 
 const BubbleWrapper: React.FC = () => {
-	const starterBubble = {
-		left: "",
-		top: "",
-		size: "",
-		opacity: "",
-	};
-	const [bub, setBub] = useState<BubbleCssProps>(starterBubble);
 	const { bubbles } = useSelector(bubbleState);
 	const selected = useSelector(selectedBubble);
 	const { isLoading, message } = useSelector(pendingState);
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
-
-	const cancelHandler = () => {
-		setBub(starterBubble);
-	};
-
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		switch (e.target.name) {
-			case "left":
-				setBub({
-					...bub,
-					left: `${e.target.value}`,
-				});
-				break;
-			case "top":
-				setBub({
-					...bub,
-					top: `${e.target.value}`,
-				});
-				break;
-			case "size":
-				setBub({
-					...bub,
-					size: `${e.target.value}`,
-				});
-				break;
-			case "opacity":
-				setBub({
-					...bub,
-					opacity: `${e.target.value}`,
-				});
-				break;
-			default:
-				setBub(starterBubble);
-		}
-	};
-
-	const onSubmitHandler = () => {
-		const newBubble = {
-			left: `${bub.left}%`,
-			top: `${bub.top}%`,
-			size: `${bub.size}px`,
-			opacity: `${bub.opacity}`,
-		};
-		dispatch(postBubble(newBubble));
-	};
-
-	const renderInputs = () => {
-		return (
-			<>
-				<Form.TextInput
-					value={bub.left}
-					name='left'
-					onChange={onChangeHandler}
-				/>
-				<Form.TextInput
-					value={bub.top}
-					name='top'
-					onChange={onChangeHandler}
-				/>
-				<Form.TextInput
-					value={bub.size}
-					name='size'
-					onChange={onChangeHandler}
-				/>
-				<Form.TextInput
-					value={bub.opacity}
-					name='opacity'
-					onChange={onChangeHandler}
-				/>
-			</>
-		);
-	};
 
 	const handlers = {
 		showBubbles: () => {
@@ -116,16 +34,14 @@ const BubbleWrapper: React.FC = () => {
 
 	return (
 		<div className={styles.bubbleWrap}>
-			<button onClick={deleteSelected}>Delete Selected Bubble</button>
-			<button onClick={showBubbles}>Get Bubbles</button>
-			{bubbles.length > 0 && (
-				<FormModal
-					render={() => renderInputs()}
-					onSubmit={onSubmitHandler}
-					onCancel={cancelHandler}
-					buttonLabel='Add new Bubble'
+			<div className={styles.buttonWrapper}>
+				<Button
+					onClick={deleteSelected}
+					value='Delete Selected Bubble'
 				/>
-			)}
+				<Button onClick={showBubbles} value='Get Bubbles' />
+				{bubbles.length > 0 && <BubbleForm />}
+			</div>
 			{isLoading ? (
 				<>
 					<h2>{message}</h2>
@@ -142,7 +58,7 @@ const BubbleWrapper: React.FC = () => {
 					/>
 				))
 			)}
-			{error && <h2>{error}</h2>}
+			{error && <Error message={error} />}
 		</div>
 	);
 };

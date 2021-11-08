@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./Error.module.scss";
+import styles from "./ErrorMessage.module.scss";
 
 interface ErrorProps {
 	message: string | null;

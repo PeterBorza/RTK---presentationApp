@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAsyncColors } from "./thunks";
 import { paletSelector, colorSelector } from "./selectors";
 import { MemoryGameState } from "./types";
+import { Button } from "../../reusables";
 
 import styles from "./ColorsWrapper.module.scss";
 
@@ -19,7 +20,7 @@ const ColorsWrapper: React.FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<button onClick={showAsyncColors}>Fetch ColorPalets</button>
+			<Button onClick={showAsyncColors} value='Fetch ColorPalets' />
 			{pending && <h1>{pending}</h1>}
 			<div className={styles.colorWrapper}>
 				{palets[0] &&

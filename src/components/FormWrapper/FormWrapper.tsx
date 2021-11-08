@@ -21,13 +21,11 @@ const FormWrapper: React.FC<FormWrapProp> = ({
 	const [openModal, setIsOpenModal] = useState(false);
 
 	const onCancelHandler = () => {
-		console.log("Canceled");
 		onCancel && onCancel();
 		setIsOpenModal(false);
 	};
 
 	const onOpenHandler = () => {
-		console.log("opening form");
 		setIsOpenModal(true);
 	};
 
@@ -36,9 +34,6 @@ const FormWrapper: React.FC<FormWrapProp> = ({
 		onSubmit && onSubmit(e);
 		setIsOpenModal(false);
 	};
-
-	// const validName =
-	// 	input.split("").length > 3 ? "valid" : "please enter a valid name";
 
 	return openModal ? (
 		<div className={styles.generalWrapper}>
