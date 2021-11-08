@@ -1,7 +1,7 @@
 .container {
 	width: 100%;
-	height: auto;
-	border: 1px solid red;
+	height: calc(100vh - 35px);
+	text-align: center;
 }
 .empty {
 	width: 40%;

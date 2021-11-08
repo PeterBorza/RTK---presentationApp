@@ -28,3 +28,11 @@
 		margin: 0.3rem;
 	}
 }
+
+.activateForm {
+	width: 100%;
+	height: calc(100vh - 35px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

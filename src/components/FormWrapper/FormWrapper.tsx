@@ -47,7 +47,7 @@ const FormWrapper: React.FC<FormWrapProp> = ({ formWidth }) => {
 			</Form>
 		</div>
 	) : (
-		<Button value='Open Form' onClick={onOpenHandler} />
+		<div className={styles.activateForm}><Button value='Open Form' onClick={onOpenHandler} /></div>
 	);
 };
 

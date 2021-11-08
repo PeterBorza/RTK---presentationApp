@@ -61,7 +61,7 @@
 	flex-direction: $direction;
 }
 
-@mixin fCenter($direction) {
+@mixin fCenter($direction: "row") {
 	display: flex;
 	justify-content: center;
 	align-items: center;
