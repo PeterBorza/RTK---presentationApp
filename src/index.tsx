@@ -12,9 +12,10 @@ import Home from "./components/Home";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter>
-				<Routes>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+				{/* <Routes>
 					<Route path='/' element={<App />}>
 						<Route index element={<Home />} />
 						<Route path='building' element={<Building />} />
@@ -23,9 +24,9 @@ ReactDOM.render(
 						<Route path='light' element={<LightExpences />} />
 						<Route path='colors' element={<Colors />} />
 					</Route>
-				</Routes>
-			</BrowserRouter>
-		</Provider>
+				</Routes> */}
+			</Provider>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

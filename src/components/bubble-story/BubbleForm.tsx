@@ -62,6 +62,7 @@ const BubbleForm = () => {
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
 			buttonLabel='Add new Bubble'
+			formWidth='15'
 		/>
 	);
 };

@@ -1,5 +1,11 @@
 .container {
-	text-align: center;
+	width: 100%;
+	height: calc(100vh - 35px);
+	background-color: rgb(229, 203, 135);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 .empty {
 	width: 40%;
