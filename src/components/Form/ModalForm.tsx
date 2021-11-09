@@ -1,22 +1,24 @@
 import React, { ReactNode, useState, FormEvent } from "react";
-import Form from "../Form";
+import Form from ".";
 import Button from "../../reusables/Button";
 
-import styles from "./FormWrapper.module.scss";
-export interface FormWrapProp {
+import BlackModal from "../../reusables/BlackModal";
+export interface FormWrapProps {
 	formWidth?: string;
 	render?: () => ReactNode;
 	onSubmit?: (e: FormEvent) => void;
 	onCancel?: () => void;
 	buttonLabel?: string;
+	formTitle?: string;
 }
 
-const FormWrapper: React.FC<FormWrapProp> = ({
+const ModalForm: React.FC<FormWrapProps> = ({
 	formWidth,
 	render,
 	onSubmit,
 	onCancel,
 	buttonLabel = "FORM",
+	formTitle,
 }) => {
 	const [openModal, setIsOpenModal] = useState(false);
 
@@ -35,20 +37,24 @@ const FormWrapper: React.FC<FormWrapProp> = ({
 		setIsOpenModal(false);
 	};
 
-	return openModal ? (
-		<div className={styles.generalWrapper}>
+	const renderForm = () => {
+		return (
 			<Form
 				onSubmit={submitHandler}
 				width={formWidth}
 				render={() => render && render()}
 				onCancel={onCancelHandler}
-			></Form>
-		</div>
-	) : (
-		<div className={styles.activateForm}>
+				formTitle={formTitle}
+			/>
+		);
+	};
+
+	return (
+		<>
+			<BlackModal render={() => renderForm()} isOpen={openModal} />
 			<Button value={buttonLabel} onClick={onOpenHandler} />
-		</div>
+		</>
 	);
 };
 
-export default FormWrapper;
+export default ModalForm;
