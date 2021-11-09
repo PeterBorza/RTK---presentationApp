@@ -4,6 +4,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: monospace;
+	font-size: 100%;
 }
 
 .container {
@@ -20,11 +22,13 @@ a {
 	text-decoration: none;
 	padding: 5px;
 	margin: 2px;
+	cursor: pointer;
 	&:focus-within {
 		outline: none;
 		border: none;
 	}
 	&:active {
 		color: white;
+		transform: scale(0.95);
 	}
 }
