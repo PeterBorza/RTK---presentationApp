@@ -1,13 +1,12 @@
 .container {
 	width: 100%;
-	padding: 5px;
-	height: calc(100vh - 35px);
+	padding-top: 2rem;
+	height: 100vh;
+	background-color: rgb(164, 243, 243);
 }
 .colorWrapper {
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	margin: auto;
 }
 
 .colors {
