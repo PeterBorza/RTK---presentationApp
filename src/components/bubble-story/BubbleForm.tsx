@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { postBubble } from "./thunks";
 
-import { FormModal } from "../FormWrapper";
-import Form from "../Form";
+import Form, { ModalForm } from "../Form";
 import { BubbleCssProps } from "./types";
 
 const BubbleForm = () => {
@@ -57,12 +56,13 @@ const BubbleForm = () => {
 		);
 	};
 	return (
-		<FormModal
+		<ModalForm
 			render={() => renderInputs()}
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
 			buttonLabel='Add new Bubble'
-			formWidth='15'
+			formWidth='20'
+			formTitle='Position and shape of the bubble'
 		/>
 	);
 };

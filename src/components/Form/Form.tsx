@@ -3,11 +3,11 @@ import Button from "../../reusables/Button";
 import styles from "./Form.module.scss";
 
 export interface FormProps {
-	onSubmit?: (e: FormEvent) => void;
+	onSubmit: (e: FormEvent) => void;
 	onCancel: () => void;
 	formTitle?: string;
 	width?: string;
-	render?: () => ReactNode;
+	render: () => ReactNode;
 }
 
 const Form: React.FC<PropsWithChildren<FormProps>> = ({
