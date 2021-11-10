@@ -7,7 +7,7 @@
       "citire": 245,
       "consum": 246,
       "factura": 247,
-      "platit": false
+      "platit": true
     },
     {
       "id": "a8231965-053a-4021-903a-0807a773dfed",
@@ -16,7 +16,7 @@
       "citire": 245,
       "consum": 246,
       "factura": 247,
-      "platit": false
+      "platit": true
     },
     {
       "id": "7d0d14b6-4e98-4c00-8cd6-8ae37a70ff5d",
@@ -25,7 +25,7 @@
       "citire": "333",
       "consum": "444",
       "factura": "555",
-      "platit": false
+      "platit": true
     },
     {
       "id": "70b05f7c-1b76-4c3b-8717-3bb61758ccfa",
@@ -34,7 +34,34 @@
       "citire": "34",
       "consum": "89",
       "factura": "113",
+      "platit": true
+    },
+    {
+      "id": "1f5447ac-beda-491a-a10d-123bcc004602",
+      "dataCitire": "11/10/2021",
+      "selected": false,
+      "citire": "34",
+      "consum": "34",
+      "factura": "34",
+      "platit": true
+    },
+    {
+      "id": "18e62367-ae8f-4aa1-a396-ddec3ecc3fea",
+      "dataCitire": "11/10/2021",
+      "selected": false,
+      "citire": "222",
+      "consum": "222",
+      "factura": "666",
       "platit": false
+    },
+    {
+      "id": "74da907c-84f2-44f8-80b9-84b1edd7189f",
+      "dataCitire": "11/10/2021",
+      "selected": false,
+      "citire": "123",
+      "consum": "445",
+      "factura": "45",
+      "platit": true
     }
   ]
 }

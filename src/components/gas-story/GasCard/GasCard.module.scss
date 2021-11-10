@@ -30,7 +30,8 @@
 }
 
 .selected {
-	background-color: rgb(168, 161, 161);
+	box-shadow: $mixinShadowHover;
+	background-color: rgb(245, 239, 239);
 }
 
 .green {
