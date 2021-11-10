@@ -9,9 +9,9 @@ import { GasStateItem, GasFormProps } from "./gasSlice";
 
 const GasForm = () => {
 	const starterGas = {
-		citire: null,
-		consum: null,
-		factura: null,
+		citire: "",
+		consum: "",
+		factura: "",
 	};
 	const [gasUnit, setGasUnit] = useState<GasFormProps>(starterGas);
 	const dispatch = useDispatch();

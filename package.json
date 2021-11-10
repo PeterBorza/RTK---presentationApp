@@ -35,7 +35,7 @@
 		"serve": "json-server --watch data/db.json --port 5005",
 		"bubbles": "json-server --watch data/bubbles.json --port 5010 --delay 1000",
 		"gas": "json-server --watch data/gas.json --port 5006 --delay 1000",
-		"all": "start npm run start && start npm run serve && start npm run bubbles && npm run serve gas"
+		"all": "start npm run start && start npm run serve && start npm run bubbles && npm run gas"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

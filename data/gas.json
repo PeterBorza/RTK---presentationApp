@@ -26,6 +26,15 @@
       "consum": "444",
       "factura": "555",
       "platit": false
+    },
+    {
+      "id": "70b05f7c-1b76-4c3b-8717-3bb61758ccfa",
+      "dataCitire": "11/10/2021",
+      "selected": false,
+      "citire": "34",
+      "consum": "89",
+      "factura": "113",
+      "platit": false
     }
   ]
 }
