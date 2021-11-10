@@ -4,34 +4,26 @@ import { gasState } from "./selectors";
 import { errorState } from "../bubble-story/selectors";
 import { selectGas, togglePayed } from "./gasSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { format } from "date-fns";
-import { v4 as uuid } from "uuid";
-import { deleteGas, getAsyncGas } from "./thunks";
-import { useEffect } from "react";
+import { getAsyncGas } from "./thunks";
+import { useCallback, useEffect } from "react";
 import GasForm from "./GasForm";
+import styles from "./GasTableContainer.module.scss";
 
 const GasTableContainer = () => {
 	const dispatch = useDispatch();
 	const { units, labels } = useSelector(gasState);
 	const error = useSelector(errorState);
 
-	useEffect(() => {
-		dispatch(getAsyncGas());
-	}, []);
+	const fetchGasUnits = useCallback(() => {
+		units.length <= 0 && dispatch(getAsyncGas());
+	}, [units.length, dispatch]);
 
-	const newGas = {
-		id: uuid(),
-		selected: false,
-		dataCitire: format(new Date(), "MM/dd/yyyy"),
-		citire: 1200,
-		consum: 150,
-		factura: 233,
-		platit: false,
-	};
+	useEffect(() => {
+		fetchGasUnits();
+	}, [fetchGasUnits]);
 
 	const onGasClickHandler = (id: string) => {
 		dispatch(selectGas(id));
-		// dispatch(deleteGas(id));
 	};
 
 	const gasCards = () => {
@@ -51,12 +43,12 @@ const GasTableContainer = () => {
 	};
 
 	return error ? (
-		<p>{error}</p>
+		<h1>{error}</h1>
 	) : (
-		<>
+		<div className={styles.gasContainer}>
 			<GasForm />
 			<Table renderBody={gasCards} renderHeader={labelHeader} />
-		</>
+		</div>
 	);
 };
 

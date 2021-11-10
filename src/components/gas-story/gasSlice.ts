@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface GasFormProps {
-	citire: number | null;
-	consum: number | null;
-	factura: number | null;
+	citire: string;
+	consum: string;
+	factura: string;
 }
 
 export interface GasStateItem extends GasFormProps {
