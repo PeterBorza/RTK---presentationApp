@@ -1,9 +1,14 @@
 import { typeofGasState } from "../../app/store";
 
-export const gasState = (state: typeofGasState) => state.gas;
+export const gasState = ({ gas }: typeofGasState) => gas;
 
-export const selectedGas = (state: typeofGasState) => {
-	state.gas.units.find(item => item.selected === true);
+export const selectedGas = ({ gas }: typeofGasState) => {
+	gas.units.find(item => item.selected === true);
 };
 
-export const labels = (state: typeofGasState) => state.gas.labels;
+export const labels = ({ gas }: typeofGasState) => gas.labels;
+
+export const pendingGasState = ({ gas }: typeofGasState) =>
+	gas.loading.isLoading;
+
+export const errorGasState = ({ gas }: typeofGasState) => gas.error;

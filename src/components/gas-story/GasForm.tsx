@@ -12,6 +12,7 @@ const GasForm = () => {
 		citire: "",
 		consum: "",
 		factura: "",
+		dataCitire: format(new Date(), "dd/MM/yyyy"),
 	};
 	const [gasUnit, setGasUnit] = useState<GasFormProps>(starterGas);
 	const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const GasForm = () => {
 	const onSubmitHandler = () => {
 		const newGasUnit: GasStateItem = {
 			id: uuid(),
-			dataCitire: format(new Date(), "MM/dd/yyyy"),
+			dataCitire: gasUnit.dataCitire,
 			selected: false,
 			citire: gasUnit.citire,
 			consum: gasUnit.consum,
@@ -64,7 +65,7 @@ const GasForm = () => {
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
 			buttonLabel='Adauga citire noua'
-			formWidth='20'
+			formWidth='25'
 			formTitle='Citire Lunara'
 		/>
 	);

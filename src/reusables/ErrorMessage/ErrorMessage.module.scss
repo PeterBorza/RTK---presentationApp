@@ -1,4 +1,7 @@
 .errorStyle {
+	position: fixed;
+	left: 0;
+	top: 0;
 	color: red;
 	font-size: 3rem;
 	font-weight: bold;
@@ -6,4 +9,6 @@
 	height: 100%;
 	display: grid;
 	place-items: center;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 100;
 }
