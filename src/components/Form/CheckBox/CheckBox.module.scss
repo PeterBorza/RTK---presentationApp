@@ -1,0 +1,10 @@
+.checkboxWrapper {
+	display: flex;
+	align-items: center;
+	padding: 2px;
+	border: 1px solid white;
+	user-select: none;
+	input[type="checkbox"] {
+		margin: 5px;
+	}
+}

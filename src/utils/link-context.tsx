@@ -3,7 +3,7 @@ import React, { createContext, ReactNode } from "react";
 import Home from "../components/Home";
 import { Building } from "../components/building-story";
 import { Bubbles } from "../components/bubble-story";
-import { GasExpences, LightExpences } from "../components/house-keeping";
+import { GasExpences } from "../components/gas-story";
 import { Colors } from "../components/memoryGame-story";
 
 interface LinkProps {
@@ -46,12 +46,6 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			label: "gas",
 			id: uuid(),
 			element: () => <GasExpences />,
-		},
-		{
-			to: "/light",
-			label: "light",
-			id: uuid(),
-			element: () => <LightExpences />,
 		},
 		{
 			to: "/colors",
