@@ -1,7 +1,10 @@
+@use "../../css/variables" as *;
+@use "../../css/mixins" as *;
+
 .wrapper {
 	width: 35%;
 	height: 80vh;
-	border: 1px solid black;
+	box-shadow: $shadow;
 	margin: 1rem auto;
 }
 

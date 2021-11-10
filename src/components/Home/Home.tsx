@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<>
 			<div className={styles.container}>
-				<p>{format(new Date(), "MM/dd/yyyy/iii/H:m")}</p>
+				<p>{format(new Date(), "MM/dd/yyyy/iii/HH:mm")}</p>
 			</div>
 		</>
 	);

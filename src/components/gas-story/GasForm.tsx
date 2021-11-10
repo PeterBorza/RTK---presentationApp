@@ -63,7 +63,7 @@ const GasForm = () => {
 			render={() => renderInputs()}
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
-			buttonLabel='Add new Gas unit'
+			buttonLabel='Adauga citire noua'
 			formWidth='20'
 			formTitle='Citire Lunara'
 		/>
