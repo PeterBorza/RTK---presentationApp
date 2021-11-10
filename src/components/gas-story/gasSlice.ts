@@ -1,26 +1,38 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Pending, Error } from "../../app/constants";
+import { selectedBubble } from "../bubble-story/selectors";
 
 export interface GasFormProps {
 	citire: string;
 	consum: string;
 	factura: string;
+	dataCitire: string;
 }
 
 export interface GasStateItem extends GasFormProps {
 	id: string;
 	selected: boolean;
-	dataCitire: string;
 	platit: boolean;
 }
 
 export interface GasState {
 	units: GasStateItem[];
 	labels: string[];
+	loading: {
+		isLoading: boolean;
+		message: string;
+	};
+	error: string | null;
 }
 
 const initialState: GasState = {
 	units: [],
 	labels: ["data", "citire", "consum", "factura", "platit"],
+	loading: {
+		isLoading: false,
+		message: Pending.MESSAGE,
+	},
+	error: null,
 };
 
 export const gasSlice = createSlice({
@@ -56,6 +68,15 @@ export const gasSlice = createSlice({
 		) => {
 			state.units = state.units.filter(units => units.id !== payload);
 		},
+		setGasPending: (
+			state: GasState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.loading.isLoading = payload;
+		},
+		setGasError: (state: GasState) => {
+			state.error = Error.MESSAGE;
+		},
 	},
 });
 
@@ -65,5 +86,7 @@ export const {
 	addGasUnit,
 	getGasUnits,
 	deleteGasUnit,
+	setGasPending,
+	setGasError,
 } = gasSlice.actions;
 export default gasSlice.reducer;

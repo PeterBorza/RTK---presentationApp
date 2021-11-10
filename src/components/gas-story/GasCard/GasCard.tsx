@@ -1,18 +1,21 @@
 import React from "react";
 import { GasStateItem } from "../gasSlice";
-import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
-
+import IconSet from "../../../reusables/IconSet";
 import styles from "./GasCard.module.scss";
 import classNames from "classnames";
 
 interface Props {
 	onClick: () => void;
 	onPayedClick: () => void;
+	onDelete: () => void;
+	onEdit: () => void;
 }
 
 const GasCard: React.FC<GasStateItem & Props> = ({
 	onClick,
 	onPayedClick,
+	onDelete,
+	onEdit,
 	...units
 }) => {
 	const { dataCitire, citire, consum, factura, platit, selected } = units;
@@ -22,17 +25,18 @@ const GasCard: React.FC<GasStateItem & Props> = ({
 
 	return (
 		<div className={classes} onClick={onClick}>
-			<p className={styles.data}>{dataCitire}</p>
-			<p className={styles.data}>{citire}</p>
-			<p className={styles.data}>{consum}</p>
-			<p className={styles.data}>{factura}</p>
-			<p onClick={onPayedClick}>
-				{platit ? (
-					<FaCheck className={styles.green} />
-				) : (
-					<FaExclamationTriangle className={styles.red} />
-				)}
-			</p>
+			<div className={styles.data}>{dataCitire}</div>
+			<div className={styles.data}>{citire}</div>
+			<div className={styles.data}>{consum}</div>
+			<div className={styles.data}>{factura}</div>
+			<div className={styles.iconBox}>
+				<IconSet
+					onCheck={onPayedClick}
+					onDelete={onDelete}
+					onEdit={onEdit}
+					isChecked={platit}
+				/>
+			</div>
 		</div>
 	);
 };

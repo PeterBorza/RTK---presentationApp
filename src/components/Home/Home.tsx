@@ -1,13 +1,13 @@
 import styles from "./Home.module.scss";
-import { format } from "date-fns";
+import { useTime } from "../../utils/useTime";
 
 const Home = () => {
+	const today = useTime("hour");
+
 	return (
-		<>
-			<div className={styles.container}>
-				<p>{format(new Date(), "MM/dd/yyyy/iii/HH:mm")}</p>
-			</div>
-		</>
+		<div className={styles.container}>
+			<p>{today}</p>
+		</div>
 	);
 };
 

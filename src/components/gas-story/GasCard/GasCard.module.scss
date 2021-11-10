@@ -10,7 +10,7 @@
 	padding: 5px;
 	@include shadow();
 	transition: all 120ms ease-out;
-	p {
+	div {
 		width: 100%;
 	}
 
@@ -34,10 +34,8 @@
 	background-color: rgb(245, 239, 239);
 }
 
-.green {
-	color: limegreen;
-}
-
-.red {
-	color: crimson;
+.iconBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }

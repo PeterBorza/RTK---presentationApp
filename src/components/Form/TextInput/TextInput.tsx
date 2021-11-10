@@ -4,6 +4,7 @@ import styles from "./TextInput.module.scss";
 
 export interface InputProps {
 	className?: string;
+	type?: "text" | "date" | "range" | "number";
 	name?: string;
 	value: string;
 	placeholder?: string;
@@ -13,6 +14,7 @@ export interface InputProps {
 
 const TextInput: React.FC<InputProps> = ({
 	className,
+	type = "text",
 	name = "put label here",
 	value,
 	placeholder,
@@ -25,7 +27,7 @@ const TextInput: React.FC<InputProps> = ({
 		<label htmlFor={name} className={labelClasses}>
 			<span>{name}</span>:
 			<input
-				type='text'
+				type={type}
 				name={name}
 				title={title}
 				value={value}

@@ -1,26 +1,26 @@
 import { Gaz } from "./GasCard";
 import { Table } from "../../reusables/ScrollTable";
-import { gasState, selectedGas } from "./selectors";
-import { errorState } from "../bubble-story/selectors";
+import { gasState } from "./selectors";
+import { errorGasState } from "../gas-story/selectors";
 import { GasStateItem, selectGas } from "./gasSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getAsyncGas, togglePayedBill } from "./thunks";
+import { getAsyncGas, togglePayedBill, deleteGas, editDate } from "./thunks";
 import { useCallback, useEffect } from "react";
 import GasForm from "./GasForm";
 import styles from "./GasTableContainer.module.scss";
+import ErrorMessage from "../../reusables/ErrorMessage";
+import { Loader } from "../../reusables";
 
 const GasTableContainer = () => {
 	const dispatch = useDispatch();
-	const { units, labels } = useSelector(gasState);
-	const selected = useSelector(selectedGas);
-	const error = useSelector(errorState);
-
-	const isSelected = selected !== undefined;
+	const { units, labels, loading } = useSelector(gasState);
+	const error = useSelector(errorGasState);
 
 	const isUnits = units && units.length !== 0;
 
 	const fetchGasUnits = useCallback(() => {
-		return !isUnits && dispatch(getAsyncGas());
+		if (isUnits) return;
+		dispatch(getAsyncGas());
 	}, [isUnits, dispatch]);
 
 	useEffect(() => {
@@ -35,6 +35,14 @@ const GasTableContainer = () => {
 		dispatch(selectGas(id));
 	};
 
+	const onDeleteGasHandler = (id: string) => {
+		dispatch(deleteGas(id));
+	};
+
+	const onEditGasHandler = (item: GasStateItem) => {
+		dispatch(editDate({ item, payload: "15/10/21" }));
+	};
+
 	const gasCards = () => {
 		return (
 			isUnits &&
@@ -44,6 +52,8 @@ const GasTableContainer = () => {
 						{...item}
 						onClick={() => onGasClickHandler(item.id)}
 						onPayedClick={() => onTogglePayedBill(item)}
+						onDelete={() => onDeleteGasHandler(item.id)}
+						onEdit={() => onEditGasHandler(item)}
 					/>
 				</li>
 			))
@@ -54,12 +64,20 @@ const GasTableContainer = () => {
 		return labels.map(item => <span key={item}>{item}</span>);
 	};
 
-	return error ? (
-		<h1>{error}</h1>
-	) : (
+	return (
 		<div className={styles.gasContainer}>
-			<GasForm />
-			<Table renderBody={gasCards} renderHeader={labelHeader} />
+			{loading.isLoading ? (
+				<div>
+					<Loader dots={5} />
+					<p>{loading.message}</p>
+				</div>
+			) : (
+				<>
+					<GasForm />
+					<Table renderBody={gasCards} renderHeader={labelHeader} />
+				</>
+			)}
+			{error && <ErrorMessage message={error} />}
 		</div>
 	);
 };
