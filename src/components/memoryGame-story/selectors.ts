@@ -6,5 +6,8 @@ export const memoryGameState = (state: typeofMemoryGameState) =>
 export const colorSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.colors;
 
+export const photoSelector = (state: typeofMemoryGameState) =>
+	state.memoryGame.photos;
+
 export const paletSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.colors.map(palet => palet.palet);
