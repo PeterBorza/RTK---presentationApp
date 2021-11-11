@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAsyncColors } from "./thunks";
-import { paletSelector, colorSelector } from "./selectors";
-import { MemoryGameState } from "./types";
-import { Button } from "../../reusables";
+import { getAsyncColors } from "../thunks";
+import { paletSelector, colorSelector } from "../selectors";
+import { MemoryGameState } from "../types";
+import { Button } from "../../../reusables";
 
-import styles from "./ColorsWrapper.module.scss";
+import styles from "./Colors.module.scss";
 
 const ColorsWrapper: React.FC = () => {
 	const palets = useSelector(paletSelector);

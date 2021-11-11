@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState, ColorSetInterFace } from "./types";
+import { myImages } from "../../utils/my-images";
 
 const initialState: MemoryGameState = {
-	photos: ["safv", "dfssdv"],
+	photos: [...myImages()],
 	pair: [],
 	colors: [],
 	pending: null,

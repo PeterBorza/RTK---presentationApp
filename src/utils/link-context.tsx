@@ -4,7 +4,7 @@ import Home from "../components/Home";
 import { Building } from "../components/building-story";
 import { Bubbles } from "../components/bubble-story";
 import { GasExpences } from "../components/gas-story";
-import { Colors } from "../components/memoryGame-story";
+import { Colors, Photos } from "../components/memoryGame-story";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -52,6 +52,12 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			label: "colors",
 			id: uuid(),
 			element: () => <Colors />,
+		},
+		{
+			to: "/photos",
+			label: "photos",
+			id: uuid(),
+			element: () => <Photos />,
 		},
 	];
 	return (

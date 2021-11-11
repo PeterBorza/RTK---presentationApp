@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pending, Error } from "../../app/constants";
-import { selectedBubble } from "../bubble-story/selectors";
 
 export interface GasFormProps {
 	citire: string;
