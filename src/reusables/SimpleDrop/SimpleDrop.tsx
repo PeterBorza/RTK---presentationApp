@@ -1,14 +1,15 @@
-import { useState, useRef } from "react";
-import styles from "./SimpleDrop.module.scss";
-import classNames from "classnames";
+import { useState, useRef, FC } from "react";
 
-export interface DdProps {
+import classNames from "classnames";
+import styles from "./SimpleDrop.module.scss";
+
+export interface DropDownProps {
 	title?: string;
 	contentStyle?: string | null;
 	children: React.ReactNode;
 }
 
-const SimpleDrop: React.FC<DdProps> = ({
+const SimpleDrop: FC<DropDownProps> = ({
 	children,
 	title = "Click",
 	contentStyle,

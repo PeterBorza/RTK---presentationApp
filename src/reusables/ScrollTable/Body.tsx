@@ -1,6 +1,7 @@
-import React, { FC, PropsWithChildren, ReactNode } from "react";
-import styles from "./ScrollTable.module.scss";
+import { FC, PropsWithChildren, ReactNode } from "react";
+
 import classNames from "classnames";
+import styles from "./ScrollTable.module.scss";
 
 export interface Props {
 	className?: string;

@@ -1,6 +1,7 @@
 import React from "react";
 import { GasStateItem } from "../gasSlice";
-import IconSet from "../../../reusables/IconSet";
+import { IconSet } from "../../../reusables";
+
 import styles from "./GasCard.module.scss";
 import classNames from "classnames";
 

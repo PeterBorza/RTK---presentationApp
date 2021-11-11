@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI } from "../../app/constants";
-import { addColors } from "../memoryGame-story/memoryGameSlice";
+import { addColors } from "../memoryGame-story";
 import { setError } from "../bubble-story/bubbleSlice";
 
 export const getAsyncColors = createAsyncThunk(

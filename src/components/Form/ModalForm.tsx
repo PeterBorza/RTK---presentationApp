@@ -1,8 +1,6 @@
 import React, { ReactNode, useState, FormEvent } from "react";
 import Form from ".";
-import Button from "../../reusables/Button";
-
-import BlackModal from "../../reusables/BlackModal";
+import { Button, BlackModal } from "../../reusables";
 export interface FormWrapProps {
 	formWidth?: string;
 	render?: () => ReactNode;
