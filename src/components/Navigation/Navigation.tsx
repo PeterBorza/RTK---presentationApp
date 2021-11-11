@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 import { NavBar } from "../../reusables";
-import { LinkContext } from "../../utils";
+import { LinkContext } from "../../context";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
-	const links = useContext(LinkContext);
+	const links = useContext(LinkContext.LinkContext);
 
 	const linkClasses = (isActive: boolean) =>
 		classNames(styles.links, {

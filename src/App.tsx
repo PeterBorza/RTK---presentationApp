@@ -8,15 +8,17 @@ import {
 	gasStory,
 	memoryStory,
 	Home,
+	Aside,
 } from "./components";
-import { LinkContextProvider } from "./utils";
+import { LinkContext } from "./context";
 import { Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
 	return (
 		<div className={styles.container}>
-			<LinkContextProvider>
+			<LinkContext.LinkContextProvider>
 				<Navigation />
+				<Aside />
 				<Routes>
 					<Route index element={<Home />} />
 					<Route
@@ -30,7 +32,7 @@ const App: React.FC = () => {
 						<Route path=':id' element={<memoryStory.Photo />} />
 					</Route>
 				</Routes>
-			</LinkContextProvider>
+			</LinkContext.LinkContextProvider>
 		</div>
 	);
 };
