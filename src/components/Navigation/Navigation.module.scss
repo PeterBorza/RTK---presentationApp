@@ -1,4 +1,7 @@
-.navigation {
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+
+.container {
 	position: fixed;
 	left: 0;
 	top: 0;

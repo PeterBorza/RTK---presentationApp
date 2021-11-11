@@ -1,3 +1,3 @@
-export { default as GasExpences } from "./GasTableContainer";
+export { default as GasExpences } from "./GasTable";
 export * from "./selectors";
 export * from "./thunks";

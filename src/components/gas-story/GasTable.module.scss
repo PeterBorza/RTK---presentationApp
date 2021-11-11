@@ -1,0 +1,8 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+
+.container {
+	@include container($nav);
+	@include fCenter(column);
+	background-color: white;
+}

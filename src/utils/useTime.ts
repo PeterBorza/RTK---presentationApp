@@ -6,11 +6,10 @@ type TimeProp = "hour" | "day" | "date" | "all" | null;
 export const useTime = (text: TimeProp): string => {
 	const [time, setTime] = useState<Date>(new Date());
 
-	const timer = () => setTime(new Date());
-
 	useEffect(() => {
-		setInterval(timer, 1000);
-		// if (text === "object") return clearInterval(timer);
+		const timer = () => setTime(new Date());
+		const time = setInterval(timer, 1000);
+		return () => clearInterval(time);
 	}, []);
 
 	if (text === "hour") return ` ${format(time, "HH:mm:ss")}`;

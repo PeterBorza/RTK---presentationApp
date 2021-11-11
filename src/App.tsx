@@ -7,13 +7,15 @@ import { Routes, Route } from "react-router-dom";
 import { Building } from "./components/building-story";
 import { Bubbles } from "./components/bubble-story";
 import { GasExpences } from "./components/gas-story";
-import { Colors } from "./components/memoryGame-story";
+import { Colors, Photos } from "./components/memoryGame-story";
 import Home from "./components/Home";
+// import Aside from "./components/Aside";
 
 const App: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<LinkContextProvider>
+				{/* <Aside visible /> */}
 				<Navigation />
 				<Routes>
 					<Route index element={<Home />} />
@@ -21,6 +23,7 @@ const App: React.FC = () => {
 					<Route path='bubbles' element={<Bubbles />} />
 					<Route path='gas' element={<GasExpences />} />
 					<Route path='colors' element={<Colors />} />
+					<Route path='/photos' element={<Photos />} />
 				</Routes>
 			</LinkContextProvider>
 		</div>

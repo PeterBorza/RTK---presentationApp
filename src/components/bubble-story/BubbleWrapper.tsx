@@ -35,7 +35,7 @@ const BubbleWrapper: React.FC = () => {
 	const { showBubbles, deleteSelected, handleBubbleClick } = handlers;
 
 	return (
-		<div className={styles.bubbleWrap}>
+		<div className={styles.container}>
 			<div className={styles.buttonWrapper}>
 				<Button
 					onClick={deleteSelected}

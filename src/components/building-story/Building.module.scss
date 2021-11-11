@@ -1,11 +1,10 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+
 .container {
-	width: 100%;
-	height: calc(100vh - 35px);
+	@include container($nav);
 	background-color: rgb(229, 203, 135);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	@include fCenter(column);
 }
 .empty {
 	width: 40%;

@@ -1,13 +1,13 @@
 import { Gaz } from "./GasCard";
 import { Table } from "../../reusables/ScrollTable";
 import { gasState } from "./selectors";
-import { errorGasState } from "../gas-story/selectors";
+import { errorGasState } from "./selectors";
 import { GasStateItem, selectGas } from "./gasSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAsyncGas, togglePayedBill, deleteGas, editDate } from "./thunks";
 import { useCallback, useEffect } from "react";
 import GasForm from "./GasForm";
-import styles from "./GasTableContainer.module.scss";
+import styles from "./GasTable.module.scss";
 import ErrorMessage from "../../reusables/ErrorMessage";
 import { Loader } from "../../reusables";
 
@@ -65,7 +65,7 @@ const GasTableContainer = () => {
 	};
 
 	return (
-		<div className={styles.gasContainer}>
+		<div className={styles.container}>
 			{loading.isLoading ? (
 				<div>
 					<Loader dots={5} />

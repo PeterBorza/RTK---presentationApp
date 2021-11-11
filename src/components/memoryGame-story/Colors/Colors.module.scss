@@ -1,7 +1,7 @@
 .container {
 	width: 100%;
-	padding-top: 2rem;
-	height: 100vh;
+	padding: 1rem;
+	height: calc(100vh - 35px);
 	background-color: rgb(164, 243, 243);
 }
 .colorWrapper {

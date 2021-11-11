@@ -29,7 +29,7 @@ const Navigation = () => {
 	};
 
 	return (
-		<div className={styles.navigation}>
+		<div className={styles.container}>
 			<NavBar renderBody={() => renderBody()} />
 			<Outlet />
 		</div>
