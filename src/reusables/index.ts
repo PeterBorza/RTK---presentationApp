@@ -7,7 +7,9 @@ import SimpleDrop from "./SimpleDrop";
 import Table from "./ScrollTable";
 import NavBar from "./NavBar";
 import Bar from "./SideBar";
-import { InputCard } from "./InputCard";
+import BlackModal from "./BlackModal";
+import IconSet from "./IconSet";
+import InputCard from "./InputCard";
 
 export {
 	Loader,
@@ -20,4 +22,6 @@ export {
 	Bar,
 	InputCard,
 	ButtonWithChildren,
+	BlackModal,
+	IconSet,
 };

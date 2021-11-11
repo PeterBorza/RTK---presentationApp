@@ -1,15 +1,16 @@
-import { Gaz } from "./GasCard";
-import { Table } from "../../reusables/ScrollTable";
-import { gasState } from "./selectors";
-import { errorGasState } from "./selectors";
-import { GasStateItem, selectGas } from "./gasSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { getAsyncGas, togglePayedBill, deleteGas, editDate } from "./thunks";
 import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Table } from "../../reusables/ScrollTable";
+import { Loader, Error } from "../../reusables";
+import { gasState, errorGasState } from "./selectors";
+import { GasStateItem, selectGas } from "./gasSlice";
+import { getAsyncGas, togglePayedBill, deleteGas, editDate } from "./thunks";
+
+import { Gaz } from "./GasCard";
 import GasForm from "./GasForm";
+
 import styles from "./GasTable.module.scss";
-import ErrorMessage from "../../reusables/ErrorMessage";
-import { Loader } from "../../reusables";
 
 const GasTableContainer = () => {
 	const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const GasTableContainer = () => {
 					<Table renderBody={gasCards} renderHeader={labelHeader} />
 				</>
 			)}
-			{error && <ErrorMessage message={error} />}
+			{error && <Error message={error} />}
 		</div>
 	);
 };

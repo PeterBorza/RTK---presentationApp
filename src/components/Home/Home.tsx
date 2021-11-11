@@ -1,7 +1,9 @@
-import styles from "./Home.module.scss";
-import { useTime } from "../../utils/useTime";
+import { FC } from "react";
+import { useTime } from "../../utils";
 
-const Home = () => {
+import styles from "./Home.module.scss";
+
+const Home: FC = () => {
 	const hour = useTime("hour");
 	const date = useTime("date");
 	const day = useTime("day");

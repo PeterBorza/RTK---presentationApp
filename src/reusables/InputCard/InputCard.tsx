@@ -1,8 +1,9 @@
-import React from "react";
+import { FC } from "react";
+
+import { icons } from "../../utils";
+
 import classNames from "classnames";
 import styles from "./InputCard.module.scss";
-
-import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
 export interface InputCardType {
 	onClick?: () => void;
@@ -15,7 +16,7 @@ export interface InputCardType {
 	size?: "small" | "medium" | "large" | "xxl";
 }
 
-const InputCard: React.FC<InputCardType> = ({
+const InputCard: FC<InputCardType> = ({
 	onClick,
 	onChange,
 	isDark = false,
@@ -24,7 +25,7 @@ const InputCard: React.FC<InputCardType> = ({
 	inputName,
 	value,
 	size = "medium",
-}): JSX.Element => {
+}) => {
 	const toggleDark = classNames(
 		styles["input-wrapper"],
 		[styles[`input-wrapper__${size}`]],
@@ -49,7 +50,7 @@ const InputCard: React.FC<InputCardType> = ({
 					className={styles["button-style"]}
 					onClick={onClick}
 				>
-					<HiOutlineArrowCircleRight
+					<icons.HiOutlineArrowCircleRight
 						className={styles["input-icon"]}
 					/>
 				</button>

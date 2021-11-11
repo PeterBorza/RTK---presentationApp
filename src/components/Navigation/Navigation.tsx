@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import NavBar from "../../reusables/NavBar";
 import { NavLink, Outlet } from "react-router-dom";
-import { LinkContext } from "../../utils/link-context";
-import classNames from "classnames";
 
+import { NavBar } from "../../reusables";
+import { LinkContext } from "../../utils";
+
+import classNames from "classnames";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {

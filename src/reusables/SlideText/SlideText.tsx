@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./SlideText.module.scss";
 
 interface Props {

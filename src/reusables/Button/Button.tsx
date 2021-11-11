@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import styles from "./Button.module.scss";
 import classNames from "classnames";
@@ -10,7 +10,7 @@ export interface Props {
 	customClass?: string;
 }
 
-const Button: React.FC<Props> = ({
+const Button: FC<Props> = ({
 	value = "Click",
 	type = "button",
 	customClass,

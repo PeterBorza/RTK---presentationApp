@@ -1,10 +1,12 @@
+import { FC } from "react";
+
 import { useParams } from "react-router";
-import { photoSelector } from "..";
 import { useSelector } from "react-redux";
+import { photoSelector } from "..";
 
 import styles from "./Photos.module.scss";
 
-const Photo = () => {
+const Photo: FC = () => {
 	const params = useParams();
 	const photos = useSelector(photoSelector);
 

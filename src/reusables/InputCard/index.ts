@@ -1,1 +1,1 @@
-export {default as InputCard} from "./InputCard";
+export { default } from "./InputCard";

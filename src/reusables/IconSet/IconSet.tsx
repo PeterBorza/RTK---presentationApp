@@ -1,7 +1,8 @@
-import React, { FC } from "react";
-import { Check, Exclamation, Trash, Edit } from "../../utils/icons";
-import styles from "./IconSet.module.scss";
+import { FC } from "react";
+import { icons } from "../../utils";
+
 import classNames from "classnames";
+import styles from "./IconSet.module.scss";
 
 interface IconSetProps {
 	onCheck: () => void;
@@ -23,17 +24,17 @@ const IconSet: FC<IconSetProps> = ({
 		<div className={iconClasses}>
 			{isChecked ? (
 				<>
-					<Check
+					<icons.Check
 						className={styles.green}
 						onClick={onCheck}
 						title='checked'
 					/>
-					<Trash
+					<icons.Trash
 						className={styles.black}
 						title='delete'
 						onClick={onDelete}
 					/>
-					<Edit
+					<icons.Edit
 						className={styles.blue}
 						title='edit'
 						onClick={onEdit}
@@ -41,17 +42,17 @@ const IconSet: FC<IconSetProps> = ({
 				</>
 			) : (
 				<>
-					<Exclamation
+					<icons.Exclamation
 						className={styles.red}
 						onClick={onCheck}
 						title='unchecked'
 					/>
-					<Trash
+					<icons.Trash
 						className={styles.black}
 						title='delete'
 						onClick={onDelete}
 					/>
-					<Edit
+					<icons.Edit
 						className={styles.blue}
 						title='edit'
 						onClick={onEdit}

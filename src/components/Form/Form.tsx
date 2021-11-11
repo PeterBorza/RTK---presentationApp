@@ -1,5 +1,5 @@
 import React, { FormEvent, PropsWithChildren, ReactNode } from "react";
-import Button from "../../reusables/Button";
+import { Button } from "../../reusables";
 import styles from "./Form.module.scss";
 
 export interface FormProps {

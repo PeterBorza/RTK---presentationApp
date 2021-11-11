@@ -13,6 +13,7 @@ import { FaWindowClose } from "react-icons/fa";
 import { FaBan } from "react-icons/fa";
 import { FcCheckmark } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
+import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
 export {
 	FaBars as Bars,
@@ -30,4 +31,5 @@ export {
 	FaBan as Ban,
 	FcCheckmark as Checkmark,
 	FcHighPriority as HighPriority,
+	HiOutlineArrowCircleRight,
 };

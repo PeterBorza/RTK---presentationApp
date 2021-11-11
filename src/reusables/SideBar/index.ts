@@ -1,6 +1,4 @@
 import Bar from "./Bar";
-import Header from "./subcomponents/Header";
-import Body from "./subcomponents/Body";
-import Footer from "./subcomponents/Footer";
+import { Header, Body, Footer } from "./subcomponents";
 
 export default Object.assign(Bar, { Header, Body, Footer });

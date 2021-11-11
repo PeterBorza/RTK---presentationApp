@@ -1,9 +1,12 @@
-import styles from "./Photos.module.scss";
-import { photoSelector } from "..";
+import { FC } from "react";
+
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import { photoSelector } from "..";
 
-const Photos = () => {
+import styles from "./Photos.module.scss";
+
+const Photos: FC = () => {
 	const photos = useSelector(photoSelector);
 
 	const renderLinks = photos.map(photo => (
