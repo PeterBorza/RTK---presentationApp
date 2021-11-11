@@ -31,18 +31,16 @@
 	// children displayed with grid-column ex. 1/7, 2/5 etc.
 }
 
-@mixin RAM($min, $max, $gap) {
+@mixin RAM($min, $max) {
 	display: grid;
-	grid-gap: $gap;
 	grid-template-columns: repeat(auto-fit, minmax($min, $max));
 	// grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	// with auto-fill baseline does not increase !
 }
 
-@mixin lineUp($rows, $gap) {
+@mixin lineUp($rows) {
 	height: auto;
 	display: grid;
-	grid-gap: $gap;
 	grid-template-columns: repeat($rows, 1fr);
 	// child : justify-content : space-between;
 	// flex-direction: column;
@@ -54,7 +52,7 @@
 	color: rgb(19, 6, 34);
 }
 
-@mixin fAround($direction) {
+@mixin fAround($direction: "row") {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -68,14 +66,14 @@
 	flex-direction: $direction;
 }
 
-@mixin fEven($direction) {
+@mixin fEven($direction: "row") {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: $direction;
 }
 
-@mixin fBetween($direction) {
+@mixin fBetween($direction: "row") {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
