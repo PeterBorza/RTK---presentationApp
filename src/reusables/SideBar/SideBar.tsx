@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 
 import Bar from "./subcomponents";
-import { MenuContext } from "../../context";
+import { SideBarContext } from "../../context";
 
 import classNames from "classnames";
 import styles from "./SideBar.module.scss";
@@ -12,7 +12,7 @@ export interface SideBarProps {
 }
 
 const SideBar: FC<SideBarProps> = ({ visible = false }) => {
-	const [isOpen, setIsOpen] = useContext(MenuContext.SideBarContext);
+	const [isOpen, setIsOpen] = useContext(SideBarContext);
 	const sideBarClassNames = classNames(styles.wrapper, {
 		[styles.wrapper__open]: isOpen,
 		[styles.noDisplay]: !visible,
@@ -22,10 +22,10 @@ const SideBar: FC<SideBarProps> = ({ visible = false }) => {
 		<>
 			<Bar className={sideBarClassNames}>
 				<Bar.Header onClose={() => setIsOpen(false)}>
-					<Loader dots={11} />
+					<Loader dots={5} />
 				</Bar.Header>
 
-				<Bar.Body renderBody={() => <Loader dots={11} />} />
+				<Bar.Body renderBody={() => <Loader dots={5} />} />
 
 				<Bar.Footer />
 			</Bar>

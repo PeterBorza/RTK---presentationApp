@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -8,19 +9,28 @@ import {
 } from "./selectors";
 
 import { getAsyncBubbles, deleteBubble } from "./thunks";
+import { SideBarContext } from "../../context";
+
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
-import { Loader, Button, Error } from "../../reusables";
+import { Loader, Button, Error, SideBar } from "../../reusables";
 import { selectBubble } from "./bubbleSlice";
 
+import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
 
 const BubbleWrapper: React.FC = () => {
+	const [isOpen, setIsOpen] = useContext(SideBarContext);
+
 	const { bubbles } = useSelector(bubbleState);
 	const selected = useSelector(selectedBubble);
 	const { isLoading, message } = useSelector(pendingState);
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
+
+	const wrapper = classNames(styles.container, {
+		[styles.container__margin]: isOpen,
+	});
 
 	const isBubbles = bubbles.length !== 0;
 
@@ -35,33 +45,36 @@ const BubbleWrapper: React.FC = () => {
 	const { showBubbles, deleteSelected, handleBubbleClick } = handlers;
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.buttonWrapper}>
-				<Button
-					onClick={deleteSelected}
-					value='Delete Selected Bubble'
-				/>
-				<Button onClick={showBubbles} value='Get Bubbles' />
-				{isBubbles && <BubbleForm />}
-			</div>
-			{isLoading ? (
-				<>
-					<h2>{message}</h2>
-					<Loader dots={5} />
-				</>
-			) : (
-				bubbles.map(item => (
-					<Bubble
-						key={item.id}
-						onClick={() => handleBubbleClick(item.id)}
-						selected={item.selected}
-						cssProps={item.cssProps}
-						id={item.id}
+		<>
+			<SideBar visible />
+			<div className={wrapper}>
+				<div className={styles.buttonWrapper}>
+					<Button
+						onClick={deleteSelected}
+						value='Delete Selected Bubble'
 					/>
-				))
-			)}
-			{error && <Error message={error} />}
-		</div>
+					<Button onClick={showBubbles} value='Get Bubbles' />
+					{isBubbles && <BubbleForm />}
+				</div>
+				{isLoading ? (
+					<>
+						<h2>{message}</h2>
+						<Loader dots={5} />
+					</>
+				) : (
+					bubbles.map(item => (
+						<Bubble
+							key={item.id}
+							onClick={() => handleBubbleClick(item.id)}
+							selected={item.selected}
+							cssProps={item.cssProps}
+							id={item.id}
+						/>
+					))
+				)}
+				{error && <Error message={error} />}
+			</div>
+		</>
 	);
 };
 

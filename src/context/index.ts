@@ -1,2 +1,9 @@
-export * as MenuContext from "./app-context";
-export * as LinkContext from "./link-context";
+import { LinkContext, LinkContextProvider } from "./link-context";
+import { SideBarContext, SideBarContextProvider } from "./app-context";
+
+export {
+	LinkContext,
+	LinkContextProvider,
+	SideBarContext,
+	SideBarContextProvider,
+};

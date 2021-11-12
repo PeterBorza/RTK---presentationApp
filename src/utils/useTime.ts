@@ -14,8 +14,8 @@ export const useTime = (text: TimeProp): string => {
 
 	if (text === "hour") return ` ${format(time, "HH:mm:ss")}`;
 	if (text === "day") return `${format(time, "iii")}`;
-	if (text === "date") return `${format(time, "MM/dd/yyyy")}`;
-	if (text === "all") return `${format(time, "MM/dd/yyyy/iii/HH:mm:ss")}`;
+	if (text === "date") return `${format(time, "dd/MMMM/yyyy")}`;
+	if (text === "all") return `${format(time, "dd/MMM/yyyy/iii/HH:mm:ss")}`;
 
 	return time.getSeconds().toString();
 };

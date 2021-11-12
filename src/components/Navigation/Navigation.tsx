@@ -8,7 +8,7 @@ import classNames from "classnames";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
-	const links = useContext(LinkContext.LinkContext);
+	const links = useContext(LinkContext);
 
 	const linkClasses = (isActive: boolean) =>
 		classNames(styles.links, {
