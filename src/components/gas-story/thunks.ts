@@ -13,6 +13,13 @@ import axios from "axios";
 
 // ************************************************************************************
 
+const instance = axios.create({
+	baseURL: "http://localhost:5006/units",
+	method: "POST",
+});
+
+// ************************************************************************************
+
 export const getAsyncGas = createAsyncThunk(
 	"gas/getAsyncGas",
 	async (_, thunkApi): Promise<void> => {
@@ -39,8 +46,8 @@ export const postAsyncGas = async (
 ): Promise<void> => {
 	dispatch(setGasPending(true));
 	try {
-		await axios
-			.post(`${BaseAPI.GAS_UNITS_URL}/units`, data)
+		await instance
+			.request({ data })
 			.then(response => dispatch(addGasUnit(response.data)));
 	} catch {
 		dispatch(setGasError());

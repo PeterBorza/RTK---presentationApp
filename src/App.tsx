@@ -10,17 +10,17 @@ import {
 	Home,
 	Aside,
 } from "./components";
-import { LinkContext } from "./context";
+import { LinkContextProvider } from "./context";
 import { Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
 	return (
 		<div className={styles.container}>
-			<LinkContext.LinkContextProvider>
+			<LinkContextProvider>
 				<Navigation />
-				<Aside />
+				{/* <Aside /> */}
 				<Routes>
-					<Route index element={<Home />} />
+					<Route path='/' element={<Home />} />
 					<Route
 						path='building'
 						element={<buildingStory.Building />}
@@ -28,11 +28,11 @@ const App: React.FC = () => {
 					<Route path='bubbles' element={<bubbleStory.Bubbles />} />
 					<Route path='gas' element={<gasStory.GasExpences />} />
 					<Route path='colors' element={<memoryStory.Colors />} />
-					<Route path='/photos' element={<memoryStory.Photos />}>
+					<Route path='photos' element={<memoryStory.Photos />}>
 						<Route path=':id' element={<memoryStory.Photo />} />
 					</Route>
 				</Routes>
-			</LinkContext.LinkContextProvider>
+			</LinkContextProvider>
 		</div>
 	);
 };

@@ -1,5 +1,20 @@
-$nav: 35px;
-@mixin container($nav) {
+$navHeight: 35px;
+$SBsize: 200px;
+$SBborder: 1px dashed rgba(151, 136, 136, 0.4);
+$SBtransition: 200ms ease;
+$SBhoverColor: rgb(134, 124, 124);
+$SBfontSize: 1.3rem;
+$SBnoMarginLeft: 0;
+
+@mixin shadowSB {
+	box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+	&:hover {
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+	}
+}
+
+@mixin container($navHeight) {
 	width: 100%;
-	height: calc(100vh - $nav);
-} ;
+	transition: $SBtransition;
+	height: calc(100vh - $navHeight);
+}

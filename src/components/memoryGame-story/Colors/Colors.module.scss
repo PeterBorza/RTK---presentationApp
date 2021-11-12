@@ -1,9 +1,20 @@
+@use "../../../css/variables" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/my_app" as *;
+
 .container {
-	width: 100%;
-	padding: 1rem;
-	height: calc(100vh - 35px);
+	margin: 0;
+	@include container($navHeight);
 	background-color: rgb(164, 243, 243);
+	&__margin {
+		margin-left: $SBsize;
+	}
 }
+
+.addMargin {
+	margin-left: $SBsize;
+}
+
 .colorWrapper {
 	display: flex;
 	justify-content: center;

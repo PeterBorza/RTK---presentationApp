@@ -21,16 +21,6 @@
       }
     },
     {
-      "id": 9,
-      "selected": false,
-      "cssProps": {
-        "left": "45%",
-        "top": "45%",
-        "size": "100px",
-        "opacity": ".6"
-      }
-    },
-    {
       "id": 10,
       "selected": false,
       "cssProps": {

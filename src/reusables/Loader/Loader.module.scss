@@ -13,11 +13,11 @@
 	padding: 3px;
 }
 .dot {
-	width: 10px;
-	height: 10px;
 	border-radius: 50%;
+	padding: 5px;
 	margin: 2px;
 	background-color: white;
+	flex-shrink: 1;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 	animation: blink 500ms ease infinite alternate-reverse;
 

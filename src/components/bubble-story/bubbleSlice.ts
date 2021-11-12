@@ -49,7 +49,7 @@ export const bubbleSlice = createSlice({
 			{ payload }: PayloadAction<number>
 		) => {
 			const idx = bubbles.findIndex(bub => bub.id === payload);
-			bubbles.splice(idx, 1);
+			bubbles.splice(idx);
 		},
 	},
 });
