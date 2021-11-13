@@ -3,18 +3,29 @@
 	background: linear-gradient(135deg, transparent, cadetblue 85%);
 	border-radius: 50%;
 	aspect-ratio: 1;
-	box-shadow: 4px 6px 25px rgba(0, 0, 0, 0.3),
+	box-shadow: 4px 6px 40px 30px rgba(0, 0, 0, 0.3),
 		-1px -1px 10px rgba(240, 240, 240, 0.7);
 	display: grid;
 	place-items: center;
 	color: rgba(206, 69, 19, 0.753);
 	text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
-	font-size: 2rem;
+	font-size: clamp(1rem, 1.5vw, 2rem);
 	font-family: fantasy;
 	margin: 5px;
 	z-index: 1;
+	transform: translate(-50%, -50%);
 }
 
 .active {
-	color: yellow;
+	color: white;
+	background-color: black;
+}
+
+.withImage {
+	// background-image: url(../../../images/moon1920.jpg);
+	background-image: url(../../../images/Santa0.png);
+	// background-image: url(../../../images/bf0.png);
+	background-size: cover;
+	background-position: center;
+	transition: 300ms ease-out;
 }
