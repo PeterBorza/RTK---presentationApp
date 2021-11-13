@@ -7,7 +7,7 @@ interface CheckBoxProps {
 	label: string;
 	value: string | number;
 	isChecked: boolean;
-	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({

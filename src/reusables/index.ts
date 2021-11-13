@@ -9,6 +9,10 @@ import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
 import IconSet from "./IconSet";
 import InputCard from "./InputCard";
+import TextInput from "./TextInput";
+import CheckBox from "./CheckBox";
+import FieldSet from "./FieldSet";
+import Form from "./Form";
 
 export {
 	Loader,
@@ -22,4 +26,8 @@ export {
 	InputCard,
 	BlackModal,
 	IconSet,
+	TextInput,
+	CheckBox,
+	FieldSet,
+	Form,
 };

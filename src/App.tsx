@@ -8,7 +8,6 @@ import {
 	gasStory,
 	memoryStory,
 	Home,
-	Aside,
 } from "./components";
 import { LinkContextProvider } from "./context";
 import { Routes, Route } from "react-router-dom";
@@ -18,7 +17,6 @@ const App: React.FC = () => {
 		<div className={styles.container}>
 			<LinkContextProvider>
 				<Navigation />
-				{/* <Aside /> */}
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route

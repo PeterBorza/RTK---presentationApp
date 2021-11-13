@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 
 import { postGas } from "./thunks";
 
-import Form, { ModalForm } from "../Form";
+import Form, { ModalForm } from "../../reusables/Form";
 import { GasStateItem, GasFormProps } from "./gasSlice";
 
 const GasForm = () => {
