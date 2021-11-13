@@ -10,7 +10,11 @@ Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
-Json-server will also fetch data for you !!!
+This app is using json-server, fetching data from three separate paths.
+[http://localhost:5005](http://localhost:5005) for colorSets,
+[http://localhost:5006](http://localhost:5006) for units,
+[http://localhost:5010](http://localhost:5010) for bubbles.
+Running this command will fetch all data at startup for you !!!
 
 ### `npm start`
 
