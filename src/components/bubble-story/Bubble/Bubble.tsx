@@ -4,16 +4,11 @@ import styles from "./Bubble.module.scss";
 import { Bubble as Props } from "../types";
 import classNames from "classnames";
 
-interface BubbleProps {
+interface BubbleProps extends Props {
 	onClick: () => void;
 }
 
-const Bubble: FC<BubbleProps & Props> = ({
-	onClick,
-	id,
-	selected,
-	cssProps,
-}) => {
+const Bubble: FC<BubbleProps> = ({ onClick, id, selected, cssProps }) => {
 	const { left, top, size, opacity } = cssProps;
 	const bubbleClassNames = classNames(styles.bubbleStyle, {
 		[styles.active]: selected,

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { postBubble } from "./thunks";
 
-import Form, { ModalForm } from "../Form";
+import Form, { ModalForm } from "../../reusables/Form";
 import { BubbleCssProps } from "./types";
 
 const BubbleForm = () => {

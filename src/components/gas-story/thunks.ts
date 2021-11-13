@@ -80,7 +80,7 @@ export const deleteGas = createAsyncThunk("gas/deleteAsyncGas", deleteAsyncGas);
 
 // ************************************************************************************
 
-export const putAsyncGasPayed = async (
+export const toggleAsyncGasPayed = async (
 	item: GasStateItem,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
@@ -97,8 +97,8 @@ export const putAsyncGasPayed = async (
 };
 
 export const togglePayedBill = createAsyncThunk(
-	"gas/putAsyncGasPayed",
-	putAsyncGasPayed
+	"gas/toggleAsyncGasPayed",
+	toggleAsyncGasPayed
 );
 
 // ************************************************************************************

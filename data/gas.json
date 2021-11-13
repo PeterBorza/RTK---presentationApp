@@ -7,7 +7,7 @@
       "citire": "5648",
       "consum": "",
       "factura": "6,91",
-      "platit": true
+      "platit": false
     },
     {
       "id": "2d1cb0ff-1a6c-4894-9588-5ed7fca8f61e",
@@ -16,7 +16,7 @@
       "citire": "6011",
       "consum": "",
       "factura": "227,80",
-      "platit": true
+      "platit": false
     },
     {
       "id": "df9d2608-947c-4b66-b8a1-b965b26a6f47",
