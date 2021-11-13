@@ -6,9 +6,6 @@
 	margin: 0;
 	@include container($navHeight);
 	background-color: rgb(164, 243, 243);
-	&__margin {
-		margin-left: $SBsize;
-	}
 }
 
 .addMargin {

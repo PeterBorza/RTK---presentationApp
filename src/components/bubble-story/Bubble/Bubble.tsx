@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import styles from "./Bubble.module.scss";
 import { Bubble as Props } from "../types";
@@ -8,7 +8,7 @@ interface BubbleProps {
 	onClick: () => void;
 }
 
-const Bubble: React.FC<BubbleProps & Props> = ({
+const Bubble: FC<BubbleProps & Props> = ({
 	onClick,
 	id,
 	selected,
@@ -17,6 +17,7 @@ const Bubble: React.FC<BubbleProps & Props> = ({
 	const { left, top, size, opacity } = cssProps;
 	const bubbleClassNames = classNames(styles.bubbleStyle, {
 		[styles.active]: selected,
+		[styles.withImage]: false,
 	});
 
 	const inlineStyles = {

@@ -29,6 +29,56 @@
         "size": "120px",
         "opacity": "1"
       }
+    },
+    {
+      "id": 11,
+      "selected": false,
+      "cssProps": {
+        "left": "5%",
+        "top": "55%",
+        "size": "120px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 12,
+      "selected": false,
+      "cssProps": {
+        "left": "50%",
+        "top": "50%",
+        "size": "300px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 13,
+      "selected": false,
+      "cssProps": {
+        "left": "15%",
+        "top": "20%",
+        "size": "40px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 14,
+      "selected": false,
+      "cssProps": {
+        "left": "30%",
+        "top": "25%",
+        "size": "25px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 15,
+      "selected": false,
+      "cssProps": {
+        "left": "80%",
+        "top": "90%",
+        "size": "300px",
+        "opacity": ".5"
+      }
     }
   ]
 }
