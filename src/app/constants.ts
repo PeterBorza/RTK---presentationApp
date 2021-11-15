@@ -4,6 +4,12 @@ export enum BaseAPI {
 	GAS_UNITS_URL = "http://localhost:5006",
 }
 
+export enum Url {
+	COLORS = "colorSets",
+	BUBBLES = "bubbles",
+	GAS = "units",
+}
+
 export enum Error {
 	MESSAGE = "We are sorry, an error occured. Please try again later",
 }

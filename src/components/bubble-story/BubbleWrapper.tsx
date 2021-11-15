@@ -15,8 +15,8 @@ import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
 import { Loader, Button, Error, SideBar } from "../../reusables";
 import { selectBubble } from "./bubbleSlice";
+import { AsidePlatform } from "../../reusables";
 
-import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
 
 const BubbleWrapper: React.FC = () => {
@@ -27,10 +27,6 @@ const BubbleWrapper: React.FC = () => {
 	const { isLoading, message } = useSelector(pendingState);
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
-
-	const wrapper = classNames(styles.container, {
-		[styles.container__margin]: isOpen,
-	});
 
 	const isBubbles = bubbles.length !== 0;
 
@@ -51,10 +47,9 @@ const BubbleWrapper: React.FC = () => {
 		dispatch(selectBubble(id));
 	};
 
-	return (
-		<>
-			<SideBar visible />
-			<div className={wrapper}>
+	const render = () => {
+		return (
+			<>
 				<div className={styles.buttonWrapper}>
 					<Button
 						onClick={deleteSelected}
@@ -85,9 +80,11 @@ const BubbleWrapper: React.FC = () => {
 					))
 				)}
 				{error && <Error message={error} />}
-			</div>
-		</>
-	);
+			</>
+		);
+	};
+
+	return <AsidePlatform isOpen={isOpen} renderBody={() => render()} />;
 };
 
 export default BubbleWrapper;

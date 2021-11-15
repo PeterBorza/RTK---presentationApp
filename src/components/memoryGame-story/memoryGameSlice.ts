@@ -7,6 +7,7 @@ const initialState: MemoryGameState = {
 	pair: [],
 	colors: [],
 	pending: false,
+	error: false,
 };
 
 export const memoryGameSlice = createSlice({
@@ -40,10 +41,22 @@ export const memoryGameSlice = createSlice({
 		) => {
 			state.pending = payload;
 		},
+		setError: (
+			state: MemoryGameState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.error = payload;
+		},
 	},
 });
 
-export const { addToPair, resetPair, addColors, addPalet, setPending } =
-	memoryGameSlice.actions;
+export const {
+	addToPair,
+	resetPair,
+	addColors,
+	addPalet,
+	setPending,
+	setError,
+} = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

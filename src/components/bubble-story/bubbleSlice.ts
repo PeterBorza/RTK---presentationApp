@@ -31,7 +31,7 @@ export const bubbleSlice = createSlice({
 		},
 		setBubbles: (
 			{ bubbles }: BubbleState,
-			{ payload }: PayloadAction<Bubble[] | []>
+			{ payload }: PayloadAction<Bubble[]>
 		) => {
 			bubbles.push(...payload);
 		},

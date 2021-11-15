@@ -13,6 +13,7 @@ import TextInput from "./TextInput";
 import CheckBox from "./CheckBox";
 import FieldSet from "./FieldSet";
 import Form from "./Form";
+import AsidePlatform from "./AsidePlatform";
 
 export {
 	Loader,
@@ -30,4 +31,5 @@ export {
 	CheckBox,
 	FieldSet,
 	Form,
+	AsidePlatform,
 };

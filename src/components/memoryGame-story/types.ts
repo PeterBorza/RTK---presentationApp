@@ -16,4 +16,5 @@ export interface MemoryGameState {
 	pair: string[];
 	colors: ColorSetInterFace[];
 	pending: boolean;
+	error: boolean;
 }
