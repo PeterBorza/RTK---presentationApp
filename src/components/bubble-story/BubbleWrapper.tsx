@@ -30,8 +30,6 @@ const BubbleWrapper: React.FC = () => {
 
 	const isBubbles = bubbles.length !== 0;
 
-	// *****************************************************************************
-
 	const showBubbles = () => {
 		if (isBubbles) return;
 		dispatch(getBubbles(Url.BUBBLES));
@@ -58,16 +56,13 @@ const BubbleWrapper: React.FC = () => {
 					/>
 					<Button
 						onClick={showBubbles}
-						value='Get Bubbles'
+						value={isLoading ? message : "Get Bubbles"}
 						isDisabled={isBubbles}
 					/>
 					{isBubbles && <BubbleForm />}
 				</div>
 				{isLoading ? (
-					<>
-						<h2>{message}</h2>
-						<Loader dots={5} />
-					</>
+					<Loader dots={5} />
 				) : (
 					bubbles.map(item => (
 						<Bubble

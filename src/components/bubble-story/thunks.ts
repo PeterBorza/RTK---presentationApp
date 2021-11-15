@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "../../app/constants";
+import { BaseAPI } from "../../app/constants";
 import { typeofBubbleState } from "../../app/store";
 import {
 	setBubbles,
@@ -10,7 +10,7 @@ import {
 } from "./bubbleSlice";
 import { Bubble, BubbleCssProps } from "./types";
 
-export const getAsyncBubbles = async (
+const getAsyncBubbles = async (
 	url: string,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
@@ -27,14 +27,7 @@ export const getAsyncBubbles = async (
 	}
 };
 
-export const getBubbles = createAsyncThunk(
-	"bubbles/getAsyncBubbles",
-	getAsyncBubbles
-);
-
-// **********************************************************************
-
-export const handleDeleteBubble = async (
+const handleDeleteBubble = async (
 	id: number,
 	{ dispatch }: { dispatch: Function }
 ) => {
@@ -48,14 +41,7 @@ export const handleDeleteBubble = async (
 	}
 };
 
-export const deleteBubble = createAsyncThunk(
-	"bubbles/handleDeleteBubble",
-	handleDeleteBubble
-);
-
-// **********************************************************************
-
-export const handlePostBubble = async (
+const handlePostBubble = async (
 	data: BubbleCssProps,
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ) => {
@@ -80,7 +66,16 @@ export const handlePostBubble = async (
 	}
 };
 
-export const postBubble = createAsyncThunk(
+const getBubbles = createAsyncThunk("bubbles/getAsyncBubbles", getAsyncBubbles);
+
+const deleteBubble = createAsyncThunk(
+	"bubbles/handleDeleteBubble",
+	handleDeleteBubble
+);
+
+const postBubble = createAsyncThunk(
 	"bubbles/handlePostBubble",
 	handlePostBubble
 );
+
+export { getBubbles, deleteBubble, postBubble };
