@@ -8,6 +8,7 @@ export interface Props {
 	type?: "button" | "submit" | "reset" | undefined;
 	onClick?: () => void;
 	customClass?: string;
+	isDisabled?: boolean;
 }
 
 const Button: FC<Props> = ({
@@ -15,11 +16,19 @@ const Button: FC<Props> = ({
 	type = "button",
 	customClass,
 	onClick,
+	isDisabled,
 }) => {
-	const classes = classNames(styles.defaultStyle, customClass);
+	const classes = classNames(styles.defaultStyle, customClass, {
+		[styles.defaultStyle__disabled]: isDisabled,
+	});
 	return (
-		<button className={classes} type={type} onClick={onClick}>
-			{value}
+		<button
+			className={classes}
+			type={type}
+			onClick={onClick}
+			disabled={isDisabled}
+		>
+			<span className={styles.defaultStyle__content}>{value}</span>
 		</button>
 	);
 };

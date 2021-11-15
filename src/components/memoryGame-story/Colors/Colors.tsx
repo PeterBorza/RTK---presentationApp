@@ -21,16 +21,22 @@ const ColorsWrapper: React.FC = () => {
 		[styles.container__margin]: isOpen,
 	});
 
+	const isColors = colors.length !== 0;
+
 	const showAsyncColors = () => {
-		colors.length === 0 && dispatch(getAsyncColors());
+		!isColors && dispatch(getAsyncColors());
 	};
 
 	return (
 		<>
 			<SideBar visible />
 			<div className={wrapper}>
-				<Button onClick={showAsyncColors} value='Fetch ColorPalets' />
-				{pending && <h1>{pending}</h1>}
+				<Button
+					onClick={showAsyncColors}
+					value='Fetch ColorPalets'
+					isDisabled={isColors}
+				/>
+				{pending && <h1>LOADING</h1>}
 				<div className={styles.colorWrapper}>
 					{palets[0] &&
 						palets[0].map(set => (

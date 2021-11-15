@@ -11,7 +11,7 @@ interface BubbleProps extends Props {
 const Bubble: FC<BubbleProps> = ({ onClick, id, selected, cssProps }) => {
 	const { left, top, size, opacity } = cssProps;
 	const bubbleClassNames = classNames(styles.bubbleStyle, {
-		[styles.active]: selected,
+		[styles.bubbleStyle__active]: selected,
 		[styles.withImage]: false,
 	});
 
@@ -28,7 +28,7 @@ const Bubble: FC<BubbleProps> = ({ onClick, id, selected, cssProps }) => {
 			onClick={onClick}
 			style={inlineStyles}
 		>
-			{id}
+			<span className={styles.bubbleStyle__span}>{id}</span>
 		</div>
 	);
 };

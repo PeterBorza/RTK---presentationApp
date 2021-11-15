@@ -7,25 +7,29 @@
 		-1px -1px 10px rgba(240, 240, 240, 0.7);
 	display: grid;
 	place-items: center;
-	color: rgba(206, 69, 19, 0.753);
-	text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
-	font-size: clamp(1rem, 1.5vw, 2rem);
-	font-family: fantasy;
-	margin: 5px;
 	z-index: 1;
 	transform: translate(-50%, -50%);
-}
-
-.active {
-	color: white;
-	background-color: black;
+	&__span {
+		color: rgba(206, 69, 19, 0.753);
+		text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
+		font-size: clamp(1rem, 1.5vw, 2rem);
+		font-family: fantasy;
+	}
+	&__active {
+		background-color: black;
+		.bubbleStyle__span {
+			color: white;
+		}
+	}
 }
 
 .withImage {
 	// background-image: url(../../../images/moon1920.jpg);
 	background-image: url(../../../images/Santa0.png);
 	// background-image: url(../../../images/bf0.png);
+	// background: url(../../../images/fastsanta.png);
 	background-size: cover;
 	background-position: center;
 	transition: 300ms ease-out;
+	box-shadow: none;
 }
