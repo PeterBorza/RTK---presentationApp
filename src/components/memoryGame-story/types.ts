@@ -15,5 +15,5 @@ export interface MemoryGameState {
 	photos: ImageData[];
 	pair: string[];
 	colors: ColorSetInterFace[];
-	pending: string | null;
+	pending: boolean;
 }

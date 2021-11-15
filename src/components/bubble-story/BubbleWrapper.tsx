@@ -34,15 +34,22 @@ const BubbleWrapper: React.FC = () => {
 
 	const isBubbles = bubbles.length !== 0;
 
-	const handlers = {
-		showBubbles: () => {
-			!isBubbles && dispatch(getAsyncBubbles());
-		},
-		deleteSelected: () => selected && dispatch(deleteBubble(selected.id)),
-		handleBubbleClick: (id: number) => dispatch(selectBubble(id)),
+	// *****************************************************************************
+
+	const showBubbles = () => {
+		if (isBubbles) return;
+		dispatch(getAsyncBubbles());
 	};
 
-	const { showBubbles, deleteSelected, handleBubbleClick } = handlers;
+	const deleteSelected = () => {
+		if (selected) {
+			dispatch(deleteBubble(selected.id));
+		}
+	};
+
+	const handleBubbleClick = (id: number) => {
+		dispatch(selectBubble(id));
+	};
 
 	return (
 		<>
@@ -52,8 +59,13 @@ const BubbleWrapper: React.FC = () => {
 					<Button
 						onClick={deleteSelected}
 						value='Delete Selected Bubble'
+						isDisabled={!selected}
 					/>
-					<Button onClick={showBubbles} value='Get Bubbles' />
+					<Button
+						onClick={showBubbles}
+						value='Get Bubbles'
+						isDisabled={isBubbles}
+					/>
 					{isBubbles && <BubbleForm />}
 				</div>
 				{isLoading ? (
