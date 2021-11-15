@@ -19,7 +19,7 @@ const SideBar: FC<SideBarProps> = ({ visible = false }) => {
 	});
 
 	return (
-		<>
+		<aside>
 			<Bar className={sideBarClassNames}>
 				<Bar.Header onClose={() => setIsOpen(false)}>
 					<Loader dots={5} />
@@ -29,7 +29,7 @@ const SideBar: FC<SideBarProps> = ({ visible = false }) => {
 
 				<Bar.Footer />
 			</Bar>
-		</>
+		</aside>
 	);
 };
 

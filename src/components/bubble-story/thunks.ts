@@ -10,26 +10,24 @@ import {
 } from "./bubbleSlice";
 import { Bubble, BubbleCssProps } from "./types";
 
-export const getAsyncBubbles = createAsyncThunk(
-	"bubbles/getAsyncBubbles",
-	async (_, { dispatch }: { dispatch: Function }): Promise<void> => {
-		try {
-			dispatch(setPending(true));
-			const response = await fetch(`${BaseAPI.BUBBLES_URL}/bubbles`);
-			const data = await response.json();
-			dispatch(setBubbles(data));
-			return data;
-		} catch {
-			dispatch(setError());
-		} finally {
-			dispatch(setPending(false));
-		}
+const getAsyncBubbles = async (
+	url: string,
+	{ dispatch }: { dispatch: Function }
+): Promise<void> => {
+	try {
+		dispatch(setPending(true));
+		const response = await fetch(`${BaseAPI.BUBBLES_URL}/${url}`);
+		const data = await response.json();
+		dispatch(setBubbles(data));
+		return data;
+	} catch {
+		dispatch(setError());
+	} finally {
+		dispatch(setPending(false));
 	}
-);
+};
 
-// **********************************************************************
-
-export const handleDeleteBubble = async (
+const handleDeleteBubble = async (
 	id: number,
 	{ dispatch }: { dispatch: Function }
 ) => {
@@ -43,14 +41,7 @@ export const handleDeleteBubble = async (
 	}
 };
 
-export const deleteBubble = createAsyncThunk(
-	"bubbles/handleDeleteBubble",
-	handleDeleteBubble
-);
-
-// **********************************************************************
-
-export const handlePostBubble = async (
+const handlePostBubble = async (
 	data: BubbleCssProps,
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ) => {
@@ -75,7 +66,16 @@ export const handlePostBubble = async (
 	}
 };
 
-export const postBubble = createAsyncThunk(
+const getBubbles = createAsyncThunk("bubbles/getAsyncBubbles", getAsyncBubbles);
+
+const deleteBubble = createAsyncThunk(
+	"bubbles/handleDeleteBubble",
+	handleDeleteBubble
+);
+
+const postBubble = createAsyncThunk(
 	"bubbles/handlePostBubble",
 	handlePostBubble
 );
+
+export { getBubbles, deleteBubble, postBubble };

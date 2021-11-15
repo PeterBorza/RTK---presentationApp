@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getColors } from "../thunks";
 import { memoryGameState, paletSelector } from "../selectors";
-import { Button, SideBar } from "../../../reusables";
+import { AsidePlatform, Button } from "../../../reusables";
 import { SideBarContext } from "../../../context";
 import { Pending, Error, Url } from "../../../app/constants";
 
@@ -11,7 +11,7 @@ import classNames from "classnames";
 import styles from "./Colors.module.scss";
 
 const ColorsWrapper: React.FC = () => {
-	const [isOpen, setIsOpen] = useContext(SideBarContext);
+	const [isOpen] = useContext(SideBarContext);
 	const { colors, pending, error } = useSelector(memoryGameState);
 	const palets = useSelector(paletSelector);
 	const dispatch = useDispatch();
@@ -26,10 +26,9 @@ const ColorsWrapper: React.FC = () => {
 		dispatch(getColors(Url.COLORS));
 	};
 
-	return (
-		<>
-			<SideBar visible />
-			<div className={wrapper}>
+	const render = () => {
+		return (
+			<>
 				<Button
 					onClick={showAsyncColors}
 					value={pending ? Pending.MESSAGE : "Fetch ColorPalets"}
@@ -49,9 +48,11 @@ const ColorsWrapper: React.FC = () => {
 						<h1>{Error.MESSAGE}</h1>
 					) : null}
 				</div>
-			</div>
-		</>
-	);
+			</>
+		);
+	};
+
+	return <AsidePlatform renderBody={() => render()} isOpen={isOpen} />;
 };
 
 export default ColorsWrapper;

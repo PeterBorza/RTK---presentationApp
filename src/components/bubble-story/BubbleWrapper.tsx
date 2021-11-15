@@ -8,20 +8,20 @@ import {
 	selectedBubble,
 } from "./selectors";
 
-import { getAsyncBubbles, deleteBubble } from "./thunks";
-import { SideBarContext } from "../../context";
+import { getBubbles, deleteBubble } from "./thunks";
+import { Url } from "../../app/constants";
 
+import { SideBarContext } from "../../context";
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
-import { Loader, Button, Error, SideBar } from "../../reusables";
+import { Loader, Button, Error } from "../../reusables";
 import { selectBubble } from "./bubbleSlice";
 import { AsidePlatform } from "../../reusables";
 
 import styles from "./BubbleWrapper.module.scss";
 
 const BubbleWrapper: React.FC = () => {
-	const [isOpen, setIsOpen] = useContext(SideBarContext);
-
+	const [isOpen] = useContext(SideBarContext);
 	const { bubbles } = useSelector(bubbleState);
 	const selected = useSelector(selectedBubble);
 	const { isLoading, message } = useSelector(pendingState);
@@ -30,11 +30,9 @@ const BubbleWrapper: React.FC = () => {
 
 	const isBubbles = bubbles.length !== 0;
 
-	// *****************************************************************************
-
 	const showBubbles = () => {
 		if (isBubbles) return;
-		dispatch(getAsyncBubbles());
+		dispatch(getBubbles(Url.BUBBLES));
 	};
 
 	const deleteSelected = () => {
@@ -58,16 +56,13 @@ const BubbleWrapper: React.FC = () => {
 					/>
 					<Button
 						onClick={showBubbles}
-						value='Get Bubbles'
+						value={isLoading ? message : "Get Bubbles"}
 						isDisabled={isBubbles}
 					/>
 					{isBubbles && <BubbleForm />}
 				</div>
 				{isLoading ? (
-					<>
-						<h2>{message}</h2>
-						<Loader dots={5} />
-					</>
+					<Loader dots={5} />
 				) : (
 					bubbles.map(item => (
 						<Bubble
