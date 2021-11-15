@@ -16,10 +16,10 @@ const AsidePlatform: FC<Props> = ({ isOpen, renderBody }) => {
 	});
 
 	return (
-		<div className={styles.platformContainer}>
+		<section className={styles.platformContainer}>
 			<SideBar visible />
 			<div className={wrapper}>{renderBody()}</div>
-		</div>
+		</section>
 	);
 };
 

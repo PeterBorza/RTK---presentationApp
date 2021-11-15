@@ -3,7 +3,7 @@ import { BaseAPI } from "../../app/constants";
 import { addColors, setError, setPending } from "../memoryGame-story";
 
 export const getAsyncColors = async (
-	colors: string,
+	url: string,
 	{
 		dispatch,
 	}: {
@@ -12,7 +12,7 @@ export const getAsyncColors = async (
 ): Promise<void> => {
 	dispatch(setPending(true));
 	try {
-		const response = await fetch(`${BaseAPI.COLORSETS_URL}/${colors}`);
+		const response = await fetch(`${BaseAPI.COLORSETS_URL}/${url}`);
 
 		const data = await response.json();
 		data && dispatch(addColors(data));

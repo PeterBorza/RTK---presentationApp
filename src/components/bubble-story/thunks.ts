@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI } from "../../app/constants";
+import { BaseAPI, Url } from "../../app/constants";
 import { typeofBubbleState } from "../../app/store";
 import {
 	setBubbles,
@@ -10,21 +10,26 @@ import {
 } from "./bubbleSlice";
 import { Bubble, BubbleCssProps } from "./types";
 
-export const getAsyncBubbles = createAsyncThunk(
-	"bubbles/getAsyncBubbles",
-	async (_, { dispatch }: { dispatch: Function }): Promise<void> => {
-		try {
-			dispatch(setPending(true));
-			const response = await fetch(`${BaseAPI.BUBBLES_URL}/bubbles`);
-			const data = await response.json();
-			dispatch(setBubbles(data));
-			return data;
-		} catch {
-			dispatch(setError());
-		} finally {
-			dispatch(setPending(false));
-		}
+export const getAsyncBubbles = async (
+	url: string,
+	{ dispatch }: { dispatch: Function }
+): Promise<void> => {
+	try {
+		dispatch(setPending(true));
+		const response = await fetch(`${BaseAPI.BUBBLES_URL}/${url}`);
+		const data = await response.json();
+		dispatch(setBubbles(data));
+		return data;
+	} catch {
+		dispatch(setError());
+	} finally {
+		dispatch(setPending(false));
 	}
+};
+
+export const getBubbles = createAsyncThunk(
+	"bubbles/getAsyncBubbles",
+	getAsyncBubbles
 );
 
 // **********************************************************************
