@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -6,23 +5,23 @@ import {
 	errorState,
 	pendingState,
 	selectedBubble,
+	bubbleSidePanelSelector,
 } from "./selectors";
 
 import { getBubbles, deleteBubble } from "./thunks";
 import { Url } from "../../app/constants";
 
-import { SideBarContext } from "../../context";
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
 import { Loader, Button, Error } from "../../reusables";
-import { selectBubble } from "./bubbleSlice";
+import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
 import { AsidePlatform } from "../../reusables";
 
 import styles from "./BubbleWrapper.module.scss";
 
 const BubbleWrapper: React.FC = () => {
-	const [isOpen] = useContext(SideBarContext);
 	const { bubbles } = useSelector(bubbleState);
+	const isOpen = useSelector(bubbleSidePanelSelector);
 	const selected = useSelector(selectedBubble);
 	const { isLoading, message } = useSelector(pendingState);
 	const error = useSelector(errorState);
@@ -45,9 +44,15 @@ const BubbleWrapper: React.FC = () => {
 		dispatch(selectBubble(id));
 	};
 
+	const handleOnClose = () => {
+		dispatch(toggleBubbleSidePanel(false));
+	};
+
 	const render = () => {
 		return (
 			<>
+				{isLoading && <Loader dots={5} />}
+				{error.error && <Error message={error.message} />}
 				<div className={styles.buttonWrapper}>
 					<Button
 						onClick={deleteSelected}
@@ -61,25 +66,26 @@ const BubbleWrapper: React.FC = () => {
 					/>
 					{isBubbles && <BubbleForm />}
 				</div>
-				{isLoading ? (
-					<Loader dots={5} />
-				) : (
-					bubbles.map(item => (
-						<Bubble
-							key={item.id}
-							onClick={() => handleBubbleClick(item.id)}
-							selected={item.selected}
-							cssProps={item.cssProps}
-							id={item.id}
-						/>
-					))
-				)}
-				{error && <Error message={error} />}
+				{bubbles.map(({ id, selected, cssProps }) => (
+					<Bubble
+						key={id}
+						onClick={() => handleBubbleClick(id)}
+						selected={selected}
+						cssProps={cssProps}
+						id={id}
+					/>
+				))}
 			</>
 		);
 	};
 
-	return <AsidePlatform isOpen={isOpen} renderBody={() => render()} />;
+	return (
+		<AsidePlatform
+			isOpen={isOpen}
+			renderBody={() => render()}
+			onClose={handleOnClose}
+		/>
+	);
 };
 
 export default BubbleWrapper;

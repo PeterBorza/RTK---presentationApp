@@ -21,7 +21,7 @@ const getAsyncBubbles = async (
 		dispatch(setBubbles(data));
 		return data;
 	} catch {
-		dispatch(setError());
+		dispatch(setError(true));
 	} finally {
 		dispatch(setPending(false));
 	}
@@ -37,7 +37,7 @@ const handleDeleteBubble = async (
 		});
 		dispatch(deleteBub(id));
 	} catch {
-		dispatch(setError());
+		dispatch(setError(true));
 	}
 };
 
@@ -62,7 +62,7 @@ const handlePostBubble = async (
 		});
 		dispatch(addBubble(newBubble));
 	} catch {
-		dispatch(setError());
+		dispatch(setError(true));
 	}
 };
 

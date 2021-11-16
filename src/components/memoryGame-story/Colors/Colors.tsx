@@ -1,29 +1,33 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getColors } from "../thunks";
-import { memoryGameState, paletSelector } from "../selectors";
+import {
+	memoryGameState,
+	paletSelector,
+	sidePanelSelector,
+} from "../selectors";
+
 import { AsidePlatform, Button } from "../../../reusables";
-import { SideBarContext } from "../../../context";
 import { Pending, Error, Url } from "../../../app/constants";
 
-import classNames from "classnames";
 import styles from "./Colors.module.scss";
+import { toggleSidePanel } from "..";
 
 const ColorsWrapper: React.FC = () => {
-	const [isOpen] = useContext(SideBarContext);
 	const { colors, pending, error } = useSelector(memoryGameState);
 	const palets = useSelector(paletSelector);
+	const isOpen = useSelector(sidePanelSelector);
 	const dispatch = useDispatch();
-
-	const wrapper = classNames(styles.container, {
-		[styles.container__margin]: isOpen,
-	});
 
 	const isColors = colors.length !== 0;
 
 	const showAsyncColors = () => {
 		dispatch(getColors(Url.COLORS));
+	};
+
+	const handleOnClose = () => {
+		dispatch(toggleSidePanel(false));
 	};
 
 	const render = () => {
@@ -52,7 +56,13 @@ const ColorsWrapper: React.FC = () => {
 		);
 	};
 
-	return <AsidePlatform renderBody={() => render()} isOpen={isOpen} />;
+	return (
+		<AsidePlatform
+			renderBody={() => render()}
+			isOpen={isOpen}
+			onClose={handleOnClose}
+		/>
+	);
 };
 
 export default ColorsWrapper;

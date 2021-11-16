@@ -16,6 +16,12 @@
 	}
 }
 
+.toggle {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
 .toggleMenu {
 	margin: 0.5rem;
 	font-size: 1.3rem;

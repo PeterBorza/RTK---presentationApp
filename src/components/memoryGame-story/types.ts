@@ -17,4 +17,5 @@ export interface MemoryGameState {
 	colors: ColorSetInterFace[];
 	pending: boolean;
 	error: boolean;
+	isSidePanelOpen: boolean;
 }

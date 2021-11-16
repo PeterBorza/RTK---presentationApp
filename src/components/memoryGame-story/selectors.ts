@@ -12,6 +12,9 @@ export const photoSelector = (state: typeofMemoryGameState) =>
 export const paletSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.colors.map(palet => palet.palet);
 
+export const sidePanelSelector = (state: typeofMemoryGameState) =>
+	state.memoryGame.isSidePanelOpen;
+
 export const loadingSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.pending;
 

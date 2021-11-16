@@ -8,3 +8,6 @@ export const selectedBubble = ({ bubbles }: typeofBubbleState) =>
 export const pendingState = ({ bubbles }: typeofBubbleState) => bubbles.loading;
 
 export const errorState = ({ bubbles }: typeofBubbleState) => bubbles.error;
+
+export const bubbleSidePanelSelector = ({ bubbles }: typeofBubbleState) =>
+	bubbles.isSidePanelOpen;

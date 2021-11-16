@@ -15,10 +15,14 @@ export interface PendingState {
 	isLoading: boolean;
 	message: string;
 }
-type ErrorState = string | null;
+type ErrorState = {
+	error: boolean;
+	message: string;
+};
 
 export interface BubbleState {
 	bubbles: Bubble[];
 	loading: PendingState;
 	error: ErrorState;
+	isSidePanelOpen: boolean;
 }

@@ -8,6 +8,7 @@ const initialState: MemoryGameState = {
 	colors: [],
 	pending: false,
 	error: false,
+	isSidePanelOpen: false,
 };
 
 export const memoryGameSlice = createSlice({
@@ -47,6 +48,12 @@ export const memoryGameSlice = createSlice({
 		) => {
 			state.error = payload;
 		},
+		toggleSidePanel: (
+			state: MemoryGameState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.isSidePanelOpen = payload;
+		},
 	},
 });
 
@@ -57,6 +64,7 @@ export const {
 	addPalet,
 	setPending,
 	setError,
+	toggleSidePanel,
 } = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

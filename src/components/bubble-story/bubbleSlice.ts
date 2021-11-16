@@ -8,7 +8,11 @@ const initialState: BubbleState = {
 		isLoading: false,
 		message: Pending.MESSAGE,
 	},
-	error: null,
+	error: {
+		error: false,
+		message: Error.MESSAGE,
+	},
+	isSidePanelOpen: false,
 };
 
 export const bubbleSlice = createSlice({
@@ -41,8 +45,14 @@ export const bubbleSlice = createSlice({
 		) => {
 			state.loading.isLoading = payload;
 		},
-		setError: (state: BubbleState) => {
-			state.error = Error.MESSAGE;
+		setError: (state: BubbleState, { payload }: PayloadAction<boolean>) => {
+			state.error.error = payload;
+		},
+		toggleBubbleSidePanel: (
+			state: BubbleState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.isSidePanelOpen = payload;
 		},
 		deleteBub: (
 			{ bubbles }: BubbleState,
@@ -61,6 +71,7 @@ export const {
 	setError,
 	deleteBub,
 	addBubble,
+	toggleBubbleSidePanel,
 } = bubbleSlice.actions;
 
 export default bubbleSlice.reducer;
