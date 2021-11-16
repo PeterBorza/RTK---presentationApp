@@ -14,6 +14,7 @@ import CheckBox from "./CheckBox";
 import FieldSet from "./FieldSet";
 import Form from "./Form";
 import AsidePlatform from "./AsidePlatform";
+import MenuButton from "./MenuButton";
 
 export {
 	Loader,
@@ -32,4 +33,5 @@ export {
 	FieldSet,
 	Form,
 	AsidePlatform,
+	MenuButton,
 };

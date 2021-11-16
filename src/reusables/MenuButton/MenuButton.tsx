@@ -1,15 +1,15 @@
 import { FC, ComponentProps } from "react";
 
-import styles from "./Button.module.scss";
+import { icons } from "../../utils";
+import styles from "./MenuButton.module.scss";
 import classNames from "classnames";
 
 type Props = {
 	value?: string;
-	className?: string;
 	isDisabled?: boolean;
-} & Pick<ComponentProps<"button">, "type" | "onClick">;
+} & Pick<ComponentProps<"button">, "type" | "onClick" | "className">;
 
-const Button: FC<Props> = ({
+const MenuButton: FC<Props> = ({
 	value = "Click",
 	type = "button",
 	className,
@@ -26,9 +26,10 @@ const Button: FC<Props> = ({
 			onClick={onClick}
 			disabled={isDisabled}
 		>
-			<span className={styles.defaultStyle__content}>{value}</span>
+			<icons.Bars className={styles.toggleMenu} />
+			<span>{value}</span>
 		</button>
 	);
 };
 
-export default Button;
+export default MenuButton;

@@ -32,12 +32,12 @@ const Form: React.FC<PropsWithChildren<FormProps>> = ({
 				<Button
 					type='submit'
 					value='Submit'
-					customClass={styles.submit}
+					className={styles.submit}
 				/>
 				<Button
 					value='Cancel'
 					onClick={onCancel}
-					customClass={styles.cancel}
+					className={styles.cancel}
 				/>
 			</div>
 		</form>

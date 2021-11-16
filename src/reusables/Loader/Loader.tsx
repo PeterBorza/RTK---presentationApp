@@ -6,7 +6,7 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({ dots = 3, speed = 130 }) => {
-	if (dots <= 0) return <h3>Count must be higher than 0</h3>;
+	if (dots <= 1) return <h3>Count must be higher than 0</h3>;
 	const dotCountArray = new Array(dots).fill(null).map((_, i) => i);
 
 	return (

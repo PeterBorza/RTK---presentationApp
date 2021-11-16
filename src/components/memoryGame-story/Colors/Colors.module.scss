@@ -4,7 +4,7 @@
 
 .container {
 	margin: 0;
-	@include container($navHeight);
+	@include container();
 	background-color: rgb(164, 243, 243);
 }
 
