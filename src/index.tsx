@@ -14,7 +14,6 @@ ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
-				<App />
 				<Routes>
 					<Route path='/' element={<App />}>
 						<Route index element={<Home />} />
