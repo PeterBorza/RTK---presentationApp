@@ -1,13 +1,8 @@
 import React, { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
-import {
-	Home,
-	buildingStory,
-	bubbleStory,
-	gasStory,
-	memoryStory,
-} from "../components";
+import { Home, bubbleStory, gasStory, memoryStory } from "../components";
+import { Building } from "../components/building-story";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -17,7 +12,7 @@ interface ProviderProps {
 	to: string;
 	label: string;
 	id: string;
-	element: () => ReactNode;
+	element: ReactNode;
 }
 
 type Props = ProviderProps[];
@@ -30,37 +25,37 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			to: "/",
 			label: "home",
 			id: uuid(),
-			element: () => <Home />,
+			element: <Home />,
 		},
 		{
 			to: "/building",
 			label: "building",
 			id: uuid(),
-			element: () => <buildingStory.Building />,
+			element: <Building />,
 		},
 		{
 			to: "/bubbles",
 			label: "bubbles",
 			id: uuid(),
-			element: () => <bubbleStory.Bubbles />,
+			element: <bubbleStory.Bubbles />,
 		},
 		{
 			to: "/gas",
 			label: "gas",
 			id: uuid(),
-			element: () => <gasStory.GasExpences />,
+			element: <gasStory.GasExpences />,
 		},
 		{
 			to: "/colors",
 			label: "colors",
 			id: uuid(),
-			element: () => <memoryStory.Colors />,
+			element: <memoryStory.Colors />,
 		},
 		{
 			to: "/photos",
 			label: "photos",
 			id: uuid(),
-			element: () => <memoryStory.Photos />,
+			element: <memoryStory.Photos />,
 		},
 	];
 	return (

@@ -2,7 +2,7 @@
 @use "../../css/mixins" as *;
 
 .container {
-	@include container($navHeight);
+	@include container();
 	background-color: rgb(63, 56, 56);
 	@include fAround(row);
 }

@@ -2,7 +2,7 @@
 @use "../../css/mixins" as *;
 
 .container {
-	@include container($navHeight);
+	@include container();
 	@include fCenter(column);
 	background-color: white;
 }

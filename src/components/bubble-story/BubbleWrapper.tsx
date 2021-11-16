@@ -51,21 +51,24 @@ const BubbleWrapper: React.FC = () => {
 	const render = () => {
 		return (
 			<>
-				{isLoading && <Loader dots={5} />}
+				{isLoading ? (
+					<Loader dots={5} />
+				) : (
+					<div className={styles.buttonWrapper}>
+						<Button
+							onClick={deleteSelected}
+							value='Delete Selected Bubble'
+							isDisabled={!selected}
+						/>
+						<Button
+							onClick={showBubbles}
+							value={isLoading ? message : "Get Bubbles"}
+							isDisabled={isBubbles}
+						/>
+						{isBubbles && <BubbleForm />}
+					</div>
+				)}
 				{error.error && <Error message={error.message} />}
-				<div className={styles.buttonWrapper}>
-					<Button
-						onClick={deleteSelected}
-						value='Delete Selected Bubble'
-						isDisabled={!selected}
-					/>
-					<Button
-						onClick={showBubbles}
-						value={isLoading ? message : "Get Bubbles"}
-						isDisabled={isBubbles}
-					/>
-					{isBubbles && <BubbleForm />}
-				</div>
 				{bubbles.map(({ id, selected, cssProps }) => (
 					<Bubble
 						key={id}

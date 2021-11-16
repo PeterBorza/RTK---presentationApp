@@ -60,6 +60,7 @@ export const gasSlice = createSlice({
 			{ payload }: PayloadAction<GasStateItem[]>
 		) => {
 			state.units = [...state.units, ...payload];
+			state.units.forEach(unit => (unit.selected = false));
 		},
 		deleteGasUnit: (
 			state: GasState,

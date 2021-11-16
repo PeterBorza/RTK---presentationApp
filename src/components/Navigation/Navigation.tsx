@@ -16,22 +16,20 @@ const Navigation = () => {
 			[styles["inActive"]]: !isActive,
 		});
 
-	const renderBody = () => {
-		return links?.map(item => (
-			<li key={item.id}>
-				<NavLink
-					className={({ isActive }) => linkClasses(isActive)}
-					to={item.to}
-				>
-					{item.label}
-				</NavLink>
-			</li>
-		));
-	};
+	const renderBody = links?.map(item => (
+		<li key={item.id}>
+			<NavLink
+				className={({ isActive }) => linkClasses(isActive)}
+				to={item.to}
+			>
+				{item.label}
+			</NavLink>
+		</li>
+	));
 
 	return (
 		<div className={styles.container}>
-			<NavBar renderBody={() => renderBody()} />
+			<NavBar>{renderBody}</NavBar>
 			<Outlet />
 		</div>
 	);
