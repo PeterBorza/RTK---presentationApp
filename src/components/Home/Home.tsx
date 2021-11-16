@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTime } from "../../utils";
+import { useTime } from "../hooks";
 
 import styles from "./Home.module.scss";
 
