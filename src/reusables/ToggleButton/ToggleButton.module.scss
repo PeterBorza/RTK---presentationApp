@@ -1,0 +1,42 @@
+$w: 66px;
+$h: 32px;
+$pad: 2px;
+$br: 25px;
+$btnpad: 14px;
+$left: 30px;
+$leftDisabled: 2px;
+$btnw: 34px;
+
+.toggle_container {
+	width: $w;
+	background-color: #c4c4c4;
+	cursor: pointer;
+	user-select: none;
+	border-radius: $br;
+	padding: $pad;
+	height: $h;
+	position: relative;
+}
+
+.dialog_button {
+	cursor: pointer;
+	background-color: #002b49;
+	color: white;
+	padding: $btnpad;
+	border-radius: calc($btnw / 2);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	min-width: 46px;
+	width: $btnw;
+	min-width: unset;
+	border-radius: 17px;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+	position: absolute;
+	left: $left;
+	transition: all 0.3s ease;
+}
+
+.disabled {
+	background-color: #707070;
+	left: $leftDisabled;
+}
