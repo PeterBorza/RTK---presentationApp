@@ -15,6 +15,7 @@ import FieldSet from "./FieldSet";
 import Form from "./Form";
 import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
+import ToggleButton from "./ToggleButton";
 
 export {
 	Loader,
@@ -34,4 +35,5 @@ export {
 	Form,
 	AsidePlatform,
 	MenuButton,
+	ToggleButton,
 };
