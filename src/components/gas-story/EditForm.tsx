@@ -8,10 +8,13 @@ import { postGas } from "./thunks";
 
 import Form, { ModalForm } from "../../reusables/Form";
 import { GasStateItem, GasFormProps } from "./gasSlice";
-import { unitsState } from "./selectors";
+import { unitsState, selectedGas } from "./selectors";
 
-const GasForm = () => {
+const EditForm = () => {
 	const units = useSelector(unitsState);
+	const selected = useSelector(selectedGas);
+	console.log(selected);
+
 	const initialGasFormValues = {
 		citire: "",
 		factura: "",
@@ -77,4 +80,4 @@ const GasForm = () => {
 	);
 };
 
-export default GasForm;
+export default EditForm;

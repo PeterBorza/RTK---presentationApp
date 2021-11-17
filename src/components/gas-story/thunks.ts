@@ -8,6 +8,7 @@ import {
 	togglePayed,
 	setGasError,
 	setGasPending,
+	GasState,
 } from "./gasSlice";
 import axios from "axios";
 
@@ -84,6 +85,7 @@ export const toggleAsyncGasPayed = async (
 	item: GasStateItem,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
+	dispatch(setGasPending(true));
 	try {
 		await axios
 			.put(`${BaseAPI.GAS_UNITS_URL}/units/${item.id}`, {
@@ -93,6 +95,8 @@ export const toggleAsyncGasPayed = async (
 			.then(dispatch(togglePayed(item.id)));
 	} catch {
 		dispatch(setGasError());
+	} finally {
+		dispatch(setGasPending(false));
 	}
 };
 
@@ -103,23 +107,29 @@ export const togglePayedBill = createAsyncThunk(
 
 // ************************************************************************************
 
-export const putAsyncGasDate = async (
-	{ item, payload }: { item: GasStateItem; payload: string },
-	{ dispatch }: { dispatch: Function }
+export const editAsyncGasUnit = async (
+	{ id, payload }: { id: string; payload: GasStateItem },
+	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ): Promise<void> => {
+	dispatch(setGasPending(true));
+	const { units } = getState() as GasState;
+	const editedGasIndex = units.findIndex(item => item.id === id);
+	const edited = {
+		...units[editedGasIndex],
+		...payload,
+	};
 	try {
 		await axios
-			.put(`${BaseAPI.GAS_UNITS_URL}/units/${item.id}`, {
-				...item,
-				dataCitire: payload,
-			})
-			.then(dispatch(togglePayed(item.id)));
+			.put(`${BaseAPI.GAS_UNITS_URL}/units/${id}`, edited)
+			.then(dispatch(addGasUnit(edited)));
 	} catch {
 		dispatch(setGasError());
+	} finally {
+		dispatch(setGasPending(false));
 	}
 };
 
-export const editDate = createAsyncThunk(
-	"gas/putAsyncGasDate",
-	putAsyncGasDate
+export const editUnit = createAsyncThunk(
+	"gas/editAsyncGasUnit",
+	editAsyncGasUnit
 );

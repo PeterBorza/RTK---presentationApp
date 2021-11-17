@@ -3,13 +3,13 @@ import { Pending, Error } from "../../app/constants";
 
 export interface GasFormProps {
 	citire: string;
-	consum: string;
 	factura: string;
 	dataCitire: string;
 }
 
 export interface GasStateItem extends GasFormProps {
 	id: string;
+	consum: string;
 	selected: boolean;
 	platit: boolean;
 }

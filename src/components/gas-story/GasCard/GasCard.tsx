@@ -9,7 +9,7 @@ interface Props {
 	onClick: () => void;
 	onPayedClick: () => void;
 	onDelete: () => void;
-	onEdit: () => void;
+	onEdit: () => React.ReactNode;
 }
 
 const GasCard: React.FC<GasStateItem & Props> = ({
@@ -34,7 +34,7 @@ const GasCard: React.FC<GasStateItem & Props> = ({
 				<IconSet
 					onCheck={onPayedClick}
 					onDelete={onDelete}
-					onEdit={onEdit}
+					onEdit={() => onEdit()}
 					isChecked={platit}
 				/>
 			</div>
