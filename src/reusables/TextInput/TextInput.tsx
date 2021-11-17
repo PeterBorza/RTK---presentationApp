@@ -1,16 +1,8 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import classNames from "classnames";
 import styles from "./TextInput.module.scss";
 
-export interface InputProps {
-	className?: string;
-	type?: "text" | "date" | "range" | "number";
-	name?: string;
-	value: string;
-	placeholder?: string;
-	title?: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+type InputProps = ComponentProps<"input">;
 
 const TextInput: React.FC<InputProps> = ({
 	className,

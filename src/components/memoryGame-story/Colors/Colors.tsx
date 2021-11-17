@@ -26,8 +26,12 @@ const ColorsWrapper: React.FC = () => {
 		dispatch(getColors(Url.COLORS));
 	};
 
-	const handleOnClose = () => {
+	const handleCloseMenu = () => {
 		dispatch(toggleSidePanel(false));
+	};
+
+	const handleOpenMenu = () => {
+		dispatch(toggleSidePanel(true));
 	};
 
 	const render = () => {
@@ -37,6 +41,11 @@ const ColorsWrapper: React.FC = () => {
 					onClick={showAsyncColors}
 					value={pending ? Pending.MESSAGE : "Fetch ColorPalets"}
 					isDisabled={isColors}
+				/>
+				<Button
+					onClick={handleOpenMenu}
+					value='Menu'
+					isDisabled={!isColors}
 				/>
 
 				<div className={styles.colorWrapper}>
@@ -60,7 +69,7 @@ const ColorsWrapper: React.FC = () => {
 		<AsidePlatform
 			renderBody={() => render()}
 			isOpen={isOpen}
-			onClose={handleOnClose}
+			onClose={handleCloseMenu}
 		/>
 	);
 };

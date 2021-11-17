@@ -27,7 +27,7 @@ const Form: React.FC<PropsWithChildren<FormProps>> = ({
 			style={formWidth}
 		>
 			<h2>{formTitle}</h2>
-			<div className={styles.wrapper}>{render && render()}</div>
+			<div className={styles.wrapper}>{render()}</div>
 			<div className={styles.buttons}>
 				<Button
 					type='submit'

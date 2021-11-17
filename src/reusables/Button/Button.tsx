@@ -18,6 +18,7 @@ const Button: FC<Props> = ({
 }) => {
 	const classes = classNames(styles.defaultStyle, className, {
 		[styles.defaultStyle__disabled]: isDisabled,
+		[styles.defaultStyle__width]: value.split("").length > 15,
 	});
 	return (
 		<button
