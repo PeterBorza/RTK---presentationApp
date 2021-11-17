@@ -5,10 +5,11 @@ import { Table } from "../../reusables/ScrollTable";
 import { Loader, Error } from "../../reusables";
 import { gasState, errorGasState } from "./selectors";
 import { GasStateItem, selectGas } from "./gasSlice";
-import { getAsyncGas, togglePayedBill, deleteGas, editDate } from "./thunks";
+import { getAsyncGas, togglePayedBill, deleteGas, editUnit } from "./thunks";
 
 import { Gaz } from "./GasCard";
 import GasForm from "./GasForm";
+import EditForm from "./EditForm";
 
 import styles from "./GasTable.module.scss";
 
@@ -40,9 +41,7 @@ const GasTableContainer = () => {
 		dispatch(deleteGas(id));
 	};
 
-	const onEditGasHandler = (item: GasStateItem) => {
-		dispatch(editDate({ item, payload: "15/10/21" }));
-	};
+	const onEditGasHandler = () => <EditForm />;
 
 	const gasCards = () => {
 		return (
@@ -54,7 +53,7 @@ const GasTableContainer = () => {
 						onClick={() => onGasClickHandler(item.id)}
 						onPayedClick={() => onTogglePayedBill(item)}
 						onDelete={() => onDeleteGasHandler(item.id)}
-						onEdit={() => onEditGasHandler(item)}
+						onEdit={onEditGasHandler}
 					/>
 				</li>
 			))
