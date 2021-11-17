@@ -48,36 +48,45 @@ const BubbleWrapper: React.FC = () => {
 		dispatch(toggleBubbleSidePanel(false));
 	};
 
+	const handleOpenMenu = () => {
+		dispatch(toggleBubbleSidePanel(true));
+	};
+
 	const render = () => {
 		return (
 			<>
-				{isLoading ? (
-					<Loader dots={5} />
-				) : (
-					<div className={styles.buttonWrapper}>
-						<Button
-							onClick={deleteSelected}
-							value='Delete Selected Bubble'
-							isDisabled={!selected}
-						/>
-						<Button
-							onClick={showBubbles}
-							value={isLoading ? message : "Get Bubbles"}
-							isDisabled={isBubbles}
-						/>
-						{isBubbles && <BubbleForm />}
-					</div>
-				)}
-				{error.error && <Error message={error.message} />}
-				{bubbles.map(({ id, selected, cssProps }) => (
-					<Bubble
-						key={id}
-						onClick={() => handleBubbleClick(id)}
-						selected={selected}
-						cssProps={cssProps}
-						id={id}
+				{isLoading && <Loader dots={5} />}
+				<div className={styles.buttonWrapper}>
+					<Button
+						onClick={deleteSelected}
+						value='Delete Selected Bubble'
+						isDisabled={!selected}
 					/>
-				))}
+					<Button
+						onClick={showBubbles}
+						value={isLoading ? message : "Get Bubbles"}
+						isDisabled={isBubbles}
+					/>
+					{isBubbles && <BubbleForm />}
+					<Button
+						onClick={handleOpenMenu}
+						value='Menu'
+						isDisabled={!isBubbles}
+					/>
+				</div>
+				{error.error ? (
+					<Error message={error.message} />
+				) : (
+					bubbles.map(({ id, selected, cssProps }) => (
+						<Bubble
+							key={id}
+							onClick={() => handleBubbleClick(id)}
+							selected={selected}
+							cssProps={cssProps}
+							id={id}
+						/>
+					))
+				)}
 			</>
 		);
 	};

@@ -40,8 +40,7 @@ const SimpleDrop: FC<DropDownProps> = ({
 			>
 				<h3>{title}</h3>
 			</div>
-			{children}
-			{/* <div className={classes}>{children}</div> */}
+			<div className={classes}>{children}</div>
 		</div>
 	);
 };
