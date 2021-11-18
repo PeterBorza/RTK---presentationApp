@@ -3,13 +3,12 @@ import { BaseAPI } from "../../app/constants";
 import {
 	addGasUnit,
 	deleteGasUnit,
-	GasStateItem,
 	getGasUnits,
 	togglePayed,
 	setGasError,
 	setGasPending,
-	GasState,
 } from "./gasSlice";
+import { GasStateUnit, GasState } from "./types";
 import axios from "axios";
 
 // ************************************************************************************
@@ -42,7 +41,7 @@ export const getAsyncGas = createAsyncThunk(
 // ************************************************************************************
 
 export const postAsyncGas = async (
-	data: GasStateItem,
+	data: GasStateUnit,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setGasPending(true));
@@ -82,7 +81,7 @@ export const deleteGas = createAsyncThunk("gas/deleteAsyncGas", deleteAsyncGas);
 // ************************************************************************************
 
 export const toggleAsyncGasPayed = async (
-	item: GasStateItem,
+	item: GasStateUnit,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setGasPending(true));
@@ -108,20 +107,18 @@ export const togglePayedBill = createAsyncThunk(
 // ************************************************************************************
 
 export const editAsyncGasUnit = async (
-	{ id, payload }: { id: string; payload: GasStateItem },
+	{ id, payload }: { id: string; payload: GasStateUnit },
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ): Promise<void> => {
 	dispatch(setGasPending(true));
 	const { units } = getState() as GasState;
-	const editedGasIndex = units.findIndex(item => item.id === id);
+	// const editedGasIndex = units.findIndex(item => item.id === id);
 	const edited = {
-		...units[editedGasIndex],
 		...payload,
 	};
 	try {
-		await axios
-			.put(`${BaseAPI.GAS_UNITS_URL}/units/${id}`, edited)
-			.then(dispatch(addGasUnit(edited)));
+		await axios.put(`${BaseAPI.GAS_UNITS_URL}/units/${id}`, edited);
+		// .then(dispatch(addGasUnit(edited)));
 	} catch {
 		dispatch(setGasError());
 	} finally {

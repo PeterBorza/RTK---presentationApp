@@ -57,11 +57,12 @@
     {
       "id": "70b78853-d7f7-4db5-8dbb-a755ba98d979",
       "dataCitire": "15/12/2020",
-      "selected": false,
+      "selected": true,
       "citire": "4400",
       "consum": "75",
       "factura": "126,26",
-      "platit": true
+      "platit": true,
+      "edit": true
     },
     {
       "id": "4c534fcc-fba3-45b5-8e42-3866fb68a33c",
@@ -93,7 +94,7 @@
     {
       "id": "a67d6291-2c13-4bc9-80f0-ba34636aaf27",
       "dataCitire": "15/05/2021",
-      "selected": false,
+      "selected": true,
       "citire": "4713",
       "consum": "73",
       "factura": "82,01 + 41,75",

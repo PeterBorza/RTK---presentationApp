@@ -40,9 +40,7 @@ const BubbleWrapper: React.FC = () => {
 		}
 	};
 
-	const handleBubbleClick = (id: number) => {
-		dispatch(selectBubble(id));
-	};
+	const handleBubbleClick = (id: number) => dispatch(selectBubble(id));
 
 	const handleOnClose = () => {
 		dispatch(toggleBubbleSidePanel(false));

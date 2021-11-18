@@ -1,5 +1,5 @@
 import React from "react";
-import { GasStateItem } from "../gasSlice";
+import { GasStateUnit } from "../types";
 import { IconSet } from "../../../reusables";
 
 import styles from "./GasCard.module.scss";
@@ -9,10 +9,10 @@ interface Props {
 	onClick: () => void;
 	onPayedClick: () => void;
 	onDelete: () => void;
-	onEdit: () => React.ReactNode;
+	onEdit: () => void;
 }
 
-const GasCard: React.FC<GasStateItem & Props> = ({
+const GasCard: React.FC<GasStateUnit & Props> = ({
 	onClick,
 	onPayedClick,
 	onDelete,
@@ -34,7 +34,7 @@ const GasCard: React.FC<GasStateItem & Props> = ({
 				<IconSet
 					onCheck={onPayedClick}
 					onDelete={onDelete}
-					onEdit={() => onEdit()}
+					onEdit={onEdit}
 					isChecked={platit}
 				/>
 			</div>

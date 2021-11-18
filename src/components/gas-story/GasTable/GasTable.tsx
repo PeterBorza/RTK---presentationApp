@@ -1,24 +1,28 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table } from "../../reusables/ScrollTable";
-import { Loader, Error } from "../../reusables";
-import { gasState, errorGasState } from "./selectors";
-import { GasStateItem, selectGas } from "./gasSlice";
-import { getAsyncGas, togglePayedBill, deleteGas, editUnit } from "./thunks";
+import { Table } from "../../../reusables/ScrollTable";
+import { Loader, Error } from "../../../reusables";
+import { gasState, errorGasState } from "../selectors";
+import { editGas, selectGas } from "../gasSlice";
+import { GasStateUnit } from "../types";
+import { getAsyncGas, togglePayedBill, deleteGas, editUnit } from "../thunks";
 
-import { Gaz } from "./GasCard";
-import GasForm from "./GasForm";
-import EditForm from "./EditForm";
+import { Gaz } from "../GasCard";
+import GasForm from "../GasForm";
+import EditForm from "../EditForm";
 
 import styles from "./GasTable.module.scss";
+import { selectedGas } from "..";
 
-const GasTableContainer = () => {
+const GasTable = () => {
 	const dispatch = useDispatch();
 	const { units, labels, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
+	const selected = useSelector(selectedGas);
 
 	const isUnits = units && units.length !== 0;
+	const isEditMode = selected && selected.edit;
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -29,11 +33,11 @@ const GasTableContainer = () => {
 		fetchGasUnits();
 	}, [fetchGasUnits]);
 
-	const onTogglePayedBill = (item: GasStateItem) => {
+	const onTogglePayedBill = (item: GasStateUnit) => {
 		dispatch(togglePayedBill(item));
 	};
 
-	const onGasClickHandler = (id: string): void => {
+	const onGasClickHandler = (id: string) => {
 		dispatch(selectGas(id));
 	};
 
@@ -41,7 +45,9 @@ const GasTableContainer = () => {
 		dispatch(deleteGas(id));
 	};
 
-	const onEditGasHandler = () => <EditForm />;
+	const onEditGasHandler = (id: string) => {
+		dispatch(editGas({ id, edit: true }));
+	};
 
 	const gasCards = () => {
 		return (
@@ -53,7 +59,7 @@ const GasTableContainer = () => {
 						onClick={() => onGasClickHandler(item.id)}
 						onPayedClick={() => onTogglePayedBill(item)}
 						onDelete={() => onDeleteGasHandler(item.id)}
-						onEdit={onEditGasHandler}
+						onEdit={() => onEditGasHandler(item.id)}
 					/>
 				</li>
 			))
@@ -64,7 +70,7 @@ const GasTableContainer = () => {
 		return labels.map(item => <span key={item}>{item}</span>);
 	};
 
-	return (
+	return !isEditMode ? (
 		<div className={styles.container}>
 			{loading.isLoading ? (
 				<div>
@@ -79,7 +85,9 @@ const GasTableContainer = () => {
 			)}
 			{error && <Error message={error} />}
 		</div>
+	) : (
+		<EditForm />
 	);
 };
 
-export default GasTableContainer;
+export default GasTable;
