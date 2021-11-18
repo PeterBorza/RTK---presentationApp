@@ -6,8 +6,8 @@ import { v4 as uuid } from "uuid";
 
 import { postGas } from "./thunks";
 
-import Form, { ModalForm } from "../../reusables/Form";
-import { GasStateItem, GasFormProps } from "./gasSlice";
+import { TextInput, ModalForm } from "../../reusables";
+import { GasStateUnit, GasFormProps } from "./types";
 import { unitsState } from "./selectors";
 
 const GasForm = () => {
@@ -36,12 +36,13 @@ const GasForm = () => {
 	const onSubmitHandler = () => {
 		const lastCitire = units[units.length - 1].citire;
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
-		const newGasUnit: GasStateItem = {
+		const newGasUnit: GasStateUnit = {
 			...gasUnit,
 			consum: newConsum.toString(),
 			id: uuid(),
 			selected: false,
 			platit: false,
+			edit: false,
 		};
 
 		dispatch(postGas(newGasUnit));
@@ -54,7 +55,7 @@ const GasForm = () => {
 		return (
 			<>
 				{inputs.map(input => (
-					<Form.TextInput
+					<TextInput
 						key={input[0]}
 						value={input[1]}
 						name={input[0]}
@@ -67,7 +68,7 @@ const GasForm = () => {
 
 	return (
 		<ModalForm
-			render={() => renderInputs()}
+			render={renderInputs}
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
 			buttonLabel='Adauga citire noua'

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 
 import styles from "./Bubble.module.scss";
 import { Bubble as Props } from "../types";
@@ -15,7 +15,7 @@ const Bubble: FC<BubbleProps> = ({ onClick, id, selected, cssProps }) => {
 		[styles.withImage]: false,
 	});
 
-	const inlineStyles = {
+	const inlineStyles: CSSProperties = {
 		left,
 		top,
 		width: size,

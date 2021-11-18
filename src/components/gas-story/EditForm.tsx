@@ -6,25 +6,26 @@ import { v4 as uuid } from "uuid";
 
 import { postGas } from "./thunks";
 
-import Form, { ModalForm } from "../../reusables/Form";
-import { GasStateItem, GasFormProps } from "./gasSlice";
+import { TextInput, ModalForm } from "../../reusables";
+import { GasStateUnit } from "./types";
 import { unitsState, selectedGas } from "./selectors";
+import { editUnit } from ".";
+import { editGas } from "./gasSlice";
 
 const EditForm = () => {
 	const units = useSelector(unitsState);
 	const selected = useSelector(selectedGas);
-	console.log(selected);
 
-	const initialGasFormValues = {
-		citire: "",
-		factura: "",
-		dataCitire: format(new Date(), "dd/MM/yyyy"),
-	};
-	const [gasUnit, setGasUnit] = useState<GasFormProps>(initialGasFormValues);
+	// const initialGasFormValues = {
+	// 	citire: "",
+	// 	factura: "",
+	// 	dataCitire: format(new Date(), "dd/MM/yyyy"),
+	// };
+	const [gasUnit, setGasUnit] = useState<GasStateUnit>(selected);
 	const dispatch = useDispatch();
 
 	const cancelHandler = () => {
-		setGasUnit(initialGasFormValues);
+		setGasUnit(selected);
 	};
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,16 +40,13 @@ const EditForm = () => {
 	const onSubmitHandler = () => {
 		const lastCitire = units[units.length - 1].citire;
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
-		const newGasUnit: GasStateItem = {
+		const newGasUnit: GasStateUnit = {
 			...gasUnit,
-			consum: newConsum.toString(),
-			id: uuid(),
-			selected: false,
-			platit: false,
 		};
 
-		dispatch(postGas(newGasUnit));
-		setGasUnit(initialGasFormValues);
+		dispatch(editUnit({ id: newGasUnit.id, payload: newGasUnit }));
+		setGasUnit(selected);
+		dispatch(editGas({ id: newGasUnit.id, edit: false }));
 	};
 
 	const inputs = Object.entries(gasUnit);
@@ -57,7 +55,7 @@ const EditForm = () => {
 		return (
 			<>
 				{inputs.map(input => (
-					<Form.TextInput
+					<TextInput
 						key={input[0]}
 						value={input[1]}
 						name={input[0]}

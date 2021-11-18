@@ -1,11 +1,11 @@
 import React, { ReactNode, useState, FormEvent } from "react";
-import Form from ".";
+import { Form } from ".";
 import { Button, BlackModal } from "..";
 export interface FormWrapProps {
 	formWidth?: string;
-	render?: () => ReactNode;
-	onSubmit?: (e: FormEvent) => void;
-	onCancel?: () => void;
+	render: () => ReactNode;
+	onSubmit: (e: FormEvent) => void;
+	onCancel: () => void;
 	buttonLabel?: string;
 	formTitle?: string;
 }
@@ -21,7 +21,7 @@ const ModalForm: React.FC<FormWrapProps> = ({
 	const [openModal, setIsOpenModal] = useState(false);
 
 	const onCancelHandler = () => {
-		onCancel && onCancel();
+		onCancel();
 		setIsOpenModal(false);
 	};
 
@@ -31,7 +31,7 @@ const ModalForm: React.FC<FormWrapProps> = ({
 
 	const submitHandler = (e: FormEvent) => {
 		e.preventDefault();
-		onSubmit && onSubmit(e);
+		onSubmit(e);
 		setIsOpenModal(false);
 	};
 
@@ -40,7 +40,7 @@ const ModalForm: React.FC<FormWrapProps> = ({
 			<Form
 				onSubmit={submitHandler}
 				width={formWidth}
-				render={() => render && render()}
+				render={render}
 				onCancel={onCancelHandler}
 				formTitle={formTitle}
 			/>
@@ -49,8 +49,8 @@ const ModalForm: React.FC<FormWrapProps> = ({
 
 	return (
 		<>
-			<BlackModal render={() => renderForm()} isOpen={openModal} />
 			<Button value={buttonLabel} onClick={onOpenHandler} />
+			{openModal && <BlackModal render={renderForm} />}
 		</>
 	);
 };

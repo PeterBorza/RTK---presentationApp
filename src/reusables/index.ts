@@ -12,7 +12,7 @@ import InputCard from "./InputCard";
 import TextInput from "./TextInput";
 import CheckBox from "./CheckBox";
 import FieldSet from "./FieldSet";
-import Form from "./Form";
+import { Form, ModalForm } from "./Form";
 import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
@@ -33,6 +33,7 @@ export {
 	CheckBox,
 	FieldSet,
 	Form,
+	ModalForm,
 	AsidePlatform,
 	MenuButton,
 	ToggleButton,

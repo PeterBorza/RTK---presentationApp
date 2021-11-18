@@ -5,7 +5,8 @@ export const gasState = ({ gas }: typeofGasState) => gas;
 export const unitsState = ({ gas }: typeofGasState) => gas.units;
 
 export const selectedGas = ({ gas }: typeofGasState) => {
-	gas.units.find(item => item.selected === true);
+	const idx = gas.units.findIndex(item => item.selected === true);
+	return gas.units[idx];
 };
 
 export const labels = ({ gas }: typeofGasState) => gas.labels;

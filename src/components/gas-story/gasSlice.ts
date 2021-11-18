@@ -1,38 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pending, Error } from "../../app/constants";
-
-export interface GasFormProps {
-	citire: string;
-	factura: string;
-	dataCitire: string;
-}
-
-export interface GasStateItem extends GasFormProps {
-	id: string;
-	consum: string;
-	selected: boolean;
-	platit: boolean;
-}
-
-export interface GasState {
-	units: GasStateItem[];
-	labels: string[];
-	loading: {
-		isLoading: boolean;
-		message: string;
-	};
-	error: string | null;
-}
-
-const initialState: GasState = {
-	units: [],
-	labels: ["data", "citire", "consum", "factura", "platit"],
-	loading: {
-		isLoading: false,
-		message: Pending.MESSAGE,
-	},
-	error: null,
-};
+import { Error } from "../../app/constants";
+import { GasStateUnit, GasState } from "./types";
+import { initialState } from "./state";
 
 export const gasSlice = createSlice({
 	name: "gas",
@@ -43,6 +12,13 @@ export const gasSlice = createSlice({
 				item => (item.selected = item.id === payload ? true : false)
 			);
 		},
+		editGas: (
+			state: GasState,
+			{ payload }: PayloadAction<{ id: string; edit: boolean }>
+		) => {
+			const selected = state.units.find(unit => unit.id === payload.id);
+			if (selected) selected.edit = payload.edit;
+		},
 		togglePayed: (state: GasState, { payload }: PayloadAction<string>) => {
 			const selected = state.units.find(unit => unit.id === payload);
 			if (selected) {
@@ -51,13 +27,13 @@ export const gasSlice = createSlice({
 		},
 		addGasUnit: (
 			state: GasState,
-			{ payload }: PayloadAction<GasStateItem>
+			{ payload }: PayloadAction<GasStateUnit>
 		) => {
 			state.units.push(payload);
 		},
 		getGasUnits: (
 			state: GasState,
-			{ payload }: PayloadAction<GasStateItem[]>
+			{ payload }: PayloadAction<GasStateUnit[]>
 		) => {
 			state.units = [...state.units, ...payload];
 			state.units.forEach(unit => (unit.selected = false));
@@ -82,6 +58,7 @@ export const gasSlice = createSlice({
 
 export const {
 	selectGas,
+	editGas,
 	togglePayed,
 	addGasUnit,
 	getGasUnits,

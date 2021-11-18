@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { postBubble } from "./thunks";
 
-import Form, { ModalForm } from "../../reusables/Form";
+import { TextInput, ModalForm } from "../../reusables";
 import { BubbleCssProps } from "./types";
 
 const BubbleForm = () => {
@@ -45,7 +45,7 @@ const BubbleForm = () => {
 		return (
 			<>
 				{labels.map((label, i) => (
-					<Form.TextInput
+					<TextInput
 						key={label}
 						value={values[i]}
 						name={label}

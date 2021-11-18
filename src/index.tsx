@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Home } from "./components";
 import { Building } from "./components/building-story";
-import { GasExpences } from "./components/gas-story";
+import { GasExpenses } from "./components/gas-story";
 import { Colors, Photos, Photo } from "./components/memoryGame-story";
 import { Bubbles } from "./components/bubble-story";
 import { store } from "./app/store";
@@ -19,7 +19,7 @@ ReactDOM.render(
 						<Route index element={<Home />} />
 						<Route path='building' element={<Building />} />
 						<Route path='bubbles' element={<Bubbles />} />
-						<Route path='gas' element={<GasExpences />} />
+						<Route path='gas' element={<GasExpenses />} />
 						<Route path='colors' element={<Colors />} />
 						<Route path='photos' element={<Photos />}>
 							<Route path=':id' element={<Photo />} />

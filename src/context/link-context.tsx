@@ -43,7 +43,7 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			to: "/gas",
 			label: "gas",
 			id: uuid(),
-			element: <gasStory.GasExpences />,
+			element: <gasStory.GasExpenses />,
 		},
 		{
 			to: "/colors",
