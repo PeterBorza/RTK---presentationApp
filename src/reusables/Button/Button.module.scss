@@ -27,4 +27,10 @@
 	&__width {
 		width: 200px;
 	}
+	&__dark {
+		background-color: white;
+		.defaultStyle__content {
+			color: skyblue;
+		}
+	}
 }

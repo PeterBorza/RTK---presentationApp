@@ -10,6 +10,7 @@ interface Props {
 	onPayedClick: () => void;
 	onDelete: () => void;
 	onEdit: () => void;
+	dark?: boolean;
 }
 
 const GasCard: React.FC<GasStateUnit & Props> = ({
@@ -17,25 +18,35 @@ const GasCard: React.FC<GasStateUnit & Props> = ({
 	onPayedClick,
 	onDelete,
 	onEdit,
+	dark = false,
 	...units
 }) => {
-	const { dataCitire, citire, consum, factura, platit, selected } = units;
+	const { dataCitire, citire, consum, factura, platit, selected, edit } =
+		units;
 	const classes = classNames(styles.wrapper, {
 		[styles.selected]: selected,
+		[styles.wrapper__dark]: dark,
+	});
+	const dataWrapper = classNames(styles.data, {
+		[styles.data__dark]: dark,
+	});
+	const iconsWrapper = classNames(styles.iconBox, {
+		[styles.iconBox__dark]: dark,
 	});
 
 	return (
 		<div className={classes} onClick={onClick}>
-			<div className={styles.data}>{dataCitire}</div>
-			<div className={styles.data}>{citire}</div>
-			<div className={styles.data}>{consum}</div>
-			<div className={styles.data}>{factura}</div>
-			<div className={styles.iconBox}>
+			<div className={dataWrapper}>{dataCitire}</div>
+			<div className={dataWrapper}>{citire}</div>
+			<div className={dataWrapper}>{consum}</div>
+			<div className={dataWrapper}>{factura}</div>
+			<div className={iconsWrapper}>
 				<IconSet
 					onCheck={onPayedClick}
 					onDelete={onDelete}
 					onEdit={onEdit}
 					isChecked={platit}
+					isEdited={edit}
 				/>
 			</div>
 		</div>

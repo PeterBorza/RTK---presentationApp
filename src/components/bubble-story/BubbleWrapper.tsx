@@ -17,15 +17,27 @@ import { Loader, Button, Error } from "../../reusables";
 import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
 import { AsidePlatform } from "../../reusables";
 
+import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
 
-const BubbleWrapper: React.FC = () => {
+type Props = {
+	dark?: boolean;
+};
+
+const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	const { bubbles } = useSelector(bubbleState);
 	const isOpen = useSelector(bubbleSidePanelSelector);
 	const selected = useSelector(selectedBubble);
 	const { isLoading, message } = useSelector(pendingState);
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
+
+	const buttonWrapper = classNames(styles.buttonWrapper, {
+		[styles.buttonWrapper__dark]: dark,
+	});
+	const wrapper = classNames(styles.container, {
+		[styles.container__dark]: dark,
+	});
 
 	const isBubbles = bubbles.length !== 0;
 
@@ -52,24 +64,27 @@ const BubbleWrapper: React.FC = () => {
 
 	const render = () => {
 		return (
-			<>
+			<div className={wrapper}>
 				{isLoading && <Loader dots={5} />}
-				<div className={styles.buttonWrapper}>
+				<div className={buttonWrapper}>
 					<Button
 						onClick={deleteSelected}
 						value='Delete Selected Bubble'
 						isDisabled={!selected}
+						dark
 					/>
 					<Button
 						onClick={showBubbles}
 						value={isLoading ? message : "Get Bubbles"}
 						isDisabled={isBubbles}
+						dark
 					/>
 					{isBubbles && <BubbleForm />}
 					<Button
 						onClick={handleOpenMenu}
 						value='Menu'
 						isDisabled={!isBubbles}
+						dark
 					/>
 				</div>
 				{error.error ? (
@@ -85,7 +100,7 @@ const BubbleWrapper: React.FC = () => {
 						/>
 					))
 				)}
-			</>
+			</div>
 		);
 	};
 
