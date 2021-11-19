@@ -1,22 +1,16 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { format } from "date-fns";
 import { v4 as uuid } from "uuid";
-
 import { postGas } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
 import { GasStateUnit, GasFormProps } from "./types";
 import { unitsState } from "./selectors";
+import { initialGasFormValues } from "./state";
 
-const GasForm = () => {
+const GasForm: FC = () => {
 	const units = useSelector(unitsState);
-	const initialGasFormValues = {
-		citire: "",
-		factura: "",
-		dataCitire: format(new Date(), "dd/MM/yyyy"),
-	};
 	const [gasUnit, setGasUnit] = useState<GasFormProps>(initialGasFormValues);
 	const dispatch = useDispatch();
 
@@ -33,12 +27,22 @@ const GasForm = () => {
 		});
 	};
 
+	const checkIfValid = (input: string) => {
+		if (isNaN(parseInt(input))) return "";
+		return input;
+	};
+
 	const onSubmitHandler = () => {
 		const lastCitire = units[units.length - 1].citire;
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
+		const checkNewConsum = typeof newConsum === "number" ? newConsum : "";
+		console.log(newConsum);
+
 		const newGasUnit: GasStateUnit = {
-			...gasUnit,
-			consum: newConsum.toString(),
+			citire: checkIfValid(gasUnit.citire),
+			factura: checkIfValid(gasUnit.factura),
+			dataCitire: gasUnit.dataCitire,
+			consum: checkNewConsum.toString(),
 			id: uuid(),
 			selected: false,
 			platit: false,

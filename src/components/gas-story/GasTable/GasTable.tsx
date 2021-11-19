@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table } from "../../../reusables/ScrollTable";
-import { Loader, Error } from "../../../reusables";
+import { Error } from "../../../reusables";
 import { gasState, errorGasState } from "../selectors";
 import { editGas, selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
@@ -22,7 +22,8 @@ const GasTable = () => {
 	const selected = useSelector(selectedGas);
 
 	const isUnits = units && units.length !== 0;
-	const isEditMode = selected && selected.edit;
+	const isEditMode = selected && selected.edit === true;
+	console.log(isEditMode);
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -49,44 +50,43 @@ const GasTable = () => {
 		dispatch(editGas({ id, edit: true }));
 	};
 
-	const gasCards = () => {
-		return (
-			isUnits &&
-			units.map(item => (
-				<li key={item.id}>
-					<Gaz
-						{...item}
-						onClick={() => onGasClickHandler(item.id)}
-						onPayedClick={() => onTogglePayedBill(item)}
-						onDelete={() => onDeleteGasHandler(item.id)}
-						onEdit={() => onEditGasHandler(item.id)}
-					/>
-				</li>
-			))
-		);
+	const renderListItems = (item: Array<GasStateUnit>) =>
+		item.map(unit => (
+			<li key={unit.id}>
+				<Gaz
+					{...unit}
+					onClick={() => onGasClickHandler(unit.id)}
+					onPayedClick={() => onTogglePayedBill(unit)}
+					onDelete={() => onDeleteGasHandler(unit.id)}
+					onEdit={() => onEditGasHandler(unit.id)}
+				/>
+			</li>
+		));
+
+	const table = {
+		header: () => labels.map(item => <span key={item}>{item}</span>),
+		body: () => isUnits && renderListItems(units),
 	};
 
-	const labelHeader = () => {
-		return labels.map(item => <span key={item}>{item}</span>);
-	};
-
-	return !isEditMode ? (
+	return (
 		<div className={styles.container}>
-			{loading.isLoading ? (
-				<div>
-					<Loader dots={5} />
-					<p>{loading.message}</p>
-				</div>
-			) : (
+			{!isEditMode ? (
 				<>
 					<GasForm />
-					<Table renderBody={gasCards} renderHeader={labelHeader} />
+					<Table
+						renderHeader={table.header}
+						renderBody={table.body}
+						loading={loading.isLoading}
+						message={loading.message}
+					/>
 				</>
+			) : (
+				<div className={styles.container}>
+					<EditForm />
+				</div>
 			)}
 			{error && <Error message={error} />}
 		</div>
-	) : (
-		<EditForm />
 	);
 };
 

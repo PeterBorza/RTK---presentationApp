@@ -3,9 +3,10 @@ import styles from "./Loader.module.scss";
 interface LoaderProps {
 	dots: number;
 	speed?: number;
+	message?: string;
 }
 
-const Loader: React.FC<LoaderProps> = ({ dots = 3, speed = 130 }) => {
+const Loader: React.FC<LoaderProps> = ({ dots = 3, speed = 130, message }) => {
 	if (dots <= 1) return <h3>Count must be higher than 0</h3>;
 	const dotCountArray = new Array(dots).fill(null).map((_, i) => i);
 
@@ -19,6 +20,7 @@ const Loader: React.FC<LoaderProps> = ({ dots = 3, speed = 130 }) => {
 						style={{ animationDelay: `${item * speed}ms` }}
 					></div>
 				))}
+				<p>{message}</p>
 			</div>
 		</div>
 	);
