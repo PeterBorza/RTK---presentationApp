@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./app/App";
 import { Home } from "./components";
 import { Building } from "./components/building-story";
 import { GasExpenses } from "./components/gas-story";
