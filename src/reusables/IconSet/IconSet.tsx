@@ -9,6 +9,7 @@ interface IconSetProps {
 	onDelete: () => void;
 	onEdit: () => void;
 	isChecked: boolean;
+	isEdited: boolean;
 	className?: string;
 }
 
@@ -17,48 +18,32 @@ const IconSet: FC<IconSetProps> = ({
 	onDelete,
 	onEdit,
 	isChecked,
+	isEdited,
 	className,
 }) => {
 	const iconClasses = classNames(styles.iconWrapper, className);
+	const editClass = isEdited ? `${styles.red}` : ` ${styles.blue}`;
 	return (
 		<div className={iconClasses}>
 			{isChecked ? (
-				<>
-					<icons.Check
-						className={styles.green}
-						onClick={onCheck}
-						title='checked'
-					/>
-					<icons.Trash
-						className={styles.black}
-						title='delete'
-						onClick={onDelete}
-					/>
-					<icons.Edit
-						className={styles.blue}
-						title='edit'
-						onClick={onEdit}
-					/>
-				</>
+				<icons.Check
+					className={styles.green}
+					onClick={onCheck}
+					title='checked'
+				/>
 			) : (
-				<>
-					<icons.Exclamation
-						className={styles.red}
-						onClick={onCheck}
-						title='unchecked'
-					/>
-					<icons.Trash
-						className={styles.black}
-						title='delete'
-						onClick={onDelete}
-					/>
-					<icons.Edit
-						className={styles.blue}
-						title='edit'
-						onClick={onEdit}
-					/>
-				</>
+				<icons.Exclamation
+					className={styles.red}
+					onClick={onCheck}
+					title='unchecked'
+				/>
 			)}
+			<icons.Trash
+				className={styles.black}
+				title='delete'
+				onClick={onDelete}
+			/>
+			<icons.Edit className={editClass} title='edit' onClick={onEdit} />
 		</div>
 	);
 };

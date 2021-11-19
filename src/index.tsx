@@ -18,7 +18,7 @@ ReactDOM.render(
 					<Route path='/' element={<App />}>
 						<Route index element={<Home />} />
 						<Route path='building' element={<Building />} />
-						<Route path='bubbles' element={<Bubbles />} />
+						<Route path='bubbles' element={<Bubbles dark />} />
 						<Route path='gas' element={<GasExpenses />} />
 						<Route path='colors' element={<Colors />} />
 						<Route path='photos' element={<Photos />}>

@@ -5,4 +5,7 @@
 	@include container();
 	@include fCenter(column);
 	background-color: white;
+	&__dark {
+		background-color: rgb(20, 20, 20);
+	}
 }

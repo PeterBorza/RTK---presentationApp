@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,23 +8,31 @@ import { gasState, errorGasState } from "../selectors";
 import { editGas, selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
 import { getAsyncGas, togglePayedBill, deleteGas, editUnit } from "../thunks";
+import { selectedGas } from "..";
 
 import { Gaz } from "../GasCard";
 import GasForm from "../GasForm";
 import EditForm from "../EditForm";
 
+import classNames from "classnames";
 import styles from "./GasTable.module.scss";
-import { selectedGas } from "..";
 
-const GasTable = () => {
+type Props = {
+	dark?: boolean;
+};
+
+const GasTable: FC<Props> = ({ dark = false }) => {
 	const dispatch = useDispatch();
 	const { units, labels, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
 	const selected = useSelector(selectedGas);
 
+	const wrapper = classNames(styles.container, {
+		[styles.container__dark]: dark,
+	});
+
 	const isUnits = units && units.length !== 0;
 	const isEditMode = selected && selected.edit === true;
-	console.log(isEditMode);
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -69,7 +78,7 @@ const GasTable = () => {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={wrapper}>
 			{!isEditMode ? (
 				<>
 					<GasForm />
@@ -81,7 +90,7 @@ const GasTable = () => {
 					/>
 				</>
 			) : (
-				<div className={styles.container}>
+				<div className={wrapper}>
 					<EditForm />
 				</div>
 			)}

@@ -27,7 +27,8 @@
 .body {
 	width: 100%;
 	height: calc(100% - 35px);
-	// overflow: hidden;
+	overflow: hidden;
+	// background-color: rgb(31, 29, 29); darkmode TODO
 	overflow-y: auto;
 	&::-webkit-scrollbar {
 		display: none;
