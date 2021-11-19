@@ -21,7 +21,7 @@ const EditForm: FC = () => {
 	};
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.name !== "dataCitire" && e.target.name === "") return;
+		if (e.target.name !== "dataCitire" && e.target.value === "") return;
 
 		setGasUnit({
 			...gasUnit,
