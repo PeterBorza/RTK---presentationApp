@@ -1,6 +1,7 @@
-import { format } from "date-fns";
 import { GasFormProps, GasState } from "./types";
+import { format } from "date-fns";
 import { Pending } from "../../app/constants";
+import { GasStateUnit } from ".";
 
 const initialGasFormValues: GasFormProps = {
 	citire: "",
@@ -18,4 +19,15 @@ const initialState: GasState = {
 	error: null,
 };
 
-export { initialGasFormValues, initialState };
+const initialEditUnit: GasStateUnit = {
+	citire: "",
+	factura: "",
+	dataCitire: format(new Date(), "dd/MM/yyyy"),
+	id: "",
+	consum: "",
+	selected: false,
+	platit: false,
+	edit: false,
+};
+
+export { initialGasFormValues, initialState, initialEditUnit };

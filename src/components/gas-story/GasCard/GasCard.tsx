@@ -21,7 +21,7 @@ const GasCard: React.FC<GasStateUnit & Props> = ({
 }) => {
 	const { dataCitire, citire, consum, factura, platit, selected } = units;
 	const classes = classNames(styles.wrapper, {
-		[styles["selected"]]: selected,
+		[styles.selected]: selected,
 	});
 
 	return (

@@ -35,17 +35,15 @@ const ModalForm: React.FC<FormWrapProps> = ({
 		setIsOpenModal(false);
 	};
 
-	const renderForm = () => {
-		return (
-			<Form
-				onSubmit={submitHandler}
-				width={formWidth}
-				render={render}
-				onCancel={onCancelHandler}
-				formTitle={formTitle}
-			/>
-		);
-	};
+	const renderForm = () => (
+		<Form
+			onSubmit={submitHandler}
+			width={formWidth}
+			render={render}
+			onCancel={onCancelHandler}
+			formTitle={formTitle}
+		/>
+	);
 
 	return (
 		<>

@@ -27,7 +27,7 @@
 .body {
 	width: 100%;
 	height: calc(100% - 35px);
-	overflow: hidden;
+	// overflow: hidden;
 	overflow-y: auto;
 	&::-webkit-scrollbar {
 		display: none;
@@ -35,4 +35,10 @@
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	text-align: center;
+}
+
+.loadingWrapper {
+	width: 100%;
+	height: 100%;
+	@include fCenter(column);
 }

@@ -3,6 +3,7 @@ import { BaseAPI } from "../../app/constants";
 import {
 	addGasUnit,
 	deleteGasUnit,
+	editGas,
 	getGasUnits,
 	togglePayed,
 	setGasError,
@@ -107,18 +108,14 @@ export const togglePayedBill = createAsyncThunk(
 // ************************************************************************************
 
 export const editAsyncGasUnit = async (
-	{ id, payload }: { id: string; payload: GasStateUnit },
-	{ dispatch, getState }: { dispatch: Function; getState: Function }
+	editedItem: GasStateUnit,
+	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setGasPending(true));
-	const { units } = getState() as GasState;
-	// const editedGasIndex = units.findIndex(item => item.id === id);
-	const edited = {
-		...payload,
-	};
 	try {
-		await axios.put(`${BaseAPI.GAS_UNITS_URL}/units/${id}`, edited);
-		// .then(dispatch(addGasUnit(edited)));
+		await axios.put(`${BaseAPI.GAS_UNITS_URL}/units/${editedItem.id}`, {
+			...editedItem,
+		});
 	} catch {
 		dispatch(setGasError());
 	} finally {
