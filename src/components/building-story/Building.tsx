@@ -157,6 +157,12 @@ const Building: React.FC = () => {
 					<h2>Under construction</h2>
 				</div>
 			)}
+			<button
+				onClick={() => handleNumberOfLevels()}
+				style={{ marginTop: "10px" }}
+			>
+				Set number of levels
+			</button>
 			<input
 				type='number'
 				min='3'
@@ -164,12 +170,6 @@ const Building: React.FC = () => {
 				value={levelInput}
 				onChange={e => setLevelInput(Number(e.target.value))}
 			/>
-			<button
-				onClick={() => handleNumberOfLevels()}
-				style={{ marginTop: "10px" }}
-			>
-				Set number of levels
-			</button>
 		</div>
 	);
 };

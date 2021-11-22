@@ -3,8 +3,17 @@
 
 .container {
 	@include container();
-	background-color: rgb(229, 203, 135);
+	background-color: white;
+	background-image: url(../../images/city900.jpg);
+	background-size: cover;
+	background-position: center;
 	@include fCenter(column);
+	p {
+		color: white;
+		span {
+			color: red;
+		}
+	}
 }
 .empty {
 	width: 40%;

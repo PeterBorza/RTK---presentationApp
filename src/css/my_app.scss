@@ -17,6 +17,7 @@ $SBnoMarginLeft: 0;
 	width: 100%;
 	transition: $SBtransition;
 	height: 100vh;
+	height: calc(100vh - 35px);
 	&__margin {
 		margin-left: $SBsize;
 	}
