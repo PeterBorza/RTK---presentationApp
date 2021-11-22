@@ -16,7 +16,6 @@ export const gasSlice = createSlice({
 			state: GasState,
 			{ payload }: PayloadAction<{ id: string; edit: boolean }>
 		) => {
-			state.units.forEach(unit => (unit.selected = false));
 			const selected = state.units.find(unit => unit.id === payload.id);
 			if (selected) selected.edit = payload.edit;
 		},
