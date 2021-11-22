@@ -1,18 +1,16 @@
-@use "../../css/my_app" as *;
-@use "../../css/mixins" as *;
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
 
 .container {
 	@include container();
 	background-color: white;
-	background-image: url(../../images/city900.jpg);
+	background-image: url(../../../images/city900.jpg);
 	background-size: cover;
 	background-position: center;
 	@include fCenter(column);
+	@include fEven(column);
 	p {
 		color: white;
-		span {
-			color: red;
-		}
 	}
 }
 .empty {
@@ -30,9 +28,25 @@
 	height: 20vh;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	flex-direction: column;
 	background-color: dodgerblue;
 	margin: auto;
 	color: rgb(216, 195, 6);
+}
+
+.active {
+	color: white;
+}
+
+.disabled {
+	color: crimson;
+}
+
+.red {
+	background-color: red;
+}
+
+.lightGrey {
+	background-color: lightgrey;
 }

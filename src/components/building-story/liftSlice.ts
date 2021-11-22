@@ -1,22 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { typeofLiftState } from "../../app/store";
-import { PositionState, LiftState } from "./types";
-
-const positionInitialState: PositionState = {
-	positionA: 0,
-	positionB: 6,
-	positionFloor: 0,
-};
-
-const initialState: LiftState = {
-	numberOfLevels: 7,
-	levelArray: [],
-	speed: 1000,
-	liftHeight: 10,
-	liftWidth: 20,
-	position: positionInitialState,
-	isDisabled: false,
-};
+import { initialState } from "./state";
 
 export const liftSlice = createSlice({
 	name: "lift",
@@ -33,11 +16,14 @@ export const liftSlice = createSlice({
 			position.positionB = payload;
 			position.positionFloor = payload;
 		},
-		movePosition: (state, { payload }: PayloadAction<number>) => {
-			state.position.positionFloor = payload;
+		movePosition: ({ position }, { payload }: PayloadAction<number>) => {
+			position.positionFloor = payload;
 		},
-		setLevelNumber: (state, { payload }: PayloadAction<number>) => {
-			state.numberOfLevels = payload;
+		setLevelNumber: (
+			{ numberOfLevels },
+			{ payload }: PayloadAction<number>
+		) => {
+			numberOfLevels = payload;
 		},
 		setLevelArray: (state, { payload }: PayloadAction<number>) => {
 			const newArr = new Array(payload).fill(0).map((_, i: number) => i);
@@ -54,8 +40,5 @@ export const {
 	setLevelNumber,
 	setLevelArray,
 } = liftSlice.actions;
-
-export const liftState = (state: typeofLiftState) => state.lift;
-export const positionState = (state: typeofLiftState) => state.lift.position;
 
 export default liftSlice.reducer;
