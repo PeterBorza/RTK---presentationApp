@@ -1,21 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { typeofLiftState } from "../../app/store";
-
-interface PositionState {
-	positionA: number;
-	positionB: number;
-	positionFloor: number;
-}
-
-interface LiftState {
-	numberOfLevels: number;
-	levelArray: number[];
-	speed: number;
-	liftHeight: number;
-	liftWidth: number;
-	position: PositionState;
-	isDisabled: boolean;
-}
+import { PositionState, LiftState } from "./types";
 
 const positionInitialState: PositionState = {
 	positionA: 0,
@@ -40,13 +25,13 @@ export const liftSlice = createSlice({
 		toggleButtons: state => {
 			state.isDisabled = !state.isDisabled;
 		},
-		moveLiftA: (state, { payload }: PayloadAction<number>) => {
-			state.position.positionA = payload;
-			state.position.positionFloor = payload;
+		moveLiftA: ({ position }, { payload }: PayloadAction<number>) => {
+			position.positionA = payload;
+			position.positionFloor = payload;
 		},
-		moveLiftB: (state, { payload }: PayloadAction<number>) => {
-			state.position.positionB = payload;
-			state.position.positionFloor = payload;
+		moveLiftB: ({ position }, { payload }: PayloadAction<number>) => {
+			position.positionB = payload;
+			position.positionFloor = payload;
 		},
 		movePosition: (state, { payload }: PayloadAction<number>) => {
 			state.position.positionFloor = payload;
