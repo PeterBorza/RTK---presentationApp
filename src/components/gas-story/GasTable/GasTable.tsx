@@ -7,7 +7,8 @@ import { Error } from "../../../reusables";
 import { gasState, errorGasState } from "../selectors";
 import { editGas, selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
-import { getAsyncGas, togglePayedBill, deleteGas, editUnit } from "../thunks";
+import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
+
 import { selectedGas } from "..";
 
 import { Gaz } from "../GasCard";
@@ -90,9 +91,9 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 					/>
 				</>
 			) : (
-				<div className={wrapper}>
-					<EditForm />
-				</div>
+				// <div className={wrapper}>
+				<EditForm />
+				// </div>
 			)}
 			{error && <Error message={error} />}
 		</div>

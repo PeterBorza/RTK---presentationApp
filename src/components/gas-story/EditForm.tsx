@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextInput, Form } from "../../reusables";
 import { GasStateUnit } from "./types";
 import { selectedGas } from "./selectors";
-import { editUnit } from ".";
+import { editUnit } from "./thunks";
 
 const EditForm: FC = () => {
 	const selected = useSelector(selectedGas);
