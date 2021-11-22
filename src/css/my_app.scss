@@ -15,9 +15,8 @@ $SBnoMarginLeft: 0;
 
 @mixin container() {
 	width: 100%;
-	transition: $SBtransition;
-	height: 100vh;
 	height: calc(100vh - 35px);
+	transition: $SBtransition;
 	&__margin {
 		margin-left: $SBsize;
 	}
