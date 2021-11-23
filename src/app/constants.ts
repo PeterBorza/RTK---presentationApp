@@ -17,3 +17,23 @@ export enum Error {
 export enum Pending {
 	MESSAGE = "Loading, please wait...",
 }
+
+export enum GasFormValues {
+	FORM_BUTTON_LABEL = "Adauga citire noua",
+	FORM_WIDTH = "25",
+	FORM_TITLE = "Citire Lunara",
+}
+
+export enum GasLabels {
+	DATA = "data",
+	CITIRE = "citire",
+	CONSUM = "consum",
+	FACTURA = "factura",
+	PLATIT = "platit",
+}
+
+export enum GasTableLabels {
+	SUM_OF_BILLS = "Total platit pana in data de: ",
+	IS = " este de ",
+	RON = " RON",
+}

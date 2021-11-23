@@ -7,7 +7,11 @@ interface ErrorProps {
 }
 
 const Error: FC<ErrorProps> = ({ message = "No error message found" }) => {
-	return <div className={styles.errorStyle}>{message}</div>;
+	return (
+		<div className={styles.errorStyle}>
+			<h1>{message}</h1>
+		</div>
+	);
 };
 
 export default Error;

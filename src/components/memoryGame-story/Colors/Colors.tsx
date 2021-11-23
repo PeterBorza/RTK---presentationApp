@@ -34,6 +34,14 @@ const ColorsWrapper: React.FC = () => {
 		dispatch(toggleSidePanel(true));
 	};
 
+	const renderSB = () => {
+		return <h3>SIDEBAR BODY</h3>;
+	};
+
+	const renderHDR = () => {
+		return <h3>TITLE</h3>;
+	};
+
 	const render = () => {
 		return (
 			<>
@@ -70,6 +78,8 @@ const ColorsWrapper: React.FC = () => {
 			renderBody={() => render()}
 			isOpen={isOpen}
 			onClose={handleCloseMenu}
+			renderSideBar={renderSB}
+			renderHeader={renderHDR}
 		/>
 	);
 };

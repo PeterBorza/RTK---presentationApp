@@ -2,18 +2,16 @@ import { FC } from "react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table } from "../../../reusables/ScrollTable";
-import { Error } from "../../../reusables";
-import { gasState, errorGasState } from "../selectors";
-import { editGas, selectGas } from "../gasSlice";
+import { Table, Error } from "../../../reusables";
+import { GasLabels, GasTableLabels } from "../../../app/constants";
+import { gasState, errorGasState, selectSubtotal } from "../selectors";
+import { selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
+import { useTime } from "../../../hooks";
 import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
-
-import { selectedGas } from "..";
 
 import { Gaz } from "../GasCard";
 import GasForm from "../GasForm";
-import EditForm from "../EditForm";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
@@ -24,16 +22,17 @@ type Props = {
 
 const GasTable: FC<Props> = ({ dark = false }) => {
 	const dispatch = useDispatch();
-	const { units, labels, loading } = useSelector(gasState);
+	const { units, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
-	const selected = useSelector(selectedGas);
+	const sumofBills = useSelector(selectSubtotal);
+	const exactSumOfBillsPayed = sumofBills.toFixed(2);
+	const today = useTime("standard");
 
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
 	});
 
 	const isUnits = units && units.length !== 0;
-	const isEditMode = selected && selected.edit === true;
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -57,7 +56,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	};
 
 	const onEditGasHandler = (id: string) => {
-		dispatch(editGas({ id, edit: true }));
+		console.log("editing work", id);
 	};
 
 	const renderListItems = (item: Array<GasStateUnit>) =>
@@ -74,27 +73,29 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 		));
 
 	const table = {
-		header: () => labels.map(item => <span key={item}>{item}</span>),
+		header: () =>
+			Object.keys(GasLabels).map(item => <span key={item}>{item}</span>),
 		body: () => isUnits && renderListItems(units),
 	};
 
 	return (
 		<div className={wrapper}>
-			{!isEditMode ? (
-				<>
-					<GasForm />
-					<Table
-						renderHeader={table.header}
-						renderBody={table.body}
-						loading={loading.isLoading}
-						message={loading.message}
-					/>
-				</>
-			) : (
-				// <div className={wrapper}>
-				<EditForm />
-				// </div>
-			)}
+			<GasForm />
+			<Table
+				renderHeader={table.header}
+				renderBody={table.body}
+				loading={loading.isLoading}
+				message={loading.message}
+			/>
+			<p>
+				{GasTableLabels.SUM_OF_BILLS}
+				<span className={styles.highlighted}>{today}</span>
+				{GasTableLabels.IS}
+				<span className={styles.highlighted}>
+					{exactSumOfBillsPayed}
+				</span>
+				{GasTableLabels.RON}
+			</p>
 			{error && <Error message={error} />}
 		</div>
 	);
