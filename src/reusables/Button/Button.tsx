@@ -1,10 +1,10 @@
-import { FC, ComponentProps } from "react";
+import { FC, ComponentProps, ReactNode } from "react";
 
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
 type Props = {
-	value?: string;
+	value?: string | ReactNode;
 	className?: string;
 	isDisabled?: boolean;
 	dark?: boolean;
@@ -18,9 +18,10 @@ const Button: FC<Props> = ({
 	isDisabled,
 	dark,
 }) => {
+	const longValue = typeof value === "string" && value.split("").length > 15;
 	const classes = classNames(styles.defaultStyle, className, {
 		[styles.defaultStyle__disabled]: isDisabled,
-		[styles.defaultStyle__width]: value.split("").length > 15,
+		[styles.defaultStyle__width]: longValue,
 		[styles.defaultStyle__dark]: dark,
 	});
 	return (

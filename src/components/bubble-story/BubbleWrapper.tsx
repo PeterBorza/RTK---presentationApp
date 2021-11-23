@@ -19,6 +19,7 @@ import { AsidePlatform } from "../../reusables";
 
 import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
+import { useCallback } from "react";
 
 type Props = {
 	dark?: boolean;
@@ -28,7 +29,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	const { bubbles } = useSelector(bubbleState);
 	const isOpen = useSelector(bubbleSidePanelSelector);
 	const selected = useSelector(selectedBubble);
-	const { isLoading, message } = useSelector(pendingState);
+	const { isLoading } = useSelector(pendingState);
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
 
@@ -58,35 +59,41 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		dispatch(toggleBubbleSidePanel(false));
 	};
 
-	const handleOpenMenu = () => {
+	const handleOpenMenu = useCallback(() => {
 		dispatch(toggleBubbleSidePanel(true));
+	}, [dispatch]);
+
+	const renderSB = () => {
+		return (
+			<Button
+				onClick={deleteSelected}
+				value='Delete Selected Bubble'
+				isDisabled={!selected}
+			/>
+		);
+	};
+
+	const renderHDR = () => {
+		return <h3>Building Menu</h3>;
 	};
 
 	const render = () => {
 		return (
 			<div className={wrapper}>
-				{isLoading && <Loader dots={5} />}
 				<div className={buttonWrapper}>
 					<Button
-						onClick={deleteSelected}
-						value='Delete Selected Bubble'
-						isDisabled={!selected}
-						dark
-					/>
-					<Button
 						onClick={showBubbles}
-						value={isLoading ? message : "Get Bubbles"}
+						value={isLoading ? <Loader dots={5} /> : "Get Bubbles"}
 						isDisabled={isBubbles}
-						dark
 					/>
-					{isBubbles && <BubbleForm />}
 					<Button
 						onClick={handleOpenMenu}
 						value='Menu'
 						isDisabled={!isBubbles}
-						dark
 					/>
+					{isBubbles && <BubbleForm />}
 				</div>
+				{isLoading && <Loader dots={5} />}
 				{error.error ? (
 					<Error message={error.message} />
 				) : (
@@ -107,8 +114,10 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	return (
 		<AsidePlatform
 			isOpen={isOpen}
-			renderBody={() => render()}
+			renderBody={render}
 			onClose={handleOnClose}
+			renderSideBar={renderSB}
+			renderHeader={renderHDR}
 		/>
 	);
 };

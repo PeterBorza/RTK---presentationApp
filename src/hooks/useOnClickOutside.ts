@@ -10,7 +10,6 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 		const listener = (event: AnyEvent) => {
 			const el = ref?.current;
 
-			// Do nothing if clicking ref's element or descendent elements
 			if (!el || el.contains(event.target as Node)) {
 				return;
 			}
@@ -25,8 +24,6 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 			document.removeEventListener(`mousedown`, listener);
 			document.removeEventListener(`touchstart`, listener);
 		};
-
-		// Reload only if ref or handler changes
 	}, [ref, handler]);
 }
 

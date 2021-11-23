@@ -5,7 +5,6 @@ function useEventListener<T extends HTMLElement = HTMLDivElement>(
 	handler: (event: Event) => void,
 	element?: RefObject<T>
 ) {
-	// Create a ref that stores handler
 	const savedHandler = useRef<(event: Event) => void>();
 
 	useEffect(() => {
@@ -30,7 +29,6 @@ function useEventListener<T extends HTMLElement = HTMLDivElement>(
 
 		targetElement.addEventListener(eventName, eventListener);
 
-		// Remove event listener on cleanup
 		return () => {
 			targetElement.removeEventListener(eventName, eventListener);
 		};

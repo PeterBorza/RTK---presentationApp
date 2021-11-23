@@ -1,4 +1,5 @@
 $navHeight: 35px;
+$containerHeight: calc(100vh - $navHeight);
 $SBsize: 200px;
 $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
 $SBtransition: 200ms ease;
@@ -15,7 +16,7 @@ $SBnoMarginLeft: 0;
 
 @mixin container() {
 	width: 100%;
-	height: calc(100vh - 35px);
+	height: $containerHeight;
 	transition: $SBtransition;
 	&__margin {
 		margin-left: $SBsize;

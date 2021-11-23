@@ -16,6 +16,8 @@ import { Form, ModalForm } from "./Form";
 import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
+import FlipBox from "./FlipBox";
+import LoadingWrapper from "./LoadingWrapper";
 
 export {
 	Loader,
@@ -37,4 +39,6 @@ export {
 	AsidePlatform,
 	MenuButton,
 	ToggleButton,
+	FlipBox,
+	LoadingWrapper,
 };

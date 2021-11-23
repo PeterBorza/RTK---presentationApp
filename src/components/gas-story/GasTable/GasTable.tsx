@@ -5,15 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table } from "../../../reusables/ScrollTable";
 import { Error } from "../../../reusables";
 import { gasState, errorGasState } from "../selectors";
-import { editGas, selectGas } from "../gasSlice";
+import { selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
 import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
 
-import { selectedGas } from "..";
-
 import { Gaz } from "../GasCard";
 import GasForm from "../GasForm";
-import EditForm from "../EditForm";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
@@ -26,14 +23,12 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	const dispatch = useDispatch();
 	const { units, labels, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
-	const selected = useSelector(selectedGas);
 
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
 	});
 
 	const isUnits = units && units.length !== 0;
-	const isEditMode = selected && selected.edit === true;
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -57,7 +52,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	};
 
 	const onEditGasHandler = (id: string) => {
-		dispatch(editGas({ id, edit: true }));
+		console.log("editing work", id);
 	};
 
 	const renderListItems = (item: Array<GasStateUnit>) =>
@@ -80,21 +75,13 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 
 	return (
 		<div className={wrapper}>
-			{!isEditMode ? (
-				<>
-					<GasForm />
-					<Table
-						renderHeader={table.header}
-						renderBody={table.body}
-						loading={loading.isLoading}
-						message={loading.message}
-					/>
-				</>
-			) : (
-				// <div className={wrapper}>
-				<EditForm />
-				// </div>
-			)}
+			<GasForm />
+			<Table
+				renderHeader={table.header}
+				renderBody={table.body}
+				loading={loading.isLoading}
+				message={loading.message}
+			/>
 			{error && <Error message={error} />}
 		</div>
 	);

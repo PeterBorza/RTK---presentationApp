@@ -39,26 +39,6 @@
         "size": "120px",
         "opacity": "1"
       }
-    },
-    {
-      "id": 13,
-      "selected": false,
-      "cssProps": {
-        "left": "15%",
-        "top": "20%",
-        "size": "40px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 15,
-      "selected": false,
-      "cssProps": {
-        "left": "80%",
-        "top": "90%",
-        "size": "300px",
-        "opacity": ".5"
-      }
     }
   ]
 }

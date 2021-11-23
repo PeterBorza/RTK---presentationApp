@@ -6,7 +6,7 @@
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	height: calc(100vh - 35px);
+	height: $containerHeight;
 	width: $SBsize;
 	transform: translateX(-100%);
 	display: flex;
@@ -15,6 +15,7 @@
 	background-color: rgb(243, 238, 238);
 	border-bottom-right-radius: 3px;
 	overflow: hidden;
+	padding: 2px;
 	@include shadowSB();
 	transition: $SBtransition;
 	z-index: 1;
