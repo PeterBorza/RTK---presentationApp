@@ -6,7 +6,7 @@ export enum BaseAPI {
 
 export enum Url {
 	COLORS = "colorSets",
-	BUBBLES = "bubbles",
+	BUBBLES = "bubble",
 	GAS = "units",
 }
 

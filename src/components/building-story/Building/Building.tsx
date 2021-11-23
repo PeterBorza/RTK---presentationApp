@@ -158,6 +158,7 @@ const Building: React.FC = () => {
 						<LiftButtons
 							label={button.label}
 							renderButtons={() => button.render}
+							key={button.label}
 						/>
 					))}
 				</div>

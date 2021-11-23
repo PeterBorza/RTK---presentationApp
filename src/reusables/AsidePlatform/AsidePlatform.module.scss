@@ -1,6 +1,6 @@
 @use "../../css/my_app" as *;
 
-.platformContainer {
+.layout {
 	width: 100%;
 	height: calc(100vh - 35px);
 	display: flex;
@@ -8,8 +8,8 @@
 }
 .container {
 	position: relative;
-	@include container();
 	margin: 0;
+	@include container();
 	overflow: hidden;
 	background-color: rgb(180, 225, 243);
 }

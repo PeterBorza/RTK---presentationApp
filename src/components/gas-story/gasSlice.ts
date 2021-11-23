@@ -12,13 +12,6 @@ export const gasSlice = createSlice({
 				item => (item.selected = item.id === payload ? true : false)
 			);
 		},
-		editGas: (
-			state: GasState,
-			{ payload }: PayloadAction<{ id: string; edit: boolean }>
-		) => {
-			const selected = state.units.find(unit => unit.id === payload.id);
-			if (selected) selected.edit = payload.edit;
-		},
 		togglePayed: (state: GasState, { payload }: PayloadAction<string>) => {
 			const selected = state.units.find(unit => unit.id === payload);
 			if (selected) {
@@ -57,7 +50,6 @@ export const gasSlice = createSlice({
 
 export const {
 	selectGas,
-	editGas,
 	togglePayed,
 	addGasUnit,
 	getGasUnits,
