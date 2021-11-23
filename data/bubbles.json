@@ -39,6 +39,16 @@
         "size": "120px",
         "opacity": "1"
       }
+    },
+    {
+      "id": 12,
+      "selected": false,
+      "cssProps": {
+        "left": "85%",
+        "top": "85%",
+        "size": "100px",
+        "opacity": ".5"
+      }
     }
   ]
 }

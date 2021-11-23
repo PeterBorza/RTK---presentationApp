@@ -2,6 +2,8 @@ import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
+import { useTime } from "../../hooks";
+import { GasFormValues } from "../../app/constants";
 import { postGas } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
@@ -11,11 +13,26 @@ import { initialGasFormValues } from "./state";
 
 const GasForm: FC = () => {
 	const units = useSelector(unitsState);
-	const [gasUnit, setGasUnit] = useState<GasFormProps>(initialGasFormValues);
+	const date = useTime("standard");
+	const startingValues = {
+		...initialGasFormValues,
+		dataCitire: date,
+	};
+	const [gasUnit, setGasUnit] = useState<GasFormProps>(startingValues);
 	const dispatch = useDispatch();
 
 	const cancelHandler = () => {
-		setGasUnit(initialGasFormValues);
+		setGasUnit(startingValues);
+	};
+
+	const getCorrectValues = (value: string) => {
+		if (value.includes(",")) return value.replace(",", ".");
+		return value;
+	};
+
+	const checkIfValid = (input: string) => {
+		if (isNaN(parseInt(input))) return "0";
+		return input;
 	};
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,34 +40,28 @@ const GasForm: FC = () => {
 
 		setGasUnit({
 			...gasUnit,
-			[e.target.name]: e.target.value,
+			[e.target.name]: getCorrectValues(e.target.value),
 		});
-	};
-
-	const checkIfValid = (input: string) => {
-		if (isNaN(parseInt(input))) return "";
-		return input;
 	};
 
 	const onSubmitHandler = () => {
 		const lastCitire = units[units.length - 1].citire;
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
-		const checkNewConsum = typeof newConsum === "number" ? newConsum : "";
-		console.log(newConsum);
+		const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
 
 		const newGasUnit: GasStateUnit = {
+			id: uuid(),
+			dataCitire: gasUnit.dataCitire,
+			selected: false,
 			citire: checkIfValid(gasUnit.citire),
 			factura: checkIfValid(gasUnit.factura),
-			dataCitire: gasUnit.dataCitire,
 			consum: checkNewConsum.toString(),
-			id: uuid(),
-			selected: false,
 			platit: false,
 			edit: false,
 		};
 
 		dispatch(postGas(newGasUnit));
-		setGasUnit(initialGasFormValues);
+		setGasUnit(startingValues);
 	};
 
 	const inputs = Object.entries(gasUnit);
@@ -75,9 +86,9 @@ const GasForm: FC = () => {
 			render={renderInputs}
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
-			buttonLabel='Adauga citire noua'
-			formWidth='25'
-			formTitle='Citire Lunara'
+			buttonLabel={GasFormValues.FORM_BUTTON_LABEL}
+			formWidth={GasFormValues.FORM_WIDTH}
+			formTitle={GasFormValues.FORM_TITLE}
 		/>
 	);
 };

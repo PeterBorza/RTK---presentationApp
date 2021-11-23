@@ -3,7 +3,7 @@ import Button from "./Button";
 import Error from "./ErrorMessage";
 import SlideText from "./SlideText";
 import SimpleDrop from "./SimpleDrop";
-import Table from "./ScrollTable";
+import { Table } from "./ScrollTable";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
@@ -18,6 +18,7 @@ import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
 import FlipBox from "./FlipBox";
 import LoadingWrapper from "./LoadingWrapper";
+import ScrollTable from "./ScrollTable";
 
 export {
 	Loader,
@@ -26,6 +27,7 @@ export {
 	SlideText,
 	SimpleDrop,
 	Table,
+	ScrollTable,
 	NavBar,
 	SideBar,
 	InputCard,

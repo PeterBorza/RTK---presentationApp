@@ -14,7 +14,6 @@ export interface GasStateUnit extends GasFormProps {
 
 export interface GasState {
 	units: GasStateUnit[];
-	labels: string[];
 	loading: {
 		isLoading: boolean;
 		message: string;

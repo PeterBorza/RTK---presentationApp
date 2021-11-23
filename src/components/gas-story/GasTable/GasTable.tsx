@@ -2,11 +2,12 @@ import { FC } from "react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table } from "../../../reusables/ScrollTable";
-import { Error } from "../../../reusables";
-import { gasState, errorGasState } from "../selectors";
+import { Table, Error } from "../../../reusables";
+import { GasLabels, GasTableLabels } from "../../../app/constants";
+import { gasState, errorGasState, selectSubtotal } from "../selectors";
 import { selectGas } from "../gasSlice";
 import { GasStateUnit } from "../types";
+import { useTime } from "../../../hooks";
 import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
 
 import { Gaz } from "../GasCard";
@@ -21,8 +22,11 @@ type Props = {
 
 const GasTable: FC<Props> = ({ dark = false }) => {
 	const dispatch = useDispatch();
-	const { units, labels, loading } = useSelector(gasState);
+	const { units, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
+	const sumofBills = useSelector(selectSubtotal);
+	const exactSumOfBillsPayed = sumofBills.toFixed(2);
+	const today = useTime("standard");
 
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
@@ -69,7 +73,8 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 		));
 
 	const table = {
-		header: () => labels.map(item => <span key={item}>{item}</span>),
+		header: () =>
+			Object.keys(GasLabels).map(item => <span key={item}>{item}</span>),
 		body: () => isUnits && renderListItems(units),
 	};
 
@@ -82,6 +87,15 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 				loading={loading.isLoading}
 				message={loading.message}
 			/>
+			<p>
+				{GasTableLabels.SUM_OF_BILLS}
+				<span className={styles.highlighted}>{today}</span>
+				{GasTableLabels.IS}
+				<span className={styles.highlighted}>
+					{exactSumOfBillsPayed}
+				</span>
+				{GasTableLabels.RON}
+			</p>
 			{error && <Error message={error} />}
 		</div>
 	);
