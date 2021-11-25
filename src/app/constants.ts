@@ -37,3 +37,9 @@ export enum GasTableLabels {
 	IS = " este de ",
 	RON = " RON",
 }
+
+export enum BubbleFormValues {
+	BUTTON_LABEL = "Add new Bubble",
+	FORM_WIDTH = "20",
+	FORM_TITLE = "Position and shape of the bubble",
+}

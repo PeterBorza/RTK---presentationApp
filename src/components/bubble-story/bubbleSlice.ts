@@ -1,19 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pending, Error } from "../../app/constants";
 import { BubbleState, Bubble } from "./types";
-
-const initialState: BubbleState = {
-	bubbles: [],
-	loading: {
-		isLoading: false,
-		message: Pending.MESSAGE,
-	},
-	error: {
-		error: false,
-		message: Error.MESSAGE,
-	},
-	isSidePanelOpen: false,
-};
+import { initialState } from "./state";
 
 export const bubbleSlice = createSlice({
 	name: "bubbles",

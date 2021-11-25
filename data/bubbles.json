@@ -49,6 +49,16 @@
         "size": "100px",
         "opacity": ".5"
       }
+    },
+    {
+      "id": 13,
+      "selected": false,
+      "cssProps": {
+        "left": "33%",
+        "top": "44%",
+        "size": "99px",
+        "opacity": "1"
+      }
     }
   ]
 }

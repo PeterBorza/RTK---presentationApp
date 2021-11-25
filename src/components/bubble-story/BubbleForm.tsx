@@ -2,17 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { postBubble } from "./thunks";
-
 import { TextInput, ModalForm } from "../../reusables";
-import { BubbleCssProps } from "./types";
-
+import { starterBubble } from "./state";
+import { BubbleFormValues } from "../../app/constants";
 const BubbleForm = () => {
-	const starterBubble: BubbleCssProps = {
-		left: "",
-		top: "",
-		size: "",
-		opacity: "",
-	};
 	const [bub, setBub] = useState(starterBubble);
 	const dispatch = useDispatch();
 
@@ -57,12 +50,12 @@ const BubbleForm = () => {
 	};
 	return (
 		<ModalForm
-			render={() => renderInputs()}
+			render={renderInputs}
 			onSubmit={onSubmitHandler}
 			onCancel={cancelHandler}
-			buttonLabel='Add new Bubble'
-			formWidth='20'
-			formTitle='Position and shape of the bubble'
+			buttonLabel={BubbleFormValues.BUTTON_LABEL}
+			formWidth={BubbleFormValues.FORM_WIDTH}
+			formTitle={BubbleFormValues.FORM_TITLE}
 		/>
 	);
 };
