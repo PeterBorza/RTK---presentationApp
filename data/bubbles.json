@@ -31,16 +31,6 @@
       }
     },
     {
-      "id": 12,
-      "selected": false,
-      "cssProps": {
-        "left": "15%",
-        "top": "15%",
-        "size": "300px",
-        "opacity": ".1"
-      }
-    },
-    {
       "id": 13,
       "selected": false,
       "cssProps": {
@@ -48,6 +38,26 @@
         "top": "65%",
         "size": "50px",
         "opacity": "1"
+      }
+    },
+    {
+      "id": 14,
+      "selected": false,
+      "cssProps": {
+        "left": "35%",
+        "top": "35%",
+        "size": "250px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 15,
+      "selected": false,
+      "cssProps": {
+        "left": "10%",
+        "top": "10%",
+        "size": "600px",
+        "opacity": "0.5"
       }
     }
   ]

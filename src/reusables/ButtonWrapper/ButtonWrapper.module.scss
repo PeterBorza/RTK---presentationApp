@@ -1,9 +1,10 @@
-@use "../../css/my_app" as *;
+@use "../../css/my_app.scss" as *;
 
 .container {
 	position: relative;
 	@include container();
 	margin: 0;
+	z-index: 50;
 	overflow: hidden;
 	background-color: rgb(180, 225, 243);
 	&__dark {
@@ -11,8 +12,17 @@
 	}
 }
 
+.wrapper {
+	position: relative;
+	width: 100%;
+	height: 40px;
+	display: block;
+	padding: 3px;
+	z-index: 50;
+}
+
 .buttonWrapper {
-	display: inline-flex;
+	display: flex;
 	&__dark {
 		background-color: $darkMode;
 	}

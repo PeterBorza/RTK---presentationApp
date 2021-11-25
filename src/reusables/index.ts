@@ -19,6 +19,7 @@ import ToggleButton from "./ToggleButton";
 import FlipBox from "./FlipBox";
 import LoadingWrapper from "./LoadingWrapper";
 import ScrollTable from "./ScrollTable";
+import ButtonWrapper from "./ButtonWrapper";
 
 export {
 	Loader,
@@ -43,4 +44,5 @@ export {
 	ToggleButton,
 	FlipBox,
 	LoadingWrapper,
+	ButtonWrapper,
 };
