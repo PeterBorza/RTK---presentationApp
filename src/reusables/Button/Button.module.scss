@@ -4,11 +4,14 @@
 	outline: none;
 	font-weight: bold;
 	padding: 5px 10px;
+	margin-left: 3px;
 	border-radius: 2px;
+	z-index: 100;
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 	transition: all 120ms ease-out;
 	&:hover {
-		background-color: rgb(194, 190, 190);
+		background-color: rgb(124, 118, 118);
+		color: rgba(250, 245, 245, 0.932);
 	}
 	&:active {
 		transform: scale(0.95);

@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 import {
 	bubbleState,
@@ -9,17 +11,27 @@ import {
 } from "./selectors";
 
 import { getBubbles, deleteBubble } from "./thunks";
-import { Url } from "../../app/constants";
+import {
+	Url,
+	BubbleButtons,
+	BubbleSideBarTitle,
+	BubbleValues,
+} from "../../app/constants";
 
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
-import { Loader, Button, Error } from "../../reusables";
+import { SelectedBubble } from ".";
+import {
+	Loader,
+	Button,
+	Error,
+	AsidePlatform,
+	ButtonWrapper,
+} from "../../reusables";
 import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
-import { AsidePlatform } from "../../reusables";
 
 import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
-import { useCallback } from "react";
 
 type Props = {
 	dark?: boolean;
@@ -33,9 +45,6 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	const error = useSelector(errorState);
 	const dispatch = useDispatch();
 
-	const buttonWrapper = classNames(styles.buttonWrapper, {
-		[styles.buttonWrapper__dark]: dark,
-	});
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
 	});
@@ -53,7 +62,13 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		}
 	};
 
-	const handleBubbleClick = (id: number) => dispatch(selectBubble(id));
+	const handleBubbleClick = useCallback(
+		(id: number) => {
+			dispatch(selectBubble(id));
+			dispatch(toggleBubbleSidePanel(true));
+		},
+		[dispatch]
+	);
 
 	const handleOnClose = () => {
 		dispatch(toggleBubbleSidePanel(false));
@@ -63,36 +78,59 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		dispatch(toggleBubbleSidePanel(true));
 	}, [dispatch]);
 
-	const renderSB = () => {
-		return (
-			<Button
-				onClick={deleteSelected}
-				value='Delete Selected Bubble'
-				isDisabled={!selected}
-			/>
-		);
+	const sideBarContent = {
+		renderHDR: () => <h3>{BubbleSideBarTitle.TITLE}</h3>,
+		renderBODY: () =>
+			selected ? (
+				<SelectedBubble selected={selected} />
+			) : (
+				<h4>{BubbleValues.SELECT}</h4>
+			),
 	};
 
-	const renderHDR = () => {
-		return <h3>Building Menu</h3>;
+	const buttons = [
+		{
+			id: uuid(),
+			onClick: showBubbles,
+			value: isLoading ? <Loader dots={5} /> : `${BubbleButtons.FETCH}`,
+			isDisabled: isBubbles,
+		},
+		{
+			id: uuid(),
+			onClick: handleOpenMenu,
+			value: `${BubbleButtons.MENU}`,
+			isDisabled: !isBubbles,
+		},
+		{
+			id: uuid(),
+			onClick: deleteSelected,
+			value: `${BubbleButtons.DELETE}`,
+			isDisabled: !selected,
+		},
+	];
+
+	const getButtons = buttons.map(item => (
+		<Button
+			key={item.id}
+			onClick={item.onClick}
+			value={item.value}
+			isDisabled={item.isDisabled}
+		/>
+	));
+
+	const renderButtons = () => {
+		return (
+			<>
+				{getButtons}
+				{isBubbles && <BubbleForm />}
+			</>
+		);
 	};
 
 	const render = () => {
 		return (
 			<div className={wrapper}>
-				<div className={buttonWrapper}>
-					<Button
-						onClick={showBubbles}
-						value={isLoading ? <Loader dots={5} /> : "Get Bubbles"}
-						isDisabled={isBubbles}
-					/>
-					<Button
-						onClick={handleOpenMenu}
-						value='Menu'
-						isDisabled={!isBubbles}
-					/>
-					{isBubbles && <BubbleForm />}
-				</div>
+				<ButtonWrapper renderButtons={renderButtons} />
 				{isLoading && <Loader dots={5} />}
 				{error.error ? (
 					<Error message={error.message} />
@@ -116,8 +154,8 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 			isOpen={isOpen}
 			renderBody={render}
 			onClose={handleOnClose}
-			renderSideBar={renderSB}
-			renderHeader={renderHDR}
+			renderHeader={sideBarContent.renderHDR}
+			renderSideBar={sideBarContent.renderBODY}
 		/>
 	);
 };
