@@ -1,54 +1,44 @@
 {
-  "bubbles": [
-    {
-      "id": 5,
-      "selected": false,
-      "cssProps": {
-        "left": "76%",
-        "top": "15%",
-        "size": "120px",
-        "opacity": ".3"
-      }
-    },
-    {
-      "id": 7,
-      "selected": false,
-      "cssProps": {
-        "left": "78%",
-        "top": "45%",
-        "size": "150px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 10,
-      "selected": false,
-      "cssProps": {
-        "left": "12%",
-        "top": "70%",
-        "size": "120px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 11,
-      "selected": false,
-      "cssProps": {
-        "left": "5%",
-        "top": "55%",
-        "size": "120px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 12,
-      "selected": false,
-      "cssProps": {
-        "left": "85%",
-        "top": "85%",
-        "size": "100px",
-        "opacity": ".5"
-      }
-    }
-  ]
+	"bubbles": [
+		{
+			"id": 5,
+			"selected": false,
+			"cssProps": {
+				"left": "76%",
+				"top": "15%",
+				"size": "120px",
+				"opacity": ".3"
+			}
+		},
+		{
+			"id": 7,
+			"selected": false,
+			"cssProps": {
+				"left": "78%",
+				"top": "45%",
+				"size": "150px",
+				"opacity": "1"
+			}
+		},
+		{
+			"id": 10,
+			"selected": false,
+			"cssProps": {
+				"left": "12%",
+				"top": "70%",
+				"size": "120px",
+				"opacity": "1"
+			}
+		},
+		{
+			"id": 11,
+			"selected": false,
+			"cssProps": {
+				"left": "5%",
+				"top": "55%",
+				"size": "120px",
+				"opacity": "1"
+			}
+		}
+	]
 }
