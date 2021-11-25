@@ -60,4 +60,12 @@ export enum BubbleValues {
 	SIZE = "Size",
 	OPACITY = "Opacity",
 	SELECT = "Select a bubble",
+	TITLE = "Click to get more info",
+}
+
+export enum IconTitles {
+	PAYED = "Payed",
+	DELETE = "Delete",
+	EDIT = "Edit",
+	NOT_PAYED = "Not payed",
 }

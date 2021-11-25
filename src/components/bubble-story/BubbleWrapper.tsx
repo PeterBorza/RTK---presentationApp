@@ -11,6 +11,7 @@ import {
 } from "./selectors";
 
 import { getBubbles, deleteBubble } from "./thunks";
+
 import {
 	Url,
 	BubbleButtons,
@@ -28,6 +29,7 @@ import {
 	AsidePlatform,
 	ButtonWrapper,
 } from "../../reusables";
+
 import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
 
 import classNames from "classnames";
@@ -78,15 +80,13 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		dispatch(toggleBubbleSidePanel(true));
 	}, [dispatch]);
 
-	const sideBarContent = {
-		renderHDR: () => <h3>{BubbleSideBarTitle.TITLE}</h3>,
-		renderBODY: () =>
-			selected ? (
-				<SelectedBubble selected={selected} />
-			) : (
-				<h4>{BubbleValues.SELECT}</h4>
-			),
-	};
+	const sideBarHeaderTitle = () => <h3>{BubbleSideBarTitle.TITLE}</h3>;
+	const sideBarBody = () =>
+		selected ? (
+			<SelectedBubble selected={selected} />
+		) : (
+			<h4>{BubbleValues.SELECT}</h4>
+		);
 
 	const buttons = [
 		{
@@ -127,7 +127,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		);
 	};
 
-	const render = () => {
+	const renderBubbleContent = () => {
 		return (
 			<div className={wrapper}>
 				<ButtonWrapper renderButtons={renderButtons} />
@@ -139,6 +139,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 						<Bubble
 							key={id}
 							onClick={() => handleBubbleClick(id)}
+							title={BubbleValues.TITLE}
 							selected={selected}
 							cssProps={cssProps}
 							id={id}
@@ -152,10 +153,10 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	return (
 		<AsidePlatform
 			isOpen={isOpen}
-			renderBody={render}
+			renderBody={renderBubbleContent}
 			onClose={handleOnClose}
-			renderHeader={sideBarContent.renderHDR}
-			renderSideBar={sideBarContent.renderBODY}
+			renderHeader={sideBarHeaderTitle}
+			renderSideBar={sideBarBody}
 		/>
 	);
 };

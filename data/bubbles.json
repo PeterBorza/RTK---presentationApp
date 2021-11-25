@@ -41,22 +41,12 @@
       }
     },
     {
-      "id": 14,
-      "selected": false,
-      "cssProps": {
-        "left": "35%",
-        "top": "35%",
-        "size": "250px",
-        "opacity": "1"
-      }
-    },
-    {
       "id": 15,
       "selected": false,
       "cssProps": {
-        "left": "10%",
+        "left": "90%",
         "top": "10%",
-        "size": "600px",
+        "size": "120px",
         "opacity": "0.5"
       }
     }

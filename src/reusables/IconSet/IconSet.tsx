@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { icons } from "../../utils";
+import { IconTitles } from "../../app/constants";
 
 import classNames from "classnames";
 import styles from "./IconSet.module.scss";
@@ -29,21 +30,25 @@ const IconSet: FC<IconSetProps> = ({
 				<icons.Check
 					className={styles.green}
 					onClick={onCheck}
-					title='checked'
+					title={IconTitles.PAYED}
 				/>
 			) : (
 				<icons.Exclamation
 					className={styles.red}
 					onClick={onCheck}
-					title='unchecked'
+					title={IconTitles.NOT_PAYED}
 				/>
 			)}
 			<icons.Trash
 				className={styles.black}
-				title='delete'
+				title={IconTitles.DELETE}
 				onClick={onDelete}
 			/>
-			<icons.Edit className={editClass} title='edit' onClick={onEdit} />
+			<icons.Edit
+				className={editClass}
+				title={IconTitles.EDIT}
+				onClick={onEdit}
+			/>
 		</div>
 	);
 };

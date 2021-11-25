@@ -1,6 +1,6 @@
 .bubbleStyle {
 	position: absolute;
-	background: linear-gradient(135deg, transparent, cadetblue 85%);
+	// background: linear-gradient(135deg, transparent, cadetblue 85%);
 	border-radius: 50%;
 	aspect-ratio: 1;
 	box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2),
@@ -10,7 +10,7 @@
 	z-index: 1;
 	transform: translate(-50%, -50%);
 	&__span {
-		color: rgba(206, 69, 19, 0.753);
+		color: white;
 		text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
 		font-size: clamp(1rem, 1.5vw, 2rem);
 		font-family: fantasy;
@@ -19,7 +19,7 @@
 	&__active {
 		background-color: black;
 		.bubbleStyle__span {
-			color: white;
+			color: rgb(119, 22, 22);
 		}
 	}
 }
