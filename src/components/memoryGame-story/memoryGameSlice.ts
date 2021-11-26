@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState, ColorSetInterFace } from "./types";
 import { imageData } from "../../utils/my-images";
+import { gameImages } from "../../utils";
+import { GamePhotoData } from ".";
 
 const initialState: MemoryGameState = {
 	photos: [...imageData()],
+	gamePhotos: [...gameImages],
 	pair: [],
 	colors: [],
 	pending: false,
@@ -17,7 +20,7 @@ export const memoryGameSlice = createSlice({
 	reducers: {
 		addToPair: (
 			state: MemoryGameState,
-			{ payload }: PayloadAction<string>
+			{ payload }: PayloadAction<GamePhotoData>
 		) => {
 			state.pair.push(payload);
 		},
@@ -54,6 +57,15 @@ export const memoryGameSlice = createSlice({
 		) => {
 			state.isSidePanelOpen = payload;
 		},
+		toggleFlipped: (
+			state: MemoryGameState,
+			{ payload }: PayloadAction<{ id: number; flipped: boolean }>
+		) => {
+			const id = state.gamePhotos.find(
+				item => item.frontSrc.gameId === payload.id
+			);
+			if (id) id.isFlipped = payload.flipped;
+		},
 	},
 });
 
@@ -65,6 +77,7 @@ export const {
 	setPending,
 	setError,
 	toggleSidePanel,
+	toggleFlipped,
 } = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

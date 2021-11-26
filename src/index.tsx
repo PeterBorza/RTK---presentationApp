@@ -4,7 +4,7 @@ import App from "./app/App";
 import { Home } from "./components";
 import { Building } from "./components/building-story";
 import { GasExpenses } from "./components/gas-story";
-import { Colors, Photos, Photo } from "./components/memoryGame-story";
+import { Colors, Photos, Photo, Game } from "./components/memoryGame-story";
 import { Bubbles } from "./components/bubble-story";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
@@ -24,6 +24,7 @@ ReactDOM.render(
 						<Route path='photos' element={<Photos />}>
 							<Route path=':id' element={<Photo />} />
 						</Route>
+						<Route path='game' element={<Game />} />
 					</Route>
 				</Routes>
 			</Provider>
