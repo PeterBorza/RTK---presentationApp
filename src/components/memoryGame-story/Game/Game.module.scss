@@ -36,6 +36,7 @@ $border: 1px solid white;
 
 .front {
 	width: $boxSize;
+	height: $boxSize;
 	aspect-ratio: 1;
 	background: rgb(9, 77, 9);
 	@include fCenter();

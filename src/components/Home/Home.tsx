@@ -5,6 +5,7 @@ import {
 	LoadingWrapper,
 	Error as ErrorBlock,
 	Select,
+	CustomInput,
 } from "../../reusables";
 import { Error } from "../../app/constants";
 
@@ -54,6 +55,7 @@ const Home: FC = () => {
 				<FlipBox {...flipCard[1]} />
 			</div> */}
 			<Select {...mySelect} />
+			<CustomInput />
 		</div>
 	);
 };
