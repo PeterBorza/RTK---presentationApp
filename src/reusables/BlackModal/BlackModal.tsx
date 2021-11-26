@@ -2,11 +2,11 @@ import { ReactNode, FC } from "react";
 
 import styles from "./BlackModal.module.scss";
 export interface BlackModalProps {
-	render: () => ReactNode;
+	renderFields: () => ReactNode;
 }
 
-const BlackModal: FC<BlackModalProps> = ({ render }) => {
-	return <div className={styles.generalWrapper}>{render()}</div>;
+const BlackModal: FC<BlackModalProps> = ({ renderFields }) => {
+	return <div className={styles.generalWrapper}>{renderFields()}</div>;
 };
 
 export default BlackModal;

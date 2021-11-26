@@ -10,7 +10,7 @@ const BubbleForm = () => {
 	const [bub, setBub] = useState(starterBubble);
 	const dispatch = useDispatch();
 
-	const cancelHandler = () => {
+	const onCancelHandler = () => {
 		setBub(starterBubble);
 	};
 
@@ -35,7 +35,7 @@ const BubbleForm = () => {
 	const labels: string[] = Object.keys(bub);
 	const values: string[] = Object.values(bub);
 
-	const renderInputs = () => {
+	const renderFields = () => {
 		return (
 			<>
 				{labels.map((label, i) => (
@@ -51,9 +51,9 @@ const BubbleForm = () => {
 	};
 	return (
 		<ModalForm
-			render={renderInputs}
+			renderFields={renderFields}
 			onSubmit={onSubmitHandler}
-			onCancel={cancelHandler}
+			onCancel={onCancelHandler}
 			buttonLabel={BubbleFormValues.BUTTON_LABEL}
 			formWidth={BubbleFormValues.FORM_WIDTH}
 			formTitle={BubbleFormValues.FORM_TITLE}

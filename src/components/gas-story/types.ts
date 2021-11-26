@@ -1,3 +1,5 @@
+export type UnitId = string;
+
 export interface GasFormProps {
 	citire: string;
 	factura: string;
@@ -5,7 +7,7 @@ export interface GasFormProps {
 }
 
 export interface GasStateUnit extends GasFormProps {
-	id: string;
+	id: UnitId;
 	consum: string;
 	selected: boolean;
 	platit: boolean;

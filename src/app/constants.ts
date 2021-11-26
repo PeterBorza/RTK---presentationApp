@@ -20,7 +20,7 @@ export enum Pending {
 
 export enum GasFormValues {
 	FORM_BUTTON_LABEL = "Adauga citire noua",
-	FORM_WIDTH = "25",
+	FORM_WIDTH = "small",
 	FORM_TITLE = "Citire Lunara",
 }
 
@@ -40,7 +40,7 @@ export enum GasTableLabels {
 
 export enum BubbleFormValues {
 	BUTTON_LABEL = "Add new Bubble",
-	FORM_WIDTH = "20",
+	FORM_WIDTH = "small",
 	FORM_TITLE = "Position and shape of the bubble",
 }
 

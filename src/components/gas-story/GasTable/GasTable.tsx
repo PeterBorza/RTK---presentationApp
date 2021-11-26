@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table, Error } from "../../../reusables";
 import { GasLabels, GasTableLabels } from "../../../app/constants";
 import { gasState, errorGasState, selectSubtotal } from "../selectors";
-import { selectGas } from "../gasSlice";
+import { selectGas, resetSelected } from "../gasSlice";
 import { GasStateUnit } from "../types";
 import { useTime } from "../../../hooks";
 import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
@@ -21,18 +21,23 @@ type Props = {
 };
 
 const GasTable: FC<Props> = ({ dark = false }) => {
-	const dispatch = useDispatch();
 	const { units, loading } = useSelector(gasState);
 	const error = useSelector(errorGasState);
 	const sumofBills = useSelector(selectSubtotal);
-	const exactSumOfBillsPayed = sumofBills.toFixed(2);
+	const dispatch = useDispatch();
+
 	const today = useTime("standard");
+	const exactSumOfBillsPayed = sumofBills.toFixed(2);
 
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
 	});
 
 	const isUnits = units && units.length !== 0;
+
+	useEffect(() => {
+		dispatch(resetSelected());
+	}, [dispatch]);
 
 	const fetchGasUnits = useCallback(() => {
 		if (isUnits) return;
@@ -45,6 +50,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 
 	const onTogglePayedBill = (item: GasStateUnit) => {
 		dispatch(togglePayedBill(item));
+		dispatch(resetSelected());
 	};
 
 	const onGasClickHandler = (id: string) => {
