@@ -93,15 +93,17 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 				loading={loading.isLoading}
 				message={loading.message}
 			/>
-			<p>
-				{GasTableLabels.SUM_OF_BILLS}
-				<span className={styles.highlighted}>{today}</span>
-				{GasTableLabels.IS}
-				<span className={styles.highlighted}>
-					{exactSumOfBillsPayed}
-				</span>
-				{GasTableLabels.RON}
-			</p>
+			<div className={styles.billTotalInfo}>
+				<h3>
+					{GasTableLabels.SUM_OF_BILLS}
+					<span className={styles.highlighted}>{today}</span>
+					{GasTableLabels.IS}
+					<span className={styles.highlighted}>
+						{exactSumOfBillsPayed}
+					</span>
+					{GasTableLabels.RON}
+				</h3>
+			</div>
 			{error && <Error message={error} />}
 		</div>
 	);
