@@ -28,6 +28,7 @@ import {
 	Error,
 	AsidePlatform,
 	ButtonWrapper,
+	LoadingWrapper,
 } from "../../reusables";
 
 import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
@@ -131,7 +132,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		return (
 			<div className={wrapper}>
 				<ButtonWrapper renderButtons={renderButtons} />
-				{isLoading && <Loader dots={5} />}
+				{isLoading && <LoadingWrapper loading={isLoading} />}
 				{error.error ? (
 					<Error message={error.message} />
 				) : (

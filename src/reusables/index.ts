@@ -17,6 +17,7 @@ import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
 import FlipBox from "./FlipBox";
+import FlipCard from "./FlipCard";
 import LoadingWrapper from "./LoadingWrapper";
 import ScrollTable from "./ScrollTable";
 import ButtonWrapper from "./ButtonWrapper";
@@ -43,6 +44,7 @@ export {
 	MenuButton,
 	ToggleButton,
 	FlipBox,
+	FlipCard,
 	LoadingWrapper,
 	ButtonWrapper,
 };

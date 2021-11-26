@@ -11,9 +11,23 @@ export interface ImageData {
 	caption: string;
 }
 
+export interface GameImage {
+	backGround: string;
+	src: string;
+	gameId: number;
+}
+
+export interface GamePhotoData {
+	id: string;
+	frontSrc: GameImage;
+	backSrc: Omit<GameImage, "gameId">;
+	isFlipped: boolean;
+}
+
 export interface MemoryGameState {
 	photos: ImageData[];
-	pair: string[];
+	gamePhotos: GamePhotoData[];
+	pair: GamePhotoData[];
 	colors: ColorSetInterFace[];
 	pending: boolean;
 	error: boolean;
