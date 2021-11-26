@@ -3,6 +3,7 @@
 
 .container {
 	position: relative;
+	padding: 0.3rem;
 	@include container();
 	@include fCenter(column);
 	background-color: white;
@@ -22,6 +23,19 @@
 		background-position: center;
 		opacity: 0.15;
 		z-index: -1;
+	}
+}
+
+.billTotalInfo {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	h3 {
+		min-width: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-break: break-all;
 	}
 }
 

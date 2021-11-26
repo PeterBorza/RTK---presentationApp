@@ -3,9 +3,10 @@
 
 .wrapper {
 	width: 50%;
-	height: 80vh;
+	min-width: 300px;
+	height: 75vh;
 	box-shadow: $shadow;
-	margin: 1rem auto;
+	margin: auto;
 }
 
 .header {
