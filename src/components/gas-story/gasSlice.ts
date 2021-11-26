@@ -1,18 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Error } from "../../app/constants";
-import { GasStateUnit, GasState } from "./types";
+import { GasStateUnit, GasState, UnitId } from "./types";
 import { initialState } from "./state";
 
 export const gasSlice = createSlice({
 	name: "gas",
 	initialState,
 	reducers: {
-		selectGas: (state: GasState, { payload }: PayloadAction<string>) => {
+		selectGas: (state: GasState, { payload }: PayloadAction<UnitId>) => {
 			state.units.map(
 				item => (item.selected = item.id === payload ? true : false)
 			);
 		},
-		togglePayed: (state: GasState, { payload }: PayloadAction<string>) => {
+		resetSelected: (state: GasState) => {
+			state.units.map(item => (item.selected = false));
+		},
+		togglePayed: (state: GasState, { payload }: PayloadAction<UnitId>) => {
 			const selected = state.units.find(unit => unit.id === payload);
 			if (selected) {
 				selected.platit = !selected.platit;
@@ -32,7 +35,7 @@ export const gasSlice = createSlice({
 		},
 		deleteGasUnit: (
 			state: GasState,
-			{ payload }: PayloadAction<string>
+			{ payload }: PayloadAction<UnitId>
 		) => {
 			state.units = state.units.filter(units => units.id !== payload);
 		},
@@ -50,6 +53,7 @@ export const gasSlice = createSlice({
 
 export const {
 	selectGas,
+	resetSelected,
 	togglePayed,
 	addGasUnit,
 	getGasUnits,

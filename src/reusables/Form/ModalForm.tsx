@@ -2,8 +2,8 @@ import React, { ReactNode, useState, FormEvent } from "react";
 import { Form } from ".";
 import { Button, BlackModal } from "..";
 export interface FormWrapProps {
-	formWidth?: string;
-	render: () => ReactNode;
+	formWidth: "small" | "medium" | "large" | "xxl";
+	renderFields: () => ReactNode;
 	onSubmit: (e: FormEvent) => void;
 	onCancel: () => void;
 	buttonLabel?: string;
@@ -12,7 +12,7 @@ export interface FormWrapProps {
 
 const ModalForm: React.FC<FormWrapProps> = ({
 	formWidth,
-	render,
+	renderFields,
 	onSubmit,
 	onCancel,
 	buttonLabel = "FORM",
@@ -39,7 +39,7 @@ const ModalForm: React.FC<FormWrapProps> = ({
 		<Form
 			onSubmit={submitHandler}
 			width={formWidth}
-			render={render}
+			renderFields={renderFields}
 			onCancel={onCancelHandler}
 			formTitle={formTitle}
 		/>
@@ -48,7 +48,7 @@ const ModalForm: React.FC<FormWrapProps> = ({
 	return (
 		<>
 			<Button value={buttonLabel} onClick={onOpenHandler} />
-			{openModal && <BlackModal render={renderForm} />}
+			{openModal && <BlackModal renderFields={renderForm} />}
 		</>
 	);
 };

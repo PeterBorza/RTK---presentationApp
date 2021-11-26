@@ -21,7 +21,7 @@ const GasForm: FC = () => {
 	const [gasUnit, setGasUnit] = useState<GasFormProps>(startingValues);
 	const dispatch = useDispatch();
 
-	const cancelHandler = () => {
+	const onCancelHandler = () => {
 		setGasUnit(startingValues);
 	};
 
@@ -83,9 +83,9 @@ const GasForm: FC = () => {
 
 	return (
 		<ModalForm
-			render={renderInputs}
+			renderFields={renderInputs}
 			onSubmit={onSubmitHandler}
-			onCancel={cancelHandler}
+			onCancel={onCancelHandler}
 			buttonLabel={GasFormValues.FORM_BUTTON_LABEL}
 			formWidth={GasFormValues.FORM_WIDTH}
 			formTitle={GasFormValues.FORM_TITLE}

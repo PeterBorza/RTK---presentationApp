@@ -7,7 +7,7 @@
 	color: rgb(26, 24, 24);
 	display: flex;
 	flex-direction: column;
-	min-width: 200px;
+	min-width: 150px;
 	h2 {
 		text-align: center;
 		font-size: clamp(0.8rem, 3vh, 3rem);
@@ -34,4 +34,17 @@
 
 .cancel {
 	color: rgb(163, 33, 59);
+}
+
+.small {
+	width: 20%;
+}
+.medium {
+	width: 30%;
+}
+.large {
+	width: 40%;
+}
+.xxl {
+	width: 50%;
 }
