@@ -24,7 +24,7 @@ const FlipCard: FC<Props> = ({
 		[black_bg]: darkBack,
 	});
 	return (
-		<div className={flip_box} onClick={() => toggleFlip()}>
+		<div className={flip_box} onClick={toggleFlip}>
 			<div className={classes}>
 				<div className={front}>{frontContent()}</div>
 				<div className={backFlipClasses}>{backContent()}</div>

@@ -1,81 +1,54 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { gamePhotosSelector, pairSelector } from "../selectors";
-import { toggleFlipped, addToPair, resetPair } from "..";
+import { gamePhotosSelector } from "../selectors";
+import { toggleFlipped } from "..";
 
 import { FlipCard } from "../../../reusables";
+import merryChristmas from "../../../images/merryChristmas.png";
+
 import styles from "./Game.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 
 const Game: FC = () => {
 	const dispatch = useDispatch();
 	const images = useSelector(gamePhotosSelector);
-	const pair = useSelector(pairSelector);
 
-	useEffect(() => {
-		if (pair.length === 2) {
-			// pair.forEach(item =>
-			// 	dispatch(
-			// 		toggleFlipped({ id: item.frontSrc.gameId, flipped: false })
-			// 	)
-			// );
-			dispatch(resetPair());
-		}
-	}, [pair.length, dispatch]);
-	const front = (img: any, bg: string) => {
+	const toggleHandler = (index: number) => {
+		dispatch(
+			toggleFlipped({
+				index,
+				flipped: !images[index].isFlipped,
+			})
+		);
+	};
+
+	const front = (img: string) => {
 		return (
-			<div className={styles.front} style={{ backgroundColor: `${bg}` }}>
+			<div className={styles.front}>
 				<img className={styles.game_image} src={img} alt='' />
 			</div>
 		);
 	};
 
-	const back = (img: any, bg: string) => {
+	const back = (img: string) => {
 		return (
-			<div className={styles.back} style={{ backgroundColor: `${bg}` }}>
+			<div className={styles.back}>
 				<img className={styles.game_image} src={img} alt='' />
 			</div>
 		);
-	};
-
-	const toggleHandler = (gameId: number) => {
-		const selectedCard = images.find(
-			item => item.frontSrc.gameId === gameId
-		);
-		if (selectedCard) {
-			dispatch(
-				toggleFlipped({
-					id: selectedCard.frontSrc.gameId,
-					flipped: !selectedCard.isFlipped,
-				})
-			);
-			dispatch(addToPair(selectedCard));
-		}
 	};
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.grid}>
-				{images.map(image => (
-					<div key={image.id} className={styles.box}>
+				{images.map(({ id, frontSrc, isFlipped }, idx) => (
+					<div key={id} className={styles.box}>
 						<FlipCard
-							frontContent={() =>
-								front(
-									image.backSrc.src,
-									image.backSrc.backGround
-								)
-							}
-							backContent={() =>
-								back(
-									image.frontSrc.src,
-									image.frontSrc.backGround
-								)
-							}
+							frontContent={() => front(merryChristmas)}
+							backContent={() => back(frontSrc.src)}
 							darkBack
-							flipped={image.isFlipped}
-							toggleFlip={() =>
-								toggleHandler(image.frontSrc.gameId)
-							}
+							flipped={isFlipped}
+							toggleFlip={() => toggleHandler(idx)}
 						/>
 					</div>
 				))}

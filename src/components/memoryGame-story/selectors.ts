@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { typeofMemoryGameState } from "../../app/store";
 
 export const memoryGameState = (state: typeofMemoryGameState) =>
@@ -13,9 +13,6 @@ export const colorSelector = (state: typeofMemoryGameState) =>
 export const photoSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.photos;
 
-export const pairSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.pair;
-
 export const paletSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.colors.map(palet => palet.palet);
 
@@ -29,5 +26,8 @@ export const errorSelector = (state: typeofMemoryGameState) =>
 	state.memoryGame.error;
 
 export const flippedCardSelector = createSelector(gamePhotosSelector, items => {
-	items.map(item => item.isFlipped);
+	return items.filter(item => item.isFlipped === true);
 });
+
+export const matchesSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.matches;
