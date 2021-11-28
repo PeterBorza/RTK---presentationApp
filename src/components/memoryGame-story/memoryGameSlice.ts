@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState, ColorSetInterFace } from "./types";
-import { imageData, gameImagesSlice } from "../../utils";
-import { GamePhotoData } from ".";
+import { imageData, shuffledImages } from "../../utils";
 
 const initialState: MemoryGameState = {
 	photos: [...imageData()],
-	gamePhotos: [...gameImagesSlice],
-	matches: [],
+	gamePhotos: [...shuffledImages],
 	colors: [],
 	pending: false,
 	error: false,
 	isSidePanelOpen: false,
+	clickCount: 0,
 };
 
 export const memoryGameSlice = createSlice({
@@ -47,18 +46,27 @@ export const memoryGameSlice = createSlice({
 		) => {
 			isSidePanelOpen = payload;
 		},
-		toggleFlipped: (
+		toggleFlip: (
 			{ gamePhotos }: MemoryGameState,
-			{ payload }: PayloadAction<{ index: number; flipped: boolean }>
+			{ payload }: PayloadAction<string>
 		) => {
-			const idx = gamePhotos.findIndex((_, idx) => idx === payload.index);
-			if (idx) gamePhotos[idx].isFlipped = payload.flipped;
+			gamePhotos.map(
+				item => (item.isFlipped = item.id === payload ? true : false)
+			);
 		},
-		addToMatches: (
-			{ matches }: MemoryGameState,
-			{ payload }: PayloadAction<GamePhotoData>
+		setMatch: (
+			{ gamePhotos }: MemoryGameState,
+			{ payload }: PayloadAction<{ id: string; match: boolean }>
 		) => {
-			matches.push(payload);
+			const selected = gamePhotos.find(item => item.id === payload.id);
+			if (selected) selected.match = payload.match;
+		},
+		incrementCount: (state: MemoryGameState) => {
+			state.clickCount++;
+		},
+		resetGame: (state: MemoryGameState) => {
+			state.gamePhotos = initialState.gamePhotos;
+			state.clickCount = initialState.clickCount;
 		},
 	},
 });
@@ -69,8 +77,10 @@ export const {
 	setPending,
 	setError,
 	toggleSidePanel,
-	toggleFlipped,
-	addToMatches,
+	toggleFlip,
+	setMatch,
+	incrementCount,
+	resetGame,
 } = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

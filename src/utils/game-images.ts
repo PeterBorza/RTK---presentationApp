@@ -27,6 +27,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 100,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -35,6 +36,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 101,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -43,6 +45,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 102,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -51,6 +54,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 103,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -59,6 +63,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 104,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -67,6 +72,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 105,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -75,6 +81,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 106,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -83,6 +90,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 107,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -91,6 +99,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 108,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -99,6 +108,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 109,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -107,6 +117,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 110,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -115,6 +126,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 111,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -123,6 +135,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 112,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -131,6 +144,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 113,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -139,6 +153,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 114,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: uuid(),
@@ -147,6 +162,7 @@ export const imageStack: GamePhotoData[] = [
 			gameId: 115,
 		},
 		isFlipped: false,
+		match: false,
 	},
 ];
 
@@ -158,6 +174,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 100,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "2",
@@ -166,6 +183,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 101,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "3",
@@ -174,6 +192,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 102,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "4",
@@ -182,6 +201,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 103,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "5",
@@ -190,6 +210,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 104,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "6",
@@ -198,6 +219,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 105,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "7",
@@ -206,6 +228,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 106,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "8",
@@ -214,6 +237,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 107,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "9",
@@ -222,6 +246,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 100,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "10",
@@ -230,6 +255,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 101,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "11",
@@ -238,6 +264,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 102,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "12",
@@ -246,6 +273,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 103,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "13",
@@ -254,6 +282,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 104,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "14",
@@ -262,6 +291,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 105,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "15",
@@ -270,6 +300,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 106,
 		},
 		isFlipped: false,
+		match: false,
 	},
 	{
 		id: "16",
@@ -278,6 +309,7 @@ export const gameImagesSlice: GamePhotoData[] = [
 			gameId: 107,
 		},
 		isFlipped: false,
+		match: false,
 	},
 ];
 

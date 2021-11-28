@@ -20,14 +20,15 @@ export interface GamePhotoData {
 	id: string;
 	frontSrc: GameImage;
 	isFlipped: boolean;
+	match: boolean;
 }
 
 export interface MemoryGameState {
 	photos: ImageData[];
 	gamePhotos: GamePhotoData[];
-	matches: GamePhotoData[];
 	colors: ColorSetInterFace[];
 	pending: boolean;
 	error: boolean;
 	isSidePanelOpen: boolean;
+	clickCount: number;
 }
