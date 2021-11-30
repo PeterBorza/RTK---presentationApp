@@ -1,5 +1,8 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { MemoryGameMessages as msg } from "../messages";
+import { gameImagesSlice, shuffle } from "../../../utils";
 
 import {
 	gamePhotosSelector,
@@ -7,21 +10,25 @@ import {
 	matchCardsSelector,
 	clickCountSelector,
 } from "../selectors";
+
 import {
 	GamePhotoData,
 	toggleFlip,
 	setMatch,
 	incrementCount,
 	resetGame,
+	setNewGame,
 } from "..";
 
 import { Button, FlipCard } from "../../../reusables";
+import GameEnd from "../GameEnd";
+import Controls from "../Controls";
+
 import merryChristmas from "../../../images/merryChristmas.png";
 
 import classNames from "classnames";
 import styles from "./Game.module.scss";
 
-type ImageId = string;
 type ImageSource = string;
 
 const Game: FC = () => {
@@ -32,14 +39,13 @@ const Game: FC = () => {
 	const count = useSelector(clickCountSelector);
 	const finishedGame = matchCards.length === images.length;
 
-	const cardWrapperClasses = (isFlipped: boolean) =>
+	const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
 		classNames(styles.box, {
 			[styles.disabled]: isFlipped,
+			[styles.faded]: match,
 		});
 
-	useEffect(() => {
-		console.log("ptr", "AFTERCLICK", { flippedCards, matchCards });
-	}, [flippedCards]);
+	const gameHasStarted = flippedCards.length !== 0;
 
 	const flipSide = (src: ImageSource, className: string) => {
 		return (
@@ -49,61 +55,100 @@ const Game: FC = () => {
 		);
 	};
 
-	const frontContent = () => flipSide(merryChristmas, styles.front);
-	const backContent = (src: ImageSource) => flipSide(src, styles.back);
+	const frontContent = useCallback(
+		() => flipSide(merryChristmas, styles.front),
+		[]
+	);
+	const backContent = useCallback(
+		(src: ImageSource) => flipSide(src, styles.back),
+		[]
+	);
 
-	const flipFunction = (item: GamePhotoData) => {
-		dispatch(toggleFlip(item.id));
-		if (
-			flippedCards.length !== 0 &&
-			flippedCards[0].frontSrc.gameId === item.frontSrc.gameId
-		) {
-			dispatch(setMatch({ id: flippedCards[0].id, match: true }));
-			dispatch(setMatch({ id: item.id, match: true }));
-		}
-		dispatch(incrementCount());
-	};
+	const freezeIfMatch = useCallback(
+		(item: GamePhotoData) => {
+			if (
+				gameHasStarted &&
+				flippedCards[0].frontSrc.gameId === item.frontSrc.gameId
+			) {
+				dispatch(setMatch({ id: flippedCards[0].id, match: true }));
+				dispatch(setMatch({ id: item.id, match: true }));
+			}
+		},
+		[gameHasStarted, flippedCards, dispatch]
+	);
 
-	const resetGameHandler = () => {
+	const flipCardHandler = useCallback(
+		(item: GamePhotoData) => {
+			freezeIfMatch(item);
+			dispatch(incrementCount());
+			dispatch(toggleFlip(item.id));
+		},
+		[dispatch, freezeIfMatch]
+	);
+
+	const resetGameHandler = () => gameHasStarted && dispatch(resetGame());
+
+	const newGameHandler = () => {
+		const shuffled = shuffle(gameImagesSlice);
 		dispatch(resetGame());
+		dispatch(setNewGame(shuffled));
 	};
 
-	const renderImages = (
-		{ id, frontSrc, isFlipped, match }: GamePhotoData,
-		idx: number
-	) => {
-		const checkIfMatchOrFLipped = !match ? isFlipped : match;
+	const renderGameButtons = () => {
 		return (
-			<div key={id} className={cardWrapperClasses(checkIfMatchOrFLipped)}>
-				<FlipCard
-					frontContent={frontContent}
-					backContent={() => backContent(frontSrc.src)}
-					darkBack
-					flipped={checkIfMatchOrFLipped}
-					toggleFlip={() => flipFunction(images[idx])}
+			<>
+				<Button
+					onClick={resetGameHandler}
+					value={msg.RESET}
+					className={styles.buttons}
 				/>
-			</div>
+				<Button
+					onClick={newGameHandler}
+					value={msg.NEW_GAME}
+					className={styles.buttons}
+				/>
+			</>
 		);
 	};
 
-	const renderGridTable = useMemo(() => images.map(renderImages), [images]);
+	const renderGridTable = useMemo(() => {
+		const renderImages = (
+			{ id, frontSrc, isFlipped, match }: GamePhotoData,
+			idx: number
+		) => {
+			const checkIfMatchOrFLipped = !match ? isFlipped : match;
+			return (
+				<div
+					key={id}
+					className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
+				>
+					<FlipCard
+						frontContent={frontContent}
+						backContent={() => backContent(frontSrc.src)}
+						darkBack
+						flipped={checkIfMatchOrFLipped}
+						toggleFlip={() => flipCardHandler(images[idx])}
+					/>
+				</div>
+			);
+		};
+		return images.map(renderImages);
+	}, [images, backContent, flipCardHandler, frontContent]);
 
 	return (
 		<section className={styles.container}>
 			{!finishedGame ? (
 				<>
-					<div style={{ display: "flex" }}>
-						<div>CLICKS:{count}</div>
-						<button onClick={() => resetGameHandler()}>
-							RESET
-						</button>
-					</div>
+					<Controls count={count} renderButtons={renderGameButtons} />
 					<div className={styles.grid}>{renderGridTable}</div>
 				</>
 			) : (
-				<div className={styles.finished}>
-					<h1>CONGRATULATIONS, YOU FINISHED THE GAME</h1>
-				</div>
+				<GameEnd
+					count={count}
+					message={msg.CONGRATS}
+					onClick={() => newGameHandler()}
+					buttonLabel={msg.NEW_GAME}
+				/>
 			)}
 		</section>
 	);

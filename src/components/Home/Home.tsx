@@ -48,12 +48,12 @@ const Home: FC = () => {
 
 	return (
 		<div className={styles.container}>
-			{/* <div className={styles.flipWrap}>
+			<div className={styles.flipWrap}>
 				<FlipBox {...flipCard[0]} />
 			</div>
 			<div className={styles.flipWrap}>
 				<FlipBox {...flipCard[1]} />
-			</div> */}
+			</div>
 			<Select {...mySelect} />
 			<CustomInput />
 		</div>

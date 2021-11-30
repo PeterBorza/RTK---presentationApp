@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState, ColorSetInterFace } from "./types";
 import { imageData, shuffledImages } from "../../utils";
+import { GamePhotoData } from ".";
 
 const initialState: MemoryGameState = {
 	photos: [...imageData()],
@@ -68,6 +69,12 @@ export const memoryGameSlice = createSlice({
 			state.gamePhotos = initialState.gamePhotos;
 			state.clickCount = initialState.clickCount;
 		},
+		setNewGame: (
+			state: MemoryGameState,
+			{ payload }: PayloadAction<GamePhotoData[]>
+		) => {
+			state.gamePhotos = payload;
+		},
 	},
 });
 
@@ -81,6 +88,7 @@ export const {
 	setMatch,
 	incrementCount,
 	resetGame,
+	setNewGame,
 } = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;
