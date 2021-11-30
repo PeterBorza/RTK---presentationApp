@@ -13,222 +13,304 @@ import globe from "../images/globe.png";
 import star from "../images/star.png";
 import hat from "../images/hat.png";
 import sledge from "../images/sledge.png";
-import merryChristmas from "../images/merryChristmas.png";
 import wreath from "../images/wreath.png";
 
 import { GamePhotoData } from "../components/memoryGame-story";
+import { v4 as uuid } from "uuid";
+import { shuffle } from "./generators";
 
-const generateId = (): string => {
-	return Math.random().toString(36).substr(2, 9);
-};
-
-export const gameImages: GamePhotoData[] = [
+export const imageStack: GamePhotoData[] = [
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: santa,
 			gameId: 100,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: ribbon,
 			gameId: 101,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: butterfly,
 			gameId: 102,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: snowFlake,
 			gameId: 103,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: tree,
 			gameId: 104,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: snowman,
 			gameId: 105,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: gift,
 			gameId: 106,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: rudolf,
 			gameId: 107,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: candy,
 			gameId: 108,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: bell,
 			gameId: 109,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: snowman01,
 			gameId: 110,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: globe,
 			gameId: 111,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: star,
 			gameId: 112,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: hat,
 			gameId: 113,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: sledge,
 			gameId: 114,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 	{
-		id: generateId(),
+		id: uuid(),
 		frontSrc: {
-			backGround: "rgb(9, 77, 9)",
 			src: wreath,
 			gameId: 115,
 		},
-		backSrc: {
-			backGround: "rgba(226, 235, 226, 0.719)",
-			src: merryChristmas,
-		},
 		isFlipped: false,
+		match: false,
 	},
 ];
+
+export const gameImagesSlice: GamePhotoData[] = [
+	{
+		id: "1",
+		frontSrc: {
+			src: santa,
+			gameId: 100,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "2",
+		frontSrc: {
+			src: tree,
+			gameId: 101,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "3",
+		frontSrc: {
+			src: snowman,
+			gameId: 102,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "4",
+		frontSrc: {
+			src: rudolf,
+			gameId: 103,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "5",
+		frontSrc: {
+			src: candy,
+			gameId: 104,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "6",
+		frontSrc: {
+			src: bell,
+			gameId: 105,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "7",
+		frontSrc: {
+			src: snowman01,
+			gameId: 106,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "8",
+		frontSrc: {
+			src: globe,
+			gameId: 107,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "9",
+		frontSrc: {
+			src: santa,
+			gameId: 100,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "10",
+		frontSrc: {
+			src: tree,
+			gameId: 101,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "11",
+		frontSrc: {
+			src: snowman,
+			gameId: 102,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "12",
+		frontSrc: {
+			src: rudolf,
+			gameId: 103,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "13",
+		frontSrc: {
+			src: candy,
+			gameId: 104,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "14",
+		frontSrc: {
+			src: bell,
+			gameId: 105,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "15",
+		frontSrc: {
+			src: snowman01,
+			gameId: 106,
+		},
+		isFlipped: false,
+		match: false,
+	},
+	{
+		id: "16",
+		frontSrc: {
+			src: globe,
+			gameId: 107,
+		},
+		isFlipped: false,
+		match: false,
+	},
+];
+
+export const shuffledImages = shuffle(gameImagesSlice);

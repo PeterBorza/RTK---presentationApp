@@ -1,33 +1,39 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { typeofMemoryGameState } from "../../app/store";
 
-export const memoryGameState = (state: typeofMemoryGameState) =>
-	state.memoryGame;
+export const memoryGameState = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame;
 
-export const gamePhotosSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.gamePhotos;
+export const gamePhotosSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.gamePhotos;
 
-export const colorSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.colors;
+export const colorSelectormemoryGame = ({
+	memoryGame,
+}: typeofMemoryGameState) => memoryGame.colors;
 
-export const photoSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.photos;
+export const photoSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.photos;
 
-export const pairSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.pair;
+export const paletSelector = createSelector(colorSelectormemoryGame, items =>
+	items.map(palet => palet.palet)
+);
 
-export const paletSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.colors.map(palet => palet.palet);
+export const sidePanelSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.isSidePanelOpen;
 
-export const sidePanelSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.isSidePanelOpen;
+export const loadingSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.pending;
 
-export const loadingSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.pending;
+export const errorSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.error;
 
-export const errorSelector = (state: typeofMemoryGameState) =>
-	state.memoryGame.error;
+export const flippedCardsSelector = createSelector(gamePhotosSelector, items =>
+	items.filter(item => item.isFlipped === true)
+);
 
-export const flippedCardSelector = createSelector(gamePhotosSelector, items => {
-	items.map(item => item.isFlipped);
-});
+export const matchCardsSelector = createSelector(gamePhotosSelector, items =>
+	items.filter(item => item.match === true)
+);
+
+export const clickCountSelector = ({ memoryGame }: typeofMemoryGameState) =>
+	memoryGame.clickCount;

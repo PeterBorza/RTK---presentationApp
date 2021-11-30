@@ -21,6 +21,7 @@ import FlipBox from "./FlipBox";
 import FlipCard from "./FlipCard";
 import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
+import CustomInput from "./CustomInput";
 
 export {
 	Loader,
@@ -33,9 +34,10 @@ export {
 	NavBar,
 	SideBar,
 	InputCard,
+	CustomInput,
+	TextInput,
 	BlackModal,
 	IconSet,
-	TextInput,
 	CheckBox,
 	Select,
 	FieldSet,

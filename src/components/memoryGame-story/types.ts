@@ -12,7 +12,6 @@ export interface ImageData {
 }
 
 export interface GameImage {
-	backGround: string;
 	src: string;
 	gameId: number;
 }
@@ -20,16 +19,16 @@ export interface GameImage {
 export interface GamePhotoData {
 	id: string;
 	frontSrc: GameImage;
-	backSrc: Omit<GameImage, "gameId">;
 	isFlipped: boolean;
+	match: boolean;
 }
 
 export interface MemoryGameState {
 	photos: ImageData[];
 	gamePhotos: GamePhotoData[];
-	pair: GamePhotoData[];
 	colors: ColorSetInterFace[];
 	pending: boolean;
 	error: boolean;
 	isSidePanelOpen: boolean;
+	clickCount: number;
 }

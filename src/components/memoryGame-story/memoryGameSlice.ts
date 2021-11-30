@@ -1,83 +1,94 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState, ColorSetInterFace } from "./types";
-import { imageData } from "../../utils/my-images";
-import { gameImages } from "../../utils";
+import { imageData, shuffledImages } from "../../utils";
 import { GamePhotoData } from ".";
 
 const initialState: MemoryGameState = {
 	photos: [...imageData()],
-	gamePhotos: [...gameImages],
-	pair: [],
+	gamePhotos: [...shuffledImages],
 	colors: [],
 	pending: false,
 	error: false,
 	isSidePanelOpen: false,
+	clickCount: 0,
 };
 
 export const memoryGameSlice = createSlice({
 	name: "memoryGame",
 	initialState,
 	reducers: {
-		addToPair: (
-			state: MemoryGameState,
-			{ payload }: PayloadAction<GamePhotoData>
-		) => {
-			state.pair.push(payload);
-		},
-		resetPair: (state: MemoryGameState) => {
-			state.pair = [];
-		},
 		addColors: (
-			state: MemoryGameState,
+			{ colors }: MemoryGameState,
 			{ payload }: PayloadAction<ColorSetInterFace[]>
 		) => {
-			state.colors.push(...payload);
+			colors.push(...payload);
 		},
 		addPalet: (
-			state: MemoryGameState,
+			{ colors }: MemoryGameState,
 			{ payload }: PayloadAction<ColorSetInterFace>
 		) => {
-			state.colors.push(payload);
+			colors.push(payload);
 		},
 		setPending: (
-			state: MemoryGameState,
+			{ pending }: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
 		) => {
-			state.pending = payload;
+			pending = payload;
 		},
 		setError: (
-			state: MemoryGameState,
+			{ error }: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
 		) => {
-			state.error = payload;
+			error = payload;
 		},
 		toggleSidePanel: (
-			state: MemoryGameState,
+			{ isSidePanelOpen }: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
 		) => {
-			state.isSidePanelOpen = payload;
+			isSidePanelOpen = payload;
 		},
-		toggleFlipped: (
-			state: MemoryGameState,
-			{ payload }: PayloadAction<{ id: number; flipped: boolean }>
+		toggleFlip: (
+			{ gamePhotos }: MemoryGameState,
+			{ payload }: PayloadAction<string>
 		) => {
-			const id = state.gamePhotos.find(
-				item => item.frontSrc.gameId === payload.id
+			gamePhotos.map(
+				item => (item.isFlipped = item.id === payload ? true : false)
 			);
-			if (id) id.isFlipped = payload.flipped;
+		},
+		setMatch: (
+			{ gamePhotos }: MemoryGameState,
+			{ payload }: PayloadAction<{ id: string; match: boolean }>
+		) => {
+			const selected = gamePhotos.find(item => item.id === payload.id);
+			if (selected) selected.match = payload.match;
+		},
+		incrementCount: (state: MemoryGameState) => {
+			state.clickCount++;
+		},
+		resetGame: (state: MemoryGameState) => {
+			state.gamePhotos = initialState.gamePhotos;
+			state.clickCount = initialState.clickCount;
+		},
+		setNewGame: (
+			state: MemoryGameState,
+			{ payload }: PayloadAction<GamePhotoData[]>
+		) => {
+			state.gamePhotos = payload;
 		},
 	},
 });
 
 export const {
-	addToPair,
-	resetPair,
 	addColors,
 	addPalet,
 	setPending,
 	setError,
 	toggleSidePanel,
-	toggleFlipped,
+	toggleFlip,
+	setMatch,
+	incrementCount,
+	resetGame,
+	setNewGame,
 } = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

@@ -1,0 +1,37 @@
+@use "../../../css/mixins" as *;
+@use "../../../css/my_app.scss" as *;
+
+$backColor: rgb(9, 77, 9);
+
+.finished {
+	width: 70%;
+	height: 30vh;
+	min-width: 180px;
+	background-color: $backColor;
+	@include fEven(column);
+	user-select: none;
+	h1 {
+		font-size: clamp(0.8rem, 2vw, 3rem);
+		overflow: hidden;
+		color: red;
+		white-space: nowrap;
+		text-align: center;
+		text-overflow: ellipsis;
+		text-transform: uppercase;
+		text-shadow: 1px 1px 5px rgba(247, 241, 241, 0.3);
+		span {
+			color: white;
+			margin: 0 0.6rem;
+		}
+	}
+}
+
+.newGameButton {
+	color: white;
+	text-transform: uppercase;
+	background-color: black;
+	&:hover {
+		color: red;
+		outline: 1px solid white;
+	}
+}
