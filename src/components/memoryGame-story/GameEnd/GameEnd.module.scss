@@ -1,13 +1,11 @@
 @use "../../../css/mixins" as *;
 @use "../../../css/my_app.scss" as *;
 
-$backColor: rgb(9, 77, 9);
-
 .finished {
 	width: 70%;
 	height: 30vh;
 	min-width: 180px;
-	background-color: $backColor;
+	background-color: rgba(9, 77, 9, 0.637);
 	@include fEven(column);
 	user-select: none;
 	h1 {

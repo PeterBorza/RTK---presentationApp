@@ -3,4 +3,5 @@ export enum MemoryGameMessages {
 	NEW_GAME = "new game",
 	SCORE = "score :",
 	CONGRATS = "Congratulations, you've finished the game with attempts",
+	HIGHSCORE = "best run",
 }

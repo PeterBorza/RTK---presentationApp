@@ -47,22 +47,15 @@ const Game: FC = () => {
 
 	const gameHasStarted = flippedCards.length !== 0;
 
-	const flipSide = (src: ImageSource, className: string) => {
+	const backContent = (src: ImageSource) => {
 		return (
-			<div className={className}>
+			<div className={styles.back}>
 				<img className={styles.game_image} src={src} alt='' />
 			</div>
 		);
 	};
 
-	const frontContent = useCallback(
-		() => flipSide(merryChristmas, styles.front),
-		[]
-	);
-	const backContent = useCallback(
-		(src: ImageSource) => flipSide(src, styles.back),
-		[]
-	);
+	const frontContent = () => <div className={styles.front}></div>;
 
 	const freezeIfMatch = useCallback(
 		(item: GamePhotoData) => {
@@ -123,7 +116,7 @@ const Game: FC = () => {
 					className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
 				>
 					<FlipCard
-						frontContent={frontContent}
+						frontContent={() => frontContent()}
 						backContent={() => backContent(frontSrc.src)}
 						darkBack
 						flipped={checkIfMatchOrFLipped}
