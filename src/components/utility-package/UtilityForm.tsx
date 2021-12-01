@@ -3,22 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
 import { useTime } from "../../hooks";
-import { GasFormValues } from "../../app/constants";
-import { postGas } from "./thunks";
+import { UtilityFormValues } from "./constants";
+import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
-import { GasStateUnit, GasFormProps } from "./types";
+import { UtilityStateUnit, FormProps, UtilityParam } from "./types";
 import { unitsState } from "./selectors";
-import { initialGasFormValues } from "./state";
+import { initialFormValues } from "./state";
 
-const GasForm: FC = () => {
+interface Props {
+	utility: UtilityParam;
+}
+
+const UtilityForm: FC<Props> = ({ utility }) => {
 	const units = useSelector(unitsState);
 	const date = useTime("standard");
 	const startingValues = {
-		...initialGasFormValues,
+		...initialFormValues,
 		dataCitire: date,
 	};
-	const [gasUnit, setGasUnit] = useState<GasFormProps>(startingValues);
+	const [gasUnit, setGasUnit] = useState<FormProps>(startingValues);
 	const dispatch = useDispatch();
 
 	const onCancelHandler = () => {
@@ -49,7 +53,7 @@ const GasForm: FC = () => {
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
 		const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
 
-		const newGasUnit: GasStateUnit = {
+		const newGasUnit: UtilityStateUnit = {
 			id: uuid(),
 			dataCitire: gasUnit.dataCitire,
 			selected: false,
@@ -60,7 +64,7 @@ const GasForm: FC = () => {
 			edit: false,
 		};
 
-		dispatch(postGas(newGasUnit));
+		dispatch(postUtility({ data: newGasUnit, utility }));
 		setGasUnit(startingValues);
 	};
 
@@ -86,11 +90,11 @@ const GasForm: FC = () => {
 			renderFields={renderInputs}
 			onSubmit={onSubmitHandler}
 			onCancel={onCancelHandler}
-			buttonLabel={GasFormValues.FORM_BUTTON_LABEL}
-			formWidth={GasFormValues.FORM_WIDTH}
-			formTitle={GasFormValues.FORM_TITLE}
+			buttonLabel={UtilityFormValues.FORM_BUTTON_LABEL}
+			formWidth={UtilityFormValues.FORM_WIDTH}
+			formTitle={UtilityFormValues.FORM_TITLE}
 		/>
 	);
 };
 
-export default GasForm;
+export default UtilityForm;

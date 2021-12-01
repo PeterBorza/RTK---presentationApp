@@ -1,11 +1,12 @@
 import React, { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
-import { Home } from "../components";
+import Home from "../components/Home";
 import { Bubbles } from "../components/bubble-story";
-import { Colors, Photos, Game } from "../components/memoryGame-story";
+import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
-import { GasExpenses } from "../components/gas-story";
+import { Utilities } from "../components/utility-package";
+import { Url } from "../app/constants";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -44,15 +45,15 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 		},
 		{
 			to: "/gas",
-			label: "gas",
+			label: Url.GAS,
 			id: uuid(),
-			element: <GasExpenses />,
+			element: <Utilities utility={Url.GAS} />,
 		},
 		{
-			to: "/colors",
-			label: "colors",
+			to: "/light",
+			label: Url.LIGHT,
 			id: uuid(),
-			element: <Colors />,
+			element: <Utilities utility={Url.LIGHT} />,
 		},
 		{
 			to: "/photos",

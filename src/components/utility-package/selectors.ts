@@ -1,19 +1,16 @@
-import { typeofGasState } from "../../app/store";
+import { typeofUtilityState } from "../../app/store";
 import { createSelector } from "@reduxjs/toolkit";
 
-export const gasState = ({ gas }: typeofGasState) => gas;
+export const utilityState = ({ utilities }: typeofUtilityState) => utilities;
 
-export const unitsState = ({ gas }: typeofGasState) => gas.units;
+export const unitsState = ({ utilities }: typeofUtilityState) =>
+	utilities.units;
 
-// export const selectedGas = ({ gas }: typeofGasState) => {
-// 	const idx = gas.units.findIndex(item => item.selected === true);
-// 	return gas.units[idx];
-// };
+export const pendingGasState = ({ utilities }: typeofUtilityState) =>
+	utilities.loading.isLoading;
 
-export const pendingGasState = ({ gas }: typeofGasState) =>
-	gas.loading.isLoading;
-
-export const errorGasState = ({ gas }: typeofGasState) => gas.error;
+export const errorGasState = ({ utilities }: typeofUtilityState) =>
+	utilities.error;
 
 export const isPayedSelector = createSelector(unitsState, items =>
 	items.filter(items => items.platit === true)

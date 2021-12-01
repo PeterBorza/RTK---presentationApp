@@ -1,8 +1,8 @@
 import React from "react";
-import { GasStateUnit } from "../types";
+import { UtilityStateUnit } from "../types";
 import { IconSet } from "../../../reusables";
 
-import styles from "./GasCard.module.scss";
+import styles from "./UtilityCard.module.scss";
 import classNames from "classnames";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 	dark?: boolean;
 }
 
-const GasCard: React.FC<GasStateUnit & Props> = ({
+const UtilityCard: React.FC<UtilityStateUnit & Props> = ({
 	onClick,
 	onPayedClick,
 	onDelete,
@@ -53,4 +53,4 @@ const GasCard: React.FC<GasStateUnit & Props> = ({
 	);
 };
 
-export default GasCard;
+export default UtilityCard;

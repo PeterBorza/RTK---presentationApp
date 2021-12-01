@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MemoryGameState, ColorSetInterFace } from "./types";
+import { MemoryGameState } from "./types";
 import { imageData, shuffledImages } from "../../utils";
 import { GamePhotoData } from ".";
 
 const initialState: MemoryGameState = {
 	photos: [...imageData()],
 	gamePhotos: [...shuffledImages],
-	colors: [],
 	pending: false,
 	error: false,
 	isSidePanelOpen: false,
@@ -17,18 +16,6 @@ export const memoryGameSlice = createSlice({
 	name: "memoryGame",
 	initialState,
 	reducers: {
-		addColors: (
-			{ colors }: MemoryGameState,
-			{ payload }: PayloadAction<ColorSetInterFace[]>
-		) => {
-			colors.push(...payload);
-		},
-		addPalet: (
-			{ colors }: MemoryGameState,
-			{ payload }: PayloadAction<ColorSetInterFace>
-		) => {
-			colors.push(payload);
-		},
 		setPending: (
 			{ pending }: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
@@ -79,8 +66,6 @@ export const memoryGameSlice = createSlice({
 });
 
 export const {
-	addColors,
-	addPalet,
 	setPending,
 	setError,
 	toggleSidePanel,

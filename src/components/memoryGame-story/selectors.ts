@@ -7,16 +7,8 @@ export const memoryGameState = ({ memoryGame }: typeofMemoryGameState) =>
 export const gamePhotosSelector = ({ memoryGame }: typeofMemoryGameState) =>
 	memoryGame.gamePhotos;
 
-export const colorSelectormemoryGame = ({
-	memoryGame,
-}: typeofMemoryGameState) => memoryGame.colors;
-
 export const photoSelector = ({ memoryGame }: typeofMemoryGameState) =>
 	memoryGame.photos;
-
-export const paletSelector = createSelector(colorSelectormemoryGame, items =>
-	items.map(palet => palet.palet)
-);
 
 export const sidePanelSelector = ({ memoryGame }: typeofMemoryGameState) =>
 	memoryGame.isSidePanelOpen;

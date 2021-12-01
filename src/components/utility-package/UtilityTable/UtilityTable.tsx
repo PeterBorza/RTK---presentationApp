@@ -3,25 +3,26 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
-import { GasLabels, GasTableLabels } from "../../../app/constants";
-import { gasState, errorGasState, selectSubtotal } from "../selectors";
-import { selectGas, resetSelected } from "../gasSlice";
-import { GasStateUnit } from "../types";
+import { UtilityLabels, UtilityTableLabels } from "../constants";
+import { utilityState, errorGasState, selectSubtotal } from "../selectors";
+import { selectCard, resetSelected } from "../utilitiesSlice";
+import { UtilityStateUnit, UtilityParam } from "../types";
 import { useTime } from "../../../hooks";
-import { deleteGas, getAsyncGas, togglePayedBill } from "../thunks";
+import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
-import { Gaz } from "../GasCard";
-import GasForm from "../GasForm";
+import { Card } from "../UtilityCard";
+import UtilityForm from "../UtilityForm";
 
 import classNames from "classnames";
-import styles from "./GasTable.module.scss";
+import styles from "./UtilityTable.module.scss";
 
 type Props = {
 	dark?: boolean;
+	utility: UtilityParam;
 };
 
-const GasTable: FC<Props> = ({ dark = false }) => {
-	const { units, loading } = useSelector(gasState);
+const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
+	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorGasState);
 	const sumofBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
@@ -40,35 +41,34 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	}, [dispatch]);
 
 	const fetchGasUnits = useCallback(() => {
-		if (isUnits) return;
-		dispatch(getAsyncGas());
-	}, [isUnits, dispatch]);
+		dispatch(getAsyncUtility(utility));
+	}, [utility, dispatch]);
 
 	useEffect(() => {
 		fetchGasUnits();
 	}, [fetchGasUnits]);
 
-	const onTogglePayedBill = (item: GasStateUnit) => {
-		dispatch(togglePayedBill(item));
+	const onTogglePayedBill = (item: UtilityStateUnit) => {
+		dispatch(togglePayedBill({ item, utility }));
 		dispatch(resetSelected());
 	};
 
 	const onGasClickHandler = (id: string) => {
-		dispatch(selectGas(id));
+		dispatch(selectCard(id));
 	};
 
 	const onDeleteGasHandler = (id: string) => {
-		dispatch(deleteGas(id));
+		dispatch(deleteUtilityUnit({ id, utility }));
 	};
 
 	const onEditGasHandler = (id: string) => {
 		console.log("editing work", id);
 	};
 
-	const renderListItems = (item: Array<GasStateUnit>) =>
+	const renderListItems = (item: Array<UtilityStateUnit>) =>
 		item.map(unit => (
 			<li key={unit.id}>
-				<Gaz
+				<Card
 					{...unit}
 					onClick={() => onGasClickHandler(unit.id)}
 					onPayedClick={() => onTogglePayedBill(unit)}
@@ -80,13 +80,16 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 
 	const table = {
 		header: () =>
-			Object.keys(GasLabels).map(item => <span key={item}>{item}</span>),
+			Object.keys(UtilityLabels).map(item => (
+				<span key={item}>{item}</span>
+			)),
 		body: () => isUnits && renderListItems(units),
 	};
 
 	return (
 		<div className={wrapper}>
-			<GasForm />
+			<h1>{utility}</h1>
+			<UtilityForm utility={utility} />
 			<Table
 				renderHeader={table.header}
 				renderBody={table.body}
@@ -95,13 +98,13 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 			/>
 			<div className={styles.billTotalInfo}>
 				<h3>
-					{GasTableLabels.SUM_OF_BILLS}
+					{UtilityTableLabels.SUM_OF_BILLS}
 					<span className={styles.highlighted}>{today}</span>
-					{GasTableLabels.IS}
+					{UtilityTableLabels.IS}
 					<span className={styles.highlighted}>
 						{exactSumOfBillsPayed}
 					</span>
-					{GasTableLabels.RON}
+					{UtilityTableLabels.RON}
 				</h3>
 			</div>
 			{error && <Error message={error} />}
@@ -109,4 +112,4 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	);
 };
 
-export default GasTable;
+export default UtilityTable;

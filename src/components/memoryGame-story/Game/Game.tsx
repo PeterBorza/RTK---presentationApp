@@ -24,8 +24,6 @@ import { Button, FlipCard } from "../../../reusables";
 import GameEnd from "../GameEnd";
 import Controls from "../Controls";
 
-import merryChristmas from "../../../images/merryChristmas.png";
-
 import classNames from "classnames";
 import styles from "./Game.module.scss";
 
@@ -46,23 +44,6 @@ const Game: FC = () => {
 		});
 
 	const gameHasStarted = flippedCards.length !== 0;
-
-	const flipSide = (src: ImageSource, className: string) => {
-		return (
-			<div className={className}>
-				<img className={styles.game_image} src={src} alt='' />
-			</div>
-		);
-	};
-
-	const frontContent = useCallback(
-		() => flipSide(merryChristmas, styles.front),
-		[]
-	);
-	const backContent = useCallback(
-		(src: ImageSource) => flipSide(src, styles.back),
-		[]
-	);
 
 	const freezeIfMatch = useCallback(
 		(item: GamePhotoData) => {
@@ -112,6 +93,16 @@ const Game: FC = () => {
 	};
 
 	const renderGridTable = useMemo(() => {
+		const backContent = (src: ImageSource) => {
+			return (
+				<div className={styles.back}>
+					<img className={styles.game_image} src={src} alt='' />
+				</div>
+			);
+		};
+
+		const frontContent = () => <div className={styles.front}></div>;
+
 		const renderImages = (
 			{ id, frontSrc, isFlipped, match }: GamePhotoData,
 			idx: number
@@ -123,7 +114,7 @@ const Game: FC = () => {
 					className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
 				>
 					<FlipCard
-						frontContent={frontContent}
+						frontContent={() => frontContent()}
 						backContent={() => backContent(frontSrc.src)}
 						darkBack
 						flipped={checkIfMatchOrFLipped}
@@ -133,7 +124,7 @@ const Game: FC = () => {
 			);
 		};
 		return images.map(renderImages);
-	}, [images, backContent, flipCardHandler, frontContent]);
+	}, [images, flipCardHandler]);
 
 	return (
 		<section className={styles.container}>

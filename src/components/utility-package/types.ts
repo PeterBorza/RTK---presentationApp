@@ -1,12 +1,12 @@
 export type UnitId = string;
 
-export interface GasFormProps {
+export interface FormProps {
 	citire: string;
 	factura: string;
 	dataCitire: string;
 }
 
-export interface GasStateUnit extends GasFormProps {
+export interface UtilityStateUnit extends FormProps {
 	id: UnitId;
 	consum: string;
 	selected: boolean;
@@ -14,11 +14,13 @@ export interface GasStateUnit extends GasFormProps {
 	edit: boolean;
 }
 
-export interface GasState {
-	units: GasStateUnit[];
+export interface UtilityState {
+	units: UtilityStateUnit[];
 	loading: {
 		isLoading: boolean;
 		message: string;
 	};
 	error: string | null;
 }
+
+export type UtilityParam = "light" | "gas";
