@@ -2,10 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI } from "../../../app/constants";
 import { setUtilitiesError, setUtilitiesPending } from "../utilitiesSlice";
 import { typeofUtilityState } from "../../../app/store";
+import { UtilityParam } from "../types";
 import axios from "axios";
 
 export const editAsyncUnit = async (
-	{ id, utility }: { id: string; utility: string },
+	{ id, utility }: { id: string; utility: UtilityParam },
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ): Promise<void> => {
 	const state = getState() as typeofUtilityState;

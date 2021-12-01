@@ -5,11 +5,11 @@ import {
 	setUtilitiesError,
 	setUtilitiesPending,
 } from "../utilitiesSlice";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit, UtilityParam } from "../types";
 import axios from "axios";
 
 export const toggleAsyncPayed = async (
-	{ item, utility }: { item: UtilityStateUnit; utility: string },
+	{ item, utility }: { item: UtilityStateUnit; utility: UtilityParam },
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setUtilitiesPending(true));

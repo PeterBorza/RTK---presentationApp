@@ -5,17 +5,17 @@ import {
 	setUtilitiesError,
 	setUtilitiesPending,
 } from "../utilitiesSlice";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit, UtilityParam } from "../types";
 import axios from "axios";
 
-const instance = (utility: string) =>
+const instance = (utility: UtilityParam) =>
 	axios.create({
 		baseURL: `${BaseAPI.UTILITIES_URL}/${utility}`,
 		method: "POST",
 	});
 
 export const postAsyncUtility = async (
-	{ data, utility }: { data: UtilityStateUnit; utility: string },
+	{ data, utility }: { data: UtilityStateUnit; utility: UtilityParam },
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setUtilitiesPending(true));

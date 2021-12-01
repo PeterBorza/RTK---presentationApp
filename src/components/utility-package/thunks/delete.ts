@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI } from "../../../app/constants";
+import { UtilityParam } from "../types";
 import {
 	deleteUnit,
 	setUtilitiesError,
@@ -8,7 +9,7 @@ import {
 import axios from "axios";
 
 export const deleteAsyncUtility = async (
-	{ id, utility }: { id: string; utility: string },
+	{ id, utility }: { id: string; utility: UtilityParam },
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setUtilitiesPending(true));

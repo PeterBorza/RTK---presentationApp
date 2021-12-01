@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { postBubble } from "./thunks";
 import { TextInput, ModalForm } from "../../reusables";
 import { starterBubble } from "./state";
-import { BubbleFormValues } from "../../app/constants";
+import { BubbleFormValues } from "./constants";
 
 const BubbleForm = () => {
 	const [bub, setBub] = useState(starterBubble);

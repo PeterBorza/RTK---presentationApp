@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
-import { Home } from "../components";
+import Home from "../components/Home";
 import { Bubbles } from "../components/bubble-story";
-import { Colors, Photos, Game } from "../components/memoryGame-story";
+import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
 import { Utilities } from "../components/utility-package";
 import { Url } from "../app/constants";
@@ -54,12 +54,6 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			label: Url.LIGHT,
 			id: uuid(),
 			element: <Utilities utility={Url.LIGHT} />,
-		},
-		{
-			to: "/colors",
-			label: "colors",
-			id: uuid(),
-			element: <Colors />,
 		},
 		{
 			to: "/photos",

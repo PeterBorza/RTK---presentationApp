@@ -34,6 +34,16 @@
       "id": "15fcb5be-7c53-4056-8d76-d8b9e5514674",
       "dataCitire": "16/05/2020",
       "selected": false,
+      "citire": "4180",
+      "consum": "0",
+      "factura": "0",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "15fcb5bh-7c53-4056-8d76-d8b9e5514965",
+      "dataCitire": "16/06/2020",
+      "selected": false,
       "citire": "6145",
       "consum": "35",
       "factura": "76.45",

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI } from "../../../app/constants";
+import { UtilityParam } from "../types";
 import {
 	getUnits,
 	setUtilitiesError,
@@ -9,7 +10,7 @@ import axios from "axios";
 
 export const getAsyncUtility = createAsyncThunk(
 	"utilities/getAsyncGas",
-	async (utility: string, thunkApi): Promise<void> => {
+	async (utility: UtilityParam, thunkApi): Promise<void> => {
 		thunkApi.dispatch(setUtilitiesPending(true));
 		try {
 			await axios

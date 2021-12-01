@@ -26,7 +26,6 @@ export interface GamePhotoData {
 export interface MemoryGameState {
 	photos: ImageData[];
 	gamePhotos: GamePhotoData[];
-	colors: ColorSetInterFace[];
 	pending: boolean;
 	error: boolean;
 	isSidePanelOpen: boolean;

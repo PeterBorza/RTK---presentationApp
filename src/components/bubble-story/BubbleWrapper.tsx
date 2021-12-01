@@ -12,12 +12,8 @@ import {
 
 import { getBubbles, deleteBubble } from "./thunks";
 
-import {
-	Url,
-	BubbleButtons,
-	BubbleSideBarTitle,
-	BubbleValues,
-} from "../../app/constants";
+import { Url } from "../../app/constants";
+import { BubbleButtons, BubbleSideBarTitle, BubbleValues } from "./constants";
 
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";

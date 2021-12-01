@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
 import { useTime } from "../../hooks";
-import { GasFormValues } from "../../app/constants";
+import { UtilityFormValues } from "./constants";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
-import { UtilityStateUnit, FormProps } from "./types";
+import { UtilityStateUnit, FormProps, UtilityParam } from "./types";
 import { unitsState } from "./selectors";
 import { initialFormValues } from "./state";
 
 interface Props {
-	utility: string;
+	utility: UtilityParam;
 }
 
 const UtilityForm: FC<Props> = ({ utility }) => {
@@ -90,9 +90,9 @@ const UtilityForm: FC<Props> = ({ utility }) => {
 			renderFields={renderInputs}
 			onSubmit={onSubmitHandler}
 			onCancel={onCancelHandler}
-			buttonLabel={GasFormValues.FORM_BUTTON_LABEL}
-			formWidth={GasFormValues.FORM_WIDTH}
-			formTitle={GasFormValues.FORM_TITLE}
+			buttonLabel={UtilityFormValues.FORM_BUTTON_LABEL}
+			formWidth={UtilityFormValues.FORM_WIDTH}
+			formTitle={UtilityFormValues.FORM_TITLE}
 		/>
 	);
 };

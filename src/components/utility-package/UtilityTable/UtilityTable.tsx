@@ -3,10 +3,10 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
-import { GasLabels, GasTableLabels } from "../../../app/constants";
+import { UtilityLabels, UtilityTableLabels } from "../constants";
 import { utilityState, errorGasState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected } from "../utilitiesSlice";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit, UtilityParam } from "../types";
 import { useTime } from "../../../hooks";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
@@ -18,7 +18,7 @@ import styles from "./UtilityTable.module.scss";
 
 type Props = {
 	dark?: boolean;
-	utility: string;
+	utility: UtilityParam;
 };
 
 const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
@@ -80,7 +80,9 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 
 	const table = {
 		header: () =>
-			Object.keys(GasLabels).map(item => <span key={item}>{item}</span>),
+			Object.keys(UtilityLabels).map(item => (
+				<span key={item}>{item}</span>
+			)),
 		body: () => isUnits && renderListItems(units),
 	};
 
@@ -96,13 +98,13 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 			/>
 			<div className={styles.billTotalInfo}>
 				<h3>
-					{GasTableLabels.SUM_OF_BILLS}
+					{UtilityTableLabels.SUM_OF_BILLS}
 					<span className={styles.highlighted}>{today}</span>
-					{GasTableLabels.IS}
+					{UtilityTableLabels.IS}
 					<span className={styles.highlighted}>
 						{exactSumOfBillsPayed}
 					</span>
-					{GasTableLabels.RON}
+					{UtilityTableLabels.RON}
 				</h3>
 			</div>
 			{error && <Error message={error} />}
