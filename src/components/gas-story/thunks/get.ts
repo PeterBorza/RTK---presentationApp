@@ -9,7 +9,7 @@ export const getAsyncGas = createAsyncThunk(
 		thunkApi.dispatch(setGasPending(true));
 		try {
 			await axios
-				.get(`${BaseAPI.GAS_UNITS_URL}/units`) // ?_limit= 2 get only this amount
+				.get(`${BaseAPI.UTILITIES_URL}/gas`) // ?_limit= 2 get only this amount
 				.then(response =>
 					thunkApi.dispatch(getGasUnits(response.data))
 				);

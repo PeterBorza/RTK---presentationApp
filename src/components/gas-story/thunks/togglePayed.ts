@@ -11,7 +11,7 @@ export const toggleAsyncGasPayed = async (
 	dispatch(setGasPending(true));
 	try {
 		await axios
-			.put(`${BaseAPI.GAS_UNITS_URL}/units/${item.id}`, {
+			.put(`${BaseAPI.UTILITIES_URL}/gas/${item.id}`, {
 				...item,
 				platit: !item.platit,
 			})

@@ -5,7 +5,7 @@ import { GasStateUnit } from "../types";
 import axios from "axios";
 
 const instance = axios.create({
-	baseURL: `${BaseAPI.GAS_UNITS_URL}/units`,
+	baseURL: `${BaseAPI.UTILITIES_URL}/gas`,
 	method: "POST",
 });
 

@@ -1,13 +1,14 @@
 export enum BaseAPI {
 	BUBBLES_URL = "http://localhost:5010",
 	COLORSETS_URL = "http://localhost:5005",
-	GAS_UNITS_URL = "http://localhost:5006",
+	UTILITIES_URL = "http://localhost:5006",
 }
 
 export enum Url {
 	COLORS = "colorSets",
 	BUBBLES = "bubbles",
-	GAS = "units",
+	GAS = "gas",
+	LIGHT = "light",
 }
 
 export enum Error {

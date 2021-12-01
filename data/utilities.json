@@ -1,5 +1,5 @@
 {
-  "units": [
+  "gas": [
     {
       "id": "1ad7c72a-4d63-4bf6-9321-8c0bb7884c5b",
       "dataCitire": "19/09/2019",
@@ -53,7 +53,7 @@
     {
       "id": "319f6a59-b719-46be-b076-549e32c46715",
       "dataCitire": "16/11/2020",
-      "selected": true,
+      "selected": false,
       "citire": "4325",
       "consum": "90",
       "factura": "91.81",
@@ -177,6 +177,28 @@
       "citire": "4845",
       "factura": "0",
       "consum": "40",
+      "platit": false,
+      "edit": false
+    }
+  ],
+  "light": [
+    {
+      "id": "3ad7c72a-4d63-4bf6-9321-8c0bb7884c5g",
+      "dataCitire": "19/09/2019",
+      "selected": false,
+      "citire": "5648",
+      "consum": "",
+      "factura": "6.91",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "b84e22d7-4fad-4f8f-a31e-5ca5bfcac76c",
+      "dataCitire": "01/12/2021",
+      "selected": false,
+      "citire": "5700",
+      "factura": "0",
+      "consum": "52",
       "platit": false,
       "edit": false
     }

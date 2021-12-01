@@ -10,7 +10,7 @@ export const deleteAsyncGas = async (
 	dispatch(setGasPending(true));
 	try {
 		await axios
-			.delete(`${BaseAPI.GAS_UNITS_URL}/units/${id}`)
+			.delete(`${BaseAPI.UTILITIES_URL}/gas/${id}`)
 			.then(dispatch(deleteGasUnit(id)));
 	} catch {
 		dispatch(setGasError());

@@ -14,7 +14,7 @@ export const editAsyncGasUnit = async (
 
 	dispatch(setGasPending(true));
 	try {
-		await axios.put(`${BaseAPI.GAS_UNITS_URL}/units/${id}`, selected);
+		await axios.put(`${BaseAPI.UTILITIES_URL}/gas/${id}`, selected);
 	} catch {
 		dispatch(setGasError());
 	} finally {
