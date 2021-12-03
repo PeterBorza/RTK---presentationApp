@@ -6,10 +6,10 @@ export interface PositionState {
 
 export interface LiftState {
 	numberOfLevels: number;
-	levelArray: number[];
 	speed: number;
 	liftHeight: number;
 	liftWidth: number;
 	position: PositionState;
 	isDisabled: boolean;
+	isSideBarOpen: boolean;
 }

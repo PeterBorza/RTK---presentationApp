@@ -7,3 +7,6 @@ export const shuffle = (arr: any[]) =>
 		.map(value => ({ value, sort: Math.random() }))
 		.sort((a, b) => a.sort - b.sort)
 		.map(({ value }) => value);
+
+export const randomize = (num: number): string =>
+	`#${Math.floor(Math.random() * num)}`;

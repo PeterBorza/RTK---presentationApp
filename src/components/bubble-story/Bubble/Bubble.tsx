@@ -1,6 +1,7 @@
 import { CSSProperties, FC } from "react";
 
 import { Bubble as Props } from "../types";
+import { randomize } from "../../../utils";
 
 import styles from "./Bubble.module.scss";
 import classNames from "classnames";
@@ -24,9 +25,6 @@ const Bubble: FC<BubbleProps> = ({
 		[styles.bubbleStyle__active]: selected,
 		[styles.withImage]: false,
 	});
-
-	const randomize = (num: number): string =>
-		`#${Math.floor(Math.random() * num)}`;
 
 	const inlineStyles: CSSProperties = {
 		left,

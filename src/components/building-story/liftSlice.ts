@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./state";
+import { LiftState } from "./types";
 
 export const liftSlice = createSlice({
 	name: "lift",
@@ -20,14 +21,16 @@ export const liftSlice = createSlice({
 			position.positionFloor = payload;
 		},
 		setLevelNumber: (
-			{ numberOfLevels },
+			state: LiftState,
 			{ payload }: PayloadAction<number>
 		) => {
-			numberOfLevels = payload;
+			state.numberOfLevels = payload;
 		},
-		setLevelArray: (state, { payload }: PayloadAction<number>) => {
-			const newArr = new Array(payload).fill(0).map((_, i: number) => i);
-			state.levelArray = [...newArr];
+		toggleLiftSidePanel: (
+			state: LiftState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.isSideBarOpen = payload;
 		},
 	},
 });
@@ -38,7 +41,7 @@ export const {
 	moveLiftB,
 	movePosition,
 	setLevelNumber,
-	setLevelArray,
+	toggleLiftSidePanel,
 } = liftSlice.actions;
 
 export default liftSlice.reducer;

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/App";
 import Home from "./components/Home";
-import { Building } from "./components/building-story";
+import { Lift } from "./components/building-story";
 import { Utilities } from "./components/utility-package";
 import { Photos, Photo, Game } from "./components/memoryGame-story";
 import { Bubbles } from "./components/bubble-story";
@@ -18,7 +18,7 @@ ReactDOM.render(
 				<Routes>
 					<Route path='/' element={<App />}>
 						<Route index element={<Home />} />
-						<Route path='building' element={<Building />} />
+						<Route path='building' element={<Lift />} />
 						<Route path='bubbles' element={<Bubbles />} />
 						<Route
 							path='gas'
