@@ -1,23 +1,20 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { typeofMemoryGameState } from "../../app/store";
+import { RootState } from "../../app/store";
 
-export const memoryGameState = ({ memoryGame }: typeofMemoryGameState) =>
-	memoryGame;
+export const memoryGameState = ({ memoryGame }: RootState) => memoryGame;
 
-export const gamePhotosSelector = ({ memoryGame }: typeofMemoryGameState) =>
+export const gamePhotosSelector = ({ memoryGame }: RootState) =>
 	memoryGame.gamePhotos;
 
-export const photoSelector = ({ memoryGame }: typeofMemoryGameState) =>
-	memoryGame.photos;
+export const photoSelector = ({ memoryGame }: RootState) => memoryGame.photos;
 
-export const sidePanelSelector = ({ memoryGame }: typeofMemoryGameState) =>
+export const sidePanelSelector = ({ memoryGame }: RootState) =>
 	memoryGame.isSidePanelOpen;
 
-export const loadingSelector = ({ memoryGame }: typeofMemoryGameState) =>
+export const loadingSelector = ({ memoryGame }: RootState) =>
 	memoryGame.pending;
 
-export const errorSelector = ({ memoryGame }: typeofMemoryGameState) =>
-	memoryGame.error;
+export const errorSelector = ({ memoryGame }: RootState) => memoryGame.error;
 
 export const flippedCardsSelector = createSelector(gamePhotosSelector, items =>
 	items.filter(item => item.isFlipped === true)
@@ -27,5 +24,5 @@ export const matchCardsSelector = createSelector(gamePhotosSelector, items =>
 	items.filter(item => item.match === true)
 );
 
-export const clickCountSelector = ({ memoryGame }: typeofMemoryGameState) =>
+export const clickCountSelector = ({ memoryGame }: RootState) =>
 	memoryGame.clickCount;

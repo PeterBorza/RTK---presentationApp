@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, FormEvent } from "react";
 import { Form } from ".";
-import { Button, BlackModal } from "..";
+import { Button, FadedModal } from "..";
 export interface FormWrapProps {
 	formWidth: "small" | "medium" | "large" | "xxl";
 	renderFields: () => ReactNode;
@@ -35,20 +35,18 @@ const ModalForm: React.FC<FormWrapProps> = ({
 		setIsOpenModal(false);
 	};
 
-	const renderForm = () => (
-		<Form
-			onSubmit={submitHandler}
-			width={formWidth}
-			renderFields={renderFields}
-			onCancel={onCancelHandler}
-			formTitle={formTitle}
-		/>
-	);
-
 	return (
 		<>
 			<Button value={buttonLabel} onClick={onOpenHandler} />
-			{openModal && <BlackModal renderFields={renderForm} />}
+			<FadedModal isOpen={openModal}>
+				<Form
+					onSubmit={submitHandler}
+					width={formWidth}
+					renderFields={renderFields}
+					onCancel={onCancelHandler}
+					formTitle={formTitle}
+				/>
+			</FadedModal>
 		</>
 	);
 };

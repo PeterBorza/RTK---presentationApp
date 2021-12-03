@@ -2,7 +2,7 @@ import React from "react";
 import { UtilityStateUnit } from "../types";
 import { IconSet } from "../../../reusables";
 
-import styles from "./UtilityCard.module.scss";
+import styles from "./LightCard.module.scss";
 import classNames from "classnames";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 	dark?: boolean;
 }
 
-const UtilityCard: React.FC<UtilityStateUnit & Props> = ({
+const LightCard: React.FC<UtilityStateUnit & Props> = ({
 	onClick,
 	onPayedClick,
 	onDelete,
@@ -53,4 +53,4 @@ const UtilityCard: React.FC<UtilityStateUnit & Props> = ({
 	);
 };
 
-export default UtilityCard;
+export default LightCard;

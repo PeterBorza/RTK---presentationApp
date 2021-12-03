@@ -1,26 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI } from "../../../app/constants";
-import {
-	addUnit,
-	setUtilitiesError,
-	setUtilitiesPending,
-} from "../utilitiesSlice";
-import { UtilityStateUnit, UtilityParam } from "../types";
+import { BaseAPI, Url } from "../../../app/constants";
+import { addUnit, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
+import { UtilityStateUnit } from "../types";
 import axios from "axios";
 
-const instance = (utility: UtilityParam) =>
-	axios.create({
-		baseURL: `${BaseAPI.UTILITIES_URL}/${utility}`,
-		method: "POST",
-	});
+const instance = axios.create({
+	baseURL: `${BaseAPI.UTILITIES_URL}/${Url.GAS}`,
+	method: "POST",
+});
 
 export const postAsyncUtility = async (
-	{ data, utility }: { data: UtilityStateUnit; utility: UtilityParam },
+	data: UtilityStateUnit,
 	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
 	dispatch(setUtilitiesPending(true));
 	try {
-		await instance(utility)
+		await instance
 			.request({ data })
 			.then(response => dispatch(addUnit(response.data)));
 	} catch {
@@ -31,6 +26,6 @@ export const postAsyncUtility = async (
 };
 
 export const postUtility = createAsyncThunk(
-	"utilities/postAsyncUtility",
+	`${Url.GAS}/postAsyncUtility`,
 	postAsyncUtility
 );

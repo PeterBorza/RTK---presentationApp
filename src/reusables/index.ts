@@ -7,6 +7,7 @@ import ScrollTable, { Table } from "./ScrollTable";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
+import FadedModal from "./FadedModal";
 import IconSet from "./IconSet";
 import InputCard from "./InputCard";
 import TextInput from "./TextInput";
@@ -37,6 +38,7 @@ export {
 	CustomInput,
 	TextInput,
 	BlackModal,
+	FadedModal,
 	IconSet,
 	CheckBox,
 	Select,

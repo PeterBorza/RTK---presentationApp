@@ -5,29 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table, Error } from "../../../reusables";
 import { UtilityLabels, UtilityTableLabels } from "../constants";
 import { utilityState, errorGasState, selectSubtotal } from "../selectors";
-import { selectCard, resetSelected } from "../utilitiesSlice";
-import { UtilityStateUnit, UtilityParam } from "../types";
-import { useTime } from "../../../hooks";
+import { selectCard, resetSelected } from "../gasSlice";
+import { UtilityStateUnit } from "../types";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
-import { Card } from "../UtilityCard";
-import UtilityForm from "../UtilityForm";
+import GasCard from "../GasCard";
+import UtilityForm from "../GasForm";
 
 import classNames from "classnames";
-import styles from "./UtilityTable.module.scss";
+import styles from "./GasTable.module.scss";
 
 type Props = {
 	dark?: boolean;
-	utility: UtilityParam;
 };
 
-const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
+const GasTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorGasState);
 	const sumofBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
 
-	const today = useTime("standard");
+	const today = new Date().toLocaleDateString();
 	const exactSumOfBillsPayed = sumofBills.toFixed(2);
 
 	const wrapper = classNames(styles.container, {
@@ -41,15 +39,15 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 	}, [dispatch]);
 
 	const fetchGasUnits = useCallback(() => {
-		dispatch(getAsyncUtility(utility));
-	}, [utility, dispatch]);
+		dispatch(getAsyncUtility());
+	}, [dispatch]);
 
 	useEffect(() => {
 		fetchGasUnits();
 	}, [fetchGasUnits]);
 
 	const onTogglePayedBill = (item: UtilityStateUnit) => {
-		dispatch(togglePayedBill({ item, utility }));
+		dispatch(togglePayedBill(item));
 		dispatch(resetSelected());
 	};
 
@@ -58,7 +56,7 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 	};
 
 	const onDeleteGasHandler = (id: string) => {
-		dispatch(deleteUtilityUnit({ id, utility }));
+		dispatch(deleteUtilityUnit(id));
 	};
 
 	const onEditGasHandler = (id: string) => {
@@ -68,7 +66,7 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 	const renderListItems = (item: Array<UtilityStateUnit>) =>
 		item.map(unit => (
 			<li key={unit.id}>
-				<Card
+				<GasCard
 					{...unit}
 					onClick={() => onGasClickHandler(unit.id)}
 					onPayedClick={() => onTogglePayedBill(unit)}
@@ -88,8 +86,7 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 
 	return (
 		<div className={wrapper}>
-			<h1>{utility}</h1>
-			<UtilityForm utility={utility} />
+			<UtilityForm />
 			<Table
 				renderHeader={table.header}
 				renderBody={table.body}
@@ -112,4 +109,4 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 	);
 };
 
-export default UtilityTable;
+export default GasTable;

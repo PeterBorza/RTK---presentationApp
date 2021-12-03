@@ -25,4 +25,5 @@ export interface BubbleState {
 	loading: PendingState;
 	error: ErrorState;
 	isSidePanelOpen: boolean;
+	isFormModalOpen: boolean;
 }

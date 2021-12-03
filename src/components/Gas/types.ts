@@ -22,5 +22,3 @@ export interface UtilityState {
 	};
 	error: string | null;
 }
-
-export type UtilityParam = "light" | "gas";

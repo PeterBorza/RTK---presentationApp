@@ -31,3 +31,19 @@ $gap: 5px;
 $border: 1px solid white;
 $backColor: rgb(9, 77, 9);
 $minWidth: 280px;
+
+@mixin before($pic) {
+	&::before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-image: url($pic);
+		background-size: cover;
+		background-position: center;
+		opacity: 0.15;
+		z-index: -1;
+	}
+}

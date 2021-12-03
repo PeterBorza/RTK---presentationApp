@@ -6,12 +6,7 @@ import { AsidePlatform } from "../../../reusables";
 
 import styles from "./LiftPlatform.module.scss";
 
-import {
-	liftState,
-	positionState,
-	isSideBarOpen,
-	levelsNumberState,
-} from "../selectors";
+import { liftState, positionState, isSideBarOpen } from "../selectors";
 
 import {
 	moveLiftA,
@@ -27,7 +22,6 @@ const LiftPlatform: FC = () => {
 		useSelector(liftState);
 	const { positionA, positionB, positionFloor } = useSelector(positionState);
 	const isOpen = useSelector(isSideBarOpen);
-	const levelNumber = useSelector(levelsNumberState);
 	const [levelInput, setLevelInput] = useState(numberOfLevels);
 	const dispatch = useDispatch();
 

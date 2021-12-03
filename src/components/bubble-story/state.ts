@@ -12,6 +12,7 @@ export const initialState: BubbleState = {
 		message: Error.MESSAGE,
 	},
 	isSidePanelOpen: false,
+	isFormModalOpen: false,
 };
 
 export const starterBubble: BubbleCssProps = {

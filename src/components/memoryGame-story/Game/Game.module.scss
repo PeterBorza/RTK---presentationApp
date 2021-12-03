@@ -6,6 +6,7 @@
 	@include container();
 	@include fEven(column);
 	@include shadowSB;
+	overflow: hidden;
 	&::after {
 		position: absolute;
 		content: "";

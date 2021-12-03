@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { postBubble } from "./thunks";
-import { TextInput, ModalForm } from "../../reusables";
+import { TextInput, FadedModal, Form, Button } from "../../reusables";
 import { starterBubble } from "./state";
 import { BubbleFormValues } from "./constants";
+import { toggleBubbleFormModal } from "./bubbleSlice";
+import { bubbleModalFormSelector } from "./selectors";
 
 const BubbleForm = () => {
 	const [bub, setBub] = useState(starterBubble);
+	const isFormOpen = useSelector(bubbleModalFormSelector);
 	const dispatch = useDispatch();
 
 	const onCancelHandler = () => {
 		setBub(starterBubble);
+		dispatch(toggleBubbleFormModal(false));
 	};
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +34,11 @@ const BubbleForm = () => {
 		};
 		dispatch(postBubble(newBubble));
 		setBub(starterBubble);
+		dispatch(toggleBubbleFormModal(false));
+	};
+
+	const onOpenHandler = () => {
+		dispatch(toggleBubbleFormModal(true));
 	};
 
 	const labels: string[] = Object.keys(bub);
@@ -50,14 +59,22 @@ const BubbleForm = () => {
 		);
 	};
 	return (
-		<ModalForm
-			renderFields={renderFields}
-			onSubmit={onSubmitHandler}
-			onCancel={onCancelHandler}
-			buttonLabel={BubbleFormValues.BUTTON_LABEL}
-			formWidth={BubbleFormValues.FORM_WIDTH}
-			formTitle={BubbleFormValues.FORM_TITLE}
-		/>
+		<>
+			<Button
+				value={BubbleFormValues.BUTTON_LABEL}
+				onClick={onOpenHandler}
+			/>
+
+			<FadedModal isOpen={isFormOpen}>
+				<Form
+					onSubmit={onSubmitHandler}
+					width={BubbleFormValues.FORM_WIDTH}
+					renderFields={renderFields}
+					onCancel={onCancelHandler}
+					formTitle={BubbleFormValues.FORM_TITLE}
+				/>
+			</FadedModal>
+		</>
 	);
 };
 
