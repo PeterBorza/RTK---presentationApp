@@ -7,7 +7,6 @@ import { UtilityLabels, UtilityTableLabels } from "../constants";
 import { utilityState, errorGasState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected } from "../utilitiesSlice";
 import { UtilityStateUnit, UtilityParam } from "../types";
-import { useTime } from "../../../hooks";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
 import { Card } from "../UtilityCard";
@@ -27,7 +26,9 @@ const UtilityTable: FC<Props> = ({ dark = false, utility }) => {
 	const sumofBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
 
-	const today = useTime("standard");
+	console.log(units);
+
+	const today = new Date().toLocaleDateString();
 	const exactSumOfBillsPayed = sumofBills.toFixed(2);
 
 	const wrapper = classNames(styles.container, {
