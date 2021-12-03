@@ -3,8 +3,8 @@ import { Error } from "../../app/constants";
 import { UtilityStateUnit, UtilityState, UnitId } from "./types";
 import { initialState } from "./state";
 
-export const utilitiesSlice = createSlice({
-	name: "utilities",
+export const lightSlice = createSlice({
+	name: "light",
 	initialState,
 	reducers: {
 		selectCard: (
@@ -66,5 +66,5 @@ export const {
 	deleteUnit,
 	setUtilitiesPending,
 	setUtilitiesError,
-} = utilitiesSlice.actions;
-export default utilitiesSlice.reducer;
+} = lightSlice.actions;
+export default lightSlice.reducer;

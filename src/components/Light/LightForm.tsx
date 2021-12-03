@@ -7,22 +7,18 @@ import { UtilityFormValues } from "./constants";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
-import { UtilityStateUnit, FormProps, UtilityParam } from "./types";
+import { UtilityStateUnit, FormProps } from "./types";
 import { unitsState } from "./selectors";
 import { initialFormValues } from "./state";
 
-interface Props {
-	utility: UtilityParam;
-}
-
-const UtilityForm: FC<Props> = ({ utility }) => {
+const LightForm: FC = () => {
 	const units = useSelector(unitsState);
 	const date = useTime("standard");
 	const startingValues = {
 		...initialFormValues,
 		dataCitire: date,
 	};
-	const [gasUnit, setGasUnit] = useState<FormProps>(startingValues);
+	const [lightUnit, setGasUnit] = useState<FormProps>(startingValues);
 	const dispatch = useDispatch();
 
 	const onCancelHandler = () => {
@@ -43,7 +39,7 @@ const UtilityForm: FC<Props> = ({ utility }) => {
 		if (e.target.name !== "dataCitire" && e.target.value === "") return;
 
 		setGasUnit({
-			...gasUnit,
+			...lightUnit,
 			[e.target.name]: getCorrectValues(e.target.value),
 		});
 	};
@@ -51,28 +47,28 @@ const UtilityForm: FC<Props> = ({ utility }) => {
 	const onSubmitHandler = () => {
 		let lastCitire;
 		if (units.length === 0) {
-			lastCitire = gasUnit.citire;
+			lastCitire = lightUnit.citire;
 		}
 		lastCitire = units[units.length - 1].citire;
-		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
+		const newConsum = parseInt(lightUnit.citire) - parseInt(lastCitire);
 		const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
 
 		const newGasUnit: UtilityStateUnit = {
 			id: uuid(),
-			dataCitire: gasUnit.dataCitire,
+			dataCitire: lightUnit.dataCitire,
 			selected: false,
-			citire: checkIfValid(gasUnit.citire),
-			factura: checkIfValid(gasUnit.factura),
+			citire: checkIfValid(lightUnit.citire),
+			factura: checkIfValid(lightUnit.factura),
 			consum: checkNewConsum.toString(),
 			platit: false,
 			edit: false,
 		};
 
-		dispatch(postUtility({ data: newGasUnit, utility }));
+		dispatch(postUtility(newGasUnit));
 		setGasUnit(startingValues);
 	};
 
-	const inputs = Object.entries(gasUnit);
+	const inputs = Object.entries(lightUnit);
 
 	const renderInputs = () => {
 		return (
@@ -101,4 +97,4 @@ const UtilityForm: FC<Props> = ({ utility }) => {
 	);
 };
 
-export default UtilityForm;
+export default LightForm;

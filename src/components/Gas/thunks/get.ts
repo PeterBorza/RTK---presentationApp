@@ -1,20 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI } from "../../../app/constants";
-import { UtilityParam } from "../types";
-import {
-	getUnits,
-	setUtilitiesError,
-	setUtilitiesPending,
-} from "../utilitiesSlice";
+import { BaseAPI, Url } from "../../../app/constants";
+import { getUnits, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 
 export const getAsyncUtility = createAsyncThunk(
-	"utilities/getAsyncUtility",
-	async (utility: UtilityParam, thunkApi): Promise<void> => {
+	`${Url.GAS}/getAsyncUtility`,
+	async (_, thunkApi): Promise<void> => {
 		thunkApi.dispatch(setUtilitiesPending(true));
 		try {
 			await axios
-				.get(`${BaseAPI.UTILITIES_URL}/${utility}`) // ?_limit= 2 get only this amount
+				.get(`${BaseAPI.UTILITIES_URL}/${Url.GAS}`) // ?_limit= 2 get only this amount
 				.then(response => thunkApi.dispatch(getUnits(response.data)));
 		} catch {
 			thunkApi.dispatch(setUtilitiesError());

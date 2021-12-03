@@ -28,10 +28,12 @@ const Navigation = () => {
 	));
 
 	return (
-		<div className={styles.container}>
-			<NavBar>{renderBody}</NavBar>
+		<>
+			<div className={styles.container}>
+				<NavBar>{renderBody}</NavBar>
+			</div>
 			<Outlet />
-		</div>
+		</>
 	);
 };
 

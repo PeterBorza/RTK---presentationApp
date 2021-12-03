@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI } from "../../app/constants";
-import { typeofBubbleState } from "../../app/store";
+import { RootState } from "../../app/store";
 import {
 	setBubbles,
 	setPending,
@@ -45,7 +45,7 @@ const handlePostBubble = async (
 	data: BubbleCssProps,
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ) => {
-	const { bubbles } = getState() as typeofBubbleState;
+	const { bubbles } = getState() as RootState;
 
 	const ids: number[] = bubbles.bubbles.map(bub => bub.id);
 	const maxIndex: number = Math.max(...ids);

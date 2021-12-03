@@ -5,8 +5,7 @@ import Home from "../components/Home";
 import { Bubbles } from "../components/bubble-story";
 import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
-import { Utilities } from "../components/utility-package";
-import { Url } from "../app/constants";
+import UtilityContainer from "../components/UtiltyContainer";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -32,6 +31,12 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			element: <Home />,
 		},
 		{
+			to: "/utilities",
+			label: "utilities",
+			id: uuid(),
+			element: <UtilityContainer />,
+		},
+		{
 			to: "/building",
 			label: "building",
 			id: uuid(),
@@ -42,18 +47,6 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 			label: "bubbles",
 			id: uuid(),
 			element: <Bubbles />,
-		},
-		{
-			to: "/gas",
-			label: Url.GAS,
-			id: uuid(),
-			element: <Utilities utility={Url.GAS} />,
-		},
-		{
-			to: "/light",
-			label: Url.LIGHT,
-			id: uuid(),
-			element: <Utilities utility={Url.LIGHT} />,
 		},
 		{
 			to: "/photos",

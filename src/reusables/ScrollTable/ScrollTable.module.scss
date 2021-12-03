@@ -2,8 +2,9 @@
 @use "../../css/mixins" as *;
 
 .wrapper {
-	width: 50%;
-	min-width: 300px;
+	width: 100%;
+	// min-width: 300px;
+	padding: 1rem;
 	height: 75vh;
 	box-shadow: $shadow;
 	margin: auto;

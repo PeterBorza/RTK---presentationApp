@@ -1,356 +1,356 @@
 {
-	"gas": [
-		{
-			"id": "1ad7c72a-4d63-4bf6-9321-8c0bb7884c5b",
-			"dataCitire": "19/09/2019",
-			"selected": false,
-			"citire": "5648",
-			"consum": "",
-			"factura": "6.91",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "2d1cb0ff-1a6c-4894-9588-5ed7fca8f61e",
-			"dataCitire": "17/02/2020",
-			"selected": false,
-			"citire": "6011",
-			"consum": "",
-			"factura": "227.80",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "df9d2608-947c-4b66-b8a1-b965b26a6f47",
-			"dataCitire": "15/04/2020",
-			"selected": false,
-			"citire": "6110",
-			"consum": "",
-			"factura": "92.93",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "15fcb5bh-7c53-4056-8d76-d8b9e5514965",
-			"dataCitire": "16/06/2020",
-			"selected": false,
-			"citire": "6145",
-			"consum": "35",
-			"factura": "76.45",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "28276427-622f-4222-8d17-4d330e503d33",
-			"dataCitire": "15/09/2020",
-			"selected": false,
-			"citire": "4235",
-			"consum": "",
-			"factura": "68.06",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "319f6a59-b719-46be-b076-549e32c46715",
-			"dataCitire": "16/11/2020",
-			"selected": false,
-			"citire": "4325",
-			"consum": "90",
-			"factura": "91.81",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "70b78853-d7f7-4db5-8dbb-a755ba98d979",
-			"dataCitire": "15/12/2020",
-			"selected": false,
-			"citire": "4400",
-			"consum": "75",
-			"factura": "126.26",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "4c534fcc-fba3-45b5-8e42-3866fb68a33c",
-			"dataCitire": "19/01/2021",
-			"selected": false,
-			"citire": "4506",
-			"consum": "106",
-			"factura": "186.39",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "9cc2ac56-04e2-47a3-9707-3114f68c48f8",
-			"dataCitire": "17/02/2021",
-			"selected": false,
-			"citire": "4575",
-			"consum": "69",
-			"factura": "107.31",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "c208d5c9-913f-41ef-91a0-c78b5a241d8c",
-			"dataCitire": "17/03/2021",
-			"selected": false,
-			"citire": "4640",
-			"consum": "65",
-			"factura": "108.93",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "c208d5c9-913f-41ef-91a0-c78b5a241d8f",
-			"dataCitire": "17/04/2021",
-			"selected": false,
-			"citire": "4640",
-			"consum": "0",
-			"factura": "41.75",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "a67d6291-2c13-4bc9-80f0-ba34636aaf27",
-			"dataCitire": "15/05/2021",
-			"selected": false,
-			"citire": "4713",
-			"consum": "73",
-			"factura": "82.01",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "c75a026e-fba4-45db-b298-120cbe1ec76e",
-			"dataCitire": "16/06/2021",
-			"selected": false,
-			"citire": "4736",
-			"consum": "23",
-			"factura": "37.13",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "d7b5c3b9-214b-427b-b461-c00210700cde",
-			"dataCitire": "16/07/2021",
-			"selected": false,
-			"citire": "4755",
-			"consum": "19",
-			"factura": "40.01",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "4efe5576-daba-4b0e-9782-357a56543aa9",
-			"dataCitire": "18/08/2021",
-			"selected": false,
-			"citire": "4765",
-			"consum": "10",
-			"factura": "13.30",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "f09e9ece-3545-43a8-94af-892e0259ecfa",
-			"dataCitire": "18/09/2021",
-			"selected": false,
-			"citire": "4780",
-			"consum": "15",
-			"factura": "28.38",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "0eaa0f23-8529-4d32-8dcb-db36f7b94403",
-			"dataCitire": "16/10/2021",
-			"selected": false,
-			"citire": "4811",
-			"consum": "31",
-			"factura": "76.39",
-			"platit": true,
-			"edit": false
-		},
-		{
-			"id": "dead6ccf-434f-498a-9f87-541a467f8b4a",
-			"dataCitire": "17/11/2021",
-			"selected": false,
-			"citire": "4845",
-			"factura": "80.10",
-			"consum": "34",
-			"platit": false,
-			"edit": false
-		}
-	],
-	"light": [
-		{
-			"id": "bead6ccf-434f-498a-9f87-541a467f8b46",
-			"dataCitire": "15/02/2020",
-			"selected": false,
-			"citire": "6057",
-			"factura": "0",
-			"consum": "",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "0d9b5c7b-7432-4873-b358-31570652cc1b",
-			"dataCitire": "15/04/2020",
-			"selected": false,
-			"citire": "6558",
-			"factura": "0",
-			"consum": "501",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "7fd2fd13-9f74-4d9b-81ac-80fb6ea12109",
-			"dataCitire": "16/05/2020",
-			"selected": false,
-			"citire": "6847",
-			"factura": "0",
-			"consum": "289",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "68907e1f-67c7-4c47-acb3-8d4cc4d06f1e",
-			"dataCitire": "15/09/2020",
-			"selected": false,
-			"citire": "7694",
-			"factura": "0",
-			"consum": "847",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "dbf6482d-dced-4e62-8e1d-bae4821b5f75",
-			"dataCitire": "16/11/2020",
-			"selected": false,
-			"citire": "8220",
-			"factura": "0",
-			"consum": "526",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "053121a2-c040-4aa4-a269-e16643d243d0",
-			"dataCitire": "15/12/2020",
-			"selected": false,
-			"citire": "8423",
-			"factura": "0",
-			"consum": "203",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "85d6f065-dd27-4e8a-ae07-8fb454d95dc2",
-			"dataCitire": "19/01/2021",
-			"selected": false,
-			"citire": "8771",
-			"factura": "0",
-			"consum": "348",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "0a167838-3232-40bb-89cf-d2e7baf990fc",
-			"dataCitire": "17/02/2021",
-			"selected": false,
-			"citire": "9049",
-			"factura": "0",
-			"consum": "278",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "41d3f79d-dac9-45e7-a868-f262a8a69e6b",
-			"dataCitire": "17/03/2021",
-			"selected": false,
-			"citire": "9291",
-			"factura": "0",
-			"consum": "242",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "dcd91cfd-65a1-439d-a1dd-450fa6418255",
-			"dataCitire": "20/04/2021",
-			"selected": false,
-			"citire": "9546",
-			"factura": "0",
-			"consum": "255",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "0b873be7-e9bb-461a-b19c-b5b3614e7f39",
-			"dataCitire": "15/05/2021",
-			"selected": false,
-			"citire": "9758",
-			"factura": "0",
-			"consum": "212",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "982ac42d-bd09-4346-ae89-ad6575a3af2e",
-			"dataCitire": "16/06/2021",
-			"selected": false,
-			"citire": "9983",
-			"factura": "0",
-			"consum": "225",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "32149f6d-8baf-4272-8673-b84268b8fd8a",
-			"dataCitire": "16/07/2021",
-			"selected": false,
-			"citire": "10173",
-			"factura": "0",
-			"consum": "190",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "db97488a-045e-4ef5-bdc6-b2bb1f626537",
-			"dataCitire": "18/08/2021",
-			"selected": false,
-			"citire": "10304",
-			"factura": "0",
-			"consum": "131",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "1e3b57f0-6e54-4bbf-9d49-44314282a1be",
-			"dataCitire": "18/09/2021",
-			"selected": false,
-			"citire": "10522",
-			"factura": "0",
-			"consum": "218",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "abeb3a80-1929-4e08-8452-42f7efb039ec",
-			"dataCitire": "16/10/2021",
-			"selected": false,
-			"citire": "10777",
-			"factura": "0",
-			"consum": "255",
-			"platit": false,
-			"edit": false
-		},
-		{
-			"id": "574b9b53-88a7-47e1-9296-cc48b8f34afa",
-			"dataCitire": "17/11/2021",
-			"selected": false,
-			"citire": "11036",
-			"factura": "0",
-			"consum": "259",
-			"platit": false,
-			"edit": false
-		}
-	]
+  "gas": [
+    {
+      "id": "1ad7c72a-4d63-4bf6-9321-8c0bb7884c5b",
+      "dataCitire": "19/09/2019",
+      "selected": false,
+      "citire": "5648",
+      "consum": "",
+      "factura": "6.91",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "2d1cb0ff-1a6c-4894-9588-5ed7fca8f61e",
+      "dataCitire": "17/02/2020",
+      "selected": false,
+      "citire": "6011",
+      "consum": "",
+      "factura": "227.80",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "df9d2608-947c-4b66-b8a1-b965b26a6f47",
+      "dataCitire": "15/04/2020",
+      "selected": false,
+      "citire": "6110",
+      "consum": "",
+      "factura": "92.93",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "15fcb5bh-7c53-4056-8d76-d8b9e5514965",
+      "dataCitire": "16/06/2020",
+      "selected": false,
+      "citire": "6145",
+      "consum": "35",
+      "factura": "76.45",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "28276427-622f-4222-8d17-4d330e503d33",
+      "dataCitire": "15/09/2020",
+      "selected": false,
+      "citire": "4235",
+      "consum": "",
+      "factura": "68.06",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "319f6a59-b719-46be-b076-549e32c46715",
+      "dataCitire": "16/11/2020",
+      "selected": false,
+      "citire": "4325",
+      "consum": "90",
+      "factura": "91.81",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "70b78853-d7f7-4db5-8dbb-a755ba98d979",
+      "dataCitire": "15/12/2020",
+      "selected": false,
+      "citire": "4400",
+      "consum": "75",
+      "factura": "126.26",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "4c534fcc-fba3-45b5-8e42-3866fb68a33c",
+      "dataCitire": "19/01/2021",
+      "selected": false,
+      "citire": "4506",
+      "consum": "106",
+      "factura": "186.39",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "9cc2ac56-04e2-47a3-9707-3114f68c48f8",
+      "dataCitire": "17/02/2021",
+      "selected": false,
+      "citire": "4575",
+      "consum": "69",
+      "factura": "107.31",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "c208d5c9-913f-41ef-91a0-c78b5a241d8c",
+      "dataCitire": "17/03/2021",
+      "selected": false,
+      "citire": "4640",
+      "consum": "65",
+      "factura": "108.93",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "c208d5c9-913f-41ef-91a0-c78b5a241d8f",
+      "dataCitire": "17/04/2021",
+      "selected": false,
+      "citire": "4640",
+      "consum": "0",
+      "factura": "41.75",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "a67d6291-2c13-4bc9-80f0-ba34636aaf27",
+      "dataCitire": "15/05/2021",
+      "selected": false,
+      "citire": "4713",
+      "consum": "73",
+      "factura": "82.01",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "c75a026e-fba4-45db-b298-120cbe1ec76e",
+      "dataCitire": "16/06/2021",
+      "selected": false,
+      "citire": "4736",
+      "consum": "23",
+      "factura": "37.13",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "d7b5c3b9-214b-427b-b461-c00210700cde",
+      "dataCitire": "16/07/2021",
+      "selected": false,
+      "citire": "4755",
+      "consum": "19",
+      "factura": "40.01",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "4efe5576-daba-4b0e-9782-357a56543aa9",
+      "dataCitire": "18/08/2021",
+      "selected": false,
+      "citire": "4765",
+      "consum": "10",
+      "factura": "13.30",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "f09e9ece-3545-43a8-94af-892e0259ecfa",
+      "dataCitire": "18/09/2021",
+      "selected": false,
+      "citire": "4780",
+      "consum": "15",
+      "factura": "28.38",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "0eaa0f23-8529-4d32-8dcb-db36f7b94403",
+      "dataCitire": "16/10/2021",
+      "selected": false,
+      "citire": "4811",
+      "consum": "31",
+      "factura": "76.39",
+      "platit": true,
+      "edit": false
+    },
+    {
+      "id": "dead6ccf-434f-498a-9f87-541a467f8b4a",
+      "dataCitire": "17/11/2021",
+      "selected": false,
+      "citire": "4845",
+      "factura": "80.10",
+      "consum": "34",
+      "platit": false,
+      "edit": false
+    }
+  ],
+  "light": [
+    {
+      "id": "bead6ccf-434f-498a-9f87-541a467f8b46",
+      "dataCitire": "15/02/2020",
+      "selected": false,
+      "citire": "6057",
+      "factura": "0",
+      "consum": "",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "0d9b5c7b-7432-4873-b358-31570652cc1b",
+      "dataCitire": "15/04/2020",
+      "selected": false,
+      "citire": "6558",
+      "factura": "0",
+      "consum": "501",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "7fd2fd13-9f74-4d9b-81ac-80fb6ea12109",
+      "dataCitire": "16/05/2020",
+      "selected": false,
+      "citire": "6847",
+      "factura": "0",
+      "consum": "289",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "68907e1f-67c7-4c47-acb3-8d4cc4d06f1e",
+      "dataCitire": "15/09/2020",
+      "selected": false,
+      "citire": "7694",
+      "factura": "0",
+      "consum": "847",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "dbf6482d-dced-4e62-8e1d-bae4821b5f75",
+      "dataCitire": "16/11/2020",
+      "selected": false,
+      "citire": "8220",
+      "factura": "0",
+      "consum": "526",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "053121a2-c040-4aa4-a269-e16643d243d0",
+      "dataCitire": "15/12/2020",
+      "selected": false,
+      "citire": "8423",
+      "factura": "0",
+      "consum": "203",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "85d6f065-dd27-4e8a-ae07-8fb454d95dc2",
+      "dataCitire": "19/01/2021",
+      "selected": false,
+      "citire": "8771",
+      "factura": "0",
+      "consum": "348",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "0a167838-3232-40bb-89cf-d2e7baf990fc",
+      "dataCitire": "17/02/2021",
+      "selected": false,
+      "citire": "9049",
+      "factura": "0",
+      "consum": "278",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "41d3f79d-dac9-45e7-a868-f262a8a69e6b",
+      "dataCitire": "17/03/2021",
+      "selected": false,
+      "citire": "9291",
+      "factura": "0",
+      "consum": "242",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "dcd91cfd-65a1-439d-a1dd-450fa6418255",
+      "dataCitire": "20/04/2021",
+      "selected": false,
+      "citire": "9546",
+      "factura": "0",
+      "consum": "255",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "0b873be7-e9bb-461a-b19c-b5b3614e7f39",
+      "dataCitire": "15/05/2021",
+      "selected": false,
+      "citire": "9758",
+      "factura": "0",
+      "consum": "212",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "982ac42d-bd09-4346-ae89-ad6575a3af2e",
+      "dataCitire": "16/06/2021",
+      "selected": false,
+      "citire": "9983",
+      "factura": "0",
+      "consum": "225",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "32149f6d-8baf-4272-8673-b84268b8fd8a",
+      "dataCitire": "16/07/2021",
+      "selected": false,
+      "citire": "10173",
+      "factura": "0",
+      "consum": "190",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "db97488a-045e-4ef5-bdc6-b2bb1f626537",
+      "dataCitire": "18/08/2021",
+      "selected": false,
+      "citire": "10304",
+      "factura": "0",
+      "consum": "131",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "1e3b57f0-6e54-4bbf-9d49-44314282a1be",
+      "dataCitire": "18/09/2021",
+      "selected": false,
+      "citire": "10522",
+      "factura": "0",
+      "consum": "218",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "abeb3a80-1929-4e08-8452-42f7efb039ec",
+      "dataCitire": "16/10/2021",
+      "selected": false,
+      "citire": "10777",
+      "factura": "0",
+      "consum": "255",
+      "platit": false,
+      "edit": false
+    },
+    {
+      "id": "574b9b53-88a7-47e1-9296-cc48b8f34afa",
+      "dataCitire": "17/11/2021",
+      "selected": false,
+      "citire": "11036",
+      "factura": "0",
+      "consum": "259",
+      "platit": false,
+      "edit": false
+    }
+  ]
 }

@@ -1,11 +1,10 @@
-import { typeofLiftState } from "../../app/store";
+import { RootState } from "../../app/store";
 
-export const liftState = (state: typeofLiftState) => state.lift;
+export const liftState = (state: RootState) => state.lift;
 
-export const positionState = (state: typeofLiftState) => state.lift.position;
+export const positionState = (state: RootState) => state.lift.position;
 
-export const levelsNumberState = (state: typeofLiftState) =>
+export const levelsNumberState = (state: RootState) =>
 	state.lift.numberOfLevels;
 
-export const isSideBarOpen = (state: typeofLiftState) =>
-	state.lift.isSideBarOpen;
+export const isSideBarOpen = (state: RootState) => state.lift.isSideBarOpen;
