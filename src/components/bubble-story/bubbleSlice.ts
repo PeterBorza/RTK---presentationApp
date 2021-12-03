@@ -41,6 +41,12 @@ export const bubbleSlice = createSlice({
 		) => {
 			state.isSidePanelOpen = payload;
 		},
+		toggleBubbleFormModal: (
+			state: BubbleState,
+			{ payload }: PayloadAction<boolean>
+		) => {
+			state.isFormModalOpen = payload;
+		},
 		deleteBub: (
 			{ bubbles }: BubbleState,
 			{ payload }: PayloadAction<number>
@@ -59,6 +65,7 @@ export const {
 	deleteBub,
 	addBubble,
 	toggleBubbleSidePanel,
+	toggleBubbleFormModal,
 } = bubbleSlice.actions;
 
 export default bubbleSlice.reducer;

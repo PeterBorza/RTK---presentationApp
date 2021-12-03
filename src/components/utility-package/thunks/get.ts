@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 
 export const getAsyncUtility = createAsyncThunk(
-	"utilities/getAsyncGas",
+	"utilities/getAsyncUtility",
 	async (utility: UtilityParam, thunkApi): Promise<void> => {
 		thunkApi.dispatch(setUtilitiesPending(true));
 		try {

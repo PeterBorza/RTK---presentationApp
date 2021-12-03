@@ -12,12 +12,13 @@
 	&__span {
 		color: white;
 		text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
-		font-size: clamp(1rem, 1.5vw, 2rem);
+		font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
 		font-family: fantasy;
 		user-select: none;
 	}
 	&__active {
-		background-color: black;
+		outline: 2px dashed white;
+		outline-offset: -4px;
 		.bubbleStyle__span {
 			color: rgb(119, 22, 22);
 		}

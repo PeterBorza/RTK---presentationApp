@@ -14,3 +14,6 @@ export const errorState = ({ bubbles }: typeofBubbleState) => bubbles.error;
 
 export const bubbleSidePanelSelector = ({ bubbles }: typeofBubbleState) =>
 	bubbles.isSidePanelOpen;
+
+export const bubbleModalFormSelector = ({ bubbles }: typeofBubbleState) =>
+	bubbles.isFormModalOpen;

@@ -1,72 +1,106 @@
 {
-	"bubbles": [
-		{
-			"id": 7,
-			"selected": false,
-			"cssProps": {
-				"left": "78%",
-				"top": "45%",
-				"size": "150px",
-				"opacity": "1"
-			}
-		},
-		{
-			"id": 10,
-			"selected": false,
-			"cssProps": {
-				"left": "12%",
-				"top": "70%",
-				"size": "120px",
-				"opacity": "1"
-			}
-		},
-		{
-			"id": 11,
-			"selected": false,
-			"cssProps": {
-				"left": "45%",
-				"top": "45%",
-				"size": "150px",
-				"opacity": "0.8"
-			}
-		},
-		{
-			"id": 13,
-			"selected": false,
-			"cssProps": {
-				"left": "55%",
-				"top": "65%",
-				"size": "50px",
-				"opacity": "1"
-			}
-		},
-		{
-			"id": 15,
-			"selected": false,
-			"cssProps": {
-				"left": "90%",
-				"top": "10%",
-				"size": "120px",
-				"opacity": "0.5"
-			}
-		}
-	],
-	"colorSets": [
-		{
-			"id": 1001,
-			"palet": ["D3C1C3", "E2D0BE", "EEE5BF", "E8F8C1", "D1FFC6"]
-		},
-		{
-			"id": 1002,
-			"palet": ["3E4E50", "FACFAD", "F8BD7F", "F5AC72", "F2AA7E"]
-		},
-		{
-			"id": 1003,
-			"palet": ["D8D4F2", "C4B2BC", "A29587", "846C5B", "332E3C"]
-		},
-		{
-			"id": 1004,
-			"palet": ["ECC8AF", "E7AD99", "CE796B", "C18C5D", "495867"]
-		}
-	]
+  "bubbles": [
+    {
+      "id": 7,
+      "selected": false,
+      "cssProps": {
+        "left": "78%",
+        "top": "45%",
+        "size": "150px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 10,
+      "selected": false,
+      "cssProps": {
+        "left": "12%",
+        "top": "70%",
+        "size": "120px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 11,
+      "selected": false,
+      "cssProps": {
+        "left": "45%",
+        "top": "45%",
+        "size": "150px",
+        "opacity": "0.8"
+      }
+    },
+    {
+      "id": 13,
+      "selected": false,
+      "cssProps": {
+        "left": "55%",
+        "top": "65%",
+        "size": "50px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 15,
+      "selected": false,
+      "cssProps": {
+        "left": "90%",
+        "top": "10%",
+        "size": "120px",
+        "opacity": "0.5"
+      }
+    },
+    {
+      "id": 16,
+      "selected": false,
+      "cssProps": {
+        "left": "14%",
+        "top": "45%",
+        "size": "234px",
+        "opacity": ".8"
+      }
+    }
+  ],
+  "colorSets": [
+    {
+      "id": 1001,
+      "palet": [
+        "D3C1C3",
+        "E2D0BE",
+        "EEE5BF",
+        "E8F8C1",
+        "D1FFC6"
+      ]
+    },
+    {
+      "id": 1002,
+      "palet": [
+        "3E4E50",
+        "FACFAD",
+        "F8BD7F",
+        "F5AC72",
+        "F2AA7E"
+      ]
+    },
+    {
+      "id": 1003,
+      "palet": [
+        "D8D4F2",
+        "C4B2BC",
+        "A29587",
+        "846C5B",
+        "332E3C"
+      ]
+    },
+    {
+      "id": 1004,
+      "palet": [
+        "ECC8AF",
+        "E7AD99",
+        "CE796B",
+        "C18C5D",
+        "495867"
+      ]
+    }
+  ]
 }

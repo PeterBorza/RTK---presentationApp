@@ -49,7 +49,11 @@ const UtilityForm: FC<Props> = ({ utility }) => {
 	};
 
 	const onSubmitHandler = () => {
-		const lastCitire = units[units.length - 1].citire;
+		let lastCitire;
+		if (units.length === 0) {
+			lastCitire = gasUnit.citire;
+		}
+		lastCitire = units[units.length - 1].citire;
 		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
 		const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
 
