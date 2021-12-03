@@ -31,16 +31,6 @@
       "edit": false
     },
     {
-      "id": "15fcb5be-7c53-4056-8d76-d8b9e5514674",
-      "dataCitire": "16/05/2020",
-      "selected": false,
-      "citire": "4180",
-      "consum": "0",
-      "factura": "0",
-      "platit": true,
-      "edit": false
-    },
-    {
       "id": "15fcb5bh-7c53-4056-8d76-d8b9e5514965",
       "dataCitire": "16/06/2020",
       "selected": false,
@@ -191,26 +181,5 @@
       "edit": false
     }
   ],
-  "light": [
-    {
-      "id": "3ad7c72a-4d63-4bf6-9321-8c0bb7884c5g",
-      "dataCitire": "19/09/2019",
-      "selected": false,
-      "citire": "5648",
-      "consum": "",
-      "factura": "6.91",
-      "platit": true,
-      "edit": false
-    },
-    {
-      "id": "b84e22d7-4fad-4f8f-a31e-5ca5bfcac76c",
-      "dataCitire": "01/12/2021",
-      "selected": false,
-      "citire": "5700",
-      "factura": "0",
-      "consum": "52",
-      "platit": false,
-      "edit": false
-    }
-  ]
+  "light": []
 }

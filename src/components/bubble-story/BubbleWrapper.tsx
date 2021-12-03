@@ -78,6 +78,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	}, [dispatch]);
 
 	const sideBarHeaderTitle = () => <h3>{BubbleSideBarTitle.TITLE}</h3>;
+
 	const sideBarBody = () =>
 		selected ? (
 			<SelectedBubble selected={selected} />

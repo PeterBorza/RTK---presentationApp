@@ -2,17 +2,22 @@
 @use "../../../css/mixins" as *;
 
 .container {
+	position: relative;
 	@include container();
 	background-color: white;
 	background-image: url(../../../images/city900.jpg);
 	background-size: cover;
 	background-position: center;
-	@include fEven(column);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	// @include fBetween(column);
 	p {
 		color: white;
 	}
 }
 .empty {
+	margin: auto;
 	width: 40%;
 	height: 20vh;
 	background-color: dodgerblue;
@@ -22,6 +27,7 @@
 }
 
 .full {
+	margin: auto;
 	width: 40%;
 	height: 20vh;
 	display: flex;
@@ -32,12 +38,15 @@
 	color: rgb(216, 195, 6);
 }
 
-.active {
-	color: white;
+.menuButtonWrapper {
+	width: 100%;
+	display: flex;
 }
 
-.disabled {
-	color: crimson;
+.menuButton {
+	position: fixed;
+	left: 1rem;
+	top: 0.3rem;
 }
 
 .red {

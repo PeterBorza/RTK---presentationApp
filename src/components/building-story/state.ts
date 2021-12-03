@@ -8,10 +8,10 @@ export const positionInitialState: PositionState = {
 
 export const initialState: LiftState = {
 	numberOfLevels: 7,
-	levelArray: [],
 	speed: 1000,
 	liftHeight: 10,
 	liftWidth: 20,
 	position: positionInitialState,
 	isDisabled: false,
+	isSideBarOpen: false,
 };
