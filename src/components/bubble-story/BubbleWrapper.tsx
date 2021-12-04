@@ -151,11 +151,12 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	return (
 		<AsidePlatform
 			isOpen={isOpen}
-			renderBody={renderBubbleContent}
 			onClose={handleOnClose}
 			renderHeader={sideBarHeaderTitle}
 			renderSideBar={sideBarBody}
-		/>
+		>
+			{renderBubbleContent()}
+		</AsidePlatform>
 	);
 };
 

@@ -1,0 +1,14 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
+
+.container {
+	@include container;
+	background-color: $myBlue;
+	@include fEven(column);
+	h1 {
+		font-size: 3rem;
+		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+		letter-spacing: 2px;
+	}
+}

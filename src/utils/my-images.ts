@@ -10,12 +10,10 @@ import img9 from "../images/IMG_7717.JPG";
 import img10 from "../images/IMG_7718.JPG";
 import img11 from "../images/IMG_7719.JPG";
 
+import { generateId } from ".";
+
 export const myImages = () => {
 	return [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
-};
-
-const generateId = (): string => {
-	return Math.random().toString(36).substr(2, 9);
 };
 
 export const imageData = () => {

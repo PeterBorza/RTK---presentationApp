@@ -1,0 +1,27 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
+
+.wrapper {
+	@include container;
+	display: flex;
+	overflow-y: auto;
+}
+
+.container {
+	width: 100%;
+	min-height: 100vh;
+	overflow-y: auto;
+	background-color: rgb(26, 23, 23);
+	// display: grid;
+	// grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	display: flex;
+}
+
+.links {
+	width: 100px;
+	background-color: $myYellow2;
+	a {
+		z-index: 100;
+	}
+}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
 import { UtilityLabels, UtilityTableLabels } from "../constants";
-import { utilityState, errorGasState, selectSubtotal } from "../selectors";
+import { utilityState, errorLightState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected } from "../lightSlice";
 import { UtilityStateUnit } from "../types";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
@@ -20,7 +20,7 @@ type Props = {
 
 const LightTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
-	const error = useSelector(errorGasState);
+	const error = useSelector(errorLightState);
 	const sumofBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
 
@@ -85,6 +85,7 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 
 	return (
 		<div className={wrapper}>
+			<h1>{UtilityTableLabels.TITLE}</h1>
 			<UtilityForm />
 			<Table
 				renderHeader={table.header}

@@ -5,7 +5,7 @@ import Home from "../components/Home";
 import { Bubbles } from "../components/bubble-story";
 import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
-import UtilityContainer from "../components/UtiltyContainer";
+import UtilityContainer from "../components/UtilityContainer";
 
 interface LinkProps {
 	children: React.ReactNode;
