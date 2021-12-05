@@ -1,5 +1,6 @@
 @use "../../css/my_app" as *;
 @use "../../css/mixins" as *;
+@use "../../css/variables" as *;
 
 .container {
 	position: fixed;
@@ -8,25 +9,26 @@
 	width: 100%;
 	height: $navHeight;
 	z-index: 1;
-	background-color: rgba(0, 128, 128, 0.336);
+	background-color: $navPrimaryBG;
 	overflow-x: auto;
 }
 
 .links {
 	text-transform: uppercase;
 	font-size: clamp(0.7rem, 1.5vh + 0.3rem, 2.5rem);
+	transition: color 150ms ease-out;
 }
 .inActive {
-	color: white;
+	color: $myYellow3;
 
 	&:hover {
-		color: rgb(216, 201, 201);
+		color: darken($myYellow3, 10%);
 	}
 }
 
 .active {
-	color: red;
+	color: white;
 	&:hover {
-		color: rgb(211, 35, 35);
+		color: darken($myYellow3, 10%);
 	}
 }

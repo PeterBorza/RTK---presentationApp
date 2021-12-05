@@ -14,6 +14,7 @@ import { Bubbles } from "./components/bubble-story";
 import { Gas } from "./components/Gas";
 import { Light } from "./components/Light";
 import UtilityPlatform from "./components/UtilityPlatform";
+import PhotosLandingPage from "./components/memoryGame-story/PhotosLandingPage";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
 						<Route path='building' element={<Lift />} />
 						<Route path='bubbles' element={<Bubbles />} />
 						<Route path='photos' element={<Photos />}>
+							<Route index element={<PhotosLandingPage />} />
 							<Route path=':id' element={<Photo />} />
 						</Route>
 						<Route path='game' element={<Game />} />

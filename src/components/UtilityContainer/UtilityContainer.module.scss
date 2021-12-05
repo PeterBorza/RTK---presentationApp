@@ -3,25 +3,27 @@
 @use "../../css/variables" as *;
 
 .wrapper {
-	@include container;
+	// @include container;
+	width: 100%;
+	@include sideBar;
 	display: flex;
 	overflow-y: auto;
 }
 
 .container {
 	width: 100%;
-	min-height: 100vh;
 	overflow-y: auto;
-	background-color: rgb(26, 23, 23);
-	// display: grid;
-	// grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	display: flex;
 }
 
 .links {
 	width: 100px;
-	background-color: $myYellow2;
+	background-color: $myYellow3;
 	a {
 		z-index: 100;
+		color: white;
+		&:hover {
+			color: $navPrimaryBG;
+		}
 	}
 }

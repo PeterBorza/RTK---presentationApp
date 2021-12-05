@@ -11,7 +11,7 @@
 
 @mixin sideBar {
 	display: grid;
-	grid-template-columns: minmax(150px, 25%), 1fr;
+	grid-template-columns: minmax(120px, 25%), 1fr;
 }
 
 @mixin headerMainFooter {
@@ -149,4 +149,12 @@
 		transform: scale(1.001);
 		transition: transform 200ms, box-shadow 200ms;
 	}
+}
+
+@mixin noVisibleScrollBar {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }

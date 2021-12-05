@@ -1,31 +1,33 @@
 @use "../../../css/my_app" as *;
 @use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
 
 .container {
 	@include container();
-	display: flex;
-	background-color: rgba(139, 226, 197, 0.836);
 }
 
 .imageWrapper {
-	width: 100%;
+	// width: 100%;
+	height: 100vh;
+	@include fCenter;
 	overflow-y: auto;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	@include noVisibleScrollBar;
 }
 
 .linkWrapper {
-	@include sideBar;
-	width: 20%;
-	text-align: center;
+	height: 100%;
+	background-color: $appBlack;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	@include linksAnchorStyle;
 }
 
 .imageStyle {
-	display: block;
-	margin: 2rem auto;
 	width: 90%;
-	max-width: 800px;
+	max-width: 700px;
+}
+
+.menuButton {
+	position: absolute;
 }

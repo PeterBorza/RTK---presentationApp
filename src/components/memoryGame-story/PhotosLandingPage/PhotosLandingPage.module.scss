@@ -1,0 +1,9 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
+.container {
+	@include container;
+	@include fCenter;
+	background-color: bisque;
+}

@@ -1,5 +1,9 @@
+@use "../../css/variables" as *;
+@use "../../css/mixins" as *;
+@use "../../css/my_app" as *;
+
 .defaultStyle {
-	background: transparent;
+	background: $myYellow3;
 	border: none;
 	outline: none;
 	font-weight: bold;
@@ -10,15 +14,15 @@
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 	transition: all 120ms ease-out;
 	&:hover {
-		background-color: rgb(124, 118, 118);
-		color: rgba(250, 245, 245, 0.932);
+		color: $navPrimaryBG;
+		box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 	}
 	&:active {
 		transform: scale(0.95);
 	}
 	&__disabled {
 		.defaultStyle__content {
-			color: rgba(141, 8, 8, 0.5);
+			color: rgba(255, 255, 255, 0.411);
 		}
 		&:hover {
 			background: transparent;

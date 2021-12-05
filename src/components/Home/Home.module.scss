@@ -1,9 +1,10 @@
 @use "../../css/my_app" as *;
 @use "../../css/mixins" as *;
+@use "../../css/variables" as *;
 
 .container {
 	@include container();
-	background-color: rgb(63, 56, 56);
+	background-color: $appBlack;
 	@include fAround(row);
 }
 

@@ -30,10 +30,10 @@ export const memoryGameSlice = createSlice({
 			error = payload;
 		},
 		toggleSidePanel: (
-			{ isSidePanelOpen }: MemoryGameState,
+			state: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
 		) => {
-			isSidePanelOpen = payload;
+			state.isSidePanelOpen = payload;
 		},
 		toggleFlip: (
 			{ gamePhotos }: MemoryGameState,

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
 import { UtilityLabels, UtilityTableLabels } from "../constants";
-import { utilityState, errorLightState, selectSubtotal } from "../selectors";
+import { utilityState, errorLightState } from "../selectors";
 import { selectCard, resetSelected } from "../lightSlice";
 import { UtilityStateUnit } from "../types";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
+import TotalPayedInfo from "../TotalPayedInfo";
 
 import LightCard from "../LightCard";
 import UtilityForm from "../LightForm";
@@ -21,11 +22,7 @@ type Props = {
 const LightTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorLightState);
-	const sumofBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
-
-	const today = new Date().toLocaleDateString();
-	const exactSumOfBillsPayed = sumofBills.toFixed(2);
 
 	const wrapper = classNames(styles.container, {
 		[styles.container__dark]: dark,
@@ -93,17 +90,7 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 				loading={loading.isLoading}
 				message={loading.message}
 			/>
-			<div className={styles.billTotalInfo}>
-				<h3>
-					{UtilityTableLabels.SUM_OF_BILLS}
-					<span className={styles.highlighted}>{today}</span>
-					{UtilityTableLabels.IS}
-					<span className={styles.highlighted}>
-						{exactSumOfBillsPayed}
-					</span>
-					{UtilityTableLabels.RON}
-				</h3>
-			</div>
+			<TotalPayedInfo />
 			{error && <Error message={error} />}
 		</div>
 	);
