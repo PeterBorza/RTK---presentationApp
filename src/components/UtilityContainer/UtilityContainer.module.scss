@@ -16,8 +16,10 @@
 	display: flex;
 }
 
-.links {
-	width: 100px;
+.sideBarLinks {
+	display: flex;
+	flex-direction: column;
+	width: 10%;
 	background-color: $myYellow3;
 	a {
 		z-index: 100;

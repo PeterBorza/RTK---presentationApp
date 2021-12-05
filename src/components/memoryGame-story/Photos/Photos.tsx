@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { photoSelector, toggleSidePanel } from "..";
 import { AsidePlatform, Button } from "../../../reusables";
+import { MemoryGameMessages } from "../messages";
 import { sidePanelSelector } from "../selectors";
 
 import styles from "./Photos.module.scss";
@@ -45,7 +46,7 @@ const Photos: FC = () => {
 				<Button
 					className={styles.menuButton}
 					onClick={openMenu}
-					value='Menu'
+					value={MemoryGameMessages.MENU}
 				/>
 			)}
 			<div className={styles.container}>

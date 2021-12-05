@@ -17,18 +17,14 @@
 	text-transform: uppercase;
 	font-size: clamp(0.7rem, 1.5vh + 0.3rem, 2.5rem);
 	transition: color 150ms ease-out;
-}
-.inActive {
-	color: $myYellow3;
-
 	&:hover {
 		color: darken($myYellow3, 10%);
 	}
+}
+.inActive {
+	color: $myYellow3;
 }
 
 .active {
 	color: white;
-	&:hover {
-		color: darken($myYellow3, 10%);
-	}
 }

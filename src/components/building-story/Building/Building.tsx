@@ -119,11 +119,13 @@ const Building: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.menuButtonWrapper}>
-				<Button
-					className={styles.menuButton}
-					onClick={() => dispatch(toggleLiftSidePanel(!isOpen))}
-					value='Menu'
-				/>
+				{!isOpen && (
+					<Button
+						className={styles.menuButton}
+						onClick={() => dispatch(toggleLiftSidePanel(true))}
+						value='Menu'
+					/>
+				)}
 			</div>
 			{!isDisabled ? (
 				<div className={styles.full}>
