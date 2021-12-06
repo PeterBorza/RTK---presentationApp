@@ -5,10 +5,9 @@ export const utilityState = ({ light }: RootState) => light;
 
 export const unitsState = ({ light }: RootState) => light.units;
 
-export const pendingGasState = ({ light }: RootState) =>
-	light.loading.isLoading;
+export const pendingState = ({ light }: RootState) => light.loading.isLoading;
 
-export const errorGasState = ({ light }: RootState) => light.error;
+export const errorLightState = ({ light }: RootState) => light.error;
 
 export const isPayedSelector = createSelector(unitsState, items =>
 	items.filter(items => items.platit === true)

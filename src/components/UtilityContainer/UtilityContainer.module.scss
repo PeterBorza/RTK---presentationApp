@@ -1,0 +1,30 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
+
+.wrapper {
+	@include container;
+	@include sideBar(120px, 25%);
+	display: flex;
+	overflow-y: auto;
+}
+
+.container {
+	width: 100%;
+	overflow-y: auto;
+	display: flex;
+}
+
+.sideBarLinks {
+	display: flex;
+	flex-direction: column;
+	width: 10%;
+	background-color: $myYellow3;
+	a {
+		z-index: 100;
+		color: white;
+		&:hover {
+			color: $navPrimaryBG;
+		}
+	}
+}

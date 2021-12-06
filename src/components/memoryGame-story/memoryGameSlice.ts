@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState } from "./types";
-import { imageData, shuffledImages } from "../../utils";
+import { imageData } from "../../utils";
+import { shuffledImages } from "./game-images";
 import { GamePhotoData } from ".";
 
 const initialState: MemoryGameState = {
@@ -29,10 +30,10 @@ export const memoryGameSlice = createSlice({
 			error = payload;
 		},
 		toggleSidePanel: (
-			{ isSidePanelOpen }: MemoryGameState,
+			state: MemoryGameState,
 			{ payload }: PayloadAction<boolean>
 		) => {
-			isSidePanelOpen = payload;
+			state.isSidePanelOpen = payload;
 		},
 		toggleFlip: (
 			{ gamePhotos }: MemoryGameState,

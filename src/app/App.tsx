@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./App.module.scss";
 import Navigation from "../components/Navigation";
 import { LinkContextProvider } from "../context";
+import { Outlet } from "react-router";
 
 const App: React.FC = () => {
 	return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
 			<LinkContextProvider>
 				<Navigation />
 			</LinkContextProvider>
+			<Outlet />
 		</div>
 	);
 };

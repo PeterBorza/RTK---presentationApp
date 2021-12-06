@@ -4,6 +4,7 @@
 .container {
 	position: relative;
 	padding: 1rem;
+	gap: 1rem;
 	@include container();
 	@include fCenter(column);
 	// @include before("../images/contor_gaz.jpg");

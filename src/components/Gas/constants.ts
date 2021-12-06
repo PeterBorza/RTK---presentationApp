@@ -13,6 +13,7 @@ export enum UtilityLabels {
 }
 
 export enum UtilityTableLabels {
+	TITLE = "Situatie Gaz",
 	SUM_OF_BILLS = "Total platit pana in data de: ",
 	IS = " este de ",
 	RON = " RON",

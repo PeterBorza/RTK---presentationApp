@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import ScrollTable from ".";
-import { Loader } from "..";
+import { Loader, LoadingWrapper } from "..";
 
 export interface Props {
 	renderBody: () => ReactNode;
@@ -10,16 +10,12 @@ export interface Props {
 }
 
 const Table: FC<Props> = ({ renderBody, renderHeader, loading, message }) => {
-	return (
+	return loading ? (
+		<LoadingWrapper loading={loading} />
+	) : (
 		<ScrollTable>
-			{loading ? (
-				<Loader dots={5} message={message} />
-			) : (
-				<>
-					<ScrollTable.Header>{renderHeader()}</ScrollTable.Header>
-					<ScrollTable.Body>{renderBody()}</ScrollTable.Body>
-				</>
-			)}
+			<ScrollTable.Header>{renderHeader()}</ScrollTable.Header>
+			<ScrollTable.Body>{renderBody()}</ScrollTable.Body>
 		</ScrollTable>
 	);
 };

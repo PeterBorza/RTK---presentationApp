@@ -2,7 +2,8 @@ import { FC, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { gameImagesSlice, shuffle } from "../../../utils";
+import { gameImagesSlice } from "../game-images";
+import { shuffle } from "../../../utils";
 
 import {
 	gamePhotosSelector,

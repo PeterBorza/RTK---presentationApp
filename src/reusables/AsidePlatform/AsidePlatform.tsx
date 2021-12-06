@@ -8,14 +8,14 @@ import styles from "./AsidePlatform.module.scss";
 export type Props = {
 	isOpen: boolean;
 	onClose: () => void;
-	renderBody: () => ReactNode;
+	children: ReactNode;
 	renderSideBar: () => ReactNode;
 	renderHeader: () => ReactNode;
 };
 
 const AsidePlatform: FC<Props> = ({
 	isOpen,
-	renderBody,
+	children,
 	onClose,
 	renderSideBar,
 	renderHeader,
@@ -33,7 +33,7 @@ const AsidePlatform: FC<Props> = ({
 				renderBody={renderSideBar}
 				renderHeader={renderHeader}
 			/>
-			<div className={wrapper}>{renderBody()}</div>
+			<div className={wrapper}>{children}</div>
 		</section>
 	);
 };

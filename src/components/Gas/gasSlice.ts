@@ -16,7 +16,8 @@ export const gasSlice = createSlice({
 			);
 		},
 		resetSelected: (state: UtilityState) => {
-			state.units.map(item => (item.selected = false));
+			const selected = state.units.find(unit => unit.selected === true);
+			if (selected) selected.selected = false;
 		},
 		togglePayed: (
 			state: UtilityState,

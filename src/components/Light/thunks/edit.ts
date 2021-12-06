@@ -9,8 +9,8 @@ export const editAsyncUnit = async (
 	{ dispatch, getState }: { dispatch: Function; getState: Function }
 ): Promise<void> => {
 	const state = getState() as RootState;
-	const gasUnits = state.light.units;
-	const selected = gasUnits.find(unit => unit.id === id);
+	const lightUnits = state.light.units;
+	const selected = lightUnits.find(unit => unit.id === id);
 
 	dispatch(setUtilitiesPending(true));
 	try {

@@ -48,10 +48,6 @@ const LiftPlatform: FC = () => {
 		return <h1>Lift</h1>;
 	};
 
-	const renderLiftContent = () => {
-		return <Building />;
-	};
-
 	const handleOnClose = () => {
 		dispatch(toggleLiftSidePanel(false));
 	};
@@ -100,11 +96,12 @@ const LiftPlatform: FC = () => {
 	return (
 		<AsidePlatform
 			isOpen={isOpen}
-			renderBody={renderLiftContent}
 			onClose={handleOnClose}
 			renderHeader={sideBarHeaderTitle}
 			renderSideBar={sideBarBody}
-		/>
+		>
+			<Building />
+		</AsidePlatform>
 	);
 };
 

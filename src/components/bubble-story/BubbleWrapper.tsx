@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 
@@ -13,7 +12,7 @@ import {
 import { getBubbles, deleteBubble } from "./thunks";
 
 import { Url } from "../../app/constants";
-import { BubbleButtons, BubbleSideBarTitle, BubbleValues } from "./constants";
+import { BubbleMessages as msg } from "./constants";
 
 import Bubble from "./Bubble";
 import BubbleForm from "./BubbleForm";
@@ -61,48 +60,43 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		}
 	};
 
-	const handleBubbleClick = useCallback(
-		(id: number) => {
-			dispatch(selectBubble(id));
-			dispatch(toggleBubbleSidePanel(true));
-		},
-		[dispatch]
-	);
+	const handleBubbleClick = (id: number) => {
+		dispatch(selectBubble(id));
+		dispatch(toggleBubbleSidePanel(true));
+	};
 
 	const handleOnClose = () => {
 		dispatch(toggleBubbleSidePanel(false));
 	};
 
-	const handleOpenMenu = useCallback(() => {
-		dispatch(toggleBubbleSidePanel(true));
-	}, [dispatch]);
+	const handleOpenMenu = () => dispatch(toggleBubbleSidePanel(true));
 
-	const sideBarHeaderTitle = () => <h3>{BubbleSideBarTitle.TITLE}</h3>;
+	const sideBarHeaderTitle = () => <h3>{msg.TITLE}</h3>;
 
 	const sideBarBody = () =>
 		selected ? (
 			<SelectedBubble selected={selected} />
 		) : (
-			<h4>{BubbleValues.SELECT}</h4>
+			<h4>{msg.SELECT}</h4>
 		);
 
 	const buttons = [
 		{
 			id: uuid(),
-			onClick: showBubbles,
-			value: isLoading ? <Loader dots={5} /> : `${BubbleButtons.FETCH}`,
-			isDisabled: isBubbles,
-		},
-		{
-			id: uuid(),
 			onClick: handleOpenMenu,
-			value: `${BubbleButtons.MENU}`,
+			value: msg.MENU,
 			isDisabled: !isBubbles,
 		},
 		{
 			id: uuid(),
+			onClick: showBubbles,
+			value: isLoading ? <Loader dots={5} /> : msg.FETCH,
+			isDisabled: isBubbles,
+		},
+		{
+			id: uuid(),
 			onClick: deleteSelected,
-			value: `${BubbleButtons.DELETE}`,
+			value: msg.DELETE,
 			isDisabled: !selected,
 		},
 	];
@@ -137,7 +131,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 						<Bubble
 							key={id}
 							onClick={() => handleBubbleClick(id)}
-							title={BubbleValues.TITLE}
+							title={msg.HOVER_TITLE}
 							selected={selected}
 							cssProps={cssProps}
 							id={id}
@@ -151,11 +145,12 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	return (
 		<AsidePlatform
 			isOpen={isOpen}
-			renderBody={renderBubbleContent}
 			onClose={handleOnClose}
 			renderHeader={sideBarHeaderTitle}
 			renderSideBar={sideBarBody}
-		/>
+		>
+			{renderBubbleContent()}
+		</AsidePlatform>
 	);
 };
 

@@ -8,6 +8,7 @@ import {
 } from "../selectors";
 import LiftButtons from "../LiftButtons";
 import LiftButton from "../LiftButton";
+import { Button } from "../../../reusables";
 
 import { moveLiftA, moveLiftB, movePosition } from "../liftSlice";
 
@@ -118,12 +119,13 @@ const Building: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.menuButtonWrapper}>
-				<button
-					className={styles.menuButton}
-					onClick={() => dispatch(toggleLiftSidePanel(!isOpen))}
-				>
-					Menu
-				</button>
+				{!isOpen && (
+					<Button
+						className={styles.menuButton}
+						onClick={() => dispatch(toggleLiftSidePanel(true))}
+						value='Menu'
+					/>
+				)}
 			</div>
 			{!isDisabled ? (
 				<div className={styles.full}>

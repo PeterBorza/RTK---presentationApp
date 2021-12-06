@@ -12,8 +12,8 @@ const Navigation = () => {
 
 	const linkClasses = (isActive: boolean) =>
 		classNames(styles.links, {
-			[styles["active"]]: isActive,
-			[styles["inActive"]]: !isActive,
+			[styles.active]: isActive,
+			[styles.inActive]: !isActive,
 		});
 
 	const renderBody = links?.map(item => (
@@ -28,12 +28,9 @@ const Navigation = () => {
 	));
 
 	return (
-		<>
-			<div className={styles.container}>
-				<NavBar>{renderBody}</NavBar>
-			</div>
-			<Outlet />
-		</>
+		<div className={styles.container}>
+			<NavBar>{renderBody}</NavBar>
+		</div>
 	);
 };
 
