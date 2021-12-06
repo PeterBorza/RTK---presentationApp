@@ -31,10 +31,6 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 
 	const isUnits = units && units.length !== 0;
 
-	useEffect(() => {
-		dispatch(resetSelected());
-	}, [dispatch]);
-
 	const fetchGasUnits = useCallback(() => {
 		dispatch(getAsyncUtility());
 	}, [dispatch]);

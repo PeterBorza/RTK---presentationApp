@@ -3,9 +3,8 @@
 @use "../../css/variables" as *;
 
 .wrapper {
-	// @include container;
-	width: 100%;
-	@include sideBar;
+	@include container;
+	@include sideBar(120px, 25%);
 	display: flex;
 	overflow-y: auto;
 }

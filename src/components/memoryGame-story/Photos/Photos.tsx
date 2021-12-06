@@ -42,14 +42,14 @@ const Photos: FC = () => {
 			renderHeader={() => renderHeader()}
 			renderSideBar={() => sideBarContent()}
 		>
-			{!open && (
-				<Button
-					className={styles.menuButton}
-					onClick={openMenu}
-					value={MemoryGameMessages.MENU}
-				/>
-			)}
 			<div className={styles.container}>
+				{!open && (
+					<Button
+						className={styles.menuButton}
+						onClick={openMenu}
+						value={MemoryGameMessages.MENU}
+					/>
+				)}
 				<Outlet />
 			</div>
 		</AsidePlatform>

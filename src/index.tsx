@@ -15,6 +15,7 @@ import { Gas } from "./components/Gas";
 import { Light } from "./components/Light";
 import UtilityPlatform from "./components/UtilityPlatform";
 import PhotosLandingPage from "./components/memoryGame-story/PhotosLandingPage";
+import EditCard from "./components/Gas/EditCard";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -25,7 +26,9 @@ ReactDOM.render(
 						<Route index element={<Home />} />
 						<Route path='utilities' element={<UtilityContainer />}>
 							<Route index element={<UtilityPlatform />} />
-							<Route path='gas' element={<Gas />} />
+							<Route path='gas' element={<Gas />}>
+								<Route path=':id' element={<EditCard />} />
+							</Route>
 							<Route path='light' element={<Light />} />
 						</Route>
 						<Route path='building' element={<Lift />} />

@@ -9,9 +9,9 @@
 	justify-content: center; //child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for flexgrow, flexshrink, and flex-basis
 }
 
-@mixin sideBar {
+@mixin sideBar($px, $percentage) {
 	display: grid;
-	grid-template-columns: minmax(120px, 25%), 1fr;
+	grid-template-columns: minmax($px, $percentage), 1fr;
 }
 
 @mixin headerMainFooter {

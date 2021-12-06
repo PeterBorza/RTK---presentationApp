@@ -1,6 +1,9 @@
 @use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
 
 .layout {
+	position: relative;
 	width: 100%;
 	height: calc(100vh - 35px);
 	display: flex;

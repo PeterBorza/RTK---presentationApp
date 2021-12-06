@@ -18,6 +18,7 @@ export const toggleAsyncPayed = async (
 			.put(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${item.id}`, {
 				...item,
 				platit: !item.platit,
+				selected: false,
 			})
 			.then(dispatch(togglePayed(item.id)));
 	} catch {

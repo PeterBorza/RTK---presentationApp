@@ -1,11 +1,11 @@
 $navHeight: 35px;
 $navPrimaryBG: rgba(47, 49, 49, 0.6);
 $appBlack: rgb(24, 23, 23);
-$appYellow: #ffc600;
+$appYellow: rgb(255, 198, 0);
 $containerHeight: calc(100vh - $navHeight);
-$SBsize: 200px;
+$SBsize: 120px;
 $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
-$SBtransition: 200ms ease;
+$SBtransition: all 200ms ease;
 $SBhoverColor: rgb(134, 124, 124);
 $SBfontSize: 1.3rem;
 $SBnoMarginLeft: 0;
@@ -21,10 +21,10 @@ $darkMode: rgb(40, 64, 73);
 @mixin container() {
 	width: 100%;
 	height: $containerHeight;
-	transition: $SBtransition;
 	&__margin {
-		margin-left: $SBsize;
+		padding-left: $SBsize;
 	}
+	transition: $SBtransition;
 }
 
 // memory-game

@@ -3,20 +3,18 @@
 @use "../../css/my_app" as *;
 
 .wrapper {
-	position: fixed;
+	position: absolute;
 	left: 0;
-	bottom: 0;
-	height: $containerHeight;
+	top: 0;
+	height: 100%;
 	width: $SBsize;
 	transform: translateX(-100%);
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	@include headerMainFooter;
 	background-color: rgb(243, 238, 238);
 	border-bottom-right-radius: 3px;
 	overflow: hidden;
 	padding: 2px;
-	@include shadowSB();
+	@include shadowSB;
 	transition: $SBtransition;
 	z-index: 1;
 	&__open {
@@ -31,7 +29,7 @@
 .header,
 .footer {
 	width: 100%;
-	height: 5%;
+	height: 5vh;
 	display: flex;
 	align-items: center;
 	padding: 0.5rem;
@@ -50,6 +48,7 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	overflow-y: auto;
 }
 
 .toggle {
