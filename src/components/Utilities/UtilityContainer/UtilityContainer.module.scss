@@ -1,6 +1,6 @@
-@use "../../css/my_app" as *;
-@use "../../css/mixins" as *;
-@use "../../css/variables" as *;
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
 
 .wrapper {
 	@include container;

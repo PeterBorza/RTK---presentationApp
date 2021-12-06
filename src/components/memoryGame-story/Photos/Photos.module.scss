@@ -33,3 +33,9 @@
 .menuButton {
 	position: absolute;
 }
+
+.title {
+	color: $appBlack;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

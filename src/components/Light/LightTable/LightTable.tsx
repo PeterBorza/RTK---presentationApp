@@ -80,10 +80,14 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 		body: () => isUnits && renderListItems(units),
 	};
 
-	return (
+	return error ? (
+		<Error message={error} />
+	) : (
 		<div className={wrapper}>
-			<h1>{UtilityTableLabels.TITLE}</h1>
-			<UtilityForm />
+			<div className={styles.tableHeader}>
+				<h1>{UtilityTableLabels.TITLE}</h1>
+				<UtilityForm />
+			</div>
 			<Table
 				renderHeader={table.header}
 				renderBody={table.body}
@@ -91,7 +95,6 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 				message={loading.message}
 			/>
 			<TotalPayedInfo />
-			{error && <Error message={error} />}
 		</div>
 	);
 };

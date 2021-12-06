@@ -2,18 +2,17 @@ import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
-import { useTime } from "../../hooks";
 import { UtilityFormValues } from "./constants";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
 import { UtilityStateUnit, FormProps } from "./types";
 import { unitsState } from "./selectors";
-import { initialFormValues } from "./state";
 
-const GasForm: FC = () => {
+const GasForm: FC<FormProps> = ({ ...initialFormValues }) => {
 	const units = useSelector(unitsState);
-	const date = useTime("standard");
+	const date = new Date().toLocaleDateString();
+
 	const startingValues = {
 		...initialFormValues,
 		dataCitire: date,
@@ -30,10 +29,7 @@ const GasForm: FC = () => {
 		return value;
 	};
 
-	const checkIfValid = (input: string) => {
-		if (isNaN(parseInt(input))) return "0";
-		return input;
-	};
+	const checkIfValid = (input: string) => (isNaN(+input) ? "0" : input);
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.name !== "dataCitire" && e.target.value === "") return;
@@ -46,12 +42,10 @@ const GasForm: FC = () => {
 
 	const onSubmitHandler = () => {
 		let lastCitire;
-		if (units.length === 0) {
-			lastCitire = gasUnit.citire;
-		}
+		if (units.length === 0) lastCitire = gasUnit.citire;
 		lastCitire = units[units.length - 1].citire;
-		const newConsum = parseInt(gasUnit.citire) - parseInt(lastCitire);
-		const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
+		const newConsum = +gasUnit.citire - +lastCitire;
+		const checkNewConsum = newConsum || "0";
 
 		const newGasUnit: UtilityStateUnit = {
 			id: uuid(),

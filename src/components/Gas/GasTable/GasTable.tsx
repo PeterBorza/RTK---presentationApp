@@ -8,6 +8,7 @@ import { utilityState, errorState } from "../selectors";
 import { selectCard, resetSelected } from "../gasSlice";
 import { UtilityStateUnit } from "../types";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
+import { initialFormValues } from "../state";
 
 import GasCard from "../GasCard";
 import UtilityForm from "../GasForm";
@@ -77,10 +78,14 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 		body: () => isUnits && renderListItems(units),
 	};
 
-	return (
+	return error ? (
+		<Error message={error} />
+	) : (
 		<div className={wrapper}>
-			<h1>{UtilityTableLabels.TITLE}</h1>
-			<UtilityForm />
+			<div className={styles.tableHeader}>
+				<h1>{UtilityTableLabels.TITLE}</h1>
+				<UtilityForm {...initialFormValues} />
+			</div>
 			<Table
 				renderHeader={table.header}
 				renderBody={table.body}
@@ -88,7 +93,6 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 				message={loading.message}
 			/>
 			<TotalPayedInfo />
-			{error && <Error message={error} />}
 		</div>
 	);
 };
