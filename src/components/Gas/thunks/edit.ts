@@ -1,20 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI, Url } from "../../../app/constants";
 import { setUtilitiesError, setUtilitiesPending } from "../gasSlice";
-import { RootState } from "../../../app/store";
 import axios from "axios";
+import { UtilityStateUnit } from "..";
 
 export const editAsyncUnit = async (
-	id: string,
-	{ dispatch, getState }: { dispatch: Function; getState: Function }
+	item: UtilityStateUnit,
+	{ dispatch }: { dispatch: Function }
 ): Promise<void> => {
-	const state = getState() as RootState;
-	const gasUnits = state.gas.units;
-	const selected = gasUnits.find(unit => unit.id === id);
-
 	dispatch(setUtilitiesPending(true));
 	try {
-		await axios.put(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${id}`, selected);
+		await axios.put(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${item.id}`, item);
 	} catch {
 		dispatch(setUtilitiesError());
 	} finally {

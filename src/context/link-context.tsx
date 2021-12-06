@@ -5,7 +5,7 @@ import Home from "../components/Home";
 import { Bubbles } from "../components/bubble-story";
 import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
-import UtilityContainer from "../components/UtilityContainer";
+import { UtilityContainer } from "../components/Utilities";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -18,12 +18,10 @@ interface ProviderProps {
 	element: ReactNode;
 }
 
-type Props = ProviderProps[];
-
-export const LinkContext = createContext<Props | null>(null);
+export const LinkContext = createContext<ProviderProps[] | null>(null);
 
 export const LinkContextProvider = ({ children }: LinkProps) => {
-	const routes: Props = [
+	const routes: ProviderProps[] = [
 		{
 			to: "/",
 			label: "home",

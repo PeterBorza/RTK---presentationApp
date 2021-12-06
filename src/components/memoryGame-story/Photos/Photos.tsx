@@ -20,13 +20,9 @@ const Photos: FC = () => {
 		</Link>
 	));
 
-	const sideBarContent = () => {
-		return <div className={styles.linkWrapper}>{renderLinks}</div>;
-	};
-
-	const renderHeader = () => {
-		return <p>Cheat Sheets</p>;
-	};
+	const sideBarContent = () => (
+		<div className={styles.linkWrapper}>{renderLinks}</div>
+	);
 
 	const openMenu = () => {
 		dispatch(toggleSidePanel(true));
@@ -39,7 +35,7 @@ const Photos: FC = () => {
 		<AsidePlatform
 			isOpen={open}
 			onClose={() => closeMenu()}
-			renderHeader={() => renderHeader()}
+			renderHeader={() => <p className={styles.title}>Cheat Sheets</p>}
 			renderSideBar={() => sideBarContent()}
 		>
 			<div className={styles.container}>

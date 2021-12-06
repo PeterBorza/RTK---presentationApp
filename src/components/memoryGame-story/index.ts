@@ -4,3 +4,4 @@ export { default as Game } from "./Game/Game";
 export * from "./memoryGameSlice";
 export * from "./types";
 export * from "./selectors";
+export { routes } from "./routes";
