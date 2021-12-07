@@ -3,9 +3,12 @@
 @use "../../../css/variables" as *;
 
 .container {
-	@include container;
+	position: relative;
+	@include container(100%);
 	background-color: $myBlue;
+	// @include before("../images/contor_gaz.jpg");
 	@include fEven(column);
+	height: 100vh;
 	h1 {
 		font-size: 3rem;
 		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

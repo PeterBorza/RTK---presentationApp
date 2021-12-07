@@ -2,17 +2,18 @@ import { FC } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
-import { photoSelector, toggleSidePanel } from "..";
+import { photoSelector } from "..";
+import { togglePhotos } from "../../../app/appSlice";
+import { photosOpenSelector } from "../../../app/selectors";
 import { AsidePlatform, Button } from "../../../reusables";
 import { MemoryGameMessages } from "../messages";
-import { sidePanelSelector } from "../selectors";
 
 import styles from "./Photos.module.scss";
 
 const Photos: FC = () => {
 	const dispatch = useDispatch();
 	const photos = useSelector(photoSelector);
-	const open = useSelector(sidePanelSelector);
+	const openSideBar = useSelector(photosOpenSelector);
 
 	const renderLinks = photos.map(photo => (
 		<Link className={styles.links} key={photo.id} to={photo.id}>
@@ -25,21 +26,21 @@ const Photos: FC = () => {
 	);
 
 	const openMenu = () => {
-		dispatch(toggleSidePanel(true));
+		dispatch(togglePhotos(true));
 	};
 	const closeMenu = () => {
-		dispatch(toggleSidePanel(false));
+		dispatch(togglePhotos(false));
 	};
 
 	return (
 		<AsidePlatform
-			isOpen={open}
+			isOpen={openSideBar}
 			onClose={() => closeMenu()}
 			renderHeader={() => <p className={styles.title}>Cheat Sheets</p>}
 			renderSideBar={() => sideBarContent()}
 		>
 			<div className={styles.container}>
-				{!open && (
+				{!openSideBar && (
 					<Button
 						className={styles.menuButton}
 						onClick={openMenu}

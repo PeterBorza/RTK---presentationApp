@@ -5,14 +5,11 @@
 .layout {
 	position: relative;
 	width: 100%;
-	height: calc(100vh - 35px);
-	display: flex;
-	align-items: flex-end;
 }
 .container {
 	position: relative;
 	margin: 0;
-	@include container();
+	@include container(100%);
 	overflow: hidden;
 	background-color: rgb(180, 225, 243);
 }

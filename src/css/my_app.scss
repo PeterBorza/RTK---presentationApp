@@ -18,8 +18,8 @@ $darkMode: rgb(40, 64, 73);
 	}
 }
 
-@mixin container() {
-	width: 100%;
+@mixin container($width) {
+	width: $width;
 	height: $containerHeight;
 	&__margin {
 		padding-left: $SBsize;

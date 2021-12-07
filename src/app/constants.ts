@@ -7,6 +7,11 @@ export enum Url {
 	BUBBLES = "bubbles",
 	GAS = "gas",
 	LIGHT = "light",
+	HOME = "home",
+	UTILITIES = "utilities",
+	BUILDING = "building",
+	PHOTOS = "photos",
+	GAME = "game",
 }
 
 export enum Error {

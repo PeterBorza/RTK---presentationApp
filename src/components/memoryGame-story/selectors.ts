@@ -8,9 +8,6 @@ export const gamePhotosSelector = ({ memoryGame }: RootState) =>
 
 export const photoSelector = ({ memoryGame }: RootState) => memoryGame.photos;
 
-export const sidePanelSelector = ({ memoryGame }: RootState) =>
-	memoryGame.isSidePanelOpen;
-
 export const loadingSelector = ({ memoryGame }: RootState) =>
 	memoryGame.pending;
 

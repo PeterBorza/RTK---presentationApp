@@ -9,7 +9,6 @@ const initialState: MemoryGameState = {
 	gamePhotos: [...shuffledImages],
 	pending: false,
 	error: false,
-	isSidePanelOpen: false,
 	clickCount: 0,
 };
 
@@ -28,12 +27,6 @@ export const memoryGameSlice = createSlice({
 			{ payload }: PayloadAction<boolean>
 		) => {
 			error = payload;
-		},
-		toggleSidePanel: (
-			state: MemoryGameState,
-			{ payload }: PayloadAction<boolean>
-		) => {
-			state.isSidePanelOpen = payload;
 		},
 		toggleFlip: (
 			{ gamePhotos }: MemoryGameState,
@@ -69,7 +62,6 @@ export const memoryGameSlice = createSlice({
 export const {
 	setPending,
 	setError,
-	toggleSidePanel,
 	toggleFlip,
 	setMatch,
 	incrementCount,

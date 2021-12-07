@@ -26,12 +26,6 @@ export const liftSlice = createSlice({
 		) => {
 			state.numberOfLevels = payload;
 		},
-		toggleLiftSidePanel: (
-			state: LiftState,
-			{ payload }: PayloadAction<boolean>
-		) => {
-			state.isSideBarOpen = payload;
-		},
 	},
 });
 
@@ -41,7 +35,6 @@ export const {
 	moveLiftB,
 	movePosition,
 	setLevelNumber,
-	toggleLiftSidePanel,
 } = liftSlice.actions;
 
 export default liftSlice.reducer;

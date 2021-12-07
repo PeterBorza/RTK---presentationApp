@@ -6,7 +6,6 @@ import {
 	errorState,
 	pendingState,
 	selectedBubble,
-	bubbleSidePanelSelector,
 } from "./selectors";
 
 import { getBubbles, deleteBubble } from "./thunks";
@@ -26,10 +25,12 @@ import {
 	LoadingWrapper,
 } from "../../reusables";
 
-import { selectBubble, toggleBubbleSidePanel } from "./bubbleSlice";
+import { selectBubble } from "./bubbleSlice";
 
 import classNames from "classnames";
 import styles from "./BubbleWrapper.module.scss";
+import { toggleBubbles } from "../../app/appSlice";
+import { bubblesOpenSelector } from "../../app/selectors";
 
 type Props = {
 	dark?: boolean;
@@ -37,7 +38,7 @@ type Props = {
 
 const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 	const { bubbles } = useSelector(bubbleState);
-	const isOpen = useSelector(bubbleSidePanelSelector);
+	const openSideBar = useSelector(bubblesOpenSelector);
 	const selected = useSelector(selectedBubble);
 	const { isLoading } = useSelector(pendingState);
 	const error = useSelector(errorState);
@@ -62,14 +63,14 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 
 	const handleBubbleClick = (id: number) => {
 		dispatch(selectBubble(id));
-		dispatch(toggleBubbleSidePanel(true));
+		dispatch(toggleBubbles(true));
 	};
 
 	const handleOnClose = () => {
-		dispatch(toggleBubbleSidePanel(false));
+		dispatch(toggleBubbles(false));
 	};
 
-	const handleOpenMenu = () => dispatch(toggleBubbleSidePanel(true));
+	const handleOpenMenu = () => dispatch(toggleBubbles(!openSideBar));
 
 	const sideBarHeaderTitle = () => <h3>{msg.TITLE}</h3>;
 
@@ -144,7 +145,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 
 	return (
 		<AsidePlatform
-			isOpen={isOpen}
+			isOpen={openSideBar}
 			onClose={handleOnClose}
 			renderHeader={sideBarHeaderTitle}
 			renderSideBar={sideBarBody}

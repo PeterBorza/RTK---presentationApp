@@ -6,5 +6,3 @@ export const positionState = (state: RootState) => state.lift.position;
 
 export const levelsNumberState = (state: RootState) =>
 	state.lift.numberOfLevels;
-
-export const isSideBarOpen = (state: RootState) => state.lift.isSideBarOpen;

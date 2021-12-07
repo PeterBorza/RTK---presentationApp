@@ -12,8 +12,5 @@ export const pendingState = ({ bubbles }: RootState) => bubbles.loading;
 
 export const errorState = ({ bubbles }: RootState) => bubbles.error;
 
-export const bubbleSidePanelSelector = ({ bubbles }: RootState) =>
-	bubbles.isSidePanelOpen;
-
 export const bubbleModalFormSelector = ({ bubbles }: RootState) =>
 	bubbles.isFormModalOpen;

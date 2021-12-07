@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 
-import {
-	liftState,
-	positionState,
-	isSideBarOpen,
-	levelsNumberState,
-} from "../selectors";
+import { liftState, positionState, levelsNumberState } from "../selectors";
 import LiftButtons from "../LiftButtons";
 import LiftButton from "../LiftButton";
 import { Button } from "../../../reusables";
@@ -16,14 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import classNames from "classnames";
 import styles from "./Building.module.scss";
-import { toggleLiftSidePanel } from "..";
+import { toggleBuilding } from "../../../app/appSlice";
+import { liftOpenSelector } from "../../../app/selectors";
 
 type LevelCount = number;
 
 const Building: React.FC = () => {
 	const { numberOfLevels, isDisabled } = useSelector(liftState);
 	const { positionA, positionB, positionFloor } = useSelector(positionState);
-	const isOpen = useSelector(isSideBarOpen);
+	const openSideBar = useSelector(liftOpenSelector);
 	const levelNumber = useSelector(levelsNumberState);
 	const dispatch = useDispatch();
 
@@ -119,10 +115,10 @@ const Building: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.menuButtonWrapper}>
-				{!isOpen && (
+				{!openSideBar && (
 					<Button
 						className={styles.menuButton}
-						onClick={() => dispatch(toggleLiftSidePanel(true))}
+						onClick={() => dispatch(toggleBuilding(!openSideBar))}
 						value='Menu'
 					/>
 				)}

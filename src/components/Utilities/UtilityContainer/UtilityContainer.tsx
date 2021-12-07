@@ -1,20 +1,60 @@
 import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import { toggleUtils } from "../../../app/appSlice";
 import { Url } from "../../../app/constants";
+import { utilsOpenSelector } from "../../../app/selectors";
+import { AsidePlatform, Button } from "../../../reusables";
+import { MemoryGameMessages as messages } from "../../memoryGame-story/messages";
 
 import styles from "./UtilityContainer.module.scss";
 
 const UtilityContainer: FC = () => {
-	return (
-		<div className={styles.wrapper}>
+	const dispatch = useDispatch();
+	const openSideBar = useSelector(utilsOpenSelector);
+
+	const closeSidePanel = () => {
+		dispatch(toggleUtils(false));
+	};
+
+	const openSidePanel = () => {
+		dispatch(toggleUtils(true));
+	};
+
+	const header = () => <h3>Utilities</h3>;
+
+	const body = () => {
+		return (
 			<div className={styles.sideBarLinks}>
-				<Link to='gas'>{Url.GAS}</Link>
-				<Link to='light'>{Url.LIGHT}</Link>
+				<Link to={Url.GAS} onClick={closeSidePanel}>
+					{Url.GAS}
+				</Link>
+				<Link to={Url.LIGHT} onClick={closeSidePanel}>
+					{Url.LIGHT}
+				</Link>
+				<Link to={`/${Url.UTILITIES}`} onClick={closeSidePanel}>
+					{Url.HOME}
+				</Link>
 			</div>
-			<div className={styles.container}>
-				<Outlet />
-			</div>
-		</div>
+		);
+	};
+
+	return (
+		<AsidePlatform
+			isOpen={openSideBar}
+			onClose={closeSidePanel}
+			renderSideBar={body}
+			renderHeader={header}
+		>
+			{!openSideBar && (
+				<Button
+					className={styles.menuButton}
+					onClick={openSidePanel}
+					value={messages.MENU}
+				/>
+			)}
+			<Outlet />
+		</AsidePlatform>
 	);
 };
 
