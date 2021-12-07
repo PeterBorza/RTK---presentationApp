@@ -3,7 +3,7 @@
 @use "../../../css/variables" as *;
 
 .wrapper {
-	@include container;
+	@include container(100%);
 	@include sideBar(120px, 25%);
 	display: flex;
 	overflow-y: auto;
@@ -18,7 +18,7 @@
 .sideBarLinks {
 	display: flex;
 	flex-direction: column;
-	width: 10%;
+	width: 100%;
 	background-color: $myYellow3;
 	a {
 		z-index: 100;
@@ -27,4 +27,8 @@
 			color: $navPrimaryBG;
 		}
 	}
+}
+
+.menuButton {
+	position: absolute;
 }

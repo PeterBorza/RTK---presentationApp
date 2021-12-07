@@ -28,6 +28,5 @@ export interface MemoryGameState {
 	gamePhotos: GamePhotoData[];
 	pending: boolean;
 	error: boolean;
-	isSidePanelOpen: boolean;
 	clickCount: number;
 }

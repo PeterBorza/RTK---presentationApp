@@ -6,6 +6,7 @@ import { Bubbles } from "../components/bubble-story";
 import { Photos, Game } from "../components/memoryGame-story";
 import { Building } from "../components/building-story";
 import { UtilityContainer } from "../components/Utilities";
+import { Url } from "../app/constants";
 
 interface LinkProps {
 	children: React.ReactNode;
@@ -24,37 +25,37 @@ export const LinkContextProvider = ({ children }: LinkProps) => {
 	const routes: ProviderProps[] = [
 		{
 			to: "/",
-			label: "home",
+			label: Url.HOME,
 			id: uuid(),
 			element: <Home />,
 		},
 		{
-			to: "/utilities",
-			label: "utilities",
+			to: "utilities",
+			label: Url.UTILITIES,
 			id: uuid(),
 			element: <UtilityContainer />,
 		},
 		{
-			to: "/building",
-			label: "building",
+			to: "building",
+			label: Url.BUILDING,
 			id: uuid(),
 			element: <Building />,
 		},
 		{
-			to: "/bubbles",
-			label: "bubbles",
+			to: "bubbles",
+			label: Url.BUBBLES,
 			id: uuid(),
 			element: <Bubbles />,
 		},
 		{
-			to: "/photos",
-			label: "photos",
+			to: "photos",
+			label: Url.PHOTOS,
 			id: uuid(),
 			element: <Photos />,
 		},
 		{
-			to: "/game",
-			label: "game",
+			to: "game",
+			label: Url.GAME,
 			id: uuid(),
 			element: <Game />,
 		},

@@ -24,6 +24,5 @@ export interface BubbleState {
 	bubbles: Bubble[];
 	loading: PendingState;
 	error: ErrorState;
-	isSidePanelOpen: boolean;
 	isFormModalOpen: boolean;
 }

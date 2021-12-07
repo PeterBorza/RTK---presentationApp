@@ -35,12 +35,6 @@ export const bubbleSlice = createSlice({
 		setError: (state: BubbleState, { payload }: PayloadAction<boolean>) => {
 			state.error.error = payload;
 		},
-		toggleBubbleSidePanel: (
-			state: BubbleState,
-			{ payload }: PayloadAction<boolean>
-		) => {
-			state.isSidePanelOpen = payload;
-		},
 		toggleBubbleFormModal: (
 			state: BubbleState,
 			{ payload }: PayloadAction<boolean>
@@ -64,7 +58,6 @@ export const {
 	setError,
 	deleteBub,
 	addBubble,
-	toggleBubbleSidePanel,
 	toggleBubbleFormModal,
 } = bubbleSlice.actions;
 

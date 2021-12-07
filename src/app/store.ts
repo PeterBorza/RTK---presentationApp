@@ -4,6 +4,7 @@ import memoryGameReducer from "../components/memoryGame-story/memoryGameSlice";
 import bubbleReducer from "../components/bubble-story/bubbleSlice";
 import gasReducer from "../components/Gas/gasSlice";
 import lightReducer from "../components/Light/lightSlice";
+import appReducer from "./appSlice";
 
 export const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
 		bubbles: bubbleReducer,
 		gas: gasReducer,
 		light: lightReducer,
+		app: appReducer,
 	},
 });
 

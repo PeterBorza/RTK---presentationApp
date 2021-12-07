@@ -1,12 +1,10 @@
 import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Building, toggleLiftSidePanel } from "..";
+import { Building } from "..";
 import { AsidePlatform, Button } from "../../../reusables";
 
-import styles from "./LiftPlatform.module.scss";
-
-import { liftState, positionState, isSideBarOpen } from "../selectors";
+import { liftState, positionState } from "../selectors";
 
 import {
 	moveLiftA,
@@ -15,13 +13,17 @@ import {
 	setLevelNumber,
 } from "../liftSlice";
 
+import { liftOpenSelector } from "../../../app/selectors";
+import { toggleBuilding } from "../../../app/appSlice";
+
 import classNames from "classnames";
+import styles from "./LiftPlatform.module.scss";
 
 const LiftPlatform: FC = () => {
 	const { numberOfLevels, isDisabled, liftHeight, liftWidth, speed } =
 		useSelector(liftState);
 	const { positionA, positionB, positionFloor } = useSelector(positionState);
-	const isOpen = useSelector(isSideBarOpen);
+	const openSideBar = useSelector(liftOpenSelector);
 	const [levelInput, setLevelInput] = useState(numberOfLevels);
 	const dispatch = useDispatch();
 
@@ -49,7 +51,7 @@ const LiftPlatform: FC = () => {
 	};
 
 	const handleOnClose = () => {
-		dispatch(toggleLiftSidePanel(false));
+		dispatch(toggleBuilding(false));
 	};
 
 	const sideBarBody = () => {
@@ -95,7 +97,7 @@ const LiftPlatform: FC = () => {
 	};
 	return (
 		<AsidePlatform
-			isOpen={isOpen}
+			isOpen={openSideBar}
 			onClose={handleOnClose}
 			renderHeader={sideBarHeaderTitle}
 			renderSideBar={sideBarBody}

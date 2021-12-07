@@ -11,5 +11,4 @@ export interface LiftState {
 	liftWidth: number;
 	position: PositionState;
 	isDisabled: boolean;
-	isSideBarOpen: boolean;
 }

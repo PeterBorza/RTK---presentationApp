@@ -177,7 +177,7 @@
       "citire": "4845",
       "factura": "80.10",
       "consum": "34",
-      "platit": false,
+      "platit": true,
       "edit": false
     }
   ],

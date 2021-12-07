@@ -13,5 +13,4 @@ export const initialState: LiftState = {
 	liftWidth: 20,
 	position: positionInitialState,
 	isDisabled: false,
-	isSideBarOpen: false,
 };
