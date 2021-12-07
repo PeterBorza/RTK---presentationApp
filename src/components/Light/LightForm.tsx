@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
 import { useTime } from "../../hooks";
-import { UtilityFormValues } from "./constants";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
-import { UtilityStateUnit, FormProps } from "./types";
-import { unitsState } from "./selectors";
+import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
 import { initialFormValues } from "./state";
+import { unitsState } from "./selectors";
 
 const LightForm: FC = () => {
 	const units = useSelector(unitsState);

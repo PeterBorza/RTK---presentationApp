@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI, Url } from "../../../app/constants";
 import { addUnit, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
 
 const instance = axios.create({

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI, Url } from "../../../app/constants";
 import { setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
-import { UtilityStateUnit } from "..";
+import { UtilityStateUnit } from "../../Utilities";
 
 export const editAsyncUnit = async (
 	item: UtilityStateUnit,

@@ -1,5 +1,5 @@
 import React from "react";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit } from "../../Utilities";
 import { IconSet } from "../../../reusables";
 
 import styles from "./GasCard.module.scss";

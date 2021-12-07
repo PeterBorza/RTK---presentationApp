@@ -5,7 +5,7 @@ import {
 	setUtilitiesError,
 	setUtilitiesPending,
 } from "../lightSlice";
-import { UtilityStateUnit } from "../types";
+import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
 
 export const toggleAsyncPayed = async (

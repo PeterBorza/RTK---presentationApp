@@ -1,6 +1,5 @@
-import { FormProps, UtilityState } from "./types";
+import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
 import { Pending } from "../../app/constants";
-import { UtilityStateUnit } from ".";
 
 const initialFormValues: FormProps = {
 	citire: "",
