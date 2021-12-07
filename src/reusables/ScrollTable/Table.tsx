@@ -6,10 +6,9 @@ export interface Props {
 	renderBody: () => ReactNode;
 	renderHeader: () => ReactNode;
 	loading: boolean;
-	message: string;
 }
 
-const Table: FC<Props> = ({ renderBody, renderHeader, loading, message }) => {
+const Table: FC<Props> = ({ renderBody, renderHeader, loading }) => {
 	return loading ? (
 		<LoadingWrapper loading={loading} />
 	) : (

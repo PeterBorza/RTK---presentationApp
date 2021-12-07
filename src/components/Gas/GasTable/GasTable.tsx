@@ -7,18 +7,25 @@ import {
 	UtilityLabels,
 	UtilityTableLabels,
 	TotalPayedInfo,
+	UnitId,
 } from "../../Utilities";
 import { utilityState, errorState, selectSubtotal } from "../selectors";
-import { selectCard, resetSelected } from "../gasSlice";
+import { selectCard, editCard } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import { initialFormValues } from "../state";
-import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
+import {
+	deleteUtilityUnit,
+	editUnit,
+	getAsyncUtility,
+	togglePayedBill,
+} from "../thunks";
 
 import GasCard from "../GasCard";
 import UtilityForm from "../GasForm";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
+import { editedGas } from "..";
 
 type Props = {
 	dark?: boolean;
@@ -28,6 +35,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorState);
 	const sumOfBills = useSelector(selectSubtotal);
+	const edited = useSelector(editedGas);
 	const dispatch = useDispatch();
 
 	const wrapper = classNames(styles.container, {
@@ -46,7 +54,6 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 
 	const onTogglePayedBill = (item: UtilityStateUnit) => {
 		dispatch(togglePayedBill(item));
-		dispatch(resetSelected());
 	};
 
 	const onGasClickHandler = (id: string) => {
@@ -57,8 +64,9 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 		dispatch(deleteUtilityUnit(id));
 	};
 
-	const onEditGasHandler = (id: string) => {
-		console.log("editing work", id);
+	const onEditGasHandler = (id: UnitId) => {
+		console.log(edited);
+		dispatch(editCard(id));
 	};
 
 	const renderListItems = (item: Array<UtilityStateUnit>) =>
@@ -94,7 +102,6 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 				renderHeader={table.header}
 				renderBody={table.body}
 				loading={loading.isLoading}
-				message={loading.message}
 			/>
 			<TotalPayedInfo sumOfBills={sumOfBills} />
 		</div>

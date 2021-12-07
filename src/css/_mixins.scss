@@ -158,3 +158,10 @@
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
+
+@mixin truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-break: break-all;
+}

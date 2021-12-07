@@ -7,10 +7,11 @@ import { postUtility } from "./thunks";
 import { TextInput, ModalForm } from "../../reusables";
 import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
 import { unitsState } from "./selectors";
+import { format } from "date-fns";
 
 const GasForm: FC<FormProps> = ({ ...initialFormValues }) => {
 	const units = useSelector(unitsState);
-	const date = new Date().toLocaleDateString();
+	const date = format(new Date(), "dd/MM/yyyy");
 
 	const startingValues = {
 		...initialFormValues,
@@ -64,18 +65,14 @@ const GasForm: FC<FormProps> = ({ ...initialFormValues }) => {
 	const inputs = Object.entries(gasUnit);
 
 	const renderInputs = () => {
-		return (
-			<>
-				{inputs.map(input => (
-					<TextInput
-						key={input[0]}
-						value={input[1]}
-						name={input[0]}
-						onChange={onChangeHandler}
-					/>
-				))}
-			</>
-		);
+		return inputs.map(input => (
+			<TextInput
+				key={input[0]}
+				value={input[1]}
+				name={input[0]}
+				onChange={onChangeHandler}
+			/>
+		));
 	};
 
 	return (

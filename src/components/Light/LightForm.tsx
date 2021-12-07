@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
-import { useTime } from "../../hooks";
+import { format } from "date-fns";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
@@ -12,7 +12,8 @@ import { unitsState } from "./selectors";
 
 const LightForm: FC = () => {
 	const units = useSelector(unitsState);
-	const date = useTime("standard");
+	const date = format(new Date(), "dd/MM/yyyy");
+
 	const startingValues = {
 		...initialFormValues,
 		dataCitire: date,

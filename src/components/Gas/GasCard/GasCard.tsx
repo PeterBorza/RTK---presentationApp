@@ -30,9 +30,6 @@ const UtilityCard: React.FC<UtilityStateUnit & Props> = ({
 	const dataWrapper = classNames(styles.data, {
 		[styles.data__dark]: dark,
 	});
-	const iconsWrapper = classNames(styles.iconBox, {
-		[styles.iconBox__dark]: dark,
-	});
 
 	return (
 		<div className={classes} onClick={onClick}>
@@ -40,7 +37,7 @@ const UtilityCard: React.FC<UtilityStateUnit & Props> = ({
 			<div className={dataWrapper}>{citire}</div>
 			<div className={dataWrapper}>{consum}</div>
 			<div className={dataWrapper}>{factura}</div>
-			<div className={iconsWrapper}>
+			<div className={styles.iconBox}>
 				<IconSet
 					onCheck={onPayedClick}
 					onDelete={onDelete}
