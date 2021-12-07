@@ -96,7 +96,6 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 				renderHeader={table.header}
 				renderBody={table.body}
 				loading={loading.isLoading}
-				message={loading.message}
 			/>
 			<TotalPayedInfo sumOfBills={sumOfBills} />
 		</div>

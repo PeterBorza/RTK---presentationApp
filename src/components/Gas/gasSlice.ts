@@ -16,9 +16,10 @@ export const gasSlice = createSlice({
 				item => (item.selected = item.id === payload ? true : false)
 			);
 		},
-		resetSelected: (state: UtilityState) => {
-			const selected = state.units.find(unit => unit.selected === true);
-			if (selected) selected.selected = false;
+		editCard: (state: UtilityState, { payload }: PayloadAction<UnitId>) => {
+			state.units.map(
+				item => (item.edit = item.id === payload ? true : false)
+			);
 		},
 		togglePayed: (
 			state: UtilityState,
@@ -61,7 +62,7 @@ export const gasSlice = createSlice({
 
 export const {
 	selectCard,
-	resetSelected,
+	editCard,
 	togglePayed,
 	addUnit,
 	getUnits,

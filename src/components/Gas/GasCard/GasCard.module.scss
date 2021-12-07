@@ -24,7 +24,7 @@
 		background-color: rgb(245, 239, 239);
 	}
 	&__dark {
-		background-color: rgba(28, 29, 25, 0.39);
+		background-color: rgba(28, 29, 25, 0.507);
 	}
 }
 
@@ -44,10 +44,5 @@
 }
 
 .iconBox {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	&__dark .iconBox > * {
-		color: white;
-	}
+	@include fEven;
 }
