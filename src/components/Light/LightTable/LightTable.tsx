@@ -2,12 +2,15 @@ import { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
-import { UtilityLabels, UtilityTableLabels } from "../constants";
-import { utilityState, errorLightState } from "../selectors";
+import {
+	UtilityLabels,
+	UtilityTableLabels,
+	UtilityStateUnit,
+	TotalPayedInfo,
+} from "../../Utilities";
+import { utilityState, errorLightState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected } from "../lightSlice";
-import { UtilityStateUnit } from "../types";
 import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
-import TotalPayedInfo from "../TotalPayedInfo";
 
 import LightCard from "../LightCard";
 import UtilityForm from "../LightForm";
@@ -22,6 +25,7 @@ type Props = {
 const LightTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorLightState);
+	const sumOfBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
 
 	const wrapper = classNames(styles.container, {
@@ -94,7 +98,7 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 				loading={loading.isLoading}
 				message={loading.message}
 			/>
-			<TotalPayedInfo />
+			<TotalPayedInfo sumOfBills={sumOfBills} />
 		</div>
 	);
 };

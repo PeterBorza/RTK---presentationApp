@@ -2,11 +2,10 @@ import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuid } from "uuid";
-import { UtilityFormValues } from "./constants";
 import { postUtility } from "./thunks";
 
 import { TextInput, ModalForm } from "../../reusables";
-import { UtilityStateUnit, FormProps } from "./types";
+import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
 import { unitsState } from "./selectors";
 
 const GasForm: FC<FormProps> = ({ ...initialFormValues }) => {

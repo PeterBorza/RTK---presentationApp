@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Error } from "../../app/constants";
-import { UtilityStateUnit, UtilityState, UnitId } from "./types";
+import { UtilityStateUnit, UtilityState, UnitId } from "../Utilities";
+
 import { initialState } from "./state";
 
 export const lightSlice = createSlice({

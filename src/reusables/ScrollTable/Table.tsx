@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import ScrollTable from ".";
-import { Loader, LoadingWrapper } from "..";
+import { LoadingWrapper } from "..";
 
 export interface Props {
 	renderBody: () => ReactNode;

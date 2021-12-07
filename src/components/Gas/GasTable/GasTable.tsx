@@ -3,19 +3,22 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
-import { UtilityLabels, UtilityTableLabels } from "../constants";
-import { utilityState, errorState } from "../selectors";
+import {
+	UtilityLabels,
+	UtilityTableLabels,
+	TotalPayedInfo,
+} from "../../Utilities";
+import { utilityState, errorState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected } from "../gasSlice";
-import { UtilityStateUnit } from "../types";
-import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
+import { UtilityStateUnit } from "../../Utilities";
 import { initialFormValues } from "../state";
+import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
 import GasCard from "../GasCard";
 import UtilityForm from "../GasForm";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
-import TotalPayedInfo from "../TotalPayedInfo";
 
 type Props = {
 	dark?: boolean;
@@ -24,6 +27,7 @@ type Props = {
 const GasTable: FC<Props> = ({ dark = false }) => {
 	const { units, loading } = useSelector(utilityState);
 	const error = useSelector(errorState);
+	const sumOfBills = useSelector(selectSubtotal);
 	const dispatch = useDispatch();
 
 	const wrapper = classNames(styles.container, {
@@ -92,7 +96,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 				loading={loading.isLoading}
 				message={loading.message}
 			/>
-			<TotalPayedInfo />
+			<TotalPayedInfo sumOfBills={sumOfBills} />
 		</div>
 	);
 };

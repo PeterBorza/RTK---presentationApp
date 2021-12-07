@@ -1,15 +1,19 @@
 import { FC } from "react";
-import styles from "./TotalPayedInfo.module.scss";
-import { useSelector } from "react-redux";
-import { selectSubtotal } from "../selectors";
 
+import { format } from "date-fns";
 import { UtilityTableLabels } from "../constants";
+import styles from "./TotalPayedInfo.module.scss";
 
-const TotalPayedInfo: FC = () => {
-	const sumofBills = useSelector(selectSubtotal);
+interface TotalSumOfBill {
+	sumOfBills: number;
+}
 
-	const today = new Date().toLocaleDateString();
-	const exactSumOfBillsPayed = sumofBills.toFixed(2);
+const TotalPayedInfo: FC<TotalSumOfBill> = ({ sumOfBills }) => {
+	// const today = new Date().toLocaleDateString();
+	const time = new Date();
+	const today = format(time, "dd/MM/yyyy");
+
+	const exactSumOfBillsPayed = sumOfBills.toFixed(2);
 	return (
 		<div className={styles.billTotalInfo}>
 			<h3>
