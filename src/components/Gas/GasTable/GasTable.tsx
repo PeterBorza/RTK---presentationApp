@@ -87,7 +87,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	) : (
 		<div className={wrapper}>
 			<div className={styles.tableHeader}>
-				<h1>{UtilityTableLabels.TITLE}</h1>
+				<h1>{UtilityTableLabels.GAS_TITLE}</h1>
 				<UtilityForm {...initialFormValues} />
 			</div>
 			<Table

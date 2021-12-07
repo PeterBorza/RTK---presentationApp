@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Building, toggleLiftSidePanel } from "..";
-import { AsidePlatform } from "../../../reusables";
+import { AsidePlatform, Button } from "../../../reusables";
 
 import styles from "./LiftPlatform.module.scss";
 
@@ -55,9 +55,11 @@ const LiftPlatform: FC = () => {
 	const sideBarBody = () => {
 		return (
 			<div>
-				<button onClick={() => dispatch(toggleButtons())}>
-					{isDisabled ? "enable buttons" : "disable buttons"}
-				</button>
+				<Button
+					onClick={() => dispatch(toggleButtons())}
+					value={isDisabled ? "enable buttons" : "disable buttons"}
+				/>
+
 				<p>A: {positionA}</p>
 				<p>B: {positionB}</p>
 				<p>Lift is at floor: {positionFloor}</p>
@@ -73,12 +75,10 @@ const LiftPlatform: FC = () => {
 				</p>
 				<div>
 					<div>
-						<button
+						<Button
 							onClick={handleNumberOfLevels}
-							style={{ marginTop: "10px" }}
-						>
-							Set number of levels
-						</button>
+							value='Set number of levels'
+						/>
 						<input
 							type='number'
 							min='3'

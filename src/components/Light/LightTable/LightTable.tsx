@@ -89,7 +89,7 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 	) : (
 		<div className={wrapper}>
 			<div className={styles.tableHeader}>
-				<h1>{UtilityTableLabels.TITLE}</h1>
+				<h1>{UtilityTableLabels.LIGHT_TITLE}</h1>
 				<UtilityForm />
 			</div>
 			<Table

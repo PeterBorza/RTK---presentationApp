@@ -1,13 +1,15 @@
-import React from "react";
+import React, { FC, ComponentProps } from "react";
 
 import styles from "./CustomInput.module.scss";
 
-const CustomInput = () => {
+type InputProps = ComponentProps<"input">;
+
+const CustomInput: FC<InputProps> = ({ name, onChange, value }) => {
 	return (
 		<div className={styles.custom}>
-			<input type='text' />
+			<input type='text' onChange={onChange} value={value} />
 			<label className={styles.label_name}>
-				<span className={styles.name_style}>Name:</span>
+				<span className={styles.name_style}>{name}:</span>
 			</label>
 		</div>
 	);
