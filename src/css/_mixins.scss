@@ -39,7 +39,7 @@
 }
 
 @mixin lineUp($rows) {
-	height: auto;
+	// height: auto;
 	display: grid;
 	grid-template-columns: repeat($rows, 1fr);
 	// child : justify-content : space-between;

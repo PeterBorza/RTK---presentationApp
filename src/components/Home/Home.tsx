@@ -1,13 +1,20 @@
 import React, { FC, useState } from "react";
-import { Select, CustomInput, Button, ToggleButton } from "../../reusables";
+import {
+	Select,
+	CustomInput,
+	Button,
+	ToggleButton,
+	SimpleDrop,
+} from "../../reusables";
 
 import styles from "./Home.module.scss";
 
 const Home: FC = () => {
 	const [inputVal, setInputVal] = useState("");
 	const [dark, setDark] = useState(false);
+	const [hash, setHash] = useState("small");
 	const handler = (e: React.ChangeEvent<HTMLSelectElement>) =>
-		console.log(e.target.value);
+		setHash(e.target.value);
 
 	const mySelect = {
 		options: ["small", "medium", "large", "xxl"],
@@ -18,11 +25,15 @@ const Home: FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<Select {...mySelect} />
-			<ToggleButton
-				selected={dark}
-				toggleSelected={() => setDark(!dark)}
-			/>
+			<div>
+				<Select {...mySelect} />
+			</div>
+			<div>
+				<ToggleButton
+					selected={dark}
+					toggleSelected={() => setDark(!dark)}
+				/>
+			</div>
 			<div className={styles.customForm}>
 				<CustomInput
 					name='username'
@@ -31,6 +42,14 @@ const Home: FC = () => {
 				/>
 				<Button onClick={() => console.log(inputVal)} />
 				{dark && <div>Hello WORLD</div>}
+			</div>
+			<div className={styles.dropWrapper}>
+				<SimpleDrop height={hash}>
+					<button onClick={() => console.log("clcikc")}>click</button>
+					<button onClick={() => console.log("clcikc")}>click</button>
+					<button onClick={() => console.log("clcikc")}>click</button>
+					<button onClick={() => console.log("clcikc")}>click</button>
+				</SimpleDrop>
 			</div>
 		</div>
 	);

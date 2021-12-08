@@ -5,10 +5,23 @@
 .container {
 	@include container(100%);
 	background-color: $appBlack;
-	@include fAround(row);
+	// @include fAround(row);
+	@include lineUp(2);
+	& > div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 .customForm {
 	background-color: burlywood;
 	width: 40%;
+}
+
+.dropWrapper {
+	width: 15%;
+	height: 35%;
+	outline: 5px solid white;
+	outline-offset: 5px;
 }
