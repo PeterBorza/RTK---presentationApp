@@ -1,4 +1,4 @@
-import { useState, useRef, FC, CSSProperties } from "react";
+import { useState, useRef, FC } from "react";
 import { useOnClickOutside } from "../../hooks";
 
 import classNames from "classnames";

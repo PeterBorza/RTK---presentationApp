@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { NavBar } from "../../reusables";
 import { LinkContext } from "../../context";

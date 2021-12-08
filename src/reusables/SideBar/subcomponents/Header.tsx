@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 import { icons } from "../../../utils";
 
@@ -7,19 +7,15 @@ import styles from "../SideBar.module.scss";
 
 interface HeaderProps {
 	className?: string;
-	children: ReactNode;
+	label: string;
 	onClose: () => void;
 }
 
-const Header: FC<HeaderProps> = ({
-	className,
-	children = "HEADER",
-	onClose,
-}) => {
+const Header: FC<HeaderProps> = ({ className, label, onClose }) => {
 	const wrapper = classNames(styles.header, className);
 	return (
 		<header className={wrapper}>
-			{children}
+			<h3 className={styles.sideBarLabel}>{label}</h3>
 			<icons.WindowClose
 				className={styles.toggle__close}
 				onClick={onClose}

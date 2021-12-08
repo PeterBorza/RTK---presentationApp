@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { liftState, positionState, levelsNumberState } from "../selectors";
-import LiftButtons from "../LiftButtons";
 import LiftButton from "../LiftButton";
 import { Button } from "../../../reusables";
 
@@ -13,15 +12,18 @@ import classNames from "classnames";
 import styles from "./Building.module.scss";
 import { toggleBuilding } from "../../../app/appSlice";
 import { liftOpenSelector } from "../../../app/selectors";
+import { BuildingMessages, LiftCabin } from "..";
 
 type LevelCount = number;
 
 const Building: React.FC = () => {
-	const { numberOfLevels, isDisabled } = useSelector(liftState);
-	const { positionA, positionB, positionFloor } = useSelector(positionState);
 	const openSideBar = useSelector(liftOpenSelector);
-	const levelNumber = useSelector(levelsNumberState);
 	const dispatch = useDispatch();
+
+	const { numberOfLevels, isDisabled, positionFloor } =
+		useSelector(liftState);
+	const { positionA, positionB } = useSelector(positionState);
+	const levelNumber = useSelector(levelsNumberState);
 
 	const myLevels = new Array(levelNumber).fill(0).map((_, idx) => idx);
 
@@ -35,16 +37,6 @@ const Building: React.FC = () => {
 			dispatch(movePosition(numberOfLevels - 1));
 		}
 	}, [dispatch, numberOfLevels, positionFloor]);
-
-	const handleAliftClick = (level: LevelCount) => {
-		if (level === positionA) return;
-		dispatch(moveLiftA(level));
-	};
-
-	const handleBliftClick = (level: LevelCount) => {
-		if (level === positionB) return;
-		dispatch(moveLiftB(level));
-	};
 
 	const handlePositionClick = (level: LevelCount) => {
 		dispatch(movePosition(level));
@@ -61,30 +53,6 @@ const Building: React.FC = () => {
 			: dispatch(moveLiftB(level));
 	};
 
-	const liftAButtonGroup = (level: number) => {
-		return (
-			<LiftButton
-				key={`A-${level}`}
-				onClick={() => handleAliftClick(level)}
-				className={isButtonActive(positionA, level)}
-				disabled={isDisabled}
-				value={level}
-			/>
-		);
-	};
-
-	const liftBButtonGroup = (level: number) => {
-		return (
-			<LiftButton
-				key={`B-${level}`}
-				onClick={() => handleBliftClick(level)}
-				className={isButtonActive(positionB, level)}
-				disabled={isDisabled}
-				value={level}
-			/>
-		);
-	};
-
 	const shaftButtonGroup = (level: number) => {
 		return (
 			<LiftButton
@@ -97,47 +65,18 @@ const Building: React.FC = () => {
 		);
 	};
 
-	const shafts = [
-		{
-			label: "A",
-			render: myLevels.map(liftAButtonGroup),
-		},
-		{
-			label: "B",
-			render: myLevels.map(liftBButtonGroup),
-		},
-		{
-			label: "Level",
-			render: myLevels.map(shaftButtonGroup),
-		},
-	];
-
 	return (
 		<div className={styles.container}>
-			<div className={styles.menuButtonWrapper}>
-				{!openSideBar && (
-					<Button
-						className={styles.menuButton}
-						onClick={() => dispatch(toggleBuilding(!openSideBar))}
-						value='Menu'
-					/>
-				)}
-			</div>
-			{!isDisabled ? (
-				<div className={styles.full}>
-					{shafts.map(button => (
-						<LiftButtons
-							label={button.label}
-							renderButtons={() => button.render}
-							key={button.label}
-						/>
-					))}
-				</div>
-			) : (
-				<div className={styles.empty}>
-					<h2>Under construction</h2>
-				</div>
+			{!openSideBar && (
+				<Button
+					className={styles.menuButton}
+					onClick={() => dispatch(toggleBuilding(!openSideBar))}
+					value={BuildingMessages.MENU_BUTTON}
+				/>
 			)}
+			<div className={styles.block}>
+				<LiftCabin openDoors={false} />
+			</div>
 		</div>
 	);
 };

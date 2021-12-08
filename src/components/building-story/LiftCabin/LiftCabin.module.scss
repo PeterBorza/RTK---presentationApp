@@ -1,0 +1,52 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
+.cabinWrapper {
+	position: relative;
+	width: 150px;
+	height: 320px;
+	border: 1px solid white;
+	overflow: hidden;
+	&::before {
+		position: absolute;
+		content: "";
+		width: 50%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(255, 255, 255, 0.3);
+		transition: all 150ms linear;
+	}
+	&::after {
+		position: absolute;
+		content: "";
+		width: 50%;
+		height: 100%;
+		left: 50%;
+		top: 0;
+		background-color: rgba(255, 255, 255, 0.3);
+		transition: all 150ms linear;
+	}
+	// &:hover {
+	// 	&::after {
+	// 		transform: translateX(100%);
+	// 	}
+	// 	&::before {
+	// 		transform: translateX(-100%);
+	// 	}
+	// }
+}
+
+.openDoors {
+	&.cabinWrapper {
+		&:hover {
+			&.cabinWrapper::after {
+				transform: translateX(100%);
+			}
+			&.cabinWrapper::before {
+				transform: translateX(-100%);
+			}
+		}
+	}
+}

@@ -1,9 +1,21 @@
-import { PositionState, LiftState } from "./types";
+export interface PositionState {
+	positionA: number;
+	positionB: number;
+}
+
+export interface LiftState {
+	numberOfLevels: number;
+	speed: number;
+	liftHeight: number;
+	liftWidth: number;
+	position: PositionState;
+	isDisabled: boolean;
+	positionFloor: number;
+}
 
 export const positionInitialState: PositionState = {
 	positionA: 0,
 	positionB: 6,
-	positionFloor: 0,
 };
 
 export const initialState: LiftState = {
@@ -13,4 +25,5 @@ export const initialState: LiftState = {
 	liftWidth: 20,
 	position: positionInitialState,
 	isDisabled: false,
+	positionFloor: 0,
 };

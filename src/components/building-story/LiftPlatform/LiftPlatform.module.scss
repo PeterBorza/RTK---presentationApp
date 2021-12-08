@@ -1,3 +1,7 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
 .container {
 	width: 300px;
 	height: 200px;
@@ -19,4 +23,11 @@
 
 .lightGrey {
 	background-color: lightgrey;
+}
+
+.enabledIcon {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: limegreen;
 }

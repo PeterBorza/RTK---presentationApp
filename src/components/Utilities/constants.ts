@@ -18,4 +18,6 @@ export enum UtilityTableLabels {
 	SUM_OF_BILLS = "Total platit pana in data de: ",
 	IS = " este de ",
 	RON = " RON",
+	HEADER_TITLE = "Utilities",
+	MENU_BUTTON = "Menu",
 }

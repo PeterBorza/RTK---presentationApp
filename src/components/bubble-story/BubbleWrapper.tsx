@@ -72,8 +72,6 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 
 	const handleOpenMenu = () => dispatch(toggleBubbles(!openSideBar));
 
-	const sideBarHeaderTitle = () => <h3>{msg.TITLE}</h3>;
-
 	const sideBarBody = () =>
 		selected ? (
 			<SelectedBubble selected={selected} />
@@ -147,7 +145,7 @@ const BubbleWrapper: React.FC<Props> = ({ dark = false }) => {
 		<AsidePlatform
 			isOpen={openSideBar}
 			onClose={handleOnClose}
-			renderHeader={sideBarHeaderTitle}
+			label={msg.TITLE}
 			renderSideBar={sideBarBody}
 		>
 			{renderBubbleContent()}

@@ -9,7 +9,7 @@ export interface SideBarProps {
 	isOpen: boolean;
 	onClose: () => void;
 	renderBody: () => ReactNode;
-	renderHeader: () => ReactNode;
+	label: string;
 }
 
 const SideBar: FC<SideBarProps> = ({
@@ -17,7 +17,7 @@ const SideBar: FC<SideBarProps> = ({
 	isOpen,
 	onClose,
 	renderBody,
-	renderHeader,
+	label,
 }) => {
 	const sideBarClassNames = classNames(styles.wrapper, {
 		[styles.wrapper__open]: isOpen,
@@ -26,7 +26,7 @@ const SideBar: FC<SideBarProps> = ({
 
 	return (
 		<Bar className={sideBarClassNames}>
-			<Bar.Header onClose={onClose}>{renderHeader()}</Bar.Header>
+			<Bar.Header onClose={onClose} label={label} />
 			<Bar.Body renderBody={renderBody} />
 			<Bar.Footer />
 		</Bar>

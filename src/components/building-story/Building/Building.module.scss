@@ -1,46 +1,20 @@
 @use "../../../css/my_app" as *;
 @use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
 
 .container {
-	position: relative;
 	@include container(100%);
-	background-color: white;
-	background-image: url(../../../images/city900.jpg);
-	background-size: cover;
-	background-position: center;
+	background: white url(../../../images/city900.jpg) no-repeat center/cover;
 	display: flex;
-	align-items: center;
-	flex-direction: column;
-	// @include fBetween(column);
-	p {
-		color: white;
-	}
-}
-.empty {
-	margin: auto;
-	width: 40%;
-	height: 20vh;
-	background-color: dodgerblue;
-	display: grid;
-	place-items: center;
-	color: rgb(216, 195, 6);
 }
 
-.full {
+.block {
 	margin: auto;
-	width: 40%;
-	height: 20vh;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-direction: column;
-	background-color: dodgerblue;
-	color: rgb(216, 195, 6);
-}
-
-.menuButtonWrapper {
-	width: 100%;
-	display: flex;
+	width: 90%;
+	height: 70vh;
+	@include fCenter;
+	background-color: rgba(240, 233, 233, 0.15);
+	color: white;
 }
 
 .menuButton {
