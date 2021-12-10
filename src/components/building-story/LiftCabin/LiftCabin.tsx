@@ -1,17 +1,25 @@
-import React, { FC } from "react";
+import React, { CSSProperties, FC } from "react";
 
 import classNames from "classnames";
 import styles from "./LiftCabin.module.scss";
 
 interface Props {
 	openDoors: boolean;
+	onClick: () => void;
+	properties: CSSProperties;
 }
 
-const LiftCabin: FC<Props> = ({ openDoors = false }) => {
+const LiftCabin: FC<Props> = ({ openDoors, onClick, properties }) => {
 	const cabinClasses = classNames(styles.cabinWrapper, {
 		[styles.openDoors]: openDoors,
 	});
-	return <div className={cabinClasses}></div>;
+	return (
+		<div
+			className={cabinClasses}
+			onClick={onClick}
+			style={properties}
+		></div>
+	);
 };
 
 export default LiftCabin;

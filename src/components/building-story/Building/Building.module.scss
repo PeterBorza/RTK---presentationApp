@@ -9,10 +9,11 @@
 }
 
 .block {
+	position: relative;
 	margin: auto;
 	width: 90%;
-	height: 70vh;
-	@include fCenter;
+	height: 665px;
+	// @include fCenter;
 	background-color: rgba(240, 233, 233, 0.15);
 	color: white;
 }
