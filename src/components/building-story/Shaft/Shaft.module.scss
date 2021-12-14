@@ -1,0 +1,11 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
+.shaftContainer {
+	width: 50px;
+	height: 100%;
+	margin: auto;
+	padding: 1px;
+	@include fCenter(column-reverse);
+}

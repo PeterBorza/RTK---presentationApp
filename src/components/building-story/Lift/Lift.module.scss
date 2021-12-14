@@ -16,18 +16,19 @@
 	&__row {
 		background-color: $appYellow;
 		width: 90%;
+		@include shadow(250ms);
+		border-radius: 3px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		outline: 1px solid;
 		gap: 2px;
 		padding: 2px;
+		user-select: none;
 		span {
 			color: crimson;
 			font-size: 120%;
 		}
-		h3,
-		h4 {
+		h3 {
 			border-bottom: 1px solid;
 		}
 	}
@@ -44,9 +45,4 @@
 	padding: 2px;
 	gap: 5px;
 	@include noVisibleScrollBar;
-	button {
-		padding: 18px 13px;
-		background-color: $appBlack;
-		color: $appYellow;
-	}
 }

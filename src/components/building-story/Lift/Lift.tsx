@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+
 import styles from "./Lift.module.scss";
 
 interface Props {

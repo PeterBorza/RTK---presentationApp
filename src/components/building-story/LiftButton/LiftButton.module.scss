@@ -1,0 +1,19 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
+.buttonStyle {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: $appBlack;
+	color: $appYellow;
+	transition: all 200ms ease;
+	border-radius: 2px;
+	&__active {
+		font-size: 1.8rem;
+		color: white;
+		font-weight: bold;
+		box-shadow: inset 2px 2px 4px $appYellow, inset -2px -2px 4px $appYellow;
+	}
+}

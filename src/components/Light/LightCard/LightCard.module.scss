@@ -7,7 +7,7 @@
 	border-radius: 5px;
 	margin: 5px;
 	padding: 5px;
-	@include shadow();
+	@include shadow(150ms);
 	transition: all 120ms ease-out;
 	background-color: rgba(245, 247, 239, 0.39);
 	div {

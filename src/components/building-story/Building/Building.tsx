@@ -17,6 +17,7 @@ import classNames from "classnames";
 import styles from "./Building.module.scss";
 import { toggleBuilding, liftOpenSelector } from "../../../app/";
 import { activateA, activateB, BuildingMessages, LiftCabin } from "..";
+import Shaft from "../Shaft";
 
 type LevelCount = number;
 
@@ -76,6 +77,8 @@ const Building: React.FC = () => {
 		transition: `all ${speed}ms ease-out`,
 	};
 
+	// try indexOf method with both lifts to get DRY code in slice !!!
+
 	return (
 		<div className={styles.container}>
 			{menuButton}
@@ -85,6 +88,17 @@ const Building: React.FC = () => {
 					onClick={toggleOpenDoorsOfA}
 					properties={liftAStyle}
 				/>
+				<Shaft>
+					{myLevels.map(level => (
+						<LiftButton
+							onClick={() => handlePositionClick(level)}
+							key={`Shaft-button-${level}`}
+							disabled={false}
+							value={level}
+							isActive={level === positionFloor}
+						/>
+					))}
+				</Shaft>
 			</div>
 		</div>
 	);

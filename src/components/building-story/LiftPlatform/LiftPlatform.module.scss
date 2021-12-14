@@ -17,8 +17,9 @@
 }
 
 .enabledIcon {
-	width: 16px;
-	height: 16px;
+	width: 12px;
+	height: 12px;
 	border-radius: 50%;
-	background-color: limegreen;
+	background-color: rgb(44, 148, 44);
+	box-shadow: 1px 1px 8px rgba(44, 148, 44, 0.7);
 }

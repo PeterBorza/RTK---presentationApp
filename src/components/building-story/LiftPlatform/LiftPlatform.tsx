@@ -58,12 +58,6 @@ const LiftPlatform: FC = () => {
 			"-"
 		) : null;
 
-	const dirA = {
-		down: <FaArrowDown />,
-		up: <FaArrowUp />,
-		stop: "-",
-	};
-
 	const directionB =
 		liftB.direction === "down" ? (
 			<FaArrowDown />
@@ -157,6 +151,7 @@ const LiftPlatform: FC = () => {
 			value={button}
 			onClick={() => liftA_buttonsHandler(button)}
 			key={`panelA${button}`}
+			isActive={button === liftA.position}
 		/>
 	));
 
@@ -165,6 +160,7 @@ const LiftPlatform: FC = () => {
 			value={button}
 			onClick={() => liftB_buttonsHandler(button)}
 			key={`panelB${button}`}
+			isActive={button === liftB.position}
 		/>
 	));
 
