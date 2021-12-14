@@ -5,7 +5,7 @@ import { toggleUtils } from "../../../app/appSlice";
 import { Url } from "../../../app/constants";
 import { utilsOpenSelector } from "../../../app/selectors";
 import { AsidePlatform, Button } from "../../../reusables";
-import { MemoryGameMessages as messages } from "../../memoryGame-story/messages";
+import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
 
@@ -20,8 +20,6 @@ const UtilityContainer: FC = () => {
 	const openSidePanel = () => {
 		dispatch(toggleUtils(true));
 	};
-
-	const header = () => <h3>Utilities</h3>;
 
 	const body = () => {
 		return (
@@ -44,13 +42,13 @@ const UtilityContainer: FC = () => {
 			isOpen={openSideBar}
 			onClose={closeSidePanel}
 			renderSideBar={body}
-			renderHeader={header}
+			label={messages.HEADER_TITLE}
 		>
 			{!openSideBar && (
 				<Button
 					className={styles.menuButton}
 					onClick={openSidePanel}
-					value={messages.MENU}
+					value={messages.MENU_BUTTON}
 				/>
 			)}
 			<Outlet />

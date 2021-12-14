@@ -8,12 +8,15 @@ export interface DropDownProps {
 	children: React.ReactNode;
 	title?: string;
 	contentStyle?: string | null;
+	// height: "small" | "medium" | "large" | "xxl";
+	height: string;
 }
 
 const SimpleDrop: FC<DropDownProps> = ({
 	children,
 	title = "Click",
 	contentStyle,
+	height,
 }) => {
 	const [drop, setDrop] = useState<boolean>(false);
 	const headerRef = useRef(null);
@@ -24,17 +27,20 @@ const SimpleDrop: FC<DropDownProps> = ({
 	useOnClickOutside(headerRef, () => setDrop(false));
 	const classes = classNames(
 		styles.content,
+		styles[`content__${height}`],
 		{
 			[styles["content__drop"]]: drop,
-			[styles["white-bg"]]: contentStyle === null,
+			[styles["white-bg"]]: !contentStyle,
 		},
 		contentStyle
 	);
 
+	const headerClasses = classNames(styles.header, [styles[height]]);
+
 	return (
 		<div className={styles["dropdown-container"]} ref={dropDownRef}>
 			<div
-				className={styles.header}
+				className={headerClasses}
 				onClick={handleClick}
 				ref={headerRef}
 			>

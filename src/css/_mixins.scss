@@ -39,7 +39,7 @@
 }
 
 @mixin lineUp($rows) {
-	height: auto;
+	// height: auto;
 	display: grid;
 	grid-template-columns: repeat($rows, 1fr);
 	// child : justify-content : space-between;
@@ -133,8 +133,8 @@
 	}
 }
 
-@mixin shadow {
-	transition: box-shadow 100ms ease;
+@mixin shadow($speed) {
+	transition: box-shadow $speed ease;
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 	&:hover {
 		box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);

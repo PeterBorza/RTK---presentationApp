@@ -13,12 +13,7 @@ import { utilityState, errorState, selectSubtotal } from "../selectors";
 import { selectCard, editCard } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import { initialFormValues } from "../state";
-import {
-	deleteUtilityUnit,
-	editUnit,
-	getAsyncUtility,
-	togglePayedBill,
-} from "../thunks";
+import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
 
 import GasCard from "../GasCard";
 import UtilityForm from "../GasForm";

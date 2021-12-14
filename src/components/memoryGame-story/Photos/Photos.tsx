@@ -6,7 +6,7 @@ import { photoSelector } from "..";
 import { togglePhotos } from "../../../app/appSlice";
 import { photosOpenSelector } from "../../../app/selectors";
 import { AsidePlatform, Button } from "../../../reusables";
-import { MemoryGameMessages } from "../messages";
+import { MemoryGameMessages as messages } from "../messages";
 
 import styles from "./Photos.module.scss";
 
@@ -35,16 +35,16 @@ const Photos: FC = () => {
 	return (
 		<AsidePlatform
 			isOpen={openSideBar}
-			onClose={() => closeMenu()}
-			renderHeader={() => <p className={styles.title}>Cheat Sheets</p>}
-			renderSideBar={() => sideBarContent()}
+			onClose={closeMenu}
+			label={messages.HEADER_LABEL}
+			renderSideBar={sideBarContent}
 		>
 			<div className={styles.container}>
 				{!openSideBar && (
 					<Button
 						className={styles.menuButton}
 						onClick={openMenu}
-						value={MemoryGameMessages.MENU}
+						value={messages.MENU}
 					/>
 				)}
 				<Outlet />

@@ -10,7 +10,7 @@ export type Props = {
 	onClose: () => void;
 	children: ReactNode;
 	renderSideBar: () => ReactNode;
-	renderHeader: () => ReactNode;
+	label: string;
 };
 
 const AsidePlatform: FC<Props> = ({
@@ -18,7 +18,7 @@ const AsidePlatform: FC<Props> = ({
 	children,
 	onClose,
 	renderSideBar,
-	renderHeader,
+	label,
 }) => {
 	const wrapper = classNames(styles.container, {
 		[styles.container__margin]: isOpen,
@@ -31,7 +31,7 @@ const AsidePlatform: FC<Props> = ({
 				visible
 				onClose={onClose}
 				renderBody={renderSideBar}
-				renderHeader={renderHeader}
+				label={label}
 			/>
 			<div className={wrapper}>{children}</div>
 		</section>

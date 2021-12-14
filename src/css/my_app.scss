@@ -3,7 +3,7 @@ $navPrimaryBG: rgba(47, 49, 49, 0.6);
 $appBlack: rgb(24, 23, 23);
 $appYellow: rgb(255, 198, 0);
 $containerHeight: calc(100vh - $navHeight);
-$SBsize: 120px;
+$SBsize: 150px;
 $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
 $SBtransition: all 200ms ease;
 $SBhoverColor: rgb(134, 124, 124);
@@ -58,4 +58,8 @@ $minWidth: 280px;
 			color: rgba(255, 255, 255, 0.8);
 		}
 	}
+}
+
+.menuButton {
+	position: absolute;
 }

@@ -7,7 +7,7 @@ import { store } from "./app/store";
 import App from "./app/App";
 
 import Home from "./components/Home";
-import { Lift } from "./components/building-story";
+import { LiftPlatform } from "./components/building-story";
 import { Bubbles } from "./components/bubble-story";
 import { utilityRoutes } from "../src/components/Utilities";
 import { routes as memoryGameRoutes } from "../src/components/memoryGame-story";
@@ -23,7 +23,7 @@ ReactDOM.render(
 					<Route path='/' element={<App />}>
 						<Route index element={<Home />} />
 						{utilities}
-						<Route path='building' element={<Lift />} />
+						<Route path='building' element={<LiftPlatform />} />
 						<Route path='bubbles' element={<Bubbles />} />
 						{games}
 					</Route>

@@ -1,106 +1,185 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Building } from "..";
-import { AsidePlatform, Button } from "../../../reusables";
-
-import { liftState, positionState } from "../selectors";
-
 import {
-	moveLiftA,
-	toggleButtons,
-	moveLiftB,
-	setLevelNumber,
-} from "../liftSlice";
+	activateA,
+	activateB,
+	Building,
+	BuildingMessages,
+	Lift,
+	setDirectionOfA,
+	setDirectionOfB,
+} from "..";
+import { AsidePlatform } from "../../../reusables";
 
-import { liftOpenSelector } from "../../../app/selectors";
-import { toggleBuilding } from "../../../app/appSlice";
+import { liftState, lift_A_Selector, lift_B_Selector } from "../selectors";
+import { FaArrowDown, FaArrowUp, FaBan } from "react-icons/fa";
+
+import LiftButton from "../LiftButton";
+import DataRow from "../Lift/DataRow";
+
+import { moveLiftA, moveLiftB, setLevelNumber } from "../liftSlice";
+
+import { liftOpenSelector, toggleBuilding } from "../../../app";
 
 import classNames from "classnames";
 import styles from "./LiftPlatform.module.scss";
 
 const LiftPlatform: FC = () => {
-	const { numberOfLevels, isDisabled, liftHeight, liftWidth, speed } =
+	const { numberOfLevels, isDisabled, speed, positionFloor } =
 		useSelector(liftState);
-	const { positionA, positionB, positionFloor } = useSelector(positionState);
+	const [liftA] = useSelector(lift_A_Selector);
+	const [liftB] = useSelector(lift_B_Selector);
+
+	const myLevels = new Array(numberOfLevels).fill(0).map((_, idx) => idx);
+	const topLevel = numberOfLevels - 1;
+
 	const openSideBar = useSelector(liftOpenSelector);
-	const [levelInput, setLevelInput] = useState(numberOfLevels);
 	const dispatch = useDispatch();
 
-	// console.log({ levelNumber, levelInput });
-
-	const disabledClass = classNames(
-		isDisabled ? [styles.disabled] : [styles.active]
+	const buttonAStatus = !liftA.buttonsDisabled ? (
+		<div className={styles.enabledIcon} />
+	) : (
+		<FaBan />
 	);
 
-	const handleNumberOfLevels = () => {
-		const topFloor = levelInput - 1;
-		dispatch(setLevelNumber(levelInput));
+	const buttonBStatus = !liftB.buttonsDisabled ? (
+		<div className={styles.enabledIcon} />
+	) : (
+		<FaBan />
+	);
 
-		if (positionA > levelInput) {
-			dispatch(moveLiftA(topFloor));
-		}
+	const directionA =
+		liftA.direction === "down" ? (
+			<FaArrowDown />
+		) : liftA.direction === "up" ? (
+			<FaArrowUp />
+		) : liftA.direction === "up" ? (
+			"-"
+		) : null;
 
-		if (positionB > levelInput) {
-			dispatch(moveLiftB(topFloor));
-		}
-	};
-
-	const sideBarHeaderTitle = () => {
-		return <h1>Lift</h1>;
-	};
-
-	const handleOnClose = () => {
-		dispatch(toggleBuilding(false));
-	};
-
-	const sideBarBody = () => {
-		return (
-			<div>
-				<Button
-					onClick={() => dispatch(toggleButtons())}
-					value={isDisabled ? "enable buttons" : "disable buttons"}
-				/>
-
-				<p>A: {positionA}</p>
-				<p>B: {positionB}</p>
-				<p>Lift is at floor: {positionFloor}</p>
-				<p>height: {liftHeight}</p>
-				<p>width: {liftWidth}</p>
-				<p>levels: {numberOfLevels}</p>
-				<p>speed: {speed}</p>
-				<p>
-					disabled:
-					<span className={disabledClass}>
-						{isDisabled ? "YES" : "NO"}
-					</span>
-				</p>
-				<div>
-					<div>
-						<Button
-							onClick={handleNumberOfLevels}
-							value='Set number of levels'
-						/>
-						<input
-							type='number'
-							min='3'
-							max='11'
-							value={levelInput}
-							onChange={e =>
-								setLevelInput(Number(e.target.value))
-							}
-						/>
-					</div>
-				</div>
-			</div>
+	const directionB =
+		liftB.direction === "down" ? (
+			<FaArrowDown />
+		) : liftB.direction === "up" ? (
+			<FaArrowUp />
+		) : (
+			"-"
 		);
+
+	// *****************************************************************
+	// *****************************************************************
+
+	const liftA_data = [
+		{
+			label: "Lift",
+			value: liftA.name,
+		},
+		{
+			label: "Top Level",
+			value: topLevel,
+		},
+		{
+			label: "Direction",
+			value: directionA,
+		},
+		{
+			label: "Floor",
+			value: liftA.position,
+		},
+		{
+			label: "Buttons",
+			value: buttonAStatus,
+		},
+	];
+
+	const liftB_data = [
+		{
+			label: "Lift",
+			value: liftB.name,
+		},
+		{
+			label: "Top Level",
+			value: topLevel,
+		},
+		{
+			label: "Direction",
+			value: directionB,
+		},
+		{
+			label: "Floor",
+			value: liftB.position,
+		},
+		{
+			label: "Buttons",
+			value: buttonBStatus,
+		},
+	];
+
+	// *****************************************************************
+	// *****************************************************************
+
+	const handleNumberOfLevels = () => {
+		const topFloor = numberOfLevels - 1;
+		dispatch(setLevelNumber(numberOfLevels));
+
+		if (liftA.position > numberOfLevels) dispatch(moveLiftA(topFloor));
+		if (liftB.position > numberOfLevels) dispatch(moveLiftB(topFloor));
 	};
+
+	// *****************************************************************
+	// *****************************************************************
+
+	const liftA_buttonsHandler = (button: number) => {
+		if (button === liftA.position) dispatch(setDirectionOfB("stop"));
+		if (button > liftA.position) dispatch(setDirectionOfA("up"));
+		if (button < liftA.position) dispatch(setDirectionOfA("down"));
+		dispatch(moveLiftA(button));
+		dispatch(activateA(false));
+	};
+
+	const liftB_buttonsHandler = (button: number) => {
+		if (button === liftB.position) dispatch(setDirectionOfB("stop"));
+		if (button > liftB.position) dispatch(setDirectionOfB("up"));
+		if (button < liftB.position) dispatch(setDirectionOfB("down"));
+		dispatch(moveLiftB(button));
+		dispatch(activateB(false));
+	};
+
+	const panel_A = myLevels.map(button => (
+		<LiftButton
+			value={button}
+			onClick={() => liftA_buttonsHandler(button)}
+			key={`panelA${button}`}
+			isActive={button === liftA.position}
+		/>
+	));
+
+	const panel_B = myLevels.map(button => (
+		<LiftButton
+			value={button}
+			onClick={() => liftB_buttonsHandler(button)}
+			key={`panelB${button}`}
+			isActive={button === liftB.position}
+		/>
+	));
+
+	const liftAPanel = liftA_data.map((data, index) => (
+		<DataRow key={`A${index}`} {...data} />
+	));
+	const liftBPanel = liftB_data.map((data, index) => (
+		<DataRow key={`B${index}`} {...data} />
+	));
+
+	const renderPanelA = <Lift panel={panel_A} liftData={liftAPanel} />;
+	const renderPanelB = <Lift panel={panel_B} liftData={liftBPanel} />;
+
 	return (
 		<AsidePlatform
 			isOpen={openSideBar}
-			onClose={handleOnClose}
-			renderHeader={sideBarHeaderTitle}
-			renderSideBar={sideBarBody}
+			onClose={() => dispatch(toggleBuilding(false))}
+			label={BuildingMessages.HEADER_TITLE}
+			renderSideBar={() => renderPanelA}
 		>
 			<Building />
 		</AsidePlatform>

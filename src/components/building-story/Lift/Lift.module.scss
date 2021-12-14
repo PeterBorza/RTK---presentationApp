@@ -1,0 +1,48 @@
+@use "../../../css/my_app" as *;
+@use "../../../css/mixins" as *;
+@use "../../../css/variables" as *;
+
+.liftContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+}
+
+.liftData {
+	width: 70%;
+	@include fCenter(column);
+	gap: 15px;
+	&__row {
+		background-color: $appYellow;
+		width: 90%;
+		@include shadow(250ms);
+		border-radius: 3px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2px;
+		padding: 2px;
+		user-select: none;
+		span {
+			color: crimson;
+			font-size: 120%;
+		}
+		h3 {
+			border-bottom: 1px solid;
+		}
+	}
+}
+
+.liftButtons {
+	height: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	align-items: center;
+	overflow-y: auto;
+	padding: 2px;
+	gap: 5px;
+	@include noVisibleScrollBar;
+}
