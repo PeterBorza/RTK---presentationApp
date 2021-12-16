@@ -22,8 +22,8 @@
 }
 
 .grid {
-	width: 40%;
-	min-width: $minWidth;
+	width: 360px;
+	// min-width: $minWidth;
 	aspect-ratio: 1/1;
 	display: grid;
 	grid-template-columns: repeat($cols, 1fr);
