@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../app";
 import { initialState, LiftState, Direction } from "./state";
 
 export const liftSlice = createSlice({
@@ -8,33 +9,42 @@ export const liftSlice = createSlice({
 		toggleShaftButtons: state => {
 			state.isDisabled = !state.isDisabled;
 		},
-		setDirectionOfA: (state, { payload }: PayloadAction<Direction>) => {
-			state.lifts[0].direction = payload;
+		// setDirectionOfA: (state, { payload }: PayloadAction<Direction>) => {
+		// 	state.lifts[0].direction = payload;
+		// },
+		// setDirectionOfB: (state, { payload }: PayloadAction<Direction>) => {
+		// 	state.lifts[1].direction = payload;
+		// },
+		// toggleDisableA: state => {
+		// 	state.lifts[0].buttonsDisabled = !state.lifts[0].buttonsDisabled;
+		// },
+		// toggleDisableB: state => {
+		// 	state.lifts[1].buttonsDisabled = !state.lifts[1].buttonsDisabled;
+		// },
+		// activateA: (state, { payload }: PayloadAction<boolean>) => {
+		// 	state.lifts[0].isActive = payload;
+		// },
+		// activateB: (state, { payload }: PayloadAction<boolean>) => {
+		// 	state.lifts[1].isActive = payload;
+		// },
+		// moveLiftA: (state, { payload }: PayloadAction<number>) => {
+		// 	state.lifts[0].position = payload;
+		// 	state.positionFloor = payload;
+		// },
+		// moveLiftB: (state, { payload }: PayloadAction<number>) => {
+		// 	state.lifts[1].position = payload;
+		// 	state.positionFloor = payload;
+		// },
+		setDirection: (
+			state: LiftState,
+			{ payload }: PayloadAction<Direction>
+		) => {
+			state.direction = payload;
 		},
-		setDirectionOfB: (state, { payload }: PayloadAction<Direction>) => {
-			state.lifts[1].direction = payload;
-		},
-		toggleDisableA: state => {
-			state.lifts[0].buttonsDisabled = !state.lifts[0].buttonsDisabled;
-		},
-		toggleDisableB: state => {
-			state.lifts[1].buttonsDisabled = !state.lifts[1].buttonsDisabled;
-		},
-		activateA: (state, { payload }: PayloadAction<boolean>) => {
-			state.lifts[0].isActive = payload;
-		},
-		activateB: (state, { payload }: PayloadAction<boolean>) => {
-			state.lifts[1].isActive = payload;
-		},
-		moveLiftA: (state, { payload }: PayloadAction<number>) => {
-			state.lifts[0].position = payload;
-			state.positionFloor = payload;
-		},
-		moveLiftB: (state, { payload }: PayloadAction<number>) => {
-			state.lifts[1].position = payload;
-			state.positionFloor = payload;
-		},
-		movePosition: (state, { payload }: PayloadAction<number>) => {
+		movePosition: (
+			state: LiftState,
+			{ payload }: PayloadAction<number>
+		) => {
 			state.positionFloor = payload;
 		},
 		setLevelNumber: (
@@ -43,7 +53,7 @@ export const liftSlice = createSlice({
 		) => {
 			state.numberOfLevels = payload;
 		},
-		setSpeed: (state, { payload }: PayloadAction<number>) => {
+		setSpeed: (state: LiftState, { payload }: PayloadAction<number>) => {
 			state.speed = payload;
 		},
 	},
@@ -51,14 +61,15 @@ export const liftSlice = createSlice({
 
 export const {
 	toggleShaftButtons,
-	setDirectionOfA,
-	setDirectionOfB,
-	toggleDisableA,
-	toggleDisableB,
-	activateA,
-	activateB,
-	moveLiftA,
-	moveLiftB,
+	setDirection,
+	// setDirectionOfA,
+	// setDirectionOfB,
+	// toggleDisableA,
+	// toggleDisableB,
+	// activateA,
+	// activateB,
+	// moveLiftA,
+	// moveLiftB,
 	movePosition,
 	setLevelNumber,
 	setSpeed,

@@ -2,21 +2,21 @@ import React, { CSSProperties, useEffect } from "react";
 
 import {
 	liftState,
-	lift_A_Selector,
-	lift_B_Selector,
+	// lift_A_Selector,
+	// lift_B_Selector,
 	speedSelector,
 } from "../selectors";
 import LiftButton from "../LiftButton";
 import { Button } from "../../../reusables";
 
-import { moveLiftA, moveLiftB, movePosition } from "../liftSlice";
+import { movePosition } from "../liftSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import classNames from "classnames";
 import styles from "./Building.module.scss";
 import { toggleBuilding, liftOpenSelector } from "../../../app/";
-import { activateA, activateB, BuildingMessages, LiftCabin } from "..";
+import { BuildingMessages, LiftCabin } from "..";
 import Shaft from "../Shaft";
 
 type LevelCount = number;
@@ -24,8 +24,8 @@ type LevelCount = number;
 const Building: React.FC = () => {
 	const openSideBar = useSelector(liftOpenSelector);
 	const speed = useSelector(speedSelector);
-	const [liftA] = useSelector(lift_A_Selector);
-	const [liftB] = useSelector(lift_B_Selector);
+	// const [liftA] = useSelector(lift_A_Selector);
+	// const [liftB] = useSelector(lift_B_Selector);
 	const { numberOfLevels, positionFloor } = useSelector(liftState);
 	const dispatch = useDispatch();
 
@@ -41,16 +41,16 @@ const Building: React.FC = () => {
 	const handlePositionClick = (level: LevelCount) => {
 		dispatch(movePosition(level));
 
-		const difA = Math.abs(liftA.position - level);
-		const difB = Math.abs(liftB.position - level);
+		// const difA = Math.abs(liftA.position - level);
+		// const difB = Math.abs(liftB.position - level);
 
-		difA < difB
-			? dispatch(moveLiftA(level))
-			: difA > difB
-			? dispatch(moveLiftB(level))
-			: liftA.position <= liftB.position
-			? dispatch(moveLiftA(level))
-			: dispatch(moveLiftB(level));
+		// difA < difB
+		// 	? dispatch(moveLiftA(level))
+		// 	: difA > difB
+		// 	? dispatch(moveLiftB(level))
+		// 	: liftA.position <= liftB.position
+		// 	? dispatch(moveLiftA(level))
+		// 	: dispatch(moveLiftB(level));
 	};
 
 	const menuButton = !openSideBar && (
@@ -62,20 +62,37 @@ const Building: React.FC = () => {
 	);
 
 	const toggleOpenDoorsOfA = () => {
-		dispatch(activateA(true));
+		// dispatch(activateA(true));
 		dispatch(toggleBuilding(true));
 	};
 
 	const toggleOpenDoorsOfB = () => {
-		dispatch(activateB(true));
+		// dispatch(activateB(true));
 		dispatch(toggleBuilding(true));
 	};
 	const liftAStyle: CSSProperties = {
 		left: "0",
 		bottom: "0",
-		transform: `translateY(${-liftA.position * 100}%)`,
+		// transform: `translateY(${-liftA.position * 100}%)`,
 		transition: `all ${speed}ms ease-out`,
 	};
+
+	const liftBStyle: CSSProperties = {
+		right: "0",
+		bottom: "0",
+		// transform: `translateY(${-liftB.position * 100}%)`,
+		transition: `all ${speed}ms ease-out`,
+	};
+
+	const shaftButtons = myLevels.map(level => (
+		<LiftButton
+			onClick={() => handlePositionClick(level)}
+			key={`Shaft-button-${level}`}
+			disabled={false}
+			value={level}
+			isActive={level === positionFloor}
+		/>
+	));
 
 	// try indexOf method with both lifts to get DRY code in slice !!!
 
@@ -83,22 +100,17 @@ const Building: React.FC = () => {
 		<div className={styles.container}>
 			{menuButton}
 			<div className={styles.block}>
-				<LiftCabin
+				{/* <LiftCabin
 					openDoors={liftA.isActive}
 					onClick={toggleOpenDoorsOfA}
 					properties={liftAStyle}
 				/>
-				<Shaft>
-					{myLevels.map(level => (
-						<LiftButton
-							onClick={() => handlePositionClick(level)}
-							key={`Shaft-button-${level}`}
-							disabled={false}
-							value={level}
-							isActive={level === positionFloor}
-						/>
-					))}
-				</Shaft>
+				<LiftCabin
+					openDoors={liftB.isActive}
+					onClick={toggleOpenDoorsOfB}
+					properties={liftBStyle}
+				/> */}
+				<Shaft>{shaftButtons}</Shaft>
 			</div>
 		</div>
 	);
