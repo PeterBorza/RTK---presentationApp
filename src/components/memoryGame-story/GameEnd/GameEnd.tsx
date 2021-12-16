@@ -12,16 +12,11 @@ interface Props {
 }
 
 const GameEnd: FC<Props> = ({ count, message, onClick, buttonLabel }) => {
-	const startMessage = message.split(" ").slice(0, -1).join(" ");
-	const endMessage = message.split(" ").slice(-1);
+	const endMessage = message.replace("x", `${count}`);
 
 	return (
 		<div className={styles.finished}>
-			<h1>
-				{startMessage}
-				<span>{count}</span>
-				{endMessage}
-			</h1>
+			<h1>{endMessage}</h1>
 			<Button
 				onClick={onClick}
 				value={buttonLabel}
