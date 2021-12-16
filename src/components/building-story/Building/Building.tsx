@@ -1,11 +1,6 @@
 import React, { CSSProperties, useEffect } from "react";
 
-import {
-	liftState,
-	// lift_A_Selector,
-	// lift_B_Selector,
-	speedSelector,
-} from "../selectors";
+import { liftState, speedSelector } from "../selectors";
 import LiftButton from "../LiftButton";
 import { Button } from "../../../reusables";
 
@@ -13,7 +8,7 @@ import { movePosition } from "../liftSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import classNames from "classnames";
+// import classNames from "classnames";
 import styles from "./Building.module.scss";
 import { toggleBuilding, liftOpenSelector } from "../../../app/";
 import { BuildingMessages, LiftCabin } from "..";
@@ -23,9 +18,7 @@ type LevelCount = number;
 
 const Building: React.FC = () => {
 	const openSideBar = useSelector(liftOpenSelector);
-	const speed = useSelector(speedSelector);
-	// const [liftA] = useSelector(lift_A_Selector);
-	// const [liftB] = useSelector(lift_B_Selector);
+	// const speed = useSelector(speedSelector);
 	const { numberOfLevels, positionFloor } = useSelector(liftState);
 	const dispatch = useDispatch();
 
@@ -61,28 +54,26 @@ const Building: React.FC = () => {
 		/>
 	);
 
-	const toggleOpenDoorsOfA = () => {
-		// dispatch(activateA(true));
-		dispatch(toggleBuilding(true));
-	};
+	// const toggleOpenDoorsOfA = () => {
+	// 	dispatch(toggleBuilding(true));
+	// };
 
-	const toggleOpenDoorsOfB = () => {
-		// dispatch(activateB(true));
-		dispatch(toggleBuilding(true));
-	};
-	const liftAStyle: CSSProperties = {
-		left: "0",
-		bottom: "0",
-		// transform: `translateY(${-liftA.position * 100}%)`,
-		transition: `all ${speed}ms ease-out`,
-	};
+	// const toggleOpenDoorsOfB = () => {
+	// 	dispatch(toggleBuilding(true));
+	// };
+	// const liftAStyle: CSSProperties = {
+	// 	left: "0",
+	// 	bottom: "0",
+	// 	// transform: `translateY(${-liftA.position * 100}%)`,
+	// 	transition: `all ${speed}ms ease-out`,
+	// };
 
-	const liftBStyle: CSSProperties = {
-		right: "0",
-		bottom: "0",
-		// transform: `translateY(${-liftB.position * 100}%)`,
-		transition: `all ${speed}ms ease-out`,
-	};
+	// const liftBStyle: CSSProperties = {
+	// 	right: "0",
+	// 	bottom: "0",
+	// 	// transform: `translateY(${-liftB.position * 100}%)`,
+	// 	transition: `all ${speed}ms ease-out`,
+	// };
 
 	const shaftButtons = myLevels.map(level => (
 		<LiftButton
