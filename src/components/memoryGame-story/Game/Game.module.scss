@@ -12,8 +12,8 @@
 		content: "";
 		left: 0;
 		top: 0;
-		background: black url(../../../images/christmas-background_640.jpg)
-			no-repeat bottom/cover;
+		background: black url(../images/christmas-background_640.jpg) no-repeat
+			bottom/cover;
 		width: 100%;
 		height: 100%;
 		opacity: 0.5;
@@ -36,7 +36,6 @@
 }
 
 .box {
-	border: 1px solid rgba(247, 241, 241, 0.3);
 	border-radius: 2px;
 	overflow: hidden;
 	pointer-events: all;
@@ -51,17 +50,15 @@
 .front {
 	width: 100%;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0.719);
+	background-color: rgba(255, 255, 255, 0.6);
 	&::after {
 		position: absolute;
-		content: "";
+		content: " ";
 		left: 0;
 		top: 0;
-		background: url(../../../images/merryChristmas.png) no-repeat
-			center/cover;
+		background: url(../images/merryChristmas_300.png) no-repeat center/cover;
 		width: 100%;
 		height: 100%;
-		opacity: 0.5;
 	}
 }
 

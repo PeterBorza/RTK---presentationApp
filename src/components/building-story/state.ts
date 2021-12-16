@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-
 export type Direction = "up" | "down";
 
 export interface Lift {
@@ -15,8 +13,6 @@ export interface LiftState {
 	isDisabled: boolean;
 	positionFloor: number;
 	direction: Direction | null;
-	// liftA: Lift;
-	// liftB: Lift;
 }
 
 export const initialState: LiftState = {
@@ -25,18 +21,4 @@ export const initialState: LiftState = {
 	isDisabled: false,
 	positionFloor: 0,
 	direction: null,
-	// liftA: {
-	// 	id: uuid(),
-	// 	name: "A",
-	// 	isActive: false,
-	// 	position: 0,
-	// 	buttonsDisabled: false,
-	// },
-	// liftB: {
-	// 	id: uuid(),
-	// 	name: "B",
-	// 	isActive: false,
-	// 	position: 6,
-	// 	buttonsDisabled: false,
-	// },
 };

@@ -76,22 +76,21 @@ const Game: FC = () => {
 		dispatch(setNewGame(shuffled));
 	};
 
-	const renderGameButtons = () => {
-		return (
-			<>
-				<Button
-					onClick={resetGameHandler}
-					value={msg.RESET}
-					className={styles.buttons}
-				/>
-				<Button
-					onClick={newGameHandler}
-					value={msg.NEW_GAME}
-					className={styles.buttons}
-				/>
-			</>
-		);
-	};
+	const gameButtons = [
+		{
+			onClick: resetGameHandler,
+			value: msg.RESET,
+		},
+		{
+			onClick: newGameHandler,
+			value: msg.NEW_GAME,
+		},
+	];
+
+	const renderGameButtons = () =>
+		gameButtons.map(button => (
+			<Button key={button.value} {...button} className={styles.buttons} />
+		));
 
 	const renderGridTable = useMemo(() => {
 		const backContent = (src: ImageSource) => {
@@ -102,7 +101,7 @@ const Game: FC = () => {
 			);
 		};
 
-		const frontContent = () => <div className={styles.front}></div>;
+		const frontContent = () => <div className={styles.front} />;
 
 		const renderImages = (
 			{ id, frontSrc, isFlipped, match }: GamePhotoData,
@@ -115,7 +114,7 @@ const Game: FC = () => {
 					className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
 				>
 					<FlipCard
-						frontContent={() => frontContent()}
+						frontContent={frontContent}
 						backContent={() => backContent(frontSrc.src)}
 						darkBack
 						flipped={checkIfMatchOrFLipped}
@@ -138,7 +137,7 @@ const Game: FC = () => {
 				<GameEnd
 					count={count}
 					message={msg.CONGRATS}
-					onClick={() => newGameHandler()}
+					onClick={newGameHandler}
 					buttonLabel={msg.NEW_GAME}
 				/>
 			)}

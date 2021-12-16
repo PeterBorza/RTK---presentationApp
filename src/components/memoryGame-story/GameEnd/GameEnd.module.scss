@@ -9,14 +9,11 @@
 	@include fEven(column);
 	user-select: none;
 	h1 {
-		font-size: clamp(0.8rem, 2vw, 3rem);
+		font-size: clamp(0.8rem, 2.5vw, 3rem);
 		overflow: hidden;
-		color: red;
-		white-space: nowrap;
+		color: rgba(255, 0, 0, 0.8);
 		text-align: center;
-		text-overflow: ellipsis;
-		text-transform: uppercase;
-		text-shadow: 1px 1px 5px rgba(247, 241, 241, 0.3);
+		text-shadow: 3px 3px 15px rgba(247, 241, 241, 0.8);
 		span {
 			color: white;
 			margin: 0 0.6rem;
