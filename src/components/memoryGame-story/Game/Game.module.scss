@@ -12,10 +12,10 @@
 		content: "";
 		left: 0;
 		top: 0;
-		background: black url(../../../images/christmas-background_1280.jpg)
+		background: black url(../../../images/christmas-background_640.jpg)
 			no-repeat bottom/cover;
 		width: 100%;
-		height: 120%;
+		height: 100%;
 		opacity: 0.5;
 		z-index: -1;
 	}
@@ -24,10 +24,11 @@
 .grid {
 	width: 40%;
 	min-width: $minWidth;
+	aspect-ratio: 1/1;
 	display: grid;
 	grid-template-columns: repeat($cols, 1fr);
 	gap: $gap;
-	padding: calc($gap * 2);
+	padding: calc($gap * 1.5);
 	background: rgb(1, 51, 20);
 	border-radius: $gap;
 	@include shadowSB;
@@ -35,9 +36,6 @@
 }
 
 .box {
-	width: 100%;
-	height: 100%;
-	aspect-ratio: 1;
 	border: 1px solid rgba(247, 241, 241, 0.3);
 	border-radius: 2px;
 	overflow: hidden;
@@ -54,7 +52,6 @@
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0.719);
-	@include fCenter();
 	&::after {
 		position: absolute;
 		content: "";
