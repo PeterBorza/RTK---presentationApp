@@ -60,7 +60,6 @@ const GasTable: FC<Props> = ({ dark = false }) => {
 	};
 
 	const onEditGasHandler = (id: UnitId) => {
-		console.log(edited);
 		dispatch(editCard(id));
 	};
 
