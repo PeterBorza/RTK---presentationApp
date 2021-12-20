@@ -12,19 +12,19 @@ $SBnoMarginLeft: 0;
 $darkMode: rgb(40, 64, 73);
 
 @mixin shadowSB {
-	box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-	&:hover {
-		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-	}
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    &:hover {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    }
 }
 
 @mixin container($width) {
-	width: $width;
-	height: $containerHeight;
-	&__margin {
-		padding-left: $SBsize;
-	}
-	transition: $SBtransition;
+    width: $width;
+    height: $containerHeight;
+    &__margin {
+        padding-left: $SBsize;
+    }
+    transition: $SBtransition;
 }
 
 // memory-game
@@ -36,30 +36,27 @@ $backColor: rgb(9, 77, 9);
 $minWidth: 280px;
 
 @mixin before($pic) {
-	&::before {
-		position: absolute;
-		content: "";
-		width: 100%;
-		height: 100%;
-		left: 0;
-		top: 0;
-		background-image: url($pic);
-		background-size: cover;
-		background-position: center;
-		opacity: 0.15;
-		z-index: -1;
-	}
+    &::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: transparent url($pic) no-repeat center/cover;
+        opacity: 0.15;
+    }
 }
 
 @mixin linksAnchorStyle {
-	a {
-		color: $appYellow;
-		&:hover {
-			color: rgba(255, 255, 255, 0.8);
-		}
-	}
+    a {
+        color: $appYellow;
+        &:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
 }
 
 .menuButton {
-	position: absolute;
+    position: absolute;
 }
