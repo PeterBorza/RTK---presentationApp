@@ -231,7 +231,7 @@
             "edit": false
         },
         {
-            "id": "3228d70e-b3de-4b7c-a89a-65cb536feb61",
+            "id": "bab7cb61-ad8c-4957-b1db-af5b927fe2ea",
             "dataCitire": "18/12/2021",
             "selected": false,
             "citire": "4935",
@@ -513,11 +513,11 @@
             "edit": false
         },
         {
-            "id": "01b4e3ec-d75a-4057-9d88-e42ae1b3aa6a",
-            "dataCitire": "16/12/2021",
+            "id": "d20a8b98-e17b-431c-b17a-a6561c064dbc",
+            "dataCitire": "18/12/2021",
             "selected": false,
             "citire": "11277",
-            "factura": "0",
+            "factura": "",
             "consum": "241",
             "platit": false,
             "edit": false
