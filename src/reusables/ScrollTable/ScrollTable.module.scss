@@ -3,46 +3,46 @@
 @use "../../css/my_app" as *;
 
 .wrapper {
-	width: 100%;
-	min-width: 330px;
-	padding: 0.5rem;
-	height: 70vh;
-	box-shadow: $shadow;
+    width: 100%;
+    min-width: 330px;
+    padding: 0.5rem;
+    height: 70vh;
+    box-shadow: $shadow;
 }
 
 .header {
-	width: 100%;
-	height: $navHeight;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	align-items: center;
-	background-color: $navPrimaryBG;
-	span {
-		width: 100%;
-		text-align: center;
-		display: block;
-		text-transform: uppercase;
-		color: $myYellow3;
-		user-select: none;
-	}
+    width: 100%;
+    height: $navHeight;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    background-color: $navPrimaryBG;
+    span {
+        width: 100%;
+        text-align: center;
+        display: block;
+        text-transform: uppercase;
+        color: $myYellow3;
+        user-select: none;
+    }
 }
 
 .body {
-	width: 100%;
-	height: calc(100% - 35px);
-	overflow: hidden;
-	// background-color: rgb(31, 29, 29); darkmode TODO
-	overflow-y: auto;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	text-align: center;
+    width: 100%;
+    height: calc(100% - $navHeight);
+    overflow: hidden;
+    // background-color: rgb(31, 29, 29); darkmode TODO
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    text-align: center;
 }
 
 .loadingWrapper {
-	width: 100%;
-	height: 100%;
-	@include fCenter(column);
+    width: 100%;
+    height: 100%;
+    @include fCenter(column);
 }
