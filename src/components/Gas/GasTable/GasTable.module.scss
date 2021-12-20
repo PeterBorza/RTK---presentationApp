@@ -2,21 +2,25 @@
 @use "../../../css/mixins" as *;
 
 .container {
-	position: relative;
-	padding: 1rem;
-	gap: 1rem;
-	@include fCenter(column);
-	@include container(100%);
-	background-color: white;
-	overflow-y: auto;
-	z-index: 1;
-	&__dark {
-		background-color: rgb(20, 20, 20);
-	}
+    position: relative;
+    padding: 1rem;
+    gap: 1rem;
+    @include fCenter(column);
+    @include container(100%);
+    background-color: white;
+    overflow-y: scroll;
+    &__dark {
+        background-color: rgb(20, 20, 20);
+    }
+}
+
+.tableWrapper {
+    min-width: 280px;
+    width: 80%;
 }
 
 .tableHeader {
-	width: 100%;
-	padding: 0 2rem;
-	@include fAround;
+    width: 100%;
+    padding: 0 2rem;
+    @include fAround;
 }

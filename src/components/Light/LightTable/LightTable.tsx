@@ -7,13 +7,20 @@ import {
     UtilityTableLabels,
     UtilityStateUnit,
     TotalPayedInfo,
+    TableHeader,
+    UtilitiesForm,
 } from "../../Utilities";
+import { initialFormValues } from "../../Utilities/state";
 import { utilityState, errorLightState, selectSubtotal } from "../selectors";
 import { selectCard, resetSelected, editCard } from "../lightSlice";
-import { deleteUtilityUnit, getAsyncUtility, togglePayedBill } from "../thunks";
+import {
+    deleteUtilityUnit,
+    getAsyncUtility,
+    togglePayedBill,
+    postUtility,
+} from "../thunks";
 
 import LightCard from "../LightCard";
-import UtilityForm from "../LightForm";
 
 import classNames from "classnames";
 import styles from "./LightTable.module.scss";
@@ -88,15 +95,25 @@ const LightTable: FC<Props> = ({ dark = false }) => {
         <Error message={error} />
     ) : (
         <div className={wrapper}>
-            <div className={styles.tableHeader}>
-                <h1>{UtilityTableLabels.LIGHT_TITLE}</h1>
-                <UtilityForm />
+            <TableHeader
+                tableTitle={UtilityTableLabels.LIGHT_TITLE}
+                className={styles.tableHeader}
+            >
+                <UtilitiesForm
+                    postData={(newUnit: UtilityStateUnit) =>
+                        dispatch(postUtility(newUnit))
+                    }
+                    formValues={initialFormValues}
+                    utilityUnits={units}
+                />
+            </TableHeader>
+            <div className={styles.tableWrapper}>
+                <Table
+                    renderHeader={table.header}
+                    renderBody={table.body}
+                    loading={loading.isLoading}
+                />
             </div>
-            <Table
-                renderHeader={table.header}
-                renderBody={table.body}
-                loading={loading.isLoading}
-            />
             <TotalPayedInfo sumOfBills={sumOfBills} />
         </div>
     );

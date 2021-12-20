@@ -3,74 +3,74 @@
 @use "../../css/my_app" as *;
 
 .wrapper {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: $SBsize;
-	transform: translateX(-100%);
-	@include headerMainFooter;
-	background-color: rgb(243, 238, 238);
-	border-bottom-right-radius: 3px;
-	overflow: hidden;
-	padding: 2px;
-	@include shadowSB;
-	transition: $SBtransition;
-	z-index: 1;
-	&__open {
-		transform: translateX(0);
-	}
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: $SBsize;
+    transform: translateX(-100%);
+    @include headerMainFooter;
+    background-color: rgb(243, 238, 238);
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+    padding: 2px;
+    @include shadowSB;
+    transition: $SBtransition;
+    z-index: 1;
+    &__open {
+        transform: translateX(0);
+    }
 }
 
 .header {
-	border-bottom: $SBborder;
+    border-bottom: $SBborder;
 }
 
 .sideBarLabel {
-	@include truncate;
+    @include truncate;
 }
 
 .header {
-	width: 100%;
-	height: 5vh;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.2rem;
-	user-select: none;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem;
+    user-select: none;
 }
 .footer {
-	border-top: $SBborder;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	width: 100%;
-	height: 5vh;
-	padding: 0.5rem;
-	user-select: none;
-	p {
-		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-		font-size: 0.8rem;
-	}
+    border-top: $SBborder;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 5vh;
+    padding: 0.5rem;
+    user-select: none;
+    p {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 0.8rem;
+    }
 }
 .body {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .toggle {
-	&__close {
-		font-size: $SBfontSize;
-		margin-left: auto;
-		&:hover {
-			color: $SBhoverColor;
-		}
-	}
+    &__close {
+        font-size: $SBfontSize;
+        margin-left: auto;
+        &:hover {
+            color: $SBhoverColor;
+        }
+    }
 }
 
 .noDisplay {
-	display: none;
+    display: none;
 }
