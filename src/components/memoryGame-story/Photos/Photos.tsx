@@ -11,46 +11,45 @@ import { MemoryGameMessages as messages } from "../messages";
 import styles from "./Photos.module.scss";
 
 const Photos: FC = () => {
-	const dispatch = useDispatch();
-	const photos = useSelector(photoSelector);
-	const openSideBar = useSelector(photosOpenSelector);
+    const dispatch = useDispatch();
+    const photos = useSelector(photoSelector);
+    const openSideBar = useSelector(photosOpenSelector);
 
-	const renderLinks = photos.map(photo => (
-		<Link className={styles.links} key={photo.id} to={photo.id}>
-			{photo.caption}
-		</Link>
-	));
+    const renderLinks = photos.map(photo => (
+        <Link className={styles.links} key={photo.id} to={photo.id}>
+            {photo.caption}
+        </Link>
+    ));
 
-	const sideBarContent = () => (
-		<div className={styles.linkWrapper}>{renderLinks}</div>
-	);
+    const sideBarContent = () => (
+        <div className={styles.linkWrapper}>{renderLinks}</div>
+    );
 
-	const openMenu = () => {
-		dispatch(togglePhotos(true));
-	};
-	const closeMenu = () => {
-		dispatch(togglePhotos(false));
-	};
+    const openMenu = () => {
+        dispatch(togglePhotos(true));
+    };
+    const closeMenu = () => {
+        dispatch(togglePhotos(false));
+    };
 
-	return (
-		<AsidePlatform
-			isOpen={openSideBar}
-			onClose={closeMenu}
-			label={messages.HEADER_LABEL}
-			renderSideBar={sideBarContent}
-		>
-			<div className={styles.container}>
-				{!openSideBar && (
-					<Button
-						className={styles.menuButton}
-						onClick={openMenu}
-						value={messages.MENU}
-					/>
-				)}
-				<Outlet />
-			</div>
-		</AsidePlatform>
-	);
+    return (
+        <AsidePlatform
+            isOpen={openSideBar}
+            onClose={closeMenu}
+            label={messages.HEADER_LABEL}
+            renderSideBar={sideBarContent}
+        >
+            <div className={styles.container}>
+                <Button
+                    className={styles.menuButton}
+                    onClick={openMenu}
+                    value={messages.MENU}
+                    displayed={!openSideBar}
+                />
+                <Outlet />
+            </div>
+        </AsidePlatform>
+    );
 };
 
 export default Photos;
