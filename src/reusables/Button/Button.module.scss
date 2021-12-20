@@ -3,6 +3,7 @@
 @use "../../css/my_app" as *;
 
 .defaultStyle {
+    display: none;
     position: relative;
     overflow: hidden;
     background: $myYellow3;
@@ -54,5 +55,8 @@
         .defaultStyle__content {
             color: skyblue;
         }
+    }
+    &__display {
+        display: block;
     }
 }

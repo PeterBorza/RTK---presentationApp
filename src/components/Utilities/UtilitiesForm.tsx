@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { v4 as uuid } from "uuid";
-import { format } from "date-fns";
 
 import { TextInput, ModalForm } from "../../reusables";
 import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
@@ -23,12 +22,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
         FORM_WIDTH: formWidth,
         FORM_TITLE: formTitle,
     } = UtilityFormValues;
-    const date = format(new Date(), "dd/MM/yyyy");
-    const startingValues: FormProps = {
-        ...formValues,
-        dataCitire: date,
-    };
-    const { values, changeHandler, resetValues } = useForm(startingValues);
+    const { values, changeHandler, resetValues } = useForm(formValues);
 
     const checkIfValid = (input: string) => (isNaN(+input) || "" ? "0" : input);
 
