@@ -3,12 +3,6 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../reusables";
-import {
-    UtilityLabels,
-    UtilityTableLabels,
-    TotalPayedInfo,
-    UnitId,
-} from "../../Utilities";
 import { utilityState, errorState, selectSubtotal } from "../selectors";
 import { selectCard, editCard } from "../gasSlice";
 import {
@@ -16,8 +10,11 @@ import {
     TableHeader,
     UtilitiesForm,
     initialFormValues,
+    UtilityLabels,
+    UtilityTableLabels,
+    TotalPayedInfo,
+    UnitId,
 } from "../../Utilities";
-// import { initialFormValues } from "../state";
 import {
     deleteUtilityUnit,
     getAsyncUtility,
@@ -29,6 +26,7 @@ import GasCard from "../GasCard";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
+import EditCard from "../EditCard";
 
 type Props = {
     dark?: boolean;
@@ -73,19 +71,23 @@ const GasTable: FC<Props> = ({ dark = false }) => {
     const renderListItems = (item: Array<UtilityStateUnit>) =>
         item.map(unit => (
             <li key={unit.id}>
-                <GasCard
-                    {...unit}
-                    onClick={() => onGasClickHandler(unit.id)}
-                    onPayedClick={() => onTogglePayedBill(unit)}
-                    onDelete={() => onDeleteGasHandler(unit.id)}
-                    onEdit={() => onEditGasHandler(unit.id)}
-                />
+                {!unit.edit ? (
+                    <GasCard
+                        {...unit}
+                        onClick={() => onGasClickHandler(unit.id)}
+                        onPayedClick={() => onTogglePayedBill(unit)}
+                        onDelete={() => onDeleteGasHandler(unit.id)}
+                        onEdit={() => onEditGasHandler(unit.id)}
+                    />
+                ) : (
+                    <EditCard unit={unit} />
+                )}
             </li>
         ));
 
     const table = {
         header: () =>
-            Object.keys(UtilityLabels).map(item => (
+            Object.values(UtilityLabels).map(item => (
                 <span key={item}>{item}</span>
             )),
         body: () => isUnits && renderListItems(units),
