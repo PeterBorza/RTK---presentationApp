@@ -2,27 +2,27 @@ import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
 import { Pending } from "../../app/constants";
 
 const initialFormValues: FormProps = {
-	citire: "",
-	factura: "",
-	dataCitire: "",
+    index: "",
+    bill: "",
+    readDate: "",
 };
 
 const initialState: UtilityState = {
-	units: [],
-	loading: {
-		isLoading: false,
-		message: Pending.MESSAGE,
-	},
-	error: null,
+    units: [],
+    loading: {
+        isLoading: false,
+        message: Pending.MESSAGE,
+    },
+    error: null,
 };
 
 const initialEditUnit: UtilityStateUnit = {
-	...initialFormValues,
-	id: "",
-	consum: "",
-	selected: false,
-	platit: false,
-	edit: false,
+    ...initialFormValues,
+    id: "",
+    consumption: "",
+    selected: false,
+    payed: false,
+    edit: false,
 };
 
 export { initialFormValues, initialState, initialEditUnit };

@@ -21,8 +21,7 @@ const LightCard: React.FC<UtilityStateUnit & Props> = ({
     dark = false,
     ...units
 }) => {
-    const { dataCitire, citire, consum, factura, platit, selected, edit } =
-        units;
+    const { readDate, index, consumption, bill, payed, selected, edit } = units;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
@@ -36,16 +35,16 @@ const LightCard: React.FC<UtilityStateUnit & Props> = ({
 
     return (
         <div className={classes} onClick={onClick}>
-            <div className={dataWrapper}>{dataCitire}</div>
-            <div className={dataWrapper}>{citire}</div>
-            <div className={dataWrapper}>{consum}</div>
-            <div className={dataWrapper}>{factura}</div>
+            <div className={dataWrapper}>{readDate}</div>
+            <div className={dataWrapper}>{index}</div>
+            <div className={dataWrapper}>{consumption}</div>
+            <div className={dataWrapper}>{bill}</div>
             <div className={iconsWrapper}>
                 <IconSet
                     onCheck={onPayedClick}
                     onDelete={onDelete}
                     onEdit={onEdit}
-                    isChecked={platit}
+                    isChecked={payed}
                     isEdited={edit}
                 />
             </div>

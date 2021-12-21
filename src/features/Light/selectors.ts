@@ -10,17 +10,17 @@ export const pendingState = ({ light }: RootState) => light.loading.isLoading;
 export const errorLightState = ({ light }: RootState) => light.error;
 
 export const isPayedSelector = createSelector(unitsState, items =>
-	items.filter(items => items.platit === true)
+    items.filter(items => items.payed === true)
 );
 
 export const billsSelector = createSelector(isPayedSelector, items =>
-	items.map(items => items.factura)
+    items.map(items => items.bill)
 );
 
 export const selectSubtotal = createSelector(billsSelector, items =>
-	items.reduce((subtotal, item) => subtotal + Number(item), 0)
+    items.reduce((subtotal, item) => subtotal + Number(item), 0)
 );
 
 export const selectedGas = createSelector(unitsState, items =>
-	items.filter(unit => unit.selected === true)
+    items.filter(unit => unit.selected === true)
 );

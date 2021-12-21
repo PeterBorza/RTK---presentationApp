@@ -10,21 +10,21 @@ export const pendingState = ({ gas }: RootState) => gas.loading.isLoading;
 export const errorState = ({ gas }: RootState) => gas.error;
 
 export const isPayedSelector = createSelector(unitsState, items =>
-	items.filter(items => items.platit === true)
+    items.filter(items => items.payed === true)
 );
 
 export const billsSelector = createSelector(isPayedSelector, items =>
-	items.map(items => items.factura)
+    items.map(items => items.bill)
 );
 
 export const selectSubtotal = createSelector(billsSelector, items =>
-	items.reduce((subtotal, item) => subtotal + +item, 0)
+    items.reduce((subtotal, item) => subtotal + +item, 0)
 );
 
 export const selectedGas = createSelector(unitsState, items =>
-	items.filter(unit => unit.selected === true)
+    items.filter(unit => unit.selected === true)
 );
 
 export const editedGas = createSelector(unitsState, items =>
-	items.filter(unit => unit.edit === true)
+    items.filter(unit => unit.edit === true)
 );

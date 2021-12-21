@@ -3,7 +3,8 @@ import { FC } from "react";
 import classNames from "classnames";
 import styles from "./IconSet.module.scss";
 import { FaCheck, FaExclamationTriangle, FaRegTrashAlt } from "react-icons/fa";
-import { AiFillEdit } from "react-icons/ai";
+import { MdEdit } from "react-icons/md";
+import { CgDanger } from "react-icons/cg";
 
 export enum IconTitles {
     PAYED = "Payed",
@@ -40,7 +41,7 @@ const IconSet: FC<IconSetProps> = ({
                     title={IconTitles.PAYED}
                 />
             ) : (
-                <FaExclamationTriangle
+                <CgDanger
                     className={styles.red}
                     onClick={onCheck}
                     title={IconTitles.NOT_PAYED}
@@ -51,7 +52,7 @@ const IconSet: FC<IconSetProps> = ({
                 title={IconTitles.DELETE}
                 onClick={onDelete}
             />
-            <AiFillEdit
+            <MdEdit
                 className={editClass}
                 title={IconTitles.EDIT}
                 onClick={onEdit}

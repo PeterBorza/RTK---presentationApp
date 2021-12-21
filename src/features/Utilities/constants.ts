@@ -1,15 +1,15 @@
 export enum UtilityFormValues {
     FORM_BUTTON_LABEL = "Add new index",
     FORM_WIDTH = "small",
-    FORM_TITLE = "Send monthly index",
+    FORM_TITLE = "New index form",
 }
 
 export enum UtilityLabels {
-    DATA = "date",
-    CITIRE = "index",
-    CONSUM = "consumption",
-    FACTURA = "bill",
-    PLATIT = "edit",
+    DATE = "date",
+    INDEX = "index",
+    CONSUMPTION = "consumption",
+    BILL = "bill",
+    PAYED = "edit",
 }
 
 export enum UtilityTableLabels {
