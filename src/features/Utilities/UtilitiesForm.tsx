@@ -33,19 +33,19 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
 
     const onSubmitHandler = () => {
         let lastCitire = "";
-        if (utilityUnits.length === 0) lastCitire = values.citire;
-        lastCitire = utilityUnits[utilityUnits.length - 1].citire;
-        const newConsum = +values.citire - +lastCitire;
+        if (utilityUnits.length === 0) lastCitire = values.index;
+        lastCitire = utilityUnits[utilityUnits.length - 1].index;
+        const newConsum = +values.index - +lastCitire;
         const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
 
         const newGasUnit: UtilityStateUnit = {
             id: uuid(),
-            dataCitire: values.dataCitire,
+            readDate: values.readDate,
             selected: false,
-            citire: checkIfValid(values.citire),
-            factura: getCorrectValues(checkIfValid(values.factura)),
-            consum: checkNewConsum.toString(),
-            platit: false,
+            index: checkIfValid(values.index),
+            bill: getCorrectValues(checkIfValid(values.bill)),
+            consumption: checkNewConsum.toString(),
+            payed: false,
             edit: false,
         };
 

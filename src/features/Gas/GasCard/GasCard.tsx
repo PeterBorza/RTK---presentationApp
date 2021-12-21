@@ -21,8 +21,7 @@ const GasCard: React.FC<UtilityStateUnit & Props> = ({
     dark = false,
     ...units
 }) => {
-    const { dataCitire, citire, consum, factura, platit, selected, edit } =
-        units;
+    const { readDate, index, consumption, bill, payed, selected, edit } = units;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
@@ -33,23 +32,23 @@ const GasCard: React.FC<UtilityStateUnit & Props> = ({
 
     return (
         <div className={classes} onClick={onClick}>
-            <div className={dataWrapper} title={dataCitire}>
-                {dataCitire}
+            <div className={dataWrapper} title={readDate}>
+                {readDate}
             </div>
-            <div className={dataWrapper} title={citire}>
-                {citire}
+            <div className={dataWrapper} title={index}>
+                {index}
             </div>
-            <div className={dataWrapper} title={consum}>
-                {consum}
+            <div className={dataWrapper} title={consumption}>
+                {consumption}
             </div>
-            <div className={dataWrapper} title={factura}>
-                {factura}
+            <div className={dataWrapper} title={bill}>
+                {bill}
             </div>
             <IconSet
                 onCheck={onPayedClick}
                 onDelete={onDelete}
                 onEdit={onEdit}
-                isChecked={platit}
+                isChecked={payed}
                 isEdited={edit}
             />
         </div>

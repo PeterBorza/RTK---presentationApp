@@ -11,12 +11,12 @@ type Props = {
 };
 
 const EditCard: FC<Props> = ({ unit }) => {
-    const { dataCitire, citire, consum, factura, platit, selected, edit, id } =
+    const { readDate, index, consumption, bill, payed, selected, edit, id } =
         unit;
     const [values, setValues] = useState({
-        dataCitire,
-        citire,
-        factura,
+        readDate,
+        index,
+        bill,
     });
     const dispatch = useDispatch();
     const onCancelHandler = () => {
@@ -28,10 +28,10 @@ const EditCard: FC<Props> = ({ unit }) => {
         e.preventDefault();
         const editedUnit: UtilityStateUnit = {
             ...unit,
-            dataCitire: values.dataCitire,
-            citire: values.citire,
-            factura: values.factura,
-            consum: (+consum + +values.citire - +citire).toString(),
+            readDate: values.readDate,
+            index: values.index,
+            bill: values.bill,
+            consumption: (+consumption + +values.index - +index).toString(),
             selected: false,
             edit: false,
         };
@@ -51,29 +51,29 @@ const EditCard: FC<Props> = ({ unit }) => {
             <div className={styles.edit_cell}>
                 <input
                     type="text"
-                    placeholder={dataCitire}
+                    placeholder={readDate}
                     onChange={onChangeHandler}
-                    name="dataCitire"
-                    value={values.dataCitire}
+                    name="readDate"
+                    value={values.readDate}
                 />
             </div>
             <div className={styles.edit_cell}>
                 <input
                     type="text"
-                    placeholder={citire}
+                    placeholder={index}
                     onChange={onChangeHandler}
-                    name="citire"
-                    value={values.citire}
+                    name="index"
+                    value={values.index}
                 />
             </div>
-            <div className={styles.edit_cell}>{consum}</div>
+            <div className={styles.edit_cell}>{consumption}</div>
             <div className={styles.edit_cell}>
                 <input
                     type="text"
-                    placeholder={factura}
+                    placeholder={bill}
                     onChange={onChangeHandler}
-                    name="factura"
-                    value={values.factura}
+                    name="bill"
+                    value={values.bill}
                 />
             </div>
             <div className={styles.edit_cell}>

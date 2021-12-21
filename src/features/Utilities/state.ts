@@ -4,9 +4,9 @@ import { format } from "date-fns";
 import { DateFormats } from "../../app";
 
 const initialFormValues: FormProps = {
-    citire: "",
-    factura: "",
-    dataCitire: format(new Date(), DateFormats.STANDARD),
+    index: "",
+    bill: "",
+    readDate: format(new Date(), DateFormats.STANDARD),
 };
 
 const initialState: UtilityState = {
@@ -21,9 +21,9 @@ const initialState: UtilityState = {
 const initialEditUnit: UtilityStateUnit = {
     ...initialFormValues,
     id: "",
-    consum: "",
+    consumption: "",
     selected: false,
-    platit: false,
+    payed: false,
     edit: false,
 };
 

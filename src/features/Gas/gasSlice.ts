@@ -33,7 +33,7 @@ export const gasSlice = createSlice({
         ) => {
             const selected = state.units.find(unit => unit.id === payload);
             if (selected) {
-                selected.platit = !selected.platit;
+                selected.payed = !selected.payed;
             }
         },
         addUnit: (
