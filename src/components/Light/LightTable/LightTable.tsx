@@ -85,7 +85,7 @@ const LightTable: FC<Props> = ({ dark = false }) => {
 
     const table = {
         header: () =>
-            Object.keys(UtilityLabels).map(item => (
+            Object.values(UtilityLabels).map(item => (
                 <span key={item}>{item}</span>
             )),
         body: () => isUnits && renderListItems(units),
