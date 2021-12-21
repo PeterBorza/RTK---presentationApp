@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormProps } from "../components/Utilities/types";
+import { FormProps } from "../features/Utilities/types";
 
 export const useForm = (data: FormProps) => {
     const [values, setValues] = useState<FormProps>(data);

@@ -1,0 +1,45 @@
+@use "../../../css/variables" as *;
+@use "../../../css/mixins" as *;
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin: 4px;
+    padding: 2px;
+    @include shadow(130ms);
+    transition: all 120ms ease-out;
+    background-color: rgba(245, 247, 239, 0.4);
+    div {
+        width: 100%;
+    }
+    & div:nth-child(1) {
+        color: rgb(5, 78, 5);
+    }
+    & div:nth-child(2) {
+        color: crimson;
+    }
+
+    &:hover {
+        background-color: rgba(245, 245, 245, 0.3);
+    }
+    &__dark {
+        background-color: rgba(28, 29, 25, 0.507);
+    }
+}
+
+.data {
+    font-size: 1.15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+    &__dark {
+        color: white;
+    }
+}
+
+.selected {
+    box-shadow: $mixinShadowHover;
+    background-color: rgba(245, 239, 239, 0.7);
+}
