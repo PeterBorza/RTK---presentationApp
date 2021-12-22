@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../../shared-components";
 import { utilityState, errorState, selectSubtotal } from "../selectors";
-import { selectCard, editCard } from "../gasSlice";
+import { selectCard, editCard, resetEdit } from "../gasSlice";
 import {
     UtilityStateUnit,
     TableHeader,
@@ -13,10 +13,11 @@ import {
     UtilityLabels,
     UtilityTableLabels,
     TotalPayedInfo,
-    UnitId,
+    EditCard,
 } from "../../Utilities";
 import {
     deleteUtilityUnit,
+    editUnit,
     getAsyncUtility,
     postUtility,
     togglePayedBill,
@@ -26,7 +27,6 @@ import GasCard from "../GasCard";
 
 import classNames from "classnames";
 import styles from "./GasTable.module.scss";
-import EditCard from "../EditCard";
 
 type Props = {
     dark?: boolean;
@@ -42,7 +42,7 @@ const GasTable: FC<Props> = ({ dark = false }) => {
         [styles.container__dark]: dark,
     });
 
-    const isUnits = units && units.length !== 0;
+    const isUnits = units.length !== 0;
 
     const fetchGasUnits = useCallback(() => {
         dispatch(getAsyncUtility());
@@ -52,46 +52,31 @@ const GasTable: FC<Props> = ({ dark = false }) => {
         fetchGasUnits();
     }, [fetchGasUnits]);
 
-    const onTogglePayedBill = (item: UtilityStateUnit) => {
-        dispatch(togglePayedBill(item));
-    };
+    const headers = Object.values(UtilityLabels).map(item => (
+        <span key={item}>{item}</span>
+    ));
 
-    const onGasClickHandler = (id: string) => {
-        dispatch(selectCard(id));
-    };
-
-    const onDeleteGasHandler = (id: string) => {
-        dispatch(deleteUtilityUnit(id));
-    };
-
-    const onEditGasHandler = (id: UnitId) => {
-        dispatch(editCard(id));
-    };
-
-    const renderListItems = (item: Array<UtilityStateUnit>) =>
-        item.map(unit => (
-            <li key={unit.id}>
-                {!unit.edit ? (
-                    <GasCard
-                        {...unit}
-                        onClick={() => onGasClickHandler(unit.id)}
-                        onPayedClick={() => onTogglePayedBill(unit)}
-                        onDelete={() => onDeleteGasHandler(unit.id)}
-                        onEdit={() => onEditGasHandler(unit.id)}
-                    />
-                ) : (
-                    <EditCard unit={unit} />
-                )}
-            </li>
-        ));
-
-    const table = {
-        header: () =>
-            Object.values(UtilityLabels).map(item => (
-                <span key={item}>{item}</span>
-            )),
-        body: () => isUnits && renderListItems(units),
-    };
+    const renderListItems = units.map(unit => (
+        <li key={unit.id}>
+            {!unit.edit ? (
+                <GasCard
+                    onClick={() => dispatch(selectCard(unit.id))}
+                    onPayedClick={() => dispatch(togglePayedBill(unit))}
+                    onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
+                    onEdit={() => dispatch(editCard(unit.id))}
+                    {...unit}
+                />
+            ) : (
+                <EditCard
+                    resetEdit={() => dispatch(resetEdit())}
+                    editUnit={(editedUnit: UtilityStateUnit) =>
+                        dispatch(editUnit(editedUnit))
+                    }
+                    {...unit}
+                />
+            )}
+        </li>
+    ));
 
     return error ? (
         <Error message={error} />
@@ -111,8 +96,8 @@ const GasTable: FC<Props> = ({ dark = false }) => {
             </TableHeader>
             <div className={styles.tableWrapper}>
                 <Table
-                    renderHeader={table.header}
-                    renderBody={table.body}
+                    renderHeader={() => headers}
+                    renderBody={() => isUnits && renderListItems}
                     loading={loading.isLoading}
                 />
             </div>

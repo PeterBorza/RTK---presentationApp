@@ -31,6 +31,11 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
         return value;
     };
 
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name !== "readDate" && e.target.value === "") return;
+        changeHandler(e);
+    };
+
     const onSubmitHandler = () => {
         let lastCitire = "";
         if (utilityUnits.length === 0) lastCitire = values.index;
@@ -58,7 +63,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
             key={input[0]}
             value={input[1]}
             name={input[0]}
-            onChange={changeHandler}
+            onChange={onChangeHandler}
         />
     ));
 

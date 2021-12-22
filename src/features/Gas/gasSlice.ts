@@ -42,6 +42,13 @@ export const gasSlice = createSlice({
         ) => {
             state.units.push(payload);
         },
+        replaceUnit: (
+            state: UtilityState,
+            { payload }: PayloadAction<{ id: UnitId; unit: UtilityStateUnit }>
+        ) => {
+            const index = state.units.findIndex(unit => unit.id === payload.id);
+            state.units.splice(index, 1, payload.unit);
+        },
         getUnits: (
             state: UtilityState,
             { payload }: PayloadAction<UtilityStateUnit[]>
@@ -70,6 +77,7 @@ export const {
     selectCard,
     resetSelected,
     editCard,
+    replaceUnit,
     resetEdit,
     togglePayed,
     addUnit,
