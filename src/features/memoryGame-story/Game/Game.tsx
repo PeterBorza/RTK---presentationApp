@@ -48,7 +48,7 @@ const Game: FC = () => {
 
     useEffect(() => {
         count > 25 && dispatch(resetGame());
-    }, [count]);
+    }, [count, dispatch]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import classNames from "classnames";
 import styles from "./IconSet.module.scss";
-import { FaCheck, FaExclamationTriangle, FaRegTrashAlt } from "react-icons/fa";
+import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { CgDanger } from "react-icons/cg";
 

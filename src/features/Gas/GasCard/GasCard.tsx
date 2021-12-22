@@ -19,9 +19,9 @@ const GasCard: React.FC<UtilityStateUnit & Props> = ({
     onDelete,
     onEdit,
     dark = false,
-    ...units
+    ...unit
 }) => {
-    const { readDate, index, consumption, bill, payed, selected, edit } = units;
+    const { readDate, index, consumption, bill, payed, selected, edit } = unit;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
