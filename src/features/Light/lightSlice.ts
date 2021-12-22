@@ -21,6 +21,9 @@ export const lightSlice = createSlice({
                 item => (item.edit = item.id === payload ? true : false)
             );
         },
+        resetEdit: (state: UtilityState) => {
+            state.units.forEach(item => (item.edit = false));
+        },
         resetSelected: (state: UtilityState) => {
             state.units.forEach(item => (item.selected = false));
         },
@@ -38,6 +41,13 @@ export const lightSlice = createSlice({
             { payload }: PayloadAction<UtilityStateUnit>
         ) => {
             state.units.push(payload);
+        },
+        replaceUnit: (
+            state: UtilityState,
+            { payload }: PayloadAction<{ id: UnitId; unit: UtilityStateUnit }>
+        ) => {
+            const index = state.units.findIndex(unit => unit.id === payload.id);
+            state.units.splice(index, 1, payload.unit);
         },
         getUnits: (
             state: UtilityState,
@@ -69,6 +79,8 @@ export const {
     resetSelected,
     togglePayed,
     addUnit,
+    replaceUnit,
+    resetEdit,
     getUnits,
     deleteUnit,
     setUtilitiesPending,

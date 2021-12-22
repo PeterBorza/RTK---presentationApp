@@ -1,31 +1,34 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI, Url } from "../../../app/constants";
-import { setUtilitiesError, setUtilitiesPending } from "../lightSlice";
-import { RootState } from "../../../app/store";
+import {
+    setUtilitiesError,
+    setUtilitiesPending,
+    replaceUnit,
+    selectCard,
+} from "../lightSlice";
 import axios from "axios";
+import { UtilityStateUnit } from "../../Utilities";
 
 export const editAsyncUnit = async (
-	id: string,
-	{ dispatch, getState }: { dispatch: Function; getState: Function }
+    item: UtilityStateUnit,
+    { dispatch }: { dispatch: Function }
 ): Promise<void> => {
-	const state = getState() as RootState;
-	const lightUnits = state.light.units;
-	const selected = lightUnits.find(unit => unit.id === id);
-
-	dispatch(setUtilitiesPending(true));
-	try {
-		await axios.put(
-			`${BaseAPI.UTILITIES_URL}/${Url.LIGHT}/${id}`,
-			selected
-		);
-	} catch {
-		dispatch(setUtilitiesError());
-	} finally {
-		dispatch(setUtilitiesPending(false));
-	}
+    dispatch(setUtilitiesPending(true));
+    try {
+        await axios
+            .put(`${BaseAPI.UTILITIES_URL}/${Url.LIGHT}/${item.id}`, item)
+            .then(() => {
+                dispatch(replaceUnit({ id: item.id, unit: item }));
+                dispatch(selectCard(item.id));
+            });
+    } catch {
+        dispatch(setUtilitiesError());
+    } finally {
+        dispatch(setUtilitiesPending(false));
+    }
 };
 
 export const editUnit = createAsyncThunk(
-	`${Url.LIGHT}/editAsyncUnit`,
-	editAsyncUnit
+    `${Url.LIGHT}/editAsyncUnit`,
+    editAsyncUnit
 );

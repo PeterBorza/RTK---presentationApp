@@ -70,7 +70,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                 />
             </div>
             <div className={styles.edit_cell}>
-                <Button type="submit" value={UtilityTableLabels.EDIT} />
+                <Button type="submit" value={UtilityTableLabels.CONFIRM} />
                 <Button
                     onClick={resetEdit}
                     value={UtilityTableLabels.CANCEL_EDIT}

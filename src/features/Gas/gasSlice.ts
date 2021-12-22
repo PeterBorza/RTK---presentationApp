@@ -16,13 +16,13 @@ export const gasSlice = createSlice({
                 item => (item.selected = item.id === payload ? true : false)
             );
         },
-        resetSelected: (state: UtilityState) => {
-            state.units.forEach(item => (item.selected = false));
-        },
         editCard: (state: UtilityState, { payload }: PayloadAction<UnitId>) => {
             state.units.map(
                 item => (item.edit = item.id === payload ? true : false)
             );
+        },
+        resetSelected: (state: UtilityState) => {
+            state.units.forEach(item => (item.selected = false));
         },
         resetEdit: (state: UtilityState) => {
             state.units.forEach(item => (item.edit = false));

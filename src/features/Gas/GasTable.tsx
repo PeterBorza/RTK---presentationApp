@@ -2,45 +2,34 @@ import { FC } from "react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table, Error } from "../../../shared-components";
-import { utilityState, errorState, selectSubtotal } from "../selectors";
-import { selectCard, editCard, resetEdit } from "../gasSlice";
+import { Table, Error } from "../../shared-components";
+import { utilityState, errorState, selectSubtotal } from "./selectors";
+import { selectCard, editCard, resetEdit } from "./gasSlice";
 import {
     UtilityStateUnit,
-    TableHeader,
     UtilitiesForm,
     initialFormValues,
     UtilityLabels,
     UtilityTableLabels,
-    TotalPayedInfo,
     EditCard,
-} from "../../Utilities";
+    UtilityTable,
+    TotalPayedInfo,
+} from "../Utilities";
 import {
     deleteUtilityUnit,
     editUnit,
     getAsyncUtility,
     postUtility,
     togglePayedBill,
-} from "../thunks";
+} from "./thunks";
 
-import GasCard from "../GasCard";
+import GasCard from "./GasCard";
 
-import classNames from "classnames";
-import styles from "./GasTable.module.scss";
-
-type Props = {
-    dark?: boolean;
-};
-
-const GasTable: FC<Props> = ({ dark = false }) => {
+const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorState);
     const sumOfBills = useSelector(selectSubtotal);
     const dispatch = useDispatch();
-
-    const wrapper = classNames(styles.container, {
-        [styles.container__dark]: dark,
-    });
 
     const isUnits = units.length !== 0;
 
@@ -52,11 +41,12 @@ const GasTable: FC<Props> = ({ dark = false }) => {
         fetchGasUnits();
     }, [fetchGasUnits]);
 
-    const headers = Object.values(UtilityLabels).map(item => (
-        <span key={item}>{item}</span>
-    ));
+    const renderTableHeader = () =>
+        Object.values(UtilityLabels).map(item => (
+            <span key={item}>{item}</span>
+        ));
 
-    const renderListItems = units.map(unit => (
+    const renderGasTableItems = units.map(unit => (
         <li key={unit.id}>
             {!unit.edit ? (
                 <GasCard
@@ -78,31 +68,31 @@ const GasTable: FC<Props> = ({ dark = false }) => {
         </li>
     ));
 
+    const renderGasTable = {
+        tableTitle: UtilityTableLabels.GAS_TITLE,
+        tableHeader: () => (
+            <UtilitiesForm
+                postData={(newUnit: UtilityStateUnit) =>
+                    dispatch(postUtility(newUnit))
+                }
+                formValues={initialFormValues}
+                utilityUnits={units}
+            />
+        ),
+        tableBody: () => (
+            <Table
+                renderHeader={renderTableHeader}
+                renderBody={() => isUnits && renderGasTableItems}
+                loading={loading.isLoading}
+            />
+        ),
+        tableFooter: () => <TotalPayedInfo sumOfBills={sumOfBills} />,
+    };
+
     return error ? (
         <Error message={error} />
     ) : (
-        <div className={wrapper}>
-            <TableHeader
-                tableTitle={UtilityTableLabels.GAS_TITLE}
-                className={styles.tableHeader}
-            >
-                <UtilitiesForm
-                    postData={(newUnit: UtilityStateUnit) =>
-                        dispatch(postUtility(newUnit))
-                    }
-                    formValues={initialFormValues}
-                    utilityUnits={units}
-                />
-            </TableHeader>
-            <div className={styles.tableWrapper}>
-                <Table
-                    renderHeader={() => headers}
-                    renderBody={() => isUnits && renderListItems}
-                    loading={loading.isLoading}
-                />
-            </div>
-            <TotalPayedInfo sumOfBills={sumOfBills} />
-        </div>
+        <UtilityTable {...renderGasTable} />
     );
 };
 

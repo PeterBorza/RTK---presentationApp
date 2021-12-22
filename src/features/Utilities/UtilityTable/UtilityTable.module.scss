@@ -14,13 +14,26 @@
     }
 }
 
-.tableWrapper {
-    min-width: 280px;
-    width: 80%;
-}
-
 .tableHeader {
     width: 100%;
     padding: 0 2rem;
     @include fAround;
+}
+
+.tableBody {
+    min-width: 280px;
+    width: 80%;
+}
+
+.tableFooter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    h3 {
+        min-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-all;
+    }
 }

@@ -20,6 +20,6 @@ export enum UtilityTableLabels {
     RON = " RON",
     HEADER_TITLE = "Utilities",
     MENU_BUTTON = "Menu",
-    EDIT = "Edit",
+    CONFIRM = "Confirm",
     CANCEL_EDIT = "Cancel",
 }
