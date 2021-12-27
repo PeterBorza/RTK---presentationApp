@@ -18,7 +18,6 @@ interface IconSetProps {
     onDelete: () => void;
     onEdit: () => void;
     isChecked: boolean;
-    isEdited: boolean;
     className?: string;
 }
 
@@ -27,33 +26,31 @@ const IconSet: FC<IconSetProps> = ({
     onDelete,
     onEdit,
     isChecked,
-    isEdited,
     className,
 }) => {
     const iconClasses = classNames(styles.iconWrapper, className);
-    const editClass = isEdited ? `${styles.red}` : ` ${styles.blue}`;
     return (
         <div className={iconClasses}>
             {isChecked ? (
                 <FaCheck
-                    className={styles.green}
+                    className={styles.checkIcon}
                     onClick={onCheck}
                     title={IconTitles.PAYED}
                 />
             ) : (
                 <CgDanger
-                    className={styles.red}
+                    className={styles.dangerIcon}
                     onClick={onCheck}
                     title={IconTitles.NOT_PAYED}
                 />
             )}
             <FaRegTrashAlt
-                className={styles.black}
+                className={styles.trashIcon}
                 title={IconTitles.DELETE}
                 onClick={onDelete}
             />
             <MdEdit
-                className={editClass}
+                className={styles.editIcon}
                 title={IconTitles.EDIT}
                 onClick={onEdit}
             />

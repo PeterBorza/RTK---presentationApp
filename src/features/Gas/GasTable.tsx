@@ -3,8 +3,8 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../shared-components";
-import { utilityState, errorState, selectSubtotal } from "./selectors";
-import { selectCard, editCard, resetEdit } from "./gasSlice";
+import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
+import { selectCard, editCard, resetEdit, resetSelected } from "./gasSlice";
 import {
     UtilityStateUnit,
     UtilitiesForm,
@@ -28,7 +28,7 @@ import GasCard from "./GasCard";
 const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorState);
-    const sumOfBills = useSelector(selectSubtotal);
+    const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
 
     const isUnits = units.length !== 0;
@@ -83,6 +83,7 @@ const GasTable: FC = () => {
             <Table
                 renderHeader={renderTableHeader}
                 renderBody={() => isUnits && renderGasTableItems}
+                onClickOutside={() => dispatch(resetSelected())}
                 loading={loading.isLoading}
             />
         ),

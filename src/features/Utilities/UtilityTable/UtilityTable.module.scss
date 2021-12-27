@@ -15,13 +15,12 @@
 }
 
 .tableHeader {
-    width: 100%;
-    padding: 0 2rem;
+    width: 80%;
     @include fAround;
 }
 
 .tableBody {
-    min-width: 280px;
+    min-width: 340px;
     width: 80%;
 }
 
@@ -29,11 +28,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    h3 {
+    &__info {
         min-width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         word-break: break-all;
+    }
+    &__data {
+        color: crimson;
     }
 }

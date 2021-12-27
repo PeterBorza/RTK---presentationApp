@@ -21,7 +21,7 @@ const LightCard: React.FC<UtilityStateUnit & Props> = ({
     dark = false,
     ...units
 }) => {
-    const { readDate, index, consumption, bill, payed, selected, edit } = units;
+    const { readDate, index, consumption, bill, payed, selected } = units;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
@@ -45,7 +45,6 @@ const LightCard: React.FC<UtilityStateUnit & Props> = ({
                     onDelete={onDelete}
                     onEdit={onEdit}
                     isChecked={payed}
-                    isEdited={edit}
                 />
             </div>
         </div>

@@ -1,19 +1,30 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
+import {
+    FC,
+    forwardRef,
+    PropsWithChildren,
+    ReactNode,
+    Ref,
+    RefObject,
+} from "react";
 
 import styles from "./ScrollTable.module.scss";
 import classNames from "classnames";
 
 export interface TableProps {
-	className?: string;
-	children: ReactNode;
+    className?: string;
+    ref: RefObject<HTMLDivElement | null>;
+    children: ReactNode;
 }
 
-const ScrollTable: FC<PropsWithChildren<TableProps>> = ({
-	className,
-	children,
-}) => {
-	const classes = classNames(styles.wrapper, className);
-	return <div className={classes}>{children}</div>;
-};
+const ScrollTable = forwardRef<HTMLDivElement, TableProps>(
+    ({ className, children }, ref) => {
+        const classes = classNames(styles.wrapper, className);
+        return (
+            <div className={classes} ref={ref}>
+                {children}
+            </div>
+        );
+    }
+);
 
 export default ScrollTable;

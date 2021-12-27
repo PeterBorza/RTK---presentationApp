@@ -40,21 +40,23 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
         let lastCitire = "";
         if (utilityUnits.length === 0) lastCitire = values.index;
         lastCitire = utilityUnits[utilityUnits.length - 1].index;
-        const newConsum = +values.index - +lastCitire;
-        const checkNewConsum = !isNaN(newConsum) ? newConsum : "0";
+        const newConsumption = +values.index - +lastCitire;
+        const checkNewConsumption = !isNaN(newConsumption)
+            ? newConsumption
+            : "0";
 
-        const newGasUnit: UtilityStateUnit = {
+        const newUnit: UtilityStateUnit = {
             id: uuid(),
             readDate: values.readDate,
             selected: false,
             index: checkIfValid(values.index),
             bill: getCorrectValues(checkIfValid(values.bill)),
-            consumption: checkNewConsum.toString(),
+            consumption: checkNewConsumption.toString(),
             payed: false,
             edit: false,
         };
 
-        postData(newGasUnit);
+        postData(newUnit);
         resetValues();
     };
 

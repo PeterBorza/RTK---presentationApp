@@ -12,8 +12,8 @@ import {
     EditCard,
     UtilityTable,
 } from "../Utilities";
-import { utilityState, errorLightState, selectSubtotal } from "./selectors";
-import { selectCard, resetEdit, editCard } from "./lightSlice";
+import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
+import { selectCard, resetEdit, editCard, resetSelected } from "./lightSlice";
 import {
     deleteUtilityUnit,
     getAsyncUtility,
@@ -27,7 +27,7 @@ import LightCard from "./LightCard";
 const LightTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorLightState);
-    const sumOfBills = useSelector(selectSubtotal);
+    const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
 
     const isUnits = units.length !== 0;
@@ -82,6 +82,7 @@ const LightTable: FC = () => {
             <Table
                 renderHeader={renderTableHeader}
                 renderBody={() => isUnits && renderLightTableItems}
+                onClickOutside={() => dispatch(resetSelected())}
                 loading={loading.isLoading}
             />
         ),

@@ -1,16 +1,25 @@
-import { FC, ReactNode } from "react";
+import { FC, Fragment, ReactNode, useRef } from "react";
 import ScrollTable from ".";
 import { LoadingWrapper } from "..";
+import { useOnClickOutside } from "../../hooks";
 
 export interface Props {
     renderBody: () => ReactNode;
     renderHeader: () => ReactNode;
+    onClickOutside: () => void;
     loading: boolean;
 }
 
-const Table: FC<Props> = ({ renderBody, renderHeader, loading }) => {
+const Table: FC<Props> = ({
+    renderBody,
+    renderHeader,
+    onClickOutside,
+    loading,
+}) => {
+    const tableRef = useRef<HTMLDivElement>(null);
+    useOnClickOutside(tableRef, onClickOutside);
     return (
-        <ScrollTable>
+        <ScrollTable ref={tableRef}>
             {loading ? (
                 <LoadingWrapper loading={loading} />
             ) : (

@@ -12,17 +12,17 @@
 .header {
     width: 100%;
     height: $navHeight;
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
     background-color: $navPrimaryBG;
     span {
         width: 100%;
         text-align: center;
-        display: block;
         text-transform: uppercase;
         color: $myYellow3;
         user-select: none;
+        letter-spacing: 1px;
     }
 }
 
@@ -37,11 +37,4 @@
     }
     -ms-overflow-style: none;
     scrollbar-width: none;
-    text-align: center;
-}
-
-.loadingWrapper {
-    width: 100%;
-    height: 100%;
-    @include fCenter(column);
 }

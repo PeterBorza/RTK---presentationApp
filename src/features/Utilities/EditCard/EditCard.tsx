@@ -5,6 +5,8 @@ import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "../../../hooks";
 
 import styles from "./EditCard.module.scss";
+import { useSelector } from "react-redux";
+import { unitsState } from "../../Gas";
 
 type Props = {
     resetEdit: () => void;
@@ -16,7 +18,8 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
     editUnit,
     ...unit
 }) => {
-    const { readDate, index, consumption, bill } = unit;
+    const units = useSelector(unitsState);
+    const { readDate, index, consumption, bill, id } = unit;
     const { values, changeHandler } = useForm({
         readDate,
         index,
@@ -34,6 +37,18 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
             selected: false,
             edit: false,
         };
+
+        const editedUnitIndex = units.findIndex(item => item.id === id);
+
+        if (units.length > 0) {
+            const nextUnitConsumption = {
+                ...units[editedUnitIndex + 1],
+                consumption: (
+                    +units[editedUnitIndex + 1].index - +values.index
+                ).toString(),
+            };
+            editUnit(nextUnitConsumption);
+        }
         editUnit(editedUnit);
     };
 
