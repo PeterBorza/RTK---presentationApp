@@ -1,0 +1,62 @@
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.15rem;
+    padding: 3px;
+    margin: 0 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    transition: all 150ms ease 20ms;
+    &:hover {
+        transform: scale(1.2);
+        box-shadow: none;
+        outline: none;
+    }
+    &__payed {
+        color: limegreen;
+    }
+    &__not-payed {
+        color: rgba(221, 23, 63, 0.767);
+    }
+    &__delete {
+        color: rgb(32, 29, 29);
+    }
+    &__edit {
+        color: rgba(51, 51, 177, 0.8);
+    }
+    &__confirm {
+        color: limegreen;
+    }
+    &__cancel {
+        color: crimson;
+    }
+}
+
+// .checkIcon {
+//     color: limegreen;
+// }
+
+// .dangerIcon {
+//     color: rgba(221, 23, 63, 0.767);
+// }
+
+// .editIcon {
+//     color: rgba(51, 51, 177, 0.8);
+// }
+
+// .trashIcon {
+//     color: rgb(32, 29, 29);
+// }
+
+// .confirmIcon {
+//     color: limegreen;
+// }
+
+// .cancelIcon {
+//     color: crimson;
+// }

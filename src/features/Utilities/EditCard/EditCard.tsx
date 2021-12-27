@@ -1,8 +1,10 @@
 import { FC, FormEvent } from "react";
 
-import { Button } from "../../../shared-components";
+import { CustomIcon } from "../../../shared-components";
 import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "../../../hooks";
+import { CgEnter } from "react-icons/cg";
+import { GiCancel } from "react-icons/gi";
 
 import styles from "./EditCard.module.scss";
 import { useSelector } from "react-redux";
@@ -61,6 +63,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     onChange={changeHandler}
                     name="readDate"
                     value={values.readDate}
+                    title={values.readDate}
                 />
             </div>
             <div className={styles.edit_cell}>
@@ -70,6 +73,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     onChange={changeHandler}
                     name="index"
                     value={values.index}
+                    title={values.index}
                 />
             </div>
             <div className={styles.edit_cell}>
@@ -82,13 +86,20 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     onChange={changeHandler}
                     name="bill"
                     value={values.bill}
+                    title={values.bill}
                 />
             </div>
             <div className={styles.edit_cell}>
-                <Button type="submit" value={UtilityTableLabels.CONFIRM} />
-                <Button
-                    onClick={resetEdit}
-                    value={UtilityTableLabels.CANCEL_EDIT}
+                <button type="submit" className={styles.submitEditButton}>
+                    <CustomIcon
+                        title={UtilityTableLabels.CONFIRM}
+                        icon={<CgEnter />}
+                    />
+                </button>
+                <CustomIcon
+                    title={UtilityTableLabels.CANCEL_EDIT}
+                    onClick={() => resetEdit()}
+                    icon={<GiCancel />}
                 />
             </div>
         </form>
