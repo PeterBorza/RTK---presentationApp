@@ -27,7 +27,8 @@ const UtilityCard: React.FC<Props> = ({
     dark = false,
     unit,
 }) => {
-    const { readDate, index, consumption, bill, payed, selected } = unit;
+    const { readDate, index, consumption, estimate, bill, payed, selected } =
+        unit;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
@@ -67,13 +68,18 @@ const UtilityCard: React.FC<Props> = ({
             <div className={dataWrapper} title={consumption}>
                 <p>{consumption}</p>
             </div>
+            <div className={dataWrapper}>
+                <p>{estimate}</p>
+            </div>
             <div className={dataWrapper} title={bill}>
                 <p>{bill}</p>
             </div>
             <div className={dataWrapper}>
-                {icons.map(icon => (
-                    <CustomIcon key={icon.title} {...icon} />
-                ))}
+                <div className={styles.tableIcons}>
+                    {icons.map(icon => (
+                        <CustomIcon key={icon.title} {...icon} />
+                    ))}
+                </div>
             </div>
         </div>
     );

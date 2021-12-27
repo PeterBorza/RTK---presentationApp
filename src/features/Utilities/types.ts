@@ -9,6 +9,7 @@ export interface FormProps {
 export interface UtilityStateUnit extends FormProps {
     id: UnitId;
     consumption: string;
+    estimate: number | null;
     selected: boolean;
     payed: boolean;
     edit: boolean;

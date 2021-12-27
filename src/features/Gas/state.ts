@@ -21,6 +21,7 @@ const initialEditUnit: UtilityStateUnit = {
     ...initialFormValues,
     id: "",
     consumption: "",
+    estimate: null,
     selected: false,
     payed: false,
     edit: false,

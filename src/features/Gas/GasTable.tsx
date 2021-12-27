@@ -15,6 +15,7 @@ import {
     UtilityTable,
     TotalPayedInfo,
     UtilityCard,
+    TableTitle,
 } from "../Utilities";
 import {
     deleteUtilityUnit,
@@ -39,11 +40,6 @@ const GasTable: FC = () => {
     useEffect(() => {
         fetchGasUnits();
     }, [fetchGasUnits]);
-
-    const renderTableHeader = () =>
-        Object.values(UtilityLabels).map(item => (
-            <span key={item}>{item}</span>
-        ));
 
     const renderGasTableItems = units.map(unit => (
         <li key={unit.id}>
@@ -80,7 +76,11 @@ const GasTable: FC = () => {
         ),
         tableBody: () => (
             <Table
-                renderHeader={renderTableHeader}
+                renderHeader={() =>
+                    Object.values(UtilityLabels).map(item => (
+                        <TableTitle name={item} />
+                    ))
+                }
                 renderBody={() => isUnits && renderGasTableItems}
                 onClickOutside={() => dispatch(resetSelected())}
                 loading={loading.isLoading}

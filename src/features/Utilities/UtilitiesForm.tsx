@@ -37,13 +37,18 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
     };
 
     const onSubmitHandler = () => {
+        const previousUnit = utilityUnits[utilityUnits.length - 1];
         let lastCitire = "";
         if (utilityUnits.length === 0) lastCitire = values.index;
-        lastCitire = utilityUnits[utilityUnits.length - 1].index;
+        lastCitire = previousUnit.index;
         const newConsumption = +values.index - +lastCitire;
         const checkNewConsumption = !isNaN(newConsumption)
             ? newConsumption
             : "0";
+
+        const estimatedValue =
+            (+previousUnit.bill / +previousUnit.consumption) *
+            +checkNewConsumption;
 
         const newUnit: UtilityStateUnit = {
             id: uuid(),
@@ -52,6 +57,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
             index: checkIfValid(values.index),
             bill: getCorrectValues(checkIfValid(values.bill)),
             consumption: checkNewConsumption.toString(),
+            estimate: +estimatedValue.toFixed(2),
             payed: false,
             edit: false,
         };

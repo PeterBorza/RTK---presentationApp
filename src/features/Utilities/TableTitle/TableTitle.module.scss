@@ -1,0 +1,17 @@
+.titleContent {
+    & > span {
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #ffc600;
+        user-select: none;
+        letter-spacing: 1px;
+    }
+}
+
+.titleContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
