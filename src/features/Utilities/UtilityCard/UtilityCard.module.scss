@@ -8,12 +8,7 @@
     margin: 5px;
     transition: all 120ms ease-out;
     background-color: rgba(245, 247, 239, 0.4);
-    div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+
     & div:nth-child(1) {
         color: rgb(5, 78, 5);
     }
@@ -30,6 +25,10 @@
 }
 
 .data {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.15rem;
     padding: 3px;
     overflow: hidden;
@@ -47,4 +46,11 @@
     &:hover {
         background-color: $myYellow3;
     }
+}
+
+.tableIcons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }

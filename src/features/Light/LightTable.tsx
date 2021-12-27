@@ -12,6 +12,7 @@ import {
     EditCard,
     UtilityTable,
     UtilityCard,
+    TableTitle,
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
 import { selectCard, resetEdit, editCard, resetSelected } from "./lightSlice";
@@ -38,11 +39,6 @@ const LightTable: FC = () => {
     useEffect(() => {
         fetchLightUnits();
     }, [fetchLightUnits]);
-
-    const renderTableHeader = () =>
-        Object.values(UtilityLabels).map(item => (
-            <span key={item}>{item}</span>
-        ));
 
     const renderLightTableItems = units.map(unit => (
         <li key={unit.id}>
@@ -79,7 +75,11 @@ const LightTable: FC = () => {
         ),
         tableBody: () => (
             <Table
-                renderHeader={renderTableHeader}
+                renderHeader={() =>
+                    Object.values(UtilityLabels).map(item => (
+                        <TableTitle name={item} />
+                    ))
+                }
                 renderBody={() => isUnits && renderLightTableItems}
                 onClickOutside={() => dispatch(resetSelected())}
                 loading={loading.isLoading}
