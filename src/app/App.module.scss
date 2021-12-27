@@ -1,38 +1,35 @@
 *,
 *::before,
 *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
 }
 
 .container {
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	align-items: flex-end;
-	// overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    // overflow: hidden;
 }
 
 button,
 a {
-	outline: none;
-	border: none;
-	text-decoration: none;
-	padding: 5px;
-	margin: 2px;
-	cursor: pointer;
-	&:focus-within {
-		outline: none;
-		border: none;
-	}
-	&:active {
-		color: white;
-		transform: scale(0.95);
-	}
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    &:focus-within {
+        outline: none;
+        border: none;
+    }
+    &:active {
+        transform: scale(0.95);
+    }
 }
 
 .menuButton {
-	position: absolute;
+    position: absolute;
 }
