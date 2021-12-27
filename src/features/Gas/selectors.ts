@@ -17,7 +17,7 @@ export const billsSelector = createSelector(isPayedSelector, items =>
     items.map(items => items.bill)
 );
 
-export const selectSubtotal = createSelector(billsSelector, items =>
+export const sumOfBillsSelector = createSelector(billsSelector, items =>
     items.reduce((subtotal, item) => subtotal + +item, 0)
 );
 
