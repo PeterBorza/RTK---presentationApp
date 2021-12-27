@@ -5,9 +5,7 @@
     display: flex;
     align-items: center;
     border-radius: 5px;
-    margin: 4px;
-    padding: 2px;
-    // @include shadow(130ms);
+    margin: 5px;
     transition: all 120ms ease-out;
     background-color: rgba(245, 247, 239, 0.4);
     div {
@@ -33,6 +31,7 @@
 
 .data {
     font-size: 1.15rem;
+    padding: 3px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

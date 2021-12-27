@@ -14,6 +14,7 @@ import {
     EditCard,
     UtilityTable,
     TotalPayedInfo,
+    UtilityCard,
 } from "../Utilities";
 import {
     deleteUtilityUnit,
@@ -22,8 +23,6 @@ import {
     postUtility,
     togglePayedBill,
 } from "./thunks";
-
-import GasCard from "./GasCard";
 
 const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
@@ -49,12 +48,12 @@ const GasTable: FC = () => {
     const renderGasTableItems = units.map(unit => (
         <li key={unit.id}>
             {!unit.edit ? (
-                <GasCard
+                <UtilityCard
                     onClick={() => dispatch(selectCard(unit.id))}
                     onPayedClick={() => dispatch(togglePayedBill(unit))}
                     onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
                     onEdit={() => dispatch(editCard(unit.id))}
-                    {...unit}
+                    unit={unit}
                 />
             ) : (
                 <EditCard

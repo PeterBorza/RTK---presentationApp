@@ -8,7 +8,7 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
 import FadedModal from "./FadedModal";
-import IconSet from "./IconSet";
+import CustomIcon from "./CustomIcon";
 import InputCard from "./InputCard";
 import TextInput from "./TextInput";
 import CheckBox from "./CheckBox";
@@ -25,31 +25,31 @@ import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 
 export {
-	Loader,
-	Button,
-	Error,
-	SlideText,
-	SimpleDrop,
-	Table,
-	ScrollTable,
-	NavBar,
-	SideBar,
-	InputCard,
-	CustomInput,
-	TextInput,
-	BlackModal,
-	FadedModal,
-	IconSet,
-	CheckBox,
-	Select,
-	FieldSet,
-	Form,
-	ModalForm,
-	AsidePlatform,
-	MenuButton,
-	ToggleButton,
-	FlipBox,
-	FlipCard,
-	LoadingWrapper,
-	ButtonWrapper,
+    Loader,
+    Button,
+    Error,
+    SlideText,
+    SimpleDrop,
+    Table,
+    ScrollTable,
+    NavBar,
+    SideBar,
+    InputCard,
+    CustomInput,
+    TextInput,
+    BlackModal,
+    FadedModal,
+    CustomIcon,
+    CheckBox,
+    Select,
+    FieldSet,
+    Form,
+    ModalForm,
+    AsidePlatform,
+    MenuButton,
+    ToggleButton,
+    FlipBox,
+    FlipCard,
+    LoadingWrapper,
+    ButtonWrapper,
 };

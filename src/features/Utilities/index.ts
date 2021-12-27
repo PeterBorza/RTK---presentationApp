@@ -3,6 +3,7 @@ import UtilityPlatform from "./UtilityPlatform";
 import TotalPayedInfo from "./TotalPayedInfo";
 import UtilitiesForm from "./UtilitiesForm";
 import EditCard from "./EditCard";
+import UtilityCard from "./UtilityCard";
 import UtilityTable from "./UtilityTable";
 import { utilityRoutes } from "./utility-routes";
 export * from "./types";
@@ -15,6 +16,7 @@ export {
     TotalPayedInfo,
     UtilitiesForm,
     EditCard,
+    UtilityCard,
     UtilityTable,
     utilityRoutes,
 };

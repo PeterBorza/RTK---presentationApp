@@ -20,7 +20,7 @@ $fontSize: 1.15rem;
     font-size: $fontSize;
     input {
         font-size: $fontSize;
-
+        width: 60%;
         border: none;
         outline: none;
         border-radius: 3px;
@@ -40,5 +40,16 @@ $fontSize: 1.15rem;
         to {
             margin: 10px;
         }
+    }
+}
+
+.submitEditButton {
+    display: block;
+    outline: none;
+    border: none;
+    background: transparent;
+    &:focus {
+        outline: none;
+        border: none;
     }
 }

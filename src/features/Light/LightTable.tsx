@@ -11,6 +11,7 @@ import {
     initialFormValues,
     EditCard,
     UtilityTable,
+    UtilityCard,
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
 import { selectCard, resetEdit, editCard, resetSelected } from "./lightSlice";
@@ -21,8 +22,6 @@ import {
     postUtility,
     editUnit,
 } from "./thunks";
-
-import LightCard from "./LightCard";
 
 const LightTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
@@ -48,12 +47,12 @@ const LightTable: FC = () => {
     const renderLightTableItems = units.map(unit => (
         <li key={unit.id}>
             {!unit.edit ? (
-                <LightCard
+                <UtilityCard
                     onClick={() => dispatch(selectCard(unit.id))}
                     onPayedClick={() => dispatch(togglePayedBill(unit))}
                     onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
                     onEdit={() => dispatch(editCard(unit.id))}
-                    {...unit}
+                    unit={unit}
                 />
             ) : (
                 <EditCard
