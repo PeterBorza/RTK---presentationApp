@@ -21,7 +21,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
     ...unit
 }) => {
     const units = useSelector(unitsState);
-    const { readDate, index, consumption, bill, id } = unit;
+    const { readDate, index, consumption, estimate, bill, id } = unit;
     const { values, changeHandler } = useForm({
         readDate,
         index,
@@ -42,7 +42,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
 
         const editedUnitIndex = units.findIndex(item => item.id === id);
 
-        if (units.length > 0) {
+        if (units.length > 0 && editedUnitIndex !== units.length - 1) {
             const nextUnitConsumption = {
                 ...units[editedUnitIndex + 1],
                 consumption: (
@@ -78,6 +78,9 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
             </div>
             <div className={styles.edit_cell}>
                 <p>{consumption}</p>
+            </div>
+            <div className={styles.edit_cell}>
+                <p>{estimate}</p>
             </div>
             <div className={styles.edit_cell}>
                 <input

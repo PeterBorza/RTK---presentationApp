@@ -21,7 +21,7 @@ const UtilityContainer: FC = () => {
         dispatch(toggleUtils(true));
     };
 
-    const body = () => {
+    const platformBody = () => {
         return (
             <div className={styles.sideBarLinks}>
                 <Link to={Url.GAS} onClick={closeSidePanel}>
@@ -41,7 +41,7 @@ const UtilityContainer: FC = () => {
         <AsidePlatform
             isOpen={openSideBar}
             onClose={closeSidePanel}
-            renderSideBar={body}
+            renderSideBar={platformBody}
             label={messages.HEADER_TITLE}
         >
             <Button

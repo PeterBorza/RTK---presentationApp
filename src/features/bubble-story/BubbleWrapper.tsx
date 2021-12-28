@@ -1,14 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import { selectedBubble } from "./selectors";
-
 import { BubbleMessages as msg } from "./constants";
-
 import { SelectedBubble } from ".";
 import { AsidePlatform } from "../../shared-components";
-
 import { resetSelectedBubble } from "./bubbleSlice";
-
 import { toggleBubbles } from "../../app/appSlice";
 import { bubblesOpenSelector } from "../../app/selectors";
 import { useRef } from "react";
@@ -22,19 +17,17 @@ const BubbleWrapper: React.FC = () => {
     const bubbleRef = useRef(null);
     useOnClickOutside(bubbleRef, () => dispatch(resetSelectedBubble()));
 
-    const sideBarBody = () =>
-        selected ? (
-            <SelectedBubble selected={selected} />
-        ) : (
-            <h4>{msg.SELECT}</h4>
-        );
-
     return (
         <AsidePlatform
             isOpen={openSideBar}
             onClose={() => dispatch(toggleBubbles(false))}
             label={msg.TITLE}
-            renderSideBar={sideBarBody}
+            renderSideBar={() => (
+                <SelectedBubble
+                    selectedBubble={selected}
+                    isSelected={!!selected}
+                />
+            )}
         >
             <BubbleContainer />
         </AsidePlatform>
