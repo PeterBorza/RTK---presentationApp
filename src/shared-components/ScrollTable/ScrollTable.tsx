@@ -1,11 +1,4 @@
-import {
-    FC,
-    forwardRef,
-    PropsWithChildren,
-    ReactNode,
-    Ref,
-    RefObject,
-} from "react";
+import { forwardRef, ReactNode, RefObject } from "react";
 
 import styles from "./ScrollTable.module.scss";
 import classNames from "classnames";

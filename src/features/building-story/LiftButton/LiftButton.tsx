@@ -1,6 +1,7 @@
 import { ComponentProps, FC } from "react";
 
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftButton.module.scss";
@@ -8,7 +9,7 @@ import { Direction } from "..";
 
 interface Props {
     isActive: boolean;
-    direction?: Direction | null;
+    direction?: Direction;
 }
 
 const LiftButton: FC<Props & ComponentProps<"button">> = ({
@@ -26,6 +27,7 @@ const LiftButton: FC<Props & ComponentProps<"button">> = ({
     const directionIcons = {
         down: <FaArrowDown />,
         up: <FaArrowUp />,
+        static: <ImStop />,
     };
 
     return (

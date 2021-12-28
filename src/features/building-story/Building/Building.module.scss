@@ -2,30 +2,57 @@
 @use "../../../css/mixins" as *;
 @use "../../../css/variables" as *;
 
+$shaft-lift-height: 70vh;
+$shaft-lift-width: 20%;
+$minWidth: 125px;
+$openSpeed: 500ms;
+
 .container {
-	@include container(100%);
-	background: white url(../../../images/city900.jpg) no-repeat center/cover;
-	display: flex;
+    @include container(100%);
+    background: white url(../../../images/city900.jpg) no-repeat center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .block {
-	position: relative;
-	margin: auto;
-	width: 25%;
-	height: 91vh;
-	background-color: rgba(240, 233, 233, 0.15);
-	color: white;
+    position: relative;
+    margin: 10px;
+    width: $shaft-lift-width;
+    height: $shaft-lift-height;
+    min-width: $minWidth;
+    background-color: rgba(240, 233, 233, 0.15);
+    color: white;
 }
 
 .menuButton {
-	position: absolute;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .red {
-	background-color: red;
-	color: white;
+    background-color: red;
+    color: white;
 }
 
 .lightGrey {
-	background-color: lightgrey;
+    background-color: lightgrey;
+}
+
+.liftWrapper {
+    width: $shaft-lift-width;
+    height: $shaft-lift-height;
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+    min-width: $minWidth;
+    background-color: rgba(255, 228, 196, 0.419);
+    transition: all $openSpeed ease-out;
+    &__show {
+        transform: translateY(0);
+        transform-origin: left;
+        opacity: 1;
+        pointer-events: all;
+    }
 }

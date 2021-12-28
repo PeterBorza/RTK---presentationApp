@@ -3,7 +3,8 @@
 @use "../../../css/variables" as *;
 
 .container {
-	@include container(100%);
-	@include fCenter;
-	background-color: bisque;
+    @include container(100%);
+    @include fCenter;
+    background-color: bisque;
+    text-align: center;
 }

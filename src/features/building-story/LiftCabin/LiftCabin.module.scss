@@ -3,33 +3,29 @@
 @use "../../../css/variables" as *;
 
 $openingSpeed: 600ms;
+$doorColor: rgba(255, 255, 255, 0.3);
 
 .cabinWrapper {
-	position: absolute;
-	width: 70px;
-	height: 80px;
-	border: 1px solid white;
-	overflow: hidden;
-	&::before {
-		position: absolute;
-		content: "";
-		width: 50%;
-		height: 100%;
-		left: 0;
-		top: 0;
-		background-color: rgba(255, 255, 255, 0.3);
-		transition: all $openingSpeed linear;
-	}
-	&::after {
-		position: absolute;
-		content: "";
-		width: 50%;
-		height: 100%;
-		left: 50%;
-		top: 0;
-		background-color: rgba(255, 255, 255, 0.3);
-		transition: all $openingSpeed linear;
-	}
+    position: absolute;
+    bottom: 0;
+    width: 42%;
+    border: 1px solid white;
+    overflow: hidden;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: 50%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transform: translateX(0%);
+        background-color: $doorColor;
+        transition: all $openingSpeed linear;
+    }
+    &::after {
+        left: 50%;
+    }
 }
 
 // .openDoors {
@@ -46,12 +42,51 @@ $openingSpeed: 600ms;
 // }
 
 .openDoors {
-	&.cabinWrapper {
-		&::after {
-			transform: translateX(100%);
-		}
-		&::before {
-			transform: translateX(-100%);
-		}
-	}
+    &.cabinWrapper {
+        &::after {
+            transform: translateX(100%);
+        }
+        &::before {
+            transform: translateX(-100%);
+        }
+    }
+}
+
+.animateOnCall {
+    &.cabinWrapper {
+        &::after {
+            animation: leftDoor 9000ms ease;
+        }
+        &::before {
+            animation: rightDoor 9000ms ease;
+        }
+        @keyframes leftDoor {
+            0% {
+                transform: translateX(0%);
+            }
+            33% {
+                transform: translateX(0%);
+            }
+            66% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        @keyframes rightDoor {
+            0% {
+                transform: translateX(0%);
+            }
+            33% {
+                transform: translateX(0%);
+            }
+            66% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+    }
 }
