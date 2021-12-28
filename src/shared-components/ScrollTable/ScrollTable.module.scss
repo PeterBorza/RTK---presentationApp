@@ -16,14 +16,6 @@
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
     background-color: $navPrimaryBG;
-    span {
-        width: 100%;
-        text-align: center;
-        text-transform: uppercase;
-        color: $myYellow3;
-        user-select: none;
-        letter-spacing: 1px;
-    }
 }
 
 .body {

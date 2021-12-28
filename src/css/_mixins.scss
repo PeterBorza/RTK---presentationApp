@@ -1,167 +1,160 @@
 @mixin centered {
-	display: grid;
-	place-items: center;
+    display: grid;
+    place-items: center;
 }
 
 @mixin flexWrap {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center; //child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for flexgrow, flexshrink, and flex-basis
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; //child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for flexgrow, flexshrink, and flex-basis
 }
 
 @mixin sideBar($px, $percentage) {
-	display: grid;
-	grid-template-columns: minmax($px, $percentage), 1fr;
+    display: grid;
+    grid-template-columns: minmax($px, $percentage), 1fr;
 }
 
 @mixin headerMainFooter {
-	display: grid;
-	grid-template-rows: auto 1fr auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 @mixin headFooterAndBetween {
-	display: grid;
-	grid-template: auto 1fr auto/auto 1fr auto;
-	// header grcol 1/4   left-side grcol 1/2  main grcol 2/3  right-side 3/4  footer grcol 1/4
+    display: grid;
+    grid-template: auto 1fr auto/auto 1fr auto;
+    // header grcol 1/4   left-side grcol 1/2  main grcol 2/3  right-side 3/4  footer grcol 1/4
 }
 
 @mixin twelveColumnsGrid {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	// children displayed with grid-column ex. 1/7, 2/5 etc.
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    // children displayed with grid-column ex. 1/7, 2/5 etc.
 }
 
 @mixin RAM($min, $max) {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax($min, $max));
-	// grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	// with auto-fill baseline does not increase !
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min, $max));
+    // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    // with auto-fill baseline does not increase !
 }
 
 @mixin lineUp($rows) {
-	// height: auto;
-	display: grid;
-	grid-template-columns: repeat($rows, 1fr);
-	// child : justify-content : space-between;
-	// flex-direction: column;
-}
-
-@mixin textStyle {
-	font-size: 25px;
-	font-weight: bold;
-	color: rgb(19, 6, 34);
+    // height: auto;
+    display: grid;
+    grid-template-columns: repeat($rows, 1fr);
+    // child : justify-content : space-between;
+    // flex-direction: column;
 }
 
 @mixin fAround($direction: "row") {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: $direction;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: $direction;
 }
 
 @mixin fCenter($direction: "row") {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: $direction;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
 }
 
 @mixin fEven($direction: "row") {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	flex-direction: $direction;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: $direction;
 }
 
 @mixin fBetween($direction: "row") {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-direction: $direction;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: $direction;
 }
 
 @mixin fixedDiv {
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	left: 0px;
-	top: 0px;
-	background-color: rgba(0, 0, 0, 0.9);
-	@include centered();
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    @include centered();
 }
 
 @mixin success {
-	color: green;
-	padding: 12px;
-	border: $green;
-	font-weight: bold;
-	width: 100px;
+    color: green;
+    padding: 12px;
+    border: $green;
+    font-weight: bold;
+    width: 100px;
 }
 
 @mixin error {
-	color: red;
-	padding: 12px;
-	border: $red;
-	font-weight: bold;
-	width: 100px;
+    color: red;
+    padding: 12px;
+    border: $red;
+    font-weight: bold;
+    width: 100px;
 }
 
 @mixin nightMode {
-	background-color: rgba(14, 13, 13, 0.8);
-	color: whitesmoke;
+    background-color: rgba(14, 13, 13, 0.8);
+    color: whitesmoke;
 }
 
 @mixin absoluteMiddle {
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @mixin landScape {
-	width: 90%;
-	height: 80vh;
-	padding: 0.5rem;
-	border: 3px solid rgba(128, 128, 128, 0.5);
-	border-radius: 5px;
-	margin-top: 10vh;
-	@include centered();
-	background: rgba(128, 128, 128, 0.2);
-	box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.5);
-	transition: box-shadow 200ms ease;
-	&:hover {
-		box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.8);
-	}
+    width: 90%;
+    height: 80vh;
+    padding: 0.5rem;
+    border: 3px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+    margin-top: 10vh;
+    @include centered();
+    background: rgba(128, 128, 128, 0.2);
+    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.5);
+    transition: box-shadow 200ms ease;
+    &:hover {
+        box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.8);
+    }
 }
 
 @mixin shadow($speed) {
-	transition: box-shadow $speed ease;
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-	&:hover {
-		box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
-	}
+    transition: box-shadow $speed ease;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+    &:hover {
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    }
 }
 
 @mixin shadow2 {
-	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
-	// box-shadow: inset 0 5px 15px  rgba(0,0,0,0.5);
-	&:hover {
-		box-shadow: 0 15px 70px 0 rgba(0, 0, 0, 0.35);
-		transform: scale(1.001);
-		transition: transform 200ms, box-shadow 200ms;
-	}
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
+    // box-shadow: inset 0 5px 15px  rgba(0,0,0,0.5);
+    &:hover {
+        box-shadow: 0 15px 70px 0 rgba(0, 0, 0, 0.35);
+        transform: scale(1.001);
+        transition: transform 200ms, box-shadow 200ms;
+    }
 }
 
 @mixin noVisibleScrollBar {
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @mixin truncate {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

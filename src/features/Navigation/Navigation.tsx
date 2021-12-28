@@ -7,13 +7,14 @@ import { LinkContext } from "../../context";
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
 
+const { links: styleLinks, active, nav_container } = styles;
+
 const Navigation = () => {
     const links = useContext(LinkContext);
 
     const linkClasses = (isActive: boolean) =>
-        classNames(styles.links, {
-            [styles.active]: isActive,
-            [styles.inActive]: !isActive,
+        classNames(styleLinks, {
+            [active]: isActive,
         });
 
     const renderBody = links?.map(item => (
@@ -28,7 +29,7 @@ const Navigation = () => {
     ));
 
     return (
-        <div className={styles.container}>
+        <div className={nav_container}>
             <NavBar>{renderBody}</NavBar>
         </div>
     );
