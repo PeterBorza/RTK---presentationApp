@@ -1,10 +1,12 @@
 @use "../../../css/my_app" as *;
+
 .container {
     position: relative;
     @include container(100%);
     margin: 0;
     overflow: hidden;
-    background-color: rgb(180, 225, 243);
+    // background: $primary-background;
+    @include gradientBubble;
     &__dark {
         background-color: $darkMode;
     }

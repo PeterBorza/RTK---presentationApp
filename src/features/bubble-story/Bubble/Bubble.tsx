@@ -1,7 +1,7 @@
-import { CSSProperties, FC, forwardRef, RefObject } from "react";
+import { CSSProperties, forwardRef, RefObject } from "react";
 
 import { Bubble as Props } from "../types";
-import { randomize } from "../../../utils";
+import { randomColor } from "../../../utils";
 
 import styles from "./Bubble.module.scss";
 import classNames from "classnames";
@@ -11,8 +11,6 @@ interface BubbleProps extends Props {
     title: string;
     ref: RefObject<HTMLDivElement | null>;
 }
-
-const RANDOMIZER = 1000000;
 
 const Bubble = forwardRef<HTMLDivElement, BubbleProps>(
     ({ onClick, title, id, selected, cssProps }, ref) => {
@@ -27,7 +25,7 @@ const Bubble = forwardRef<HTMLDivElement, BubbleProps>(
             top,
             width: size,
             opacity,
-            backgroundColor: `${randomize(RANDOMIZER)}`,
+            background: `#${randomColor()}`,
         };
 
         return (

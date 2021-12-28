@@ -8,7 +8,7 @@ export enum UtilityLabels {
     DATE = "date",
     INDEX = "index",
     CONSUMPTION = "consumption",
-    ESTIMATION = "estimate",
+    ESTIMATE = "estimate",
     BILL = "bill",
     PAYED = "pay, delete, edit",
 }

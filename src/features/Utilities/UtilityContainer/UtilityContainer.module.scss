@@ -17,18 +17,19 @@
 
 .sideBarLinks {
     display: flex;
+    align-items: center;
     flex-direction: column;
     width: 100%;
+    gap: 5px;
+    padding: 5px;
     background-color: $myYellow3;
     a {
+        font-size: clamp(0.8rem, 2vw, 1.4rem);
         z-index: 100;
         color: white;
+        transition: color 200ms ease;
         &:hover {
             color: $navPrimaryBG;
         }
     }
-}
-
-.menuButton {
-    position: absolute;
 }

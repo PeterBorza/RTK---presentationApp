@@ -90,6 +90,7 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
         dispatch(selectBubble(id));
         dispatch(toggleBubbles(true));
     };
+
     return isLoading ? (
         <LoadingWrapper loading={isLoading} />
     ) : (

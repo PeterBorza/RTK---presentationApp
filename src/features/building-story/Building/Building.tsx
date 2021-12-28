@@ -1,6 +1,6 @@
-import React, { CSSProperties, useEffect } from "react";
+import { FC, useEffect } from "react";
 
-import { liftState, speedSelector } from "../selectors";
+import { liftState } from "../selectors";
 import LiftButton from "../LiftButton";
 import { Button } from "../../../shared-components";
 
@@ -8,17 +8,16 @@ import { movePosition } from "../liftSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 
-// import classNames from "classnames";
-import styles from "./Building.module.scss";
 import { toggleBuilding, liftOpenSelector } from "../../../app/";
-import { BuildingMessages, LiftCabin } from "..";
+import { BuildingMessages } from "..";
 import Shaft from "../Shaft";
+
+import styles from "./Building.module.scss";
 
 type LevelCount = number;
 
-const Building: React.FC = () => {
+const Building: FC = () => {
     const openSideBar = useSelector(liftOpenSelector);
-    // const speed = useSelector(speedSelector);
     const { numberOfLevels, positionFloor } = useSelector(liftState);
     const dispatch = useDispatch();
 
