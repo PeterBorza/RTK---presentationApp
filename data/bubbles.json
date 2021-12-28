@@ -39,6 +39,16 @@
         "size": "120px",
         "opacity": "0.5"
       }
+    },
+    {
+      "id": 16,
+      "selected": false,
+      "cssProps": {
+        "left": "85%",
+        "top": "75%",
+        "size": "120px",
+        "opacity": "0.4"
+      }
     }
   ],
   "colorSets": [

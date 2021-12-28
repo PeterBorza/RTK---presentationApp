@@ -16,10 +16,7 @@ const TableTitle: FC<TitleProps> = ({ name = null, className = null }) => {
             <span>{name}</span>
         );
 
-    const classes = classNames(
-        styles.titleContainer,
-        name ? styles.titleContent : className
-    );
+    const classes = classNames(styles.titleContainer, styles.titleContent);
     return <div className={classes}>{multiName}</div>;
 };
 

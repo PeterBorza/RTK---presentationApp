@@ -2,29 +2,27 @@
 @use "../../css/mixins" as *;
 @use "../../css/variables" as *;
 
-.container {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: $navHeight;
-	z-index: 1;
-	background-color: $navPrimaryBG;
-	overflow-x: auto;
+.nav_container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: $navHeight;
+    z-index: 1;
+    background-color: $navPrimaryBG;
+    overflow-x: auto;
 }
 
 .links {
-	text-transform: uppercase;
-	font-size: clamp(0.7rem, 1.5vh + 0.3rem, 2.5rem);
-	transition: color 150ms ease-out;
-	&:hover {
-		color: darken($myYellow3, 10%);
-	}
-}
-.inActive {
-	color: $myYellow3;
+    text-transform: uppercase;
+    font-size: clamp(0.7rem, 1.5vw + 0.4rem, 2.2rem);
+    transition: color 150ms ease-out;
+    color: $myYellow3;
+    &:hover {
+        color: darken($myYellow3, 10%);
+    }
 }
 
 .active {
-	color: white;
+    color: white;
 }
