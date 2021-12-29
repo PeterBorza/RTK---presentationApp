@@ -1,24 +1,35 @@
-export type Direction = "up" | "down";
+export type Direction = "up" | "down" | "static";
 
 export interface Lift {
-	id: string;
-	name: string;
-	isActive: boolean;
-	position: number;
-	buttonsDisabled: boolean;
+    name: string;
+    isActive: boolean;
+    position: number;
+    disabled: boolean;
+    direction: Direction;
 }
 export interface LiftState {
-	numberOfLevels: number;
-	speed: number;
-	isDisabled: boolean;
-	positionFloor: number;
-	direction: Direction | null;
+    lifts: Lift[];
+    numberOfLevels: number;
+    speed: number;
 }
 
 export const initialState: LiftState = {
-	numberOfLevels: 7,
-	speed: 1000,
-	isDisabled: false,
-	positionFloor: 0,
-	direction: null,
+    lifts: [
+        {
+            name: "A",
+            isActive: false,
+            position: 0,
+            disabled: false,
+            direction: "static",
+        },
+        {
+            name: "B",
+            isActive: false,
+            position: 6,
+            disabled: false,
+            direction: "static",
+        },
+    ],
+    numberOfLevels: 7,
+    speed: 1000,
 };

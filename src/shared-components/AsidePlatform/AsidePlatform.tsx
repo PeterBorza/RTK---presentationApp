@@ -20,7 +20,7 @@ const AsidePlatform: FC<PropsWithChildren<Props>> = ({
     label,
 }) => {
     const wrapper = classNames(styles.container, {
-        [styles.container__margin]: isOpen,
+        [styles.container__padding]: isOpen,
     });
 
     return (
