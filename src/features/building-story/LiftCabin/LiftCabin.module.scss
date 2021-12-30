@@ -52,6 +52,17 @@ $doorColor: rgba(255, 255, 255, 0.3);
     }
 }
 
+.closeDoors {
+    &.cabinWrapper {
+        &::after {
+            transform: translateX(0%);
+        }
+        &::before {
+            transform: translateX(0%);
+        }
+    }
+}
+
 .animateOnCall {
     &.cabinWrapper {
         &::after {
