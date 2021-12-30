@@ -12,24 +12,4 @@
     min-height: 100vh;
     display: flex;
     align-items: flex-end;
-    // overflow: hidden;
-}
-
-button,
-a {
-    outline: none;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-    &:focus-within {
-        outline: none;
-        border: none;
-    }
-    &:active {
-        transform: scale(0.95);
-    }
-}
-
-.menuButton {
-    position: absolute;
 }

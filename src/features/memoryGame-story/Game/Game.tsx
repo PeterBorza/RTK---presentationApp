@@ -36,7 +36,6 @@ const Game: FC = () => {
     const flippedCards = useSelector(flippedCardsSelector);
     const matchCards = useSelector(matchCardsSelector);
     const count = useSelector(clickCountSelector);
-    const finishedGame = matchCards.length === images.length;
 
     const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
         classNames(styles.box, {
@@ -45,6 +44,7 @@ const Game: FC = () => {
         });
 
     const gameHasStarted = flippedCards.length !== 0;
+    const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
         count > 25 && dispatch(resetGame());

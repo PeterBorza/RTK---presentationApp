@@ -2,21 +2,21 @@
 @use "../../../css/my_app.scss" as *;
 
 .controls {
-	@include fBetween;
-	@include shadowSB;
-	background-color: rgba(255, 255, 255, 0.4);
-	width: 35%;
-	min-width: $minWidth;
-	padding: 0.3rem 1rem;
-	transition: all 100ms;
+    @include fBetween;
+    @include shadowSB;
+    background-color: rgba(255, 255, 255, 0.4);
+    min-width: $minWidth;
+    padding: 0.3rem 1rem;
+    transition: all 100ms;
+    margin: 0.2rem;
 }
 
 .clicks {
-	color: red;
-	text-transform: uppercase;
-	padding: 0px 3px;
-	span {
-		color: $backColor;
-		font-size: 140%;
-	}
+    color: red;
+    text-transform: uppercase;
+    padding: 0px 3px;
+    span {
+        color: $backColor;
+        font-size: 140%;
+    }
 }
