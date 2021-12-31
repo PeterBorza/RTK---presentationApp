@@ -3,14 +3,12 @@
 @use "../../../css/variables" as *;
 
 .container {
-    position: relative;
-    @include container(100%);
-    @include fEven(column);
-    @include before("../images/contor_gaz.jpg");
-    h1 {
-        font-size: 3rem;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        letter-spacing: 2px;
-        text-align: center;
-    }
+	position: relative;
+	@include container(100%);
+	@include fEven(column);
+	@include before("../images/contor_gaz.jpg");
+}
+
+.inputContent {
+	width: 20%;
 }

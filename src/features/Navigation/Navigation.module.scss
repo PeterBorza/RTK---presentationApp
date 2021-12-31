@@ -1,39 +1,38 @@
 @use "../../css/my_app" as *;
 @use "../../css/mixins" as *;
 @use "../../css/variables" as *;
-// @import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap");
 
 .nav_container {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: $navHeight;
-    z-index: 1;
-    background-color: $navPrimaryBG;
-    // overflow-x: auto;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: $navHeight;
+	z-index: 1;
+	background-color: $navPrimaryBG;
+	// overflow-x: auto;
 }
 
 .links {
-    text-transform: uppercase;
-    font-family: "PT Sans", sans-serif;
-    font-size: clamp(0.7rem, 1.5vw + 0.4rem, 2.2rem);
-    transition: color 150ms ease-out;
-    color: $myYellow3;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-    &:focus-within {
-        outline: none;
-        border: none;
-    }
-    &:hover {
-        color: darken($myYellow3, 10%);
-    }
+	text-transform: uppercase;
+	font-family: "PT Sans", sans-serif;
+	font-size: clamp(0.7rem, 1.5vw + 0.4rem, 2.2rem);
+	transition: color 150ms ease-out;
+	color: $myYellow3;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	&:focus-within {
+		outline: none;
+		border: none;
+	}
+	&:hover {
+		color: darken($myYellow3, 10%);
+	}
 }
 
 .active {
-    transform: scale(0.95);
-    color: white;
+	transform: scale(0.95);
+	color: white;
 }
