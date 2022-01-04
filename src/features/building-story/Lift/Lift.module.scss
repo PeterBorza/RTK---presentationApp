@@ -12,10 +12,10 @@
 .liftData {
     width: 70%;
     @include fCenter(column);
-    gap: 15px;
+    gap: 0.5rem;
     &__row {
+        width: 70%;
         background-color: $appYellow;
-        width: 90%;
         @include shadow(250ms);
         border-radius: 3px;
         display: flex;
@@ -35,8 +35,8 @@
 }
 
 .liftButtons {
-    width: 15%;
-    height: 100%;
+    width: 12%;
+    height: 80%;
     margin: auto;
     display: flex;
     flex-direction: column-reverse;

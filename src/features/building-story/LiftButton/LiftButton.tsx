@@ -8,7 +8,7 @@ import styles from "./LiftButton.module.scss";
 import { Direction } from "..";
 
 interface Props {
-    isActive: boolean;
+    selected: boolean;
     direction?: Direction;
 }
 
@@ -17,11 +17,11 @@ const LiftButton: FC<Props & ComponentProps<"button">> = ({
     className,
     disabled,
     value,
-    isActive,
+    selected,
     direction,
 }) => {
     const classes = classNames(styles.buttonStyle, className, {
-        [styles.buttonStyle__active]: isActive,
+        [styles.buttonStyle__active]: selected,
     });
 
     const directionIcons = {

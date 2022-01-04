@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Building, BuildingMessages, Lift } from "..";
+import { Building, BuildingMessages } from "..";
 import { AsidePlatform } from "../../../shared-components";
 
 import { liftOpenSelector, toggleBuilding } from "../../../app";
@@ -15,7 +15,7 @@ const LiftPlatform: FC = () => {
             isOpen={openSideBar}
             onClose={() => dispatch(toggleBuilding(false))}
             label={BuildingMessages.HEADER_TITLE}
-            renderSideBar={() => <Lift panel="buttons" liftData="data" />}
+            renderSideBar={() => <div>Hello</div>}
         >
             <Building />
         </AsidePlatform>
