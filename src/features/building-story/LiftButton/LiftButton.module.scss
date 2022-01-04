@@ -3,7 +3,7 @@
 @use "../../../css/variables" as *;
 
 .buttonStyle {
-    flex: 1;
+    @include fEven(column);
     outline: none;
     border: none;
     width: 100%;
@@ -12,10 +12,21 @@
     color: $appYellow;
     transition: all 200ms ease;
     border-radius: 2px;
-    padding: 0.2rem 0.3rem;
+    font-size: 1.6rem;
+    cursor: pointer;
     &__active {
+        font-size: 2rem;
         color: white;
         font-weight: bold;
         box-shadow: inset 2px 2px 4px $appYellow, inset -2px -2px 4px $appYellow;
+    }
+    &:hover {
+        background-color: lighten($appBlack, 20%);
+    }
+}
+
+@media (max-width: 400px) {
+    .buttonStyle {
+        font-size: 1.5rem;
     }
 }

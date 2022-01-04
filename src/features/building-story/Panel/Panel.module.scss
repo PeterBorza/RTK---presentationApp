@@ -1,0 +1,34 @@
+.panelWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    &__icons {
+        display: flex;
+        width: 100%;
+        font-size: 3rem;
+        color: limegreen;
+    }
+    &__buttons {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        gap: 1px;
+    }
+}
+
+@media (max-height: 400px) {
+    .panelWrapper {
+        justify-content: space-between;
+        border-radius: 10px;
+        &__icons {
+            font-size: 1.7rem;
+        }
+        &__buttons {
+            height: 20%;
+        }
+    }
+}

@@ -8,11 +8,7 @@ import {
     LiftPosition,
     LiftMoving,
     LiftDisabled,
-    LiftName,
 } from "./state";
-
-const targetLift = (state: LiftState, payload: LiftName) =>
-    state.lifts.find(lift => lift.name === payload);
 
 export const liftSlice = createSlice({
     name: "lift",

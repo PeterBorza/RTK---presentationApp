@@ -1,11 +1,10 @@
-import { ComponentProps, FC } from "react";
+import { ComponentProps, FC, ReactNode } from "react";
 
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { ImStop } from "react-icons/im";
+import { Direction } from "..";
 
 import classNames from "classnames";
 import styles from "./LiftButton.module.scss";
-import { Direction } from "..";
 
 interface Props {
     selected: boolean;
@@ -18,7 +17,7 @@ const LiftButton: FC<Props & ComponentProps<"button">> = ({
     disabled,
     value,
     selected,
-    direction,
+    direction = "static",
 }) => {
     const classes = classNames(styles.buttonStyle, className, {
         [styles.buttonStyle__active]: selected,
@@ -27,12 +26,17 @@ const LiftButton: FC<Props & ComponentProps<"button">> = ({
     const directionIcons = {
         down: <FaArrowDown />,
         up: <FaArrowUp />,
-        static: <ImStop />,
+        static: value,
     };
 
     return (
-        <button onClick={onClick} className={classes} disabled={disabled}>
-            {!direction ? value : directionIcons[direction]}
+        <button
+            onClick={onClick}
+            className={classes}
+            disabled={disabled}
+            title="click on desired floor"
+        >
+            {directionIcons[direction]}
         </button>
     );
 };

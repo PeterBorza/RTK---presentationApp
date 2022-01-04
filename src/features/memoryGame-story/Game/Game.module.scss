@@ -8,102 +8,102 @@ $grid-background: rgb(1, 51, 20);
 $front-background: rgba(255, 255, 525, 0.6);
 
 .container {
-	position: relative;
-	@include container(100%);
-	@include fCenter(column);
-	@include shadowSB;
-	overflow: hidden;
-	padding: 0.7rem;
-	flex-shrink: 1;
-	&::after {
-		position: absolute;
-		content: "";
-		left: 0;
-		top: 0;
-		background: black url(../images/christmas-background_640.jpg) no-repeat
-			bottom/cover;
-		width: 100%;
-		height: 100%;
-		opacity: 0.5;
-		z-index: -1;
-	}
+    position: relative;
+    @include container(100%);
+    @include fCenter(column);
+    @include shadowSB;
+    overflow: hidden;
+    padding: 0.7rem;
+    flex-shrink: 1;
+    &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        background: black url(../images/christmas-background_640.jpg) no-repeat
+            bottom/cover;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        z-index: -1;
+    }
 }
 
 .grid {
-	width: min(500px, 90%);
-	height: max(450px, 70%);
-	display: grid;
-	grid-template-columns: repeat($cols, 1fr);
-	gap: $gap;
-	padding: calc($gap * 1.5);
-	background: $grid-background;
-	border-radius: $gap;
-	@include shadowSB;
-	transition: all 100ms;
+    width: min(600px, 90%);
+    height: max(450px, 70%);
+    display: grid;
+    grid-template-columns: repeat($cols, 1fr);
+    gap: $gap;
+    padding: calc($gap * 1.5);
+    background: $grid-background;
+    border-radius: $gap;
+    @include shadowSB;
+    transition: all 100ms;
 }
 
 .box {
-	border-radius: 2px;
-	overflow: hidden;
-	pointer-events: all;
-	user-select: none;
+    border-radius: 2px;
+    overflow: hidden;
+    pointer-events: all;
+    user-select: none;
 }
 
 .game_image {
-	height: 90%;
-	display: block;
+    height: 90%;
+    display: block;
 }
 
 .front {
-	width: 100%;
-	height: 100%;
-	background-color: $front-background;
-	&::after {
-		position: absolute;
-		content: " ";
-		left: 0;
-		top: 0;
-		background: url(../images/merryChristmas_300.png) no-repeat center/cover;
-		width: 100%;
-		height: 100%;
-	}
+    width: 100%;
+    height: 100%;
+    background-color: $front-background;
+    &::after {
+        position: absolute;
+        content: " ";
+        left: 0;
+        top: 0;
+        background: url(../images/merryChristmas_300.png) no-repeat center/cover;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .back {
-	background-color: $backColor;
-	width: 100%;
-	height: 100%;
-	@include fCenter();
+    background-color: $backColor;
+    width: 100%;
+    height: 100%;
+    @include fCenter();
 }
 
 .disabled {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 .faded {
-	opacity: 0.5;
+    opacity: 0.5;
 }
 
 .buttons {
-	color: white;
-	text-transform: uppercase;
-	background-color: $backColor;
-	&:hover {
-		color: red;
-		background-color: lighten($backColor, 5%);
-	}
+    color: white;
+    text-transform: uppercase;
+    background-color: $backColor;
+    &:hover {
+        color: red;
+        background-color: lighten($backColor, 5%);
+    }
 }
 
-@media only screen and (max-width: 850px) {
-	.grid {
-		width: 100%;
-		height: 55%;
-	}
+@media (max-width: 850px) {
+    .grid {
+        width: 370px;
+        height: 60vh;
+    }
 }
 
-@media only screen and (max-height: 400px) {
-	.grid {
-		width: 45%;
-		height: 90%;
-	}
+@media (max-height: 400px) {
+    .grid {
+        width: 40%;
+        height: 90%;
+    }
 }
