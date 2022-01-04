@@ -1,8 +1,10 @@
 import { forwardRef, RefObject } from "react";
+import { Lift } from "../state";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftCabin.module.scss";
-import { Lift } from "../state";
 
 interface Props {
     data: Lift;
@@ -15,6 +17,7 @@ interface Props {
 const LiftCabin = forwardRef<HTMLDivElement, Props>(
     ({ data, speed, levelCount, onArrival }, ref) => {
         const {
+            name,
             isActive,
             isMoving,
             position,
@@ -25,22 +28,20 @@ const LiftCabin = forwardRef<HTMLDivElement, Props>(
 
         const cabinClasses = classNames(
             styles.cabinWrapper,
-            [styles[`changePosition-${position}`]],
-            [styles[`transitionSpeed-${speed}`]],
-            [styles[`cabinHeight-${levelCount}`]],
+            [styles[`cabinWrapper__changePosition-${position}`]],
+            [styles[`cabinWrapper__transitionSpeed-${speed}`]],
+            [styles[`cabinWrapper__cabinHeight-${levelCount}`]],
             [styles[`cabinWrapper__${blockPosition}`]],
             {
                 [styles.closeDoors]: isMoving,
-                [styles.openDoors]: isActive,
+                [styles.openDoors]: !isMoving || isActive,
             }
         );
 
         return (
-            <div
-                ref={ref}
-                className={cabinClasses}
-                onTransitionEnd={onArrival}
-            />
+            <div ref={ref} className={cabinClasses} onTransitionEnd={onArrival}>
+                <div className={styles.cabinWrapper__arrow} />
+            </div>
         );
     }
 );

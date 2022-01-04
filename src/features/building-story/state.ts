@@ -44,32 +44,5 @@ export const initialState: LiftState = {
         },
     ],
     numberOfLevels: 7,
-    speed: 3000,
+    speed: 2000,
 };
-
-export const directions: Pick<Lift, LiftDirection>[] = [
-    {
-        name: "A",
-        direction: "down",
-    },
-    {
-        name: "A",
-        direction: "up",
-    },
-    {
-        name: "A",
-        direction: "static",
-    },
-    {
-        name: "B",
-        direction: "down",
-    },
-    {
-        name: "B",
-        direction: "up",
-    },
-    {
-        name: "B",
-        direction: "static",
-    },
-];

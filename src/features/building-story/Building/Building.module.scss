@@ -9,11 +9,13 @@
 }
 
 .systemContainer {
-    width: 80vw;
+    width: 40vw;
     min-width: 380px;
     height: 70vh;
     display: flex;
     gap: 0.4rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .menuButton {
