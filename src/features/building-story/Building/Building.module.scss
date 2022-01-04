@@ -1,11 +1,4 @@
 @use "../../../css/my_app" as *;
-@use "../../../css/mixins" as *;
-@use "../../../css/variables" as *;
-
-$shaft-lift-height: 70vh;
-$shaft-lift-width: 30%;
-$minWidth: 125px;
-$openSpeed: 500ms;
 
 .container {
     @include container(100%);
@@ -15,44 +8,16 @@ $openSpeed: 500ms;
     justify-content: center;
 }
 
-.block {
-    position: relative;
-    margin: 10px;
-    width: $shaft-lift-width;
-    height: $shaft-lift-height;
-    min-width: $minWidth;
-    background-color: rgba(240, 233, 233, 0.15);
-    color: white;
+.systemContainer {
+    width: 80vw;
+    min-width: 380px;
+    height: 70vh;
+    display: flex;
+    gap: 0.4rem;
 }
 
 .menuButton {
     position: absolute;
     left: 0;
     top: 0;
-}
-
-.red {
-    background-color: red;
-    color: white;
-}
-
-.lightGrey {
-    background-color: lightgrey;
-}
-
-.liftWrapper {
-    width: $shaft-lift-width;
-    height: $shaft-lift-height;
-    opacity: 0;
-    transform: translateY(-30px);
-    pointer-events: none;
-    min-width: $minWidth;
-    background-color: rgba(255, 228, 196, 0.419);
-    transition: all $openSpeed ease-out;
-    &__show {
-        transform: translateY(0);
-        transform-origin: left;
-        opacity: 1;
-        pointer-events: all;
-    }
 }

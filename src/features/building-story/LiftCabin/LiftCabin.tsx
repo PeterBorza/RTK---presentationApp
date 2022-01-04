@@ -1,27 +1,45 @@
-import { CSSProperties, forwardRef, RefObject } from "react";
+import { forwardRef, RefObject } from "react";
 
 import classNames from "classnames";
 import styles from "./LiftCabin.module.scss";
+import { Lift } from "../state";
 
 interface Props {
-    openDoors: boolean;
-    onClick: () => void;
-    properties: CSSProperties;
+    data: Lift;
+    speed: number;
+    levelCount: number;
+    onArrival?: () => void;
     ref: RefObject<HTMLDivElement | null>;
 }
 
 const LiftCabin = forwardRef<HTMLDivElement, Props>(
-    ({ openDoors, onClick, properties }, ref) => {
-        const cabinClasses = classNames(styles.cabinWrapper, {
-            [styles.openDoors]: openDoors,
-            [styles.closeDoors]: !openDoors,
-        });
+    ({ data, speed, levelCount, onArrival }, ref) => {
+        const {
+            isActive,
+            isMoving,
+            position,
+            // disabled,
+            // direction,
+            blockPosition,
+        } = data;
+
+        const cabinClasses = classNames(
+            styles.cabinWrapper,
+            [styles[`changePosition-${position}`]],
+            [styles[`transitionSpeed-${speed}`]],
+            [styles[`cabinHeight-${levelCount}`]],
+            [styles[`cabinWrapper__${blockPosition}`]],
+            {
+                [styles.closeDoors]: isMoving,
+                [styles.openDoors]: isActive,
+            }
+        );
+
         return (
             <div
                 ref={ref}
                 className={cabinClasses}
-                onClick={onClick}
-                style={properties}
+                onTransitionEnd={onArrival}
             />
         );
     }

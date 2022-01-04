@@ -17,3 +17,7 @@ export const topLevelSelector = createSelector(
     levelsState,
     levels => levels - 1
 );
+
+export const levelsSelector = createSelector(levelsState, levels =>
+    new Array(levels).fill(0).map((_, idx) => idx)
+);

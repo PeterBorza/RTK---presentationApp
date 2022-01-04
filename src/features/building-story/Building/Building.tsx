@@ -1,77 +1,37 @@
-import { FC, useEffect, useRef } from "react";
-import { levelsState, liftsState, speedState } from "../selectors";
-import { activate, moveLift, setDirection } from "../liftSlice";
+import { FC } from "react";
+import { levelsSelector, liftsState } from "../selectors";
+import { setActive, changePosition, setDirection } from "../liftSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBuilding, liftOpenSelector } from "../../../app/";
-import { BuildingMessages as msg, LiftCabin } from "..";
+import { BuildingMessages as msg } from "..";
 import LiftButton from "../LiftButton";
-import Shaft from "../Shaft";
-import Lift, { DataRow } from "../Lift";
+import { DataRow } from "../Lift";
 import { Button } from "../../../shared-components";
 
-import classNames from "classnames";
 import styles from "./Building.module.scss";
 import { Lift as LiftProps, directions } from "../state";
+import LiftSystem from "../LiftSystem";
+import BlockSystem from "../BlockSystem";
 
 type LevelCount = number;
 type LiftName = "A" | "B";
 
 const Building: FC = () => {
     const openSideBar = useSelector(liftOpenSelector);
-    const numberOfLevels = useSelector(levelsState);
+    const levels = useSelector(levelsSelector);
     const [liftA, liftB] = useSelector(liftsState);
-    const speed = useSelector(speedState);
     const dispatch = useDispatch();
-    const liftARef = useRef<HTMLDivElement>(null);
-    const liftBRef = useRef<HTMLDivElement>(null);
 
-    // useEffect(() => {
-    //     if (liftARef && liftARef.current) {
-    //         liftARef.current.addEventListener("transitionend", () => {
-    //             dispatch(activate({ name: "A", isActive: false }));
-    //         });
-    //     }
-    // }, [dispatch]);
+    const { isActive: activeA, position: positionA } = liftA;
+    const { isActive: activeB, position: positionB } = liftB;
 
-    const {
-        name: A,
-        isActive: activeA,
-        position: positionA,
-        disabled: disabledA,
-        direction: directionA,
-    } = liftA;
-    const {
-        name: B,
-        isActive: activeB,
-        position: positionB,
-        disabled: disabledB,
-        direction: directionB,
-    } = liftB;
-
-    const liftWrapper = (active: boolean) =>
-        classNames(styles.liftWrapper, {
-            [styles.liftWrapper__show]: active,
-        });
-
-    const myLevels = new Array(numberOfLevels).fill(0).map((_, idx) => idx);
-
-    const toggleActive = (name: LiftName, isActive: boolean) =>
-        dispatch(activate({ name, isActive }));
+    const [A_down, A_up, , B_down, B_up] = directions;
 
     const moveElevator = (name: LiftName, position: number) =>
-        dispatch(moveLift({ name, position }));
+        dispatch(changePosition({ name, position }));
 
-    const moveA = (position: number) => {
-        toggleActive("A", position === positionA);
-        moveElevator("A", position);
-    };
-
-    const moveB = (position: number) => {
-        toggleActive("B", position === positionB);
-        moveElevator("B", position);
-    };
-
-    const [A_down, A_up, , B_down, B_up, ,] = directions;
+    const toggleActive = (name: LiftName, isActive: boolean) =>
+        dispatch(setActive({ name, isActive }));
 
     const getDirectionsOfA = (level: LevelCount) => {
         level < positionA && dispatch(setDirection(A_down));
@@ -83,22 +43,6 @@ const Building: FC = () => {
         level > positionB && dispatch(setDirection(B_up));
     };
 
-    const shaftButtonsHandler = (level: LevelCount) => {
-        getDirectionsOfA(level);
-        getDirectionsOfB(level);
-
-        const difA = Math.abs(positionA - level);
-        const difB = Math.abs(positionB - level);
-
-        difA < difB
-            ? moveA(level)
-            : difA > difB
-            ? moveB(level)
-            : positionA <= positionB
-            ? moveA(level)
-            : moveB(level);
-    };
-
     const menuButton = (
         <Button
             className={styles.menuButton}
@@ -108,52 +52,35 @@ const Building: FC = () => {
         />
     );
 
-    const liftStyle = (left: string, position: number) => {
-        return {
-            left,
-            transform: `translateY(${-position * 100}%)`,
-            transition: `all ${speed}ms ease-out`,
-            height: `${100 / numberOfLevels}%`,
-        };
-    };
-
-    const shaftButtons = myLevels.map(level => (
-        <LiftButton
-            key={`Shaft-button-${level}`}
-            onClick={() => shaftButtonsHandler(level)}
-            disabled={false}
-            value={level}
-            isActive={level === positionA || level === positionB}
-        />
-    ));
-
     const liftA_ButtonHandler = (level: LevelCount) => {
         moveElevator("A", level);
         getDirectionsOfA(level);
+        toggleActive("A", false);
     };
 
     const liftB_ButtonHandler = (level: LevelCount) => {
         moveElevator("B", level);
         getDirectionsOfB(level);
+        toggleActive("B", false);
     };
 
-    const liftA_Panel = myLevels.map(level => (
+    const liftA_Panel = levels.map(level => (
         <LiftButton
             key={`liftA-button-${level}`}
             onClick={() => liftA_ButtonHandler(level)}
             disabled={false}
             value={level}
-            isActive={level === positionA}
+            selected={level === positionA}
         />
     ));
 
-    const liftB_Panel = myLevels.map(level => (
+    const liftB_Panel = levels.map(level => (
         <LiftButton
             key={`liftB-button-${level}`}
             onClick={() => liftB_ButtonHandler(level)}
             disabled={false}
             value={level}
-            isActive={level === positionB}
+            selected={level === positionB}
         />
     ));
 
@@ -165,26 +92,18 @@ const Building: FC = () => {
     return (
         <div className={styles.container}>
             {menuButton}
-            <div className={liftWrapper(activeA)}>
-                <Lift panel={liftA_Panel} liftData={liftData(liftA)} />
-            </div>
-            <div className={styles.block}>
-                <LiftCabin
-                    openDoors={activeA}
-                    onClick={() => toggleActive("A", !activeA)}
-                    properties={liftStyle("0", positionA)}
-                    ref={liftARef}
+            <div className={styles.systemContainer}>
+                <LiftSystem
+                    activated={activeA}
+                    panel={liftA_Panel}
+                    liftData={liftData(liftA)}
                 />
-                <LiftCabin
-                    openDoors={activeB}
-                    onClick={() => toggleActive("B", !activeB)}
-                    properties={liftStyle("58%", positionB)}
-                    ref={liftBRef}
+                <BlockSystem />
+                <LiftSystem
+                    activated={activeB}
+                    panel={liftB_Panel}
+                    liftData={liftData(liftB)}
                 />
-                <Shaft>{shaftButtons}</Shaft>
-            </div>
-            <div className={liftWrapper(activeB)}>
-                <Lift panel={liftB_Panel} liftData={liftData(liftB)} />
             </div>
         </div>
     );

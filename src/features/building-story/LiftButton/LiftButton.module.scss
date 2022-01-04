@@ -3,6 +3,7 @@
 @use "../../../css/variables" as *;
 
 .buttonStyle {
+    flex: 1;
     outline: none;
     border: none;
     width: 100%;
@@ -11,10 +12,8 @@
     color: $appYellow;
     transition: all 200ms ease;
     border-radius: 2px;
-    font-size: 1.3rem;
-    // padding: 15px;
+    padding: 0.2rem 0.3rem;
     &__active {
-        font-size: 1.6rem;
         color: white;
         font-weight: bold;
         box-shadow: inset 2px 2px 4px $appYellow, inset -2px -2px 4px $appYellow;

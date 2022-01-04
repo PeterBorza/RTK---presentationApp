@@ -2,7 +2,7 @@
 @use "../../../css/mixins" as *;
 @use "../../../css/variables" as *;
 
-$openingSpeed: 600ms;
+$openingSpeed: 300ms;
 $doorColor: rgba(255, 255, 255, 0.3);
 
 .cabinWrapper {
@@ -25,6 +25,30 @@ $doorColor: rgba(255, 255, 255, 0.3);
     }
     &::after {
         left: 50%;
+    }
+    &__left {
+        left: 0;
+    }
+    &__right {
+        left: 58%;
+    }
+}
+
+@for $i from 1 to 12 {
+    .changePosition-#{$i} {
+        transform: translateY(calc(-100% * #{$i}));
+    }
+}
+
+@for $i from 1000 to 10000 {
+    .transitionSpeed-#{$i} {
+        transition: all calc(1ms * #{$i}) ease-out;
+    }
+}
+
+@for $i from 1 to 100 {
+    .cabinHeight-#{$i} {
+        height: calc(100% / #{$i});
     }
 }
 
@@ -59,45 +83,6 @@ $doorColor: rgba(255, 255, 255, 0.3);
         }
         &::before {
             transform: translateX(0%);
-        }
-    }
-}
-
-.animateOnCall {
-    &.cabinWrapper {
-        &::after {
-            animation: leftDoor 9000ms ease;
-        }
-        &::before {
-            animation: rightDoor 9000ms ease;
-        }
-        @keyframes leftDoor {
-            0% {
-                transform: translateX(0%);
-            }
-            33% {
-                transform: translateX(0%);
-            }
-            66% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(0%);
-            }
-        }
-        @keyframes rightDoor {
-            0% {
-                transform: translateX(0%);
-            }
-            33% {
-                transform: translateX(0%);
-            }
-            66% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(0%);
-            }
         }
     }
 }
