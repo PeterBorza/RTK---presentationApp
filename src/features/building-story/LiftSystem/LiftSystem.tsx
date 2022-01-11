@@ -30,7 +30,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     const liftWrapper = classNames(styles.liftWrapper, {
         [styles.liftWrapper__show]: showPanel,
-        [styles[`transform-${blockPosition}`]]: showPanel,
+        // [styles[`transform-${blockPosition}`]]: !showPanel,
     });
 
     const liftIsMoving = () => dispatch(moveLift({ name, isMoving: true }));

@@ -1,16 +1,6 @@
 {
   "bubbles": [
     {
-      "id": 7,
-      "selected": false,
-      "cssProps": {
-        "left": "78%",
-        "top": "45%",
-        "size": "150px",
-        "opacity": "1"
-      }
-    },
-    {
       "id": 10,
       "selected": false,
       "cssProps": {
@@ -18,16 +8,6 @@
         "top": "70%",
         "size": "120px",
         "opacity": "1"
-      }
-    },
-    {
-      "id": 11,
-      "selected": false,
-      "cssProps": {
-        "left": "45%",
-        "top": "45%",
-        "size": "150px",
-        "opacity": "0.8"
       }
     },
     {
@@ -44,10 +24,10 @@
       "id": 16,
       "selected": false,
       "cssProps": {
-        "left": "85%",
-        "top": "75%",
-        "size": "120px",
-        "opacity": "0.4"
+        "left": "35%",
+        "top": "65%",
+        "size": "200px",
+        "opacity": "1"
       }
     }
   ],

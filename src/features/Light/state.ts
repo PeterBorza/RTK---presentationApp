@@ -19,7 +19,7 @@ const initialState: UtilityState = {
 const initialEditUnit: UtilityStateUnit = {
     ...initialFormValues,
     id: "",
-    consumption: "",
+    consumption: 0,
     estimate: null,
     selected: false,
     payed: false,

@@ -11,9 +11,9 @@ type Props = {
 
 const Directions: FC<Props> = ({ direction }) => {
     const directionIcons = {
-        down: <FaArrowDown />,
-        up: <FaArrowUp />,
-        static: <ImStop />,
+        down: <FaArrowDown className={styles.downArrow} />,
+        up: <FaArrowUp className={styles.upArrow} />,
+        static: <ImStop className={styles.static} />,
     };
 
     return (

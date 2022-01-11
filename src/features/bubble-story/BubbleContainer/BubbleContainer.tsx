@@ -35,7 +35,7 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
     const error = useSelector(errorState);
     const dispatch = useDispatch();
     const bubbleRef = useRef(null);
-    useOnClickOutside(bubbleRef, () => dispatch(resetSelectedBubble()));
+    // useOnClickOutside(bubbleRef, () => dispatch(resetSelectedBubble()));
 
     const isBubbles = bubbles.length !== 0;
 

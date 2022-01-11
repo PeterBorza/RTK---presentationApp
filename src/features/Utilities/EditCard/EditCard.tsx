@@ -35,7 +35,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
             readDate: values.readDate,
             index: values.index,
             bill: values.bill,
-            consumption: (+consumption + +values.index - +index).toString(),
+            consumption: +consumption + +values.index - +index,
             selected: false,
             edit: false,
         };
@@ -45,9 +45,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
         if (units.length > 0 && editedUnitIndex !== units.length - 1) {
             const nextUnitConsumption = {
                 ...units[editedUnitIndex + 1],
-                consumption: (
-                    +units[editedUnitIndex + 1].index - +values.index
-                ).toString(),
+                consumption: +units[editedUnitIndex + 1].index - +values.index,
             };
             editUnit(nextUnitConsumption);
         }
