@@ -13,14 +13,14 @@ $fontSize: 1.15rem;
 }
 
 .edit_cell {
-    @include fCenter;
+    @include fAround;
     width: 100%;
-    margin: 0px;
     animation: growMargin 120ms forwards linear 1;
     font-size: $fontSize;
     input {
         font-size: $fontSize;
         width: 60%;
+        margin: 0;
         border: none;
         outline: none;
         border-radius: 3px;
@@ -38,7 +38,7 @@ $fontSize: 1.15rem;
     }
     @keyframes growMargin {
         to {
-            margin: 10px;
+            margin: 6px;
         }
     }
 }

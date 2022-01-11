@@ -65,7 +65,7 @@ const UtilityCard: React.FC<Props> = ({
             <div className={dataWrapper} title={index}>
                 <p>{index}</p>
             </div>
-            <div className={dataWrapper} title={consumption}>
+            <div className={dataWrapper} title={consumption.toString()}>
                 <p>{consumption}</p>
             </div>
             <div className={dataWrapper}>

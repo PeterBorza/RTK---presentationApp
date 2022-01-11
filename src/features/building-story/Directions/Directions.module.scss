@@ -6,3 +6,16 @@
     justify-content: center;
     padding: 5px;
 }
+
+.downArrow,
+.upArrow,
+.static {
+    font-size: 3rem;
+    color: transparent;
+    border-radius: 50%;
+    color: crimson;
+}
+
+.static {
+    color: limegreen;
+}

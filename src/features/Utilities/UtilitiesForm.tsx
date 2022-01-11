@@ -42,9 +42,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
         if (utilityUnits.length === 0) lastCitire = values.index;
         lastCitire = previousUnit.index;
         const newConsumption = +values.index - +lastCitire;
-        const checkNewConsumption = !isNaN(newConsumption)
-            ? newConsumption
-            : "0";
+        const checkNewConsumption = !isNaN(newConsumption) ? newConsumption : 0;
 
         const estimatedValue =
             (+previousUnit.bill / +previousUnit.consumption) *
@@ -56,7 +54,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
             selected: false,
             index: checkIfValid(values.index),
             bill: getCorrectValues(checkIfValid(values.bill)),
-            consumption: checkNewConsumption.toString(),
+            consumption: checkNewConsumption,
             estimate: +estimatedValue.toFixed(2),
             payed: false,
             edit: false,

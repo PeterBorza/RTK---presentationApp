@@ -15,24 +15,13 @@ $openSpeed: 300ms;
 }
 
 .transform-left {
-    transform: translateX(100%);
+    transform: translateX(20%);
     opacity: 0;
 }
 .transform-right {
-    transform: translateX(-100%);
+    transform: translateX(-20%);
     opacity: 0;
 }
-
-// .liftDisabled {
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: 10rem;
-//     flex-shrink: 1;
-//     color: crimson;
-// }
 
 .panelButtons {
     background: transparent;

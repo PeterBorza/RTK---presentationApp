@@ -91,14 +91,14 @@ const BlockSystem: FC = () => {
     };
 
     const moveA = (position: LevelCount) => {
-        moveElevator("A", position);
         startMoving("A");
+        moveElevator("A", position);
         getDirectionsOfA(position);
     };
 
     const moveB = (position: LevelCount) => {
-        moveElevator("B", position);
         startMoving("B");
+        moveElevator("B", position);
         getDirectionsOfB(position);
     };
 
