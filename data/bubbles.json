@@ -11,23 +11,43 @@
       }
     },
     {
-      "id": 15,
+      "id": 16,
       "selected": false,
       "cssProps": {
-        "left": "90%",
-        "top": "10%",
-        "size": "120px",
+        "left": "23%",
+        "top": "23%",
+        "size": "200px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 17,
+      "selected": false,
+      "cssProps": {
+        "left": "67%",
+        "top": "78%",
+        "size": "150px",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 18,
+      "selected": false,
+      "cssProps": {
+        "left": "60%",
+        "top": "35%",
+        "size": "150px",
         "opacity": "0.5"
       }
     },
     {
-      "id": 16,
+      "id": 19,
       "selected": false,
       "cssProps": {
-        "left": "35%",
-        "top": "65%",
-        "size": "200px",
-        "opacity": "1"
+        "left": "75%",
+        "top": "45%",
+        "size": "100px",
+        "opacity": ".7"
       }
     }
   ],

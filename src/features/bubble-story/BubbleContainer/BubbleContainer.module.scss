@@ -5,15 +5,9 @@
     @include container(100%);
     margin: 0;
     overflow: hidden;
-    // background: $primary-background;
+    background: $primary-background;
     @include gradientBubble;
     &__dark {
-        background-color: $darkMode;
-    }
-}
-
-.buttonWrapper {
-    &__dark {
-        background-color: $darkMode;
+        background: $darkMode;
     }
 }

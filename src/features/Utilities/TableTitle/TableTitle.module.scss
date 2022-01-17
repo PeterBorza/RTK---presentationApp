@@ -12,4 +12,9 @@
 .titleContainer {
     width: 100%;
     display: flex;
+    &__dark {
+        & > span {
+            color: rgba(255, 255, 255, 0.817);
+        }
+    }
 }

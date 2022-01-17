@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode } from "react";
+import { ComponentProps, FC } from "react";
 
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { Direction } from "..";

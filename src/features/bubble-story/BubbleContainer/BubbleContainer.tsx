@@ -18,11 +18,10 @@ import {
     ButtonWrapper,
     LoadingWrapper,
 } from "../../../shared-components";
-import { resetSelectedBubble, selectBubble } from "../bubbleSlice";
+import { selectBubble } from "../bubbleSlice";
 import { toggleBubbles } from "../../../app/appSlice";
-import { bubblesOpenSelector } from "../../../app/selectors";
+import { bubblesOpenSelector, darkModeSelector } from "../../../app/selectors";
 import { FC, useRef } from "react";
-import { useOnClickOutside } from "../../../hooks";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
@@ -33,9 +32,9 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
     const selected = useSelector(selectedBubble);
     const { isLoading } = useSelector(pendingState);
     const error = useSelector(errorState);
+    const darkMode = useSelector(darkModeSelector);
     const dispatch = useDispatch();
     const bubbleRef = useRef(null);
-    // useOnClickOutside(bubbleRef, () => dispatch(resetSelectedBubble()));
 
     const isBubbles = bubbles.length !== 0;
 
@@ -95,7 +94,7 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
         <LoadingWrapper loading={isLoading} />
     ) : (
         <div className={wrapper}>
-            <ButtonWrapper renderButtons={renderButtons} />
+            <ButtonWrapper renderButtons={renderButtons} dark={darkMode} />
             {error.error ? (
                 <Error message={error.message} />
             ) : (

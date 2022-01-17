@@ -5,7 +5,7 @@
       "readDate": "19/09/2019",
       "selected": false,
       "index": "5648",
-      "consumption": "",
+      "consumption": 0,
       "bill": "6.91",
       "payed": true,
       "edit": false,
@@ -16,7 +16,7 @@
       "readDate": "20/12/2019",
       "selected": false,
       "index": "5805",
-      "consumption": "157",
+      "consumption": 157,
       "bill": "136.71",
       "payed": true,
       "edit": false,
@@ -27,7 +27,7 @@
       "readDate": "17/02/2020",
       "selected": false,
       "index": "5938",
-      "consumption": "133",
+      "consumption": 133,
       "bill": "125.78",
       "payed": true,
       "edit": false,
@@ -38,7 +38,7 @@
       "readDate": "17/03/2020",
       "selected": false,
       "index": "6011",
-      "consumption": "73",
+      "consumption": 73,
       "bill": "227.80",
       "payed": true,
       "edit": false,
@@ -263,6 +263,17 @@
       "estimate": 212.03,
       "payed": true,
       "edit": false
+    },
+    {
+      "id": "a04ac71b-b8bd-4f9e-b815-a3494be05731",
+      "readDate": "17/01/2022",
+      "selected": false,
+      "index": "5060",
+      "bill": "",
+      "consumption": 125,
+      "estimate": 269.21,
+      "payed": false,
+      "edit": false
     }
   ],
   "light": [
@@ -272,7 +283,7 @@
       "selected": false,
       "index": "5179",
       "bill": "68.89",
-      "consumption": "54",
+      "consumption": 54,
       "payed": true,
       "edit": false
     },

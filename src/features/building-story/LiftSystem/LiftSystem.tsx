@@ -26,11 +26,10 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const levels = useSelector(levelsSelector);
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
-    const { direction, isMoving, name, position, blockPosition } = data;
+    const { direction, isMoving, name, position } = data;
 
     const liftWrapper = classNames(styles.liftWrapper, {
         [styles.liftWrapper__show]: showPanel,
-        // [styles[`transform-${blockPosition}`]]: !showPanel,
     });
 
     const liftIsMoving = () => dispatch(moveLift({ name, isMoving: true }));

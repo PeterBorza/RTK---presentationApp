@@ -10,6 +10,7 @@ $SBhoverColor: rgb(134, 124, 124);
 $SBfontSize: 1.3rem;
 $SBnoMarginLeft: 0;
 $darkMode: rgb(40, 64, 73);
+$darkModeWhite: rgba(250, 253, 253, 0.8);
 
 @mixin shadowSB {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);

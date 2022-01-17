@@ -3,25 +3,19 @@
 @use "../../css/variables" as *;
 
 .container {
-	@include container(100%);
-	background-color: $appBlack;
-	// @include fAround(row);
-	@include lineUp(2);
-	& > div {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    @include container(100%);
+    background-color: $appBlack;
+    // @include fAround(row);
+    @include centered;
+    & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
-
-.customForm {
-	background-color: burlywood;
-	width: 40%;
-}
-
-.dropWrapper {
-	width: 15%;
-	height: 35%;
-	outline: 5px solid white;
-	outline-offset: 5px;
+.form {
+    display: flex;
+    width: 90%;
+    padding: 5px;
+    max-width: 600px;
 }

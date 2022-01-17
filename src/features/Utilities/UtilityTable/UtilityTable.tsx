@@ -22,10 +22,14 @@ const UtilityTable: FC<Props> = ({
         [styles.container__dark]: dark,
     });
 
+    const titleClasses = classNames(styles.title, {
+        [styles.title__dark]: dark,
+    });
+
     return (
         <div className={wrapper}>
             <div className={styles.tableHeader}>
-                <h1>{tableTitle}</h1>
+                <h1 className={titleClasses}>{tableTitle}</h1>
                 {tableHeader()}
             </div>
             <div className={styles.tableBody}>{tableBody()}</div>
