@@ -1,5 +1,6 @@
 @use "../../../css/variables" as *;
 @use "../../../css/mixins" as *;
+@use "../../../css/my_app.scss" as *;
 
 .wrapper {
     display: flex;
@@ -14,13 +15,21 @@
     }
     & div:nth-child(2) {
         color: crimson;
+        font-weight: 500;
     }
 
     &:hover {
         background-color: rgb(245, 245, 245);
+        &.wrapper__dark {
+            background-color: darken($darkModeWhite, 60%);
+        }
     }
     &__dark {
-        background-color: rgba(28, 29, 25, 0.507);
+        background-color: lighten($darkMode, 10%);
+        color: $darkModeWhite;
+        & div:nth-child(1) {
+            color: $darkModeWhite;
+        }
     }
 }
 
@@ -36,7 +45,7 @@
     white-space: nowrap;
     user-select: none;
     &__dark {
-        color: white;
+        color: $darkModeWhite;
     }
 }
 

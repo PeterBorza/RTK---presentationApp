@@ -1,7 +1,5 @@
 import { forwardRef, RefObject } from "react";
 import { Lift } from "../state";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftCabin.module.scss";
@@ -17,7 +15,7 @@ interface Props {
 const LiftCabin = forwardRef<HTMLDivElement, Props>(
     ({ data, speed, levelCount, onArrival }, ref) => {
         const {
-            name,
+            // name,
             isActive,
             isMoving,
             position,

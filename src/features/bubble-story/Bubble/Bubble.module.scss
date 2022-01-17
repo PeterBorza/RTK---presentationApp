@@ -1,37 +1,46 @@
 .bubbleStyle {
-	position: absolute;
-	// background: linear-gradient(135deg, transparent, cadetblue 85%);
-	border-radius: 50%;
-	aspect-ratio: 1;
-	box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2),
-		-1px -1px 5px rgba(240, 240, 240, 0.5);
-	display: grid;
-	place-items: center;
-	z-index: 1;
-	transform: translate(-50%, -50%);
-	&__span {
-		color: white;
-		text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
-		font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
-		font-family: fantasy;
-		user-select: none;
-	}
-	&__active {
-		outline: 2px dashed white;
-		outline-offset: -4px;
-		.bubbleStyle__span {
-			color: rgb(119, 22, 22);
-		}
-	}
+    position: absolute;
+    // background: linear-gradient(135deg, transparent, cadetblue 85%);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2),
+        -1px -1px 5px rgba(240, 240, 240, 0.5);
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    &__span {
+        color: white;
+        text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
+        font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
+        font-family: fantasy, sans-serif;
+        user-select: none;
+    }
+    &__active {
+        outline: 2px dashed white;
+        outline-offset: -4px;
+        animation: circling 6000ms infinite forwards linear;
+        .bubbleStyle__span {
+            color: rgb(119, 22, 22);
+        }
+        @keyframes circling {
+            from {
+                transform: translate(-50%, -50%) rotateZ(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotateZ(360deg);
+            }
+        }
+    }
 }
 
 .withImage {
-	// background-image: url(../../../images/moon1920.jpg);
-	background-image: url(../../../images/Santa0.png);
-	// background-image: url(../../../images/bf0.png);
-	// background: url(../../../images/fastsanta.png);
-	background-size: cover;
-	background-position: center;
-	transition: 300ms ease-out;
-	box-shadow: none;
+    // background-image: url(../../../images/moon1920.jpg);
+    background-image: url(../../../images/Santa0.png);
+    // background-image: url(../../../images/bf0.png);
+    // background: url(../../../images/fastsanta.png);
+    background-size: cover;
+    background-position: center;
+    transition: 300ms ease-out;
+    box-shadow: none;
 }

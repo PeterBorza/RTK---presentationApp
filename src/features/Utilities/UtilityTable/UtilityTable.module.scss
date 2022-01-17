@@ -10,7 +10,7 @@
     background-color: white;
     overflow-y: scroll;
     &__dark {
-        background-color: rgb(20, 20, 20);
+        background-color: $darkMode;
     }
 }
 
@@ -35,7 +35,18 @@
         white-space: nowrap;
         word-break: break-all;
     }
+    &__dark {
+        color: $darkModeWhite;
+    }
     &__data {
         color: crimson;
+        font-weight: 600;
+        font-size: 110%;
+    }
+}
+
+.title {
+    &__dark {
+        color: $darkModeWhite;
     }
 }

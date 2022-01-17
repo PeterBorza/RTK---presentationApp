@@ -23,10 +23,12 @@ import {
     postUtility,
     editUnit,
 } from "./thunks";
+import { darkModeSelector } from "../../app";
 
 const LightTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorLightState);
+    const darkMode = useSelector(darkModeSelector);
     const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
 
@@ -49,6 +51,7 @@ const LightTable: FC = () => {
                     onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
                     onEdit={() => dispatch(editCard(unit.id))}
                     unit={unit}
+                    dark={darkMode}
                 />
             ) : (
                 <EditCard
@@ -85,13 +88,15 @@ const LightTable: FC = () => {
                 loading={loading.isLoading}
             />
         ),
-        tableFooter: () => <TotalPayedInfo sumOfBills={sumOfBills} />,
+        tableFooter: () => (
+            <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+        ),
     };
 
     return error ? (
         <Error message={error} />
     ) : (
-        <UtilityTable {...renderLightTable} />
+        <UtilityTable {...renderLightTable} dark={darkMode} />
     );
 };
 

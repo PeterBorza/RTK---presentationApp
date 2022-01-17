@@ -24,10 +24,12 @@ import {
     postUtility,
     togglePayedBill,
 } from "./thunks";
+import { darkModeSelector } from "../../app";
 
 const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorState);
+    const darkMode = useSelector(darkModeSelector);
     const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
 
@@ -50,6 +52,7 @@ const GasTable: FC = () => {
                     onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
                     onEdit={() => dispatch(editCard(unit.id))}
                     unit={unit}
+                    dark={darkMode}
                 />
             ) : (
                 <EditCard
@@ -86,13 +89,15 @@ const GasTable: FC = () => {
                 loading={loading.isLoading}
             />
         ),
-        tableFooter: () => <TotalPayedInfo sumOfBills={sumOfBills} />,
+        tableFooter: () => (
+            <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+        ),
     };
 
     return error ? (
         <Error message={error} />
     ) : (
-        <UtilityTable {...renderGasTable} />
+        <UtilityTable {...renderGasTable} dark={darkMode} />
     );
 };
 
