@@ -5,13 +5,12 @@ import styles from "./TableTitle.module.scss";
 
 type TitleProps = {
     name?: string | null;
-    className?: string | null;
 };
 
-const TableTitle: FC<TitleProps> = ({ name = null, className = null }) => {
+const TableTitle: FC<TitleProps> = ({ name = null }) => {
     const multiName =
         name && name.includes(",") ? (
-            name.split(",").map(item => <span>{item}</span>)
+            name.split(",").map(item => <span key={item}>{item}</span>)
         ) : (
             <span>{name}</span>
         );

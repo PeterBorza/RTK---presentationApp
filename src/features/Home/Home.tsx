@@ -16,7 +16,7 @@ const Home: FC = () => {
 
     return (
         <div className={styles.container}>
-            <form className={styles.form} onSubmit={submitHandler}>
+            <form className={styles.form}>
                 <CustomInput
                     name="username"
                     value={inputVal}

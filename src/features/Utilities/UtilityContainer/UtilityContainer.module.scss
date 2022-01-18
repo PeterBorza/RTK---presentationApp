@@ -4,7 +4,7 @@
 
 .wrapper {
     @include container(100%);
-    @include sideBar(120px, 25%);
+    // @include sideBar(120px, 25%);
     display: flex;
     overflow-y: auto;
 }

@@ -3,12 +3,10 @@
 
 .container {
     position: relative;
-    padding: 1rem;
     gap: 1rem;
     @include fCenter(column);
     @include container(100%);
-    background-color: white;
-    overflow-y: scroll;
+    background-color: $darkModeWhite;
     &__dark {
         background-color: $darkMode;
     }
@@ -42,11 +40,5 @@
         color: crimson;
         font-weight: 600;
         font-size: 110%;
-    }
-}
-
-.title {
-    &__dark {
-        color: $darkModeWhite;
     }
 }

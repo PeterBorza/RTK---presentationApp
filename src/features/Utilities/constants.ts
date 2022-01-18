@@ -28,3 +28,12 @@ export enum UtilityTableLabels {
     CONFIRM = "confirm",
     CANCEL_EDIT = "cancel",
 }
+
+export enum ModeColors {
+    DARKMODE_COLOR = "rgba(250, 253, 253, 0.8)", // overall color,also used in my_app.scss
+    LIGHTMODE_COLOR = "rgb(40, 64, 73)", // overall color,also used in my_app.scss
+}
+
+export const titleStyle = (darkMode: boolean) => ({
+    color: darkMode ? ModeColors.DARKMODE_COLOR : ModeColors.LIGHTMODE_COLOR,
+});

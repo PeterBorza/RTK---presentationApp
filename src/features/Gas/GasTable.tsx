@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../shared-components";
@@ -16,6 +15,7 @@ import {
     TotalPayedInfo,
     UtilityCard,
     TableTitle,
+    titleStyle,
 } from "../Utilities";
 import {
     deleteUtilityUnit,
@@ -66,38 +66,38 @@ const GasTable: FC = () => {
         </li>
     ));
 
-    const renderGasTable = {
-        tableTitle: UtilityTableLabels.GAS_TITLE,
-        tableHeader: () => (
-            <UtilitiesForm
-                postData={(newUnit: UtilityStateUnit) =>
-                    dispatch(postUtility(newUnit))
-                }
-                formValues={initialFormValues}
-                utilityUnits={units}
-            />
-        ),
-        tableBody: () => (
-            <Table
-                renderHeader={() =>
-                    Object.values(UtilityLabels).map(item => (
-                        <TableTitle name={item} />
-                    ))
-                }
-                renderBody={() => isUnits && renderGasTableItems}
-                onClickOutside={() => dispatch(resetSelected())}
-                loading={loading.isLoading}
-            />
-        ),
-        tableFooter: () => (
-            <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
-        ),
-    };
-
     return error ? (
         <Error message={error} />
     ) : (
-        <UtilityTable {...renderGasTable} dark={darkMode} />
+        <UtilityTable dark={darkMode}>
+            <UtilityTable.Header>
+                <h1 style={titleStyle(darkMode)}>
+                    {UtilityTableLabels.GAS_TITLE}
+                </h1>
+                <UtilitiesForm
+                    postData={(newUnit: UtilityStateUnit) =>
+                        dispatch(postUtility(newUnit))
+                    }
+                    formValues={initialFormValues}
+                    utilityUnits={units}
+                />
+            </UtilityTable.Header>
+            <UtilityTable.Body>
+                <Table
+                    renderHeader={() =>
+                        Object.values(UtilityLabels).map(item => (
+                            <TableTitle key={item} name={item} />
+                        ))
+                    }
+                    renderBody={() => isUnits && renderGasTableItems}
+                    onClickOutside={() => dispatch(resetSelected())}
+                    loading={loading.isLoading}
+                />
+            </UtilityTable.Body>
+            <UtilityTable.Footer>
+                <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+            </UtilityTable.Footer>
+        </UtilityTable>
     );
 };
 
