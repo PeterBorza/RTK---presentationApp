@@ -1,42 +1,14 @@
-import { FC, ReactNode } from "react";
-import { Header, Body, Footer } from "./subComponents";
+import { FC } from "react";
 
 import classNames from "classnames";
 import styles from "./UtilityTable.module.scss";
 
-type Props = {
-    tableTitle: string;
-    tableHeader: () => ReactNode;
-    tableBody: () => ReactNode;
-    tableFooter: () => ReactNode;
-    dark?: boolean;
-};
-
-const UtilityTable: FC<Props> = ({
-    tableTitle,
-    tableHeader,
-    tableBody,
-    tableFooter,
-    dark = false,
-}) => {
+const UtilityTable: FC<{ dark?: boolean }> = ({ dark = false, children }) => {
     const wrapper = classNames(styles.container, {
         [styles.container__dark]: dark,
     });
 
-    const titleClasses = classNames(styles.title, {
-        [styles.title__dark]: dark,
-    });
-
-    return (
-        <div className={wrapper}>
-            <Header className={styles.tableHeader}>
-                <h1 className={titleClasses}>{tableTitle}</h1>
-                {tableHeader()}
-            </Header>
-            <Body className={styles.tableBody}>{tableBody()}</Body>
-            <Footer className={styles.tableFooter}>{tableFooter()}</Footer>
-        </div>
-    );
+    return <div className={wrapper}>{children}</div>;
 };
 
 export default UtilityTable;

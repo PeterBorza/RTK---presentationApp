@@ -1,11 +1,16 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import styles from "../UtilityTable.module.scss";
 
 type FooterProps = {
-    className: string;
+    className?: string;
 };
 
 const Footer: FC<FooterProps> = ({ className, children }) => {
-    return <div className={className}>{children}</div>;
+    return (
+        <div className={!className ? `${styles.tableFooter}` : className}>
+            {children}
+        </div>
+    );
 };
 
 export default Footer;

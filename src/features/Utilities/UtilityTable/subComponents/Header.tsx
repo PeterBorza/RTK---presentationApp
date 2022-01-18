@@ -1,11 +1,16 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import styles from "../UtilityTable.module.scss";
 
 type HeaderProps = {
-    className: string;
+    className?: string;
 };
 
 const Header: FC<HeaderProps> = ({ className, children }) => {
-    return <div className={className}>{children}</div>;
+    return (
+        <div className={!className ? `${styles.tableHeader}` : className}>
+            {children}
+        </div>
+    );
 };
 
 export default Header;
