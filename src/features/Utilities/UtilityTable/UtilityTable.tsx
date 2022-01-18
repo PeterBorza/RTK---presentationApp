@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { Header, Body, Footer } from "./subComponents";
 
 import classNames from "classnames";
 import styles from "./UtilityTable.module.scss";
@@ -28,12 +29,12 @@ const UtilityTable: FC<Props> = ({
 
     return (
         <div className={wrapper}>
-            <div className={styles.tableHeader}>
+            <Header className={styles.tableHeader}>
                 <h1 className={titleClasses}>{tableTitle}</h1>
                 {tableHeader()}
-            </div>
-            <div className={styles.tableBody}>{tableBody()}</div>
-            <div className={styles.tableFooter}>{tableFooter()}</div>
+            </Header>
+            <Body className={styles.tableBody}>{tableBody()}</Body>
+            <Footer className={styles.tableFooter}>{tableFooter()}</Footer>
         </div>
     );
 };

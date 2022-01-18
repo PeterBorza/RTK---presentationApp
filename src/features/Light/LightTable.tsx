@@ -80,7 +80,7 @@ const LightTable: FC = () => {
             <Table
                 renderHeader={() =>
                     Object.values(UtilityLabels).map(item => (
-                        <TableTitle name={item} />
+                        <TableTitle key={item} name={item} />
                     ))
                 }
                 renderBody={() => isUnits && renderLightTableItems}
