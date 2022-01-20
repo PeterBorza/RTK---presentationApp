@@ -9,6 +9,7 @@ import { GiCancel } from "react-icons/gi";
 import styles from "./EditCard.module.scss";
 import { useSelector } from "react-redux";
 import { unitsState } from "../../Gas";
+import EditCell from "./EditCell";
 
 type Props = {
     resetEdit: () => void;
@@ -54,7 +55,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
 
     return (
         <form className={styles.wrapper} onSubmit={onSubmitHandler}>
-            <div className={styles.edit_cell}>
+            <EditCell>
                 <input
                     type="text"
                     placeholder={readDate}
@@ -63,8 +64,8 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     value={values.readDate}
                     title={values.readDate}
                 />
-            </div>
-            <div className={styles.edit_cell}>
+            </EditCell>
+            <EditCell>
                 <input
                     type="text"
                     placeholder={index}
@@ -73,14 +74,14 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     value={values.index}
                     title={values.index}
                 />
-            </div>
-            <div className={styles.edit_cell}>
+            </EditCell>
+            <EditCell>
                 <p>{consumption}</p>
-            </div>
-            <div className={styles.edit_cell}>
+            </EditCell>
+            <EditCell>
                 <p>{estimate}</p>
-            </div>
-            <div className={styles.edit_cell}>
+            </EditCell>
+            <EditCell>
                 <input
                     type="text"
                     placeholder={bill}
@@ -89,8 +90,8 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     value={values.bill}
                     title={values.bill}
                 />
-            </div>
-            <div className={styles.edit_cell}>
+            </EditCell>
+            <EditCell>
                 <button type="submit" className={styles.submitEditButton}>
                     <CustomIcon
                         title={UtilityTableLabels.CONFIRM}
@@ -102,7 +103,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                     onClick={() => resetEdit()}
                     icon={<GiCancel />}
                 />
-            </div>
+            </EditCell>
         </form>
     );
 };

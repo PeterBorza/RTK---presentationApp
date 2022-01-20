@@ -1,4 +1,7 @@
+import { ReactNode } from "react";
+
 import { FaBars } from "react-icons/fa";
+import { CgDanger } from "react-icons/cg";
 import { FaEdit } from "react-icons/fa";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
@@ -7,6 +10,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaWindowClose } from "react-icons/fa";
@@ -15,21 +19,25 @@ import { FcCheckmark } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
-export {
-	FaBars as Bars,
-	FaEdit as Edit,
-	FaExclamationTriangle as Exclamation,
-	FaChevronLeft as ChevronLeft,
-	FaChevronRight as ChevronRight,
-	FaCheck as Check,
-	FaChevronDown as ChevronDown,
-	FaChevronUp as ChevronUp,
-	FaRegWindowClose as WindowClose,
-	FaRegTimesCircle as TimesCircle,
-	FaRegTrashAlt as Trash,
-	FaWindowClose as Close,
-	FaBan as Ban,
-	FcCheckmark as Checkmark,
-	FcHighPriority as HighPriority,
-	HiOutlineArrowCircleRight,
+type IconType = Record<string, ReactNode>;
+
+export const icons: IconType = {
+    check: <FaCheck />,
+    danger: <CgDanger />,
+    left: <FaChevronLeft />,
+    right: <FaChevronRight />,
+    edit: <FaEdit />,
+    bars: <FaBars />,
+    exclamation: <FaExclamationTriangle />,
+    down: <FaChevronDown />,
+    up: <FaChevronUp />,
+    close: <FaRegWindowClose />,
+    trash: <FaRegTrashAlt />,
+    edit2: <MdEdit />,
+    windowClose: <FaWindowClose />,
+    ban: <FaBan />,
+    checkMark: <FcCheckmark />,
+    priority: <FcHighPriority />,
+    outlineArrowRight: <HiOutlineArrowCircleRight />,
+    timesCircle: <FaRegTimesCircle />,
 };

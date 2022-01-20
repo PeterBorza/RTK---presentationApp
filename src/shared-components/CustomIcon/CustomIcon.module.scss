@@ -1,3 +1,4 @@
+@use "../../css/my_app.scss" as *;
 .icon {
     display: flex;
     align-items: center;
@@ -10,10 +11,11 @@
     cursor: pointer;
     flex-shrink: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    background-color: white;
+    background-color: $darkModeWhite;
     transition: all 150ms ease 20ms;
     &:hover {
         transform: scale(1.2);
+        background-color: darken($darkModeWhite, 5%);
         box-shadow: none;
         outline: none;
     }
@@ -36,27 +38,3 @@
         color: crimson;
     }
 }
-
-// .checkIcon {
-//     color: limegreen;
-// }
-
-// .dangerIcon {
-//     color: rgba(221, 23, 63, 0.767);
-// }
-
-// .editIcon {
-//     color: rgba(51, 51, 177, 0.8);
-// }
-
-// .trashIcon {
-//     color: rgb(32, 29, 29);
-// }
-
-// .confirmIcon {
-//     color: limegreen;
-// }
-
-// .cancelIcon {
-//     color: crimson;
-// }

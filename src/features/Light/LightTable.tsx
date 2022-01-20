@@ -43,28 +43,33 @@ const LightTable: FC = () => {
         fetchLightUnits();
     }, [fetchLightUnits]);
 
-    const renderLightTableItems = units.map(unit => (
-        <li key={unit.id}>
-            {!unit.edit ? (
-                <UtilityCard
-                    onClick={() => dispatch(selectCard(unit.id))}
-                    onPayedClick={() => dispatch(togglePayedBill(unit))}
-                    onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
-                    onEdit={() => dispatch(editCard(unit.id))}
-                    unit={unit}
-                    dark={darkMode}
-                />
-            ) : (
-                <EditCard
-                    resetEdit={() => dispatch(resetEdit())}
-                    editUnit={(editedUnit: UtilityStateUnit) =>
-                        dispatch(editUnit(editedUnit))
-                    }
-                    {...unit}
-                />
-            )}
-        </li>
-    ));
+    const renderLightTableItems = units.map(unit => {
+        const billIsOut = unit.bill !== "";
+        return (
+            <li key={unit.id}>
+                {!unit.edit ? (
+                    <UtilityCard
+                        onClick={() => dispatch(selectCard(unit.id))}
+                        onPayedClick={() =>
+                            billIsOut && dispatch(togglePayedBill(unit))
+                        }
+                        onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
+                        onEdit={() => dispatch(editCard(unit.id))}
+                        unit={unit}
+                        dark={darkMode}
+                    />
+                ) : (
+                    <EditCard
+                        resetEdit={() => dispatch(resetEdit())}
+                        editUnit={(editedUnit: UtilityStateUnit) =>
+                            dispatch(editUnit(editedUnit))
+                        }
+                        {...unit}
+                    />
+                )}
+            </li>
+        );
+    });
 
     return error ? (
         <Error message={error} />
