@@ -3,12 +3,11 @@ import { UtilityTableLabels } from "../constants";
 import { UtilityStateUnit } from "../types";
 
 import { CustomIcon } from "../../../shared-components";
-import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
-import { CgDanger } from "react-icons/cg";
 
 import classNames from "classnames";
 import styles from "./UtilityCard.module.scss";
+import { icons } from "../../../utils";
+import CardCell from "./CardCell";
 
 interface Props {
     onClick: () => void;
@@ -33,54 +32,43 @@ const UtilityCard: React.FC<Props> = ({
         [styles.selected]: selected,
         [styles.wrapper__dark]: dark,
     });
-    const dataWrapper = classNames(styles.data, {
-        [styles.data__dark]: dark,
-    });
 
-    const icons = [
+    const iconGroup = [
         {
             onClick: onPayedClick,
             title: payed
                 ? UtilityTableLabels.PAYED
                 : UtilityTableLabels.NOT_PAYED,
-            icon: payed ? <FaCheck /> : <CgDanger />,
+            icon: payed ? icons["check"] : icons["danger"],
         },
         {
             onClick: onDelete,
             title: UtilityTableLabels.DELETE,
-            icon: <FaRegTrashAlt />,
+            icon: icons["trash"],
         },
         {
             onClick: onEdit,
             title: UtilityTableLabels.EDIT,
-            icon: <MdEdit />,
+            icon: icons["edit2"],
         },
     ];
 
+    const settingsContent = iconGroup.map(icon => (
+        <CustomIcon key={icon.title} {...icon} />
+    ));
+
     return (
         <div className={classes} onClick={onClick}>
-            <div className={dataWrapper} title={readDate}>
-                <p>{readDate}</p>
-            </div>
-            <div className={dataWrapper} title={index}>
-                <p>{index}</p>
-            </div>
-            <div className={dataWrapper} title={consumption.toString()}>
-                <p>{consumption}</p>
-            </div>
-            <div className={dataWrapper}>
-                <p>{estimate}</p>
-            </div>
-            <div className={dataWrapper} title={bill}>
-                <p>{bill}</p>
-            </div>
-            <div className={dataWrapper}>
-                <div className={styles.tableIcons}>
-                    {icons.map(icon => (
-                        <CustomIcon key={icon.title} {...icon} />
-                    ))}
-                </div>
-            </div>
+            <CardCell dark={dark} title={readDate} content={readDate} />
+            <CardCell dark={dark} title={index} content={index} />
+            <CardCell
+                dark={dark}
+                title={consumption.toString()}
+                content={consumption}
+            />
+            <CardCell dark={dark} content={estimate} />
+            <CardCell dark={dark} title={bill} content={bill} />
+            <CardCell dark={dark} content={settingsContent} />
         </div>
     );
 };

@@ -19,7 +19,7 @@
     }
 
     &:hover {
-        background-color: rgb(245, 245, 245);
+        background-color: rgb(221 221 221 / 0.4);
         &.wrapper__dark {
             background-color: darken($darkModeWhite, 60%);
         }
@@ -53,7 +53,7 @@
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     background-color: $myYellow3;
     &:hover {
-        background-color: $myYellow3;
+        background-color: darken($myYellow3, 2%);
     }
 }
 

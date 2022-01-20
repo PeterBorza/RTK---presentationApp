@@ -1,4 +1,4 @@
-import { FC, Fragment, ReactNode, useRef } from "react";
+import { FC, ReactNode, useRef } from "react";
 import ScrollTable from ".";
 import { LoadingWrapper } from "..";
 import { useOnClickOutside } from "../../hooks";
