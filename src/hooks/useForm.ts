@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { FormProps } from "../features/Utilities/types";
 
-export const useForm = (data: FormProps) => {
-    const [values, setValues] = useState<FormProps>(data);
+interface ReturnForm<T> {
+    values: T;
+    changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    resetValues: () => void;
+}
+
+export const useForm = <T>(data: T): ReturnForm<T> => {
+    const [values, setValues] = useState<T>(data);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({

@@ -1,63 +1,45 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC } from "react";
 
-import { postBubble } from "./thunks";
 import { TextInput, FadedModal, Form, Button } from "../../shared-components";
-import { starterBubble } from "./state";
 import { BubbleFormValues } from "./constants";
-import { toggleBubbleFormModal } from "./bubbleSlice";
-import { bubbleModalFormSelector } from "./selectors";
+import { useForm } from "../../hooks";
+import { BubbleCssProps } from "./types";
 
-const BubbleForm = () => {
-    const [bub, setBub] = useState(starterBubble);
-    const isFormOpen = useSelector(bubbleModalFormSelector);
-    const dispatch = useDispatch();
+type BubbleFormType = {
+    formObject: BubbleCssProps;
+    isOpen: boolean;
+    onToggleForm: (open: boolean) => void;
+    onPost: (formObject: BubbleCssProps) => void;
+};
+
+const BubbleForm: FC<BubbleFormType> = ({ formObject, isOpen, onToggleForm, onPost }) => {
+    const { values, changeHandler, resetValues } = useForm<BubbleCssProps>(formObject);
 
     const onCancelHandler = () => {
-        setBub(starterBubble);
-        dispatch(toggleBubbleFormModal(false));
-    };
-
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setBub({
-            ...bub,
-            [e.target.name]: e.target.value,
-        });
+        resetValues();
+        onToggleForm(false);
     };
 
     const onSubmitHandler = () => {
         const newBubble = {
-            left: `${bub.left}%`,
-            top: `${bub.top}%`,
-            size: `${bub.size}px`,
-            opacity: `${bub.opacity}`,
+            left: `${values.left}%`,
+            top: `${values.top}%`,
+            size: `${values.size}px`,
+            opacity: `${values.opacity}`,
         };
-        dispatch(postBubble(newBubble));
-        setBub(starterBubble);
-        dispatch(toggleBubbleFormModal(false));
+        onPost(newBubble);
+        resetValues();
+        onToggleForm(false);
     };
 
-    const onOpenHandler = () => {
-        dispatch(toggleBubbleFormModal(true));
-    };
-
-    const renderFields = Object.entries(bub).map(label => (
-        <TextInput
-            key={label[0]}
-            value={label[1]}
-            name={label[0]}
-            onChange={onChangeHandler}
-        />
+    const renderFields = Object.entries(values).map(label => (
+        <TextInput key={label[0]} value={label[1]} name={label[0]} onChange={changeHandler} />
     ));
 
     return (
         <>
-            <Button
-                value={BubbleFormValues.BUTTON_LABEL}
-                onClick={onOpenHandler}
-            />
-
-            <FadedModal isOpen={isFormOpen}>
+            <Button value={BubbleFormValues.BUTTON_LABEL} onClick={() => onToggleForm(true)} />
+            <FadedModal isOpen={isOpen}>
                 <Form
                     onSubmit={onSubmitHandler}
                     width={BubbleFormValues.FORM_WIDTH}

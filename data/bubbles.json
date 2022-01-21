@@ -49,6 +49,36 @@
         "size": "100px",
         "opacity": ".7"
       }
+    },
+    {
+      "id": 20,
+      "selected": false,
+      "cssProps": {
+        "left": "50%",
+        "top": "50%",
+        "size": "100px",
+        "opacity": "0.5"
+      }
+    },
+    {
+      "id": 22,
+      "selected": false,
+      "cssProps": {
+        "left": "200%",
+        "top": "300%",
+        "size": "px",
+        "opacity": ""
+      }
+    },
+    {
+      "id": 23,
+      "selected": false,
+      "cssProps": {
+        "left": "23%",
+        "top": "56%",
+        "size": "120px",
+        "opacity": "1"
+      }
     }
   ],
   "colorSets": [
