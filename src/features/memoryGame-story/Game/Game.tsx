@@ -11,6 +11,7 @@ import {
     matchCardsSelector,
     clickCountSelector,
 } from "../selectors";
+import { darkModeSelector } from "../../../app";
 
 import {
     GamePhotoData,
@@ -36,6 +37,7 @@ const Game: FC = () => {
     const flippedCards = useSelector(flippedCardsSelector);
     const matchCards = useSelector(matchCardsSelector);
     const count = useSelector(clickCountSelector);
+    const darkMode = useSelector(darkModeSelector);
 
     const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
         classNames(styles.box, {
@@ -134,7 +136,11 @@ const Game: FC = () => {
         <section className={styles.container}>
             {!finishedGame ? (
                 <>
-                    <Controls count={count} renderButtons={renderGameButtons} />
+                    <Controls
+                        count={count}
+                        renderButtons={renderGameButtons}
+                        dark={darkMode}
+                    />
                     <div className={styles.grid}>{renderGridTable}</div>
                 </>
             ) : (

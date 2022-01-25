@@ -265,13 +265,13 @@
       "edit": false
     },
     {
-      "id": "a04ac71b-b8bd-4f9e-b815-a3494be05731",
-      "readDate": "17/01/2022",
+      "id": "023c6ead-ca14-4ece-8cf0-ff6d5d0f55ba",
+      "readDate": "20/01/2022",
       "selected": false,
-      "index": "5060",
+      "index": "5070",
       "bill": "",
-      "consumption": 125,
-      "estimate": 269.21,
+      "consumption": 135,
+      "estimate": 290.75,
       "payed": false,
       "edit": false
     }
@@ -530,7 +530,7 @@
     {
       "id": "abeb3a80-1929-4e08-8452-42f7efb039ec",
       "readDate": "16/10/2021",
-      "selected": true,
+      "selected": false,
       "index": "10880",
       "bill": "281.85",
       "consumption": 358,
@@ -550,7 +550,7 @@
     {
       "id": "436d59ff-1b27-4eac-889a-3b042966a666",
       "readDate": "18/12/2021",
-      "selected": true,
+      "selected": false,
       "index": "11277",
       "bill": "192.13",
       "consumption": 241,
