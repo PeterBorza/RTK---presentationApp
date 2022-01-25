@@ -12,17 +12,13 @@ type UtilityFormProps = {
     utilityUnits: UtilityStateUnit[];
 };
 
-const UtilitiesForm: FC<UtilityFormProps> = ({
-    postData,
-    formValues,
-    utilityUnits,
-}) => {
+const UtilitiesForm: FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
     const {
         FORM_BUTTON_LABEL: buttonLabel,
         FORM_WIDTH: formWidth,
         FORM_TITLE: formTitle,
     } = UtilityFormValues;
-    const { values, changeHandler, resetValues } = useForm(formValues);
+    const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
 
     const checkIfValid = (input: string) => (isNaN(+input) || "" ? "0" : input);
 
@@ -45,8 +41,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
         const checkNewConsumption = !isNaN(newConsumption) ? newConsumption : 0;
 
         const estimatedValue =
-            (+previousUnit.bill / +previousUnit.consumption) *
-            +checkNewConsumption;
+            (+previousUnit.bill / +previousUnit.consumption) * +checkNewConsumption;
 
         const newUnit: UtilityStateUnit = {
             id: uuid(),
@@ -65,12 +60,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({
     };
 
     const renderInputs = Object.entries(values).map(input => (
-        <TextInput
-            key={input[0]}
-            value={input[1]}
-            name={input[0]}
-            onChange={onChangeHandler}
-        />
+        <TextInput key={input[0]} value={input[1]} name={input[0]} onChange={onChangeHandler} />
     ));
 
     return (
