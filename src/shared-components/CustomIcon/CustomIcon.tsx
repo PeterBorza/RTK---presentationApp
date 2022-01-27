@@ -3,7 +3,7 @@ import { FC, ReactNode } from "react";
 import classNames from "classnames";
 import styles from "./CustomIcon.module.scss";
 
-type IconProps = {
+export type IconProps = {
     onClick?: () => void | undefined;
     title: string;
     icon: ReactNode;

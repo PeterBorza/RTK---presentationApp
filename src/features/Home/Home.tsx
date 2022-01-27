@@ -16,14 +16,14 @@ const Home: FC = () => {
 
     return (
         <div className={styles.container}>
-            <form className={styles.form}>
+            {/* <form className={styles.form}>
                 <CustomInput
                     name="username"
                     value={inputVal}
                     onChange={e => setInputVal(e.target.value)}
                 />
                 <Button type="submit" onClick={submitHandler} value="Submit" />
-            </form>
+            </form> */}
         </div>
     );
 };
