@@ -1,4 +1,13 @@
-$rubikSide: 250px;
+$size: 200px;
+
+$transforms: (
+    1: translateZ(-$size) rotateY(180deg),
+    2: translateX(100%) rotateY(-90deg) translateZ($size * 3),
+    3: translateX(-100%) rotateY(90deg) translateZ($size * 3),
+    4: rotateX(90deg) translateZ($size),
+    5: rotateX(270deg) translateZ($size),
+    6: translateZ($size) rotateX(360deg),
+);
 
 .rubikContainer {
     width: 100%;
@@ -7,14 +16,15 @@ $rubikSide: 250px;
     perspective: 1000px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
+    padding: 5rem;
 }
 
 .rubikWrapper {
     position: relative;
-    width: $rubikSide;
-    height: $rubikSide;
+    width: $size * 2;
+    height: $size * 2;
     transform-style: preserve-3d;
     transition: transform 1200ms ease;
 }
@@ -22,12 +32,28 @@ $rubikSide: 250px;
 .rubikSide {
     position: absolute;
     background-color: transparent;
-    border: 1px solid white;
+    // border: 1px solid white;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
     border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 4rem;
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+@each $key, $value in $transforms {
+    .rubikSide {
+        &:nth-child(#{$key}) {
+            transform: $value;
+            border-radius: 10px;
+            background-image: url(./rubik-images/rd-#{$key}.jpg);
+            // background-color: rgb($i * 38, 32 * $i, 3 * $i);
+        }
+    }
 }
 
 .buttonsWrapper {
