@@ -11,6 +11,8 @@ import { LiftPlatform } from "./features/building-story";
 import { Bubbles } from "./features/bubble-story";
 import { utilityRoutes } from "../src/features/Utilities";
 import { routes as memoryGameRoutes } from "../src/features/memoryGame-story";
+import Rubik from "./features/Rubik";
+import { LinkUrls } from "./context/link-context";
 
 const utilities = utilityRoutes();
 const games = memoryGameRoutes();
@@ -20,16 +22,17 @@ ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
                 <Routes>
-                    <Route path="/" element={<App />}>
+                    <Route path={LinkUrls.HOME} element={<App />}>
                         <Route index element={<Home />} />
                         {utilities}
-                        <Route path="building" element={<LiftPlatform />} />
-                        <Route path="bubbles" element={<Bubbles />} />
+                        <Route path={LinkUrls.BUILDING} element={<LiftPlatform />} />
+                        <Route path={LinkUrls.BUBBLES} element={<Bubbles />} />
                         {games}
+                        <Route path={LinkUrls.RUBIK} element={<Rubik />} />
                     </Route>
                 </Routes>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,
-    document.getElementById("root")
+    document.getElementById("root"),
 );

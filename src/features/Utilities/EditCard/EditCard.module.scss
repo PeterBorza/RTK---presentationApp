@@ -18,19 +18,10 @@ $fontSize: 1.15rem;
     animation: growMargin 120ms forwards linear 1;
     font-size: $fontSize;
     input {
-        font-size: $fontSize;
-        width: 60%;
-        margin: 0;
-        border: none;
-        outline: none;
-        border-radius: 3px;
-        text-align: center;
-        padding: 5px;
-        margin: 2px;
-        @include shadow(120ms);
         &:focus {
             border: none;
             outline: none;
+            background-color: $myYellow3;
         }
         &:hover {
             cursor: pointer;

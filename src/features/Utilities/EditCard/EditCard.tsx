@@ -1,26 +1,23 @@
 import { FC, FormEvent } from "react";
+import { useSelector } from "react-redux";
 
-import { CustomIcon } from "../../../shared-components";
+import { CustomIcon, InputCard } from "../../../shared-components";
 import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "../../../hooks";
-import { CgEnter } from "react-icons/cg";
-import { GiCancel } from "react-icons/gi";
 
-import styles from "./EditCard.module.scss";
-import { useSelector } from "react-redux";
 import { unitsState } from "../../Gas";
 import EditCell from "./EditCell";
+import { InputSize } from "../../../shared-components/InputCard/InputCard";
+import { icons } from "../../../utils";
+
+import styles from "./EditCard.module.scss";
 
 type Props = {
     resetEdit: () => void;
     editUnit: (editedUnit: UtilityStateUnit) => void;
 };
 
-const EditFormCard: FC<UtilityStateUnit & Props> = ({
-    resetEdit,
-    editUnit,
-    ...unit
-}) => {
+const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...unit }) => {
     const units = useSelector(unitsState);
     const { readDate, index, consumption, estimate, bill, id } = unit;
     const { values, changeHandler } = useForm({
@@ -56,23 +53,20 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
     return (
         <form className={styles.wrapper} onSubmit={onSubmitHandler}>
             <EditCell>
-                <input
-                    type="text"
-                    placeholder={readDate}
+                {/* <CustomInput onChange={changeHandler} name="readDate" value={values.readDate} /> */}
+                <InputCard
+                    size={InputSize.SMALL}
                     onChange={changeHandler}
-                    name="readDate"
+                    inputName="readDate"
                     value={values.readDate}
-                    title={values.readDate}
                 />
             </EditCell>
             <EditCell>
-                <input
-                    type="text"
-                    placeholder={index}
+                <InputCard
+                    size={InputSize.SMALL}
                     onChange={changeHandler}
-                    name="index"
+                    inputName="index"
                     value={values.index}
-                    title={values.index}
                 />
             </EditCell>
             <EditCell>
@@ -82,26 +76,21 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({
                 <p>{estimate}</p>
             </EditCell>
             <EditCell>
-                <input
-                    type="text"
-                    placeholder={bill}
+                <InputCard
+                    size={InputSize.SMALL}
                     onChange={changeHandler}
-                    name="bill"
+                    inputName="bill"
                     value={values.bill}
-                    title={values.bill}
                 />
             </EditCell>
             <EditCell>
                 <button type="submit" className={styles.submitEditButton}>
-                    <CustomIcon
-                        title={UtilityTableLabels.CONFIRM}
-                        icon={<CgEnter />}
-                    />
+                    <CustomIcon title={UtilityTableLabels.CONFIRM} icon={icons.enter} />
                 </button>
                 <CustomIcon
                     title={UtilityTableLabels.CANCEL_EDIT}
-                    onClick={() => resetEdit()}
-                    icon={<GiCancel />}
+                    onClick={resetEdit}
+                    icon={icons.cancel}
                 />
             </EditCell>
         </form>

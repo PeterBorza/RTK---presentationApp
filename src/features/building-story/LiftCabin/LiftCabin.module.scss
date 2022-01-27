@@ -38,19 +38,19 @@ $doorColor: rgb(255 255 255 / 0.7);
 
 @for $i from 1 to 12 {
     .cabinWrapper__changePosition-#{$i} {
-        transform: translateY(calc(-100% * #{$i}));
+        transform: translateY(-100% * $i);
     }
 }
 
 @for $i from 1000 to 10000 {
     .cabinWrapper__transitionSpeed-#{$i} {
-        transition: all calc(1ms * #{$i}) ease-out;
+        transition: all 1ms * $i ease-out;
     }
 }
 
 @for $i from 1 to 100 {
     .cabinWrapper__cabinHeight-#{$i} {
-        height: calc(100% / #{$i});
+        height: 100% / $i;
     }
 }
 

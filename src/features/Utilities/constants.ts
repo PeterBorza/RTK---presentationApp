@@ -27,6 +27,8 @@ export enum UtilityTableLabels {
     NOT_PAYED = "not-payed",
     CONFIRM = "confirm",
     CANCEL_EDIT = "cancel",
+    CORRECT_PASSWORD = "Correct password",
+    NAME = "Type in owner's first name to see menu",
 }
 
 export enum ModeColors {

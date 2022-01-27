@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from "react";
+import { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
 import Home from "../features/Home";
@@ -7,13 +7,24 @@ import { Photos, Game } from "../features/memoryGame-story";
 import { Building } from "../features/building-story";
 import { UtilityContainer } from "../features/Utilities";
 import { Url } from "../app/constants";
+import Rubik from "../features/Rubik";
 
-interface LinkProps {
-    children: React.ReactNode;
+interface LinkProviderProps {
+    children: ReactNode;
+}
+
+export enum LinkUrls {
+    HOME = "/",
+    UTILITIES = "utilities",
+    BUILDING = "building",
+    BUBBLES = "bubbles",
+    PHOTOS = "photos",
+    GAME = "game",
+    RUBIK = "rubik",
 }
 
 interface ProviderProps {
-    to: string;
+    to: LinkUrls;
     label: string;
     id: string;
     element: ReactNode;
@@ -21,46 +32,50 @@ interface ProviderProps {
 
 export const LinkContext = createContext<ProviderProps[] | null>(null);
 
-export const LinkContextProvider = ({ children }: LinkProps) => {
+export const LinkContextProvider = ({ children }: LinkProviderProps) => {
     const routes: ProviderProps[] = [
         {
-            to: "/",
+            to: LinkUrls.HOME,
             label: Url.HOME,
             id: uuid(),
             element: <Home />,
         },
         {
-            to: "utilities",
+            to: LinkUrls.UTILITIES,
             label: Url.UTILITIES,
             id: uuid(),
             element: <UtilityContainer />,
         },
         {
-            to: "building",
+            to: LinkUrls.BUILDING,
             label: Url.BUILDING,
             id: uuid(),
             element: <Building />,
         },
         {
-            to: "bubbles",
+            to: LinkUrls.BUBBLES,
             label: Url.BUBBLES,
             id: uuid(),
             element: <Bubbles />,
         },
         {
-            to: "photos",
+            to: LinkUrls.PHOTOS,
             label: Url.PHOTOS,
             id: uuid(),
             element: <Photos />,
         },
         {
-            to: "game",
+            to: LinkUrls.GAME,
             label: Url.GAME,
             id: uuid(),
             element: <Game />,
         },
+        {
+            to: LinkUrls.RUBIK,
+            label: Url.RUBIK,
+            id: uuid(),
+            element: <Rubik />,
+        },
     ];
-    return (
-        <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>
-    );
+    return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;
 };

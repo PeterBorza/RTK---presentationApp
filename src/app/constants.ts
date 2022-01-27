@@ -12,6 +12,7 @@ export enum Url {
     BUILDING = "building",
     PHOTOS = "photos",
     GAME = "game",
+    RUBIK = "rubik",
 }
 
 export enum Error {

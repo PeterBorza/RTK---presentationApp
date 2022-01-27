@@ -18,8 +18,33 @@ import { FaBan } from "react-icons/fa";
 import { FcCheckmark } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
+import { CgEnter } from "react-icons/cg";
+import { GiCancel } from "react-icons/gi";
 
-type IconType = Record<string, ReactNode>;
+type IconType = Record<IconTypes, ReactNode>;
+
+enum IconTypes {
+    CHECK = "check",
+    DANGER = "danger",
+    LEFT = "left",
+    RIGHT = "right",
+    EDIT = "edit",
+    BARS = "bars",
+    EXCLAMATION = "exclamation",
+    DOWN = "down",
+    UP = "up",
+    CLOSE = "close",
+    TRASH = "trash",
+    EDIT2 = "edit2",
+    WINDOW_CLOSE = "windowClose",
+    BAN = "ban",
+    CHECKMARK = "checkMark",
+    PRIORITY = "priority",
+    OUTLINE_ARROW_RIGHT = "outlineArrowRight",
+    TIMES_CIRCLE = "timesCircle",
+    ENTER = "enter",
+    CANCEL = "cancel",
+}
 
 export const icons: IconType = {
     check: <FaCheck />,
@@ -40,4 +65,6 @@ export const icons: IconType = {
     priority: <FcHighPriority />,
     outlineArrowRight: <HiOutlineArrowCircleRight />,
     timesCircle: <FaRegTimesCircle />,
+    enter: <CgEnter />,
+    cancel: <GiCancel />,
 };
