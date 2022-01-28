@@ -18,7 +18,7 @@ export interface InputCardType {
     isDark?: boolean;
     placeHolder?: string | undefined;
     isButton?: boolean;
-    inputName: string;
+    name: string;
     value: string;
     size?: InputSize;
 }
@@ -29,7 +29,7 @@ const InputCard: FC<InputCardType> = ({
     isDark = false,
     placeHolder,
     isButton = false,
-    inputName,
+    name,
     value,
     size = "medium",
 }) => {
@@ -43,7 +43,7 @@ const InputCard: FC<InputCardType> = ({
                 className={styles["input-style"]}
                 type="text"
                 value={value}
-                name={inputName}
+                name={name}
                 placeholder={placeHolder}
                 onChange={onChange}
             />

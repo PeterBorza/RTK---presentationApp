@@ -7,7 +7,6 @@ import { Photos, Game } from "../features/memoryGame-story";
 import { Building } from "../features/building-story";
 import { UtilityContainer } from "../features/Utilities";
 import { Url } from "../app/constants";
-import Rubik from "../features/Rubik";
 
 interface LinkProviderProps {
     children: ReactNode;
@@ -69,12 +68,6 @@ export const LinkContextProvider = ({ children }: LinkProviderProps) => {
             label: Url.GAME,
             id: uuid(),
             element: <Game />,
-        },
-        {
-            to: LinkUrls.RUBIK,
-            label: Url.RUBIK,
-            id: uuid(),
-            element: <Rubik />,
         },
     ];
     return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;
