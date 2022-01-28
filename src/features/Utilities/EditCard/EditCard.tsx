@@ -57,7 +57,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...un
                 <InputCard
                     size={InputSize.SMALL}
                     onChange={changeHandler}
-                    inputName="readDate"
+                    name="readDate"
                     value={values.readDate}
                 />
             </EditCell>
@@ -65,7 +65,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...un
                 <InputCard
                     size={InputSize.SMALL}
                     onChange={changeHandler}
-                    inputName="index"
+                    name="index"
                     value={values.index}
                 />
             </EditCell>
@@ -79,7 +79,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...un
                 <InputCard
                     size={InputSize.SMALL}
                     onChange={changeHandler}
-                    inputName="bill"
+                    name="bill"
                     value={values.bill}
                 />
             </EditCell>

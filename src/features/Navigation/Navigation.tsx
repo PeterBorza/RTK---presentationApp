@@ -23,10 +23,7 @@ const Navigation: FC = () => {
 
     const renderBody = links?.map(item => (
         <li key={item.id}>
-            <NavLink
-                className={({ isActive }) => linkClasses(isActive)}
-                to={item.to}
-            >
+            <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
                 {item.label}
             </NavLink>
         </li>

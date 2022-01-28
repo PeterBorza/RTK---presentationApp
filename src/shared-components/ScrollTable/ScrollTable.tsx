@@ -9,15 +9,13 @@ export interface TableProps {
     children: ReactNode;
 }
 
-const ScrollTable = forwardRef<HTMLDivElement, TableProps>(
-    ({ className, children }, ref) => {
-        const classes = classNames(styles.wrapper, className);
-        return (
-            <div className={classes} ref={ref}>
-                {children}
-            </div>
-        );
-    }
-);
+const ScrollTable = forwardRef<HTMLDivElement, TableProps>(({ className, children }, ref) => {
+    const classes = classNames(styles.wrapper, className);
+    return (
+        <div className={classes} ref={ref}>
+            {children}
+        </div>
+    );
+});
 
 export default ScrollTable;

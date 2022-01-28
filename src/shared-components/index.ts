@@ -23,6 +23,7 @@ import FlipCard from "./FlipCard";
 import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
+import Rubik from "./Rubik";
 
 export {
     Loader,
@@ -52,4 +53,5 @@ export {
     FlipCard,
     LoadingWrapper,
     ButtonWrapper,
+    Rubik,
 };
