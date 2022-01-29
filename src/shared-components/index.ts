@@ -24,6 +24,7 @@ import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
+import CustomImage from "./CustomImage";
 
 export {
     Loader,
@@ -37,6 +38,7 @@ export {
     SideBar,
     InputCard,
     CustomInput,
+    CustomImage,
     TextInput,
     BlackModal,
     FadedModal,

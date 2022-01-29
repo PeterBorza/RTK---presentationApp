@@ -65,7 +65,7 @@ $transforms: (
         &:nth-child(#{$key}) {
             transform: $value;
             border-radius: 3px;
-            background-image: url(./rubik-images/rd-#{$key}.jpg);
+            background-image: url(./rubik-images/rd-#{$key}-900.jpg);
             // background-color: rgb($i * 38, 32 * $i, 3 * $i);
         }
     }

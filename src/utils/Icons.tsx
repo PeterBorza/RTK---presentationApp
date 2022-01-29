@@ -20,6 +20,7 @@ import { FcHighPriority } from "react-icons/fc";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { CgEnter } from "react-icons/cg";
 import { GiCancel } from "react-icons/gi";
+import { HiDotsHorizontal } from "react-icons/hi";
 
 type IconType = Record<IconTypes, ReactNode>;
 
@@ -44,6 +45,7 @@ enum IconTypes {
     TIMES_CIRCLE = "timesCircle",
     ENTER = "enter",
     CANCEL = "cancel",
+    THREE_DOTS = "threeDots",
 }
 
 export const icons: IconType = {
@@ -67,4 +69,5 @@ export const icons: IconType = {
     timesCircle: <FaRegTimesCircle />,
     enter: <CgEnter />,
     cancel: <GiCancel />,
+    threeDots: <HiDotsHorizontal />,
 };

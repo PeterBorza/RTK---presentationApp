@@ -61,5 +61,22 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.manageCell {
+    display: flex;
+}
+
+.hiddenManage {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30%);
+    transition: all 200ms ease-in-out;
+    &__show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
 }
