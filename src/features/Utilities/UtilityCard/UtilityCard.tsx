@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { UtilityTableLabels } from "../constants";
 import { UtilityStateUnit } from "../types";
 
@@ -27,7 +27,6 @@ const UtilityCard: React.FC<Props> = ({
     dark = false,
     unit,
 }) => {
-    const [showManage, setShowManage] = useState(false);
     const { readDate, index, consumption, estimate, bill, payed, selected } = unit;
     const manageCssClasses = classNames(styles.hiddenManage, {
         [styles.hiddenManage__show]: selected,
@@ -55,16 +54,15 @@ const UtilityCard: React.FC<Props> = ({
         },
     ];
 
-    const settingsContent = iconGroup.map(icon => <CustomIcon key={icon.title} {...icon} />);
+    const manageContent = iconGroup.map(icon => <CustomIcon key={icon.title} {...icon} />);
 
     const manageCell = (
         <div className={styles.manageCell}>
-            <div className={manageCssClasses}>{settingsContent}</div>
-            <CustomIcon
-                title={UtilityTableLabels.MANAGE}
-                icon={icons.threeDots}
-                onClick={() => setShowManage(!showManage)}
-            />
+            {selected ? (
+                <div className={manageCssClasses}>{manageContent}</div>
+            ) : (
+                <CustomIcon title={UtilityTableLabels.MANAGE} icon={icons.threeDots} />
+            )}
         </div>
     );
 
