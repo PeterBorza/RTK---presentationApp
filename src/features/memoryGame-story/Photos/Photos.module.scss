@@ -33,7 +33,7 @@
 }
 
 .menuButton {
-    position: absolute;
+    @include menuButton;
 }
 
 .title {

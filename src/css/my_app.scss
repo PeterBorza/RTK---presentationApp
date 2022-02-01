@@ -20,6 +20,7 @@ $darkModeWhite: rgba(250, 253, 253, 0.8);
 }
 
 @mixin container($width) {
+    position: relative;
     width: $width;
     height: $containerHeight;
     &__padding {
@@ -78,4 +79,27 @@ $primary-background: rgb(180, 225, 243);
         #5b86e5,
         #36d1dc
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin gradientNav {
+    background: #e6dada; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #274046, #e6dada); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to bottom,
+        #274046,
+        #e6dada
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin menuButton {
+    position: absolute;
+    left: 0;
+    top: -5%;
+    z-index: 10;
+    animation: flowDown 500ms ease-out forwards;
+    @keyframes flowDown {
+        to {
+            top: 0%;
+        }
+    }
 }

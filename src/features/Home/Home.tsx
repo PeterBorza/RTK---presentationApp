@@ -1,29 +1,28 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { FC, FormEvent } from "react";
+import { useForm } from "../../hooks";
 import { CustomInput, Button, InputCard, TextInput } from "../../shared-components";
 
 import styles from "./Home.module.scss";
 
-const Home: FC = () => {
-    const [values, setValues] = useState({
-        username: "",
-        password: "",
-        text: "",
-    });
+type MockValues = {
+    username: string;
+    password: string;
+    text: string;
+};
 
-    const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value,
-        });
-    };
+const initialMockValues = {
+    username: "",
+    password: "",
+    text: "",
+};
+
+const Home: FC = () => {
+    const { values, changeHandler, resetValues } = useForm<MockValues>(initialMockValues);
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setValues({
-            username: "",
-            password: "",
-            text: "",
-        });
+        console.log(values);
+        resetValues();
     };
 
     return (

@@ -35,9 +35,7 @@
 
 .data {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include fCenter;
     font-size: 1.15rem;
     padding: 3px;
     overflow: hidden;
@@ -59,7 +57,23 @@
 
 .tableIcons {
     width: 100%;
+    @include fCenter;
+}
+
+.manageCell {
+    @include fCenter;
+    width: 100%;
+}
+
+.hiddenManage {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30%);
+    transition: all 200ms ease-in-out;
+    &__show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
 }

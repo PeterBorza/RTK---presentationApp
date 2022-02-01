@@ -10,7 +10,7 @@ export enum UtilityLabels {
     CONSUMPTION = "consumption",
     ESTIMATE = "estimate",
     BILL = "bill",
-    PAYED = "pay, delete, edit",
+    MANAGE = "manage",
 }
 
 export enum UtilityTableLabels {
@@ -29,6 +29,7 @@ export enum UtilityTableLabels {
     CANCEL_EDIT = "cancel",
     CORRECT_PASSWORD = "Correct password",
     NAME = "Type in owner's first name to see menu",
+    MANAGE = "manage",
 }
 
 export enum ModeColors {

@@ -12,7 +12,8 @@
     width: 100%;
     height: $navHeight;
     z-index: 1;
-    background-color: $navPrimaryBG;
+    // background-color: $navPrimaryBG;
+    @include gradientNav;
 }
 
 .links {
