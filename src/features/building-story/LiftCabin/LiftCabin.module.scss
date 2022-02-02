@@ -50,7 +50,7 @@ $doorColor: rgb(255 255 255 / 0.7);
 
 @for $i from 1 to 100 {
     .cabinWrapper__cabinHeight-#{$i} {
-        height: 100% / $i;
+        height: calc(100% / $i);
     }
 }
 

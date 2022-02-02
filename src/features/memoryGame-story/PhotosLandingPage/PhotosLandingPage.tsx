@@ -4,6 +4,10 @@ import rd1900 from "../../../shared-components/Rubik/rubik-images/rd-1-900.jpg";
 import rd2900 from "../../../shared-components/Rubik/rubik-images/rd-2-900.jpg";
 import rd3900 from "../../../shared-components/Rubik/rubik-images/rd-3-900.jpg";
 import rd4900 from "../../../shared-components/Rubik/rubik-images/rd-4-900.jpg";
+import house1 from "../../../images/house-1.jpg";
+import house2 from "../../../images/house-2.jpg";
+import house3 from "../../../images/house-3.jpg";
+import house4 from "../../../images/house-4.jpg";
 
 import styles from "./PhotosLandingPage.module.scss";
 
@@ -12,21 +16,27 @@ const PhotosLandingPage: FC = () => {
         <div className={styles.container}>
             {/* <Rubik withAnimation /> */}
             <CustomImage
-                src={rd1900}
+                src={house1}
                 delay={100}
-                duration={3000}
+                duration={5000}
                 spacing={100}
                 direction="fromLeft"
             />
             <CustomImage
-                src={rd2900}
-                delay={1800}
-                duration={3500}
-                spacing={300}
+                src={house2}
+                delay={4600}
+                duration={5000}
+                spacing={100}
                 direction="fromRight"
             />
-            <CustomImage src={rd3900} delay={3500} duration={3500} spacing={200} direction="up" />
-            <CustomImage src={rd4900} delay={5000} duration={2000} spacing={200} direction="down" />
+            <CustomImage src={house3} delay={9000} duration={5000} spacing={100} direction="up" />
+            <CustomImage
+                src={house4}
+                delay={13500}
+                duration={5000}
+                spacing={100}
+                direction="down"
+            />
         </div>
     );
 };
