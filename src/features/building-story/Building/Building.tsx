@@ -27,9 +27,9 @@ const Building: FC = () => {
         <div className={styles.container}>
             {menuButton}
             <div className={styles.systemContainer}>
-                <LiftSystem showPanel={!liftA.isMoving} data={liftA} />
+                <LiftSystem showPanel data={liftA} />
                 <BlockSystem />
-                <LiftSystem showPanel={!liftB.isMoving} data={liftB} />
+                <LiftSystem showPanel data={liftB} />
             </div>
         </div>
     );
