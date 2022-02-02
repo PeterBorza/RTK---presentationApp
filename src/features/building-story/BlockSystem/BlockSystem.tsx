@@ -1,17 +1,7 @@
 import { FC, useCallback, useEffect, useRef } from "react";
 import { LiftName } from "../state";
-import {
-    levelsSelector,
-    levelsState,
-    liftsState,
-    speedState,
-} from "../selectors";
-import {
-    setActive,
-    changePosition,
-    moveLift,
-    setDirection,
-} from "../liftSlice";
+import { levelsSelector, levelsState, liftsState, speedState } from "../selectors";
+import { setActive, changePosition, moveLift, setDirection } from "../liftSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { LiftCabin } from "..";
 import LiftButton from "../LiftButton";
@@ -30,31 +20,23 @@ const BlockSystem: FC = () => {
     const liftARef = useRef<HTMLDivElement>(null);
     const liftBRef = useRef<HTMLDivElement>(null);
 
-    const {
-        isActive: activeA,
-        position: positionA,
-        isMoving: isMovingA,
-    } = liftA;
-    const {
-        isActive: activeB,
-        position: positionB,
-        isMoving: isMovingB,
-    } = liftB;
+    const { isActive: activeA, position: positionA, isMoving: isMovingA } = liftA;
+    const { isActive: activeB, position: positionB, isMoving: isMovingB } = liftB;
 
     const startMoving = useCallback(
         (name: LiftName) => dispatch(moveLift({ name, isMoving: true })),
-        [dispatch]
+        [dispatch],
     );
 
     const stopMoving = useCallback(
         (name: LiftName) => dispatch(moveLift({ name, isMoving: false })),
-        [dispatch]
+        [dispatch],
     );
 
     const liftIsStatic = useCallback(
         (name: LiftName, moving: boolean) =>
             !moving && dispatch(setDirection({ name, direction: "static" })),
-        [dispatch]
+        [dispatch],
     );
 
     const liftHasArrived = useCallback(
@@ -65,7 +47,7 @@ const BlockSystem: FC = () => {
             liftIsStatic("A", isMovingA);
             liftIsStatic("B", isMovingB);
         },
-        [stopMoving, dispatch, liftIsStatic, isMovingA, isMovingB]
+        [stopMoving, dispatch, liftIsStatic, isMovingA, isMovingB],
     );
 
     useEffect(() => {
@@ -77,17 +59,13 @@ const BlockSystem: FC = () => {
         dispatch(changePosition({ name, position }));
 
     const getDirectionsOfA = (level: LevelCount) => {
-        level < positionA &&
-            dispatch(setDirection({ name: "A", direction: "down" }));
-        level > positionA &&
-            dispatch(setDirection({ name: "A", direction: "up" }));
+        level < positionA && dispatch(setDirection({ name: "A", direction: "down" }));
+        level > positionA && dispatch(setDirection({ name: "A", direction: "up" }));
     };
 
     const getDirectionsOfB = (level: LevelCount) => {
-        level < positionB &&
-            dispatch(setDirection({ name: "B", direction: "down" }));
-        level > positionB &&
-            dispatch(setDirection({ name: "B", direction: "up" }));
+        level < positionB && dispatch(setDirection({ name: "B", direction: "down" }));
+        level > positionB && dispatch(setDirection({ name: "B", direction: "up" }));
     };
 
     const moveA = (position: LevelCount) => {
@@ -135,20 +113,8 @@ const BlockSystem: FC = () => {
 
     return (
         <div className={styles.blockContainer}>
-            <LiftCabin
-                levelCount={numberOfLevels}
-                speed={speed}
-                data={liftA}
-                ref={liftARef}
-                // onArrival={() => closeDoors("A")}
-            />
-            <LiftCabin
-                levelCount={numberOfLevels}
-                speed={speed}
-                data={liftB}
-                ref={liftBRef}
-                // onArrival={() => closeDoors("B")}
-            />
+            <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftA} ref={liftARef} />
+            <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftB} ref={liftBRef} />
             <Shaft>{shaftButtons}</Shaft>
         </div>
     );
