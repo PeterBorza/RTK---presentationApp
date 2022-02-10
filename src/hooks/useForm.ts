@@ -6,7 +6,7 @@ interface ReturnForm<T> {
     resetValues: () => void;
 }
 
-export const useForm = <T>(data: T): ReturnForm<T> => {
+const useForm = <T>(data: T): ReturnForm<T> => {
     const [values, setValues] = useState<T>(data);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,3 +22,5 @@ export const useForm = <T>(data: T): ReturnForm<T> => {
 
     return { values, changeHandler, resetValues };
 };
+
+export default useForm;

@@ -1,4 +1,9 @@
-export { useTime } from "./useTime";
-export { useForm } from "./useForm";
+export { default as useTime } from "./useTime";
+export { default as useForm } from "./useForm";
+export { default as useHover } from "./useHover";
 export { default as useEventListener } from "./useEventListener";
 export { default as useOnClickOutside } from "./useOnClickOutside";
+export { default as useImageOnLoad } from "./useImageOnLoad";
+export { default as useWindowSize } from "./useWindowSize";
+export { default as useStep } from "./useStep";
+export { default as useLocalStorage } from "./useLocalStorage";

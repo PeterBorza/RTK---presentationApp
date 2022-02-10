@@ -25,6 +25,7 @@ import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
 import CustomImage from "./CustomImage";
+import Box from "./Box";
 
 export {
     Loader,
@@ -56,4 +57,5 @@ export {
     LoadingWrapper,
     ButtonWrapper,
     Rubik,
+    Box,
 };
