@@ -269,10 +269,10 @@
       "readDate": "20/01/2022",
       "selected": false,
       "index": "5070",
-      "bill": "",
+      "bill": "300.20",
       "consumption": 135,
       "estimate": 290.75,
-      "payed": false,
+      "payed": true,
       "edit": false
     }
   ],
