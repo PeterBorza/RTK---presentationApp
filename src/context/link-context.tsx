@@ -7,6 +7,7 @@ import { Photos, Game } from "../features/memoryGame-story";
 import { Building } from "../features/building-story";
 import { UtilityContainer } from "../features/Utilities";
 import { Url } from "../app/constants";
+import { ScrollPage } from "../shared-components";
 
 interface LinkProviderProps {
     children: ReactNode;
@@ -20,6 +21,7 @@ export enum LinkUrls {
     PHOTOS = "photos",
     GAME = "game",
     RUBIK = "rubik",
+    SCROLL = "scroll",
 }
 
 interface ProviderProps {
@@ -68,6 +70,12 @@ export const LinkContextProvider = ({ children }: LinkProviderProps) => {
             label: Url.GAME,
             id: uuid(),
             element: <Game />,
+        },
+        {
+            to: LinkUrls.SCROLL,
+            label: Url.SCROLL,
+            id: uuid(),
+            element: <ScrollPage />,
         },
     ];
     return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;

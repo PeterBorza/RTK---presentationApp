@@ -1,6 +1,7 @@
 import { FC, ReactNode, useRef } from "react";
 import ScrollTable from ".";
 import { LoadingWrapper } from "..";
+import { Pending } from "../../app";
 import { useOnClickOutside } from "../../hooks";
 
 export interface Props {
@@ -10,18 +11,13 @@ export interface Props {
     loading: boolean;
 }
 
-const Table: FC<Props> = ({
-    renderBody,
-    renderHeader,
-    onClickOutside,
-    loading,
-}) => {
+const Table: FC<Props> = ({ renderBody, renderHeader, onClickOutside, loading }) => {
     const tableRef = useRef<HTMLDivElement>(null);
     useOnClickOutside(tableRef, onClickOutside);
     return (
         <ScrollTable ref={tableRef}>
             {loading ? (
-                <LoadingWrapper loading={loading} />
+                <LoadingWrapper loading={loading} loadingMessage={Pending.MESSAGE} />
             ) : (
                 <>
                     <ScrollTable.Header>{renderHeader()}</ScrollTable.Header>

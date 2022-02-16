@@ -39,7 +39,7 @@ const Bubble = forwardRef<HTMLDivElement, BubbleProps>(
                 <span className={styles.bubbleStyle__span}>{id}</span>
             </div>
         );
-    }
+    },
 );
 
 export default Bubble;

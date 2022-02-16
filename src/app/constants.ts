@@ -13,6 +13,7 @@ export enum Url {
     PHOTOS = "photos",
     GAME = "game",
     RUBIK = "rubik",
+    SCROLL = "scroll",
 }
 
 export enum Error {
@@ -21,11 +22,4 @@ export enum Error {
 
 export enum Pending {
     MESSAGE = "Loading, please wait...",
-}
-
-export enum DateFormats {
-    STANDARD = "dd/MM/yyyy",
-    DAY = "cccc",
-    MONTH = "LLLL",
-    EXTENDED = "dd MMMM yyyy",
 }
