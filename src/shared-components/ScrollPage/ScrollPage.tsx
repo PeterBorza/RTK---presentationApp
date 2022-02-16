@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { v4 as uuid } from "uuid";
 import styles from "./ScrollPage.module.scss";
 
@@ -26,7 +26,7 @@ const ScrollPage: FC<ScrollProps> = ({ pages = articles }) => {
             <aside className={styles["aside-navigation"]}>
                 <ul className={styles["link-shell"]}>
                     {pages.map(link => (
-                        <li>
+                        <li key={link.id}>
                             <a href={`#${link.label}`}>{link.label}</a>
                         </li>
                     ))}
