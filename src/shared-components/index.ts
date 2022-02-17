@@ -26,6 +26,7 @@ import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
+import ScrollPage from "./ScrollPage";
 
 export {
     Loader,
@@ -58,4 +59,5 @@ export {
     ButtonWrapper,
     Rubik,
     Box,
+    ScrollPage,
 };

@@ -9,7 +9,7 @@ import {
     selectedBubble,
 } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
-import { Url } from "../../../app/constants";
+import { Url, Pending } from "../../../app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
@@ -106,13 +106,15 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
         />
     );
 
-    return isLoading ? (
-        <LoadingWrapper loading={isLoading} />
-    ) : (
-        <div className={wrapper}>
-            <ButtonWrapper renderButtons={renderButtons} dark={dark} />
-            {error.error ? <Error message={error.message} /> : bubbles.map(renderBubbles)}
-        </div>
+    return (
+        <>
+            <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
+            <div className={wrapper}>
+                <Error message={error.message} isError={error.error} />
+                <ButtonWrapper renderButtons={renderButtons} dark={dark} />
+                {bubbles.map(renderBubbles)}
+            </div>
+        </>
     );
 };
 

@@ -14,7 +14,6 @@ const SelectedBubble: FC<Props> = ({ selectedBubble, isSelected }) => {
         <div className={styles.container}>
             {isSelected ? (
                 <>
-                    {" "}
                     <h2>{selectedBubble.id}</h2>
                     <ul>
                         {Object.entries(selectedBubble.cssProps).map(label => (

@@ -12,6 +12,7 @@ import { Bubbles } from "./features/bubble-story";
 import { utilityRoutes } from "../src/features/Utilities";
 import { routes as memoryGameRoutes } from "../src/features/memoryGame-story";
 import { LinkUrls } from "./context/link-context";
+import { ScrollPage } from "./shared-components";
 
 const utilities = utilityRoutes();
 const games = memoryGameRoutes();
@@ -27,6 +28,7 @@ ReactDOM.render(
                         <Route path={LinkUrls.BUILDING} element={<LiftPlatform />} />
                         <Route path={LinkUrls.BUBBLES} element={<Bubbles />} />
                         {games}
+                        <Route path={LinkUrls.SCROLL} element={<ScrollPage />} />
                     </Route>
                 </Routes>
             </Provider>

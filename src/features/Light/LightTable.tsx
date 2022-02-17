@@ -50,9 +50,7 @@ const LightTable: FC = () => {
                 {!unit.edit ? (
                     <UtilityCard
                         onClick={() => dispatch(selectCard(unit.id))}
-                        onPayedClick={() =>
-                            billIsOut && dispatch(togglePayedBill(unit))
-                        }
+                        onPayedClick={() => billIsOut && dispatch(togglePayedBill(unit))}
                         onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
                         onEdit={() => dispatch(editCard(unit.id))}
                         unit={unit}
@@ -61,9 +59,7 @@ const LightTable: FC = () => {
                 ) : (
                     <EditCard
                         resetEdit={() => dispatch(resetEdit())}
-                        editUnit={(editedUnit: UtilityStateUnit) =>
-                            dispatch(editUnit(editedUnit))
-                        }
+                        editUnit={(editedUnit: UtilityStateUnit) => dispatch(editUnit(editedUnit))}
                         {...unit}
                     />
                 )}
@@ -71,38 +67,36 @@ const LightTable: FC = () => {
         );
     });
 
-    return error ? (
-        <Error message={error} />
-    ) : (
-        <UtilityTable dark={darkMode}>
-            <UtilityTable.Header>
-                <h1 style={titleStyle(darkMode)}>
-                    {UtilityTableLabels.LIGHT_TITLE}
-                </h1>
-                <UtilitiesForm
-                    postData={(newUnit: UtilityStateUnit) =>
-                        dispatch(postUtility(newUnit))
-                    }
-                    formValues={initialFormValues}
-                    utilityUnits={units}
-                />
-            </UtilityTable.Header>
-            <UtilityTable.Body>
-                <Table
-                    renderHeader={() =>
-                        Object.values(UtilityLabels).map(item => (
-                            <TableTitle key={item} name={item} />
-                        ))
-                    }
-                    renderBody={() => isUnits && renderLightTableItems}
-                    onClickOutside={() => dispatch(resetSelected())}
-                    loading={loading.isLoading}
-                />
-            </UtilityTable.Body>
-            <UtilityTable.Footer>
-                <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
-            </UtilityTable.Footer>
-        </UtilityTable>
+    return (
+        <>
+            <Error message={error} isError={!!error} />
+
+            <UtilityTable dark={darkMode}>
+                <UtilityTable.Header>
+                    <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
+                    <UtilitiesForm
+                        postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
+                        formValues={initialFormValues}
+                        utilityUnits={units}
+                    />
+                </UtilityTable.Header>
+                <UtilityTable.Body>
+                    <Table
+                        renderHeader={() =>
+                            Object.values(UtilityLabels).map(item => (
+                                <TableTitle key={item} name={item} />
+                            ))
+                        }
+                        renderBody={() => isUnits && renderLightTableItems}
+                        onClickOutside={() => dispatch(resetSelected())}
+                        loading={loading.isLoading}
+                    />
+                </UtilityTable.Body>
+                <UtilityTable.Footer>
+                    <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+                </UtilityTable.Footer>
+            </UtilityTable>
+        </>
     );
 };
 

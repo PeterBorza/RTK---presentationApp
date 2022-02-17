@@ -9,6 +9,15 @@ export enum Time {
     STANDARD = "standard",
 }
 
+export enum DateFormats {
+    STANDARD = "dd/MM/yyyy",
+    DAY = "iii",
+    HOUR = "HH:mm:ss",
+    MONTH = "LLLL",
+    EXTENDED = "dd/MMMM/yyyy",
+    ALL = "dd/MMM/yyyy/iii/HH:mm:ss",
+}
+
 type TimeProp = "hour" | "day" | "date" | "all" | "standard" | null;
 
 const useTime = (text: TimeProp): string => {
@@ -21,11 +30,11 @@ const useTime = (text: TimeProp): string => {
     }, []);
 
     const timeFormats = {
-        hour: format(time, "HH:mm:ss"),
-        day: format(time, "iii"),
-        date: format(time, "dd/MMMM/yyyy"),
-        all: format(time, "dd/MMM/yyyy/iii/HH:mm:ss"),
-        standard: format(time, "dd/MM/yyyy"),
+        hour: format(time, DateFormats.HOUR),
+        day: format(time, DateFormats.DAY),
+        date: format(time, DateFormats.EXTENDED),
+        all: format(time, DateFormats.ALL),
+        standard: format(time, DateFormats.STANDARD),
     };
 
     if (text !== null) return timeFormats[text];

@@ -1,0 +1,72 @@
+@use "../../css/my_app" as *;
+@use "../../css/mixins" as *;
+@use "../../css/variables" as *;
+
+$blue-background: rgba(205, 217, 240, 0.885);
+$sidebar-width: min(250px, 30%);
+
+.section {
+    width: 100%;
+    min-height: calc(100vh - $navHeight);
+    background: $darkMode;
+    overflow-y: scroll;
+    @include noVisibleScrollBar;
+}
+
+.article {
+    width: calc(100% - $sidebar-width);
+    padding-top: $navHeight;
+    margin-left: auto;
+    height: 100vh;
+    &__default {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        color: $darkModeWhite;
+    }
+}
+
+.aside-navigation {
+    position: fixed;
+    left: 0;
+    top: $navHeight;
+    bottom: 0;
+    width: min($sidebar-width, 30%);
+    padding: 15px;
+    z-index: 5;
+    &::after {
+        position: absolute;
+        content: "";
+        left: 100%;
+        top: 2%;
+        bottom: 2%;
+        width: 2px;
+        background: $darkModeWhite;
+    }
+}
+
+.link-shell {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    text-align: right;
+    li {
+        list-style-type: none;
+        margin: 0.3rem;
+        width: 100%;
+    }
+    a {
+        font-size: 1.5rem;
+        text-decoration: none;
+        text-transform: capitalize;
+        color: $darkModeWhite;
+        transition: color 120ms ease;
+        &:hover {
+            color: darken($darkModeWhite, 5%);
+        }
+        @include truncate;
+    }
+}

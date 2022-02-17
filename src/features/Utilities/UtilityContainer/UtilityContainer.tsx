@@ -8,6 +8,7 @@ import { AsidePlatform, Button } from "../../../shared-components";
 import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
+import { LinkUrls } from "../../../context/link-context";
 
 const UtilityContainer: FC = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,9 @@ const UtilityContainer: FC = () => {
                     {Url.LIGHT}
                 </Link>
                 <Link to={`/${Url.UTILITIES}`} onClick={closeSidePanel}>
+                    {Url.UTILITIES}
+                </Link>
+                <Link to={`${LinkUrls.HOME}`} onClick={closeSidePanel}>
                     {Url.HOME}
                 </Link>
             </div>

@@ -7,6 +7,15 @@
     font-family: monospace;
 }
 
+html {
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .container {
     width: 100%;
     min-height: 100vh;
