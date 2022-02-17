@@ -19,10 +19,7 @@ const BubbleWrapper: React.FC = () => {
             onClose={() => dispatch(toggleBubbles(false))}
             label={msg.TITLE}
             renderSideBar={() => (
-                <SelectedBubble
-                    selectedBubble={selected}
-                    isSelected={!!selected}
-                />
+                <SelectedBubble selectedBubble={selected} isSelected={!!selected} />
             )}
         >
             <BubbleContainer dark={darkMode} />

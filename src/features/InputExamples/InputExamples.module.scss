@@ -1,0 +1,42 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    h1 {
+        color: whitesmoke;
+    }
+}
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+    padding: 5px;
+    border-radius: 3px;
+    max-width: 600px;
+    background-color: rgba(176, 196, 222, 0.8);
+}
+
+.output {
+    color: rgb(238, 231, 231);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 20vh;
+    border: 1px solid whitesmoke;
+}
+
+.textInput {
+    background-color: rgb(238, 231, 231);
+    &:focus-within {
+        background-color: transparent;
+        border-bottom: 1px solid red;
+        border-radius: 0px;
+    }
+}

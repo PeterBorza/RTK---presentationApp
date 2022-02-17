@@ -11,14 +11,21 @@
     top: 0;
     width: 100%;
     height: $navHeight;
-    z-index: 1000;
     @include gradientNav;
+    &__smallScreen {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 22%;
+        z-index: 1000;
+    }
 }
 
 .links {
     text-transform: uppercase;
     font-family: "PT Sans", sans-serif;
-    font-size: clamp(0.7rem, 1.5vw + 0.4rem, 2.2rem);
+    font-size: clamp(0.9rem, 2vw + 0.4rem, 2.2rem);
     transition: color 150ms ease-out;
     color: $myYellow3;
     outline: none;
@@ -37,4 +44,8 @@
 .active {
     transform: scale(0.95);
     color: white;
+}
+
+.navBarDrop {
+    background-color: rgba(255, 255, 255, 0.289);
 }

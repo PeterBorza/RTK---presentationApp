@@ -17,7 +17,11 @@ const mockPages = ["page 1", "page 2", "page 3", "page 4", "page 5"];
 const articles: PagesType[] = mockPages.map(page => ({
     id: uuid(),
     label: page,
-    content: <h1>{page}</h1>,
+    content: (
+        <div className={styles.article__default}>
+            <h1>{page}</h1>
+        </div>
+    ),
 }));
 
 const ScrollPage: FC<ScrollProps> = ({ pages = articles }) => {
