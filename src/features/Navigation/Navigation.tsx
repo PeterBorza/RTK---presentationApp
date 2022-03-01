@@ -38,11 +38,11 @@ const Navigation: FC = () => {
     const renderNavBar = (vertical: boolean) => (
         <>
             <NavBar vertical={vertical}>{renderBody}</NavBar>
-            {/* <ToggleButton
+            <ToggleButton
                 selected={darkMode}
                 toggleSelected={() => dispatch(toggleDarkMode(!darkMode))}
                 size="large"
-            /> */}
+            />
         </>
     );
 

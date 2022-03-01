@@ -6,8 +6,12 @@
     margin: 0;
     overflow: hidden;
     background: $primary-background;
-    @include gradientBubble;
+    background: rgba(22, 22, 22, 0.83);
     &__dark {
         background: $darkMode;
     }
+}
+
+.buttons {
+    @include menuButton();
 }

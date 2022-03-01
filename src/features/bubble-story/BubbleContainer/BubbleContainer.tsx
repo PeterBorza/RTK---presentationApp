@@ -111,7 +111,9 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
             <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
             <div className={wrapper}>
                 <Error message={error.message} isError={error.error} />
-                <ButtonWrapper renderButtons={renderButtons} dark={dark} />
+                <span className={styles.buttons}>
+                    <ButtonWrapper renderButtons={renderButtons} dark={dark} />
+                </span>
                 {bubbles.map(renderBubbles)}
             </div>
         </>
