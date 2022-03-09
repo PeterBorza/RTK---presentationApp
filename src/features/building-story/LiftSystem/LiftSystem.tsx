@@ -1,12 +1,7 @@
-import { FC, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Lift as LiftProps } from "../state";
-import {
-    changePosition,
-    moveLift,
-    setActive,
-    setDirection,
-} from "../liftSlice";
+import { changePosition, moveLift, setActive, setDirection } from "../liftSlice";
 import { levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
 import Panel from "../Panel";
@@ -22,7 +17,7 @@ type Props = {
 
 type LevelCount = number;
 
-const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
+const LiftSystem = ({ showPanel = true, data }: Props) => {
     const levels = useSelector(levelsSelector);
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
@@ -35,13 +30,13 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const liftIsMoving = () => dispatch(moveLift({ name, isMoving: true }));
     const liftIsStopped = useCallback(
         () => dispatch(moveLift({ name, isMoving: false })),
-        [dispatch, name]
+        [dispatch, name],
     );
 
     const closeDoors = () => dispatch(setActive({ name, isActive: false }));
     const openDoors = useCallback(
         () => dispatch(setActive({ name, isActive: true })),
-        [dispatch, name]
+        [dispatch, name],
     );
 
     useEffect(() => {
@@ -51,8 +46,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
         }, speed);
     }, [liftIsStopped, openDoors, speed]);
 
-    const moveElevator = (position: LevelCount) =>
-        dispatch(changePosition({ name, position }));
+    const moveElevator = (position: LevelCount) => dispatch(changePosition({ name, position }));
 
     const getDirections = (level: LevelCount) => {
         level < position && dispatch(setDirection({ name, direction: "down" }));
@@ -79,10 +73,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     return (
         <div className={liftWrapper}>
-            <Panel
-                icons={<Directions direction={direction} />}
-                renderButtons={() => lift_Panel}
-            />
+            <Panel icons={<Directions direction={direction} />} renderButtons={() => lift_Panel} />
         </div>
     );
 };

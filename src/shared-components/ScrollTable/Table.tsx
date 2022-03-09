@@ -1,4 +1,4 @@
-import { FC, ReactNode, useRef } from "react";
+import { ReactNode, useRef } from "react";
 import ScrollTable from ".";
 import { LoadingWrapper } from "..";
 import { Pending } from "../../app";
@@ -11,7 +11,7 @@ export interface Props {
     loading: boolean;
 }
 
-const Table: FC<Props> = ({ renderBody, renderHeader, onClickOutside, loading }) => {
+const Table = ({ renderBody, renderHeader, onClickOutside, loading }: Props) => {
     const tableRef = useRef<HTMLDivElement>(null);
     useOnClickOutside(tableRef, onClickOutside);
     return (

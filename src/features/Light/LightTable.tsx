@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Error } from "../../shared-components";
@@ -26,7 +26,7 @@ import {
 } from "./thunks";
 import { darkModeSelector } from "../../app";
 
-const LightTable: FC = () => {
+const LightTable = () => {
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorLightState);
     const darkMode = useSelector(darkModeSelector);

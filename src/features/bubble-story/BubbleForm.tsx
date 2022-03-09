@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { TextInput, FadedModal, Form, Button } from "../../shared-components";
 import { BubbleFormValues } from "./constants";
@@ -12,7 +12,7 @@ type BubbleFormType = {
     onPost: (formObject: BubbleCssProps) => void;
 };
 
-const BubbleForm: FC<BubbleFormType> = ({ formObject, isOpen, onToggleForm, onPost }) => {
+const BubbleForm = ({ formObject, isOpen, onToggleForm, onPost }: BubbleFormType) => {
     const { values, changeHandler, resetValues } = useForm<BubbleCssProps>(formObject);
 
     const onCancelHandler = () => {

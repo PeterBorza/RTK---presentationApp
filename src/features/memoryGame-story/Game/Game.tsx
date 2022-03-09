@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useEffect } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
@@ -13,14 +13,7 @@ import {
 } from "../selectors";
 import { darkModeSelector } from "../../../app";
 
-import {
-    GamePhotoData,
-    toggleFlip,
-    setMatch,
-    incrementCount,
-    resetGame,
-    setNewGame,
-} from "..";
+import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } from "..";
 
 import { Button, FlipCard } from "../../../shared-components";
 import GameEnd from "../GameEnd";
@@ -31,7 +24,7 @@ import styles from "./Game.module.scss";
 
 type ImageSource = string;
 
-const Game: FC = () => {
+const Game = () => {
     const dispatch = useDispatch();
     const images = useSelector(gamePhotosSelector);
     const flippedCards = useSelector(flippedCardsSelector);
@@ -54,15 +47,12 @@ const Game: FC = () => {
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
-            if (
-                gameHasStarted &&
-                flippedCards[0].frontSrc.gameId === item.frontSrc.gameId
-            ) {
+            if (gameHasStarted && flippedCards[0].frontSrc.gameId === item.frontSrc.gameId) {
                 dispatch(setMatch({ id: flippedCards[0].id, match: true }));
                 dispatch(setMatch({ id: item.id, match: true }));
             }
         },
-        [gameHasStarted, flippedCards, dispatch]
+        [gameHasStarted, flippedCards, dispatch],
     );
 
     const flipCardHandler = useCallback(
@@ -71,7 +61,7 @@ const Game: FC = () => {
             dispatch(incrementCount());
             dispatch(toggleFlip(item.id));
         },
-        [dispatch, freezeIfMatch]
+        [dispatch, freezeIfMatch],
     );
 
     const resetGameHandler = () => gameHasStarted && dispatch(resetGame());
@@ -109,16 +99,10 @@ const Game: FC = () => {
 
         const frontContent = () => <div className={styles.front} />;
 
-        const renderImages = (
-            { id, frontSrc, isFlipped, match }: GamePhotoData,
-            idx: number
-        ) => {
+        const renderImages = ({ id, frontSrc, isFlipped, match }: GamePhotoData, idx: number) => {
             const checkIfMatchOrFLipped = !match ? isFlipped : match;
             return (
-                <div
-                    key={id}
-                    className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
-                >
+                <div key={id} className={cardWrapperClasses(checkIfMatchOrFLipped, match)}>
                     <FlipCard
                         frontContent={frontContent}
                         backContent={() => backContent(frontSrc.src)}
@@ -136,11 +120,7 @@ const Game: FC = () => {
         <section className={styles.container}>
             {!finishedGame ? (
                 <>
-                    <Controls
-                        count={count}
-                        renderButtons={renderGameButtons}
-                        dark={darkMode}
-                    />
+                    <Controls count={count} renderButtons={renderGameButtons} dark={darkMode} />
                     <div className={styles.grid}>{renderGridTable}</div>
                 </>
             ) : (

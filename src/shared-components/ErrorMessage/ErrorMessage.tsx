@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import styles from "./ErrorMessage.module.scss";
 
@@ -7,7 +7,7 @@ interface ErrorProps {
     isError: boolean;
 }
 
-const Error: FC<ErrorProps> = ({ message = "No error message found", isError }) => {
+const Error = ({ message = "No error message found", isError }: ErrorProps) => {
     return isError ? (
         <div className={styles.errorStyle}>
             <h1>{message}</h1>

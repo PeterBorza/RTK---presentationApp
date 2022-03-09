@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
@@ -23,7 +23,7 @@ export interface InputCardType {
     size?: InputSize;
 }
 
-const InputCard: FC<InputCardType> = ({
+const InputCard = ({
     onClick,
     onChange,
     isDark = false,
@@ -31,8 +31,8 @@ const InputCard: FC<InputCardType> = ({
     isButton = false,
     name,
     value,
-    size = "medium",
-}) => {
+    size = InputSize.MEDIUM,
+}: InputCardType) => {
     const inputWrapper = classNames(styles["input-wrapper"], [styles[`input-wrapper__${size}`]], {
         [styles["dark-mode"]]: isDark,
     });

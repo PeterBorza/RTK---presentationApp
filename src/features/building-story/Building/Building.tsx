@@ -9,7 +9,7 @@ import BlockSystem from "../BlockSystem";
 
 import styles from "./Building.module.scss";
 
-const Building: FC = () => {
+const Building = () => {
     const openSideBar = useSelector(liftOpenSelector);
     const [liftA, liftB] = useSelector(liftsState);
     const dispatch = useDispatch();

@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleUtils } from "../../../app";
 import { CustomInput } from "../../../shared-components";
 import { UtilityTableLabels } from "../constants";
 import styles from "./UtilityPlatform.module.scss";
 
-const UtilityPlatform: FC = () => {
+const UtilityPlatform = () => {
     const [name, setName] = useState("");
     const validPass = name === "Peter";
     const dispatch = useDispatch();

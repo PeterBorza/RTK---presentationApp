@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { v4 as uuid } from "uuid";
 
@@ -12,7 +12,7 @@ type UtilityFormProps = {
     utilityUnits: UtilityStateUnit[];
 };
 
-const UtilitiesForm: FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
+const UtilitiesForm = ({ postData, formValues, utilityUnits }: UtilityFormProps) => {
     const {
         FORM_BUTTON_LABEL: buttonLabel,
         FORM_WIDTH: formWidth,
@@ -67,7 +67,7 @@ const UtilitiesForm: FC<UtilityFormProps> = ({ postData, formValues, utilityUnit
         <ModalForm
             renderFields={renderInputs}
             onSubmit={onSubmitHandler}
-            onCancel={() => resetValues()}
+            onCancel={resetValues}
             buttonLabel={buttonLabel}
             formWidth={formWidth}
             formTitle={formTitle}

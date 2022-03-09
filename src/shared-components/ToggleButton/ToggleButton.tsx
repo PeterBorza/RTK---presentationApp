@@ -9,19 +9,14 @@ type Props = {
     size?: "small" | "medium" | "large" | "xxl";
 };
 
-const ToggleButton: FC<Props> = ({
-    selected,
-    toggleSelected,
-    size = "large",
-    children = null,
-}) => {
+const ToggleButton: FC<Props> = ({ selected, toggleSelected, size = "large", children }) => {
     const buttonClasses = classNames(styles.dialog_button, {
         [styles.disabled]: selected,
     });
 
     const componentControlClasses = classNames(
         styles.toggle_container,
-        styles[`toggle_container${size}`]
+        styles[`toggle_container${size}`],
     );
 
     return (

@@ -19,14 +19,7 @@ interface Props {
     unit: UtilityStateUnit;
 }
 
-const UtilityCard: React.FC<Props> = ({
-    onClick,
-    onPayedClick,
-    onDelete,
-    onEdit,
-    dark = false,
-    unit,
-}) => {
+const UtilityCard = ({ onClick, onPayedClick, onDelete, onEdit, dark = false, unit }: Props) => {
     const { readDate, index, consumption, estimate, bill, payed, selected } = unit;
     const manageCssClasses = classNames(styles.hiddenManage, {
         [styles.hiddenManage__show]: selected,

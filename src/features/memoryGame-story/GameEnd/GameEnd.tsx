@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { Button } from "../../../shared-components";
 
@@ -11,17 +11,13 @@ interface Props {
     buttonLabel: string;
 }
 
-const GameEnd: FC<Props> = ({ count, message, onClick, buttonLabel }) => {
+const GameEnd = ({ count, message, onClick, buttonLabel }: Props) => {
     const endMessage = message.replace("x", `${count}`);
 
     return (
         <div className={styles.finished}>
             <h1>{endMessage}</h1>
-            <Button
-                onClick={onClick}
-                value={buttonLabel}
-                className={styles.newGameButton}
-            />
+            <Button onClick={onClick} value={buttonLabel} className={styles.newGameButton} />
         </div>
     );
 };

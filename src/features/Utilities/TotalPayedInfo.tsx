@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { format } from "date-fns";
 import { UtilityTableLabels } from "./constants";
@@ -11,7 +11,7 @@ type TotalPayedInfoType = {
     dark?: boolean;
 };
 
-const TotalPayedInfo: FC<TotalPayedInfoType> = ({ sumOfBills, dark }) => {
+const TotalPayedInfo = ({ sumOfBills, dark = false }: TotalPayedInfoType) => {
     // const today = new Date().toLocaleDateString();
     const time = new Date();
     const today = format(time, "dd/MM/yyyy");
@@ -26,9 +26,7 @@ const TotalPayedInfo: FC<TotalPayedInfoType> = ({ sumOfBills, dark }) => {
             {UtilityTableLabels.SUM_OF_BILLS}
             <span className={styles.tableFooter__data}>{today}</span>
             {UtilityTableLabels.IS}
-            <span className={styles.tableFooter__data}>
-                {exactSumOfBillsPayed}
-            </span>
+            <span className={styles.tableFooter__data}>{exactSumOfBillsPayed}</span>
             {UtilityTableLabels.RON}
         </h3>
     );

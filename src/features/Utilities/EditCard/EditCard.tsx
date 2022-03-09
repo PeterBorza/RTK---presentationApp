@@ -1,4 +1,4 @@
-import { FC, FormEvent } from "react";
+import { FormEvent } from "react";
 import { useSelector } from "react-redux";
 
 import { CustomIcon, InputCard } from "../../../shared-components";
@@ -17,7 +17,7 @@ type Props = {
     editUnit: (editedUnit: UtilityStateUnit) => void;
 };
 
-const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...unit }) => {
+const EditFormCard = ({ resetEdit, editUnit, ...unit }: UtilityStateUnit & Props) => {
     const units = useSelector(unitsState);
     const { readDate, index, consumption, estimate, bill, id } = unit;
     const { values, changeHandler } = useForm({

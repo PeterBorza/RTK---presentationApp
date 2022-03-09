@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 import { SideBar } from "..";
 
@@ -12,13 +12,7 @@ export type Props = {
     label: string;
 };
 
-const AsidePlatform: FC<PropsWithChildren<Props>> = ({
-    isOpen,
-    children,
-    onClose,
-    renderSideBar,
-    label,
-}) => {
+const AsidePlatform: FC<Props> = ({ isOpen, children, onClose, renderSideBar, label }) => {
     const wrapper = classNames(styles.container, {
         [styles.container__padding]: isOpen,
     });

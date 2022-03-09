@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React from "react";
 
 import classNames from "classnames";
 import styles from "./UtilityCard.module.scss";
@@ -6,10 +6,10 @@ import styles from "./UtilityCard.module.scss";
 type CardCellType = {
     dark?: boolean;
     title?: string | undefined;
-    content: string | ReactNode;
+    content: string | React.ReactNode;
 };
 
-const CardCell: FC<CardCellType> = ({ dark = false, title, content }) => {
+const CardCell = ({ dark = false, title, content }: CardCellType) => {
     const dataWrapper = classNames(styles.data, {
         [styles.data__dark]: dark,
     });

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { v4 as uuid } from "uuid";
 import styles from "./ScrollPage.module.scss";
 
@@ -24,7 +24,7 @@ const articles: PagesType[] = mockPages.map(page => ({
     ),
 }));
 
-const ScrollPage: FC<ScrollProps> = ({ pages = articles }) => {
+const ScrollPage = ({ pages = articles }: ScrollProps) => {
     return (
         <section className={styles.section}>
             <aside className={styles["aside-navigation"]}>

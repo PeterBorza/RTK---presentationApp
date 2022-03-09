@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { toggleUtils } from "../../../app/appSlice";
@@ -10,7 +10,7 @@ import { UtilityTableLabels as messages } from "..";
 import styles from "./UtilityContainer.module.scss";
 import { LinkUrls } from "../../../context/link-context";
 
-const UtilityContainer: FC = () => {
+const UtilityContainer = () => {
     const dispatch = useDispatch();
     const darkMode = useSelector(darkModeSelector);
     const openSideBar = useSelector(utilsOpenSelector);

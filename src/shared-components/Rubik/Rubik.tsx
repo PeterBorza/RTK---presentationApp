@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { useRef } from "react";
 
 import classNames from "classnames";
 import styles from "./Rubik.module.scss";
@@ -9,7 +9,7 @@ type RubikProps = {
 
 const RUBIK_SIDES = 6;
 
-const Rubik: FC<RubikProps> = ({ withAnimation = false }) => {
+const Rubik = ({ withAnimation = false }: RubikProps) => {
     const wrapper = useRef<HTMLDivElement | null>(null);
 
     const classes = classNames(styles.rubikWrapper, {

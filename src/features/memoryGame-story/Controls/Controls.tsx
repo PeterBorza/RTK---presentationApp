@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import React from "react";
 
 import { MemoryGameMessages as msg } from "../messages";
 import { ButtonWrapper } from "../../../shared-components";
@@ -7,11 +7,11 @@ import styles from "./Controls.module.scss";
 
 interface Props {
     count: number;
-    renderButtons: () => ReactNode;
+    renderButtons: () => React.ReactNode;
     dark?: boolean;
 }
 
-const Controls: FC<Props> = ({ count, renderButtons, dark }) => {
+const Controls = ({ count, renderButtons, dark }: Props) => {
     return (
         <div className={styles.controls}>
             <div className={styles.clicks}>

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
@@ -6,17 +6,17 @@ import { photoSelector } from "..";
 
 import styles from "./Photos.module.scss";
 
-const Photo: FC = () => {
-	const params = useParams();
-	const photos = useSelector(photoSelector);
+const Photo = () => {
+    const params = useParams();
+    const photos = useSelector(photoSelector);
 
-	const image = photos.find(img => img.id === params.id);
+    const image = photos.find(img => img.id === params.id);
 
-	return (
-		<div className={styles.imageWrapper}>
-			<img className={styles.imageStyle} src={image?.src} alt='' />
-		</div>
-	);
+    return (
+        <div className={styles.imageWrapper}>
+            <img className={styles.imageStyle} src={image?.src} alt="" />
+        </div>
+    );
 };
 
 export default Photo;

@@ -1,13 +1,9 @@
-import { FC } from "react";
+import React from "react";
 
 import classNames from "classnames";
 import styles from "./TableTitle.module.scss";
 
-type TitleProps = {
-    name?: string | null;
-};
-
-const TableTitle: FC<TitleProps> = ({ name = null }) => {
+const TableTitle = ({ name = null }: { name?: string | null }) => {
     const multiName =
         name && name.includes(",") ? (
             name.split(",").map(item => <span key={item}>{item}</span>)

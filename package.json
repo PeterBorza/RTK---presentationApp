@@ -39,7 +39,7 @@
         "bubbles": "json-server --watch data/bubbles.json --port 5010 --delay 1000",
         "utilities": "json-server --watch data/utilities.json --port 5006 --delay 1000",
         "all": "start npm run start && start npm run bubbles && start npm run utilities",
-        "startall": "concurrently \"npm run start\" \"npm run utilities\" \"npm run bubbles\""
+        "startall": "concurrently \"npm start\" \"npm run utilities\" \"npm run bubbles\""
     },
     "eslintConfig": {
         "extends": "react-app"

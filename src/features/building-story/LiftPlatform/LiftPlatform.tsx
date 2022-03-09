@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Building, BuildingMessages } from "..";
@@ -6,7 +6,7 @@ import { AsidePlatform } from "../../../shared-components";
 
 import { liftOpenSelector, toggleBuilding } from "../../../app";
 
-const LiftPlatform: FC = () => {
+const LiftPlatform = () => {
     const openSideBar = useSelector(liftOpenSelector);
     const dispatch = useDispatch();
 

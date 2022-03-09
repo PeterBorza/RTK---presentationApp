@@ -11,14 +11,14 @@ interface Props {
     direction?: Direction;
 }
 
-const LiftButton: FC<Props & ComponentProps<"button">> = ({
+const LiftButton = ({
     onClick,
     className,
     disabled,
     value,
     selected,
     direction = "static",
-}) => {
+}: Props & ComponentProps<"button">) => {
     const classes = classNames(styles.buttonStyle, className, {
         [styles.buttonStyle__active]: selected,
     });

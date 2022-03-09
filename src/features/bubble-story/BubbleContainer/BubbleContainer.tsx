@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import {
@@ -9,8 +9,10 @@ import {
     selectedBubble,
 } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
+import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { Url, Pending } from "../../../app";
 import { BubbleMessages as msg } from "../constants";
+import { starterBubble } from "../state";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
 import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "../../../shared-components";
@@ -20,10 +22,8 @@ import { bubblesOpenSelector } from "../../../app/selectors";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
-import { Bubble as BubbleType, BubbleCssProps } from "../types";
-import { starterBubble } from "../state";
 
-const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
+const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
     const { bubbles } = useSelector(bubbleState);
     const openSideBar = useSelector(bubblesOpenSelector);

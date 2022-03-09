@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import { useWindowSize } from "../../hooks";
 
 const { links: styleLinks, active, nav_container } = styles;
 
-const Navigation: FC = () => {
+const Navigation = () => {
     const { width } = useWindowSize();
     const links = useContext(LinkContext);
     const darkMode = useSelector(darkModeSelector);

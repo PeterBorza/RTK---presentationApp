@@ -1,18 +1,18 @@
-import { FC, ReactNode } from "react";
+import React from "react";
 
 import styles from "./ButtonWrapper.module.scss";
 import classNames from "classnames";
 
 type Props = {
-	renderButtons: () => ReactNode;
-	dark?: boolean;
+    renderButtons: () => React.ReactNode;
+    dark?: boolean;
 };
 
-const ButtonWrapper: FC<Props> = ({ renderButtons, dark = false }) => {
-	const buttonWrapper = classNames(styles.buttonWrapper, {
-		[styles.buttonWrapper__dark]: dark,
-	});
-	return <div className={buttonWrapper}>{renderButtons()}</div>;
+const ButtonWrapper = ({ renderButtons, dark = false }: Props) => {
+    const buttonWrapper = classNames(styles.buttonWrapper, {
+        [styles.buttonWrapper__dark]: dark,
+    });
+    return <div className={buttonWrapper}>{renderButtons()}</div>;
 };
 
 export default ButtonWrapper;
