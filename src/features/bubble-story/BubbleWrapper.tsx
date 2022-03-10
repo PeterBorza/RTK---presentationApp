@@ -7,7 +7,7 @@ import { toggleBubbles } from "../../app/appSlice";
 import { bubblesOpenSelector, darkModeSelector } from "../../app/selectors";
 import BubbleContainer from "./BubbleContainer";
 
-const BubbleWrapper: React.FC = () => {
+const BubbleWrapper = () => {
     const openSideBar = useSelector(bubblesOpenSelector);
     const darkMode = useSelector(darkModeSelector);
     const selected = useSelector(selectedBubble);

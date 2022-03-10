@@ -9,14 +9,12 @@ $front-background: rgba(255, 255, 525, 0.6);
 
 .container {
     position: relative;
-    // @include container(100%);
     width: 100%;
     height: 100%;
     @include fCenter(column);
     @include shadowSB;
     overflow: hidden;
     padding: 0.7rem;
-    flex-shrink: 1;
     &::after {
         position: absolute;
         content: "";
@@ -31,7 +29,7 @@ $front-background: rgba(255, 255, 525, 0.6);
 }
 
 .grid {
-    width: min(600px, 90%);
+    width: min(600px, 70%);
     height: max(450px, 70%);
     display: grid;
     grid-template-columns: repeat($cols, 1fr);
@@ -95,16 +93,16 @@ $front-background: rgba(255, 255, 525, 0.6);
     }
 }
 
-@media (max-width: 850px) {
-    .grid {
-        width: 370px;
-        height: 60vh;
-    }
-}
+// @media (max-width: 850px) {
+//     .grid {
+//         width: 370px;
+//         height: 60vh;
+//     }
+// }
 
-@media (max-height: 400px) {
-    .grid {
-        width: 40%;
-        height: 90%;
-    }
-}
+// @media (max-height: 400px) {
+//     .grid {
+//         width: 40%;
+//         height: 90%;
+//     }
+// }

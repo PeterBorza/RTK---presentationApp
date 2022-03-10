@@ -5,7 +5,7 @@ import Home from "../features/Home";
 import { Photos } from "../features/memoryGame-story";
 import { UtilityContainer } from "../features/Utilities";
 import { Url } from "../app/constants";
-import { ScrollPage } from "../shared-components";
+import ScrollPageContainer from "../features/scroll-pages";
 
 interface LinkProviderProps {
     children: ReactNode;
@@ -55,7 +55,7 @@ export const LinkContextProvider = ({ children }: LinkProviderProps) => {
             to: LinkUrls.SCROLL,
             label: Url.SCROLL,
             id: uuid(),
-            element: <ScrollPage />,
+            element: <ScrollPageContainer />,
         },
     ];
     return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;

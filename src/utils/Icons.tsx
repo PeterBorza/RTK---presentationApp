@@ -22,30 +22,6 @@ import { HiDotsHorizontal } from "react-icons/hi";
 
 type IconType = Record<string, JSX.Element>;
 
-// enum IconTypes {
-//     CHECK = "check",
-//     DANGER = "danger",
-//     LEFT = "left",
-//     RIGHT = "right",
-//     EDIT = "edit",
-//     BARS = "bars",
-//     EXCLAMATION = "exclamation",
-//     DOWN = "down",
-//     UP = "up",
-//     CLOSE = "close",
-//     TRASH = "trash",
-//     EDIT2 = "edit2",
-//     WINDOW_CLOSE = "windowClose",
-//     BAN = "ban",
-//     CHECKMARK = "checkMark",
-//     PRIORITY = "priority",
-//     OUTLINE_ARROW_RIGHT = "outlineArrowRight",
-//     TIMES_CIRCLE = "timesCircle",
-//     ENTER = "enter",
-//     CANCEL = "cancel",
-//     THREE_DOTS = "threeDots",
-// }
-
 export const icons: IconType = {
     check: <FaCheck />,
     danger: <CgDanger />,

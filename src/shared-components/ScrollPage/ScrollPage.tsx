@@ -1,46 +1,41 @@
-import React from "react";
-import { v4 as uuid } from "uuid";
+import React, { ReactNode, ReactPortal } from "react";
 import styles from "./ScrollPage.module.scss";
 
-export interface PagesType {
+export interface PagesType<T> {
     id: string;
     label: string | undefined;
-    content: JSX.Element;
+    content: T;
 }
 
-export interface ScrollProps {
-    pages?: PagesType[];
+type Elements = ReactNode | ReactPortal;
+
+export interface ScrollProps<T> {
+    pages?: PagesType<T>[];
 }
 
-const mockPages = ["page 1", "page 2", "page 3", "page 4", "page 5"];
-
-const articles: PagesType[] = mockPages.map(page => ({
-    id: uuid(),
-    label: page,
-    content: <div className={styles.article__default}>{page}</div>,
-}));
-
-const ScrollPage = ({ pages = articles }: ScrollProps) => {
+const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
     return (
         <section className={styles.section}>
             <aside className={styles["aside-navigation"]}>
                 <ul className={styles["link-shell"]}>
-                    {pages.map(link => (
-                        <li key={`scroll-label-${link.id}`}>
-                            <a href={`#${link.label}`}>{link.label}</a>
-                        </li>
-                    ))}
+                    {pages &&
+                        pages.map(link => (
+                            <li key={`scroll-label-${link.id}`}>
+                                <a href={`#${link.label}`}>{link.label}</a>
+                            </li>
+                        ))}
                 </ul>
             </aside>
-            {pages.map(link => (
-                <article
-                    key={`scroll-content-${link.id}`}
-                    className={styles.article}
-                    id={link.label}
-                >
-                    {link.content}
-                </article>
-            ))}
+            {pages &&
+                pages.map(link => (
+                    <article
+                        key={`scroll-content-${link.id}`}
+                        className={styles.article}
+                        id={link.label}
+                    >
+                        {link.content}
+                    </article>
+                ))}
         </section>
     );
 };

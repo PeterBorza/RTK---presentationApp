@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Bubble } from "../types";
 import { BubbleMessages as msg } from "../constants";
 
@@ -9,7 +8,7 @@ interface Props {
     isSelected: boolean;
 }
 
-const SelectedBubble: FC<Props> = ({ selectedBubble, isSelected }) => {
+const SelectedBubble = ({ selectedBubble, isSelected }: Props) => {
     return (
         <div className={styles.container}>
             {isSelected ? (

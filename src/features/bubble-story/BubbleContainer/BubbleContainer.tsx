@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     bubbleModalFormSelector,
@@ -22,7 +22,7 @@ import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
 import { ButtonProps } from "../../../shared-components/Button/Button";
 
-const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
+const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
     const { bubbles } = useSelector(bubbleState);
     const selected = useSelector(selectedBubble);
