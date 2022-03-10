@@ -12,7 +12,7 @@ export type Props = {
 
 const AsidePlatform: React.FC<Props> = ({ isOpen, children, onClose, renderSideBar, label }) => {
     const wrapper = classNames(styles.container, {
-        [styles.container__padding]: isOpen,
+        [styles["container__with-sidebar-open"]]: isOpen,
     });
 
     return (

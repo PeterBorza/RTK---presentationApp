@@ -15,7 +15,6 @@ $sidebar-width: min(250px, 30%);
 
 .article {
     width: calc(100% - $sidebar-width);
-    padding-top: $navHeight;
     margin-left: auto;
     height: 100vh;
     overflow: hidden;

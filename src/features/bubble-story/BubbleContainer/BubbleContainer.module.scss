@@ -8,11 +8,13 @@ $primary-background: rgb(180, 225, 243);
     height: 100%;
     overflow: hidden;
     background: $primary-background;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
     &__dark {
         background: none;
     }
 }
 
 .buttons {
-    @include menuButton();
+    display: flex;
+    margin-top: $navHeight;
 }

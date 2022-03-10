@@ -15,12 +15,12 @@ import BubbleForm from "../BubbleForm";
 import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "../../../shared-components";
 import { selectBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { toggleBubbles } from "../../../app/appSlice";
-
-import classNames from "classnames";
-import styles from "./BubbleContainer.module.scss";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
 import { ButtonProps } from "../../../shared-components/Button/Button";
+
+import classNames from "classnames";
+import styles from "./BubbleContainer.module.scss";
 
 const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
@@ -29,7 +29,6 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const { isLoading } = useSelector(pendingState);
     const error = useSelector(errorState);
     const dispatch = useDispatch();
-    const bubbleRef = useRef(null);
 
     const isBubbles = bubbles.length !== 0;
 
@@ -69,7 +68,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
 
     const renderButtons = () => {
         return (
-            <>
+            <span className={styles.buttons}>
                 {getButtons}
                 {isBubbles && (
                     <BubbleForm
@@ -79,7 +78,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
                         onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
                     />
                 )}
-            </>
+            </span>
         );
     };
 
@@ -91,7 +90,6 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
             selected={selected}
             cssProps={cssProps}
             id={id}
-            ref={bubbleRef}
         />
     );
 
@@ -100,9 +98,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
             <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
             <div className={wrapper}>
                 <Error message={error.message} isError={error.error} />
-                <span className={styles.buttons}>
                     <ButtonWrapper renderButtons={renderButtons} dark={dark} />
-                </span>
                 {bubbles.map(renderBubbles)}
             </div>
         </>

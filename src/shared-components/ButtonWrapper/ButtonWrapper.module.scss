@@ -2,8 +2,6 @@
 
 .container {
 	position: relative;
-	@include container(100%);
-	margin: 0;
 	z-index: 50;
 	overflow: hidden;
 	background-color: rgb(180, 225, 243);

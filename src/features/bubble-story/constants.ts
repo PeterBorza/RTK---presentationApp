@@ -14,5 +14,5 @@ export enum BubbleMessages {
 	SIZE = "Size",
 	OPACITY = "Opacity",
 	SELECT = "Select a bubble",
-	HOVER_TITLE = "Click to get more info",
+	HOVER_TITLE = "Click to change color",
 }

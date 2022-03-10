@@ -12,8 +12,8 @@ export interface DropDownProps {
 
 const SimpleDrop: FC<DropDownProps> = ({ children, title = "Click", contentStyle, height }) => {
     const [drop, setDrop] = useState<boolean>(false);
-    const headerRef = useRef(null);
-    const dropDownRef = useRef(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const dropDownRef = useRef<HTMLDivElement>(null);
 
     const handleClick = () => {
         setDrop(!drop);
