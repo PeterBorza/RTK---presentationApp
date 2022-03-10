@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { Loader } from "..";
 import styles from "./LoadingWrapper.module.scss";
 
@@ -8,7 +6,7 @@ type Props = {
     loadingMessage: string;
 };
 
-const LoadingWrapper: FC<Props> = ({ loading, loadingMessage }) => {
+const LoadingWrapper = ({ loading, loadingMessage }: Props) => {
     return loading ? (
         <div className={styles.container}>
             <div className={styles.loaderContent}>

@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import { FaBars } from "react-icons/fa";
 import { CgDanger } from "react-icons/cg";
 import { FaEdit } from "react-icons/fa";
@@ -22,7 +20,7 @@ import { CgEnter } from "react-icons/cg";
 import { GiCancel } from "react-icons/gi";
 import { HiDotsHorizontal } from "react-icons/hi";
 
-type IconType = Record<string, ReactNode>;
+type IconType = Record<string, JSX.Element>;
 
 // enum IconTypes {
 //     CHECK = "check",

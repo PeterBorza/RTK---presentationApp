@@ -1,13 +1,12 @@
-import React, { ComponentProps } from "react";
 import classNames from "classnames";
 import styles from "./TextInput.module.scss";
 
 type InputProps = Pick<
-    ComponentProps<"input">,
+    React.ComponentProps<"input">,
     "type" | "className" | "name" | "value" | "placeholder" | "title" | "onChange"
 >;
 
-const TextInput: React.FC<InputProps> = ({
+const TextInput = ({
     className,
     type = "text",
     name = "put label here",
@@ -15,7 +14,7 @@ const TextInput: React.FC<InputProps> = ({
     placeholder,
     title,
     onChange,
-}) => {
+}: InputProps) => {
     const labelClasses = classNames(styles.labelWrap, className);
 
     return (

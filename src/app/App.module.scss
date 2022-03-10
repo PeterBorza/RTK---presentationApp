@@ -9,6 +9,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
     &::-webkit-scrollbar {
         display: none;
     }

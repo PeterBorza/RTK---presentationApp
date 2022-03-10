@@ -1,0 +1,54 @@
+$iconDistanceFromContainer: 1.5rem;
+$baseColor: rgba(36, 33, 33, 0.3);
+$hoverColor: #f3ececde;
+
+.container {
+    position: relative;
+    max-width: 50%;
+    height: 450px;
+    margin: 10vh auto;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3), -3px -3px 10px rgba(247, 243, 243, 0.3);
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    &__image {
+        transform: scale(1.05);
+        width: 100%;
+    }
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &__animated_image {
+        animation: slide 200ms linear forwards;
+    }
+    // &:hover {
+    //     .nextIcon,
+    //     .prevIcon {
+    //         color: $hoverColor;
+    //     }
+    // }
+    @keyframes slide {
+        from {
+            transform: scale(1.05);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+}
+
+.prevIcon,
+.nextIcon {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    left: $iconDistanceFromContainer;
+    user-select: none;
+    transition: color 100ms ease-out;
+}
+.nextIcon {
+    left: calc(100% - 1.5rem - $iconDistanceFromContainer);
+}
