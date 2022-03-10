@@ -1,5 +1,3 @@
-import React from "react";
-
 import classNames from "classnames";
 import styles from "./CustomImage.module.scss";
 
@@ -13,7 +11,7 @@ export type ImageType = {
     direction?: AnimationDirection;
 };
 
-const CustomImage: React.FC<ImageType> = ({ src, delay, duration, spacing, direction }) => {
+const CustomImage = ({ src, delay, duration, spacing, direction }: ImageType) => {
     const imageClasses = classNames(
         styles.imageStyles,
         [styles[`imageStyles__direction-${direction}__${spacing}`]],

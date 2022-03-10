@@ -11,6 +11,7 @@
     top: 0;
     width: 100%;
     height: $navHeight;
+    z-index: 1000;
     @include gradientNav;
     &__smallScreen {
         position: fixed;

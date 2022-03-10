@@ -1,40 +1,25 @@
-import React, { FormEvent, PropsWithChildren, ReactNode } from "react";
 import { Button } from "..";
 
 import classNames from "classnames";
 import styles from "./Form.module.scss";
 
 export interface FormProps {
-    onSubmit: (e: FormEvent) => void;
+    onSubmit: (e: React.FormEvent) => void;
     onCancel: () => void;
     formTitle?: string;
     width: "small" | "medium" | "large" | "xxl";
-    renderFields: ReactNode;
+    renderFields: React.ReactNode;
 }
 
-const Form: React.FC<PropsWithChildren<FormProps>> = ({
-    onSubmit,
-    onCancel,
-    formTitle = "Form",
-    width,
-    renderFields,
-}) => {
+const Form = ({ onSubmit, onCancel, formTitle = "Form", width, renderFields }: FormProps) => {
     const formWrapper = classNames(styles.container, [styles[`${width}`]]);
     return (
         <form className={formWrapper} onSubmit={onSubmit}>
             <h2>{formTitle}</h2>
             <div className={styles.wrapper}>{renderFields}</div>
             <div className={styles.buttons}>
-                <Button
-                    type="submit"
-                    value="Submit"
-                    className={styles.submit}
-                />
-                <Button
-                    value="Cancel"
-                    onClick={onCancel}
-                    className={styles.cancel}
-                />
+                <Button type="submit" value="Submit" className={styles.submit} />
+                <Button value="Cancel" onClick={onCancel} className={styles.cancel} />
             </div>
         </form>
     );

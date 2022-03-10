@@ -283,7 +283,7 @@
       "bill": "241.38",
       "consumption": 109,
       "estimate": 242.38,
-      "payed": false,
+      "payed": true,
       "edit": false
     }
   ],

@@ -7,15 +7,13 @@ import { store } from "./app/store";
 import App from "./app/App";
 
 import Home from "./features/Home";
-import { LiftPlatform } from "./features/building-story";
-import { Bubbles } from "./features/bubble-story";
 import { utilityRoutes } from "../src/features/Utilities";
-import { routes as memoryGameRoutes } from "../src/features/memoryGame-story";
 import { LinkUrls } from "./context/link-context";
-import { ScrollPage } from "./shared-components";
+import ScrollPageContainer from "./features/scroll-pages";
+import { Photo, Photos } from "./features/memoryGame-story";
+import PhotosLandingPage from "./features/memoryGame-story/PhotosLandingPage";
 
 const utilities = utilityRoutes();
-const games = memoryGameRoutes();
 
 ReactDOM.render(
     <React.StrictMode>
@@ -25,10 +23,11 @@ ReactDOM.render(
                     <Route path={LinkUrls.HOME} element={<App />}>
                         <Route index element={<Home />} />
                         {utilities}
-                        <Route path={LinkUrls.BUILDING} element={<LiftPlatform />} />
-                        <Route path={LinkUrls.BUBBLES} element={<Bubbles />} />
-                        {games}
-                        <Route path={LinkUrls.SCROLL} element={<ScrollPage />} />
+                        <Route path={LinkUrls.PHOTOS} element={<Photos />}>
+                            <Route index element={<PhotosLandingPage />} />
+                            <Route path=":id" element={<Photo />} />
+                        </Route>
+                        <Route path={LinkUrls.SCROLL} element={<ScrollPageContainer />} />
                     </Route>
                 </Routes>
             </Provider>

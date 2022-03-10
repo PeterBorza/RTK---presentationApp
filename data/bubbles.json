@@ -51,16 +51,6 @@
       }
     },
     {
-      "id": 20,
-      "selected": false,
-      "cssProps": {
-        "left": "50%",
-        "top": "50%",
-        "size": "100px",
-        "opacity": "0.5"
-      }
-    },
-    {
       "id": 22,
       "selected": false,
       "cssProps": {

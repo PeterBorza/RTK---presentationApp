@@ -1,16 +1,12 @@
-import { FC, useRef } from "react";
+import React from "react";
 
 import classNames from "classnames";
 import styles from "./Rubik.module.scss";
 
-type RubikProps = {
-    withAnimation?: boolean;
-};
-
 const RUBIK_SIDES = 6;
 
-const Rubik: FC<RubikProps> = ({ withAnimation = false }) => {
-    const wrapper = useRef<HTMLDivElement | null>(null);
+const Rubik = ({ withAnimation = false }: { withAnimation?: boolean }) => {
+    const wrapper = React.useRef<HTMLDivElement | null>(null);
 
     const classes = classNames(styles.rubikWrapper, {
         [styles.rubikWrapper__animated]: withAnimation,

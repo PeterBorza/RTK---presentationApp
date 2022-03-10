@@ -1,10 +1,10 @@
-import { FC, useRef } from "react";
+import React from "react";
 import { useHover } from "../../hooks";
 
 import styles from "./Box.module.scss";
 
-const Box: FC = () => {
-    const hoverRef = useRef(null);
+const Box = () => {
+    const hoverRef = React.useRef(null);
     const isHover = useHover(hoverRef);
 
     return (

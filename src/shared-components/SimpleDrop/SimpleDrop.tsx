@@ -5,7 +5,6 @@ import classNames from "classnames";
 import styles from "./SimpleDrop.module.scss";
 
 export interface DropDownProps {
-    children: React.ReactNode;
     title?: string;
     contentStyle?: string | null;
     height: "small" | "medium" | "large" | "xxl";

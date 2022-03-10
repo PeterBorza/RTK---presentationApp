@@ -1,6 +1,5 @@
 import { FC, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuid } from "uuid";
 import {
     bubbleModalFormSelector,
     bubbleState,
@@ -16,17 +15,16 @@ import BubbleForm from "../BubbleForm";
 import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "../../../shared-components";
 import { selectBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { toggleBubbles } from "../../../app/appSlice";
-import { bubblesOpenSelector } from "../../../app/selectors";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
+import { ButtonProps } from "../../../shared-components/Button/Button";
 
 const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
     const { bubbles } = useSelector(bubbleState);
-    const openSideBar = useSelector(bubblesOpenSelector);
     const selected = useSelector(selectedBubble);
     const { isLoading } = useSelector(pendingState);
     const error = useSelector(errorState);
@@ -44,23 +42,14 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
         dispatch(toggleBubbles(true));
     };
 
-    const buttons = [
+    const buttons: ButtonProps[] = [
         {
-            id: uuid(),
-            onClick: () => dispatch(toggleBubbles(!openSideBar)),
-            value: msg.MENU,
-            isDisabled: !isBubbles,
-            displayed: !openSideBar && isBubbles,
-        },
-        {
-            id: uuid(),
             onClick: () => !isBubbles && dispatch(getBubbles(Url.BUBBLES)),
             value: isLoading ? <Loader dots={5} /> : msg.FETCH,
             isDisabled: isBubbles,
             displayed: !isBubbles,
         },
         {
-            id: uuid(),
             onClick: () => selected && dispatch(deleteBubble(selected.id)),
             value: msg.DELETE,
             isDisabled: !selected,
@@ -68,9 +57,9 @@ const BubbleContainer: FC<{ dark?: boolean }> = ({ dark = false }) => {
         },
     ];
 
-    const getButtons = buttons.map(item => (
+    const getButtons = buttons.map((item, idx) => (
         <Button
-            key={item.id}
+            key={`button-${idx}`}
             onClick={item.onClick}
             value={item.value}
             isDisabled={item.isDisabled}

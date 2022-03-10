@@ -27,6 +27,8 @@ import Rubik from "./Rubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
 import ScrollPage from "./ScrollPage";
+import SlideShow from "./SlideShow";
+import FloatingImage from "./FloatingImage";
 
 export {
     Loader,
@@ -60,4 +62,6 @@ export {
     Rubik,
     Box,
     ScrollPage,
+    SlideShow,
+    FloatingImage,
 };
