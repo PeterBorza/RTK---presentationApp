@@ -17,6 +17,11 @@ $xxl: 60px;
     .white-bg {
         background-color: white;
     }
+    &__collapsed {
+        &.nav_container__smallScreen {
+            height: $navHeight;
+        }
+    }
 }
 
 .header {

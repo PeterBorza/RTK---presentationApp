@@ -67,8 +67,6 @@ $minWidth: 280px;
 
 // bubbles
 
-$primary-background: rgb(180, 225, 243);
-
 @mixin gradientBubble {
     background: #36d1dc; /* fallback for old browsers */
     background: -webkit-linear-gradient(

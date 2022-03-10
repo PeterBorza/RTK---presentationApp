@@ -1,12 +1,10 @@
-import React from "react";
-
 import Navigation from "../features/Navigation";
 import { LinkContextProvider } from "../context";
 import { Outlet } from "react-router";
 
 import styles from "./App.module.scss";
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <div className={styles.container}>
             <LinkContextProvider>

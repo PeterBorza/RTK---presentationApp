@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FloatingImage, Rubik, ScrollPage } from "../../shared-components";
 import { PagesType } from "../../shared-components/ScrollPage/ScrollPage";
 import BubbleContainer from "../bubble-story/BubbleContainer";
@@ -8,9 +6,12 @@ import InputExamples from "../InputExamples";
 import { Game } from "../memoryGame-story";
 import SlideContainer from "../slide-show/SlideContainer";
 import city900 from "../../images/city900.jpg";
+import { darkModeSelector } from "../../app";
+import { useSelector } from "react-redux";
 
 const ScrollPageContainer = () => {
-    const myPages: PagesType[] = [
+    const darkMode = useSelector(darkModeSelector);
+    const myPages: PagesType<JSX.Element>[] = [
         {
             id: "inputs",
             label: "Input Examples",
@@ -29,7 +30,7 @@ const ScrollPageContainer = () => {
         {
             id: "bubbles",
             label: "Bubbles",
-            content: <BubbleContainer />,
+            content: <BubbleContainer dark={darkMode} />,
         },
         {
             id: "lift",

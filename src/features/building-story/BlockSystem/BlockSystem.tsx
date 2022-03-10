@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { LiftName } from "../state";
 import { levelsSelector, levelsState, liftsState, speedState } from "../selectors";
 import { setActive, changePosition, moveLift, setDirection } from "../liftSlice";
@@ -11,7 +11,7 @@ import styles from "./BlockSystem.module.scss";
 
 type LevelCount = number;
 
-const BlockSystem: FC = () => {
+const BlockSystem = () => {
     const numberOfLevels = useSelector(levelsState);
     const [liftA, liftB] = useSelector(liftsState);
     const levels = useSelector(levelsSelector);

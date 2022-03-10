@@ -14,9 +14,11 @@ const SimpleDrop: FC<DropDownProps> = ({ children, title = "Click", contentStyle
     const [drop, setDrop] = useState<boolean>(false);
     const headerRef = useRef(null);
     const dropDownRef = useRef(null);
+
     const handleClick = () => {
         setDrop(!drop);
     };
+
     useOnClickOutside(headerRef, () => setDrop(false));
     const classes = classNames(
         styles.content,
@@ -30,8 +32,12 @@ const SimpleDrop: FC<DropDownProps> = ({ children, title = "Click", contentStyle
 
     const headerClasses = classNames(styles.header, [styles[height]]);
 
+    const containerClasses = classNames(styles["dropdown-container"], {
+        [styles["dropdown-container__collapsed"]]: !drop,
+    });
+
     return (
-        <div className={styles["dropdown-container"]} ref={dropDownRef}>
+        <div className={containerClasses} ref={dropDownRef}>
             <div className={headerClasses} onClick={handleClick} ref={headerRef}>
                 <h3>{title}</h3>
             </div>
