@@ -145,6 +145,13 @@
     }
 }
 
+@mixin shadow3 {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    &:hover {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
 @mixin noVisibleScrollBar {
     &::-webkit-scrollbar {
         display: none;

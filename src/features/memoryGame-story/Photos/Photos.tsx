@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { photoSelector } from "..";
@@ -10,7 +8,7 @@ import { MemoryGameMessages as messages } from "../messages";
 
 import styles from "./Photos.module.scss";
 
-const Photos: FC = () => {
+const Photos = () => {
     const dispatch = useDispatch();
     const photos = useSelector(photoSelector);
     const openSideBar = useSelector(photosOpenSelector);
@@ -21,9 +19,7 @@ const Photos: FC = () => {
         </Link>
     ));
 
-    const sideBarContent = () => (
-        <div className={styles.linkWrapper}>{renderLinks}</div>
-    );
+    const sideBarContent = () => <div className={styles.linkWrapper}>{renderLinks}</div>;
 
     const openMenu = () => {
         dispatch(togglePhotos(true));
