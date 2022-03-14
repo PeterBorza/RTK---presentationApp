@@ -1,4 +1,4 @@
-import { FloatingImage, Rubik, ScrollPage } from "../../shared-components";
+import { FloatingImage, MyRubik, ScrollPage } from "../../shared-components";
 import { PagesType } from "../../shared-components/ScrollPage/ScrollPage";
 import BubbleContainer from "../bubble-story/BubbleContainer";
 import { Building } from "../building-story";
@@ -20,7 +20,7 @@ const ScrollPageContainer = () => {
         {
             id: "rubik",
             label: "Rubik",
-            content: <Rubik withAnimation />,
+            content: <MyRubik withAnimation />,
         },
         {
             id: "game",

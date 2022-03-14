@@ -24,6 +24,7 @@ import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
+import MyRubik from "./GenericRubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
 import ScrollPage from "./ScrollPage";
@@ -60,6 +61,7 @@ export {
     LoadingWrapper,
     ButtonWrapper,
     Rubik,
+    MyRubik,
     Box,
     ScrollPage,
     SlideShow,
