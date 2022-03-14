@@ -3,23 +3,33 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Rubik.module.scss";
 
-const RUBIK_SIDES = 6;
+export type RubikSideType = {
+    id: number;
+    content: (id: number) => React.ReactNode;
+};
 
-const Rubik = ({ withAnimation = false }: { withAnimation?: boolean }) => {
+export type RubikType = {
+    withAnimation?: boolean;
+    sides: RubikSideType[];
+};
+
+const Rubik: React.FC<RubikType> = ({ withAnimation = false, sides }) => {
     const wrapper = React.useRef<HTMLDivElement | null>(null);
 
     const classes = classNames(styles.rubikWrapper, {
         [styles.rubikWrapper__animated]: withAnimation,
     });
 
-    const sides = Array(RUBIK_SIDES)
-        .fill(null)
-        .map((_, i) => <div key={`side${i}`} className={styles.rubikSide} />);
+    const renderSides = sides.map(({ id, content }) => (
+        <div key={`rubik-side-${id}`} className={styles.rubikSide}>
+            {content(id)}
+        </div>
+    ));
 
     return (
         <div className={styles.rubikContainer}>
             <div ref={wrapper} className={classes}>
-                {sides}
+                {renderSides}
             </div>
         </div>
     );
