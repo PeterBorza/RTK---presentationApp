@@ -19,11 +19,23 @@ import rd6900 from "../images/rd-6-900.jpg";
 
 import { generateId } from ".";
 
-export const myImages = () => {
-    return [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
-};
+export type ImageType = string | undefined;
 
-export const rainPhotos: string[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
+export const myImages: ImageType[] = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+];
+
+export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
 
 export type ImageDataType = {
     id: string;

@@ -9,15 +9,5 @@
     background-color: darkgray;
     overflow: hidden;
     @include centered;
-}
-
-.dropHolder {
-    width: 100%;
-    height: 20vh;
-}
-
-.rubikSideImage {
-    object-fit: fill;
-    max-width: 100%;
-    height: 100%;
+    @include fBetween();
 }
