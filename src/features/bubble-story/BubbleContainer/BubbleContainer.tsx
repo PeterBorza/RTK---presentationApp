@@ -95,10 +95,10 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
 
     return (
         <>
-            <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
             <div className={wrapper}>
+                <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
                 <Error message={error.message} isError={error.error} />
-                    <ButtonWrapper renderButtons={renderButtons} dark={dark} />
+                <ButtonWrapper renderButtons={renderButtons} dark={dark} />
                 {bubbles.map(renderBubbles)}
             </div>
         </>

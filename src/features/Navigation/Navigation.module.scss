@@ -18,6 +18,9 @@
     z-index: 1000;
     padding-left: $SBsize;
     @include gradientNav(180deg);
+    &__sidebar-closed {
+        padding-left: 0;
+    }
 }
 
 .links {

@@ -15,12 +15,10 @@ $sidebar-width: min(250px, 30%);
 
 .article {
     width: calc(100% - $sidebar-width);
+    padding-top: clamp($navHeight, 1vw, 20px);
     margin-left: auto;
     height: 100vh;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     &__default {
         width: 100%;
         height: 100%;

@@ -21,6 +21,7 @@ import Controls from "../Controls";
 
 import classNames from "classnames";
 import styles from "./Game.module.scss";
+import { useWindowSize } from "../../../hooks";
 
 type ImageSource = string;
 
@@ -31,6 +32,15 @@ const Game = () => {
     const matchCards = useSelector(matchCardsSelector);
     const count = useSelector(clickCountSelector);
     const darkMode = useSelector(darkModeSelector);
+    const { width } = useWindowSize();
+
+    const SMALL_PORTRAIT_SCREEN = width < 400;
+    const SMALL_LANDSCAPE_SCREEN = width < 800 && width > 400;
+
+    const gridClasses = classNames(styles.grid, {
+        [styles["grid__portrait"]]: SMALL_PORTRAIT_SCREEN,
+        [styles["grid__landscape"]]: SMALL_LANDSCAPE_SCREEN,
+    });
 
     const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
         classNames(styles.box, {
@@ -121,7 +131,7 @@ const Game = () => {
             {!finishedGame ? (
                 <>
                     <Controls count={count} renderButtons={renderGameButtons} dark={darkMode} />
-                    <div className={styles.grid}>{renderGridTable}</div>
+                    <div className={gridClasses}>{renderGridTable}</div>
                 </>
             ) : (
                 <GameEnd

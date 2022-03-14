@@ -24,7 +24,7 @@ const Navigation = () => {
         });
 
     const containerClasses = classNames(styles.nav_container, {
-        // [styles["nav_container__sidebar-open"]]: utilsOpen || photosOpen,
+        [styles["nav_container__sidebar-closed"]]: !utilsOpen || !photosOpen,
     });
 
     const renderBody = links?.map(item => (
