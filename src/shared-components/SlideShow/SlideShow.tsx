@@ -4,9 +4,10 @@ import classNames from "classnames";
 
 import { icons } from "../../utils";
 import { CustomIcon } from "..";
+import { ImageType } from "../../utils/my-images";
 
 export type SlideShowType = {
-    slides: string[];
+    slides: ImageType[];
 };
 
 const SlideShow = ({ slides }: SlideShowType): JSX.Element | null => {

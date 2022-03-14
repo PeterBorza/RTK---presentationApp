@@ -1,25 +1,26 @@
+import { useWindowSize } from "../../hooks";
 import { Rubik } from "../../shared-components";
-import { RubikSideType } from "../../shared-components/Rubik/Rubik";
-import { rainPhotos } from "../../utils/my-images";
+import { myImages, rainPhotos } from "../../utils/my-images";
 
+import classNames from "classnames";
 import styles from "./Home.module.scss";
-import { myImages } from "../../utils";
 
 const Home = () => {
-    const imgs: string[] = myImages().slice(0, 6);
+    const imgs = myImages.slice(0, 6);
+    const { width } = useWindowSize();
+    const SMALL_SCREEN = width < 600;
+    const SMALL_SIZE = width < 700;
 
-    const mapRender = (rubikImages: string[]): RubikSideType[] => {
-        return rubikImages.map((source, idx) => ({
-            id: idx + 1,
-            content: <img className={styles.rubikSideImage} src={source} alt={`side-${idx + 1}`} />,
-        }));
-    };
+    const containerClasses = classNames(styles.container, {
+        [styles["container__small"]]: SMALL_SCREEN,
+    });
+
+    const responsiveSize = SMALL_SIZE ? 80 : 150;
 
     return (
-        <div className={styles.container}>
-            <Rubik sides={mapRender(imgs)} withAnimation="rollX" size={30}></Rubik>
-            <Rubik sides={mapRender(rainPhotos)} withAnimation="roll-both" size={100}></Rubik>
-            <Rubik sides={mapRender(rainPhotos)} withAnimation="animate-2" size={120}></Rubik>
+        <div className={containerClasses}>
+            <Rubik sides={imgs} withAnimation="roll-both" size={responsiveSize}></Rubik>
+            <Rubik sides={rainPhotos} withAnimation="still" size={responsiveSize}></Rubik>
         </div>
     );
 };
