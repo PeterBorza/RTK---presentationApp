@@ -1,6 +1,6 @@
-@use "../../css/my_app" as *;
-@use "../../css/mixins" as *;
-@use "../../css/variables" as *;
+@use "../../css/my_app.scss" as *;
+
+$SBtransition: all 200ms ease;
 
 .layout {
 	position: relative;
@@ -8,8 +8,11 @@
 }
 .container {
 	position: relative;
-	margin: 0;
-	@include container(100%);
+	width: 100%;
+	height: calc(100% - $navHeight);
 	overflow: hidden;
-	background-color: rgb(180, 225, 243);
+	&__with-sidebar-open {
+        padding-left: $SBsize;
+    }
+    transition: $SBtransition;
 }
