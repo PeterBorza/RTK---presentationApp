@@ -1,5 +1,6 @@
 import React, { ReactNode, ReactPortal } from "react";
 import styles from "./ScrollPage.module.scss";
+import { HashLink } from "react-router-hash-link";
 
 export interface PagesType<T> {
     id: string;
@@ -21,7 +22,9 @@ const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
                     {pages &&
                         pages.map(link => (
                             <li key={`scroll-label-${link.id}`}>
-                                <a href={`#${link.label}`}>{link.label}</a>
+                                <HashLink smooth to={`/scroll#${link.label}`}>
+                                    {link.label}
+                                </HashLink>
                             </li>
                         ))}
                 </ul>
