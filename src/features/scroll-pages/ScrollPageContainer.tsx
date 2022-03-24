@@ -5,6 +5,7 @@ import { Building } from "../building-story";
 import InputExamples from "../InputExamples";
 import { Game } from "../memoryGame-story";
 import SlideContainer from "../slide-show/SlideContainer";
+import ImageBox from "../image-box";
 import city900 from "../../images/city900.jpg";
 import { darkModeSelector } from "../../app";
 import { useSelector } from "react-redux";
@@ -45,6 +46,11 @@ const ScrollPageContainer = () => {
             id: "slide",
             label: "SlideShow",
             content: <SlideContainer />,
+        },
+        {
+            id: "images",
+            label: "Images",
+            content: <ImageBox />,
         },
     ];
     return <ScrollPage pages={myPages} />;
