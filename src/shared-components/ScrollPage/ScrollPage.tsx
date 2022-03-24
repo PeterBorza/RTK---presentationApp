@@ -10,7 +10,7 @@ export interface PagesType<T> {
 type Elements = ReactNode | ReactPortal;
 
 export interface ScrollProps<T> {
-    pages?: PagesType<T>[];
+    pages: PagesType<T>[] | null;
 }
 
 const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
@@ -18,24 +18,26 @@ const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
         <section className={styles.section}>
             <aside className={styles["aside-navigation"]}>
                 <ul className={styles["link-shell"]}>
-                    {pages &&
-                        pages.map(link => (
-                            <li key={`scroll-label-${link.id}`}>
-                                <a href={`#${link.label}`}>{link.label}</a>
-                            </li>
-                        ))}
+                    {pages
+                        ? pages.map(link => (
+                              <li key={`scroll-label-${link.id}`}>
+                                  <a href={`#${link.label}`}>{link.label}</a>
+                              </li>
+                          ))
+                        : null}
                 </ul>
             </aside>
-            {pages &&
-                pages.map(link => (
-                    <article
-                        key={`scroll-content-${link.id}`}
-                        className={styles.article}
-                        id={link.label}
-                    >
-                        {link.content}
-                    </article>
-                ))}
+            {pages
+                ? pages.map(link => (
+                      <article
+                          key={`scroll-content-${link.id}`}
+                          className={styles.article}
+                          id={link.label}
+                      >
+                          {link.content}
+                      </article>
+                  ))
+                : null}
         </section>
     );
 };

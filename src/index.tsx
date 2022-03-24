@@ -12,6 +12,7 @@ import { LinkUrls } from "./context/link-context";
 import ScrollPageContainer from "./features/scroll-pages";
 import { Photo, Photos } from "./features/memoryGame-story";
 import PhotosLandingPage from "./features/memoryGame-story/PhotosLandingPage";
+import { PagesContextProvider } from "./context/pages-context";
 
 const utilities = utilityRoutes();
 
@@ -19,17 +20,19 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <Routes>
-                    <Route path={LinkUrls.HOME} element={<App />}>
-                        <Route index element={<Home />} />
-                        {utilities}
-                        <Route path={LinkUrls.PHOTOS} element={<Photos />}>
-                            <Route index element={<PhotosLandingPage />} />
-                            <Route path=":id" element={<Photo />} />
+                <PagesContextProvider>
+                    <Routes>
+                        <Route path={LinkUrls.HOME} element={<App />}>
+                            <Route index element={<Home />} />
+                            {utilities}
+                            <Route path={LinkUrls.PHOTOS} element={<Photos />}>
+                                <Route index element={<PhotosLandingPage />} />
+                                <Route path=":id" element={<Photo />} />
+                            </Route>
+                            <Route path={LinkUrls.SCROLL} element={<ScrollPageContainer />} />
                         </Route>
-                        <Route path={LinkUrls.SCROLL} element={<ScrollPageContainer />} />
-                    </Route>
-                </Routes>
+                    </Routes>
+                </PagesContextProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,
