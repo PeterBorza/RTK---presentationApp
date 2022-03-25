@@ -1,5 +1,4 @@
 import React, { ReactNode, ReactPortal } from "react";
-import { HashLink } from "react-router-hash-link";
 import styles from "./ScrollPage.module.scss";
 import { HashLink } from "react-router-hash-link";
 
