@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./ErrorMessage.module.scss";
 
 interface ErrorProps {

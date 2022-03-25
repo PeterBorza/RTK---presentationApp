@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import styles from "./CheckBox.module.scss";
 
 interface CheckBoxProps {
@@ -7,7 +6,7 @@ interface CheckBoxProps {
     label: string;
     value: string | number;
     isChecked: boolean;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CheckBox = ({ id, name, label, onChange, value, isChecked }: CheckBoxProps) => {

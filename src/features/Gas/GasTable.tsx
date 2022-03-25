@@ -14,7 +14,6 @@ import {
     UtilityTable,
     TotalPayedInfo,
     UtilityCard,
-    TableTitle,
     titleStyle,
 } from "../Utilities";
 import {
@@ -68,34 +67,29 @@ const GasTable = () => {
     });
 
     return (
-        <>
-            <UtilityTable dark={darkMode}>
-                <UtilityTable.Header>
-                    <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
-                    <UtilitiesForm
-                        postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
-                        formValues={initialFormValues}
-                        utilityUnits={units}
-                    />
-                </UtilityTable.Header>
-                <UtilityTable.Body>
-                    <Error message={error} isError={!!error} />
-                    <Table
-                        renderHeader={() =>
-                            Object.values(UtilityLabels).map(item => (
-                                <TableTitle key={item} name={item} />
-                            ))
-                        }
-                        renderBody={() => isUnits && renderGasTableItems}
-                        onClickOutside={() => dispatch(resetSelected())}
-                        loading={loading.isLoading}
-                    />
-                </UtilityTable.Body>
-                <UtilityTable.Footer>
-                    <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
-                </UtilityTable.Footer>
-            </UtilityTable>
-        </>
+        <UtilityTable dark={darkMode}>
+            <UtilityTable.Header>
+                <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
+                <UtilitiesForm
+                    postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
+                    formValues={initialFormValues}
+                    utilityUnits={units}
+                />
+            </UtilityTable.Header>
+            <UtilityTable.Body>
+                <Error message={error} isError={!!error} />
+                <Table
+                    headers={Object.values(UtilityLabels)}
+                    onClickOutside={() => dispatch(resetSelected())}
+                    loading={loading.isLoading}
+                >
+                    {isUnits && renderGasTableItems}
+                </Table>
+            </UtilityTable.Body>
+            <UtilityTable.Footer>
+                <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+            </UtilityTable.Footer>
+        </UtilityTable>
     );
 };
 

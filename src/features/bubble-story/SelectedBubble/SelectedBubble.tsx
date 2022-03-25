@@ -1,4 +1,3 @@
-import React from "react";
 import { Bubble } from "../types";
 import { BubbleMessages as msg } from "../constants";
 

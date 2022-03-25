@@ -3,7 +3,7 @@ import { ComponentProps, ReactNode } from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
-type Props = {
+export type ButtonProps = {
     value?: string | ReactNode;
     className?: string;
     isDisabled?: boolean;
@@ -19,7 +19,7 @@ const Button = ({
     isDisabled,
     dark,
     displayed = true,
-}: Props) => {
+}: ButtonProps) => {
     const classes = classNames(styles.defaultStyle, className, {
         [styles.defaultStyle__disabled]: isDisabled,
         [styles.defaultStyle__dark]: dark,

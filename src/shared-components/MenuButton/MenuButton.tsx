@@ -1,5 +1,3 @@
-import { ComponentProps } from "react";
-
 import styles from "./MenuButton.module.scss";
 import classNames from "classnames";
 import { FaBars } from "react-icons/fa";
@@ -7,7 +5,7 @@ import { FaBars } from "react-icons/fa";
 type Props = {
     value?: string;
     isDisabled?: boolean;
-} & Pick<ComponentProps<"button">, "type" | "onClick" | "className">;
+} & Pick<React.ComponentProps<"button">, "type" | "onClick" | "className">;
 
 const MenuButton = ({
     value = "Click",

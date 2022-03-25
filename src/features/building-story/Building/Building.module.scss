@@ -1,27 +1,11 @@
 @use "../../../css/my_app" as *;
 
 .container {
-    @include container(100%);
+    width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    &::before {
-        position: absolute;
-        content: "";
-        inset: 0;
-        width: 110%;
-        background: white url(../../../images/city900.jpg) no-repeat center/cover;
-        transform: translateX(-10%);
-        animation: floatingCity 13000ms alternate-reverse forwards infinite ease-in-out;
-    }
-    @keyframes floatingCity {
-        0% {
-            transform: translateX(-10%) scale(1.03);
-        }
-        100% {
-            transform: translateX(0%) scale(1.08);
-        }
-    }
 }
 
 .systemContainer {

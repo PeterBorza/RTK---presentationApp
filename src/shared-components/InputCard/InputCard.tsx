@@ -1,5 +1,3 @@
-import React from "react";
-
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
 import classNames from "classnames";

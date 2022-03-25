@@ -1,15 +1,20 @@
-import { ComponentProps, FC } from "react";
-
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { Direction } from "..";
 
 import classNames from "classnames";
 import styles from "./LiftButton.module.scss";
-
+import { IconType } from "react-icons";
+import React from "react";
 interface Props {
     selected: boolean;
     direction?: Direction;
 }
+
+type directionType = {
+    down: IconType;
+    up: IconType;
+    static: Pick<React.ComponentProps<"button">, "value">;
+};
 
 const LiftButton = ({
     onClick,
@@ -18,15 +23,15 @@ const LiftButton = ({
     value,
     selected,
     direction = "static",
-}: Props & ComponentProps<"button">) => {
+}: Props & React.ComponentProps<"button">) => {
     const classes = classNames(styles.buttonStyle, className, {
         [styles.buttonStyle__active]: selected,
     });
 
-    const directionIcons = {
-        down: <FaArrowDown />,
-        up: <FaArrowUp />,
-        static: value,
+    const directionIcons: directionType = {
+        down: () => <FaArrowDown />,
+        up: () => <FaArrowUp />,
+        static: value as Pick<React.ComponentProps<"button">, "value">,
     };
 
     return (

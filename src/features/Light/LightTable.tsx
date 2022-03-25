@@ -12,7 +12,6 @@ import {
     EditCard,
     UtilityTable,
     UtilityCard,
-    TableTitle,
     titleStyle,
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
@@ -68,35 +67,29 @@ const LightTable = () => {
     });
 
     return (
-        <>
-            <Error message={error} isError={!!error} />
-
-            <UtilityTable dark={darkMode}>
-                <UtilityTable.Header>
-                    <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
-                    <UtilitiesForm
-                        postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
-                        formValues={initialFormValues}
-                        utilityUnits={units}
-                    />
-                </UtilityTable.Header>
-                <UtilityTable.Body>
-                    <Table
-                        renderHeader={() =>
-                            Object.values(UtilityLabels).map(item => (
-                                <TableTitle key={item} name={item} />
-                            ))
-                        }
-                        renderBody={() => isUnits && renderLightTableItems}
-                        onClickOutside={() => dispatch(resetSelected())}
-                        loading={loading.isLoading}
-                    />
-                </UtilityTable.Body>
-                <UtilityTable.Footer>
-                    <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
-                </UtilityTable.Footer>
-            </UtilityTable>
-        </>
+        <UtilityTable dark={darkMode}>
+            <UtilityTable.Header>
+                <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
+                <UtilitiesForm
+                    postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
+                    formValues={initialFormValues}
+                    utilityUnits={units}
+                />
+            </UtilityTable.Header>
+            <UtilityTable.Body>
+                <Error message={error} isError={!!error} />
+                <Table
+                    headers={Object.values(UtilityLabels)}
+                    onClickOutside={() => dispatch(resetSelected())}
+                    loading={loading.isLoading}
+                >
+                    {isUnits && renderLightTableItems}
+                </Table>
+            </UtilityTable.Body>
+            <UtilityTable.Footer>
+                <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+            </UtilityTable.Footer>
+        </UtilityTable>
     );
 };
 

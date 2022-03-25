@@ -1,12 +1,10 @@
-import React from "react";
-
 import classNames from "classnames";
 import styles from "./CustomIcon.module.scss";
 
 export type IconProps = {
     onClick?: () => void | undefined;
     title: string;
-    icon: React.ReactNode;
+    icon: JSX.Element;
 };
 
 const CustomIcon = ({ onClick, title, icon }: IconProps) => {

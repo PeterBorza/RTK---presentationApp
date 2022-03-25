@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, FormEvent } from "react";
+import { ReactNode, useState, FormEvent } from "react";
 import { Form } from ".";
 import { Button, FadedModal } from "..";
 export interface FormWrapProps {
@@ -10,14 +10,14 @@ export interface FormWrapProps {
     formTitle?: string;
 }
 
-const ModalForm: React.FC<FormWrapProps> = ({
+const ModalForm = ({
     formWidth,
     renderFields,
     onSubmit,
     onCancel,
     buttonLabel = "FORM",
     formTitle,
-}) => {
+}: FormWrapProps) => {
     const [openModal, setIsOpenModal] = useState(false);
 
     const onCancelHandler = () => {

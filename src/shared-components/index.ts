@@ -20,13 +20,17 @@ import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
 import FlipBox from "./FlipBox";
 import FlipCard from "./FlipCard";
+import ImageCard from "./ImageCard";
 import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
+import MyRubik from "./GenericRubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
 import ScrollPage from "./ScrollPage";
+import SlideShow from "./SlideShow";
+import FloatingImage from "./FloatingImage";
 
 export {
     Loader,
@@ -55,9 +59,13 @@ export {
     ToggleButton,
     FlipBox,
     FlipCard,
+    ImageCard,
     LoadingWrapper,
     ButtonWrapper,
     Rubik,
+    MyRubik,
     Box,
     ScrollPage,
+    SlideShow,
+    FloatingImage,
 };

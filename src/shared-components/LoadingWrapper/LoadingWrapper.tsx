@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Loader } from "..";
 import styles from "./LoadingWrapper.module.scss";
 

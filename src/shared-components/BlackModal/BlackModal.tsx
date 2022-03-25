@@ -1,8 +1,6 @@
-import { ReactNode } from "react";
-
 import styles from "./BlackModal.module.scss";
 export interface BlackModalProps {
-    renderFields: () => ReactNode;
+    renderFields: () => React.ReactNode;
 }
 
 const BlackModal = ({ renderFields }: BlackModalProps) => {

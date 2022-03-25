@@ -4,7 +4,9 @@
 
 .container {
 	position: relative;
-	@include container(100%);
+	// @include container(100%);
+	width: 100%;
+	height: 100vh;
 	@include fEven(column);
 	@include before("../images/contor_gaz.jpg");
 }

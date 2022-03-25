@@ -1,11 +1,10 @@
-import { ChangeEvent } from "react";
 import styles from "./Select.module.scss";
 
 interface Props {
     options: string[];
     name: string;
     label: string;
-    onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const Select = ({ options, name, label, onChange }: Props) => {

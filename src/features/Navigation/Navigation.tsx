@@ -2,30 +2,30 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { NavBar, SimpleDrop, ToggleButton } from "../../shared-components";
+import { NavBar, ToggleButton } from "../../shared-components";
 import { LinkContext } from "../../context";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
-import { darkModeSelector, toggleDarkMode } from "../../app";
-import { useWindowSize } from "../../hooks";
+import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "../../app";
 
-const { links: styleLinks, active, nav_container } = styles;
+const { links: styleLinks, active } = styles;
 
 const Navigation = () => {
-    const { width } = useWindowSize();
     const links = useContext(LinkContext);
+    const utilsOpen = useSelector(utilsOpenSelector);
+    const photosOpen = useSelector(photosOpenSelector);
     const darkMode = useSelector(darkModeSelector);
     const dispatch = useDispatch();
-
-    const SMALL_SCREEN = width < 600;
 
     const linkClasses = (isActive: boolean) =>
         classNames(styleLinks, {
             [active]: isActive,
         });
 
-    const navClass = classNames(SMALL_SCREEN ? styles.nav_container__smallScreen : nav_container);
+    const containerClasses = classNames(styles.nav_container, {
+        [styles["nav_container__sidebar-closed"]]: !utilsOpen || !photosOpen,
+    });
 
     const renderBody = links?.map(item => (
         <li key={item.id}>
@@ -35,26 +35,16 @@ const Navigation = () => {
         </li>
     ));
 
-    const renderNavBar = (vertical: boolean) => (
-        <>
-            <NavBar vertical={vertical}>{renderBody}</NavBar>
-            <ToggleButton
-                selected={darkMode}
-                toggleSelected={() => dispatch(toggleDarkMode(!darkMode))}
-                size="large"
-            />
-        </>
-    );
-
     return (
-        <div className={navClass}>
-            {!SMALL_SCREEN ? (
-                renderNavBar(false)
-            ) : (
-                <SimpleDrop title="Menu" height="large" contentStyle={styles.navBarDrop}>
-                    {renderNavBar(true)}
-                </SimpleDrop>
-            )}
+        <div className={containerClasses}>
+            <NavBar>
+                {renderBody}
+                <ToggleButton
+                    selected={darkMode}
+                    toggleSelected={() => dispatch(toggleDarkMode(!darkMode))}
+                    size="large"
+                />
+            </NavBar>
         </div>
     );
 };

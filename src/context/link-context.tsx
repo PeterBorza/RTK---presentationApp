@@ -2,12 +2,10 @@ import { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
 import Home from "../features/Home";
-import { Bubbles } from "../features/bubble-story";
-import { Photos, Game } from "../features/memoryGame-story";
-import { Building } from "../features/building-story";
+import { Photos } from "../features/memoryGame-story";
 import { UtilityContainer } from "../features/Utilities";
 import { Url } from "../app/constants";
-import { ScrollPage } from "../shared-components";
+import ScrollPageContainer from "../features/scroll-pages";
 
 interface LinkProviderProps {
     children: ReactNode;
@@ -48,34 +46,16 @@ export const LinkContextProvider = ({ children }: LinkProviderProps) => {
             element: <UtilityContainer />,
         },
         {
-            to: LinkUrls.BUILDING,
-            label: Url.BUILDING,
-            id: uuid(),
-            element: <Building />,
-        },
-        {
-            to: LinkUrls.BUBBLES,
-            label: Url.BUBBLES,
-            id: uuid(),
-            element: <Bubbles />,
-        },
-        {
             to: LinkUrls.PHOTOS,
             label: Url.PHOTOS,
             id: uuid(),
             element: <Photos />,
         },
         {
-            to: LinkUrls.GAME,
-            label: Url.GAME,
-            id: uuid(),
-            element: <Game />,
-        },
-        {
             to: LinkUrls.SCROLL,
             label: Url.SCROLL,
             id: uuid(),
-            element: <ScrollPage />,
+            element: <ScrollPageContainer />,
         },
     ];
     return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;

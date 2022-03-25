@@ -1,8 +1,6 @@
-import { ComponentProps } from "react";
-
 import styles from "./CustomInput.module.scss";
 
-type InputProps = ComponentProps<"input">;
+type InputProps = React.ComponentProps<"input">;
 
 const CustomInput = ({ name, onChange, value }: InputProps) => {
     return (

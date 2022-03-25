@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import { FaBars } from "react-icons/fa";
 import { CgDanger } from "react-icons/cg";
 import { FaEdit } from "react-icons/fa";
@@ -22,31 +20,7 @@ import { CgEnter } from "react-icons/cg";
 import { GiCancel } from "react-icons/gi";
 import { HiDotsHorizontal } from "react-icons/hi";
 
-type IconType = Record<string, ReactNode>;
-
-// enum IconTypes {
-//     CHECK = "check",
-//     DANGER = "danger",
-//     LEFT = "left",
-//     RIGHT = "right",
-//     EDIT = "edit",
-//     BARS = "bars",
-//     EXCLAMATION = "exclamation",
-//     DOWN = "down",
-//     UP = "up",
-//     CLOSE = "close",
-//     TRASH = "trash",
-//     EDIT2 = "edit2",
-//     WINDOW_CLOSE = "windowClose",
-//     BAN = "ban",
-//     CHECKMARK = "checkMark",
-//     PRIORITY = "priority",
-//     OUTLINE_ARROW_RIGHT = "outlineArrowRight",
-//     TIMES_CIRCLE = "timesCircle",
-//     ENTER = "enter",
-//     CANCEL = "cancel",
-//     THREE_DOTS = "threeDots",
-// }
+type IconType = Record<string, JSX.Element>;
 
 export const icons: IconType = {
     check: <FaCheck />,

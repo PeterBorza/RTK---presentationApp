@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuid } from "uuid";
 import {
     bubbleModalFormSelector,
     bubbleState,
@@ -18,7 +17,7 @@ import BubbleForm from "../BubbleForm";
 import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "../../../shared-components";
 import { selectBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { toggleBubbles } from "../../../app/appSlice";
-import { bubblesOpenSelector } from "../../../app/selectors";
+import { ButtonProps } from "../../../shared-components/Button/Button";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
@@ -26,12 +25,10 @@ import styles from "./BubbleContainer.module.scss";
 const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
     const { bubbles } = useSelector(bubbleState);
-    const openSideBar = useSelector(bubblesOpenSelector);
     const selected = useSelector(selectedBubble);
     const { isLoading } = useSelector(pendingState);
     const error = useSelector(errorState);
     const dispatch = useDispatch();
-    const bubbleRef = useRef(null);
 
     const isBubbles = bubbles.length !== 0;
 
@@ -44,23 +41,14 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
         dispatch(toggleBubbles(true));
     };
 
-    const buttons = [
+    const buttons: ButtonProps[] = [
         {
-            id: uuid(),
-            onClick: () => dispatch(toggleBubbles(!openSideBar)),
-            value: msg.MENU,
-            isDisabled: !isBubbles,
-            displayed: !openSideBar && isBubbles,
-        },
-        {
-            id: uuid(),
             onClick: () => !isBubbles && dispatch(getBubbles(Url.BUBBLES)),
             value: isLoading ? <Loader dots={5} /> : msg.FETCH,
             isDisabled: isBubbles,
             displayed: !isBubbles,
         },
         {
-            id: uuid(),
             onClick: () => selected && dispatch(deleteBubble(selected.id)),
             value: msg.DELETE,
             isDisabled: !selected,
@@ -68,9 +56,9 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
         },
     ];
 
-    const getButtons = buttons.map(item => (
+    const getButtons = buttons.map((item, idx) => (
         <Button
-            key={item.id}
+            key={`button-${idx}`}
             onClick={item.onClick}
             value={item.value}
             isDisabled={item.isDisabled}
@@ -80,7 +68,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
 
     const renderButtons = () => {
         return (
-            <>
+            <span className={styles.buttons}>
                 {getButtons}
                 {isBubbles && (
                     <BubbleForm
@@ -90,7 +78,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
                         onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
                     />
                 )}
-            </>
+            </span>
         );
     };
 
@@ -102,18 +90,15 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
             selected={selected}
             cssProps={cssProps}
             id={id}
-            ref={bubbleRef}
         />
     );
 
     return (
         <>
-            <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
             <div className={wrapper}>
+                <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
                 <Error message={error.message} isError={error.error} />
-                <span className={styles.buttons}>
-                    <ButtonWrapper renderButtons={renderButtons} dark={dark} />
-                </span>
+                <ButtonWrapper renderButtons={renderButtons} dark={dark} />
                 {bubbles.map(renderBubbles)}
             </div>
         </>

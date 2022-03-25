@@ -1,11 +1,11 @@
-$navHeight: 35px;
+$navHeight: 50px;
 $containerHeight: calc(100vh - $navHeight);
 
 $navPrimaryBG: rgba(47, 49, 49, 0.6);
 $appBlack: rgb(24, 23, 23);
 $appYellow: rgb(255, 198, 0);
 
-$SBsize: 200px;
+$SBsize: max(10%, 150px);
 $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
 $SBtransition: all 200ms ease;
 $SBhoverColor: rgb(134, 124, 124);
@@ -61,13 +61,7 @@ $minWidth: 280px;
     }
 }
 
-.menuButton {
-    position: absolute;
-}
-
 // bubbles
-
-$primary-background: rgb(180, 225, 243);
 
 @mixin gradientBubble {
     background: #36d1dc; /* fallback for old browsers */
@@ -83,25 +77,15 @@ $primary-background: rgb(180, 225, 243);
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-@mixin gradientNav {
-    background: #e6dada; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #274046, #e6dada); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to bottom,
-        #274046,
-        #e6dada
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
 @mixin menuButton {
     position: absolute;
     left: 0;
-    top: -5%;
+    top: calc($navHeight * -2);
     z-index: 10;
-    animation: flowDown 500ms ease-out forwards;
+    animation: flowDown 600ms ease-out forwards;
     @keyframes flowDown {
         to {
-            top: 0%;
+            top: calc($navHeight - 5px);
         }
     }
 }

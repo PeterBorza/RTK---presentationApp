@@ -1,5 +1,3 @@
-import React from "react";
-
 import Bar from "./subcomponents";
 
 import classNames from "classnames";
