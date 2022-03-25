@@ -6,7 +6,7 @@ import classNames from "classnames";
 import styles from "./Home.module.scss";
 
 const Home = () => {
-    const imgs = myImages.slice(0, 6);
+    const cheatSheetImages = myImages.slice(0, 6);
     const { width } = useWindowSize();
     const SMALL_SCREEN = width < 600;
     const SMALL_SIZE = width < 700;
@@ -19,8 +19,8 @@ const Home = () => {
 
     return (
         <div className={containerClasses}>
-            <Rubik sides={imgs} withAnimation="roll-both" size={responsiveSize}></Rubik>
-            <Rubik sides={rainPhotos} withAnimation="still" size={responsiveSize}></Rubik>
+            <Rubik sides={cheatSheetImages} withAnimation="roll-both" size={responsiveSize}></Rubik>
+            <Rubik sides={rainPhotos} withAnimation="animate-1" size={responsiveSize}></Rubik>
         </div>
     );
 };
