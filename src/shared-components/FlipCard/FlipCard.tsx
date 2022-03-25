@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { ReactNode } from "react";
-
-=======
->>>>>>> a9ea49875f05c4857a5e1dc3fb875b5376e7b03a
 import classNames from "classnames";
 import styles from "./FlipCard.module.scss";
 const { flip_box, inner, front, back, turn, black_bg } = styles;

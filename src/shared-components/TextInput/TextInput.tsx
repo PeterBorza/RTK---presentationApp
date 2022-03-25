@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { ComponentProps } from "react";
-=======
->>>>>>> a9ea49875f05c4857a5e1dc3fb875b5376e7b03a
 import classNames from "classnames";
 import styles from "./TextInput.module.scss";
 

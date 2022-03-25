@@ -26,15 +26,10 @@ export interface RubikType {
 const Rubik: React.FC<RubikType> = ({ withAnimation = "rollY", sides, size }) => {
     const wrapper = React.useRef<HTMLDivElement | null>(null);
 
-<<<<<<< HEAD
-const Rubik = ({ withAnimation = false }: RubikProps) => {
-    const wrapper = useRef<HTMLDivElement | null>(null);
-=======
     const mapRender: RubikSideType[] = sides.map((source, idx) => ({
         id: idx + 1,
         content: <img className={styles.rubikSideImage} src={source} alt={`side-${idx + 1}`} />,
     }));
->>>>>>> a9ea49875f05c4857a5e1dc3fb875b5376e7b03a
 
     const classes = classNames(styles[`rubikWrapper-${size}`], [
         styles[`rubikWrapper-${size}__${withAnimation}`],
