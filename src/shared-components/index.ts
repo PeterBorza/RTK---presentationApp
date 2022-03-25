@@ -20,6 +20,7 @@ import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
 import FlipBox from "./FlipBox";
 import FlipCard from "./FlipCard";
+import ImageCard from "./ImageCard";
 import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
@@ -58,6 +59,7 @@ export {
     ToggleButton,
     FlipBox,
     FlipCard,
+    ImageCard,
     LoadingWrapper,
     ButtonWrapper,
     Rubik,

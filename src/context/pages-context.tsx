@@ -6,6 +6,7 @@ import { PagesType } from "../shared-components/ScrollPage/ScrollPage";
 import InputExamples from "../features/InputExamples";
 import { FloatingImage, MyRubik } from "../shared-components";
 import BubbleContainer from "../features/bubble-story/BubbleContainer";
+import ImageBox from "../features/image-box";
 import { Building } from "../features/building-story";
 import SlideContainer from "../features/slide-show/SlideContainer";
 import { useSelector } from "react-redux";
@@ -54,6 +55,11 @@ export const PagesContextProvider = ({ children }: PagesProviderProps) => {
             id: "slide",
             label: "SlideShow",
             content: <SlideContainer />,
+        },
+        {
+            id: "images",
+            label: "Images",
+            content: <ImageBox />,
         },
     ];
     return <PagesContext.Provider value={myPages}>{children}</PagesContext.Provider>;
