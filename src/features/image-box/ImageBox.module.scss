@@ -1,8 +1,19 @@
+@mixin noVisibleScrollBar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .image-grid-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background: rgb(228, 218, 218);
     width: 100%;
     height: 100%;
+    overflow: scroll;
+    @include noVisibleScrollBar;
 }
