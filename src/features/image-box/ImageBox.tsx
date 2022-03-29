@@ -1,11 +1,11 @@
 import React from "react";
+
 import { ImageCard } from "../../shared-components";
 import { folder } from "../../images/folder/image-stack";
+
 import styles from "./ImageBox.module.scss";
 
 const ImageBox = () => {
-    console.table(folder);
-
     return (
         <div className={styles["image-grid-container"]}>
             {folder.map(img => (
