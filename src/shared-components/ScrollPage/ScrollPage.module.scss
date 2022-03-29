@@ -2,14 +2,21 @@
 @use "../../css/mixins" as *;
 @use "../../css/variables" as *;
 
+@mixin noVisibleScrollBar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 $blue-background: rgba(205, 217, 240, 0.885);
-$sidebar-width: min(250px, 30%);
+$sidebar-width: min(200px, 20%);
 
 .section {
     width: 100%;
     min-height: calc(100vh - $navHeight);
     background: $darkMode;
-    scroll-snap-align: start;
     @include noVisibleScrollBar;
 }
 
@@ -35,7 +42,7 @@ $sidebar-width: min(250px, 30%);
     left: 0;
     top: $navHeight;
     bottom: 0;
-    width: min($sidebar-width, 30%);
+    width: $sidebar-width;
     z-index: 5;
     &::after {
         position: absolute;
@@ -56,18 +63,20 @@ $sidebar-width: min(250px, 30%);
     li {
         list-style-type: none;
         margin: 0.3rem;
-        width: 100%;
-        @include truncate();
+        @include truncate;
         word-break: break-all;
     }
     a {
+        display: inline-block;
+        max-width: 100%;
         font-size: clamp(0.8rem, 2vw, 1.5rem);
         text-decoration: none;
         text-transform: capitalize;
         color: $darkModeWhite;
         transition: color 120ms ease;
+        padding: 3px;
         &:hover {
-            color: darken($darkModeWhite, 5%);
+            background-color: rgba(242, 231, 231, 0.3);
         }
     }
 }

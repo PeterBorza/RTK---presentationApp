@@ -18,9 +18,10 @@ $caption-height: 25%;
     position: relative;
     &:hover {
         border: 1px solid white;
-        .card__image {
-            transform: scale(1.1);
-        }
+        // .card__image {
+        //     transform: scale(1.1);
+        //     transform-origin: center;
+        // }
         .card__caption {
             left: 0;
         }
@@ -32,6 +33,13 @@ $caption-height: 25%;
     width: 100%;
     height: 100%;
     transition: transform 300ms ease-out;
+    &__wide {
+        transform: scale(3);
+        transform-origin: center;
+        .outer-wrapper {
+            overflow: initial;
+        }
+    }
 }
 
 .card__caption {
