@@ -17,6 +17,10 @@ This app is using json-server, fetching data from two separate paths.<br />
 
 Running this command will fetch all data at startup for you !!!
 
+### `npm run startall`
+
+Will run with concurrently, starting up the application as well as the data ports.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -50,8 +54,18 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## App created to exercise redux-toolkit and typescript.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You will also find some interesting shared-components , which are created stateless, ready to be implemented anywhere in your project too.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Rubik,
+CustomImage,
+CustomInput,
+Form,
+ScrollPage,
+SideBar,
+SlideShow,
+Loader,
+FlipBox,
+Modal
+and many more...
