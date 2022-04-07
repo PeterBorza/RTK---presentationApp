@@ -48,7 +48,7 @@ import p47 from "./p47.jpg";
 import p48 from "./p48.jpg";
 import { ImageType } from "../../utils/my-images";
 
-export const folder: ImageType[] = [
+export const puzzleImages: ImageType[] = [
     p1,
     p2,
     p3,
