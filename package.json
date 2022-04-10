@@ -16,7 +16,7 @@
         "react-redux": "^7.2.5",
         "react-router-dom": "^6.3.0",
         "react-router-hash-link": "^2.4.3",
-        "react-scripts": "4.0.3",
+        "react-scripts": "5.0.0",
         "react-tether": "^2.0.8",
         "sass": "^1.50.0",
         "uuid": "^8.3.2"
