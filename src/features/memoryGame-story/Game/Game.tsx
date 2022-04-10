@@ -2,8 +2,9 @@ import { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { gameImagesSlice } from "../game-images";
+import { minionImages } from "../game-images";
 import { shuffle } from "../../../utils";
+import { useWindowSize } from "../../../hooks";
 
 import {
     gamePhotosSelector,
@@ -21,7 +22,6 @@ import Controls from "../Controls";
 
 import classNames from "classnames";
 import styles from "./Game.module.scss";
-import { useWindowSize } from "../../../hooks";
 
 type ImageSource = string;
 
@@ -77,7 +77,7 @@ const Game = () => {
     const resetGameHandler = () => gameHasStarted && dispatch(resetGame());
 
     const newGameHandler = () => {
-        const shuffled = shuffle(gameImagesSlice);
+        const shuffled = shuffle(minionImages);
         dispatch(resetGame());
         dispatch(setNewGame(shuffled));
     };
@@ -112,7 +112,10 @@ const Game = () => {
         const renderImages = ({ id, frontSrc, isFlipped, match }: GamePhotoData, idx: number) => {
             const checkIfMatchOrFLipped = !match ? isFlipped : match;
             return (
-                <div key={id} className={cardWrapperClasses(checkIfMatchOrFLipped, match)}>
+                <div
+                    key={`flip-image-${id}`}
+                    className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
+                >
                     <FlipCard
                         frontContent={frontContent}
                         backContent={() => backContent(frontSrc.src)}
