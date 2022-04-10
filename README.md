@@ -52,6 +52,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ![bubbles-RTK](https://user-images.githubusercontent.com/68942716/162624409-62399f9f-edfc-4401-aa8b-3213b8d62cf0.png)
 
 #### Have fun with the elevator: 
+![Elevator - RTK](https://user-images.githubusercontent.com/68942716/162624727-b1edc1bd-b572-43b6-afb2-3f1e615d5947.png)
+
+#### Play a memory game, Christmas style :):
+![Memory-game-RTK](https://user-images.githubusercontent.com/68942716/162624920-bb648983-103f-4737-b894-f3b9562c8c30.png)
+
+#### Relaxing cube animations:
+![Rubik-RTK](https://user-images.githubusercontent.com/68942716/162625057-0695ead0-f894-4b1a-9ee5-dfce26e56bd4.png)
+
+#### Conduct utilities table:
+![Gas-RTK](https://user-images.githubusercontent.com/68942716/162625175-9af29bea-8c49-410f-9aa1-df38bd205616.png)
 
 You will also find some interesting shared-components , which are created stateless, ready to be implemented anywhere in your project too.
 
