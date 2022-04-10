@@ -40,7 +40,10 @@ You will also see any lint errors in the console.
 ![Elevator - RTK](https://user-images.githubusercontent.com/68942716/162624727-b1edc1bd-b572-43b6-afb2-3f1e615d5947.png)
 
 #### Play a memory game, Christmas style :):
-![Memory-game-RTK](https://user-images.githubusercontent.com/68942716/162624920-bb648983-103f-4737-b894-f3b9562c8c30.png)
+![christmas-RTK](https://user-images.githubusercontent.com/68942716/162633597-e163c2c9-1a94-41dd-8ce3-1033bd7adcbb.png)
+
+#### or minions style ;) :
+![minion-game-RTK](https://user-images.githubusercontent.com/68942716/162633098-2bcc3f42-740c-425f-82c2-77c66f6e21ef.png)
 
 #### Relaxing cube animations:
 ![Rubik-RTK](https://user-images.githubusercontent.com/68942716/162625057-0695ead0-f894-4b1a-9ee5-dfce26e56bd4.png)
