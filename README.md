@@ -48,6 +48,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `App created to exercise redux-toolkit and typescript.`
 
+#### You can create your own bubbles here: 
+![bubbles-RTK](https://user-images.githubusercontent.com/68942716/162624409-62399f9f-edfc-4401-aa8b-3213b8d62cf0.png)
+
+#### Have fun with the elevator: 
+
 You will also find some interesting shared-components , which are created stateless, ready to be implemented anywhere in your project too.
 
 Rubik,
