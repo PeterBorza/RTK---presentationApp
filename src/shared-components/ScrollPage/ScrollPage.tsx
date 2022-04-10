@@ -29,17 +29,16 @@ const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
                         ))}
                 </ul>
             </aside>
-            {pages
-                ? pages.map(link => (
-                      <article
-                          key={`scroll-content-${link.id}`}
-                          className={styles.article}
-                          id={link.label}
-                      >
-                          {link.content}
-                      </article>
-                  ))
-                : null}
+            {pages &&
+                pages.map(link => (
+                    <article
+                        key={`scroll-content-${link.id}`}
+                        className={styles.article}
+                        id={link.label}
+                    >
+                        {link.content}
+                    </article>
+                ))}
         </section>
     );
 };
