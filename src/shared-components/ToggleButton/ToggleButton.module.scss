@@ -1,6 +1,4 @@
-@use "../../css/my_app.scss" as *;
-@use "../../css/mixins" as *;
-@use "../../css/variables" as *;
+@use "../../css" as *;
 
 $w: 50px;
 $h: calc($w / 2.2);

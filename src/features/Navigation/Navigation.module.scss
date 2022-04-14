@@ -1,6 +1,4 @@
-@use "../../css/my_app" as *;
-@use "../../css/mixins" as *;
-@use "../../css/variables" as *;
+@use "../../css" as *;
 
 @mixin gradientNav($degrees) {
     background: rgba(255, 255, 255, 0.071);

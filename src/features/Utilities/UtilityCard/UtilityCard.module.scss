@@ -1,6 +1,4 @@
-@use "../../../css/variables" as *;
-@use "../../../css/mixins" as *;
-@use "../../../css/my_app.scss" as *;
+@use "../../../css" as *;
 
 .wrapper {
     display: flex;
