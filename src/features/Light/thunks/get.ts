@@ -15,8 +15,9 @@ export const getAsyncUtility = createAsyncThunk(
 			await axios
 				.get(`${BaseAPI.UTILITIES_URL}/${Url.LIGHT}`) // ?_limit= 2 get only this amount
 				.then(response => thunkApi.dispatch(getUnits(response.data)));
-		} catch {
+		} catch (error){
 			thunkApi.dispatch(setUtilitiesError());
+			console.warn(`This is due to: ${error}`);
 		} finally {
 			thunkApi.dispatch(setUtilitiesPending(false));
 		}
