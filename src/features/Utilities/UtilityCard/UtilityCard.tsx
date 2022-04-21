@@ -3,9 +3,9 @@ import { UtilityTableLabels } from "../constants";
 import { UtilityStateUnit } from "../types";
 
 import CardCell from "./CardCell";
-import { CustomIcon } from "../../../shared-components";
-import { icons } from "../../../utils";
-import { IconProps } from "../../../shared-components/CustomIcon/CustomIcon";
+import { CustomIcon } from "shared-components";
+import { icons } from "utils";
+import { IconProps } from "shared-components/CustomIcon/CustomIcon";
 
 import classNames from "classnames";
 import styles from "./UtilityCard.module.scss";
@@ -27,6 +27,7 @@ const UtilityCard: React.FC<Props> = ({
     dark = false,
     unit,
 }) => {
+    const { check, danger, trash, edit2, threeDots } = icons;
     const { readDate, index, consumption, estimate, bill, payed, selected } = unit;
     const manageCssClasses = classNames(styles.hiddenManage, {
         [styles.hiddenManage__show]: selected,
@@ -40,17 +41,17 @@ const UtilityCard: React.FC<Props> = ({
         {
             onClick: onPayedClick,
             title: payed ? UtilityTableLabels.PAYED : UtilityTableLabels.NOT_PAYED,
-            icon: payed ? icons.check : icons.danger,
+            icon: payed ? check : danger,
         },
         {
             onClick: onDelete,
             title: UtilityTableLabels.DELETE,
-            icon: icons.trash,
+            icon: trash,
         },
         {
             onClick: onEdit,
             title: UtilityTableLabels.EDIT,
-            icon: icons.edit2,
+            icon: edit2,
         },
     ];
 
@@ -61,7 +62,7 @@ const UtilityCard: React.FC<Props> = ({
             {selected ? (
                 <div className={manageCssClasses}>{manageContent}</div>
             ) : (
-                <CustomIcon title={UtilityTableLabels.MANAGE} icon={icons.threeDots} />
+                <CustomIcon title={UtilityTableLabels.MANAGE} icon={threeDots} />
             )}
         </div>
     );

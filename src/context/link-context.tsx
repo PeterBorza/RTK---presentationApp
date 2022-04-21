@@ -1,11 +1,11 @@
 import { createContext, ReactNode } from "react";
 
 import { v4 as uuid } from "uuid";
-import Home from "../features/Home";
-import { Photos } from "../features/memoryGame-story";
-import { UtilityContainer } from "../features/Utilities";
-import { Url } from "../app/constants";
-import ScrollPageContainer from "../features/scroll-pages";
+import Home from "features/Home";
+import { Photos } from "features/memoryGame-story";
+import { UtilityContainer } from "features/Utilities";
+import { Url } from "app/constants";
+import ScrollPageContainer from "features/scroll-pages";
 
 interface LinkProviderProps {
     children: ReactNode;

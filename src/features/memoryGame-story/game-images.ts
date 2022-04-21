@@ -31,8 +31,8 @@ import min12 from "./images/minion12.jpg";
 
 import { GamePhotoData } from "../memoryGame-story";
 import { v4 as uuid } from "uuid";
-import { shuffle } from "../../utils";
-import { ImageType } from "../../utils/my-images";
+import { shuffle } from "utils";
+import { ImageType } from "utils/my-images";
 
 export const minions: ImageType[] = [
     min0,

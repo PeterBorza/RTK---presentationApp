@@ -1,4 +1,4 @@
-import { ImageDataType } from "../../utils/my-images";
+import { ImageDataType } from "utils/my-images";
 
 export type ColorString = string[];
 

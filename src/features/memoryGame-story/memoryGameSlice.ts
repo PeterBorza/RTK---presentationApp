@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState } from "./types";
-import { imageData } from "../../utils";
+import { imageData } from "utils";
 import { shuffledImages } from "./game-images";
 import { GamePhotoData } from ".";
 

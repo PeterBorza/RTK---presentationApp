@@ -1,5 +1,5 @@
 import React from "react";
-import { useHover } from "../../hooks";
+import { useHover } from "hooks";
 
 import styles from "./Box.module.scss";
 

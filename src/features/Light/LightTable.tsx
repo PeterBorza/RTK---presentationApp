@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table, Error } from "../../shared-components";
+import { Table, Error } from "shared-components";
 import {
     UtilityLabels,
     UtilityTableLabels,

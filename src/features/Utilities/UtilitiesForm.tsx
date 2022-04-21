@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { v4 as uuid } from "uuid";
 
-import { TextInput, ModalForm } from "../../shared-components";
+import { TextInput, ModalForm } from "shared-components";
 import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
-import { useForm } from "../../hooks";
+import { useForm } from "hooks";
 
 type UtilityFormProps = {
     postData: (newUnit: UtilityStateUnit) => void;
@@ -59,15 +59,15 @@ const UtilitiesForm: FC<UtilityFormProps> = ({ postData, formValues, utilityUnit
         resetValues();
     };
 
-    const renderInputs = Object.entries(values).map(input => (
-        <TextInput key={input[0]} value={input[1]} name={input[0]} onChange={onChangeHandler} />
+    const renderInputs = Object.entries(values).map(([key, value]) => (
+        <TextInput key={key} value={value} name={key} onChange={onChangeHandler} />
     ));
 
     return (
         <ModalForm
             renderFields={renderInputs}
             onSubmit={onSubmitHandler}
-            onCancel={() => resetValues()}
+            onCancel={resetValues}
             buttonLabel={buttonLabel}
             formWidth={formWidth}
             formTitle={formTitle}

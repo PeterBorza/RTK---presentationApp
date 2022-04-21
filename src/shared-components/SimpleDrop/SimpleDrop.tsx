@@ -1,5 +1,5 @@
 import { useState, useRef, FC } from "react";
-import { useOnClickOutside } from "../../hooks";
+import { useOnClickOutside } from "hooks";
 
 import classNames from "classnames";
 import styles from "./SimpleDrop.module.scss";

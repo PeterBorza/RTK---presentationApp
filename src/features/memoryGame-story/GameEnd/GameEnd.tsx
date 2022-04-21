@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Button } from "../../../shared-components";
+import { Button } from "shared-components";
 
 import styles from "./GameEnd.module.scss";
 
@@ -17,11 +17,7 @@ const GameEnd: FC<Props> = ({ count, message, onClick, buttonLabel }) => {
     return (
         <div className={styles.finished}>
             <h1>{endMessage}</h1>
-            <Button
-                onClick={onClick}
-                value={buttonLabel}
-                className={styles.newGameButton}
-            />
+            <Button onClick={onClick} value={buttonLabel} className={styles.newGameButton} />
         </div>
     );
 };

@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./SlideShow.module.scss";
 import classNames from "classnames";
 
-import { icons } from "../../utils";
+import { icons } from "utils";
 import { CustomIcon } from "..";
-import { ImageType } from "../../utils/my-images";
+import { ImageType } from "utils/my-images";
 
 export type SlideShowType = {
     slides: ImageType[];

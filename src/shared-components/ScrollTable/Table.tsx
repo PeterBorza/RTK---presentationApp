@@ -2,8 +2,8 @@ import { FC, useMemo, useRef } from "react";
 import ScrollTable from ".";
 import { LoadingWrapper } from "..";
 import { Pending } from "../../app";
-import { TableTitle } from "../../features/Utilities";
-import { useOnClickOutside } from "../../hooks";
+import { TableTitle } from "features/Utilities";
+import { useOnClickOutside } from "hooks";
 
 export interface Props {
     headers: string[];

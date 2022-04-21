@@ -8,8 +8,6 @@ export const shuffle = (arr: any[]) =>
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 
-export const randomize = (num: number): string =>
-    `#${Math.floor(Math.random() * num)}`;
+export const randomize = (num: number): string => `#${Math.floor(Math.random() * num)}`;
 
-export const randomColor = () =>
-    Math.floor(Math.random() * 16777215).toString(16);
+export const getRandomColor = () => Math.floor(Math.random() * 16777215).toString(16);

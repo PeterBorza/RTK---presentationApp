@@ -1,17 +1,17 @@
-@use "../../css" as *;
+@use "css" as *;
 
 $SBtransition: all 200ms ease;
 
 .layout {
-	position: relative;
-	width: 100%;
+    position: relative;
+    width: 100%;
 }
 .container {
-	position: relative;
-	width: 100%;
-	height: calc(100% - $navHeight);
-	overflow: hidden;
-	&__with-sidebar-open {
+    position: relative;
+    width: 100%;
+    height: calc(100% - $navHeight);
+    overflow: hidden;
+    &__with-sidebar-open {
         padding-left: $SBsize;
     }
     transition: $SBtransition;

@@ -1,13 +1,13 @@
-@use "../../../css" as *;
+@use "css" as *;
 
 .container {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	@include fEven(column);
-	@include before("../images/contor_gaz.jpg");
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    @include fEven(column);
+    @include before("../images/contor_gaz.jpg");
 }
 
 .inputContent {
-	width: 20%;
+    width: 20%;
 }

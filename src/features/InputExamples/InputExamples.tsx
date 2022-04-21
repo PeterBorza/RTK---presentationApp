@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
-import { useForm } from "../../hooks";
-import { CustomInput, Button, InputCard, TextInput } from "../../shared-components";
+import { useForm } from "hooks";
+import { CustomInput, Button, InputCard, TextInput } from "shared-components";
 
 import styles from "./InputExamples.module.scss";
 

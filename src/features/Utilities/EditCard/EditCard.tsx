@@ -1,14 +1,14 @@
 import { FC, FormEvent } from "react";
 import { useSelector } from "react-redux";
 
-import { CustomIcon, InputCard } from "../../../shared-components";
+import { CustomIcon, InputCard } from "shared-components";
 import { UtilityStateUnit, UtilityTableLabels } from "..";
-import { useForm } from "../../../hooks";
+import { useForm } from "hooks";
 
 import { unitsState } from "../../Gas";
 import EditCell from "./EditCell";
-import { InputSize } from "../../../shared-components/InputCard/InputCard";
-import { icons } from "../../../utils";
+import { InputSize } from "shared-components/InputCard/InputCard";
+import { icons } from "utils";
 
 import styles from "./EditCard.module.scss";
 

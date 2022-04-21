@@ -1,9 +1,9 @@
-import { CustomImage } from "../../../shared-components";
+import { CustomImage } from "shared-components";
 
-import rd1900 from "../../../shared-components/Rubik/rubik-images/rd-1-900.jpg";
-import rd2900 from "../../../shared-components/Rubik/rubik-images/rd-2-900.jpg";
-import rd3900 from "../../../shared-components/Rubik/rubik-images/rd-3-900.jpg";
-import rd4900 from "../../../shared-components/Rubik/rubik-images/rd-4-900.jpg";
+import rd1900 from "shared-components/Rubik/rubik-images/rd-1-900.jpg";
+import rd2900 from "shared-components/Rubik/rubik-images/rd-2-900.jpg";
+import rd3900 from "shared-components/Rubik/rubik-images/rd-3-900.jpg";
+import rd4900 from "shared-components/Rubik/rubik-images/rd-4-900.jpg";
 
 import styles from "./PhotosLandingPage.module.scss";
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "../../../app/constants";
+import { BaseAPI, Url } from "app/constants";
 import { getUnits, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 

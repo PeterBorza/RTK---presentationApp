@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
-import { toggleUtils } from "../../../app/appSlice";
-import { Url } from "../../../app/constants";
-import { darkModeSelector, utilsOpenSelector } from "../../../app/selectors";
-import { AsidePlatform, Button } from "../../../shared-components";
+import { toggleUtils } from "app/appSlice";
+import { Url } from "app/constants";
+import { darkModeSelector, utilsOpenSelector } from "app/selectors";
+import { AsidePlatform, Button } from "shared-components";
 import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
-import { LinkUrls } from "../../../context/link-context";
+import { LinkUrls } from "context/link-context";
 
 const UtilityContainer: FC = () => {
     const dispatch = useDispatch();

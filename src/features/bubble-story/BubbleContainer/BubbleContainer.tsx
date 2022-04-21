@@ -8,16 +8,16 @@ import {
     selectedBubble,
 } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
-import { Url, Pending } from "../../../app";
+import { Url, Pending } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
-import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "../../../shared-components";
+import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "shared-components";
 import { selectBubble, toggleBubbleFormModal } from "../bubbleSlice";
-import { toggleBubbles } from "../../../app/appSlice";
+import { toggleBubbles } from "app/appSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
-import { ButtonProps } from "../../../shared-components/Button/Button";
+import { ButtonProps } from "shared-components/Button/Button";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";

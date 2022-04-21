@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { ScrollPage } from "../../shared-components";
-import { PagesContext } from "../../context/pages-context";
+import { ScrollPage } from "shared-components";
+import { PagesContext } from "context/pages-context";
 
 const ScrollPageContainer = () => {
     const myPages = useContext(PagesContext);

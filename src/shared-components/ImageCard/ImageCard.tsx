@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ImageType } from "../../utils/my-images";
+import { ImageType } from "utils/my-images";
 
 import classNames from "classnames";
 import styles from "./ImageCard.module.scss";

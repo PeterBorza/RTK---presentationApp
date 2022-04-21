@@ -1,23 +1,22 @@
-
-@use "../../../css" as *;
+@use "css" as *;
 
 .container {
-	width: 300px;
-	height: 200px;
+    width: 300px;
+    height: 200px;
 }
 
 .active {
-	color: white;
+    color: white;
 }
 
 .disabled {
-	color: crimson;
+    color: crimson;
 }
 
 .enabledIcon {
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	background-color: rgb(44, 148, 44);
-	box-shadow: 1px 1px 8px rgba(44, 148, 44, 0.7);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgb(44, 148, 44);
+    box-shadow: 1px 1px 8px rgba(44, 148, 44, 0.7);
 }
