@@ -12,7 +12,7 @@ const ImageBox = () => (
         {puzzleImages.map(img => (
             <ImageCard
                 key={uuid()}
-                position="top"
+                position="center"
                 src={img}
                 caption=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!"
             />

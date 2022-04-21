@@ -16,15 +16,8 @@ $caption-height: 25%;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    &:hover {
-        border: 1px solid white;
-        // .card__image {
-        //     transform: scale(1.1);
-        //     transform-origin: center;
-        // }
-        .card__caption {
-            left: 0;
-        }
+    &:hover .card__caption {
+        left: 0;
     }
 }
 
@@ -33,6 +26,13 @@ $caption-height: 25%;
     width: 100%;
     height: 100%;
     transition: transform 300ms ease-out;
+    &:hover {
+        transform: scale(1.03);
+        transform-origin: center;
+        .card__caption {
+            left: 0;
+        }
+    }
     &__wide {
         transform: scale(3);
         transform-origin: center;
@@ -56,6 +56,10 @@ $caption-height: 25%;
     @include truncater(2);
     &__top {
         top: 1rem;
+    }
+    &__center {
+        top: 50%;
+        transform: translateY(-50%);
     }
     &__bottom {
         top: calc(100% - $caption-height - 1rem);

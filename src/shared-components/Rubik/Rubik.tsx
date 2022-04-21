@@ -28,7 +28,14 @@ const Rubik: React.FC<RubikType> = ({ withAnimation = "rollY", sides, size }) =>
 
     const mapRender: RubikSideType[] = sides.map((source, idx) => ({
         id: idx + 1,
-        content: <img className={styles.rubikSideImage} src={source} alt={`side-${idx + 1}`} />,
+        content: (
+            <img
+                className={styles.rubikSideImage}
+                src={source}
+                alt={`side-${idx + 1}`}
+                loading="lazy"
+            />
+        ),
     }));
 
     const classes = classNames(styles[`rubikWrapper-${size}`], [
