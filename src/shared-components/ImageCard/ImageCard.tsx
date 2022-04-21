@@ -6,7 +6,7 @@ import classNames from "classnames";
 import styles from "./ImageCard.module.scss";
 
 type ImageCardType = {
-    position: "top" | "bottom";
+    position: "top" | "center" | "bottom";
     src: ImageType;
     caption: string;
 };
