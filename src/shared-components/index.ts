@@ -3,6 +3,7 @@ import Button from "./Button";
 import Error from "./ErrorMessage";
 import SlideText from "./SlideText";
 import SimpleDrop from "./SimpleDrop";
+import Dropdown from "./Dropdown";
 import ScrollTable, { Table } from "./ScrollTable";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -38,6 +39,7 @@ export {
     Error,
     SlideText,
     SimpleDrop,
+    Dropdown,
     Table,
     ScrollTable,
     NavBar,
