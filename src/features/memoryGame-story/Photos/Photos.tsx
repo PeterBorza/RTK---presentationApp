@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { photoSelector } from "..";
-import { togglePhotos } from "../../../app/appSlice";
-import { photosOpenSelector } from "../../../app/selectors";
-import { AsidePlatform, Button } from "../../../shared-components";
+import { togglePhotos } from "app/appSlice";
+import { photosOpenSelector } from "app/selectors";
+import { AsidePlatform, Button } from "shared-components";
 import { MemoryGameMessages as messages } from "../messages";
 
 import styles from "./Photos.module.scss";

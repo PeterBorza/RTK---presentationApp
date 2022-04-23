@@ -1,6 +1,6 @@
-import { useWindowSize } from "../../hooks";
-import { Rubik } from "../../shared-components";
-import { myImages, rainPhotos } from "../../utils/my-images";
+import { useWindowSize } from "hooks";
+import { Rubik } from "shared-components";
+import { myImages, rainPhotos } from "utils/my-images";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";

@@ -1,7 +1,7 @@
 import { CSSProperties, useRef, useState } from "react";
 
 import { Bubble as Props } from "../types";
-import { randomColor } from "../../../utils";
+import { getRandomColor } from "utils";
 
 import styles from "./Bubble.module.scss";
 import classNames from "classnames";
@@ -25,7 +25,7 @@ const Bubble = ({ onClick, title, id, selected, cssProps }: BubbleProps) => {
 
     const handleClick = () => {
         onClick();
-        setBackground(randomColor());
+        setBackground(getRandomColor());
     };
 
     const inlineStyles: CSSProperties = {

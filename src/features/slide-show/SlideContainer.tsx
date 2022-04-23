@@ -1,5 +1,5 @@
-import { SlideShow } from "../../shared-components";
-import { myImages } from "../../utils";
+import { SlideShow } from "shared-components";
+import { myImages } from "utils";
 
 const SlideContainer = () => {
     return <SlideShow slides={myImages} />;

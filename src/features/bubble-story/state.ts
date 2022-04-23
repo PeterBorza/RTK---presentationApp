@@ -1,4 +1,4 @@
-import { Pending, Error } from "../../app/constants";
+import { Pending, Error } from "app/constants";
 import { BubbleState, BubbleCssProps } from "./types";
 
 export const initialState: BubbleState = {

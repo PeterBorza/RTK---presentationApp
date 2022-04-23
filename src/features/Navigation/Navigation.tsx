@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { NavBar, ToggleButton } from "../../shared-components";
-import { LinkContext } from "../../context";
+import { NavBar, ToggleButton } from "shared-components";
+import { LinkContext } from "context";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";

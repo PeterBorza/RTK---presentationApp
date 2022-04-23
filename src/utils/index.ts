@@ -1,3 +1,3 @@
-export { generateId, shuffle, randomize, randomColor } from "./generators";
+export { generateId, shuffle, randomize, getRandomColor } from "./generators";
 export { myImages, imageData } from "./my-images";
 export { icons } from "./Icons";

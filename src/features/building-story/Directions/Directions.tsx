@@ -1,5 +1,6 @@
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { ImStop } from "react-icons/im";
+import { icons } from "utils";
 import { Direction } from "../state";
 
 import styles from "./Directions.module.scss";

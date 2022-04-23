@@ -15,9 +15,9 @@ const SelectedBubble = ({ selectedBubble, isSelected }: Props) => {
                 <>
                     <h2>{selectedBubble.id}</h2>
                     <ul>
-                        {Object.entries(selectedBubble.cssProps).map(label => (
-                            <li key={label[0]}>
-                                {label[0]}: <span>{label[1]}</span>
+                        {Object.entries(selectedBubble.cssProps).map(([key, value]) => (
+                            <li key={key}>
+                                {key}: <span>{value}</span>
                             </li>
                         ))}
                     </ul>

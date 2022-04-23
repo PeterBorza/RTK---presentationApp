@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table, Error } from "../../shared-components";
+import { Table, Error } from "shared-components";
 import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
 import { selectCard, editCard, resetEdit, resetSelected } from "./gasSlice";
 import {

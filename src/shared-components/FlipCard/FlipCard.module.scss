@@ -1,38 +1,38 @@
-@use "../../css" as *;
+@use "css" as *;
 
 .flip_box {
-	width: 100%;
-	height: 100%;
-	perspective: 1000px;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
 }
 
 .inner {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	transform-style: preserve-3d;
-	transition: transform 0.5s;
-	&.turn {
-		transform: rotateY(180deg);
-	}
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    &.turn {
+        transform: rotateY(180deg);
+    }
 }
 
 .front,
 .back {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	backface-visibility: hidden;
-	cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    cursor: pointer;
 }
 
 .back {
-	transform: rotateY(180deg);
-	overflow: hidden;
+    transform: rotateY(180deg);
+    overflow: hidden;
 }
 
 .black_bg {
-	background: rgb(26, 25, 25);
+    background: rgb(26, 25, 25);
 }
 
 // $flipColors: (black, white, lightgrey, yellow);

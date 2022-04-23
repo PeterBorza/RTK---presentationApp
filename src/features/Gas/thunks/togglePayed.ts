@@ -1,16 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "../../../app/constants";
-import {
-    togglePayed,
-    setUtilitiesError,
-    setUtilitiesPending,
-} from "../gasSlice";
+import { BaseAPI, Url } from "app/constants";
+import { togglePayed, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
 
 export const toggleAsyncPayed = async (
     item: UtilityStateUnit,
-    { dispatch }: { dispatch: Function }
+    { dispatch }: { dispatch: Function },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -28,7 +24,4 @@ export const toggleAsyncPayed = async (
     }
 };
 
-export const togglePayedBill = createAsyncThunk(
-    `${Url.GAS}/toggleAsyncPayed`,
-    toggleAsyncPayed
-);
+export const togglePayedBill = createAsyncThunk(`${Url.GAS}/toggleAsyncPayed`, toggleAsyncPayed);

@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectedBubble } from "./selectors";
 import { BubbleMessages as msg } from "./constants";
 import { SelectedBubble } from ".";
-import { AsidePlatform } from "../../shared-components";
-import { toggleBubbles } from "../../app/appSlice";
-import { bubblesOpenSelector, darkModeSelector } from "../../app/selectors";
+import { AsidePlatform } from "shared-components";
+import { toggleBubbles } from "app/appSlice";
+import { bubblesOpenSelector, darkModeSelector } from "app/selectors";
 import BubbleContainer from "./BubbleContainer";
 
 const BubbleWrapper = () => {

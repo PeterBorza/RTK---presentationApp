@@ -1,5 +1,5 @@
 import React from "react";
-import { BlackModal } from "../../../shared-components";
+import { BlackModal } from "shared-components";
 
 import styles from "./ModalImage.module.scss";
 

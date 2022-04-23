@@ -1,7 +1,7 @@
 import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
 import { Pending } from "../../app/constants";
 import { format } from "date-fns";
-import { DateFormats } from "../../hooks/useTime";
+import { DateFormats } from "hooks/useTime";
 
 const initialFormValues: FormProps = {
     index: "",

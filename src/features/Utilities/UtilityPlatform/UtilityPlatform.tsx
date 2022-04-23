@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { toggleUtils } from "../../../app";
-import { CustomInput } from "../../../shared-components";
+import { toggleUtils } from "app";
+import { CustomInput } from "shared-components";
 import { UtilityTableLabels } from "../constants";
 import styles from "./UtilityPlatform.module.scss";
 

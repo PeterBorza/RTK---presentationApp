@@ -1,6 +1,6 @@
-import { TextInput, FadedModal, Form, Button } from "../../shared-components";
+import { TextInput, FadedModal, Form, Button } from "shared-components";
 import { BubbleFormValues } from "./constants";
-import { useForm } from "../../hooks";
+import { useForm } from "hooks";
 import { BubbleCssProps } from "./types";
 
 type BubbleFormType = {
@@ -30,8 +30,8 @@ const BubbleForm = ({ formObject, isOpen, onToggleForm, onPost }: BubbleFormType
         onToggleForm(false);
     };
 
-    const renderFields = Object.entries(values).map(label => (
-        <TextInput key={label[0]} value={label[1]} name={label[0]} onChange={changeHandler} />
+    const renderFields = Object.entries(values).map(([key, value]) => (
+        <TextInput key={key} value={value} name={key} onChange={changeHandler} />
     ));
 
     return (

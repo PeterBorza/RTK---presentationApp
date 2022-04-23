@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
 import { minionImages } from "../game-images";
-import { shuffle } from "../../../utils";
-import { useWindowSize } from "../../../hooks";
+import { shuffle } from "utils";
+import { useWindowSize } from "hooks";
 
 import {
     gamePhotosSelector,
@@ -12,11 +12,11 @@ import {
     matchCardsSelector,
     clickCountSelector,
 } from "../selectors";
-import { darkModeSelector } from "../../../app";
+import { darkModeSelector } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } from "..";
 
-import { Button, FlipCard } from "../../../shared-components";
+import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
 import Controls from "../Controls";
 

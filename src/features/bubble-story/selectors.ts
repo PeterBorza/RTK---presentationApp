@@ -1,4 +1,4 @@
-import { RootState } from "../../app/store";
+import { RootState } from "app/store";
 
 export const bubbleState = ({ bubbles }: RootState) => bubbles;
 

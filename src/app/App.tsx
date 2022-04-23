@@ -1,5 +1,5 @@
-import Navigation from "../features/Navigation";
-import { LinkContextProvider } from "../context";
+import Navigation from "features/Navigation";
+import { LinkContextProvider } from "context";
 import { Outlet } from "react-router-dom";
 
 const App = () => {

@@ -1,24 +1,27 @@
-import { FaBars } from "react-icons/fa";
-import { CgDanger } from "react-icons/cg";
-import { FaEdit } from "react-icons/fa";
-import { FaExclamationTriangle } from "react-icons/fa";
-import { FaChevronLeft } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
-import { FaChevronUp } from "react-icons/fa";
-import { FaRegWindowClose } from "react-icons/fa";
+import {
+    FaBars,
+    FaExclamationTriangle,
+    FaChevronLeft,
+    FaChevronRight,
+    FaCheck,
+    FaEdit,
+    FaChevronDown,
+    FaChevronUp,
+    FaRegWindowClose,
+    FaRegTimesCircle,
+    FaRegTrashAlt,
+    FaWindowClose,
+    FaBan,
+    FaArrowDown,
+    FaArrowUp,
+} from "react-icons/fa";
+import { CgDanger, CgEnter } from "react-icons/cg";
 import { MdEdit } from "react-icons/md";
-import { FaRegTimesCircle } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { FaWindowClose } from "react-icons/fa";
-import { FaBan } from "react-icons/fa";
 import { FcCheckmark } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
-import { HiOutlineArrowCircleRight } from "react-icons/hi";
-import { CgEnter } from "react-icons/cg";
+import { HiOutlineArrowCircleRight, HiDotsHorizontal } from "react-icons/hi";
 import { GiCancel } from "react-icons/gi";
-import { HiDotsHorizontal } from "react-icons/hi";
+import { ImStop } from "react-icons/im";
 
 type IconType = Record<string, JSX.Element>;
 
@@ -44,4 +47,7 @@ export const icons: IconType = {
     enter: <CgEnter />,
     cancel: <GiCancel />,
     threeDots: <HiDotsHorizontal />,
+    faDown: <FaArrowDown />,
+    faUp: <FaArrowUp />,
+    stop: <ImStop />,
 };

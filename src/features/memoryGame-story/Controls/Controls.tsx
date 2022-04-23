@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { ButtonWrapper } from "../../../shared-components";
+import { ButtonWrapper } from "shared-components";
 
 import styles from "./Controls.module.scss";
 

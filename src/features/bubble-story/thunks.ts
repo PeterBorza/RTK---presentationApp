@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI } from "../../app/constants";
-import { RootState } from "../../app/store";
+import { BaseAPI, RootState } from "app";
 import { setBubbles, setPending, setError, deleteBub, addBubble } from "./bubbleSlice";
 import { Bubble, BubbleCssProps } from "./types";
 
