@@ -1,26 +1,25 @@
 import { useWindowSize } from "hooks";
-import { Rubik } from "shared-components";
-import { myImages, rainPhotos } from "utils/my-images";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
+import ColorDrops from "features/guess-the-colors/ColorDrops";
 
 const Home = () => {
-    const cheatSheetImages = myImages.slice(0, 6);
     const { width } = useWindowSize();
     const SMALL_SCREEN = width < 600;
-    const SMALL_SIZE = width < 700;
 
     const containerClasses = classNames(styles.container, {
         [styles["container__small"]]: SMALL_SCREEN,
     });
 
-    const responsiveSize = SMALL_SIZE ? 80 : 150;
-
     return (
         <div className={containerClasses}>
-            <Rubik sides={cheatSheetImages} withAnimation="roll-both" size={responsiveSize}></Rubik>
-            <Rubik sides={rainPhotos} withAnimation="animate-1" size={responsiveSize}></Rubik>
+            <div className={styles.colorDrops_container}>
+                <ColorDrops />
+                <ColorDrops />
+                <ColorDrops />
+                <ColorDrops />
+            </div>
         </div>
     );
 };
