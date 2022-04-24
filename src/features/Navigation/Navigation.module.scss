@@ -5,7 +5,7 @@
     background: linear-gradient($degrees, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.01) 100%);
 }
 
-.nav_container {
+.nav {
     display: flex;
     align-items: center;
     position: fixed;
@@ -18,6 +18,11 @@
     @include gradientNav(180deg);
     &__sidebar-closed {
         padding-left: 0;
+    }
+    &__dropdown {
+        width: 100%;
+        height: $navHeight;
+        @include fCenter();
     }
 }
 
@@ -43,8 +48,4 @@
 .active {
     transform: scale(0.95);
     color: white;
-}
-
-.navBarDrop {
-    background-color: rgba(255, 255, 255, 0.289);
 }
