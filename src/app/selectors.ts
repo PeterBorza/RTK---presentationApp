@@ -1,4 +1,4 @@
-import { RootState } from "../app/store";
+import { RootState } from "app/store";
 
 export const bubblesOpenSelector = (state: RootState) => state.app.bubblesOpen;
 export const liftOpenSelector = (state: RootState) => state.app.liftOpen;

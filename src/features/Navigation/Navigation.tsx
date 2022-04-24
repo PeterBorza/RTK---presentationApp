@@ -7,7 +7,7 @@ import { LinkContext } from "context";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
-import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "../../app";
+import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "app";
 
 const { links: styleLinks, active } = styles;
 

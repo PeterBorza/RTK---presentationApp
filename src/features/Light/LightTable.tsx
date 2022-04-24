@@ -23,7 +23,7 @@ import {
     postUtility,
     editUnit,
 } from "./thunks";
-import { darkModeSelector } from "../../app";
+import { darkModeSelector } from "app";
 
 const LightTable: FC = () => {
     const { units, loading } = useSelector(utilityState);

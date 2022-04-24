@@ -23,7 +23,7 @@ import {
     postUtility,
     togglePayedBill,
 } from "./thunks";
-import { darkModeSelector } from "../../app";
+import { darkModeSelector } from "app";
 
 const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
