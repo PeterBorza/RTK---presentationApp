@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import { UtilityContainer, UtilityPlatform } from ".";
-import { Url } from "../../app";
+import { Url } from "app";
 import { LinkUrls } from "context/link-context";
 import { Gas } from "../Gas";
 import { Light } from "../Light";

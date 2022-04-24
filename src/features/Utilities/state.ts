@@ -1,5 +1,5 @@
 import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
-import { Pending } from "../../app/constants";
+import { Pending } from "app/constants";
 import { format } from "date-fns";
 import { DateFormats } from "hooks/useTime";
 
