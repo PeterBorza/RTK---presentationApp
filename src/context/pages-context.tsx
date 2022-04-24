@@ -6,6 +6,7 @@ import city900 from "images/city900.jpg";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 import InputExamples from "features/InputExamples";
 import { FloatingImage, MyRubik } from "shared-components";
+import ColorGame from "features/guess-the-colors";
 import BubbleContainer from "features/bubble-story/BubbleContainer";
 import ImageBox from "features/image-box";
 import { Building } from "features/building-story";
@@ -31,6 +32,11 @@ export const PagesContextProvider = ({ children }: PagesProviderProps) => {
             id: "rubik",
             label: "Rubik",
             content: <MyRubik withAnimation />,
+        },
+        {
+            id: "color-game",
+            label: "Color Game",
+            content: <ColorGame />,
         },
         {
             id: "game",

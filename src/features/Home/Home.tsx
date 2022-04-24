@@ -2,7 +2,7 @@ import { useWindowSize } from "hooks";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
-import ColorDrops from "features/guess-the-colors/ColorDrops";
+import { ColorDrops } from "features/guess-the-colors/game-components";
 
 const Home = () => {
     const { width } = useWindowSize();
