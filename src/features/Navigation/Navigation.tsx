@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 import { Dropdown, NavBar, ToggleButton } from "shared-components";
 import { LinkContext } from "context";
 import { useWindowSize } from "hooks";
-import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "app";
 import { icons } from "utils";
+import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "app";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
