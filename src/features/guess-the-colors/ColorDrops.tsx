@@ -14,25 +14,20 @@ const ColorDrops = () => {
         setIsOpen(false);
     };
 
-    const colorButton = (color: string) => {
-        if (color === "") return;
-        return (
-            <div
-                className="color_option"
-                style={{
-                    backgroundColor: color,
-                }}
-            />
-        );
-    };
-
+    const colorButton = (color: string) => (
+        <div
+            className="color_option"
+            style={{
+                backgroundColor: color,
+            }}
+        />
+    );
     return (
         <div className="drop_container">
             <Dropdown closeMenu={() => setIsOpen(false)}>
                 <Dropdown.Trigger
                     label={colorButton(option)}
                     toggleMenu={() => setIsOpen(prev => !prev)}
-                    title="Choose color"
                 />
                 <Dropdown.DropdownList isOpen={isOpen} position="bottom">
                     {colors.map((color, idx) => (
