@@ -20,7 +20,6 @@ const Bubble = ({ onClick, title, id, selected, cssProps }: BubbleProps) => {
 
     const bubbleClassNames = classNames(styles.bubbleStyle, {
         [styles.bubbleStyle__active]: selected,
-        [styles.withImage]: false,
     });
 
     const handleClick = () => {

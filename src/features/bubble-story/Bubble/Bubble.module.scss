@@ -3,8 +3,7 @@
     // background: linear-gradient(135deg, transparent, cadetblue 85%);
     border-radius: 50%;
     aspect-ratio: 1;
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2),
-        -1px -1px 5px rgba(240, 240, 240, 0.5);
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2), -1px -1px 5px rgba(240, 240, 240, 0.5);
     display: grid;
     place-items: center;
     z-index: 1;
@@ -32,15 +31,4 @@
             }
         }
     }
-}
-
-.withImage {
-    // background-image: url(../../../images/moon1920.jpg);
-    background-image: url(../../../images/Santa0.png);
-    // background-image: url(../../../images/bf0.png);
-    // background: url(../../../images/fastsanta.png);
-    background-size: cover;
-    background-position: center;
-    transition: 300ms ease-out;
-    box-shadow: none;
 }

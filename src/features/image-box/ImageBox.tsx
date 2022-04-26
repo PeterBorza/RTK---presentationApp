@@ -3,7 +3,7 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 
 import { ImageCard } from "shared-components";
-import { puzzleImages } from "../../images/folder/image-stack";
+import { puzzleImages } from "images/folder/image-stack";
 
 import styles from "./ImageBox.module.scss";
 

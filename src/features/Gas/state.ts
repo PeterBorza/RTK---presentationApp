@@ -1,6 +1,6 @@
 import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
 
-import { Pending } from "../../app/constants";
+import { Pending } from "app/constants";
 
 const initialFormValues: FormProps = {
     index: "",
