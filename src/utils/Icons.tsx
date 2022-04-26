@@ -14,6 +14,7 @@ import {
     FaBan,
     FaArrowDown,
     FaArrowUp,
+    FaTimes,
 } from "react-icons/fa";
 import { CgDanger, CgEnter } from "react-icons/cg";
 import { MdEdit } from "react-icons/md";
@@ -50,4 +51,5 @@ export const icons: IconType = {
     faDown: <FaArrowDown />,
     faUp: <FaArrowUp />,
     stop: <ImStop />,
+    x: <FaTimes style={{ color: "crimson" }} />,
 };
