@@ -14,6 +14,7 @@ const Home = () => {
 
     return (
         <div className={containerClasses}>
+            <h2>Pick your colors</h2>
             <div className={styles.colorDrops_container}>
                 <ColorDrops />
                 <ColorDrops />
