@@ -65,17 +65,17 @@ $front-background: rgba(255, 255, 525, 0.6);
     width: 100%;
     height: 100%;
     background-color: $front-background;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include fCenter();
     &::after {
         position: absolute;
         content: "";
         left: 5%;
         top: 5%;
-        background: url(../images/gru-clean.png) no-repeat center/cover;
+        background-image: url(../images/gru-clean.png);
+        background-position: center;
+        background-size: cover;
         width: 90%;
-        height: 90%;
+        height: 100%;
         opacity: 0.5;
     }
 }

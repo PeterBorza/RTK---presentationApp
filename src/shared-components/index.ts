@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
 import FadedModal from "./FadedModal";
+import AlertModal from "./AlertModal";
 import CustomIcon from "./CustomIcon";
 import InputCard from "./InputCard";
 import TextInput from "./TextInput";
@@ -50,6 +51,7 @@ export {
     TextInput,
     BlackModal,
     FadedModal,
+    AlertModal,
     CustomIcon,
     CheckBox,
     Select,

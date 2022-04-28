@@ -1,79 +1,69 @@
-import React, { useState } from "react";
-import { icons } from "utils";
+import React from "react";
 import { featureFlags } from "flags";
-import { Evaluation, GameControls } from "./game-components";
-
+import {
+    Attempt,
+    AttemptsContainer,
+    CardIcons,
+    Evaluation,
+    GameControls,
+    GameDropdown,
+    GameDropdownItem,
+    GameHeader,
+    HiddenCombo,
+    PlayCard,
+} from "./game-components";
+import { ComingSoonText } from "app";
 import { shuffle } from "utils";
+
 import styles from "./ColorGame.module.scss";
+import { IguessGameItem } from "./state";
+import { useSelector } from "react-redux";
+import { baseColorsState, gameAttemptsState, playerComboArray } from "./selectors";
 
 const gameColors: string[] = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
-const newColors = (arr: string[]): string[] => shuffle(arr).slice(0, 4);
-const NUMBER_OF_ATTEMPTS = 6;
+const newColors = (arr: IguessGameItem[]): IguessGameItem[] => shuffle(arr).slice(0, 4);
 
 const ColorGame = () => {
     const flagged: boolean = featureFlags.guess_the_colors;
-    const [newGame, setNewGame] = useState(newColors(gameColors));
-    const [text, setText] = useState("");
-    const attemptBoxes: number[] = new Array(NUMBER_OF_ATTEMPTS).fill(null);
-    const shuffleUp = () => setNewGame(newColors(gameColors));
-    const submitCombo = () => setText("It is currently under construction, terribly sorry.");
 
+    const gameAttempts = useSelector(gameAttemptsState);
+    const baseColors = useSelector(baseColorsState);
+    const playerCombo = useSelector(playerComboArray);
+    const [newGame, setNewGame] = React.useState<IguessGameItem[]>(newColors(baseColors));
+
+    const shuffleUp = () => setNewGame(newColors(baseColors));
+    const submitCombo = () => {
+        console.log({ text: "Submit is building aws.", baseColors, newGame, playerCombo });
+    };
+
+    const NUM_OF_ATTEMPTS = gameAttempts.length;
+    const attemptBoxes: number[] = new Array(NUM_OF_ATTEMPTS).fill(null);
     const mockResults = ["white", "white", "black", "none"];
-
-    const selectDropdowns = (
-        <>
-            <div className={styles.drops}>
-                <div className={styles.drop} style={{ backgroundColor: "red" }}></div>
-                <div className={styles.drop} style={{ backgroundColor: "lightgreen" }}></div>
-                <div className={styles.drop} style={{ backgroundColor: "blue" }}></div>
-                <div className={styles.drop} style={{ backgroundColor: "orange" }}></div>
-            </div>
-            <div className={styles.icons}>
-                {icons.x}
-                {icons.checkMark}
-            </div>
-        </>
-    );
-
-    const attemptBox = (
-        <>
-            <div className={styles.options_wrapper}>{selectDropdowns}</div>
-            <Evaluation results={mockResults} />
-        </>
-    );
+    const mockAttempt = ["red", "lightgreen", "blue", "orange"];
 
     return flagged ? (
         <div className={styles.game_container}>
-            <div className={styles.game_header}>
-                <h1>Guess the colors game</h1>
-            </div>
-            <div className={styles.combination}>
-                {newGame.map((color, idx) => (
-                    <div
-                        key={`combo-${idx}`}
-                        className={styles.hidden_combo}
-                        style={{ backgroundColor: color }}
-                    >
-                        {idx + 1}
-                    </div>
-                ))}
-            </div>
-            <div className={styles.attempts}>
+            <GameHeader labelTitle="Guess the colors game" />
+            <HiddenCombo combination={newGame} />
+            <AttemptsContainer>
                 {attemptBoxes.map((_, idx) => (
-                    <div key={`attempt-nr-${idx + 1}`} className={styles.attempt_box}>
-                        {attemptBox}
-                    </div>
+                    <PlayCard key={`playcard-${idx + 1}`}>
+                        <Attempt>
+                            <GameDropdown>
+                                {mockAttempt.map((item, idx) => (
+                                    <GameDropdownItem key={`game-drop-${idx + 1}`} color={item} />
+                                ))}
+                            </GameDropdown>
+                            <CardIcons />
+                        </Attempt>
+                        <Evaluation results={mockResults} />
+                    </PlayCard>
                 ))}
-            </div>
-            <GameControls
-                gameColors={gameColors}
-                shuffleUp={shuffleUp}
-                submitCombo={submitCombo}
-                text={text}
-            />
+            </AttemptsContainer>
+            <GameControls gameColors={gameColors} shuffleUp={shuffleUp} submitCombo={submitCombo} />
         </div>
     ) : (
-        <div className={styles.coming_soon}>Coming Soon...</div>
+        <div className={styles.coming_soon}>{ComingSoonText.MESSAGE}</div>
     );
 };
 
