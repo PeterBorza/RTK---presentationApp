@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { icons } from "utils";
 import { featureFlags } from "flags";
-import { GameControls } from "./game-components";
+import { Evaluation, GameControls } from "./game-components";
 
 import { shuffle } from "utils";
 import styles from "./ColorGame.module.scss";
@@ -17,6 +17,8 @@ const ColorGame = () => {
     const attemptBoxes: number[] = new Array(NUMBER_OF_ATTEMPTS).fill(null);
     const shuffleUp = () => setNewGame(newColors(gameColors));
     const submitCombo = () => setText("It is currently under construction, terribly sorry.");
+
+    const mockResults = ["white", "white", "black", "none"];
 
     const selectDropdowns = (
         <>
@@ -36,12 +38,7 @@ const ColorGame = () => {
     const attemptBox = (
         <>
             <div className={styles.options_wrapper}>{selectDropdowns}</div>
-            <div className={styles.evaluation_wrapper}>
-                <div className={styles.score_box} style={{ backgroundColor: "white" }} />
-                <div className={styles.score_box} style={{ backgroundColor: "black" }} />
-                <div className={styles.score_box} style={{ backgroundColor: "white" }} />
-                <div className={styles.score_box} />
-            </div>
+            <Evaluation results={mockResults} />
         </>
     );
 

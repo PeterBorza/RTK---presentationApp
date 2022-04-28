@@ -1,6 +1,5 @@
 import { RootState } from "app/store";
 import { createSelector } from "@reduxjs/toolkit";
-import { shuffle } from "utils";
 
 export const guessGameState = ({ guessGame }: RootState) => guessGame;
 

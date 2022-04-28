@@ -1,21 +1,19 @@
 import React from "react";
 
-import styles from "../ColorGame.module.scss";
-
-type GameControlsType = {
+type GameControlsProps = {
     gameColors: string[];
     shuffleUp: () => void;
     submitCombo: () => void;
     text?: string;
 };
 
-const GameControls = ({ gameColors, shuffleUp, submitCombo, text = "" }: GameControlsType) => {
-    const isText = text !== "";
+const GameControls = ({ gameColors, shuffleUp, submitCombo, text = "" }: GameControlsProps) => {
+    // const isText = text !== "";
     return (
-        <div className={styles.controls}>
+        <div className="controls">
             <div>
                 A palette of six colors is given:
-                <ol>
+                <ol className="ol-list">
                     {gameColors.map(color => (
                         <li key={color} style={{ color }}>
                             {color}
@@ -32,7 +30,7 @@ const GameControls = ({ gameColors, shuffleUp, submitCombo, text = "" }: GameCon
                 You have six attempts, and your score for every turn is reflected in the white and
                 black circles you're given on each submit.
             </p>
-            <ul>
+            <ul className="ul-list">
                 <li>
                     <b>White circle:</b> you guessed the right color, in a random position.
                 </li>
@@ -47,8 +45,8 @@ const GameControls = ({ gameColors, shuffleUp, submitCombo, text = "" }: GameCon
             <button onClick={shuffleUp}>Try again</button>
             <button onClick={submitCombo}>Submit attempt</button>
 
-            <div className={styles.construction_text}>
-                <p style={{ color: "crimson", textAlign: "center" }}>{text}</p>
+            <div className="construction_text">
+                <p className="text">{text}</p>
             </div>
         </div>
     );
