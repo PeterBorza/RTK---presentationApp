@@ -23,3 +23,11 @@ export enum Error {
 export enum Pending {
     MESSAGE = "Loading, please wait...",
 }
+
+export enum UnderConstructionText {
+    MESSAGE = "We are terribly sorry, this feature is currently under construction...",
+}
+
+export enum ComingSoonText {
+    MESSAGE = "Coming Soon...",
+}

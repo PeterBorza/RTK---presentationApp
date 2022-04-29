@@ -1,56 +1,61 @@
 import React from "react";
 
-import styles from "../ColorGame.module.scss";
+import { IguessGameItem } from "../state";
 
-type GameControlsType = {
-    gameColors: string[];
-    shuffleUp: () => void;
-    submitCombo: () => void;
-    text?: string;
+type GameControlsProps = {
+    gameColors: IguessGameItem[];
 };
 
-const GameControls = ({ gameColors, shuffleUp, submitCombo, text = "" }: GameControlsType) => {
-    const isText = text !== "";
+const GameControls = ({ gameColors }: GameControlsProps) => {
     return (
-        <div className={styles.controls}>
-            <div>
-                A palette of six colors is given:
-                <ol>
-                    {gameColors.map(color => (
-                        <li key={color} style={{ color }}>
-                            {color}
-                        </li>
-                    ))}
-                </ol>
-            </div>
+        <>
+            <div className="controls">
+                <div>
+                    <p>A palette of six colors is given:</p>
+                    <ol className="ol-list">
+                        {gameColors.map(item => (
+                            <li key={item.id} style={{ color: item.color }}>
+                                <p>{item.color}</p>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
 
-            <p>
-                Try and guess the right colors and in the right order, by submitting your
-                combinations on the left panel.
-            </p>
-            <p>
-                You have six attempts, and your score for every turn is reflected in the white and
-                black circles you're given on each submit.
-            </p>
-            <ul>
-                <li>
-                    <b>White circle:</b> you guessed the right color, in a random position.
-                </li>
-                <li>
-                    <b>Black circle:</b> you guessed the right color in it's exact spot in the
-                    combo.
-                </li>
-            </ul>
-            <p>You win the game if you guess the combo under six attempts.</p>
-            <p>Try and go for the record, or play with time pressure.</p>
-            <p>Cheers.</p>
-            <button onClick={shuffleUp}>Try again</button>
-            <button onClick={submitCombo}>Submit attempt</button>
-
-            <div className={styles.construction_text}>
-                <p style={{ color: "crimson", textAlign: "center" }}>{text}</p>
+                <p>
+                    Try and guess the right colors and in the right order, by submitting your
+                    combinations on the left panel.
+                </p>
+                <p>
+                    You have six attempts, and your score for every turn is reflected in the white
+                    and black circles you're given on each submit.
+                </p>
+                <ul className="ul-list">
+                    <li>
+                        <p>
+                            <b>White circle:</b>
+                            <br />
+                            Color is in a random position.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Black circle:</b>
+                            <br />
+                            Color is in it's exact spot in the combo.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Transparent circle:</b>
+                            <br />
+                            Color is not in the combo.
+                        </p>
+                    </li>
+                </ul>
+                <p>You win the game if you guess the combo under six attempts.</p>
+                <p>Try and go for the record, or play with time pressure. Cheers.</p>
             </div>
-        </div>
+        </>
     );
 };
 

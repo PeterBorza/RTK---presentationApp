@@ -1,11 +1,13 @@
+import React from "react";
+
 import styles from "./ErrorMessage.module.scss";
 
 interface ErrorProps {
-    message: string | null;
+    message: string | React.ReactNode;
     isError: boolean;
 }
 
-const Error = ({ message = "No error message found", isError }: ErrorProps) => {
+const Error = ({ message, isError }: ErrorProps) => {
     return isError ? (
         <div className={styles.errorStyle}>
             <h1>{message}</h1>

@@ -165,3 +165,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+@mixin pop {
+    animation: pop 300ms ease-in-out forwards;
+    @keyframes pop {
+        from {
+            opacity: 0;
+            transform: scale(0);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}

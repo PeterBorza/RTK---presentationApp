@@ -3,38 +3,12 @@
 $light-background-color: rgb(244, 242, 242);
 $percent: 20%;
 $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
+$item-font-size: clamp(8px, 1.2vw, 1.2rem);
 
 .drop_wrap {
     position: relative;
     width: 100%;
     height: 100%;
-}
-
-.drop_trigger {
-    @include fCenter();
-    width: 100%;
-    height: 100%;
-    display: flex;
-    outline: none;
-    border: none;
-    overflow: hidden;
-    box-shadow: $shadow;
-    color: darken($light-background-color, $percent);
-    background: $light-background-color;
-    font-weight: bold;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    transition: all 200ms ease-in-out;
-    &:hover {
-        color: $light-background-color;
-        background: darken($light-background-color, $percent);
-    }
-    span {
-        display: block;
-        width: 100%;
-        height: 100%;
-        @include fCenter();
-    }
 }
 
 .label_style {
@@ -61,23 +35,6 @@ $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
                 z-index: 1;
                 transform: translateY(0);
             }
-        }
-    }
-
-    ul {
-        padding: 5px;
-    }
-
-    ul li {
-        list-style: none;
-        font-size: 1.4rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        border-radius: 3px;
-        &:hover {
-            background-color: darken($light-background-color, $percent);
-            color: $light-background-color;
         }
     }
 
