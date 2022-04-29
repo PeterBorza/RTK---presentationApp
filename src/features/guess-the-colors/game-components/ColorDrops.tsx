@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { Dropdown } from "shared-components";
+import { IguessGameItem } from "../state";
 
 import "./_index.scss";
 
-const ColorDrops = () => {
+type ColorDropProps = {
+    colors: IguessGameItem[];
+    onClick: (option: IguessGameItem) => void;
+};
+
+const ColorDrops = ({ colors, onClick }: ColorDropProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [option, setOption] = useState("");
 
-    const colors = ["green", "red", "orange", "blue", "lightblue", "lightgreen"];
-
-    const listItemHandler = (color: string) => {
+    const listItemHandler = (color: string, option: IguessGameItem) => {
         setOption(color);
         setIsOpen(false);
+        onClick(option);
     };
 
-    const colorButton = (color: string) => {
-        if (color === "") return;
+    const optionItem = (color: string) => {
         return (
             <div
                 className="color_option"
@@ -26,26 +30,28 @@ const ColorDrops = () => {
         );
     };
 
+    const colorLabel = (color: string) => (
+        <div className="color_label" style={{ backgroundColor: color }} />
+    );
+
     return (
-        <div className="drop_container">
-            <Dropdown closeMenu={() => setIsOpen(false)}>
-                <Dropdown.Trigger
-                    label={colorButton(option)}
-                    toggleMenu={() => setIsOpen(prev => !prev)}
-                    title="Choose color"
-                />
-                <Dropdown.DropdownList isOpen={isOpen} position="bottom">
-                    {colors.map((color, idx) => (
-                        <Dropdown.MenuItem
-                            key={`${idx}-${color}`}
-                            onClick={() => listItemHandler(color)}
-                        >
-                            {colorButton(color)}
-                        </Dropdown.MenuItem>
-                    ))}
-                </Dropdown.DropdownList>
-            </Dropdown>
-        </div>
+        <Dropdown closeMenu={() => setIsOpen(false)}>
+            <Dropdown.Trigger
+                label={option ? colorLabel(option) : undefined}
+                toggleMenu={() => setIsOpen(prev => !prev)}
+                title="Choose color"
+            />
+            <Dropdown.DropdownList isOpen={isOpen} position="bottom">
+                {colors.map(item => (
+                    <Dropdown.MenuItem
+                        key={`drop-option-${item.id}`}
+                        onClick={() => listItemHandler(item.color, item)}
+                    >
+                        {optionItem(item.color)}
+                    </Dropdown.MenuItem>
+                ))}
+            </Dropdown.DropdownList>
+        </Dropdown>
     );
 };
 

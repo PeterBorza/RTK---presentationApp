@@ -1,33 +1,21 @@
 import React from "react";
 
-import { UnderConstructionText } from "app";
-import { AlertModal } from "shared-components";
-import { useOnClickOutside } from "hooks";
+import { IguessGameItem } from "../state";
 
 type GameControlsProps = {
-    gameColors: string[];
-    shuffleUp: () => void;
-    submitCombo: () => void;
+    gameColors: IguessGameItem[];
 };
 
-const GameControls = ({ gameColors, shuffleUp, submitCombo }: GameControlsProps) => {
-    const modalRef = React.useRef<HTMLDivElement | null>(null);
-    const [open, setOpen] = React.useState(false);
-    useOnClickOutside(modalRef, () => setOpen(false));
-
-    const handleSubmit = () => {
-        submitCombo();
-        setOpen(true);
-    };
+const GameControls = ({ gameColors }: GameControlsProps) => {
     return (
         <>
             <div className="controls">
                 <div>
                     <p>A palette of six colors is given:</p>
                     <ol className="ol-list">
-                        {gameColors.map(color => (
-                            <li key={color} style={{ color }}>
-                                <p>{color}</p>
+                        {gameColors.map(item => (
+                            <li key={item.id} style={{ color: item.color }}>
+                                <p>{item.color}</p>
                             </li>
                         ))}
                     </ol>
@@ -66,12 +54,7 @@ const GameControls = ({ gameColors, shuffleUp, submitCombo }: GameControlsProps)
                 </ul>
                 <p>You win the game if you guess the combo under six attempts.</p>
                 <p>Try and go for the record, or play with time pressure. Cheers.</p>
-                <button onClick={shuffleUp}>New Game</button>
-                <button onClick={handleSubmit}>Submit attempt</button>
             </div>
-            <AlertModal openModal={open} ref={modalRef}>
-                <h1 className="construction_text">{UnderConstructionText.MESSAGE}</h1>
-            </AlertModal>
         </>
     );
 };

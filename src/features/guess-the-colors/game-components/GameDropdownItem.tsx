@@ -1,11 +1,9 @@
 import React from "react";
 
-type IGameDropItemProps = {
-    color: string;
-};
+type IGameDropItemProps = {};
 
-const GameDropdownItem = ({ color }: IGameDropItemProps) => {
-    return <div className="drop" style={{ backgroundColor: color }}></div>;
+const GameDropdownItem: React.FC<IGameDropItemProps> = ({ children }) => {
+    return <div className="drop">{children}</div>;
 };
 
 export default GameDropdownItem;

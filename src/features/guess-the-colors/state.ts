@@ -1,13 +1,28 @@
 export interface IguessGameItem {
     id: number;
     color: string;
-    order: number | null;
+    order: number;
+}
+export type ResultType = number[];
+
+export interface IAttemptEnable {
+    id: number;
+    isEnabled: boolean;
+}
+export interface IResultsType {
+    id: number;
+    results: ResultType;
+}
+export interface IPlayerCombo {
+    id: number;
+    item: IguessGameItem;
 }
 
 export interface IAttempt {
     id: number;
     playerCombo: IguessGameItem[];
-    results: number[];
+    results: ResultType;
+    isAttemptEnabled: boolean;
 }
 
 export interface IguessGame {
@@ -16,70 +31,23 @@ export interface IguessGame {
     attempts: IAttempt[];
 }
 
+const colors = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
+
 export const initialState: IguessGame = {
-    baseColors: [
-        {
-            id: 1000,
-            color: "red",
-            order: 1,
-        },
-        {
-            id: 1001,
-            color: "blue",
-            order: 2,
-        },
-        {
-            id: 1002,
-            color: "green",
-            order: 3,
-        },
-        {
-            id: 1003,
-            color: "lightblue",
-            order: 4,
-        },
-        {
-            id: 1004,
-            color: "lightgreen",
-            order: 5,
-        },
-        {
-            id: 1005,
-            color: "orange",
-            order: 6,
-        },
-    ],
+    baseColors: colors.map((item, idx) => {
+        return {
+            id: 1000 + idx,
+            color: item,
+            order: 1 + idx,
+        };
+    }),
     gameCombo: [],
-    attempts: [
-        {
-            id: 10001,
+    attempts: colors.map((item, idx) => {
+        return {
+            id: 10001 + idx,
             playerCombo: [],
-            results: [],
-        },
-        {
-            id: 10002,
-            playerCombo: [],
-            results: [],
-        },
-        {
-            id: 10003,
-            playerCombo: [],
-            results: [],
-        },
-        {
-            id: 10004,
-            playerCombo: [],
-            results: [],
-        },
-        {
-            id: 10005,
-            playerCombo: [],
-            results: [],
-        },
-        {
-            id: 10006,
-            playerCombo: [],
-            results: [],
-        },
-    ],
+            results: [0, 0, 0, 0],
+            isAttemptEnabled: true,
+        };
+    }),
 };

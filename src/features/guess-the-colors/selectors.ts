@@ -9,14 +9,14 @@ export const gameAttemptsState = ({ guessGame }: RootState) => guessGame.attempt
 
 export const gameComboState = ({ guessGame }: RootState) => guessGame.gameCombo;
 
-export const gameColorsArray = createSelector(baseColorsState, items =>
+export const gameColorsSelector = createSelector(baseColorsState, items =>
     items.map(item => item.color),
 );
 
-export const attemptResults = createSelector(gameAttemptsState, items =>
-    items.map(item => item.results),
+export const playerComboSelector = createSelector(gameAttemptsState, items =>
+    items.map(item => item.playerCombo),
 );
 
-export const playerComboArray = createSelector(gameAttemptsState, items =>
-    items.map(item => item.playerCombo),
+export const playerResults = createSelector(gameAttemptsState, items =>
+    items.map(item => item.results),
 );

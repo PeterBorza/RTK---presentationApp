@@ -1,17 +1,14 @@
 import React from "react";
-import { icons } from "utils";
 
-import styles from "../Dropdown.module.scss";
-
-type TriggerType = {
+type TriggerProps = {
     label?: React.ReactNode | string;
     title?: string;
     toggleMenu: () => void;
 };
 
-const Trigger = ({ label = icons.down, title, toggleMenu }: TriggerType) => {
+const Trigger = ({ label = "", title, toggleMenu }: TriggerProps) => {
     return (
-        <button title={title} onClick={toggleMenu} className={styles.drop_trigger}>
+        <button title={title} onClick={toggleMenu} className="drop_trigger">
             <span>{label}</span>
         </button>
     );

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./CustomIcon.module.scss";
 
 export type IconProps = {
-    onClick?: () => void | undefined;
+    onClick?: () => void;
     title: string;
     icon: JSX.Element;
 };
