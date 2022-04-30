@@ -44,9 +44,10 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "bubbles": "json-server --watch data/bubbles.json --port 5010 --delay 1000",
+        "coins": "json-server --watch data/coins.json --port 5008 --delay 1000",
         "utilities": "json-server --watch data/utilities.json --port 5006 --delay 1000",
         "all": "start npm run start && start npm run bubbles && start npm run utilities",
-        "startall": "concurrently \"npm run utilities\" \"npm run bubbles\" \"npm start\""
+        "startall": "concurrently \"npm run utilities\" \"npm run bubbles\" \"npm run coins\" \"npm start\""
     },
     "eslintConfig": {
         "extends": "react-app"

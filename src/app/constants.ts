@@ -1,6 +1,7 @@
 export enum BaseAPI {
-    BUBBLES_URL = "http://localhost:5010",
     UTILITIES_URL = "http://localhost:5006",
+    COINS_URL = "http://localhost:5008",
+    BUBBLES_URL = "http://localhost:5010",
 }
 
 export enum Url {
@@ -14,6 +15,7 @@ export enum Url {
     GAME = "game",
     RUBIK = "rubik",
     SCROLL = "scroll",
+    COINS = "coins",
 }
 
 export enum Error {
