@@ -19,15 +19,8 @@ import { shuffle } from "utils";
 import styles from "./ColorGame.module.scss";
 import { IguessGameItem, ResultType } from "./state";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    baseColorsState,
-    gameAttemptsState,
-    playerComboSelector,
-    gameComboState,
-    playerResults,
-} from "./selectors";
-import { getNewGameCombo, setPlayerComboItem, setResults } from "./guessGameSlice";
-import { current } from "immer";
+import { baseColorsState, gameAttemptsState, gameComboState, playerResults } from "./selectors";
+import { getNewGameCombo, setResults } from "./guessGameSlice";
 
 const newColors = (arr: IguessGameItem[]): IguessGameItem[] => shuffle(arr).slice(0, 4);
 
@@ -38,7 +31,6 @@ const ColorGame = () => {
     const results = useSelector(playerResults);
     const gameAttempts = useSelector(gameAttemptsState);
     const baseColors = useSelector(baseColorsState);
-    const playerComboes = useSelector(playerComboSelector);
 
     const dispatch = useDispatch();
 
@@ -46,19 +38,7 @@ const ColorGame = () => {
 
     const gameOver = results.some(res => [...res] === [...perfectMatch]);
 
-    useEffect(() => {
-        !gameCombo.length && dispatch(getNewGameCombo(newColors(baseColors)));
-    }, []);
-
     const shuffleUp = () => dispatch(getNewGameCombo(newColors(baseColors)));
-
-    const playerChoiceHandler = (option: IguessGameItem, attemptId: number, order: number) =>
-        dispatch(
-            setPlayerComboItem({
-                id: attemptId,
-                item: { ...option, order: order + 1 },
-            }),
-        );
 
     const currentAttemptFinder = (attemptId: number) =>
         gameAttempts.find(attempt => attempt.id === attemptId);
@@ -83,11 +63,6 @@ const ColorGame = () => {
         dispatch(setResults({ id: attemptId, results: resultArray }));
     };
 
-    const currentResult = (attemptId: number) => {
-        const current = currentAttemptFinder(attemptId);
-        return current ? current.results : [];
-    };
-
     const submitCombo = () => {
         console.log(results);
     };
@@ -101,24 +76,19 @@ const ColorGame = () => {
             <HiddenCombo show={gameOver} combination={gameCombo} />
             <AttemptsContainer>
                 {gameAttempts.map((attempt, index) => (
-                    <PlayCard isEnabled={attempt.isAttemptEnabled} key={`playcard-${index + 1}`}>
+                    <PlayCard key={`playcard-${index + 1}`}>
                         <Attempt>
                             <GameDropdown>
                                 {gameCombo.map((item, idx) => (
                                     <GameDropdownItem key={`attempt-dropdown-${idx + 1}`}>
-                                        <ColorDrops
-                                            onClick={option =>
-                                                playerChoiceHandler(option, attempt.id, idx + 1)
-                                            }
-                                            colors={baseColors}
-                                        />
+                                        <ColorDrops colors={baseColors} />
                                     </GameDropdownItem>
                                 ))}
                             </GameDropdown>
 
                             <CardIcons onSubmit={() => comboMatchHandler(attempt.id)} />
                         </Attempt>
-                        <Evaluation results={currentResult(attempt.id)} />
+                        <Evaluation />
                     </PlayCard>
                 ))}
             </AttemptsContainer>

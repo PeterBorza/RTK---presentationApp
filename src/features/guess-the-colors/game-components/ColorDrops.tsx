@@ -6,17 +6,17 @@ import "./_index.scss";
 
 type ColorDropProps = {
     colors: IguessGameItem[];
-    onClick: (option: IguessGameItem) => void;
+    onClick?: () => void;
 };
 
 const ColorDrops = ({ colors, onClick }: ColorDropProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [option, setOption] = useState("");
 
-    const listItemHandler = (color: string, option: IguessGameItem) => {
+    const listItemHandler = (color: string) => {
         setOption(color);
         setIsOpen(false);
-        onClick(option);
+        onClick && onClick();
     };
 
     const optionItem = (color: string) => {
@@ -37,15 +37,17 @@ const ColorDrops = ({ colors, onClick }: ColorDropProps) => {
     return (
         <Dropdown closeMenu={() => setIsOpen(false)}>
             <Dropdown.Trigger
-                label={option ? colorLabel(option) : undefined}
                 toggleMenu={() => setIsOpen(prev => !prev)}
                 title="Choose color"
-            />
+                isDisabled={false}
+            >
+                {colorLabel(option)}
+            </Dropdown.Trigger>
             <Dropdown.DropdownList isOpen={isOpen} position="bottom">
                 {colors.map(item => (
                     <Dropdown.MenuItem
                         key={`drop-option-${item.id}`}
-                        onClick={() => listItemHandler(item.color, item)}
+                        onClick={() => listItemHandler(item.color)}
                     >
                         {optionItem(item.color)}
                     </Dropdown.MenuItem>

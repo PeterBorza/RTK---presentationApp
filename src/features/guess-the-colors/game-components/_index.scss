@@ -2,7 +2,7 @@
 
 $shadow: 2px 2px 10px rgb(0 0 0 / 0.2);
 $container-shadow: 4px 4px 15px rgb(0 0 0 / 0.9), -2px -2px 10px rgb(255 255 255 / 0.6);
-$box-size: clamp(15px, 2.5vw, 60px);
+$box-size: clamp(1rem, 1.8vw, 35px);
 $bg: rgb(193, 189, 189);
 $shadow-transition: all 200ms ease-in-out;
 $padding-clamp: clamp(4px, 1.5vw, 1rem);
@@ -19,6 +19,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     &__title {
         font-weight: bold;
         font-size: $title-size;
+        text-align: center;
     }
     &__controls {
         display: flex;
@@ -41,6 +42,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
 
 .combination {
     grid-column: 1/2;
+    grid-row: 2/3;
     width: 100%;
     height: 100%;
     display: flex;
@@ -52,7 +54,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
         background-color: lighten($bg, 10%);
         border-radius: 5px;
         width: 100%;
-        height: min(80px, 60%);
+        height: 60px;
         @include fCenter();
     }
 }
@@ -99,6 +101,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
         .icons {
             display: flex;
             gap: 5px;
+            padding: 2px;
             margin-left: auto;
             margin-right: 0.6rem;
             & > * {
@@ -137,7 +140,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(2px, 1vw, 8px);
-    padding: clamp(2px, 2.5vw, 8px);
+    padding: 4px;
 
     .score_box {
         width: $box-size;
@@ -191,7 +194,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
 .construction_text {
     letter-spacing: 1px;
     color: rgb(65, 55, 55);
-    font-size: 2.5rem;
+    font-size: clamp(1rem, 1.5vw, 2.5rem);
     font-weight: bold;
     font-family: Georgia, "Times New Roman", Times, serif;
     text-align: center;

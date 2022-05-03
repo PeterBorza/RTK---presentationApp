@@ -1,7 +1,8 @@
+import { shuffle } from "utils";
+
 export interface IguessGameItem {
     id: number;
     color: string;
-    order: number;
 }
 export type ResultType = number[];
 
@@ -22,7 +23,7 @@ export interface IAttempt {
     id: number;
     playerCombo: IguessGameItem[];
     results: ResultType;
-    isAttemptEnabled: boolean;
+    selected: boolean;
 }
 
 export interface IguessGame {
@@ -32,22 +33,24 @@ export interface IguessGame {
 }
 
 const colors = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
+const setup = colors.map((item, idx) => {
+    return {
+        id: 1000 + idx,
+        color: item,
+    };
+});
+
+const newGame = shuffle(setup).slice(0, 4);
 
 export const initialState: IguessGame = {
-    baseColors: colors.map((item, idx) => {
-        return {
-            id: 1000 + idx,
-            color: item,
-            order: 1 + idx,
-        };
-    }),
-    gameCombo: [],
+    baseColors: setup,
+    gameCombo: newGame,
     attempts: colors.map((item, idx) => {
         return {
             id: 10001 + idx,
             playerCombo: [],
             results: [0, 0, 0, 0],
-            isAttemptEnabled: true,
+            selected: false,
         };
     }),
 };

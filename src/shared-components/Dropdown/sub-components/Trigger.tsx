@@ -1,15 +1,15 @@
 import React from "react";
 
 type TriggerProps = {
-    label?: React.ReactNode | string;
     title?: string;
     toggleMenu: () => void;
+    isDisabled: boolean;
 };
 
-const Trigger = ({ label = "", title, toggleMenu }: TriggerProps) => {
+const Trigger: React.FC<TriggerProps> = ({ children, title, toggleMenu, isDisabled }) => {
     return (
-        <button title={title} onClick={toggleMenu} className="drop_trigger">
-            <span>{label}</span>
+        <button title={title} onClick={toggleMenu} disabled={isDisabled} className="drop_trigger">
+            {children}
         </button>
     );
 };
