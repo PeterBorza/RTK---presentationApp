@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { Dropdown, NavBar, ToggleButton } from "shared-components";
+import { NavBar, ToggleButton } from "shared-components";
 import { LinkContext } from "context";
 import { useWindowSize } from "hooks";
 import { icons } from "utils";
@@ -45,13 +45,13 @@ const Navigation = () => {
         </li>
     ));
 
-    const smallScreenMenu = links?.map(item => (
-        <Dropdown.MenuItem key={item.id} onClick={() => setOpenMenu(false)}>
-            <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
-                {item.label}
-            </NavLink>
-        </Dropdown.MenuItem>
-    ));
+    // const smallScreenMenu = links?.map(item => (
+    //     <Dropdown.MenuItem key={item.id} onClick={() => setOpenMenu(false)}>
+    //         <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
+    //             {item.label}
+    //         </NavLink>
+    //     </Dropdown.MenuItem>
+    // ));
 
     return (
         <div className={containerClasses}>
@@ -67,7 +67,7 @@ const Navigation = () => {
                     </>
                 ) : (
                     <div className={nav__dropdown}>
-                        <Dropdown closeMenu={() => setOpenMenu(false)}>
+                        {/* <Dropdown closeMenu={() => setOpenMenu(false)}>
                             <Dropdown.Trigger
                                 toggleMenu={() => setOpenMenu(prev => !prev)}
                                 isDisabled={!SMALL_SCREEN}
@@ -77,7 +77,7 @@ const Navigation = () => {
                             <Dropdown.DropdownList isOpen={openMenu} position="bottom">
                                 {smallScreenMenu}
                             </Dropdown.DropdownList>
-                        </Dropdown>
+                        </Dropdown> */}
                     </div>
                 )}
             </NavBar>

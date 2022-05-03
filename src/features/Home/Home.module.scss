@@ -26,12 +26,9 @@
 }
 
 .colorDrops_container {
-    @include fEven();
-    &__small {
-        @include fEven(column);
-    }
-    gap: 1rem;
-    padding: 1rem;
+    width: 100px;
+    height: 40px;
+
     border: 1px solid grey;
     border-radius: 5px;
     margin-top: 0.5rem;
