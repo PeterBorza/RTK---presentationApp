@@ -15,6 +15,7 @@ import {
 import { darkModeSelector } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } from "..";
+import { ImageSource } from "../types";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -23,7 +24,7 @@ import Controls from "../Controls";
 import classNames from "classnames";
 import styles from "./Game.module.scss";
 
-type ImageSource = string;
+const MAX_CLICK_COUNT = 26;
 
 const Game = () => {
     const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const Game = () => {
     const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
-        count > 25 && dispatch(resetGame());
+        count > MAX_CLICK_COUNT && dispatch(resetGame());
     }, [count, dispatch]);
 
     const freezeIfMatch = useCallback(
@@ -74,8 +75,6 @@ const Game = () => {
         [dispatch, freezeIfMatch],
     );
 
-    const resetGameHandler = () => gameHasStarted && dispatch(resetGame());
-
     const newGameHandler = () => {
         const shuffled = shuffle(minionImages);
         dispatch(resetGame());
@@ -84,7 +83,7 @@ const Game = () => {
 
     const gameButtons = [
         {
-            onClick: resetGameHandler,
+            onClick: () => gameHasStarted && dispatch(resetGame()),
             value: msg.RESET,
         },
         {
@@ -107,8 +106,6 @@ const Game = () => {
             );
         };
 
-        const frontContent = () => <div className={styles.front} />;
-
         const renderImages = ({ id, frontSrc, isFlipped, match }: GamePhotoData, idx: number) => {
             const checkIfMatchOrFLipped = !match ? isFlipped : match;
             return (
@@ -117,7 +114,7 @@ const Game = () => {
                     className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
                 >
                     <FlipCard
-                        frontContent={frontContent}
+                        frontContent={() => <div className={styles.front} />}
                         backContent={() => backContent(frontSrc.src)}
                         darkBack
                         flipped={checkIfMatchOrFLipped}

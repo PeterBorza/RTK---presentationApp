@@ -7,8 +7,10 @@ export interface ColorSetInterFace {
     palet: ColorString;
 }
 
+export type ImageSource = string;
+
 export interface GameImage {
-    src: string;
+    src: ImageSource;
     gameId: number;
 }
 

@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useMemo } from "react";
 
 import { v4 as uuid } from "uuid";
 import Home from "features/Home";
@@ -6,10 +6,6 @@ import { Photos } from "features/memoryGame-story";
 import { UtilityContainer } from "features/Utilities";
 import { Url } from "app/constants";
 import ScrollPageContainer from "features/scroll-pages";
-
-interface LinkProviderProps {
-    children: ReactNode;
-}
 
 export enum LinkUrls {
     HOME = "/",
@@ -22,17 +18,17 @@ export enum LinkUrls {
     SCROLL = "scroll",
 }
 
-interface ProviderProps {
+export interface IProviderProps {
     to: LinkUrls;
     label: string;
     id: string;
     element: ReactNode;
 }
 
-export const LinkContext = createContext<ProviderProps[] | null>(null);
+export const LinkContext = createContext<IProviderProps[] | null>(null);
 
-export const LinkContextProvider = ({ children }: LinkProviderProps) => {
-    const routes: ProviderProps[] = [
+export const LinkContextProvider: React.FC = ({ children }) => {
+    const initialLinkContext: IProviderProps[] = [
         {
             to: LinkUrls.HOME,
             label: Url.HOME,
@@ -58,5 +54,10 @@ export const LinkContextProvider = ({ children }: LinkProviderProps) => {
             element: <ScrollPageContainer />,
         },
     ];
-    return <LinkContext.Provider value={routes}>{children}</LinkContext.Provider>;
+
+    const context = useMemo(() => {
+        return initialLinkContext;
+    }, [initialLinkContext]);
+
+    return <LinkContext.Provider value={context}>{children}</LinkContext.Provider>;
 };

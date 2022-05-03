@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dropdown } from "shared-components";
+// import { Dropdown } from "shared-components";
 import { IguessGameItem } from "../state";
 
 import "./_index.scss";
@@ -35,25 +35,26 @@ const ColorDrops = ({ colors, onClick }: ColorDropProps) => {
     );
 
     return (
-        <Dropdown closeMenu={() => setIsOpen(false)}>
-            <Dropdown.Trigger
-                toggleMenu={() => setIsOpen(prev => !prev)}
-                title="Choose color"
-                isDisabled={false}
-            >
-                {colorLabel(option)}
-            </Dropdown.Trigger>
-            <Dropdown.DropdownList isOpen={isOpen} position="bottom">
-                {colors.map(item => (
-                    <Dropdown.MenuItem
-                        key={`drop-option-${item.id}`}
-                        onClick={() => listItemHandler(item.color)}
-                    >
-                        {optionItem(item.color)}
-                    </Dropdown.MenuItem>
-                ))}
-            </Dropdown.DropdownList>
-        </Dropdown>
+        <div></div>
+        // <Dropdown closeMenu={() => setIsOpen(false)}>
+        //     <Dropdown.Trigger
+        //         toggleMenu={() => setIsOpen(prev => !prev)}
+        //         title="Choose color"
+        //         isDisabled={false}
+        //     >
+        //         {colorLabel(option)}
+        //     </Dropdown.Trigger>
+        //     <Dropdown.DropdownList isOpen={isOpen} position="bottom">
+        //         {colors.map(item => (
+        //             <Dropdown.MenuItem
+        //                 key={`drop-option-${item.id}`}
+        //                 onClick={() => listItemHandler(item.color)}
+        //             >
+        //                 {optionItem(item.color)}
+        //             </Dropdown.MenuItem>
+        //         ))}
+        //     </Dropdown.DropdownList>
+        // </Dropdown>
     );
 };
 

@@ -13,13 +13,9 @@ import { Building } from "features/building-story";
 import SlideContainer from "features/slide-show/SlideContainer";
 import { darkModeSelector } from "app";
 
-interface PagesProviderProps {
-    children: React.ReactNode;
-}
-
 export const PagesContext = createContext<PagesType<JSX.Element>[] | null>(null);
 
-export const PagesContextProvider = ({ children }: PagesProviderProps) => {
+export const PagesContextProvider: React.FC = ({ children }) => {
     const darkMode = useSelector(darkModeSelector);
 
     const myPages: PagesType<JSX.Element>[] = [

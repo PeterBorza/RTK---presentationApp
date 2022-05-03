@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "./Dropdown.module.scss";
 import { useOnClickOutside } from "hooks";
+import { DropdownContext } from "./context";
 
 type DropdownType = {
-    closeMenu: () => void;
+    onCloseMenu?: () => void;
+    label?: string;
 };
 
-const Dropdown: React.FC<DropdownType> = ({ closeMenu, children }) => {
+const Dropdown: React.FC<DropdownType> = ({ onCloseMenu, label, children }) => {
+    const { setIsOpen, setTriggerName } = React.useContext(DropdownContext);
     const targetRef = React.useRef<HTMLDivElement | null>(null);
+
+    const closeMenu = () => {
+        onCloseMenu && onCloseMenu();
+        setIsOpen(false);
+        setTriggerName(label);
+    };
 
     useOnClickOutside(targetRef, closeMenu);
 

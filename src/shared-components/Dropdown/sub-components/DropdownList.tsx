@@ -2,13 +2,16 @@ import React from "react";
 
 import classNames from "classnames";
 import styles from "../Dropdown.module.scss";
+import { DropdownContext } from "../context";
+
+export type DropdownPositionType = "top" | "right" | "bottom" | "left";
 
 type DropdownListType = {
-    isOpen: boolean;
-    position: "top" | "right" | "bottom" | "left";
+    position: DropdownPositionType;
 };
 
-const DropdownList: React.FC<DropdownListType> = ({ isOpen, position, children }) => {
+const DropdownList: React.FC<DropdownListType> = ({ position, children }) => {
+    const { isOpen } = React.useContext(DropdownContext);
     const classes = classNames(
         styles.drop_content,
         styles.drop_content__animated,
