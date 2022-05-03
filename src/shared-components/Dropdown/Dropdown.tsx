@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styles from "./Dropdown.module.scss";
 import { useOnClickOutside } from "hooks";
 
@@ -7,7 +7,7 @@ type DropdownType = {
 };
 
 const Dropdown: React.FC<DropdownType> = ({ closeMenu, children }) => {
-    const targetRef = useRef<HTMLDivElement | null>(null);
+    const targetRef = React.useRef<HTMLDivElement | null>(null);
 
     useOnClickOutside(targetRef, closeMenu);
 

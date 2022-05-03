@@ -69,9 +69,11 @@ const Navigation = () => {
                     <div className={nav__dropdown}>
                         <Dropdown closeMenu={() => setOpenMenu(false)}>
                             <Dropdown.Trigger
-                                label={icons.bars}
                                 toggleMenu={() => setOpenMenu(prev => !prev)}
-                            />
+                                isDisabled={!SMALL_SCREEN}
+                            >
+                                {icons.bars}
+                            </Dropdown.Trigger>
                             <Dropdown.DropdownList isOpen={openMenu} position="bottom">
                                 {smallScreenMenu}
                             </Dropdown.DropdownList>

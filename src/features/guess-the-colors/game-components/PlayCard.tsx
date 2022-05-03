@@ -1,11 +1,9 @@
 import React from "react";
 
-type PlayCardType = {
-    isEnabled: boolean;
-};
+type PlayCardType = {};
 
-const PlayCard: React.FC<PlayCardType> = ({ children, isEnabled }) => {
-    return <div className="playcard">{isEnabled ? children : "fuck off"}</div>;
+const PlayCard: React.FC<PlayCardType> = ({ children }) => {
+    return <div className="playcard">{children}</div>;
 };
 
 export default PlayCard;
