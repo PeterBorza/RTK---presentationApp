@@ -7,6 +7,8 @@ import { LinkContext } from "context";
 import { useWindowSize } from "hooks";
 import { icons } from "utils";
 import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "app";
+import { IProviderProps } from "context/link-context";
+import { DropdownContainer } from "shared-components/Dropdown";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
@@ -45,13 +47,13 @@ const Navigation = () => {
         </li>
     ));
 
-    // const smallScreenMenu = links?.map(item => (
-    //     <Dropdown.MenuItem key={item.id} onClick={() => setOpenMenu(false)}>
-    //         <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
-    //             {item.label}
-    //         </NavLink>
-    //     </Dropdown.MenuItem>
-    // ));
+    const renderLinkItem = (item: IProviderProps) => {
+        return (
+            <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
+                {item.label}
+            </NavLink>
+        );
+    };
 
     return (
         <div className={containerClasses}>
@@ -67,17 +69,11 @@ const Navigation = () => {
                     </>
                 ) : (
                     <div className={nav__dropdown}>
-                        {/* <Dropdown closeMenu={() => setOpenMenu(false)}>
-                            <Dropdown.Trigger
-                                toggleMenu={() => setOpenMenu(prev => !prev)}
-                                isDisabled={!SMALL_SCREEN}
-                            >
-                                {icons.bars}
-                            </Dropdown.Trigger>
-                            <Dropdown.DropdownList isOpen={openMenu} position="bottom">
-                                {smallScreenMenu}
-                            </Dropdown.DropdownList>
-                        </Dropdown> */}
+                        <DropdownContainer
+                            menuList={links}
+                            renderMenuItem={item => renderLinkItem(item)}
+                            label="Explore"
+                        />
                     </div>
                 )}
             </NavBar>

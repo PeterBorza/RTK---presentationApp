@@ -25,39 +25,38 @@ export interface IProviderProps {
     element: ReactNode;
 }
 
-export const LinkContext = createContext<IProviderProps[] | null>(null);
+export const LinkContext = createContext<IProviderProps[]>([]);
 
 export const LinkContextProvider: React.FC = ({ children }) => {
-    const initialLinkContext: IProviderProps[] = [
-        {
-            to: LinkUrls.HOME,
-            label: Url.HOME,
-            id: uuid(),
-            element: <Home />,
-        },
-        {
-            to: LinkUrls.UTILITIES,
-            label: Url.UTILITIES,
-            id: uuid(),
-            element: <UtilityContainer />,
-        },
-        {
-            to: LinkUrls.PHOTOS,
-            label: Url.PHOTOS,
-            id: uuid(),
-            element: <Photos />,
-        },
-        {
-            to: LinkUrls.SCROLL,
-            label: Url.SCROLL,
-            id: uuid(),
-            element: <ScrollPageContainer />,
-        },
-    ];
-
     const context = useMemo(() => {
+        const initialLinkContext: IProviderProps[] = [
+            {
+                to: LinkUrls.HOME,
+                label: Url.HOME,
+                id: uuid(),
+                element: <Home />,
+            },
+            {
+                to: LinkUrls.UTILITIES,
+                label: Url.UTILITIES,
+                id: uuid(),
+                element: <UtilityContainer />,
+            },
+            {
+                to: LinkUrls.PHOTOS,
+                label: Url.PHOTOS,
+                id: uuid(),
+                element: <Photos />,
+            },
+            {
+                to: LinkUrls.SCROLL,
+                label: Url.SCROLL,
+                id: uuid(),
+                element: <ScrollPageContainer />,
+            },
+        ];
         return initialLinkContext;
-    }, [initialLinkContext]);
+    }, []);
 
     return <LinkContext.Provider value={context}>{children}</LinkContext.Provider>;
 };
