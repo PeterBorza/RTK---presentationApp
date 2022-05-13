@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./Dropdown.module.scss";
 import { useOnClickOutside } from "hooks";
 import { DropdownContext } from "./context";
+import { DropLabelType } from "./DropdownContainer";
 
 type DropdownType = {
     onCloseMenu?: () => void;
-    label?: string;
+    label?: DropLabelType;
 };
 
 const Dropdown: React.FC<DropdownType> = ({ onCloseMenu, label, children }) => {
@@ -15,7 +16,7 @@ const Dropdown: React.FC<DropdownType> = ({ onCloseMenu, label, children }) => {
     const closeMenu = () => {
         onCloseMenu && onCloseMenu();
         setIsOpen(false);
-        setTriggerName(label);
+        // setTriggerName(label);
     };
 
     useOnClickOutside(targetRef, closeMenu);

@@ -302,10 +302,10 @@
       "readDate": "21/04/2022",
       "selected": false,
       "index": "5326",
-      "bill": "",
+      "bill": "148.42",
       "consumption": 56,
       "estimate": 122.26,
-      "payed": false,
+      "payed": true,
       "edit": false
     }
   ],

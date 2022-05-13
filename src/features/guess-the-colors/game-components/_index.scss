@@ -1,8 +1,9 @@
 @use "css" as *;
 
 $shadow: 2px 2px 10px rgb(0 0 0 / 0.2);
+$fine-shadow: 0px 0px 4px rgb(0 0 0 / 0.15);
 $container-shadow: 4px 4px 15px rgb(0 0 0 / 0.9), -2px -2px 10px rgb(255 255 255 / 0.6);
-$box-size: clamp(1rem, 1.8vw, 35px);
+$box-size: clamp(1rem, 1vw + 1rem, 2.5rem);
 $bg: rgb(193, 189, 189);
 $shadow-transition: all 200ms ease-in-out;
 $padding-clamp: clamp(4px, 1.5vw, 1rem);
@@ -24,14 +25,16 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     &__controls {
         display: flex;
         gap: 5px;
+        padding: 4px;
         // TODO: replace with shared-component
         button {
-            padding: 3px 6px;
+            padding: 3px 5px;
             border: none;
             outline: none;
             border-radius: 5px;
             transition: all 150ms ease;
             cursor: pointer;
+            font-weight: bold;
             &:hover {
                 background-color: darken($bg, 10%);
                 color: white;
@@ -79,9 +82,9 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     padding: 5px;
     gap: 3px;
     transition: $shadow-transition;
-    &:hover {
-        box-shadow: 0px 0px 16px rgb(0 0 0 / 0.25);
-        background-color: lighten($bg, 7%);
+    &__selected {
+        box-shadow: $fine-shadow;
+        background-color: lighten($bg, 15%);
     }
     .options_wrapper {
         width: 100%;
@@ -95,7 +98,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
             .drop {
                 width: calc($box-size * 1.5);
                 height: $box-size;
-                box-shadow: $shadow;
+                box-shadow: $fine-shadow;
             }
         }
         .icons {

@@ -13,7 +13,7 @@ const Home = () => {
     });
 
     const numbers = [1, 2, 3, 4];
-    const menuItems = (num: number) => num;
+    const menuItems = (num: number) => <h1>{num}</h1>;
 
     return (
         <div className={containerClasses}>

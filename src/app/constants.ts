@@ -33,3 +33,11 @@ export enum UnderConstructionText {
 export enum ComingSoonText {
     MESSAGE = "Coming Soon...",
 }
+
+export enum OpenMenu {
+    MESSAGE = "Open menu",
+}
+
+export enum CloseMenu {
+    MESSAGE = "Close menu",
+}

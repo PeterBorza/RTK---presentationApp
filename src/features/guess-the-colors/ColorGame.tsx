@@ -1,32 +1,40 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { featureFlags } from "flags";
 import {
-    Attempt,
     AttemptsContainer,
-    CardIcons,
-    ColorDrops,
-    Evaluation,
     GameControls,
-    GameDropdown,
-    GameDropdownItem,
     GameHeader,
     HiddenCombo,
     PlayCard,
 } from "./game-components";
 import { ComingSoonText } from "app";
-import { shuffle } from "utils";
-
-import styles from "./ColorGame.module.scss";
+import { shuffle, icons } from "utils";
 import { IguessGameItem, ResultType } from "./state";
 import { useDispatch, useSelector } from "react-redux";
-import { baseColorsState, gameAttemptsState, gameComboState, playerResults } from "./selectors";
-import { getNewGameCombo, setResults } from "./guessGameSlice";
+import {
+    baseColorsState,
+    gameAttemptsState,
+    gameComboState,
+    playerResults,
+    selectedAttempt,
+} from "./selectors";
+import {
+    setNewGame,
+    resetResults,
+    setResults,
+    selectAttempt,
+    resetSelected,
+    resetComboes,
+} from "./guessGameSlice";
+
+import styles from "./ColorGame.module.scss";
 
 const newColors = (arr: IguessGameItem[]): IguessGameItem[] => shuffle(arr).slice(0, 4);
 
 const ColorGame = () => {
     const flagged: boolean = featureFlags.guess_the_colors;
 
+    const selected = useSelector(selectedAttempt);
     const gameCombo = useSelector(gameComboState);
     const results = useSelector(playerResults);
     const gameAttempts = useSelector(gameAttemptsState);
@@ -38,7 +46,10 @@ const ColorGame = () => {
 
     const gameOver = results.some(res => [...res] === [...perfectMatch]);
 
-    const shuffleUp = () => dispatch(getNewGameCombo(newColors(baseColors)));
+    const newGameHandler = () => {
+        dispatch(resetComboes());
+        dispatch(setNewGame(newColors(baseColors)));
+    };
 
     const currentAttemptFinder = (attemptId: number) =>
         gameAttempts.find(attempt => attempt.id === attemptId);
@@ -63,33 +74,54 @@ const ColorGame = () => {
         dispatch(setResults({ id: attemptId, results: resultArray }));
     };
 
-    const submitCombo = () => {
-        console.log(results);
+    console.log(selected);
+    const submitCombo = (attemptId: number) => {
+        comboMatchHandler(attemptId);
     };
+
+    const cancelAttempt = (attemptId: number) => {
+        console.log(gameCombo, results);
+        dispatch(resetResults(attemptId));
+    };
+
+    const select = (attemptId: number) => {
+        dispatch(selectAttempt(attemptId));
+    };
+
+    const unSelectAll = () => {
+        dispatch(resetSelected());
+    };
+
+    const optionItem = (item: IguessGameItem) => {
+        return (
+            <div
+                className="color_option"
+                style={{
+                    backgroundColor: item.color,
+                }}
+            />
+        );
+    };
+
     return flagged ? (
         <div className={styles.game_container}>
-            <GameHeader
-                newGameHandler={shuffleUp}
-                submitHandler={submitCombo}
-                labelTitle="Guess the colors game"
-            />
+            <GameHeader newGameHandler={newGameHandler} labelTitle="Guess the colors game" />
             <HiddenCombo show={gameOver} combination={gameCombo} />
             <AttemptsContainer>
                 {gameAttempts.map((attempt, index) => (
-                    <PlayCard key={`playcard-${index + 1}`}>
-                        <Attempt>
-                            <GameDropdown>
-                                {gameCombo.map((item, idx) => (
-                                    <GameDropdownItem key={`attempt-dropdown-${idx + 1}`}>
-                                        <ColorDrops colors={baseColors} />
-                                    </GameDropdownItem>
-                                ))}
-                            </GameDropdown>
-
-                            <CardIcons onSubmit={() => comboMatchHandler(attempt.id)} />
-                        </Attempt>
-                        <Evaluation />
-                    </PlayCard>
+                    <PlayCard
+                        selected={attempt.selected}
+                        unSelect={unSelectAll}
+                        onSelectAttempt={() => select(attempt.id)}
+                        dropdownCount={gameCombo.length}
+                        menuList={baseColors}
+                        dropdownLabel={icons.down}
+                        onSubmit={() => submitCombo(attempt.id)}
+                        onCancel={() => cancelAttempt(attempt.id)}
+                        renderMenuItem={item => optionItem(item)}
+                        results={attempt.results}
+                        key={`playcard-${index + 1}`}
+                    />
                 ))}
             </AttemptsContainer>
             <GameControls gameColors={baseColors} />
