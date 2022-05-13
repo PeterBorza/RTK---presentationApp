@@ -21,6 +21,6 @@ export const sumOfBillsSelector = createSelector(billsSelector, items =>
     items.reduce((subtotal, item) => subtotal + Number(item), 0),
 );
 
-export const selectedGas = createSelector(unitsState, items =>
-    items.filter(unit => unit.selected === true),
+export const selectedLight = createSelector(unitsState, items =>
+    items.find(unit => unit.selected === true),
 );

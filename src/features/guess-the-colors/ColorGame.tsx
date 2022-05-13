@@ -74,7 +74,6 @@ const ColorGame = () => {
         dispatch(setResults({ id: attemptId, results: resultArray }));
     };
 
-    console.log(selected);
     const submitCombo = (attemptId: number) => {
         comboMatchHandler(attemptId);
     };

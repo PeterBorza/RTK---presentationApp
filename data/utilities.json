@@ -5,7 +5,7 @@
       "readDate": "19/09/2019",
       "selected": false,
       "index": "5648",
-      "consumption": 0,
+      "consumption": 7,
       "bill": "6.91",
       "payed": true,
       "edit": false,
@@ -20,7 +20,7 @@
       "bill": "136.71",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 154.98
     },
     {
       "id": "2d1cb0ff-1a6c-4894-9588-5ed7fca8f61e",
@@ -31,7 +31,7 @@
       "bill": "125.78",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 115.81
     },
     {
       "id": "4e4cb0ff-1a6c-7693-9cd1-5ed7fca8f27a",
@@ -42,7 +42,7 @@
       "bill": "227.80",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 69.04
     },
     {
       "id": "df9d2608-947c-4b66-b8a1-b965b26a6f47",
@@ -53,7 +53,7 @@
       "bill": "92.93",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 168.51
     },
     {
       "id": "de3d2608-12ec-4b66-2383-b965b26a6e17",
@@ -64,7 +64,7 @@
       "bill": "76.45",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 77.44
     },
     {
       "id": "15fcb5bh-7c53-4056-8d76-d8b9e5514965",
@@ -75,18 +75,18 @@
       "bill": "76.45",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 59.46
     },
     {
       "id": "13e76427-622f-239b-8d17-4d330e503e15",
       "readDate": "19/07/2020",
       "selected": false,
       "index": "4207",
-      "consumption": 0,
+      "consumption": 30,
       "bill": "96.04",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 65.53
     },
     {
       "id": "28276427-622f-4222-8d17-4d330e503d33",
@@ -97,7 +97,7 @@
       "bill": "68.06",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 89.64
     },
     {
       "id": "28279427-622f-4567-8d17-4d330e503d53",
@@ -108,7 +108,7 @@
       "bill": "58.66",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 85.08
     },
     {
       "id": "319f6a59-b719-46be-b076-549e32c46715",
@@ -119,7 +119,7 @@
       "bill": "91.81",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 92.18
     },
     {
       "id": "70b78853-d7f7-4db5-8dbb-a755ba98d979",
@@ -130,7 +130,7 @@
       "bill": "126.26",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 125.2
     },
     {
       "id": "4c534fcc-fba3-45b5-8e42-3866fb68a33c",
@@ -141,7 +141,7 @@
       "bill": "186.39",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 178.45
     },
     {
       "id": "9cc2ac56-04e2-47a3-9707-3114f68c48f8",
@@ -152,7 +152,7 @@
       "bill": "107.31",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 121.33
     },
     {
       "id": "c208d5c9-913f-41ef-91a0-c78b5a241d8c",
@@ -163,7 +163,7 @@
       "bill": "108.93",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 101.09
     },
     {
       "id": "c208d5c9-913f-41ef-91a0-c78b5a241d8f",
@@ -174,7 +174,7 @@
       "bill": "41.75",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 82.12
     },
     {
       "id": "a67d6291-2c13-4bc9-80f0-ba34636aaf27",
@@ -185,7 +185,7 @@
       "bill": "82.01",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 20.45
     },
     {
       "id": "c75a026e-fba4-45db-b298-120cbe1ec76e",
@@ -196,7 +196,7 @@
       "bill": "37.13",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 78.59
     },
     {
       "id": "d7b5c3b9-214b-427b-b461-c00210700cde",
@@ -207,7 +207,7 @@
       "bill": "40.01",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 30.67
     },
     {
       "id": "4efe5576-daba-4b0e-9782-357a56543aa9",
@@ -218,7 +218,7 @@
       "bill": "13.30",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 21.06
     },
     {
       "id": "f09e9ece-3545-43a8-94af-892e0259ecfa",
@@ -229,7 +229,7 @@
       "bill": "28.38",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 21.28
     },
     {
       "id": "0eaa0f23-8529-4d32-8dcb-db36f7b94403",
@@ -240,7 +240,7 @@
       "bill": "76.39",
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 53.21
     },
     {
       "id": "dead6ccf-434f-498a-9f87-541a467f8b4a",
@@ -251,7 +251,7 @@
       "consumption": 34,
       "payed": true,
       "edit": false,
-      "estimate": 0
+      "estimate": 86.58
     },
     {
       "id": "b68ebd7e-24f7-4b30-82ba-6b4846864d5e",
@@ -318,7 +318,8 @@
       "bill": "68.89",
       "consumption": 54,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 0
     },
     {
       "id": "bead6ddf-434f-498a-9f87-541a43568b46",
@@ -328,7 +329,8 @@
       "bill": "90.61",
       "consumption": 140,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 178.6
     },
     {
       "id": "bead3hdf-434f-447a-9f87-541a4356dc46",
@@ -338,7 +340,8 @@
       "bill": "100.70",
       "consumption": 149,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 96.43
     },
     {
       "id": "hkfi3hdf-434f-447a-9f87-931a4356dv46",
@@ -348,7 +351,8 @@
       "bill": "110.93",
       "consumption": 170,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 114.89
     },
     {
       "id": "bdce3fgf-434f-447a-2g45-921a2856da46",
@@ -358,7 +362,8 @@
       "bill": "127.60",
       "consumption": 195,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 127.24
     },
     {
       "id": "debe3fgf-94fe-447a-2g45-921a1476da27",
@@ -368,7 +373,8 @@
       "bill": "147.06",
       "consumption": 224,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 146.58
     },
     {
       "id": "2h9b5c7b-45ba-4873-b358-31583252cd3e",
@@ -378,7 +384,8 @@
       "bill": "139.98",
       "consumption": 213,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 139.84
     },
     {
       "id": "e3d2fd35-9f74-4d9b-2de7-80fb6ea4e109",
@@ -386,9 +393,10 @@
       "selected": false,
       "index": "6672",
       "bill": "264.44",
-      "consumption": 114,
+      "consumption": 402,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 74.92
     },
     {
       "id": "7fd2fd13-9f74-4d9b-81ac-80fb6ea124ce",
@@ -396,9 +404,10 @@
       "selected": false,
       "index": "6847",
       "bill": "114.34",
-      "consumption": 174,
+      "consumption": 175,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 403.62
     },
     {
       "id": "23c2fd13-9f74-4d9b-32cd-80fb6ea123d3",
@@ -408,7 +417,8 @@
       "bill": "163.77",
       "consumption": 249,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 163.62
     },
     {
       "id": "dec5fd13-9f74-4d9b-dc23-80fb6ea1452a",
@@ -418,7 +428,8 @@
       "bill": "159.22",
       "consumption": 245,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 161.14
     },
     {
       "id": "cb34fd13-9f74-3d5b-dc23-80fb6ea143cd",
@@ -428,7 +439,8 @@
       "bill": "54.67",
       "consumption": 85,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 55.24
     },
     {
       "id": "68907e1f-67c7-4c47-acb3-8d4cc4d06f1e",
@@ -438,7 +450,8 @@
       "bill": "172.43",
       "consumption": 268,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 172.37
     },
     {
       "id": "23dc7e1f-67c7-cb48-acb3-8d4cc4d0cde7",
@@ -448,7 +461,8 @@
       "bill": "237.27",
       "consumption": 370,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 238.06
     },
     {
       "id": "dbf6482d-dced-4e62-8e1d-bae4821b5f75",
@@ -458,7 +472,8 @@
       "bill": "101.47",
       "consumption": 156,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 100.04
     },
     {
       "id": "053121a2-c040-4aa4-a269-e16643d243d0",
@@ -468,7 +483,8 @@
       "bill": "180.38",
       "consumption": 277,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 180.17
     },
     {
       "id": "85d6f065-dd27-4e8a-ae07-8fb454d95dc2",
@@ -478,7 +494,8 @@
       "bill": "199.85",
       "consumption": 274,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 178.43
     },
     {
       "id": "0a167838-3232-40bb-89cf-d2e7baf990fc",
@@ -488,7 +505,8 @@
       "bill": "204.04",
       "consumption": 278,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 202.77
     },
     {
       "id": "41d3f79d-dac9-45e7-a868-f262a8a69e6b",
@@ -498,7 +516,8 @@
       "bill": "177.57",
       "consumption": 242,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 177.62
     },
     {
       "id": "dcd91cfd-65a1-439d-a1dd-450fa6418255",
@@ -508,7 +527,8 @@
       "bill": "224.21",
       "consumption": 316,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 231.87
     },
     {
       "id": "0b873be7-e9bb-461a-b19c-b5b3614e7f39",
@@ -518,7 +538,8 @@
       "bill": "110.73",
       "consumption": 151,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 107.14
     },
     {
       "id": "982ac42d-bd09-4346-ae89-ad6575a3af2e",
@@ -528,7 +549,8 @@
       "bill": "168.32",
       "consumption": 227,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 166.46
     },
     {
       "id": "32149f6d-8baf-4272-8673-b84268b8fd8a",
@@ -538,7 +560,8 @@
       "bill": "147.99",
       "consumption": 188,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 139.4
     },
     {
       "id": "db97488a-045e-4ef5-bdc6-b2bb1f626537",
@@ -548,7 +571,8 @@
       "bill": "103.12",
       "consumption": 131,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 103.12
     },
     {
       "id": "1e3b57f0-6e54-4bbf-9d49-44314282a1be",
@@ -558,7 +582,8 @@
       "bill": "171.61",
       "consumption": 218,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 171.6
     },
     {
       "id": "abeb3a80-1929-4e08-8452-42f7efb039ec",
@@ -568,7 +593,8 @@
       "bill": "281.85",
       "consumption": 358,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 281.82
     },
     {
       "id": "574b9b53-88a7-47e1-9296-cc48b8f34afa",
@@ -578,7 +604,8 @@
       "bill": "124.15",
       "consumption": 156,
       "payed": true,
-      "edit": false
+      "edit": false,
+      "estimate": 122.82
     },
     {
       "id": "436d59ff-1b27-4eac-889a-3b042966a666",

@@ -39,8 +39,8 @@ const LightTable: FC = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        fetchLightUnits();
-    }, [fetchLightUnits]);
+        !isUnits && fetchLightUnits();
+    }, [isUnits, fetchLightUnits]);
 
     const renderLightTableItems = units.map(unit => {
         const billIsOut = unit.bill !== "";
@@ -59,6 +59,7 @@ const LightTable: FC = () => {
                     <EditCard
                         resetEdit={() => dispatch(resetEdit())}
                         editUnit={(editedUnit: UtilityStateUnit) => dispatch(editUnit(editedUnit))}
+                        units={units}
                         {...unit}
                     />
                 )}

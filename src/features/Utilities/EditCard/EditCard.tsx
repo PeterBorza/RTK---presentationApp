@@ -11,23 +11,30 @@ import { InputSize } from "shared-components/InputCard/InputCard";
 import { icons } from "utils";
 
 import styles from "./EditCard.module.scss";
+import { FormProps } from "../types";
 
 type Props = {
     resetEdit: () => void;
     editUnit: (editedUnit: UtilityStateUnit) => void;
+    units: UtilityStateUnit[];
 };
 
-const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...unit }) => {
-    const units = useSelector(unitsState);
+const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units, ...unit }) => {
     const { readDate, index, consumption, estimate, bill, id } = unit;
-    const { values, changeHandler } = useForm({
+    const { values, changeHandler } = useForm<FormProps>({
         readDate,
         index,
         bill,
     });
 
+    const prevUnitIndex = units.findIndex(unit => id === unit.id) - 1;
+    const prevUnit = units[prevUnitIndex];
+
     const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const estimatedBill = prevUnit ? (+prevUnit.bill / prevUnit.consumption) * consumption : 0;
+
         const editedUnit: UtilityStateUnit = {
             ...unit,
             readDate: values.readDate,
@@ -36,6 +43,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, ...un
             consumption: +consumption + +values.index - +index,
             selected: false,
             edit: false,
+            estimate: +estimatedBill.toFixed(2),
         };
 
         const editedUnitIndex = units.findIndex(item => item.id === id);

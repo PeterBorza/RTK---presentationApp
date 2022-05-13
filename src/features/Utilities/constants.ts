@@ -30,6 +30,7 @@ export enum UtilityTableLabels {
     CORRECT_PASSWORD = "Correct password",
     NAME = "Type in owner's first name to see menu",
     MANAGE = "manage",
+    INDEX_ALERT = "Make sure this is the correct index",
 }
 
 export enum ModeColors {

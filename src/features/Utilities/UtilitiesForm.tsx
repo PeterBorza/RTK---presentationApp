@@ -1,10 +1,12 @@
-import { FC } from "react";
+import React from "react";
 
 import { v4 as uuid } from "uuid";
 
-import { TextInput, ModalForm } from "shared-components";
+import { TextInput, ModalForm, AlertModal } from "shared-components";
 import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
-import { useForm } from "hooks";
+import { useForm, useOnClickOutside } from "hooks";
+import { MAX_UNIT_INDEX_ALLOWED } from "./state";
+import { UtilityTableLabels } from "./constants";
 
 type UtilityFormProps = {
     postData: (newUnit: UtilityStateUnit) => void;
@@ -12,66 +14,85 @@ type UtilityFormProps = {
     utilityUnits: UtilityStateUnit[];
 };
 
-const UtilitiesForm: FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
+const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
+    const modalRef = React.useRef<HTMLDivElement | null>(null);
+    const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
+
+    useOnClickOutside(modalRef, () => resetValues());
+
     const {
         FORM_BUTTON_LABEL: buttonLabel,
         FORM_WIDTH: formWidth,
         FORM_TITLE: formTitle,
     } = UtilityFormValues;
-    const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
 
-    const checkIfValid = (input: string) => (isNaN(+input) || "" ? "0" : input);
+    const checkIfValid = (input: string) => !isNaN(+input);
 
-    const getCorrectValues = (value: string) => {
-        if (value.includes(",")) return value.replace(",", ".");
-        return value;
-    };
-
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name !== "readDate" && e.target.value === "") return;
-        changeHandler(e);
-    };
+    const lastUnit = utilityUnits[utilityUnits.length - 1];
+    const highIndex = lastUnit && +values.index > +lastUnit.index + MAX_UNIT_INDEX_ALLOWED;
+    const lowIndex = lastUnit && +values.index < +lastUnit.index && values.index !== "";
 
     const onSubmitHandler = () => {
-        const previousUnit = utilityUnits[utilityUnits.length - 1];
-        let lastCitire = "";
-        if (utilityUnits.length === 0) lastCitire = values.index;
-        lastCitire = previousUnit.index;
-        const newConsumption = +values.index - +lastCitire;
+        const lastIndex = lastUnit.index;
+        const { index, bill, readDate: date } = values;
+
+        const isIndexValid = checkIfValid(index) && +index >= +lastIndex;
+        const isBillValid = checkIfValid(bill) && +bill >= 0;
+
+        const newConsumption = +index - +lastIndex;
         const checkNewConsumption = !isNaN(newConsumption) ? newConsumption : 0;
 
-        const estimatedValue =
-            (+previousUnit.bill / +previousUnit.consumption) * +checkNewConsumption;
+        const estimatedValue = (+lastUnit.bill / +lastUnit.consumption) * +checkNewConsumption;
 
         const newUnit: UtilityStateUnit = {
             id: uuid(),
-            readDate: values.readDate,
+            readDate: date,
             selected: false,
-            index: checkIfValid(values.index),
-            bill: getCorrectValues(checkIfValid(values.bill)),
+            index: index,
+            bill: isBillValid ? bill : "",
             consumption: checkNewConsumption,
             estimate: +estimatedValue.toFixed(2),
             payed: false,
             edit: false,
         };
 
-        postData(newUnit);
+        isIndexValid && postData(newUnit);
         resetValues();
     };
 
-    const renderInputs = Object.entries(values).map(([key, value]) => (
-        <TextInput key={key} value={value} name={key} onChange={onChangeHandler} />
-    ));
+    const renderInputs = Object.entries(values).map(([key, value], idx) => {
+        const index = key === "index";
+        const validate = {
+            index: !lowIndex && checkIfValid(value),
+            bill: checkIfValid(value),
+            readDate: true,
+        };
+        return (
+            <TextInput
+                key={key}
+                isValid={Object.values(validate)[idx]}
+                value={value}
+                name={key}
+                onChange={changeHandler}
+                placeholder={index && lastUnit ? lastUnit.index : ""}
+            />
+        );
+    });
 
     return (
-        <ModalForm
-            renderFields={renderInputs}
-            onSubmit={onSubmitHandler}
-            onCancel={resetValues}
-            buttonLabel={buttonLabel}
-            formWidth={formWidth}
-            formTitle={formTitle}
-        />
+        <>
+            <ModalForm
+                renderFields={renderInputs}
+                onSubmit={onSubmitHandler}
+                onCancel={resetValues}
+                buttonLabel={buttonLabel}
+                formWidth={formWidth}
+                formTitle={formTitle}
+            />
+            <AlertModal openModal={highIndex} ref={modalRef}>
+                <h1>{UtilityTableLabels.INDEX_ALERT}</h1>
+            </AlertModal>
+        </>
     );
 };
 

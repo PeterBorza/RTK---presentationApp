@@ -22,7 +22,7 @@ export const sumOfBillsSelector = createSelector(billsSelector, items =>
 );
 
 export const selectedGas = createSelector(unitsState, items =>
-    items.filter(unit => unit.selected === true),
+    items.find(unit => unit.selected === true),
 );
 
 export const editedGas = createSelector(unitsState, items =>
