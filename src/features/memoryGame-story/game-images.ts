@@ -30,11 +30,28 @@ import min11 from "./images/minion11-clean.png";
 import min12 from "./images/minion12.jpg";
 
 import { GamePhotoData } from "../memoryGame-story";
-import { v4 as uuid } from "uuid";
 import { shuffle } from "utils";
 import { ImageType } from "utils/my-images";
+import { GameImage } from "./types";
 
-export const minions: ImageType[] = [
+const SQUARES = 16;
+
+const frontImages = (src: ImageType, gameId: number) => ({
+    src,
+    gameId: gameId + 100,
+});
+
+const duplicates = <T>(arr: T[]): T[] => [...arr, ...arr];
+
+const getGameImages = (arr: GameImage[]) =>
+    new Array(SQUARES).fill(null).map((_, idx) => ({
+        id: (idx + 1).toLocaleString(),
+        frontSrc: duplicates<GameImage>(arr)[idx],
+        isFlipped: false,
+        match: false,
+    }));
+
+const minions: ImageType[] = [
     min0,
     min1,
     min2,
@@ -50,446 +67,30 @@ export const minions: ImageType[] = [
     min12,
 ];
 
-export const minionImages: GamePhotoData[] = [
-    {
-        id: "1",
-        frontSrc: {
-            src: min2,
-            gameId: 100,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "2",
-        frontSrc: {
-            src: min3,
-            gameId: 101,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "3",
-        frontSrc: {
-            src: min4,
-            gameId: 102,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "4",
-        frontSrc: {
-            src: min5,
-            gameId: 103,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "5",
-        frontSrc: {
-            src: min6,
-            gameId: 104,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "6",
-        frontSrc: {
-            src: min7,
-            gameId: 105,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "7",
-        frontSrc: {
-            src: min8,
-            gameId: 106,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "8",
-        frontSrc: {
-            src: min9,
-            gameId: 107,
-        },
-        isFlipped: false,
-        match: false,
-    },
-
-    {
-        id: "9",
-        frontSrc: {
-            src: min2,
-            gameId: 100,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "10",
-        frontSrc: {
-            src: min3,
-            gameId: 101,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "11",
-        frontSrc: {
-            src: min4,
-            gameId: 102,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "12",
-        frontSrc: {
-            src: min5,
-            gameId: 103,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "13",
-        frontSrc: {
-            src: min6,
-            gameId: 104,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "14",
-        frontSrc: {
-            src: min7,
-            gameId: 105,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "15",
-        frontSrc: {
-            src: min8,
-            gameId: 106,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "16",
-        frontSrc: {
-            src: min9,
-            gameId: 107,
-        },
-        isFlipped: false,
-        match: false,
-    },
+const christmas: ImageType[] = [
+    santa,
+    tree,
+    snowman,
+    rudolf,
+    candy,
+    bell,
+    snowman01,
+    globe,
+    butterfly,
+    snowFlake,
+    ribbon,
+    gift,
+    star,
+    hat,
+    sledge,
+    wreath,
 ];
 
-export const imageStack: GamePhotoData[] = [
-    {
-        id: uuid(),
-        frontSrc: {
-            src: santa,
-            gameId: 100,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: ribbon,
-            gameId: 101,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: butterfly,
-            gameId: 102,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: snowFlake,
-            gameId: 103,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: tree,
-            gameId: 104,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: snowman,
-            gameId: 105,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: gift,
-            gameId: 106,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: rudolf,
-            gameId: 107,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: candy,
-            gameId: 108,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: bell,
-            gameId: 109,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: snowman01,
-            gameId: 110,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: globe,
-            gameId: 111,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: star,
-            gameId: 112,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: hat,
-            gameId: 113,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: sledge,
-            gameId: 114,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: uuid(),
-        frontSrc: {
-            src: wreath,
-            gameId: 115,
-        },
-        isFlipped: false,
-        match: false,
-    },
-];
+const frontMinionImages: GameImage[] = minions.slice(2, 10).map(frontImages);
+export const minionGameImages = getGameImages(frontMinionImages);
 
-export const gameImagesSlice: GamePhotoData[] = [
-    {
-        id: "1",
-        frontSrc: {
-            src: santa,
-            gameId: 100,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "2",
-        frontSrc: {
-            src: tree,
-            gameId: 101,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "3",
-        frontSrc: {
-            src: snowman,
-            gameId: 102,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "4",
-        frontSrc: {
-            src: rudolf,
-            gameId: 103,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "5",
-        frontSrc: {
-            src: candy,
-            gameId: 104,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "6",
-        frontSrc: {
-            src: bell,
-            gameId: 105,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "7",
-        frontSrc: {
-            src: snowman01,
-            gameId: 106,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "8",
-        frontSrc: {
-            src: globe,
-            gameId: 107,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "9",
-        frontSrc: {
-            src: santa,
-            gameId: 100,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "10",
-        frontSrc: {
-            src: tree,
-            gameId: 101,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "11",
-        frontSrc: {
-            src: snowman,
-            gameId: 102,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "12",
-        frontSrc: {
-            src: rudolf,
-            gameId: 103,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "13",
-        frontSrc: {
-            src: candy,
-            gameId: 104,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "14",
-        frontSrc: {
-            src: bell,
-            gameId: 105,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "15",
-        frontSrc: {
-            src: snowman01,
-            gameId: 106,
-        },
-        isFlipped: false,
-        match: false,
-    },
-    {
-        id: "16",
-        frontSrc: {
-            src: globe,
-            gameId: 107,
-        },
-        isFlipped: false,
-        match: false,
-    },
-];
+const frontChristmasImages: GameImage[] = christmas.slice(0, 8).map(frontImages);
+export const christmasGameImages = getGameImages(frontChristmasImages);
 
-export const shuffledImages: GamePhotoData[] = shuffle(minionImages);
+export const shuffledMinions: GamePhotoData[] = shuffle(minionGameImages);
+export const shuffledChristmas: GamePhotoData[] = shuffle(christmasGameImages);

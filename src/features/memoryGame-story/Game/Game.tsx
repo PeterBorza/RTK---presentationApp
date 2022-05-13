@@ -2,7 +2,8 @@ import { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { minionImages } from "../game-images";
+import { minionGameImages, christmasGameImages } from "../game-images";
+import { ImageType } from "utils/my-images";
 import { shuffle } from "utils";
 import { useWindowSize } from "hooks";
 
@@ -15,7 +16,6 @@ import {
 import { darkModeSelector } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } from "..";
-import { ImageSource } from "../types";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -27,13 +27,13 @@ import styles from "./Game.module.scss";
 const MAX_CLICK_COUNT = 26;
 
 const Game = () => {
-    const dispatch = useDispatch();
     const images = useSelector(gamePhotosSelector);
     const flippedCards = useSelector(flippedCardsSelector);
     const matchCards = useSelector(matchCardsSelector);
     const count = useSelector(clickCountSelector);
     const darkMode = useSelector(darkModeSelector);
     const { width } = useWindowSize();
+    const dispatch = useDispatch();
 
     const SMALL_PORTRAIT_SCREEN = width < 400;
     const SMALL_LANDSCAPE_SCREEN = width < 800 && width > 400;
@@ -75,11 +75,13 @@ const Game = () => {
         [dispatch, freezeIfMatch],
     );
 
-    const newGameHandler = () => {
-        const shuffled = shuffle(minionImages);
-        dispatch(resetGame());
-        dispatch(setNewGame(shuffled));
-    };
+    const newGameHandler = useCallback(
+        (arr: GamePhotoData[]) => {
+            const shuffled = shuffle(arr);
+            dispatch(setNewGame(shuffled));
+        },
+        [dispatch, setNewGame],
+    );
 
     const gameButtons = [
         {
@@ -87,8 +89,12 @@ const Game = () => {
             value: msg.RESET,
         },
         {
-            onClick: newGameHandler,
-            value: msg.NEW_GAME,
+            onClick: () => newGameHandler(minionGameImages),
+            value: msg.NEW_MINIONS,
+        },
+        {
+            onClick: () => newGameHandler(christmasGameImages),
+            value: msg.NEW_CHRISTMAS,
         },
     ];
 
@@ -98,7 +104,7 @@ const Game = () => {
         ));
 
     const renderGridTable = useMemo(() => {
-        const backContent = (src: ImageSource) => {
+        const backContent = (src: ImageType) => {
             return (
                 <div className={styles.back}>
                     <img className={styles.game_image} src={src} alt="" />
@@ -137,7 +143,7 @@ const Game = () => {
                 <GameEnd
                     count={count}
                     message={msg.CONGRATS}
-                    onClick={newGameHandler}
+                    onClick={() => newGameHandler(images)}
                     buttonLabel={msg.NEW_GAME}
                 />
             )}
