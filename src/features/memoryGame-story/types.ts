@@ -1,4 +1,4 @@
-import { ImageDataType } from "utils/my-images";
+import { ImageDataType, ImageType } from "utils/my-images";
 
 export type ColorString = string[];
 
@@ -7,10 +7,8 @@ export interface ColorSetInterFace {
     palet: ColorString;
 }
 
-export type ImageSource = string;
-
 export interface GameImage {
-    src: ImageSource;
+    src: ImageType;
     gameId: number;
 }
 
@@ -25,6 +23,5 @@ export interface MemoryGameState {
     photos: ImageDataType[];
     gamePhotos: GamePhotoData[];
     pending: boolean;
-    error: boolean;
     clickCount: number;
 }
