@@ -39,8 +39,8 @@ const GasTable: FC = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        fetchGasUnits();
-    }, [fetchGasUnits]);
+        !isUnits && fetchGasUnits();
+    }, [isUnits, fetchGasUnits]);
 
     const renderGasTableItems = units.map(unit => {
         const billIsOut = unit.bill !== "";
@@ -59,6 +59,7 @@ const GasTable: FC = () => {
                     <EditCard
                         resetEdit={() => dispatch(resetEdit())}
                         editUnit={(editedUnit: UtilityStateUnit) => dispatch(editUnit(editedUnit))}
+                        units={units}
                         {...unit}
                     />
                 )}

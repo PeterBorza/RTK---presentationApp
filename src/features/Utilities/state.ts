@@ -9,6 +9,8 @@ const initialFormValues: FormProps = {
     readDate: format(new Date(), DateFormats.STANDARD),
 };
 
+const MAX_UNIT_INDEX_ALLOWED = 300;
+
 const initialState: UtilityState = {
     units: [],
     loading: {
@@ -28,4 +30,4 @@ const initialEditUnit: UtilityStateUnit = {
     edit: false,
 };
 
-export { initialFormValues, initialState, initialEditUnit };
+export { MAX_UNIT_INDEX_ALLOWED, initialFormValues, initialState, initialEditUnit };

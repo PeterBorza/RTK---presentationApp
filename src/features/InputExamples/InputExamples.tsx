@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import { useForm } from "hooks";
 import { CustomInput, Button, InputCard, TextInput } from "shared-components";
+import { useValidation } from "hooks";
 
 import styles from "./InputExamples.module.scss";
 
@@ -10,7 +11,7 @@ type MockValues = {
     text: string;
 };
 
-const initialMockValues = {
+const initialMockValues: MockValues = {
     username: "",
     password: "",
     text: "",
@@ -19,16 +20,25 @@ const initialMockValues = {
 const InputExamples = () => {
     const { values, changeHandler, resetValues } = useForm<MockValues>(initialMockValues);
 
+    const { isValid: isUserNameValid, message: userNameMessage } = useValidation(values.username);
+    const { isValid: isPasswordValid, message: passwordMessage } = useValidation(values.password);
+    const { isValid: isTextValid, message: textMessage } = useValidation(values.text);
+
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(values);
+        console.log(userNameMessage);
         resetValues();
     };
     return (
         <div className={styles.wrapper}>
             <h1>Types of input atoms</h1>
             <form className={styles.form} onSubmit={submitHandler}>
-                <CustomInput name="username" value={values.username} onChange={changeHandler} />
+                <CustomInput
+                    isValid={isUserNameValid}
+                    name="username"
+                    value={values.username}
+                    onChange={changeHandler}
+                />
                 <InputCard
                     onChange={changeHandler}
                     name="password"
@@ -45,7 +55,9 @@ const InputExamples = () => {
                 <Button type="submit" value="Submit" />
             </form>
             <div className={styles.output}>
-                <h2>{values.username}</h2>
+                <h2 style={{ backgroundColor: isUserNameValid ? "limegreen" : "crimson" }}>
+                    {values.username}
+                </h2>
                 <br />
                 <h2>{values.password}</h2>
                 <br />

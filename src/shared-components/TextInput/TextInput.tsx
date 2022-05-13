@@ -6,6 +6,10 @@ type InputProps = Pick<
     "type" | "className" | "name" | "value" | "placeholder" | "title" | "onChange"
 >;
 
+interface ITextInput extends InputProps {
+    isValid?: boolean;
+}
+
 const TextInput = ({
     className,
     type = "text",
@@ -14,8 +18,12 @@ const TextInput = ({
     placeholder,
     title,
     onChange,
-}: InputProps) => {
+    isValid,
+}: ITextInput) => {
     const labelClasses = classNames(styles.labelWrap, className);
+    const inputClasses = classNames(styles.input, {
+        [styles["input__invalid"]]: !isValid,
+    });
 
     return (
         <label htmlFor={name} className={labelClasses}>
@@ -27,7 +35,7 @@ const TextInput = ({
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className={styles.input}
+                className={inputClasses}
                 autoComplete="off"
             />
         </label>
