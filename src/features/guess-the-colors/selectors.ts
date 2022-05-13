@@ -20,3 +20,7 @@ export const playerComboSelector = createSelector(gameAttemptsState, items =>
 export const playerResults = createSelector(gameAttemptsState, items =>
     items.map(item => item.results),
 );
+
+export const selectedAttempt = createSelector(gameAttemptsState, items =>
+    items.find(item => item.selected === true),
+);

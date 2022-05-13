@@ -1,13 +1,7 @@
 @use "css" as *;
 
-$shadow: 2px 2px 10px rgb(0 0 0 / 0.2);
 $container-shadow: 4px 4px 15px rgb(0 0 0 / 0.9), -2px -2px 10px rgb(255 255 255 / 0.6);
-$box-size: clamp(12px, 3vw, 25px);
 $bg: rgb(193, 189, 189);
-$shadow-transition: all 200ms ease-in-out;
-$padding-clamp: clamp(4px, 1.5vw, 1rem);
-$title-size: clamp(1.5rem, 1.5vw, 2.2rem);
-$icon-size: 1.3rem;
 
 .game_container {
     width: 90%;

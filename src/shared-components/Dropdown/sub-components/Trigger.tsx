@@ -1,14 +1,15 @@
 import React from "react";
 import { DropdownContext } from "../context";
+import { DropLabelType } from "../DropdownContainer";
 
 type TriggerProps = {
     title?: string;
     onToggleMenu?: () => void;
     isDisabled: boolean;
-    label?: string;
+    label?: DropLabelType;
 };
 
-const Trigger: React.FC<TriggerProps> = ({ title, onToggleMenu, isDisabled, label = "" }) => {
+const Trigger: React.FC<TriggerProps> = ({ title, onToggleMenu, isDisabled, label }) => {
     const { isOpen, setIsOpen, triggerName } = React.useContext(DropdownContext);
 
     const toggleMenu = () => {
@@ -17,7 +18,7 @@ const Trigger: React.FC<TriggerProps> = ({ title, onToggleMenu, isDisabled, labe
     };
     return (
         <button
-            title={title || isOpen ? "close" : "open"}
+            title={isOpen ? "close" : "open"}
             onClick={toggleMenu}
             disabled={isDisabled}
             className="drop_trigger"

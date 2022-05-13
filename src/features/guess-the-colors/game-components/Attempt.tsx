@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./_index.scss";
+
 type AttemptProps = {};
 
 const Attempt: React.FC<AttemptProps> = ({ children }) => {

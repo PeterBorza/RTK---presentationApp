@@ -1,4 +1,3 @@
-import { default as ColorDrops } from "./ColorDrops";
 import { default as GameControls } from "./GameControls";
 import { default as Evaluation } from "./Evaluation";
 import { default as HiddenCombo } from "./HiddenCombo";
@@ -11,7 +10,6 @@ import { default as CardIcons } from "./CardIcons";
 import { default as GameHeader } from "./GameHeader";
 
 export {
-    ColorDrops,
     GameControls,
     Evaluation,
     HiddenCombo,

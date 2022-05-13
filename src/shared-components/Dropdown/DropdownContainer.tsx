@@ -3,21 +3,21 @@ import Dropdown from "./index";
 import { DropdownPositionType } from "./sub-components/DropdownList";
 import { DropdownContextProvider } from "./context";
 
+export type DropLabelType = string | React.ReactNode;
+
 export interface DropContainerProps<T> {
     menuList: T[];
     onToggleMenu?: () => void;
-    renderTriggerTitle?: () => React.ReactNode;
     renderMenuItem: (item: T) => React.ReactNode;
     position?: DropdownPositionType;
     toggleDisableTrigger?: boolean;
     title?: string;
-    label?: string;
+    label?: DropLabelType;
 }
 
 const DropdownContainer = <T extends unknown>({
     menuList,
     onToggleMenu,
-    renderTriggerTitle,
     renderMenuItem,
     position = "bottom",
     toggleDisableTrigger = false,
@@ -36,9 +36,7 @@ const DropdownContainer = <T extends unknown>({
                     title={title}
                     isDisabled={toggleDisableTrigger}
                     label={label}
-                >
-                    {renderTriggerTitle && renderTriggerTitle()}
-                </Dropdown.Trigger>
+                ></Dropdown.Trigger>
                 <Dropdown.DropdownList position={position}>
                     {menuList?.map((item, i) => (
                         <Dropdown.MenuItem key={`drop-item-${i}`}>
