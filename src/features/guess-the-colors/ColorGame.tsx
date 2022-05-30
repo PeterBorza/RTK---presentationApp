@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AttemptId, IguessGameItem, IPlayerCombo, ResultType } from "./state";
+
 import { featureFlags } from "flags";
 import {
     AttemptsContainer,
@@ -9,8 +12,6 @@ import {
 } from "./game-components";
 import { ComingSoonText } from "app";
 import { shuffle, icons } from "utils";
-import { IguessGameItem, ResultType } from "./state";
-import { useDispatch, useSelector } from "react-redux";
 import {
     baseColorsState,
     gameAttemptsState,
@@ -25,6 +26,7 @@ import {
     selectAttempt,
     resetSelected,
     resetComboes,
+    setComboItem,
 } from "./guessGameSlice";
 
 import styles from "./ColorGame.module.scss";
@@ -74,21 +76,16 @@ const ColorGame = () => {
         dispatch(setResults({ id: attemptId, results: resultArray }));
     };
 
-    const submitCombo = (attemptId: number) => {
-        comboMatchHandler(attemptId);
-    };
-
     const cancelAttempt = (attemptId: number) => {
-        console.log(gameCombo, results);
         dispatch(resetResults(attemptId));
     };
 
-    const select = (attemptId: number) => {
-        dispatch(selectAttempt(attemptId));
-    };
+    const unSelectAll = () => dispatch(resetSelected());
 
-    const unSelectAll = () => {
-        dispatch(resetSelected());
+    const handleOnSelectColor = (item: IguessGameItem) => {
+        console.log(item);
+        selected && dispatch(setComboItem({ id: selected.id, item }));
+        selected && console.log(selected.playerCombo);
     };
 
     const optionItem = (item: IguessGameItem) => {
@@ -98,9 +95,16 @@ const ColorGame = () => {
                 style={{
                     backgroundColor: item.color,
                 }}
+                onClick={() => handleOnSelectColor(item)}
             />
         );
     };
+
+    const handleSelectAttempt = (attemptId: number) => {
+        dispatch(selectAttempt(attemptId));
+    };
+
+    console.log({ selected });
 
     return flagged ? (
         <div className={styles.game_container}>
@@ -109,17 +113,17 @@ const ColorGame = () => {
             <AttemptsContainer>
                 {gameAttempts.map((attempt, index) => (
                     <PlayCard
+                        key={`playcard-${index + 1}`}
                         selected={attempt.selected}
                         unSelect={unSelectAll}
-                        onSelectAttempt={() => select(attempt.id)}
+                        onSelectAttempt={() => handleSelectAttempt(attempt.id)}
                         dropdownCount={gameCombo.length}
                         menuList={baseColors}
                         dropdownLabel={icons.down}
-                        onSubmit={() => submitCombo(attempt.id)}
+                        onSubmit={() => comboMatchHandler(attempt.id)}
                         onCancel={() => cancelAttempt(attempt.id)}
                         renderMenuItem={item => optionItem(item)}
                         results={attempt.results}
-                        key={`playcard-${index + 1}`}
                     />
                 ))}
             </AttemptsContainer>
