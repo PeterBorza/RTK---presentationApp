@@ -3,10 +3,10 @@ import { shuffle } from "utils";
 import { ResultType } from "../state";
 
 type EvaluationProps = {
-    results?: ResultType;
+    results: ResultType;
 };
 
-const Evaluation = ({ results = [0, 0, 0, 0] }: EvaluationProps) => {
+const Evaluation = ({ results }: EvaluationProps) => {
     const noResults = results.length === 0;
     const emptyResults = new Array(4).fill("none").map(item => "none");
     const values = ["none", "white", "black"];

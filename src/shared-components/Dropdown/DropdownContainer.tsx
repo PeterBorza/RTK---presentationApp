@@ -33,7 +33,6 @@ const DropdownContainer = <T extends unknown>({
             <Dropdown label={label}>
                 <Dropdown.Trigger
                     onToggleMenu={() => onToggleMenu && onToggleMenu()}
-                    title={title}
                     isDisabled={toggleDisableTrigger}
                     label={label}
                 ></Dropdown.Trigger>

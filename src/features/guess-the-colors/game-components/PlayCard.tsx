@@ -5,8 +5,9 @@ import { Attempt, CardIcons, Evaluation, GameDropdown, GameDropdownItem } from "
 import { IguessGameItem, ResultType } from "../state";
 
 import classNames from "classnames";
-import { selectAttempt } from "../guessGameSlice";
 import { useOnClickOutside } from "hooks";
+import { CustomIcon } from "shared-components";
+import { icons } from "utils";
 interface PlayCardType {
     selected: boolean;
     unSelect: () => void;
@@ -34,8 +35,23 @@ const PlayCard = ({
 }: PlayCardType) => {
     const dropdownCounter = new Array(dropdownCount).fill(null);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
-    const playCardClasses = classNames("playcard", { ["playcard__selected"]: selected });
+    const playCardClasses = classNames("playcard", { playcard__selected: selected });
     useOnClickOutside(playCardRef, unSelect);
+
+    const gameIcons = [
+        {
+            isDisabled: menuList.length === 0,
+            onClick: onCancel,
+            title: "cancel",
+            icon: icons.x,
+        },
+        {
+            isDisabled: menuList.length < 0,
+            onClick: onSubmit,
+            title: "submit",
+            icon: icons.checkMark,
+        },
+    ];
     return (
         <div className={playCardClasses} onClick={onSelectAttempt} ref={playCardRef}>
             <Attempt>
@@ -50,7 +66,11 @@ const PlayCard = ({
                         </GameDropdownItem>
                     ))}
                 </GameDropdown>
-                <CardIcons onSubmit={onSubmit} onCancel={onCancel} />
+                <CardIcons>
+                    {gameIcons.map(icon => (
+                        <CustomIcon key={icon.title} {...icon} />
+                    ))}
+                </CardIcons>
             </Attempt>
             <Evaluation results={results} />
         </div>
