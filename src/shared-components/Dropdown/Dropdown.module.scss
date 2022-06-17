@@ -1,9 +1,7 @@
 @use "css" as *;
 
 $light-background-color: rgb(244, 242, 242);
-$percent: 20%;
 $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
-$item-font-size: clamp(8px, 1.2vw, 1.2rem);
 
 .drop_wrap {
     position: relative;

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { shuffle } from "utils";
 import { ResultType } from "../state";
 
@@ -7,20 +8,25 @@ type EvaluationProps = {
 };
 
 const Evaluation = ({ results }: EvaluationProps) => {
-    const noResults = results.length === 0;
-    const emptyResults = new Array(4).fill("none").map(item => "none");
-    const values = ["none", "white", "black"];
-    const valueColors = results.length !== 0 ? values : emptyResults;
+    const values = ["transparent", "white", "black"];
 
-    const shuffledResults = !noResults && shuffle(results);
-    const x = shuffledResults || emptyResults;
+    const validResult = results.find(item => item === 1 || item === 2) && results.length === 4;
+
+    const invalidResults = results.length !== 4 || !validResult;
+
+    const finalResults = invalidResults ? [0, 0, 0, 0] : results;
+
+    useEffect(() => {
+        shuffle(finalResults);
+    }, []);
+
     return (
         <div className="evaluation_wrapper">
-            {x.map((result, idx) => (
+            {finalResults.map((result, idx) => (
                 <div
                     key={`value-${idx}`}
                     className="score_box"
-                    style={{ backgroundColor: valueColors[result] }}
+                    style={{ backgroundColor: values[result] }}
                 />
             ))}
         </div>

@@ -1,11 +1,9 @@
 import { FC, FormEvent } from "react";
-import { useSelector } from "react-redux";
 
 import { CustomIcon, InputCard } from "shared-components";
 import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "hooks";
 
-import { unitsState } from "../../Gas";
 import EditCell from "./EditCell";
 import { InputSize } from "shared-components/InputCard/InputCard";
 import { icons } from "utils";
@@ -61,7 +59,6 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
     return (
         <form className={styles.wrapper} onSubmit={onSubmitHandler}>
             <EditCell>
-                {/* <CustomInput onChange={changeHandler} name="readDate" value={values.readDate} /> */}
                 <InputCard
                     size={InputSize.SMALL}
                     onChange={changeHandler}
