@@ -1,136 +1,114 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AttemptId, IguessGameItem, IPlayerCombo, ResultType } from "./state";
+import { IguessGameItem, ResultType } from "./state";
 
 import { featureFlags } from "flags";
-import {
-    AttemptsContainer,
-    GameControls,
-    GameHeader,
-    HiddenCombo,
-    PlayCard,
-} from "./game-components";
+import { GameControls, GameHeader, HiddenCombo, PlayCard } from "./game-components";
 import { ComingSoonText } from "app";
-import { shuffle, icons } from "utils";
+import { shuffle } from "utils";
 import {
     baseColorsState,
+    finishedState,
     gameAttemptsState,
     gameComboState,
-    playerResults,
     selectedAttempt,
 } from "./selectors";
 import {
     setNewGame,
-    resetResults,
     setResults,
     selectAttempt,
     resetSelected,
     resetComboes,
     setComboItem,
+    setFinished,
 } from "./guessGameSlice";
 
-import styles from "./ColorGame.module.scss";
+import "./_index.scss";
 
 const newColors = (arr: IguessGameItem[]): IguessGameItem[] => shuffle(arr).slice(0, 4);
 
 const ColorGame = () => {
-    const flagged: boolean = featureFlags.guess_the_colors;
+    const isGuessGameFlagEnabled: boolean = featureFlags.guess_the_colors;
+    const dispatch = useDispatch();
 
     const selected = useSelector(selectedAttempt);
     const gameCombo = useSelector(gameComboState);
-    const results = useSelector(playerResults);
     const gameAttempts = useSelector(gameAttemptsState);
     const baseColors = useSelector(baseColorsState);
-
-    const dispatch = useDispatch();
-
-    const perfectMatch: ResultType = [1, 1, 1, 1];
-
-    const gameOver = results.some(res => [...res] === [...perfectMatch]);
+    const finishedGame = useSelector(finishedState);
 
     const newGameHandler = () => {
         dispatch(resetComboes());
         dispatch(setNewGame(newColors(baseColors)));
     };
 
-    const currentAttemptFinder = (attemptId: number) =>
-        gameAttempts.find(attempt => attempt.id === attemptId);
+    const handleResults = (playerCombo: IguessGameItem[], attemptId: number) => {
+        let results: ResultType = [];
 
-    const comboMatchHandler = (attemptId: number) => {
-        let resultArray: ResultType = [];
-        const currentAttempt = currentAttemptFinder(attemptId);
-        const currentPlayerCombo = currentAttempt?.playerCombo;
-        const colors = gameCombo.map(c => c.color);
-        const includesCombo = (comboColor: string) => colors.includes(comboColor);
-
-        if (currentPlayerCombo) {
-            currentPlayerCombo.forEach((combo, index) => {
-                if (includesCombo(combo.color) && combo.color === gameCombo[index].color) {
-                    resultArray.push(2);
-                } else if (includesCombo(combo.color)) {
-                    resultArray.push(1);
-                } else resultArray.push(0);
-                return resultArray;
-            });
-        }
-        dispatch(setResults({ id: attemptId, results: resultArray }));
-    };
-
-    const cancelAttempt = (attemptId: number) => {
-        dispatch(resetResults(attemptId));
-    };
-
-    const unSelectAll = () => dispatch(resetSelected());
-
-    const handleOnSelectColor = (item: IguessGameItem) => {
-        console.log(item);
-        selected && dispatch(setComboItem({ id: selected.id, item }));
-        selected && console.log(selected.playerCombo);
-    };
-
-    const optionItem = (item: IguessGameItem) => {
-        return (
-            <div
-                className="color_option"
-                style={{
-                    backgroundColor: item.color,
-                }}
-                onClick={() => handleOnSelectColor(item)}
-            />
+        const includesColor = gameCombo.filter(
+            (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
         );
+
+        const incomplete = playerCombo.some(item => item.color === "none");
+        const notIncluded = gameCombo.filter(item => playerCombo.includes(item) === false);
+        const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
+
+        const perfectMatch =
+            match.length === 4 ||
+            gameAttempts.every(
+                item => item.playerCombo.some(item => item.color === "none") === false,
+            );
+
+        if (incomplete) return;
+        if (perfectMatch) dispatch(setFinished(true));
+
+        includesColor.forEach(item => results.push(1));
+        notIncluded.forEach(item => results.push(0));
+        match.forEach(item => results.push(2));
+
+        dispatch(setResults({ id: attemptId, results }));
     };
 
-    const handleSelectAttempt = (attemptId: number) => {
-        dispatch(selectAttempt(attemptId));
+    const onSubmitHandler = (attemptId: number) => {
+        const combo = selected?.playerCombo;
+        if (combo) handleResults(combo, attemptId);
     };
 
-    console.log({ selected });
+    const cancelAttempt = () => {
+        dispatch(resetComboes());
+    };
 
-    return flagged ? (
-        <div className={styles.game_container}>
+    const itemClickHandler = (item: IguessGameItem, order: number) => {
+        if (selected) {
+            dispatch(setComboItem({ id: selected.id, item, order }));
+        }
+    };
+
+    return isGuessGameFlagEnabled ? (
+        <div className="game_container">
             <GameHeader newGameHandler={newGameHandler} labelTitle="Guess the colors game" />
-            <HiddenCombo show={gameOver} combination={gameCombo} />
-            <AttemptsContainer>
+            <HiddenCombo show={finishedGame} combination={gameCombo} />
+            <div className="attempts_container">
                 {gameAttempts.map((attempt, index) => (
                     <PlayCard
                         key={`playcard-${index + 1}`}
                         selected={attempt.selected}
-                        unSelect={unSelectAll}
-                        onSelectAttempt={() => handleSelectAttempt(attempt.id)}
-                        dropdownCount={gameCombo.length}
+                        onBlur={() => dispatch(resetSelected(attempt.id))}
+                        onSelect={() => dispatch(selectAttempt(attempt.id))}
+                        dropdownCount={attempt.playerCombo.length}
                         menuList={baseColors}
-                        dropdownLabel={icons.down}
-                        onSubmit={() => comboMatchHandler(attempt.id)}
-                        onCancel={() => cancelAttempt(attempt.id)}
-                        renderMenuItem={item => optionItem(item)}
+                        itemClickHandler={(item, order) => itemClickHandler(item, order)}
+                        onSubmit={() => onSubmitHandler(attempt.id)}
+                        onCancel={cancelAttempt}
                         results={attempt.results}
+                        isDisabled={attempt.results.length !== 0}
                     />
                 ))}
-            </AttemptsContainer>
+            </div>
             <GameControls gameColors={baseColors} />
         </div>
     ) : (
-        <div className={styles.coming_soon}>{ComingSoonText.MESSAGE}</div>
+        <div className="coming_soon">{ComingSoonText.MESSAGE}</div>
     );
 };
 

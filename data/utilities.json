@@ -313,9 +313,20 @@
       "readDate": "18/05/2022",
       "selected": false,
       "index": "5342",
-      "bill": "",
+      "bill": "47.29",
       "consumption": 16,
       "estimate": 42.41,
+      "payed": true,
+      "edit": false
+    },
+    {
+      "id": "cd46bfee-3607-4331-ae7d-824f6b96deaa",
+      "readDate": "17/06/2022",
+      "selected": false,
+      "index": "5362",
+      "bill": "",
+      "consumption": 20,
+      "estimate": 59.11,
       "payed": false,
       "edit": false
     }

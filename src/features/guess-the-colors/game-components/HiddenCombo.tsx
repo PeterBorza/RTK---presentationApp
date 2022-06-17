@@ -8,7 +8,13 @@ type HiddenComboProps = {
 
 const HiddenCombo = ({ combination, show }: HiddenComboProps) => {
     const comboItem = ({ id, color }: IguessGameItem) => {
-        return <div key={id} className="hidden_combo" style={{ backgroundColor: color }} />;
+        return (
+            <div
+                key={id}
+                className="hidden_combo"
+                style={{ backgroundColor: show ? color : "none" }}
+            />
+        );
     };
     return <div className="combination">{combination?.map(comboItem)}</div>;
 };

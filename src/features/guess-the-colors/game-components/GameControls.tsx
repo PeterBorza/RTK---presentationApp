@@ -12,13 +12,13 @@ const GameControls = ({ gameColors }: GameControlsProps) => {
             <div className="controls">
                 <div>
                     <p>A palette of six colors is given:</p>
-                    <ol className="ol-list">
-                        {gameColors.map(item => (
-                            <li key={item.id} style={{ color: item.color }}>
-                                <p>{item.color}</p>
+                    <ul className="ol-list">
+                        {gameColors.map(({ id, color }) => (
+                            <li key={id}>
+                                <p style={{ color }}>{color}</p>
                             </li>
                         ))}
-                    </ol>
+                    </ul>
                 </div>
 
                 <p>

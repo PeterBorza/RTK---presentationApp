@@ -5,10 +5,15 @@ import { NavLink } from "react-router-dom";
 import { NavBar, ToggleButton } from "shared-components";
 import { LinkContext } from "context";
 import { useWindowSize } from "hooks";
-import { icons } from "utils";
-import { utilsOpenSelector, darkModeSelector, photosOpenSelector, toggleDarkMode } from "app";
+import {
+    utilsOpenSelector,
+    darkModeSelector,
+    photosOpenSelector,
+    toggleDarkMode,
+    OpenMenu,
+} from "app";
 import { IProviderProps } from "context/link-context";
-import { DropdownContainer } from "shared-components/Dropdown";
+import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 
 import classNames from "classnames";
 import styles from "./Navigation.module.scss";
@@ -49,9 +54,11 @@ const Navigation = () => {
 
     const renderLinkItem = (item: IProviderProps) => {
         return (
-            <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
-                {item.label}
-            </NavLink>
+            <Dropdown.MenuItem key={`navigation-link-${item.id}`}>
+                <NavLink className={({ isActive }) => linkClasses(isActive)} to={item.to}>
+                    {item.label}
+                </NavLink>
+            </Dropdown.MenuItem>
         );
     };
 
@@ -69,11 +76,9 @@ const Navigation = () => {
                     </>
                 ) : (
                     <div className={nav__dropdown}>
-                        <DropdownContainer
-                            menuList={links}
-                            renderMenuItem={item => renderLinkItem(item)}
-                            label="Explore"
-                        />
+                        <DropdownContainer label={OpenMenu.MESSAGE}>
+                            {links.map(renderLinkItem)}
+                        </DropdownContainer>
                     </div>
                 )}
             </NavBar>

@@ -5,44 +5,33 @@ import { DropdownContextProvider } from "./context";
 
 export type DropLabelType = string | React.ReactNode;
 
-export interface DropContainerProps<T> {
-    menuList: T[];
+export interface DropContainerProps {
     onToggleMenu?: () => void;
-    renderMenuItem: (item: T) => React.ReactNode;
     position?: DropdownPositionType;
     toggleDisableTrigger?: boolean;
-    title?: string;
     label?: DropLabelType;
 }
 
-const DropdownContainer = <T extends unknown>({
-    menuList,
+const DropdownContainer: React.FC<DropContainerProps> = ({
     onToggleMenu,
-    renderMenuItem,
     position = "bottom",
     toggleDisableTrigger = false,
-    title = "toggle",
-    label = "Click",
-}: DropContainerProps<T>) => {
+    label = "",
+    children,
+}) => {
     /*
     /* use Dropdown.MenuItem to render the dropdown list !!!
     */
 
     return (
         <DropdownContextProvider>
-            <Dropdown label={label}>
+            <Dropdown>
                 <Dropdown.Trigger
                     onToggleMenu={() => onToggleMenu && onToggleMenu()}
                     isDisabled={toggleDisableTrigger}
                     label={label}
-                ></Dropdown.Trigger>
-                <Dropdown.DropdownList position={position}>
-                    {menuList?.map((item, i) => (
-                        <Dropdown.MenuItem key={`drop-item-${i}`}>
-                            {renderMenuItem(item)}
-                        </Dropdown.MenuItem>
-                    ))}
-                </Dropdown.DropdownList>
+                />
+                <Dropdown.DropdownList position={position}>{children}</Dropdown.DropdownList>
             </Dropdown>
         </DropdownContextProvider>
     );

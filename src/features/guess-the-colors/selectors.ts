@@ -9,6 +9,8 @@ export const gameAttemptsState = ({ guessGame }: RootState) => guessGame.attempt
 
 export const gameComboState = ({ guessGame }: RootState) => guessGame.gameCombo;
 
+export const finishedState = ({ guessGame }: RootState) => guessGame.finished;
+
 export const gameColorsSelector = createSelector(baseColorsState, items =>
     items.map(item => item.color),
 );

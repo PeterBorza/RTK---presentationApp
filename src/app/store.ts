@@ -17,6 +17,10 @@ export const store = configureStore({
         light: lightReducer,
         app: appReducer,
     },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            immutableCheck: false,
+        }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

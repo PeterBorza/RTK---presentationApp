@@ -22,7 +22,7 @@ const Trigger: React.FC<TriggerProps> = ({ onToggleMenu, isDisabled, label }) =>
             disabled={isDisabled}
             className="drop_trigger"
         >
-            {triggerName || label}
+            {triggerName}
         </button>
     );
 };

@@ -3,10 +3,15 @@ import { DropdownContext } from "../context";
 
 import "./_index.scss";
 
-const MenuItem: React.FC = ({ children }) => {
+export interface IMenuItem {
+    onClick?: () => void;
+}
+
+const MenuItem: React.FC<IMenuItem> = ({ onClick, children }) => {
     const { setIsOpen, setTriggerName } = React.useContext(DropdownContext);
 
     const menuItemClickHandler = () => {
+        onClick && onClick();
         setIsOpen(false);
         setTriggerName(children);
     };

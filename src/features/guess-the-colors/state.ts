@@ -1,4 +1,5 @@
 import { shuffle } from "utils";
+import { createArray } from "utils/generators";
 
 export type AttemptId = {
     id: number;
@@ -17,6 +18,7 @@ export interface IResultsType extends AttemptId {
 }
 export interface IPlayerCombo extends AttemptId {
     item: IguessGameItem;
+    order: number;
 }
 
 export interface IAttempt extends AttemptId {
@@ -29,17 +31,27 @@ export interface IguessGame {
     baseColors: IguessGameItem[];
     gameCombo: IguessGameItem[];
     attempts: IAttempt[];
+    finished: boolean;
 }
 
-const colors = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
-const setup = colors.map((item, idx) => {
+const COLORS_TO_GUESS_COUNT = 4;
+
+const colors: string[] = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
+const setup: IguessGameItem[] = colors.map((item, idx) => {
     return {
         id: 1000 + idx,
         color: item,
     };
 });
 
-const newGame: IguessGameItem[] = shuffle(setup).slice(0, 4);
+export const initialPlayerCombo: IguessGameItem[] = createArray(COLORS_TO_GUESS_COUNT).map(
+    (item, idx) => ({
+        id: 1000 + idx,
+        color: "none",
+    }),
+);
+
+const newGame: IguessGameItem[] = shuffle(setup).slice(0, COLORS_TO_GUESS_COUNT);
 
 export const initialState: IguessGame = {
     baseColors: setup,
@@ -47,9 +59,10 @@ export const initialState: IguessGame = {
     attempts: colors.map((item, idx) => {
         return {
             id: 10001 + idx,
-            playerCombo: [],
+            playerCombo: initialPlayerCombo,
             results: [],
-            selected: false,
+            selected: idx === 0 ? true : false,
         };
     }),
+    finished: false,
 };
