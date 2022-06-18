@@ -34,7 +34,7 @@ export interface IguessGame {
     finished: boolean;
 }
 
-const COLORS_TO_GUESS_COUNT = 4;
+export const COLORS_TO_GUESS_COUNT = 4;
 
 const colors: string[] = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
 const setup: IguessGameItem[] = colors.map((item, idx) => {

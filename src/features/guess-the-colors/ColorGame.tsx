@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IguessGameItem, ResultType } from "./state";
+import { COLORS_TO_GUESS_COUNT, IguessGameItem, ResultType } from "./state";
 
 import { featureFlags } from "flags";
 import { GameControls, GameHeader, HiddenCombo, PlayCard } from "./game-components";
@@ -42,24 +42,42 @@ const ColorGame = () => {
         dispatch(setNewGame(newColors(baseColors)));
     };
 
+    const hasIdenticalItems = (arr: string[]) => {
+        const result = Array.from(new Set(arr));
+        if (result.length < COLORS_TO_GUESS_COUNT) return false;
+        return true;
+    };
+
+    const checkIfIncluded = (playerCombo: IguessGameItem[]) => {
+        return gameCombo.filter(
+            (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
+        );
+    };
+
+    // TODO cancel button should empty all dropdowns in attempt,
+    // and new game should empty all dropdown triggers to  ""
+    // animation to game end
+    // responsiveness sucks , fix it
+
     const handleResults = (playerCombo: IguessGameItem[], attemptId: number) => {
         let results: ResultType = [];
 
-        const includesColor = gameCombo.filter(
-            (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
-        );
+        const includesColor = checkIfIncluded(playerCombo);
+
+        const ids = playerCombo.map(item => item.color);
+        const isValid = hasIdenticalItems(ids);
 
         const incomplete = playerCombo.some(item => item.color === "none");
         const notIncluded = gameCombo.filter(item => playerCombo.includes(item) === false);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
 
         const perfectMatch =
-            match.length === 4 ||
+            match.length === COLORS_TO_GUESS_COUNT ||
             gameAttempts.every(
                 item => item.playerCombo.some(item => item.color === "none") === false,
             );
 
-        if (incomplete) return;
+        if (incomplete || !isValid) return;
         if (perfectMatch) dispatch(setFinished(true));
 
         includesColor.forEach(item => results.push(1));
