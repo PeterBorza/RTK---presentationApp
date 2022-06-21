@@ -3,12 +3,9 @@ import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 import { DropLabelType } from "shared-components/Dropdown/DropdownContainer";
 import { Evaluation } from ".";
 import { IguessGameItem, ResultType } from "../state";
-
 import classNames from "classnames";
 import { useOnClickOutside } from "hooks";
-import { CustomIcon } from "shared-components";
-import { icons } from "utils";
-import { IconProps } from "shared-components/CustomIcon/CustomIcon";
+import { createArray } from "utils/generators";
 
 interface PlayCardType {
     selected: boolean;
@@ -19,9 +16,10 @@ interface PlayCardType {
     itemClickHandler: (item: IguessGameItem, order: number) => void;
     dropdownLabel?: DropLabelType;
     onSubmit: () => void;
-    onCancel: () => void;
     results: ResultType;
     isDisabled: boolean;
+    values: string[];
+    enabledResults: boolean;
 }
 
 const PlayCard = ({
@@ -33,36 +31,18 @@ const PlayCard = ({
     itemClickHandler,
     dropdownLabel,
     onSubmit,
-    onCancel,
     results,
     isDisabled,
+    values,
+    enabledResults,
 }: PlayCardType) => {
-    const dropdownCounter = new Array(dropdownCount).fill(null);
+    const dropdownCounter = createArray(dropdownCount);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,
         playcard__disabled: isDisabled,
     });
     useOnClickOutside(playCardRef, onBlur);
-
-    const validResult = results.some(item => item === 1 || item === 2) ?? results.length === 4;
-
-    const gameIcons: IconProps[] = [
-        {
-            isDisabled: false,
-            onClick: onCancel,
-            title: "cancel",
-            icon: icons.x,
-        },
-        {
-            isDisabled: validResult,
-            onClick: onSubmit,
-            title: "submit",
-            icon: icons.checkMark,
-        },
-    ];
-
-    const getGameIcon = (icon: IconProps) => <CustomIcon key={icon.title} {...icon} />;
 
     return (
         <div className={playCardClasses} onClick={onSelect} ref={playCardRef}>
@@ -88,9 +68,13 @@ const PlayCard = ({
                         </div>
                     ))}
                 </div>
-                <div className="icons">{gameIcons.map(getGameIcon)}</div>
             </div>
-            <Evaluation results={results} />
+            <Evaluation
+                results={results}
+                values={values}
+                handleResults={onSubmit}
+                enabledResults={enabledResults}
+            />
         </div>
     );
 };

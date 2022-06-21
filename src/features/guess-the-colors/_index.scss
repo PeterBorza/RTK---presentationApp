@@ -4,7 +4,7 @@
 $shadow: inset 2px 2px 10px rgb(255 255 255 / 0.4);
 $fine-shadow: 0px 0px 4px rgb(255 255 255 / 0.15);
 $container-shadow: 4px 4px 15px rgb(255 255 255 / 0.5), -2px -2px 10px rgb(255 255 255 / 0.6);
-$box-size: clamp(1rem, 1vw + 1rem, 2.5rem);
+$box-size: clamp(0.6rem, 2vw + 1rem, 2rem);
 $bg: rgb(193, 189, 189);
 $shadow-transition: all 200ms ease-in-out;
 $padding-clamp: clamp(4px, 1.5vw, 1rem);
@@ -12,7 +12,7 @@ $title-size: clamp(1.5rem, 1vw + 0.8rem, 4rem);
 $icon-size: 1.3rem;
 $gap-clamp: clamp(2px, 1vw, 12px);
 $border-dotted: 1px dotted darken($bg, 10%);
-$option-item-size: clamp(8px, 1.2vw, 22px);
+$option-item-size: clamp(8px, 1.2vw, 2rem);
 
 .game_container {
     width: 90%;
@@ -24,8 +24,8 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     border-radius: 5px;
     margin: 5px auto;
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 0.4fr 0.3fr auto;
+    grid-template-columns: minmax(70%, 1.5fr) auto;
+    grid-template-rows: 0.4fr 0.2fr auto;
 }
 
 .coming_soon {
@@ -39,6 +39,7 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
 
 .game_header {
     grid-column: 1/3;
+    max-height: 8vh;
     @include fAround();
     border-bottom: $border-dotted;
     &__title {
@@ -73,8 +74,6 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
 }
 
 .combination {
-    grid-column: 1/2;
-    grid-row: 2/3;
     width: 100%;
     height: 100%;
     display: flex;
@@ -82,10 +81,30 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     padding: $padding-clamp;
 
     .hidden_combo {
+        position: relative;
         box-shadow: $shadow;
         border-radius: 5px;
         width: 100%;
         height: 60px;
+        overflow: hidden;
+        &::after {
+            position: absolute;
+            content: "";
+            inset: 0;
+            background-color: rgb(40 64 73/0.7);
+            border-radius: 5px;
+            transform: translateY(0%);
+            transition: transform 800ms cubic-bezier(0.54, 0.23, 1, -0.95);
+            transition-delay: 100ms;
+        }
+
+        &__revealed {
+            &.hidden_combo {
+                &::after {
+                    transform: translateY(100%);
+                }
+            }
+        }
     }
 }
 
@@ -111,12 +130,11 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
     transition: $shadow-transition;
 
     &__selected {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     &__disabled {
         pointer-events: none;
-        background-color: rgba(255, 255, 255, 0.5);
     }
 
     &:hover {
@@ -129,27 +147,17 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
         height: 100%;
         @include fBetween(column);
         border-right: $border-dotted;
+
         .game_dropdown {
             @include fEven();
             width: 100%;
             height: 100%;
+
             .drop {
-                width: calc($box-size * 1.5);
-                height: $box-size;
+                width: 100%;
+                height: max(4vh, 60%);
                 box-shadow: $fine-shadow;
-            }
-        }
-        .icons {
-            display: flex;
-            gap: 5px;
-            padding: 2px;
-            margin-left: auto;
-            margin-right: 0.6rem;
-            & > * {
-                font-weight: bold;
-                flex-shrink: 0;
-                font-size: $icon-size;
-                cursor: pointer;
+                margin: auto 3px;
             }
         }
     }
@@ -160,12 +168,14 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
 .drop_container {
     width: 100%;
     height: 100%;
+    border-radius: 30px;
 }
 
 .color_option {
-    width: $option-item-size;
-    height: $option-item-size;
-    border-radius: 50%;
+    // min-width: calc($option-item-size / 3);
+    min-height: $option-item-size;
+    width: 100%;
+    height: 100%;
     margin: 2px auto;
     cursor: pointer;
 }
@@ -188,6 +198,25 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
         height: $box-size;
         border-radius: 50%;
         box-shadow: $shadow;
+        opacity: 0.2;
+
+        &__valid {
+            opacity: 0.8;
+        }
+
+        &__enabled {
+            opacity: 1;
+            cursor: pointer;
+            animation: blink 500ms infinite linear alternate-reverse;
+            @keyframes blink {
+                from {
+                    background-color: transparent;
+                }
+                to {
+                    background-color: green;
+                }
+            }
+        }
     }
 }
 
@@ -220,10 +249,12 @@ $option-item-size: clamp(8px, 1.2vw, 22px);
         border-radius: 0.5rem;
         transition: box-shadow 200ms ease-in-out;
         cursor: default;
+
         b {
             color: crimson;
             padding: 0;
         }
+
         &:hover {
             box-shadow: 2px 2px 15px rgb(0 0 0 / 0.2);
         }

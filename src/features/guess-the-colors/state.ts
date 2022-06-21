@@ -35,7 +35,9 @@ export interface IguessGame {
 }
 
 export const COLORS_TO_GUESS_COUNT = 4;
+export const NUMBER_OF_ATTEMPTS = 6;
 
+export const resultValues = ["transparent", "rgb(255 255 255/.8)", "black"];
 const colors: string[] = ["red", "blue", "green", "orange", "lightgreen", "lightblue"];
 const setup: IguessGameItem[] = colors.map((item, idx) => {
     return {
@@ -56,7 +58,7 @@ const newGame: IguessGameItem[] = shuffle(setup).slice(0, COLORS_TO_GUESS_COUNT)
 export const initialState: IguessGame = {
     baseColors: setup,
     gameCombo: newGame,
-    attempts: colors.map((item, idx) => {
+    attempts: createArray(NUMBER_OF_ATTEMPTS).map((item, idx) => {
         return {
             id: 10001 + idx,
             playerCombo: initialPlayerCombo,
