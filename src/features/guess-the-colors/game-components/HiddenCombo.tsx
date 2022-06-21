@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { IguessGameItem } from "../state";
 
 type HiddenComboProps = {
@@ -7,12 +8,15 @@ type HiddenComboProps = {
 };
 
 const HiddenCombo = ({ combination, show }: HiddenComboProps) => {
+    const hiddenComboClasses = classNames("hidden_combo", {
+        hidden_combo__revealed: show,
+    });
     const comboItem = ({ id, color }: IguessGameItem) => {
         return (
             <div
                 key={id}
-                className="hidden_combo"
-                style={{ backgroundColor: show ? color : "none" }}
+                className={hiddenComboClasses}
+                style={{ backgroundColor: show ? color : "transparent" }}
             />
         );
     };
