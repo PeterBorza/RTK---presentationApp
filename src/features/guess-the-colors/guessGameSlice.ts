@@ -29,9 +29,8 @@ export const guessGameSlice = createSlice({
             const currentAttempt = currentAttemptFinder(state.attempts, payload.id);
             if (currentAttempt !== -1) state.attempts[currentAttempt].results = payload.results;
         },
-        resetResults: (state: IguessGame, { payload }: PayloadAction<number>) => {
-            const currentAttempt = currentAttemptFinder(state.attempts, payload);
-            if (currentAttempt !== -1) state.attempts[currentAttempt].results = [];
+        resetResults: (state: IguessGame) => {
+            state.attempts.forEach(attempt => (attempt.results = []));
         },
         selectAttempt: (state: IguessGame, { payload }: PayloadAction<number>) => {
             const currentAttempt = currentAttemptFinder(state.attempts, payload);

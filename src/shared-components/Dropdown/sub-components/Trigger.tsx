@@ -6,10 +6,15 @@ type TriggerProps = {
     onToggleMenu?: () => void;
     isDisabled: boolean;
     label?: DropLabelType;
+    reset?: boolean;
 };
 
-const Trigger: React.FC<TriggerProps> = ({ onToggleMenu, isDisabled, label }) => {
-    const { isOpen, setIsOpen, triggerName } = React.useContext(DropdownContext);
+const Trigger: React.FC<TriggerProps> = ({ onToggleMenu, isDisabled, label, reset }) => {
+    const { isOpen, setIsOpen, triggerName, setTriggerName } = React.useContext(DropdownContext);
+
+    React.useEffect(() => {
+        reset && setTriggerName("");
+    }, [reset]);
 
     const toggleMenu = () => {
         onToggleMenu && onToggleMenu();
