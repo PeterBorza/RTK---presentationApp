@@ -43,9 +43,9 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
         resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
 
         const noAttemptsLeft = gameAttempts.every(
-            attempt =>
-                attempt.results.length === COLORS_TO_GUESS_COUNT && validCombo(attempt.playerCombo),
+            attempt => validCombo(attempt.playerCombo) === true,
         );
+
         const perfectMatch = match.length === COLORS_TO_GUESS_COUNT;
         if (perfectMatch || noAttemptsLeft) dispatch(setFinished(true));
 

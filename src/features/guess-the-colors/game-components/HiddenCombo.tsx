@@ -21,7 +21,7 @@ const HiddenCombo = ({ finishedGame, gameCombo }: Props) => {
             />
         );
     };
-    return <div className="combination">{gameCombo?.map(comboItem)}</div>;
+    return <div className="combination">{gameCombo.map(comboItem)}</div>;
 };
 
 export default HiddenCombo;
