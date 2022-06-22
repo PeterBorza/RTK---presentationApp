@@ -1,26 +1,27 @@
 import React from "react";
-import classNames from "classnames";
 import { IguessGameItem } from "../state";
 
-type HiddenComboProps = {
-    combination?: IguessGameItem[];
-    show?: boolean;
+import classNames from "classnames";
+
+type Props = {
+    finishedGame: boolean;
+    gameCombo: IguessGameItem[];
 };
 
-const HiddenCombo = ({ combination, show }: HiddenComboProps) => {
+const HiddenCombo = ({ finishedGame, gameCombo }: Props) => {
     const hiddenComboClasses = classNames("hidden_combo", {
-        hidden_combo__revealed: show,
+        hidden_combo__revealed: finishedGame,
     });
     const comboItem = ({ id, color }: IguessGameItem) => {
         return (
             <div
                 key={id}
                 className={hiddenComboClasses}
-                style={{ backgroundColor: show ? color : "transparent" }}
+                style={{ backgroundColor: finishedGame ? color : "transparent" }}
             />
         );
     };
-    return <div className="combination">{combination?.map(comboItem)}</div>;
+    return <div className="combination">{gameCombo?.map(comboItem)}</div>;
 };
 
 export default HiddenCombo;

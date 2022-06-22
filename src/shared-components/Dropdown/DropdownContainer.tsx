@@ -10,6 +10,7 @@ export interface DropContainerProps {
     position?: DropdownPositionType;
     toggleDisableTrigger?: boolean;
     label?: DropLabelType;
+    reset?: boolean;
 }
 
 const DropdownContainer: React.FC<DropContainerProps> = ({
@@ -17,6 +18,7 @@ const DropdownContainer: React.FC<DropContainerProps> = ({
     position = "bottom",
     toggleDisableTrigger = false,
     label = "",
+    reset,
     children,
 }) => {
     /*
@@ -30,6 +32,7 @@ const DropdownContainer: React.FC<DropContainerProps> = ({
                     onToggleMenu={() => onToggleMenu && onToggleMenu()}
                     isDisabled={toggleDisableTrigger}
                     label={label}
+                    reset={reset}
                 />
                 <Dropdown.DropdownList position={position}>{children}</Dropdown.DropdownList>
             </Dropdown>

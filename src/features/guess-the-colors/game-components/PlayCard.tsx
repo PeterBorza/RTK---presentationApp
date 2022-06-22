@@ -1,48 +1,52 @@
 import React from "react";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
-import { DropLabelType } from "shared-components/Dropdown/DropdownContainer";
 import { Evaluation } from ".";
-import { IguessGameItem, ResultType } from "../state";
-import classNames from "classnames";
+import { COLORS_TO_GUESS_COUNT, IguessGameItem, ResultType } from "../state";
 import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
+import { useDispatch, useSelector } from "react-redux";
+import { baseColorsState, finishedState, playerResults } from "../selectors";
+import { setComboItem } from "../guessGameSlice";
 
+import classNames from "classnames";
 interface PlayCardType {
     selected: boolean;
     onBlur: () => void;
     onSelect: () => void;
-    dropdownCount: number;
-    menuList: IguessGameItem[];
-    itemClickHandler: (item: IguessGameItem, order: number) => void;
-    dropdownLabel?: DropLabelType;
     onSubmit: () => void;
     results: ResultType;
     isDisabled: boolean;
-    values: string[];
     enabledResults: boolean;
+    currentId: number;
 }
 
 const PlayCard = ({
     selected,
     onBlur,
     onSelect,
-    dropdownCount,
-    menuList,
-    itemClickHandler,
-    dropdownLabel,
     onSubmit,
     results,
     isDisabled,
-    values,
     enabledResults,
+    currentId,
 }: PlayCardType) => {
-    const dropdownCounter = createArray(dropdownCount);
+    const dropdownCounter = createArray(COLORS_TO_GUESS_COUNT);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
+    const finishedGame = useSelector(finishedState);
+    const allResults = useSelector(playerResults);
+    const baseColors = useSelector(baseColorsState);
+    const dispatch = useDispatch();
+
+    const canReset = allResults.every(result => result.length === 0);
+
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,
         playcard__disabled: isDisabled,
     });
     useOnClickOutside(playCardRef, onBlur);
+
+    const onItemClickHandle = (item: IguessGameItem, order: number) =>
+        dispatch(setComboItem({ id: currentId, item, order }));
 
     return (
         <div className={playCardClasses} onClick={onSelect} ref={playCardRef}>
@@ -50,11 +54,14 @@ const PlayCard = ({
                 <div className="game_dropdown">
                     {dropdownCounter.map((_, idx) => (
                         <div key={`attempt-dropdown-${idx + 1}`} className="drop">
-                            <DropdownContainer label={dropdownLabel}>
-                                {menuList.map(item => (
+                            <DropdownContainer
+                                position={idx === dropdownCounter.length ? "top" : "bottom"}
+                                reset={!finishedGame && canReset}
+                            >
+                                {baseColors.map(item => (
                                     <Dropdown.MenuItem
                                         key={`dropdown-item-${item.id}`}
-                                        onClick={() => itemClickHandler(item, idx)}
+                                        onClick={() => onItemClickHandle(item, idx)}
                                     >
                                         <div
                                             className="color_option"
@@ -71,7 +78,6 @@ const PlayCard = ({
             </div>
             <Evaluation
                 results={results}
-                values={values}
                 handleResults={onSubmit}
                 enabledResults={enabledResults}
             />

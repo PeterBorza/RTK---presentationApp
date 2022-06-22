@@ -1,19 +1,18 @@
 import React from "react";
-
 import { IguessGameItem } from "../state";
 
-type GameControlsProps = {
-    gameColors: IguessGameItem[];
+type Props = {
+    baseColors: IguessGameItem[];
 };
 
-const GameControls = ({ gameColors }: GameControlsProps) => {
+const GameControls = ({ baseColors }: Props) => {
     return (
         <>
             <div className="controls">
                 <div>
                     <p>A palette of six colors is given:</p>
                     <ul className="ol-list">
-                        {gameColors.map(({ id, color }) => (
+                        {baseColors.map(({ id, color }) => (
                             <li key={id}>
                                 <p style={{ color }}>{color}</p>
                             </li>

@@ -1,32 +1,25 @@
-import classNames from "classnames";
 import React from "react";
-import { useEffect } from "react";
 import { shuffle } from "utils";
-import { COLORS_TO_GUESS_COUNT, ResultType } from "../state";
+import { initialResultArray, ResultType, resultValues } from "../state";
+
+import classNames from "classnames";
 
 type EvaluationProps = {
-    results: ResultType;
-    values: string[];
+    results?: ResultType;
     handleResults: () => void;
     enabledResults: boolean;
 };
 
-const Evaluation = ({ results, values, handleResults, enabledResults }: EvaluationProps) => {
-    const noResults = results.length === 0;
-    const allResults = results.length === COLORS_TO_GUESS_COUNT;
-
-    const validResult = results.find(item => item === 1 || item === 2) && allResults;
-
-    const invalidResults = !allResults || !validResult;
-
-    const finalResults = invalidResults ? [0, 0, 0, 0] : results;
+const Evaluation = ({ results, handleResults, enabledResults }: EvaluationProps) => {
+    const validResult = results?.find(item => item === 1 || item === 2);
+    const finalResults: ResultType = results && validResult ? results : initialResultArray;
 
     const resultBoxClasses = classNames("score_box", {
-        ["score_box__valid"]: !noResults,
+        ["score_box__valid"]: validResult,
         ["score_box__enabled"]: enabledResults,
     });
 
-    useEffect(() => {
+    React.useEffect(() => {
         shuffle(finalResults);
     }, []);
 
@@ -36,7 +29,7 @@ const Evaluation = ({ results, values, handleResults, enabledResults }: Evaluati
                 <div
                     key={`value-${idx}`}
                     className={resultBoxClasses}
-                    style={{ backgroundColor: values[result] }}
+                    style={{ backgroundColor: resultValues[result] }}
                 />
             ))}
         </div>

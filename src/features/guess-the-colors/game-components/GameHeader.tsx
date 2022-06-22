@@ -1,31 +1,37 @@
 import React from "react";
 
-import { UnderConstructionText } from "app";
-import { useOnClickOutside } from "hooks";
-import { AlertModal, Button } from "shared-components";
+import { Button } from "shared-components";
+import { useDispatch } from "react-redux";
+import { resetComboes, resetResults, setFinished, setNewGame } from "../guessGameSlice";
+import { COLORS_TO_GUESS_COUNT, IguessGameItem } from "../state";
+import { shuffle } from "utils";
 
-type GameHeaderType = {
-    labelTitle: string;
-    newGameHandler: () => void;
+type Props = {
+    baseColors: IguessGameItem[];
 };
 
-const GameHeader = ({ labelTitle, newGameHandler }: GameHeaderType) => {
-    const modalRef = React.useRef<HTMLDivElement | null>(null);
-    const [open, setOpen] = React.useState(false);
-    useOnClickOutside(modalRef, () => setOpen(false));
+const GAME_TITLE = "Guess the colors game";
+const NEW_GAME = "New Game";
 
-    const handleSubmit = () => newGameHandler();
-    // const handleSubmit = () => setOpen(true);
+const GameHeader = ({ baseColors }: Props) => {
+    const dispatch = useDispatch();
+
+    const newColors = (arr: IguessGameItem[]): IguessGameItem[] =>
+        shuffle(arr).slice(0, COLORS_TO_GUESS_COUNT);
+
+    const newGameHandler = () => {
+        dispatch(setFinished(false));
+        dispatch(resetResults());
+        dispatch(resetComboes());
+        dispatch(setNewGame(newColors(baseColors)));
+    };
 
     return (
         <div className="game_header">
-            <h1 className="game_header__title">{labelTitle}</h1>
+            <h1 className="game_header__title">{GAME_TITLE}</h1>
             <div className="game_header__controls">
-                <Button type="submit" value="New Game" onClick={handleSubmit} />
+                <Button value={NEW_GAME} onClick={() => newGameHandler()} />
             </div>
-            <AlertModal openModal={open} ref={modalRef}>
-                <h1 className="construction_text">{`${UnderConstructionText.MESSAGE} Refresh to start a new game`}</h1>
-            </AlertModal>
         </div>
     );
 };
