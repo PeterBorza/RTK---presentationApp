@@ -1,6 +1,6 @@
 import React from "react";
 import { shuffle } from "utils";
-import { initialResultArray, ResultType, resultValues } from "../state";
+import { ResultType, resultValues } from "../state";
 
 import classNames from "classnames";
 
@@ -12,7 +12,7 @@ type EvaluationProps = {
 
 const Evaluation = ({ results, handleResults, enabledResults }: EvaluationProps) => {
     const validResult = results?.find(item => item === 1 || item === 2);
-    const finalResults: ResultType = results && validResult ? results : initialResultArray;
+    const finalResults: ResultType = results && validResult ? results : [0, 0, 0, 0];
 
     const resultBoxClasses = classNames("score_box", {
         ["score_box__valid"]: validResult,
