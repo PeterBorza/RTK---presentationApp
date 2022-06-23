@@ -15,11 +15,17 @@ export const memoryGameSlice = createSlice({
     name: "memoryGame",
     initialState,
     reducers: {
-        setPending: ({ pending }: MemoryGameState, { payload }: PayloadAction<boolean>) => {
-            pending = payload;
+        setPending: (state: MemoryGameState, { payload }: PayloadAction<boolean>) => {
+            state.pending = payload;
         },
         toggleFlip: ({ gamePhotos }: MemoryGameState, { payload }: PayloadAction<string>) => {
             gamePhotos.map(item => (item.isFlipped = item.id === payload ? true : false));
+        },
+        hideAllCards: ({ gamePhotos }: MemoryGameState) => {
+            gamePhotos.forEach(photo => {
+                photo.isFlipped = false;
+                photo.match = false;
+            });
         },
         setMatch: (
             { gamePhotos }: MemoryGameState,
@@ -41,7 +47,14 @@ export const memoryGameSlice = createSlice({
     },
 });
 
-export const { setPending, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } =
-    memoryGameSlice.actions;
+export const {
+    setPending,
+    toggleFlip,
+    hideAllCards,
+    setMatch,
+    incrementCount,
+    resetGame,
+    setNewGame,
+} = memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

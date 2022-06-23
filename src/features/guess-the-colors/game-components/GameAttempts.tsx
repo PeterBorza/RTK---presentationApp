@@ -58,7 +58,7 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
                 <PlayCard
                     key={`playcard-${index + 1}`}
                     selected={attempt.selected}
-                    onBlur={() => dispatch(resetSelected(attempt.id))}
+                    onBlur={() => attempt.selected && dispatch(resetSelected(attempt.id))}
                     onSelect={() => dispatch(selectAttempt(attempt.id))}
                     onSubmit={() => handleResults(attempt.playerCombo, attempt.id)}
                     results={attempt.results}

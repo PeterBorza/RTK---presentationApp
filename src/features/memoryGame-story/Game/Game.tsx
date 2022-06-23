@@ -15,7 +15,15 @@ import {
 } from "../selectors";
 import { darkModeSelector } from "app";
 
-import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } from "..";
+import {
+    GamePhotoData,
+    toggleFlip,
+    setMatch,
+    incrementCount,
+    resetGame,
+    setNewGame,
+    hideAllCards,
+} from "..";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -79,6 +87,7 @@ const Game = () => {
         (arr: GamePhotoData[]) => {
             const shuffled = shuffle(arr);
             dispatch(setNewGame(shuffled));
+            dispatch(hideAllCards());
         },
         [dispatch, setNewGame],
     );

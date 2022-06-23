@@ -53,8 +53,6 @@ export const initialPlayerCombo: IguessGameItem[] = createArray(COLORS_TO_GUESS_
     }),
 );
 
-export const initialResultArray = [0, 0, 0, 0];
-
 const newGame: IguessGameItem[] = shuffle(setup).slice(0, COLORS_TO_GUESS_COUNT);
 
 export const initialState: IguessGame = {
@@ -65,7 +63,7 @@ export const initialState: IguessGame = {
             id: 10001 + idx,
             playerCombo: initialPlayerCombo,
             results: [],
-            selected: idx === 0 ? true : false,
+            selected: false,
         };
     }),
     finished: false,
