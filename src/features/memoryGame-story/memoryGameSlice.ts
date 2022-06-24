@@ -1,14 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState } from "./types";
 import { imageData } from "utils";
-import { shuffledMinions } from "./game-images";
 import { GamePhotoData } from ".";
+import { shuffledChristmas, shuffledMinions } from "./game-images";
+
+export const gameThemes = {
+    minions: shuffledMinions,
+    christmas: shuffledChristmas,
+};
 
 const initialState: MemoryGameState = {
     photos: imageData,
-    gamePhotos: shuffledMinions,
+    gamePhotos: gameThemes["minions"],
     pending: false,
     clickCount: 0,
+    gameThemes: "minions",
 };
 
 export const memoryGameSlice = createSlice({
@@ -21,12 +27,6 @@ export const memoryGameSlice = createSlice({
         toggleFlip: ({ gamePhotos }: MemoryGameState, { payload }: PayloadAction<string>) => {
             gamePhotos.map(item => (item.isFlipped = item.id === payload ? true : false));
         },
-        hideAllCards: ({ gamePhotos }: MemoryGameState) => {
-            gamePhotos.forEach(photo => {
-                photo.isFlipped = false;
-                photo.match = false;
-            });
-        },
         setMatch: (
             { gamePhotos }: MemoryGameState,
             { payload }: PayloadAction<{ id: string; match: boolean }>,
@@ -37,24 +37,21 @@ export const memoryGameSlice = createSlice({
         incrementCount: (state: MemoryGameState) => {
             state.clickCount++;
         },
-        resetGame: (state: MemoryGameState) => {
-            state.gamePhotos = initialState.gamePhotos;
+        resetGame: (state: MemoryGameState, { payload }: PayloadAction<GamePhotoData[]>) => {
+            const newGame = payload.map(item => {
+                return {
+                    ...item,
+                    isFlipped: false,
+                    match: false,
+                };
+            });
+            state.gamePhotos = newGame;
             state.clickCount = initialState.clickCount;
-        },
-        setNewGame: (state: MemoryGameState, { payload }: PayloadAction<GamePhotoData[]>) => {
-            state.gamePhotos = payload;
         },
     },
 });
 
-export const {
-    setPending,
-    toggleFlip,
-    hideAllCards,
-    setMatch,
-    incrementCount,
-    resetGame,
-    setNewGame,
-} = memoryGameSlice.actions;
+export const { setPending, toggleFlip, setMatch, incrementCount, resetGame } =
+    memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

@@ -19,9 +19,12 @@ export interface GamePhotoData {
     match: boolean;
 }
 
+export type GameTheme = "minions" | "christmas";
+
 export interface MemoryGameState {
     photos: ImageDataType[];
     gamePhotos: GamePhotoData[];
     pending: boolean;
     clickCount: number;
+    gameThemes: GameTheme;
 }

@@ -9,6 +9,8 @@ export const photoSelector = ({ memoryGame }: RootState) => memoryGame.photos;
 
 export const loadingSelector = ({ memoryGame }: RootState) => memoryGame.pending;
 
+export const gameThemeSelector = ({ memoryGame }: RootState) => memoryGame.gameThemes;
+
 export const flippedCardsSelector = createSelector(gamePhotosSelector, items =>
     items.filter(item => item.isFlipped === true),
 );

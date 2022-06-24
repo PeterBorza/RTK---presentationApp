@@ -12,16 +12,19 @@ type EvaluationProps = {
 
 const Evaluation = ({ results, handleResults, enabledResults }: EvaluationProps) => {
     const validResult = results?.find(item => item === 1 || item === 2);
-    const finalResults: ResultType = results && validResult ? results : [0, 0, 0, 0];
+    const finalResults: ResultType = React.useMemo(
+        () => (results && validResult ? results : [0, 0, 0, 0]),
+        [validResult, results],
+    );
 
     const resultBoxClasses = classNames("score_box", {
-        ["score_box__valid"]: validResult,
-        ["score_box__enabled"]: enabledResults,
+        score_box__valid: validResult,
+        score_box__enabled: enabledResults,
     });
 
     React.useEffect(() => {
         shuffle(finalResults);
-    }, []);
+    }, [finalResults]);
 
     return (
         <div className="evaluation_wrapper" onClick={handleResults} title="click to get results">

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -21,7 +21,6 @@ import styles from "./Navigation.module.scss";
 const { links: styleLinks, active, nav__dropdown } = styles;
 
 const Navigation = () => {
-    const [openMenu, setOpenMenu] = useState(false);
     const links = useContext(LinkContext);
     const utilsOpen = useSelector(utilsOpenSelector);
     const photosOpen = useSelector(photosOpenSelector);
@@ -30,10 +29,6 @@ const Navigation = () => {
     const dispatch = useDispatch();
 
     const SMALL_SCREEN = width < 600;
-
-    useEffect(() => {
-        !SMALL_SCREEN && setOpenMenu(false);
-    }, [SMALL_SCREEN]);
 
     const linkClasses = (isActive: boolean) =>
         classNames(styleLinks, {
