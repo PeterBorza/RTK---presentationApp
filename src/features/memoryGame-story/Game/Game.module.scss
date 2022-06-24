@@ -19,11 +19,20 @@ $front-background: rgba(255, 255, 525, 0.6);
         content: "";
         left: 0;
         top: 0;
-        background: black url(../images/Minions.png) no-repeat bottom/cover;
         width: 100%;
         height: 100%;
         opacity: 0.2;
         z-index: 0;
+    }
+    &__minions {
+        &::after {
+            background: black url(../images/Minions.png) no-repeat bottom/cover;
+        }
+    }
+    &__christmas {
+        &::after {
+            background: black url(../images/christmas-background_640.jpg) no-repeat bottom/cover;
+        }
     }
 }
 
@@ -77,6 +86,20 @@ $front-background: rgba(255, 255, 525, 0.6);
         width: 90%;
         height: 100%;
         opacity: 0.5;
+    }
+    &__minions {
+        &::after {
+            background-image: url(../images/gru-clean.png);
+            background-position: center;
+            background-size: cover;
+        }
+    }
+    &__christmas {
+        &::after {
+            background-image: url(../images/merryChristmas_300.png);
+            background-position: center;
+            background-size: cover;
+        }
     }
 }
 
