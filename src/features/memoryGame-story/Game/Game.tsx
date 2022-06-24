@@ -16,7 +16,15 @@ import {
 } from "../selectors";
 import { darkModeSelector } from "app";
 
-import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, gameThemes } from "..";
+import {
+    GamePhotoData,
+    toggleFlip,
+    setMatch,
+    incrementCount,
+    resetGame,
+    gameThemes,
+    toggleTheme,
+} from "..";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -24,6 +32,7 @@ import Controls from "../Controls";
 
 import classNames from "classnames";
 import styles from "./Game.module.scss";
+import { GameTheme } from "../types";
 
 const MAX_CLICK_COUNT = 26;
 
@@ -50,6 +59,9 @@ const Game = () => {
             [styles.disabled]: isFlipped,
             [styles.faded]: match,
         });
+
+    const cardFrontClasses = classNames(styles.front, styles[`front__${theme}`]);
+    const containerClasses = classNames(styles.container, styles[`container__${theme}`]);
 
     const gameHasStarted = flippedCards.length !== 0;
     const finishedGame = matchCards.length === images.length;
@@ -87,11 +99,17 @@ const Game = () => {
 
     const gameButtons = [
         {
-            onClick: () => newGameHandler(minionGameImages),
+            onClick: () => {
+                newGameHandler(minionGameImages);
+                dispatch(toggleTheme("minions"));
+            },
             value: msg.NEW_MINIONS,
         },
         {
-            onClick: () => newGameHandler(christmasGameImages),
+            onClick: () => {
+                newGameHandler(christmasGameImages);
+                dispatch(toggleTheme("christmas"));
+            },
             value: msg.NEW_CHRISTMAS,
         },
     ];
@@ -118,7 +136,7 @@ const Game = () => {
                     className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
                 >
                     <FlipCard
-                        frontContent={() => <div className={styles.front} />}
+                        frontContent={() => <div className={cardFrontClasses} />}
                         backContent={() => backContent(frontSrc.src)}
                         darkBack
                         flipped={checkIfMatchOrFLipped}
@@ -131,7 +149,7 @@ const Game = () => {
     }, [images, flipCardHandler]);
 
     return (
-        <section className={styles.container}>
+        <section className={containerClasses}>
             {!finishedGame ? (
                 <>
                     <Controls count={count} renderButtons={renderGameButtons} dark={darkMode} />

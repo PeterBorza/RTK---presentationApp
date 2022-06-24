@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MemoryGameState } from "./types";
+import { GameTheme, MemoryGameState } from "./types";
 import { imageData } from "utils";
 import { GamePhotoData } from ".";
 import { shuffledChristmas, shuffledMinions } from "./game-images";
@@ -48,10 +48,13 @@ export const memoryGameSlice = createSlice({
             state.gamePhotos = newGame;
             state.clickCount = initialState.clickCount;
         },
+        toggleTheme: (state: MemoryGameState, { payload }: PayloadAction<GameTheme>) => {
+            state.gameThemes = payload;
+        },
     },
 });
 
-export const { setPending, toggleFlip, setMatch, incrementCount, resetGame } =
+export const { setPending, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } =
     memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;
