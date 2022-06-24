@@ -16,7 +16,7 @@ import {
 } from "../selectors";
 import { darkModeSelector } from "app";
 
-import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame } from "..";
+import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, gameThemes } from "..";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -51,21 +51,12 @@ const Game = () => {
             [styles.faded]: match,
         });
 
-    const gameThemes = {
-        minions: minionGameImages,
-        christmas: christmasGameImages,
-    };
-
     const gameHasStarted = flippedCards.length !== 0;
     const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
         count > MAX_CLICK_COUNT && dispatch(resetGame(gameThemes[theme]));
-    }, [count, dispatch]);
-
-    useEffect(() => {
-        newGameHandler(gameThemes[theme]);
-    }, [theme]);
+    }, [count, dispatch, theme]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
@@ -88,15 +79,10 @@ const Game = () => {
 
     const newGameHandler = useCallback(
         (arr: GamePhotoData[]) => {
-            const newGame = arr.map(item => ({
-                ...item,
-                isFlipped: false,
-                match: false,
-            }));
-            const shuffled = shuffle(newGame);
+            const shuffled = shuffle(arr);
             dispatch(resetGame(shuffled));
         },
-        [dispatch, resetGame],
+        [dispatch],
     );
 
     const gameButtons = [

@@ -2,10 +2,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MemoryGameState } from "./types";
 import { imageData } from "utils";
 import { GamePhotoData } from ".";
+import { shuffledChristmas, shuffledMinions } from "./game-images";
+
+export const gameThemes = {
+    minions: shuffledMinions,
+    christmas: shuffledChristmas,
+};
 
 const initialState: MemoryGameState = {
     photos: imageData,
-    gamePhotos: [],
+    gamePhotos: gameThemes["minions"],
     pending: false,
     clickCount: 0,
     gameThemes: "minions",
@@ -32,16 +38,20 @@ export const memoryGameSlice = createSlice({
             state.clickCount++;
         },
         resetGame: (state: MemoryGameState, { payload }: PayloadAction<GamePhotoData[]>) => {
-            state.gamePhotos = payload;
+            const newGame = payload.map(item => {
+                return {
+                    ...item,
+                    isFlipped: false,
+                    match: false,
+                };
+            });
+            state.gamePhotos = newGame;
             state.clickCount = initialState.clickCount;
-        },
-        setNewGame: (state: MemoryGameState, { payload }: PayloadAction<GamePhotoData[]>) => {
-            state.gamePhotos = payload;
         },
     },
 });
 
-export const { setPending, toggleFlip, setMatch, incrementCount, resetGame, setNewGame } =
+export const { setPending, toggleFlip, setMatch, incrementCount, resetGame } =
     memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;
