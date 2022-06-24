@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useEffect } from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
@@ -12,18 +12,11 @@ import {
     flippedCardsSelector,
     matchCardsSelector,
     clickCountSelector,
+    gameThemeSelector,
 } from "../selectors";
 import { darkModeSelector } from "app";
 
-import {
-    GamePhotoData,
-    toggleFlip,
-    setMatch,
-    incrementCount,
-    resetGame,
-    setNewGame,
-    hideAllCards,
-} from "..";
+import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame } from "..";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -38,6 +31,7 @@ const Game = () => {
     const images = useSelector(gamePhotosSelector);
     const flippedCards = useSelector(flippedCardsSelector);
     const matchCards = useSelector(matchCardsSelector);
+    const theme = useSelector(gameThemeSelector);
     const count = useSelector(clickCountSelector);
     const darkMode = useSelector(darkModeSelector);
     const { width } = useWindowSize();
@@ -57,12 +51,21 @@ const Game = () => {
             [styles.faded]: match,
         });
 
+    const gameThemes = {
+        minions: minionGameImages,
+        christmas: christmasGameImages,
+    };
+
     const gameHasStarted = flippedCards.length !== 0;
     const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
-        count > MAX_CLICK_COUNT && dispatch(resetGame());
+        count > MAX_CLICK_COUNT && dispatch(resetGame(gameThemes[theme]));
     }, [count, dispatch]);
+
+    useEffect(() => {
+        newGameHandler(gameThemes[theme]);
+    }, [theme]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
@@ -85,18 +88,18 @@ const Game = () => {
 
     const newGameHandler = useCallback(
         (arr: GamePhotoData[]) => {
-            const shuffled = shuffle(arr);
-            dispatch(setNewGame(shuffled));
-            dispatch(hideAllCards());
+            const newGame = arr.map(item => ({
+                ...item,
+                isFlipped: false,
+                match: false,
+            }));
+            const shuffled = shuffle(newGame);
+            dispatch(resetGame(shuffled));
         },
-        [dispatch, setNewGame],
+        [dispatch, resetGame],
     );
 
     const gameButtons = [
-        {
-            onClick: () => gameHasStarted && dispatch(resetGame()),
-            value: msg.RESET,
-        },
         {
             onClick: () => newGameHandler(minionGameImages),
             value: msg.NEW_MINIONS,
@@ -152,7 +155,7 @@ const Game = () => {
                 <GameEnd
                     count={count}
                     message={msg.CONGRATS}
-                    onClick={() => newGameHandler(images)}
+                    onClick={() => newGameHandler(gameThemes[theme])}
                     buttonLabel={msg.NEW_GAME}
                 />
             )}
