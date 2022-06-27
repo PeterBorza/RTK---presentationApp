@@ -12,7 +12,7 @@ $buttonArrowSize: 1.4rem;
 
 .input-wrapper {
     height: 2rem;
-    width: 100%;
+    max-width: 100%;
     display: flex;
     border-radius: $borderRadius;
     transition: box-shadow $transitionSpeed ease;

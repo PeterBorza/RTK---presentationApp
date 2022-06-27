@@ -41,10 +41,10 @@ const SlideShow = ({ slides }: SlideShowType): JSX.Element | null => {
                     ),
             )}
             <span className={styles.prevIcon}>
-                <CustomIcon title="" icon={icons.left} onClick={slideToPrevious} />
+                <CustomIcon title="slide left" icon={icons.left} onClick={slideToPrevious} />
             </span>
             <span className={styles.nextIcon}>
-                <CustomIcon title="" icon={icons.right} onClick={slideToNext} />
+                <CustomIcon title="slide right" icon={icons.right} onClick={slideToNext} />
             </span>
         </div>
     );

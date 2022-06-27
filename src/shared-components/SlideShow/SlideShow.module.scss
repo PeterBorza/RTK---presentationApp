@@ -4,7 +4,7 @@ $hoverColor: #f3ececde;
 
 .container {
     position: relative;
-    width: max(400px, 100%);
+    width: min(600px, 100%);
     height: max(300px, 80%);
     padding: 1rem;
     display: flex;

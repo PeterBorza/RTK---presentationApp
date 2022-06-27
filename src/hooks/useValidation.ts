@@ -13,9 +13,8 @@ const initialValidation: ValidType = {
 const useValidation = (value: string) => {
     const [valid, setValid] = React.useState<ValidType>(initialValidation);
 
-    const correctNumber = !isNaN(Number(value)) || value === "";
-
-    const checkIfNumber = () => {
+    const checkIfNumber = (value: string) => {
+        const correctNumber = !isNaN(Number(value)) || value === "";
         setValid({
             isValid: correctNumber,
             message: correctNumber ? "number is correct" : "input value is not a number",
@@ -23,7 +22,7 @@ const useValidation = (value: string) => {
     };
 
     useEffect(() => {
-        checkIfNumber();
+        checkIfNumber(value);
     }, [value]);
 
     return valid;

@@ -9,8 +9,7 @@
 }
 
 .systemContainer {
-    width: 40vw;
-    min-width: 380px;
+    width: min(500px, 70vw);
     height: 70vh;
     display: flex;
     gap: 0.4rem;

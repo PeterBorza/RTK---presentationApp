@@ -32,7 +32,6 @@ import Controls from "../Controls";
 
 import classNames from "classnames";
 import styles from "./Game.module.scss";
-import { GameTheme } from "../types";
 
 const MAX_CLICK_COUNT = 26;
 
@@ -146,7 +145,7 @@ const Game = () => {
             );
         };
         return images.map(renderImages);
-    }, [images, flipCardHandler]);
+    }, [images, cardFrontClasses, flipCardHandler]);
 
     return (
         <section className={containerClasses}>

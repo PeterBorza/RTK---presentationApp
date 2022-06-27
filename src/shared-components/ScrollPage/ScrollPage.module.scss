@@ -13,7 +13,8 @@ $sidebar-width: min(200px, 20%);
 
 .section {
     width: 100%;
-    min-height: calc(100vh - $navHeight);
+    // min-height: calc(100vh - $navHeight);
+    min-height: 100vh;
     background: $darkMode;
     @include noVisibleScrollBar;
 }
@@ -61,8 +62,6 @@ $sidebar-width: min(200px, 20%);
     li {
         list-style-type: none;
         margin: 0.3rem;
-        @include truncate;
-        word-break: break-all;
     }
     a {
         display: inline-block;
@@ -72,7 +71,9 @@ $sidebar-width: min(200px, 20%);
         text-transform: capitalize;
         color: $darkModeWhite;
         transition: color 120ms ease;
-        padding: 3px;
+        padding: 2px;
+        @include truncate;
+        word-break: break-all;
         &:hover {
             background-color: rgba(242, 231, 231, 0.3);
         }
