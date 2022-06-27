@@ -20,13 +20,10 @@ const initialMockValues: MockValues = {
 const InputExamples = () => {
     const { values, changeHandler, resetValues } = useForm<MockValues>(initialMockValues);
 
-    const { isValid: isUserNameValid, message: userNameMessage } = useValidation(values.username);
-    const { isValid: isPasswordValid, message: passwordMessage } = useValidation(values.password);
-    const { isValid: isTextValid, message: textMessage } = useValidation(values.text);
+    const { isValid: isUserNameValid } = useValidation(values.username);
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(userNameMessage);
         resetValues();
     };
     return (
@@ -58,9 +55,7 @@ const InputExamples = () => {
                 <h2 style={{ backgroundColor: isUserNameValid ? "limegreen" : "crimson" }}>
                     {values.username}
                 </h2>
-                <br />
                 <h2>{values.password}</h2>
-                <br />
                 <h2>{values.text}</h2>
             </div>
         </div>

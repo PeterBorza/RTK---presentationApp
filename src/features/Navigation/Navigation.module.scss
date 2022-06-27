@@ -20,9 +20,17 @@
         padding-left: 0;
     }
     &__dropdown {
-        width: 100%;
-        height: $navHeight;
+        margin-left: auto;
+        margin-right: 5px;
+        width: 30%;
         @include fCenter();
+        button {
+            padding: 3px 6px;
+        }
+
+        li {
+            padding: 3px;
+        }
     }
 }
 
@@ -31,11 +39,12 @@
     font-family: "PT Sans", sans-serif;
     font-size: clamp(0.9rem, 2vw + 0.4rem, 2.2rem);
     transition: color 150ms ease-out;
-    color: $myYellow3;
     outline: none;
     border: none;
     text-decoration: none;
+    color: $myYellow3;
     cursor: pointer;
+    margin: auto;
     &:focus-within {
         outline: none;
         border: none;
@@ -47,5 +56,5 @@
 
 .active {
     transform: scale(0.95);
-    color: white;
+    color: $myYellow3;
 }
