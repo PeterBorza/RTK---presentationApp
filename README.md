@@ -47,6 +47,10 @@ You will also see any lint errors in the console.
 
 ![Elevator - RTK](https://user-images.githubusercontent.com/68942716/162624727-b1edc1bd-b572-43b6-afb2-3f1e615d5947.png)
 
+#### Play a memory challenging game
+
+![Screenshot 2022-06-29 at 17 48 53](https://user-images.githubusercontent.com/68942716/176467170-d842726c-6e5e-4878-8dbb-c25012f67ea5.png)
+
 #### Play a memory game, Christmas style :):
 
 ![christmas-RTK](https://user-images.githubusercontent.com/68942716/162633597-e163c2c9-1a94-41dd-8ce3-1033bd7adcbb.png)
