@@ -1,11 +1,11 @@
 import React from "react";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 import { Evaluation } from ".";
-import { COLORS_TO_GUESS_COUNT, IguessGameItem, ResultType } from "../state";
+import { guessGameData, IguessGameItem, ResultType } from "../state";
 import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
 import { useDispatch, useSelector } from "react-redux";
-import { baseColorsState, finishedState, playerResults } from "../selectors";
+import { baseColorsState, finishedState, playerComboSelector } from "../selectors";
 import { setComboItem } from "../guessGameSlice";
 
 import classNames from "classnames";
@@ -30,14 +30,15 @@ const PlayCard = ({
     enabledResults,
     currentId,
 }: PlayCardType) => {
-    const dropdownCounter = createArray(COLORS_TO_GUESS_COUNT);
+    const { colorsToGuess } = guessGameData;
+    const dropdownCounter = createArray(colorsToGuess);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
     const finishedGame = useSelector(finishedState);
-    const allResults = useSelector(playerResults);
+    const playerComboes = useSelector(playerComboSelector);
     const baseColors = useSelector(baseColorsState);
     const dispatch = useDispatch();
 
-    const canReset = allResults.every(result => result.length === 0);
+    const emptyComboes = playerComboes.every(combo => combo.every(item => item.color === "none"));
 
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,
@@ -55,8 +56,8 @@ const PlayCard = ({
                     {dropdownCounter.map((_, idx) => (
                         <div key={`attempt-dropdown-${idx + 1}`} className="drop">
                             <DropdownContainer
-                                position={idx === dropdownCounter.length ? "top" : "bottom"}
-                                reset={!finishedGame && canReset}
+                                position="bottom"
+                                reset={!finishedGame && emptyComboes}
                             >
                                 {baseColors.map(item => (
                                     <Dropdown.MenuItem

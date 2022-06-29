@@ -1,6 +1,6 @@
 import React from "react";
 import { shuffle } from "utils";
-import { ResultType, resultValues } from "../state";
+import { ResultType, guessGameData, ErrorMessageType, initialResults } from "../state";
 
 import classNames from "classnames";
 
@@ -11,23 +11,27 @@ type EvaluationProps = {
 };
 
 const Evaluation = ({ results, handleResults, enabledResults }: EvaluationProps) => {
-    const validResult = results?.find(item => item === 1 || item === 2);
+    const { resultValues, tooltip } = guessGameData;
+    const emptyResults = results?.length === 0;
+
     const finalResults: ResultType = React.useMemo(
-        () => (results && validResult ? results : [0, 0, 0, 0]),
-        [validResult, results],
+        () => (results && !emptyResults ? results : initialResults),
+        [emptyResults, results],
     );
 
     const resultBoxClasses = classNames("score_box", {
-        score_box__valid: validResult,
+        score_box__valid: !emptyResults,
         score_box__enabled: enabledResults,
     });
+
+    const setTooltip = emptyResults ? tooltip.initial : tooltip.validResult;
 
     React.useEffect(() => {
         shuffle(finalResults);
     }, [finalResults]);
 
     return (
-        <div className="evaluation_wrapper" onClick={handleResults} title="click to get results">
+        <div className="evaluation_wrapper" onClick={handleResults} title={setTooltip}>
             {finalResults.map((result, idx) => (
                 <div
                     key={`value-${idx}`}

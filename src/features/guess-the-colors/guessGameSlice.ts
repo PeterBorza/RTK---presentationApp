@@ -8,6 +8,7 @@ import {
     IResultsType,
     IAttempt,
     initialPlayerCombo,
+    ErrorMessageType,
 } from "./state";
 
 const currentAttemptFinder = (state: IAttempt[], payload: number) =>
@@ -21,13 +22,15 @@ export const guessGameSlice = createSlice({
             state.gameCombo = payload;
         },
         setComboItem: (state: IguessGame, { payload }: PayloadAction<IPlayerCombo>) => {
-            const currentAttempt = currentAttemptFinder(state.attempts, payload.id);
+            const { id: attemptId, order, item: attempt } = payload;
+            const currentAttempt = currentAttemptFinder(state.attempts, attemptId);
             if (currentAttempt !== -1)
-                state.attempts[currentAttempt].playerCombo.splice(payload.order, 1, payload.item);
+                state.attempts[currentAttempt].playerCombo.splice(order, 1, attempt);
         },
         setResults: (state: IguessGame, { payload }: PayloadAction<IResultsType>) => {
-            const currentAttempt = currentAttemptFinder(state.attempts, payload.id);
-            if (currentAttempt !== -1) state.attempts[currentAttempt].results = payload.results;
+            const { id: attemptId, results } = payload;
+            const currentAttempt = currentAttemptFinder(state.attempts, attemptId);
+            if (currentAttempt !== -1) state.attempts[currentAttempt].results = results;
         },
         resetResults: (state: IguessGame) => {
             state.attempts.forEach(attempt => (attempt.results = []));
@@ -46,6 +49,9 @@ export const guessGameSlice = createSlice({
         setFinished: (state: IguessGame, { payload }: PayloadAction<boolean>) => {
             state.finished = payload;
         },
+        setError: (state: IguessGame, { payload }: PayloadAction<ErrorMessageType>) => {
+            state.errorMessage = payload;
+        },
     },
 });
 
@@ -58,5 +64,6 @@ export const {
     resetSelected,
     resetComboes,
     setFinished,
+    setError,
 } = guessGameSlice.actions;
 export default guessGameSlice.reducer;

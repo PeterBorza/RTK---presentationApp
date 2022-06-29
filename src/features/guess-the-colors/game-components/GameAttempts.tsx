@@ -1,7 +1,16 @@
+import { useOnClickOutside } from "hooks";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { resetSelected, selectAttempt, setFinished, setResults } from "../guessGameSlice";
-import { COLORS_TO_GUESS_COUNT, IAttempt, IguessGameItem, ResultType } from "../state";
+import { useDispatch, useSelector } from "react-redux";
+import { AlertModal } from "shared-components";
+import { resetSelected, selectAttempt, setError, setFinished, setResults } from "../guessGameSlice";
+import {
+    allValidComboesSelector,
+    errorState,
+    hasIdenticalItems,
+    perfectMatchSelector,
+    validCombo,
+} from "../selectors";
+import { guessGameData, IAttempt, IguessGameItem, ResultType } from "../state";
 import PlayCard from "./PlayCard";
 
 type Props = {
@@ -10,63 +19,67 @@ type Props = {
 };
 
 const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
+    const { errorMessages } = guessGameData;
+    const isGameFinished = useSelector(allValidComboesSelector);
+    const perfectGuess = useSelector(perfectMatchSelector);
+    const error = useSelector(errorState);
+    const errorRef = React.useRef<HTMLDivElement | null>(null);
     const dispatch = useDispatch();
 
-    const hasIdenticalItems = (arr: string[]) => {
-        const result = Array.from(new Set(arr));
-        if (result.length < COLORS_TO_GUESS_COUNT) return false;
-        return true;
-    };
+    useOnClickOutside(errorRef, () => dispatch(setError(null)));
 
-    const validCombo = (playerCombo: IguessGameItem[]) => {
-        const colors = playerCombo.map(item => item.color);
-        return playerCombo.every(item => item.color !== "none") && hasIdenticalItems(colors);
-    };
-
-    const checkIfIncluded = (playerCombo: IguessGameItem[]) => {
-        return gameCombo.filter(
+    const checkIfIncluded = (playerCombo: IguessGameItem[]) =>
+        gameCombo.filter(
             (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
         );
-    };
+
+    const setGameOver = () => (perfectGuess || isGameFinished) && dispatch(setFinished(true));
 
     const handleResults = (playerCombo: IguessGameItem[], attemptId: number) => {
         let results: ResultType = [];
-
-        const isValid = validCombo(playerCombo);
-        if (!isValid) return;
 
         const missing = gameCombo.filter(item => playerCombo.includes(item) === false);
         const included = checkIfIncluded(playerCombo);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
 
+        const incomplete = playerCombo.some(item => item.color === "none");
+        const identical = !hasIdenticalItems(playerCombo);
+
+        if (incomplete) {
+            dispatch(setError(errorMessages.notIncluded));
+            return;
+        }
+        if (identical) {
+            dispatch(setError(errorMessages.identicalColors));
+            return;
+        }
+
         const resultValues = [missing, included, match];
         resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
 
-        const noAttemptsLeft = gameAttempts.every(
-            attempt => validCombo(attempt.playerCombo) === true,
-        );
-
-        const perfectMatch = match.length === COLORS_TO_GUESS_COUNT;
-        if (perfectMatch || noAttemptsLeft) dispatch(setFinished(true));
-
         dispatch(setResults({ id: attemptId, results }));
+        setGameOver();
+        dispatch(setError(null));
     };
 
     return (
         <div className="attempts_container">
-            {gameAttempts.map((attempt, index) => (
+            {gameAttempts.map(({ id, selected, playerCombo, results }) => (
                 <PlayCard
-                    key={`playcard-${index + 1}`}
-                    selected={attempt.selected}
-                    onBlur={() => attempt.selected && dispatch(resetSelected(attempt.id))}
-                    onSelect={() => dispatch(selectAttempt(attempt.id))}
-                    onSubmit={() => handleResults(attempt.playerCombo, attempt.id)}
-                    results={attempt.results}
-                    isDisabled={attempt.results.length !== 0}
-                    enabledResults={validCombo(attempt.playerCombo) && !attempt.results.length}
-                    currentId={attempt.id}
+                    key={`playcard-${id}`}
+                    selected={selected}
+                    onBlur={() => selected && dispatch(resetSelected(id))}
+                    onSelect={() => dispatch(selectAttempt(id))}
+                    onSubmit={() => handleResults(playerCombo, id)}
+                    results={results}
+                    isDisabled={results.length !== 0}
+                    enabledResults={validCombo(playerCombo) && !results.length}
+                    currentId={id}
                 />
             ))}
+            <AlertModal openModal={!!error} ref={errorRef}>
+                <h1 className="attempts_container__error-message">{error}</h1>
+            </AlertModal>
         </div>
     );
 };
