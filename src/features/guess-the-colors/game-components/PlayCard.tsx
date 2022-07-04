@@ -30,7 +30,7 @@ const PlayCard = ({
     enabledResults,
     currentId,
 }: PlayCardType) => {
-    const { colorsToGuess } = guessGameData;
+    const { colorsToGuess, invalidColor } = guessGameData;
     const dropdownCounter = createArray(colorsToGuess);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
     const finishedGame = useSelector(finishedState);
@@ -38,7 +38,9 @@ const PlayCard = ({
     const baseColors = useSelector(baseColorsState);
     const dispatch = useDispatch();
 
-    const emptyComboes = playerComboes.every(combo => combo.every(item => item.color === "none"));
+    const emptyComboes = playerComboes.every(combo =>
+        combo.every(item => item.color === invalidColor),
+    );
 
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,

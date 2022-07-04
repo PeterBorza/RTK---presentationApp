@@ -51,6 +51,7 @@ export interface GuessGameDataType {
     colorsToGuess: number;
     colorsToUse: number;
     attemptCount: number;
+    invalidColor: string;
     resultValues: Array<string>;
     colorPalette: Array<string>;
     gameTitle: string;
@@ -64,6 +65,7 @@ export const guessGameData: GuessGameDataType = {
     colorsToGuess: 4,
     colorsToUse: 6,
     attemptCount: 6,
+    invalidColor: "none",
     resultValues: ["transparent", "rgb(255 255 255/.8)", "rgb(16 16 16/ .8)"],
     colorPalette: [
         "red",
@@ -103,7 +105,7 @@ export const guessGameData: GuessGameDataType = {
     },
 };
 
-const { colorsToGuess, colorsToUse, attemptCount, colorPalette } = guessGameData;
+const { colorsToGuess, colorsToUse, attemptCount, colorPalette, invalidColor } = guessGameData;
 
 const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((item, idx) => {
     return {
@@ -116,7 +118,7 @@ export const initialResults = createArray(colorsToGuess).map(_ => 0);
 
 export const initialPlayerCombo: IguessGameItem[] = createArray(colorsToGuess).map((_, idx) => ({
     id: 1000 + idx,
-    color: "none",
+    color: invalidColor,
 }));
 
 const newGame: IguessGameItem[] = shuffle(setup).slice(0, colorsToGuess);
