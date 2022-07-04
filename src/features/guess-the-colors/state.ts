@@ -117,7 +117,7 @@ const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((item, id
 export const initialResults = createArray(colorsToGuess).map(_ => 0);
 
 export const initialPlayerCombo: IguessGameItem[] = createArray(colorsToGuess).map((_, idx) => ({
-    id: 1000 + idx,
+    id: 10000 + idx,
     color: invalidColor,
 }));
 

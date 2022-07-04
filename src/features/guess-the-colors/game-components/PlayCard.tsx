@@ -6,9 +6,10 @@ import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
 import { useDispatch, useSelector } from "react-redux";
 import { baseColorsState, finishedState, playerComboSelector } from "../selectors";
-import { setComboItem } from "../guessGameSlice";
+import { deleteColor, setComboItem } from "../guessGameSlice";
 
 import classNames from "classnames";
+import { Item } from "framer-motion/types/components/Reorder/Item";
 interface PlayCardType {
     selected: boolean;
     onBlur: () => void;
@@ -48,8 +49,10 @@ const PlayCard = ({
     });
     useOnClickOutside(playCardRef, onBlur);
 
-    const onItemClickHandle = (item: IguessGameItem, order: number) =>
+    const onItemClickHandle = (item: IguessGameItem, order: number) => {
         dispatch(setComboItem({ id: currentId, item, order }));
+        dispatch(deleteColor(item.id));
+    };
 
     return (
         <div className={playCardClasses} onClick={onSelect} ref={playCardRef}>

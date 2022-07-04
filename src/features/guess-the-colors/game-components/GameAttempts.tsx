@@ -42,10 +42,11 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
     const errorHandler = () => {
         if (selected) {
             const { playerCombo } = selected;
-            const incomplete = playerCombo.some(item => item.color === invalidColor);
+            const hasInvalidChoice = playerCombo.some(item => item.color === invalidColor);
+            const emptyAttempt = playerCombo.every(item => item.color === invalidColor);
             const identical = !hasIdenticalItems(playerCombo);
 
-            if (incomplete) {
+            if (hasInvalidChoice) {
                 dispatch(setError(errorMessages.notIncluded));
                 return;
             }
@@ -53,6 +54,8 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
                 dispatch(setError(errorMessages.identicalColors));
                 return;
             }
+
+            if (emptyAttempt) return;
             dispatch(setError(null));
         }
     };
@@ -64,11 +67,11 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
         const included = checkIfIncluded(playerCombo);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
 
+        errorHandler();
+
         const resultValues = [missing, included, match];
         resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
-
-        errorHandler();
-        dispatch(setResults({ id: attemptId, results }));
+        if (validCombo(playerCombo)) dispatch(setResults({ id: attemptId, results }));
     };
 
     return (
