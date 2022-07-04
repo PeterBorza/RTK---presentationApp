@@ -39,24 +39,21 @@ export const playerResults = createSelector(gameAttemptsState, items =>
     items.map(item => item.results),
 );
 
-export const attemptSelector = createSelector(gameAttemptsState, attempts =>
-    attempts.find(attempt => attempt.selected === true),
-);
-
-export const allValidComboesSelector = createSelector(playerComboSelector, comboes =>
-    comboes.every(combo => validCombo(combo) === true),
+export const allValidComboesSelector = createSelector([playerResults], results =>
+    results.every(res => res.length !== 0),
 );
 
 export const perfectMatchSelector = createSelector(playerResults, results =>
     results.some(result => result.length !== 0 && result.every(item => item === 2)),
 );
 
-export const errorSelector = createSelector(attemptSelector, attempt => {
-    if (attempt) {
-        const selected = attempt.playerCombo;
-        const empty = selected.every(item => item.color === invalidColor);
-        const incomplete = selected.some(item => item.color === invalidColor);
-        const identical = !hasIdenticalItems(selected);
+export const errorSelector = createSelector(gameAttemptsState, attempts => {
+    const selected = attempts.find(attempt => attempt.selected === true);
+    if (selected) {
+        const combo = selected.playerCombo;
+        const empty = combo.every(item => item.color === invalidColor);
+        const incomplete = combo.some(item => item.color === invalidColor);
+        const identical = !hasIdenticalItems(combo);
 
         if (empty) return null;
         if (incomplete) {

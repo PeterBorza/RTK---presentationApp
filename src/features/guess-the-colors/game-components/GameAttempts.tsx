@@ -2,10 +2,9 @@ import { useOnClickOutside } from "hooks";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertModal } from "shared-components";
-import { resetSelected, selectAttempt, setError, setFinished, setResults } from "../guessGameSlice";
+import { setError, setFinished, setResults } from "../guessGameSlice";
 import {
     allValidComboesSelector,
-    attemptSelector,
     errorState,
     hasIdenticalItems,
     perfectMatchSelector,
@@ -23,7 +22,6 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
     const { errorMessages, invalidColor } = guessGameData;
     const isGameFinished = useSelector(allValidComboesSelector);
     const perfectGuess = useSelector(perfectMatchSelector);
-    const selected = useSelector(attemptSelector);
     const errorMessage = useSelector(errorState);
     const errorRef = React.useRef<HTMLDivElement | null>(null);
     const dispatch = useDispatch();
@@ -39,12 +37,14 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
             (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
         );
 
-    const errorHandler = () => {
+    const errorHandler = (attempt: IAttempt) => {
+        const { selected, playerCombo } = attempt;
         if (selected) {
-            const { playerCombo } = selected;
             const hasInvalidChoice = playerCombo.some(item => item.color === invalidColor);
             const emptyAttempt = playerCombo.every(item => item.color === invalidColor);
             const identical = !hasIdenticalItems(playerCombo);
+
+            if (emptyAttempt) return;
 
             if (hasInvalidChoice) {
                 dispatch(setError(errorMessages.notIncluded));
@@ -54,20 +54,19 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
                 dispatch(setError(errorMessages.identicalColors));
                 return;
             }
-
-            if (emptyAttempt) return;
             dispatch(setError(null));
         }
     };
 
-    const handleResults = (playerCombo: IguessGameItem[], attemptId: number) => {
+    const handleResults = (attempt: IAttempt) => {
+        const { playerCombo, id: attemptId } = attempt;
         let results: ResultType = [];
 
         const missing = gameCombo.filter(item => playerCombo.includes(item) === false);
         const included = checkIfIncluded(playerCombo);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
 
-        errorHandler();
+        errorHandler(attempt);
 
         const resultValues = [missing, included, match];
         resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
@@ -76,20 +75,14 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
 
     return (
         <div className="attempts_container">
-            {gameAttempts.map(({ id, selected, playerCombo, results }) => (
+            {gameAttempts.map(attempt => (
                 <PlayCard
-                    key={`playcard-${id}`}
-                    selected={selected}
-                    onBlur={() => selected && dispatch(resetSelected(id))}
-                    onSelect={() => dispatch(selectAttempt(id))}
-                    onSubmit={() => handleResults(playerCombo, id)}
-                    results={results}
-                    isDisabled={results.length !== 0}
-                    enabledResults={validCombo(playerCombo) && !results.length}
-                    currentId={id}
+                    key={`playcard-${attempt.id}`}
+                    onSubmit={() => handleResults(attempt)}
+                    attempt={attempt}
                 />
             ))}
-            <AlertModal openModal={errorMessage !== null} ref={errorRef}>
+            <AlertModal openModal={errorMessage !== null} ref={errorRef} position="top-right">
                 <h1 className="attempts_container__error-message">{errorMessage}</h1>
             </AlertModal>
         </div>
