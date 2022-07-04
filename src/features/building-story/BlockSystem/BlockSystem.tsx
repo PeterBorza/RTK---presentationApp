@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef } from "react";
-import { LiftName } from "../state";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { Direction, Lift, LiftName } from "../state";
 import { levelsSelector, levelsState, liftsState, speedState } from "../selectors";
 import { setActive, changePosition, moveLift, setDirection } from "../liftSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,11 +17,11 @@ const BlockSystem = () => {
     const levels = useSelector(levelsSelector);
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
-    const liftARef = useRef<HTMLDivElement>(null);
-    const liftBRef = useRef<HTMLDivElement>(null);
+    const liftARef = useRef<HTMLDivElement | null>(null);
+    const liftBRef = useRef<HTMLDivElement | null>(null);
 
-    const { isActive: activeA, position: positionA, isMoving: isMovingA } = liftA;
-    const { isActive: activeB, position: positionB, isMoving: isMovingB } = liftB;
+    const { position: positionA, isMoving: isMovingA } = liftA;
+    const { position: positionB, isMoving: isMovingB } = liftB;
 
     const startMoving = useCallback(
         (name: LiftName) => dispatch(moveLift({ name, isMoving: true })),
@@ -33,21 +33,13 @@ const BlockSystem = () => {
         [dispatch],
     );
 
-    const liftIsStatic = useCallback(
-        (name: LiftName, moving: boolean) =>
-            !moving && dispatch(setDirection({ name, direction: "static" })),
-        [dispatch],
-    );
-
     const liftHasArrived = useCallback(
         (name: LiftName) => {
             stopMoving(name);
             dispatch(setActive({ name, isActive: false }));
             dispatch(setDirection({ name, direction: "static" }));
-            liftIsStatic("A", isMovingA);
-            liftIsStatic("B", isMovingB);
         },
-        [stopMoving, dispatch, liftIsStatic, isMovingA, isMovingB],
+        [stopMoving, dispatch],
     );
 
     useEffect(() => {
@@ -55,61 +47,68 @@ const BlockSystem = () => {
         isMovingB && setTimeout(() => liftHasArrived("B"), speed);
     }, [isMovingA, isMovingB, speed, liftHasArrived]);
 
-    const moveElevator = (name: LiftName, position: LevelCount) =>
-        dispatch(changePosition({ name, position }));
+    const moveElevator = useCallback(
+        (name: LiftName, position: LevelCount) => dispatch(changePosition({ name, position })),
+        [dispatch],
+    );
 
-    const getDirectionsOfA = (level: LevelCount) => {
-        level < positionA && dispatch(setDirection({ name: "A", direction: "down" }));
-        level > positionA && dispatch(setDirection({ name: "A", direction: "up" }));
+    const setDirections = useCallback(
+        (name: LiftName, direction: Direction) => dispatch(setDirection({ name, direction })),
+        [dispatch],
+    );
+
+    const checkPos = (level: LevelCount, lift: Lift) => {
+        return level < lift.position ? "down" : "up";
     };
 
-    const getDirectionsOfB = (level: LevelCount) => {
-        level < positionB && dispatch(setDirection({ name: "B", direction: "down" }));
-        level > positionB && dispatch(setDirection({ name: "B", direction: "up" }));
-    };
+    const setActivated = useCallback(
+        (level: LevelCount, { name, position, isActive }: Lift) => {
+            if (position === level) {
+                dispatch(setActive({ name, isActive: !isActive }));
+                stopMoving(name);
+            }
+        },
+        [stopMoving, dispatch],
+    );
 
-    const moveA = (position: LevelCount) => {
-        startMoving("A");
-        moveElevator("A", position);
-        getDirectionsOfA(position);
-    };
+    const setMove = useCallback(
+        (position: LevelCount, lift: Lift) => {
+            startMoving(lift.name);
+            moveElevator(lift.name, position);
+            setDirections(lift.name, checkPos(position, lift));
+        },
+        [startMoving, moveElevator, setDirections],
+    );
 
-    const moveB = (position: LevelCount) => {
-        startMoving("B");
-        moveElevator("B", position);
-        getDirectionsOfB(position);
-    };
+    const shaft_ButtonsHandler = useCallback(
+        (level: LevelCount) => {
+            setActivated(level, liftA);
+            setActivated(level, liftB);
+            const difA = Math.abs(positionA - level);
+            const difB = Math.abs(positionB - level);
 
-    const shaft_ButtonsHandler = (level: LevelCount) => {
-        if (positionA === level) {
-            dispatch(setActive({ name: "A", isActive: !activeA }));
-            stopMoving("A");
-        }
-        if (positionB === level) {
-            dispatch(setActive({ name: "B", isActive: !activeB }));
-            stopMoving("B");
-        }
-        const difA = Math.abs(positionA - level);
-        const difB = Math.abs(positionB - level);
+            difA < difB
+                ? setMove(level, liftA)
+                : difA > difB
+                ? setMove(level, liftB)
+                : positionA <= positionB
+                ? setMove(level, liftA)
+                : setMove(level, liftB);
+        },
+        [liftA, liftB, positionA, positionB, setActivated, setMove],
+    );
 
-        difA < difB
-            ? moveA(level)
-            : difA > difB
-            ? moveB(level)
-            : positionA <= positionB
-            ? moveA(level)
-            : moveB(level);
-    };
-
-    const shaftButtons = levels.map(level => (
-        <LiftButton
-            key={`Shaft-button-${level}`}
-            onClick={() => shaft_ButtonsHandler(level)}
-            disabled={false}
-            value={level}
-            selected={false}
-        />
-    ));
+    const shaftButtons = useMemo(() => {
+        return levels.map(level => (
+            <LiftButton
+                key={`Shaft-button-${level}`}
+                onClick={() => shaft_ButtonsHandler(level)}
+                disabled={false}
+                value={level}
+                selected={false}
+            />
+        ));
+    }, [levels, shaft_ButtonsHandler]);
 
     return (
         <div className={styles.blockContainer}>
