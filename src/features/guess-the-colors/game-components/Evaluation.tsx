@@ -1,6 +1,6 @@
 import React from "react";
 import { shuffle } from "utils";
-import { ResultType, guessGameData, ErrorMessageType, initialResults } from "../state";
+import { ResultType, guessGameData, initialResults } from "../state";
 
 import classNames from "classnames";
 

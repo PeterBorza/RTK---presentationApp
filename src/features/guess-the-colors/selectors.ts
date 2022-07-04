@@ -2,8 +2,9 @@ import { RootState } from "app/store";
 import { createSelector } from "@reduxjs/toolkit";
 import { guessGameData, IguessGameItem } from "./state";
 
+const { colorsToGuess, invalidColor, errorMessages } = guessGameData;
+
 export const hasIdenticalItems = (playerCombo: IguessGameItem[]) => {
-    const { colorsToGuess } = guessGameData;
     const colors = playerCombo.map(item => item.color);
 
     const result = Array.from(new Set(colors));
@@ -12,7 +13,7 @@ export const hasIdenticalItems = (playerCombo: IguessGameItem[]) => {
 };
 
 export const validCombo = (playerCombo: IguessGameItem[]) =>
-    playerCombo.every(item => item.color !== "none") && hasIdenticalItems(playerCombo);
+    playerCombo.every(item => item.color !== invalidColor) && hasIdenticalItems(playerCombo);
 
 export const guessGameState = ({ guessGame }: RootState) => guessGame;
 
@@ -38,8 +39,8 @@ export const playerResults = createSelector(gameAttemptsState, items =>
     items.map(item => item.results),
 );
 
-export const selectedAttempt = createSelector(gameAttemptsState, items =>
-    items.find(item => item.selected === true),
+export const attemptSelector = createSelector(gameAttemptsState, attempts =>
+    attempts.find(attempt => attempt.selected === true),
 );
 
 export const allValidComboesSelector = createSelector(playerComboSelector, comboes =>
@@ -49,3 +50,21 @@ export const allValidComboesSelector = createSelector(playerComboSelector, combo
 export const perfectMatchSelector = createSelector(playerResults, results =>
     results.some(result => result.length !== 0 && result.every(item => item === 2)),
 );
+
+export const errorSelector = createSelector(attemptSelector, attempt => {
+    if (attempt) {
+        const selected = attempt.playerCombo;
+        const empty = selected.every(item => item.color === invalidColor);
+        const incomplete = selected.some(item => item.color === invalidColor);
+        const identical = !hasIdenticalItems(selected);
+
+        if (empty) return null;
+        if (incomplete) {
+            return errorMessages.notIncluded;
+        }
+        if (identical) {
+            return errorMessages.identicalColors;
+        }
+    }
+    return null;
+});

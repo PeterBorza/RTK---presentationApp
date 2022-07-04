@@ -5,6 +5,7 @@ import { AlertModal } from "shared-components";
 import { resetSelected, selectAttempt, setError, setFinished, setResults } from "../guessGameSlice";
 import {
     allValidComboesSelector,
+    attemptSelector,
     errorState,
     hasIdenticalItems,
     perfectMatchSelector,
@@ -19,21 +20,42 @@ type Props = {
 };
 
 const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
-    const { errorMessages } = guessGameData;
+    const { errorMessages, invalidColor } = guessGameData;
     const isGameFinished = useSelector(allValidComboesSelector);
     const perfectGuess = useSelector(perfectMatchSelector);
-    const error = useSelector(errorState);
+    const selected = useSelector(attemptSelector);
+    const errorMessage = useSelector(errorState);
     const errorRef = React.useRef<HTMLDivElement | null>(null);
     const dispatch = useDispatch();
 
     useOnClickOutside(errorRef, () => dispatch(setError(null)));
+
+    React.useEffect(() => {
+        (perfectGuess || isGameFinished) && dispatch(setFinished(true));
+    }, [perfectGuess, isGameFinished, dispatch]);
 
     const checkIfIncluded = (playerCombo: IguessGameItem[]) =>
         gameCombo.filter(
             (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
         );
 
-    const setGameOver = () => (perfectGuess || isGameFinished) && dispatch(setFinished(true));
+    const errorHandler = () => {
+        if (selected) {
+            const { playerCombo } = selected;
+            const incomplete = playerCombo.some(item => item.color === invalidColor);
+            const identical = !hasIdenticalItems(playerCombo);
+
+            if (incomplete) {
+                dispatch(setError(errorMessages.notIncluded));
+                return;
+            }
+            if (identical) {
+                dispatch(setError(errorMessages.identicalColors));
+                return;
+            }
+            dispatch(setError(null));
+        }
+    };
 
     const handleResults = (playerCombo: IguessGameItem[], attemptId: number) => {
         let results: ResultType = [];
@@ -42,24 +64,11 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
         const included = checkIfIncluded(playerCombo);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
 
-        const incomplete = playerCombo.some(item => item.color === "none");
-        const identical = !hasIdenticalItems(playerCombo);
-
-        if (incomplete) {
-            dispatch(setError(errorMessages.notIncluded));
-            return;
-        }
-        if (identical) {
-            dispatch(setError(errorMessages.identicalColors));
-            return;
-        }
-
         const resultValues = [missing, included, match];
         resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
 
+        errorHandler();
         dispatch(setResults({ id: attemptId, results }));
-        setGameOver();
-        dispatch(setError(null));
     };
 
     return (
@@ -77,8 +86,8 @@ const GameAttempts = ({ gameAttempts, gameCombo }: Props) => {
                     currentId={id}
                 />
             ))}
-            <AlertModal openModal={!!error} ref={errorRef}>
-                <h1 className="attempts_container__error-message">{error}</h1>
+            <AlertModal openModal={errorMessage !== null} ref={errorRef}>
+                <h1 className="attempts_container__error-message">{errorMessage}</h1>
             </AlertModal>
         </div>
     );
