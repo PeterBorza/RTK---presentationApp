@@ -17,7 +17,11 @@ const ColorGame = () => {
             <GameHeader baseColors={baseColors} />
             <HiddenCombo finishedGame={finishedGame} gameCombo={gameCombo} />
             <GameControls baseColors={baseColors} />
-            <GameAttempts gameAttempts={gameAttempts} gameCombo={gameCombo} />
+            <GameAttempts
+                gameAttempts={gameAttempts}
+                gameCombo={gameCombo}
+                isFinished={finishedGame}
+            />
         </div>
     );
 };

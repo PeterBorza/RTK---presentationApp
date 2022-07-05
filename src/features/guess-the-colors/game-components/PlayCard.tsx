@@ -1,39 +1,31 @@
 import React from "react";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 import { Evaluation } from ".";
-import { guessGameData, IguessGameItem, ResultType } from "../state";
+import { guessGameData, IAttempt, IguessGameItem, ResultType } from "../state";
 import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
 import { useDispatch, useSelector } from "react-redux";
-import { baseColorsState, finishedState, playerComboSelector } from "../selectors";
-import { setComboItem } from "../guessGameSlice";
+import { baseColorsState, playerComboSelector } from "../selectors";
+import {
+    resetSelected,
+    selectAttempt,
+    setComboItem,
+    setError,
+    setResults,
+} from "../guessGameSlice";
 
 import classNames from "classnames";
 interface PlayCardType {
-    selected: boolean;
-    onBlur: () => void;
-    onSelect: () => void;
-    onSubmit: () => void;
-    results: ResultType;
-    isDisabled: boolean;
-    enabledResults: boolean;
-    currentId: number;
+    attempt: IAttempt;
+    gameCombo: IguessGameItem[];
+    isFinished: boolean;
 }
 
-const PlayCard = ({
-    selected,
-    onBlur,
-    onSelect,
-    onSubmit,
-    results,
-    isDisabled,
-    enabledResults,
-    currentId,
-}: PlayCardType) => {
-    const { colorsToGuess, invalidColor } = guessGameData;
+const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
+    const { id, selected, playerCombo, results } = attempt;
+    const { colorsToGuess, invalidColor, errorMessages } = guessGameData;
     const dropdownCounter = createArray(colorsToGuess);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
-    const finishedGame = useSelector(finishedState);
     const playerComboes = useSelector(playerComboSelector);
     const baseColors = useSelector(baseColorsState);
     const dispatch = useDispatch();
@@ -44,45 +36,94 @@ const PlayCard = ({
 
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,
-        playcard__disabled: isDisabled,
+        playcard__disabled: results.length !== 0,
     });
-    useOnClickOutside(playCardRef, onBlur);
+    useOnClickOutside(playCardRef, () => selected && dispatch(resetSelected(id)));
 
-    const onItemClickHandle = (item: IguessGameItem, order: number) =>
-        dispatch(setComboItem({ id: currentId, item, order }));
+    const hasIdenticalItems = () => {
+        const colors = playerCombo.map(item => item.color);
+
+        const result = Array.from(new Set(colors));
+        if (result.length < colorsToGuess) return false;
+        return true;
+    };
+
+    const validCombo = () =>
+        playerCombo.every(item => item.color !== invalidColor) && hasIdenticalItems();
+
+    const onItemClickHandle = (item: IguessGameItem, order: number) => {
+        dispatch(setComboItem({ id, item, order }));
+    };
+
+    const checkIfIncluded = (playerCombo: IguessGameItem[]) =>
+        gameCombo.filter(
+            (item, index) => playerCombo.includes(item) && playerCombo[index] !== item,
+        );
+
+    const errorHandler = () => {
+        if (selected) {
+            const hasInvalidChoice = playerCombo.some(item => item.color === invalidColor);
+            const emptyAttempt = playerCombo.every(item => item.color === invalidColor);
+            const identical = !hasIdenticalItems();
+
+            if (emptyAttempt) return;
+
+            if (hasInvalidChoice) {
+                dispatch(setError(errorMessages.notIncluded));
+                return;
+            }
+            if (identical) {
+                dispatch(setError(errorMessages.identicalColors));
+                return;
+            }
+        }
+        dispatch(setError(null));
+    };
+
+    const handleResults = () => {
+        errorHandler();
+
+        let results: ResultType = [];
+        const missing = gameCombo.filter(item => playerCombo.includes(item) === false);
+        const included = checkIfIncluded(playerCombo);
+        const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);
+
+        const resultValues = [missing, included, match];
+        resultValues.map((item, idx) => item.forEach(() => results.push(idx)));
+        if (validCombo()) dispatch(setResults({ id, results }));
+    };
 
     return (
-        <div className={playCardClasses} onClick={onSelect} ref={playCardRef}>
-            <div className="options_wrapper">
-                <div className="game_dropdown">
-                    {dropdownCounter.map((_, idx) => (
-                        <div key={`attempt-dropdown-${idx + 1}`} className="drop">
-                            <DropdownContainer
-                                position="bottom"
-                                reset={!finishedGame && emptyComboes}
-                            >
-                                {baseColors.map(item => (
-                                    <Dropdown.MenuItem
-                                        key={`dropdown-item-${item.id}`}
-                                        onClick={() => onItemClickHandle(item, idx)}
-                                    >
-                                        <div
-                                            className="color_option"
-                                            style={{
-                                                backgroundColor: item.color,
-                                            }}
-                                        />
-                                    </Dropdown.MenuItem>
-                                ))}
-                            </DropdownContainer>
-                        </div>
-                    ))}
-                </div>
+        <div
+            className={playCardClasses}
+            onClick={() => dispatch(selectAttempt(id))}
+            ref={playCardRef}
+        >
+            <div className="game_dropdown">
+                {dropdownCounter.map((_, idx) => (
+                    <div key={`attempt-dropdown-${idx + 1}`} className="drop">
+                        <DropdownContainer position="bottom" reset={!isFinished && emptyComboes}>
+                            {baseColors.map(item => (
+                                <Dropdown.MenuItem
+                                    key={`dropdown-item-${item.id}`}
+                                    onClick={() => onItemClickHandle(item, idx)}
+                                >
+                                    <div
+                                        className="color_option"
+                                        style={{
+                                            backgroundColor: item.color,
+                                        }}
+                                    />
+                                </Dropdown.MenuItem>
+                            ))}
+                        </DropdownContainer>
+                    </div>
+                ))}
             </div>
             <Evaluation
                 results={results}
-                handleResults={onSubmit}
-                enabledResults={enabledResults}
+                handleResults={handleResults}
+                enabledResults={validCombo() && !results.length}
             />
         </div>
     );
