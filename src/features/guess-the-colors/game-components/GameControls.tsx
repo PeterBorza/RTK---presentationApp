@@ -1,13 +1,14 @@
 import React from "react";
 
-import { IguessGameItem, guessGameData } from "../state";
+import { IguessGameItem, EvaluateType } from "../state";
 
 type Props = {
     baseColors: IguessGameItem[];
+    legend: EvaluateType[];
+    count: number;
 };
 
-const GameControls = ({ baseColors }: Props) => {
-    const { gameLegend, attemptCount } = guessGameData;
+const GameControls = ({ baseColors, legend, count }: Props) => {
     return (
         <div className="controls">
             <div>
@@ -27,11 +28,13 @@ const GameControls = ({ baseColors }: Props) => {
                 combinations on the left panel's circle-group.
             </p>
             <p>
-                {` You have -${attemptCount}- attempts, and your score for every turn is reflected in results you're
-                given on each submit.`}
+                You have
+                <strong> {count} </strong>
+                attempts, and your score for every turn is reflected in results you're given on each
+                submit.
             </p>
             <ul className="ul-list">
-                {gameLegend.map(item => (
+                {legend.map(item => (
                     <li key={item.result}>
                         <p>
                             <b>{`${item.result}:`}</b>

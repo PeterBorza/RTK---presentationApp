@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { shuffle } from "utils";
 
 import {
     IguessGame,
@@ -9,6 +10,7 @@ import {
     IAttempt,
     initialPlayerCombo,
     ErrorMessageType,
+    setup,
 } from "./state";
 
 const currentAttemptFinder = (state: IAttempt[], payload: number) =>
@@ -18,22 +20,18 @@ export const guessGameSlice = createSlice({
     name: "guessGame",
     initialState,
     reducers: {
-        setNewGame: (state: IguessGame, { payload }: PayloadAction<IguessGameItem[]>) => {
-            state.gameCombo = payload;
-        },
         setComboItem: (state: IguessGame, { payload }: PayloadAction<IPlayerCombo>) => {
             const { id: attemptId, order, item: attempt } = payload;
             const currentAttempt = currentAttemptFinder(state.attempts, attemptId);
-            if (currentAttempt !== -1)
-                state.attempts[currentAttempt].playerCombo.splice(order, 1, attempt);
+            if (currentAttempt !== -1) {
+                let currentCombo = state.attempts[currentAttempt].playerCombo;
+                currentCombo[order] = attempt;
+            }
         },
         setResults: (state: IguessGame, { payload }: PayloadAction<IResultsType>) => {
             const { id: attemptId, results } = payload;
             const currentAttempt = currentAttemptFinder(state.attempts, attemptId);
             if (currentAttempt !== -1) state.attempts[currentAttempt].results = results;
-        },
-        resetResults: (state: IguessGame) => {
-            state.attempts.forEach(attempt => (attempt.results = []));
         },
         selectAttempt: (state: IguessGame, { payload }: PayloadAction<number>) => {
             const currentAttempt = currentAttemptFinder(state.attempts, payload);
@@ -43,8 +41,9 @@ export const guessGameSlice = createSlice({
             const currentAttempt = currentAttemptFinder(state.attempts, payload);
             if (currentAttempt !== -1) state.attempts[currentAttempt].selected = false;
         },
-        resetComboes: (state: IguessGame) => {
-            state.attempts.forEach(attempt => (attempt.playerCombo = initialPlayerCombo));
+        resetGame: (state: IguessGame, { payload }: PayloadAction<IguessGameItem[]>) => {
+            state.attempts = initialState.attempts;
+            state.gameCombo = shuffle(payload).slice(0, 4);
         },
         setFinished: (state: IguessGame, { payload }: PayloadAction<boolean>) => {
             state.finished = payload;
@@ -52,18 +51,21 @@ export const guessGameSlice = createSlice({
         setError: (state: IguessGame, { payload }: PayloadAction<ErrorMessageType>) => {
             state.errorMessage = payload;
         },
+        filterBase: ({ attempts }: IguessGame, { payload }: PayloadAction<IguessGameItem>) => {
+            let current = attempts.find(attempt => attempt.id === payload.id);
+            if (current) current.base = current.base.filter(item => item.color !== payload.color);
+        },
     },
 });
 
 export const {
-    setNewGame,
     setComboItem,
     setResults,
-    resetResults,
     selectAttempt,
     resetSelected,
-    resetComboes,
+    resetGame,
     setFinished,
     setError,
+    filterBase,
 } = guessGameSlice.actions;
 export default guessGameSlice.reducer;

@@ -1,11 +1,11 @@
 import React from "react";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 import { Evaluation } from ".";
-import { guessGameData, IAttempt, IguessGameItem, ResultType } from "../state";
+import { guessGameData, GuessGameDataType, IAttempt, IguessGameItem, ResultType } from "../state";
 import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
 import { useDispatch, useSelector } from "react-redux";
-import { baseColorsState, playerComboSelector } from "../selectors";
+import { emptyAttemptSelector } from "../selectors";
 import {
     resetSelected,
     selectAttempt,
@@ -19,20 +19,16 @@ interface PlayCardType {
     attempt: IAttempt;
     gameCombo: IguessGameItem[];
     isFinished: boolean;
+    gameData: GuessGameDataType;
 }
 
-const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
-    const { id, selected, playerCombo, results } = attempt;
-    const { colorsToGuess, invalidColor, errorMessages } = guessGameData;
-    const dropdownCounter = createArray(colorsToGuess);
+const PlayCard = ({ attempt, gameCombo, isFinished, gameData }: PlayCardType) => {
+    const { id, selected, playerCombo, results, base } = attempt;
+    const { invalidColor, errorMessages, resultValues, tooltip } = gameData;
+    const dropdownCounter = createArray(gameCombo.length);
     const playCardRef = React.useRef<HTMLDivElement | null>(null);
-    const playerComboes = useSelector(playerComboSelector);
-    const baseColors = useSelector(baseColorsState);
+    const cleanSlates = useSelector(emptyAttemptSelector);
     const dispatch = useDispatch();
-
-    const emptyComboes = playerComboes.every(combo =>
-        combo.every(item => item.color === invalidColor),
-    );
 
     const playCardClasses = classNames("playcard", {
         playcard__selected: selected,
@@ -44,7 +40,7 @@ const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
         const colors = playerCombo.map(item => item.color);
 
         const result = Array.from(new Set(colors));
-        if (result.length < colorsToGuess) return false;
+        if (result.length < gameCombo.length) return false;
         return true;
     };
 
@@ -61,12 +57,10 @@ const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
         );
 
     const errorHandler = () => {
+        if (cleanSlates) return;
         if (selected) {
             const hasInvalidChoice = playerCombo.some(item => item.color === invalidColor);
-            const emptyAttempt = playerCombo.every(item => item.color === invalidColor);
             const identical = !hasIdenticalItems();
-
-            if (emptyAttempt) return;
 
             if (hasInvalidChoice) {
                 dispatch(setError(errorMessages.notIncluded));
@@ -100,13 +94,13 @@ const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
             ref={playCardRef}
         >
             <div className="game_dropdown">
-                {dropdownCounter.map((_, idx) => (
-                    <div key={`attempt-dropdown-${idx + 1}`} className="drop">
-                        <DropdownContainer position="bottom" reset={!isFinished && emptyComboes}>
-                            {baseColors.map(item => (
+                {dropdownCounter.map((_, order) => (
+                    <div key={`attempt-dropdown-${order + 1}`} className="drop">
+                        <DropdownContainer position="bottom" reset={!isFinished && cleanSlates}>
+                            {base.map(item => (
                                 <Dropdown.MenuItem
                                     key={`dropdown-item-${item.id}`}
-                                    onClick={() => onItemClickHandle(item, idx)}
+                                    onClick={() => onItemClickHandle(item, order)}
                                 >
                                     <div
                                         className="color_option"
@@ -124,6 +118,8 @@ const PlayCard = ({ attempt, gameCombo, isFinished }: PlayCardType) => {
                 results={results}
                 handleResults={handleResults}
                 enabledResults={validCombo() && !results.length}
+                initialValues={resultValues}
+                tooltip={tooltip}
             />
         </div>
     );
