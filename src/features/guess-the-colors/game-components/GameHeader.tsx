@@ -14,7 +14,7 @@ const GameHeader = ({ isFresh, onNewGameClick, title, buttonLabel }: Props) => {
         <div className="game_header">
             <h1 className="game_header__title">{title}</h1>
             <div className="game_header__controls">
-                {!isFresh && <Button value={buttonLabel} onClick={onNewGameClick} />}
+                <Button isDisabled={isFresh} value={buttonLabel} onClick={onNewGameClick} />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 @use "css" as *;
 
-$light-background-color: rgb(244, 242, 242);
+$light-background-color: rgb(244 242 242/0.2);
 $percent: 15%;
 $shadow: 0px 0px 6px rgb(0 0 0 / 0.2);
 $item-font-size: clamp(0.7rem, 1.2vw + 0.5rem, 1.5rem);
@@ -36,6 +36,7 @@ $item-font-size: clamp(0.7rem, 1.2vw + 0.5rem, 1.5rem);
     font-weight: bold;
     border-radius: 5px;
     transition: all 200ms ease-in-out;
+    cursor: pointer;
     &:hover {
         color: $light-background-color;
         background: darken($light-background-color, $percent);

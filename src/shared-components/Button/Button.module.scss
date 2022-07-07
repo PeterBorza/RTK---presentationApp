@@ -17,7 +17,7 @@
     cursor: pointer;
     &::after {
         position: absolute;
-        content: " ";
+        content: "";
         left: 0;
         top: -10px;
         width: 100%;
@@ -46,6 +46,7 @@
         }
         &:hover {
             background: transparent;
+            cursor: not-allowed;
         }
         &:active {
             transform: none;

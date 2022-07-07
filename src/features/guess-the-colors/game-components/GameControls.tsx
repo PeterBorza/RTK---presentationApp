@@ -11,18 +11,14 @@ type Props = {
 const GameControls = ({ baseColors, legend, count }: Props) => {
     return (
         <div className="controls">
-            <div>
-                <p>A palette of six colors is given:</p>
-                {
-                    <ul className="ol-list">
-                        {baseColors.map(({ id, color }) => (
-                            <li key={id}>
-                                <p style={{ color }}>{color}</p>
-                            </li>
-                        ))}
-                    </ul>
-                }
-            </div>
+            <p>A palette of six colors is given:</p>
+            <ul className="ol-list">
+                {baseColors.map(({ id, color }) => (
+                    <li key={id}>
+                        <p style={{ color }}>{color}</p>
+                    </li>
+                ))}
+            </ul>
             <p>
                 Try and guess the right colors and in the right order, by submitting your
                 combinations on the left panel's circle-group.
