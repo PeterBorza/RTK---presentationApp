@@ -15,7 +15,12 @@ $doorColor: rgb(255 255 255 / 0.7);
     &::before,
     &::after {
         position: absolute;
-        content: "";
+        content: attr(data-content);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: limegreen;
         width: 50%;
         height: 100%;
         left: 0;
@@ -25,6 +30,7 @@ $doorColor: rgb(255 255 255 / 0.7);
     }
     &::after {
         left: 50%;
+        color: crimson;
     }
     &__left {
         left: 0;

@@ -1,12 +1,7 @@
 import { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Lift as LiftProps } from "../state";
-import {
-    changePosition,
-    moveLift,
-    setActive,
-    setDirection,
-} from "../liftSlice";
+import { Direction, Lift, Lift as LiftProps } from "../state";
+import { moveLift, setActive, setMovingLift } from "../liftSlice";
 import { levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
 import Panel from "../Panel";
@@ -16,13 +11,13 @@ import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
 
 type Props = {
-    showPanel?: boolean;
+    showPanel: boolean;
     data: LiftProps;
 };
 
 type LevelCount = number;
 
-const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
+const LiftSystem: FC<Props> = ({ showPanel, data }) => {
     const levels = useSelector(levelsSelector);
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
@@ -32,16 +27,14 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
         [styles.liftWrapper__show]: showPanel,
     });
 
-    const liftIsMoving = () => dispatch(moveLift({ name, isMoving: true }));
     const liftIsStopped = useCallback(
         () => dispatch(moveLift({ name, isMoving: false })),
-        [dispatch, name]
+        [dispatch, name],
     );
 
-    const closeDoors = () => dispatch(setActive({ name, isActive: false }));
     const openDoors = useCallback(
         () => dispatch(setActive({ name, isActive: true })),
-        [dispatch, name]
+        [dispatch, name],
     );
 
     useEffect(() => {
@@ -51,25 +44,27 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
         }, speed);
     }, [liftIsStopped, openDoors, speed]);
 
-    const moveElevator = (position: LevelCount) =>
-        dispatch(changePosition({ name, position }));
-
-    const getDirections = (level: LevelCount) => {
-        level < position && dispatch(setDirection({ name, direction: "down" }));
-        level > position && dispatch(setDirection({ name, direction: "up" }));
+    const getDirection = (level: LevelCount): Direction => {
+        if (level === position) return "static";
+        return level < position ? "down" : "up";
     };
 
-    const lift_ButtonHandler = (level: LevelCount) => {
-        liftIsMoving();
-        closeDoors();
-        getDirections(level);
-        moveElevator(level);
+    const handleLiftButtons = (level: LevelCount) => {
+        if (level === position) return;
+        const newLift: Lift = {
+            ...data,
+            isMoving: true,
+            position: level,
+            direction: getDirection(level),
+            isActive: true,
+        };
+        dispatch(setMovingLift(newLift));
     };
 
     const lift_Panel = levels.map(level => (
         <LiftButton
             key={`lift-button-${level}`}
-            onClick={() => lift_ButtonHandler(level)}
+            onClick={() => handleLiftButtons(level)}
             disabled={isMoving}
             value={level}
             selected={level === position}
@@ -79,10 +74,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     return (
         <div className={liftWrapper}>
-            <Panel
-                icons={<Directions direction={direction} />}
-                renderButtons={() => lift_Panel}
-            />
+            <Panel icons={<Directions direction={direction} />} renderButtons={() => lift_Panel} />
         </div>
     );
 };

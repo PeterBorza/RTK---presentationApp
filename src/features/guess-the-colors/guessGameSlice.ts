@@ -8,9 +8,7 @@ import {
     IPlayerCombo,
     IResultsType,
     IAttempt,
-    initialPlayerCombo,
     ErrorMessageType,
-    setup,
 } from "./state";
 
 const currentAttemptFinder = (state: IAttempt[], payload: number) =>
