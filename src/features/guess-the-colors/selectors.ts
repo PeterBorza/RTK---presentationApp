@@ -1,5 +1,8 @@
 import { RootState } from "app/store";
 import { createSelector } from "@reduxjs/toolkit";
+import { guessGameData } from "./state";
+
+const { invalidColor } = guessGameData;
 
 export const guessGameState = ({ guessGame }: RootState) => guessGame;
 
@@ -21,6 +24,10 @@ export const playerResults = createSelector(gameAttemptsState, items =>
     items.map(item => item.results),
 );
 
+export const baseSelector = createSelector(gameAttemptsState, items =>
+    items.map(item => item.base),
+);
+
 export const allValidComboesSelector = createSelector([playerResults], results =>
     results.every(res => res.length !== 0),
 );
@@ -28,3 +35,7 @@ export const allValidComboesSelector = createSelector([playerResults], results =
 export const perfectMatchSelector = createSelector(playerResults, results =>
     results.some(res => res.length !== 0 && res.every(item => item === 2)),
 );
+
+export const emptyAttemptSelector = createSelector(playerComboSelector, playerComboes => {
+    return playerComboes.every(combo => combo.every(c => c.color === invalidColor));
+});

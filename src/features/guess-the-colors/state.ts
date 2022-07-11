@@ -20,6 +20,7 @@ export interface IAttempt extends AttemptId {
     playerCombo: IguessGameItem[];
     results: ResultType;
     selected: boolean;
+    base: IguessGameItem[];
 }
 
 export type ErrorMessageType = string | null;
@@ -32,21 +33,17 @@ export interface IguessGame {
     errorMessage: ErrorMessageType;
 }
 
-interface EvaluateType {
+export interface EvaluateType {
     result: string;
     definition: string;
 }
 
-interface ErrorMessages {
+export interface ErrorMessages {
     notIncluded: string;
     identicalColors: string;
 }
 
-interface TooltipType {
-    initial: string;
-    validResult: string;
-}
-
+export type TooltipType = string;
 export interface GuessGameDataType {
     colorsToGuess: number;
     colorsToUse: number;
@@ -66,7 +63,7 @@ export const guessGameData: GuessGameDataType = {
     colorsToUse: 6,
     attemptCount: 6,
     invalidColor: "none",
-    resultValues: ["transparent", "rgb(255 255 255/.8)", "rgb(16 16 16/ .8)"],
+    resultValues: ["transparent", "rgb(253 252 253/.85)", "rgb(16 16 16/ .8)"],
     colorPalette: [
         "red",
         "blue",
@@ -81,10 +78,8 @@ export const guessGameData: GuessGameDataType = {
     ],
     gameTitle: "Guess the colors game",
     newGame: "New Game",
-    tooltip: {
-        initial: "evaluate here when fields are filled",
-        validResult: "click to get results",
-    },
+    tooltip: "evaluate here when fields are filled",
+
     gameLegend: [
         {
             result: "White circle",
@@ -107,7 +102,7 @@ export const guessGameData: GuessGameDataType = {
 
 const { colorsToGuess, colorsToUse, attemptCount, colorPalette, invalidColor } = guessGameData;
 
-const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((item, idx) => {
+export const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((item, idx) => {
     return {
         id: 1000 + idx,
         color: item,
@@ -132,6 +127,7 @@ export const initialState: IguessGame = {
             playerCombo: initialPlayerCombo,
             results: [],
             selected: false,
+            base: setup,
         };
     }),
     finished: false,

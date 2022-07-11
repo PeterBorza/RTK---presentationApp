@@ -1,37 +1,36 @@
 import React from "react";
 
-import { IguessGameItem, guessGameData } from "../state";
+import { IguessGameItem, EvaluateType } from "../state";
 
 type Props = {
     baseColors: IguessGameItem[];
+    legend: EvaluateType[];
+    count: number;
 };
 
-const GameControls = ({ baseColors }: Props) => {
-    const { gameLegend, attemptCount } = guessGameData;
+const GameControls = ({ baseColors, legend, count }: Props) => {
     return (
         <div className="controls">
-            <div>
-                <p>A palette of six colors is given:</p>
-                {
-                    <ul className="ol-list">
-                        {baseColors.map(({ id, color }) => (
-                            <li key={id}>
-                                <p style={{ color }}>{color}</p>
-                            </li>
-                        ))}
-                    </ul>
-                }
-            </div>
+            <p>A palette of six colors is given:</p>
+            <ul className="ol-list">
+                {baseColors.map(({ id, color }) => (
+                    <li key={id}>
+                        <p style={{ color }}>{color}</p>
+                    </li>
+                ))}
+            </ul>
             <p>
                 Try and guess the right colors and in the right order, by submitting your
                 combinations on the left panel's circle-group.
             </p>
             <p>
-                {` You have -${attemptCount}- attempts, and your score for every turn is reflected in results you're
-                given on each submit.`}
+                You have
+                <strong> {count} </strong>
+                attempts, and your score for every turn is reflected in results you're given on each
+                submit.
             </p>
             <ul className="ul-list">
-                {gameLegend.map(item => (
+                {legend.map(item => (
                     <li key={item.result}>
                         <p>
                             <b>{`${item.result}:`}</b>

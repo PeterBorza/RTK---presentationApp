@@ -1,27 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { GameAttempts, GameControls, GameHeader, HiddenCombo } from "./game-components";
-import { baseColorsState, finishedState, gameAttemptsState, gameComboState } from "./selectors";
+import { resetGame } from "./guessGameSlice";
+import { baseColorsState, emptyAttemptSelector, finishedState, gameComboState } from "./selectors";
+import { guessGameData } from "./state";
 
 import "./_index.scss";
 
 const ColorGame = () => {
-    const gameAttempts = useSelector(gameAttemptsState);
+    const { gameLegend, attemptCount, gameTitle, newGame } = guessGameData;
+
     const finishedGame = useSelector(finishedState);
     const gameCombo = useSelector(gameComboState);
     const baseColors = useSelector(baseColorsState);
+    const freshGame = useSelector(emptyAttemptSelector);
+    const dispatch = useDispatch();
 
     return (
         <div className="game_container">
-            <GameHeader baseColors={baseColors} />
-            <HiddenCombo finishedGame={finishedGame} gameCombo={gameCombo} />
-            <GameControls baseColors={baseColors} />
-            <GameAttempts
-                gameAttempts={gameAttempts}
-                gameCombo={gameCombo}
-                isFinished={finishedGame}
+            <GameHeader
+                onNewGameClick={() => dispatch(resetGame(baseColors))}
+                isFresh={freshGame}
+                title={gameTitle}
+                buttonLabel={newGame}
             />
+            <HiddenCombo finishedGame={finishedGame} gameCombo={gameCombo} />
+            <GameControls baseColors={baseColors} legend={gameLegend} count={attemptCount} />
+            <GameAttempts gameCombo={gameCombo} gameData={guessGameData} />
         </div>
     );
 };
