@@ -1,77 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-    initialState,
-    LiftState,
-    Lift,
-    LiftDirection,
-    LiftActive,
-    LiftPosition,
-    LiftMoving,
-    LiftDisabled,
-} from "./state";
+import { initialState, LiftState, Lift, LiftActive, LiftMoving } from "./state";
 
 export const liftSlice = createSlice({
     name: "lift",
     initialState,
     reducers: {
-        setDisabled: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<Pick<Lift, LiftDisabled>>
-        ) => {
-            const targetLift = lifts.find(l => l.name === payload.name);
-            if (targetLift) targetLift.disabled = payload.disabled;
-        },
-        setDirection: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<Pick<Lift, LiftDirection>>
-        ) => {
-            const targetLift = lifts.find(l => l.name === payload.name);
-            if (targetLift) targetLift.direction = payload.direction;
-        },
-        setActive: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<Pick<Lift, LiftActive>>
-        ) => {
+        setActive: ({ lifts }: LiftState, { payload }: PayloadAction<Pick<Lift, LiftActive>>) => {
             const targetLift = lifts.find(l => l.name === payload.name);
             if (targetLift) targetLift.isActive = payload.isActive;
         },
-        moveLift: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<Pick<Lift, LiftMoving>>
-        ) => {
+        moveLift: ({ lifts }: LiftState, { payload }: PayloadAction<Pick<Lift, LiftMoving>>) => {
             const targetLift = lifts.find(l => l.name === payload.name);
             if (targetLift) targetLift.isMoving = payload.isMoving;
         },
-        changePosition: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<Pick<Lift, LiftPosition>>
-        ) => {
-            const targetLift = lifts.find(l => l.name === payload.name);
-            if (targetLift) targetLift.position = payload.position;
-        },
-        setLevelNumber: (
-            { numberOfLevels }: LiftState,
-            { payload }: PayloadAction<number>
-        ) => {
+        setLevelNumber: ({ numberOfLevels }: LiftState, { payload }: PayloadAction<number>) => {
             numberOfLevels = payload;
         },
-        setSpeed: (
-            { speed }: LiftState,
-            { payload }: PayloadAction<number>
-        ) => {
+        setSpeed: ({ speed }: LiftState, { payload }: PayloadAction<number>) => {
             speed = payload;
+        },
+        setMovingLift: ({ lifts }: LiftState, { payload }: PayloadAction<Lift>) => {
+            const { name, position, isActive, isMoving, direction } = payload;
+            const lift = lifts.find(l => l.name === name);
+            if (lift) {
+                lift.position = position;
+                lift.isActive = isActive;
+                lift.direction = direction;
+                lift.isMoving = isMoving;
+            }
         },
     },
 });
 
-export const {
-    setDisabled,
-    setDirection,
-    setActive,
-    moveLift,
-    changePosition,
-    setLevelNumber,
-    setSpeed,
-} = liftSlice.actions;
+export const { setActive, moveLift, setLevelNumber, setSpeed, setMovingLift } = liftSlice.actions;
 
 export default liftSlice.reducer;

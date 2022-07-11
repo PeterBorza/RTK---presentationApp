@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 import { Evaluation } from ".";
-import { guessGameData, GuessGameDataType, IAttempt, IguessGameItem, ResultType } from "../state";
+import { GuessGameDataType, IAttempt, IguessGameItem, ResultType } from "../state";
 import { useOnClickOutside } from "hooks";
 import { createArray } from "utils/generators";
 import { useDispatch, useSelector } from "react-redux";
