@@ -1,13 +1,11 @@
 export type Direction = "up" | "down" | "static";
-export type LiftActive = "name" | "isActive";
-export type LiftMoving = "name" | "isMoving";
 export type BlockPosition = "left" | "right";
 export type LiftName = "A" | "B";
 export type LevelCount = number;
 
 export interface Lift {
     name: LiftName;
-    isActive: boolean;
+    doorsAreOpen: boolean;
     isMoving: boolean;
     position: number;
     disabled: boolean;
@@ -28,7 +26,7 @@ const lifts: Pick<Lift, "name" | "position" | "blockPosition">[] = [
 export const initialState: LiftState = {
     lifts: lifts.map(lift => ({
         ...lift,
-        isActive: false,
+        doorsAreOpen: false,
         isMoving: false,
         disabled: false,
         direction: "static",

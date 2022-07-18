@@ -1,8 +1,8 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Direction, Lift, Lift as LiftProps } from "../state";
-import { moveLift, setActive, setMovingLift } from "../liftSlice";
-import { levelsSelector, speedState } from "../selectors";
+import { LevelCount, Lift, Lift as LiftProps } from "../state";
+import { moveLift, stopLift } from "../liftSlice";
+import { getDirection, levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
 import Panel from "../Panel";
 import Directions from "../Directions";
@@ -11,13 +11,11 @@ import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
 
 type Props = {
-    showPanel: boolean;
+    showPanel?: boolean;
     data: LiftProps;
 };
 
-type LevelCount = number;
-
-const LiftSystem: FC<Props> = ({ showPanel, data }) => {
+const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const levels = useSelector(levelsSelector);
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
@@ -27,27 +25,9 @@ const LiftSystem: FC<Props> = ({ showPanel, data }) => {
         [styles.liftWrapper__show]: showPanel,
     });
 
-    const liftIsStopped = useCallback(
-        () => dispatch(moveLift({ name, isMoving: false })),
-        [dispatch, name],
-    );
-
-    const openDoors = useCallback(
-        () => dispatch(setActive({ name, isActive: true })),
-        [dispatch, name],
-    );
-
     useEffect(() => {
-        setTimeout(() => {
-            liftIsStopped();
-            openDoors();
-        }, speed);
-    }, [liftIsStopped, openDoors, speed]);
-
-    const getDirection = (level: LevelCount): Direction => {
-        if (level === position) return "static";
-        return level < position ? "down" : "up";
-    };
+        setTimeout(() => dispatch(stopLift(name)), speed);
+    }, [stopLift, speed]);
 
     const handleLiftButtons = (level: LevelCount) => {
         if (level === position) return;
@@ -55,10 +35,10 @@ const LiftSystem: FC<Props> = ({ showPanel, data }) => {
             ...data,
             isMoving: true,
             position: level,
-            direction: getDirection(level),
-            isActive: true,
+            direction: getDirection(level, position),
+            doorsAreOpen: true,
         };
-        dispatch(setMovingLift(newLift));
+        dispatch(moveLift(newLift));
     };
 
     const lift_Panel = levels.map(level => (
@@ -74,7 +54,9 @@ const LiftSystem: FC<Props> = ({ showPanel, data }) => {
 
     return (
         <div className={liftWrapper}>
-            <Panel icons={<Directions direction={direction} />} renderButtons={() => lift_Panel} />
+            <Panel renderButtons={lift_Panel}>
+                <Directions direction={direction} />
+            </Panel>
         </div>
     );
 };

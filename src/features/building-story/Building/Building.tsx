@@ -11,9 +11,9 @@ const Building = () => {
     return (
         <div className={styles.container}>
             <div className={styles.systemContainer}>
-                <LiftSystem showPanel data={liftA} />
+                <LiftSystem data={liftA} />
                 <BlockSystem />
-                <LiftSystem showPanel data={liftB} />
+                <LiftSystem data={liftB} />
             </div>
         </div>
     );
