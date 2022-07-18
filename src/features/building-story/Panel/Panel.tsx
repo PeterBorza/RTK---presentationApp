@@ -4,17 +4,14 @@ import { FC, ReactNode } from "react";
 import styles from "./Panel.module.scss";
 
 interface PanelProps {
-    icons: ReactNode;
-    renderButtons: () => ReactNode;
+    renderButtons: ReactNode;
 }
 
-const Panel: FC<PanelProps> = ({ icons, renderButtons }) => {
+const Panel: FC<PanelProps> = ({ children, renderButtons }) => {
     return (
         <div className={styles.panelWrapper}>
-            <div className={styles.panelWrapper__icons}>{icons}</div>
-            <div className={styles.panelWrapper__buttons}>
-                {renderButtons()}
-            </div>
+            <div className={styles.panelWrapper__icons}>{children}</div>
+            <div className={styles.panelWrapper__buttons}>{renderButtons}</div>
         </div>
     );
 };

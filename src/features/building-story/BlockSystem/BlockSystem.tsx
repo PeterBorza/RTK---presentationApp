@@ -1,53 +1,42 @@
 import { useEffect } from "react";
-import { Direction, LevelCount, Lift } from "../state";
+import { LevelCount, Lift } from "../state";
 import { levelsSelector, levelsState, liftsState, speedState } from "../selectors";
-import { setMovingLift } from "../liftSlice";
+import { moveLift, stopLift } from "../liftSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { LiftCabin } from "..";
 import LiftButton from "../LiftButton";
 import Shaft from "../Shaft";
 
 import styles from "./BlockSystem.module.scss";
+import { getDirection } from "../selectors";
 
 const BlockSystem = () => {
     const numberOfLevels = useSelector(levelsState);
+    const speed = useSelector(speedState);
     const [liftA, liftB] = useSelector(liftsState);
     const levels = useSelector(levelsSelector);
-    const speed = useSelector(speedState);
     const dispatch = useDispatch();
 
     const { position: positionA, isMoving: isMovingA } = liftA;
     const { position: positionB, isMoving: isMovingB } = liftB;
 
-    const stopLiftHandler = (lift: Lift) => {
-        const newLift: Lift = {
-            ...lift,
-            isMoving: false,
-            isActive: false,
-            direction: "static",
-        };
-        dispatch(setMovingLift(newLift));
-    };
+    useEffect(() => {
+        isMovingA && setTimeout(() => dispatch(stopLift(liftA.name)), speed);
+    }, [liftA.name, isMovingA, speed, dispatch]);
 
     useEffect(() => {
-        isMovingA && setTimeout(() => stopLiftHandler(liftA), speed);
-        isMovingB && setTimeout(() => stopLiftHandler(liftB), speed);
-    }, [isMovingA, isMovingB, speed, stopLiftHandler]);
-
-    const checkPos = (level: LevelCount, position: number): Direction => {
-        if (level === position) return "static";
-        return level < position ? "down" : "up";
-    };
+        isMovingB && setTimeout(() => dispatch(stopLift(liftB.name)), speed);
+    }, [liftB.name, isMovingB, speed, dispatch]);
 
     const moveLiftHandler = (level: number, lift: Lift) => {
         const newLift: Lift = {
             ...lift,
             isMoving: true,
             position: level,
-            direction: checkPos(level, lift.position),
-            isActive: true,
+            direction: getDirection(level, lift.position),
+            doorsAreOpen: true,
         };
-        dispatch(setMovingLift(newLift));
+        dispatch(moveLift(newLift));
     };
 
     const shaft_ButtonsHandler = (level: LevelCount) => {

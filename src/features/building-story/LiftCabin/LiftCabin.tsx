@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { LevelCount, Lift } from "../state";
 
 import classNames from "classnames";
@@ -10,8 +10,8 @@ interface Props {
     levelCount: LevelCount;
 }
 
-const LiftCabin: FC<Props> = ({ data, speed, levelCount }) => {
-    const { name, isActive, isMoving, position, blockPosition } = data;
+const LiftCabin: React.FC<Props> = ({ data, speed, levelCount }) => {
+    const { name, doorsAreOpen, isMoving, position, blockPosition } = data;
 
     const cabinClasses = classNames(
         styles.cabinWrapper,
@@ -21,15 +21,11 @@ const LiftCabin: FC<Props> = ({ data, speed, levelCount }) => {
         [styles[`cabinWrapper__${blockPosition}`]],
         {
             [styles.closeDoors]: isMoving,
-            [styles.openDoors]: !isMoving || isActive,
+            [styles.openDoors]: !isMoving || doorsAreOpen,
         },
     );
 
-    return (
-        <div className={cabinClasses} data-content={name}>
-            <div className={styles.cabinWrapper__arrow} />
-        </div>
-    );
+    return <div className={cabinClasses} data-content={name} />;
 };
 
 export default LiftCabin;
