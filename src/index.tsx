@@ -6,8 +6,8 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 
 import { PagesContextProvider } from "./context/pages-context";
-import AppRoutes from "./app-routes";
-import "./css/_index.scss"
+import AppRoutes from "./app/app-routes";
+import "./css/_index.scss";
 
 ReactDOM.render(
     <React.StrictMode>

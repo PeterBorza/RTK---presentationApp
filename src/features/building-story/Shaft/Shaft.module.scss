@@ -1,9 +1,0 @@
-@use "css" as *;
-
-.shaftContainer {
-    width: 14%;
-    height: 100%;
-    margin: auto;
-    gap: 1px;
-    @include fCenter(column-reverse);
-}

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo } from "react";
+import React, { createContext, useMemo } from "react";
 
 import { v4 as uuid } from "uuid";
 import Home from "features/Home";
@@ -22,7 +22,7 @@ export interface IProviderProps {
     to: LinkUrls;
     label: string;
     id: string;
-    element: ReactNode;
+    element: React.ReactNode;
 }
 
 export const LinkContext = createContext<IProviderProps[]>([]);
