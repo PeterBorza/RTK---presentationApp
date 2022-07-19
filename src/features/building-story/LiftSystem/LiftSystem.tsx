@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { LevelCount, Lift, Lift as LiftProps } from "../state";
 import { moveLift, stopLift } from "../liftSlice";
 import { getDirection, levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
-import Panel from "../Panel";
 import Directions from "../Directions";
 
 import classNames from "classnames";
@@ -26,8 +26,8 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     });
 
     useEffect(() => {
-        setTimeout(() => dispatch(stopLift(name)), speed);
-    }, [stopLift, speed]);
+        isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
+    }, [isMoving, stopLift, speed]);
 
     const handleLiftButtons = (level: LevelCount) => {
         if (level === position) return;
@@ -54,9 +54,12 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     return (
         <div className={liftWrapper}>
-            <Panel renderButtons={lift_Panel}>
-                <Directions direction={direction} />
-            </Panel>
+            <div className={styles.panelWrapper}>
+                <div className={styles.panelWrapper__icons}>
+                    <Directions direction={direction} />
+                </div>
+                <div className={styles.panelWrapper__buttons}>{lift_Panel}</div>
+            </div>
         </div>
     );
 };

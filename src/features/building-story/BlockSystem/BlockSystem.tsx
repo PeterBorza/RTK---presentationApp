@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { LevelCount, Lift } from "../state";
 import { levelsSelector, levelsState, liftsState, speedState } from "../selectors";
-import { moveLift, stopLift } from "../liftSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { moveLift } from "../liftSlice";
 import { LiftCabin } from "..";
 import LiftButton from "../LiftButton";
-import Shaft from "../Shaft";
 
 import styles from "./BlockSystem.module.scss";
 import { getDirection } from "../selectors";
@@ -16,17 +15,6 @@ const BlockSystem = () => {
     const [liftA, liftB] = useSelector(liftsState);
     const levels = useSelector(levelsSelector);
     const dispatch = useDispatch();
-
-    const { position: positionA, isMoving: isMovingA } = liftA;
-    const { position: positionB, isMoving: isMovingB } = liftB;
-
-    useEffect(() => {
-        isMovingA && setTimeout(() => dispatch(stopLift(liftA.name)), speed);
-    }, [liftA.name, isMovingA, speed, dispatch]);
-
-    useEffect(() => {
-        isMovingB && setTimeout(() => dispatch(stopLift(liftB.name)), speed);
-    }, [liftB.name, isMovingB, speed, dispatch]);
 
     const moveLiftHandler = (level: number, lift: Lift) => {
         const newLift: Lift = {
@@ -40,6 +28,8 @@ const BlockSystem = () => {
     };
 
     const shaft_ButtonsHandler = (level: LevelCount) => {
+        const { position: positionA } = liftA;
+        const { position: positionB } = liftB;
         if (level === positionA || level === positionB) return;
         const difA = Math.abs(positionA - level);
         const difB = Math.abs(positionB - level);
@@ -67,7 +57,7 @@ const BlockSystem = () => {
         <div className={styles.blockContainer}>
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftA} />
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftB} />
-            <Shaft>{levels.map(shaftButtons)}</Shaft>
+            <div className={styles.shaftContainer}>{levels.map(shaftButtons)}</div>
         </div>
     );
 };
