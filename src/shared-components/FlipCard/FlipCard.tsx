@@ -7,7 +7,7 @@ type Props = {
     backContent: () => React.ReactNode;
     darkBack: boolean;
     flipped: boolean;
-    toggleFlip: () => void;
+    toggleFlip?: () => void;
 };
 
 const FlipCard = ({ frontContent, backContent, darkBack, flipped, toggleFlip }: Props) => {
