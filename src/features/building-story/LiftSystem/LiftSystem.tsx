@@ -27,7 +27,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     useEffect(() => {
         isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
-    }, [isMoving, stopLift, speed]);
+    }, [isMoving, speed, name, dispatch]);
 
     const handleLiftButtons = (level: LevelCount) => {
         if (level === position) return;

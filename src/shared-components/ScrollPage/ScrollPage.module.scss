@@ -13,7 +13,6 @@ $sidebar-width: min(200px, 20%);
 
 .section {
     width: 100%;
-    // min-height: calc(100vh - $navHeight);
     min-height: 100vh;
     background: $darkMode;
     @include noVisibleScrollBar;
@@ -22,7 +21,7 @@ $sidebar-width: min(200px, 20%);
 .article {
     width: calc(100% - $sidebar-width);
     padding-top: clamp($navHeight, 1vw, 20px);
-    margin-left: auto;
+    margin-left: $sidebar-width;
     height: 100vh;
     overflow: hidden;
     &__default {

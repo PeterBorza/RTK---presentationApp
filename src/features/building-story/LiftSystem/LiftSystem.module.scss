@@ -1,16 +1,23 @@
 $openSpeed: 300ms;
+$container-shadow: 4px 4px 15px rgb(255 255 255 / 0.5), -2px -2px 10px rgb(255 255 255 / 0.6);
+$borderShadow: inset 0px 0px 5px white, inset 0px 0px 5px white;
+$hoverColor: rgb(255 255 255/0.1);
 
 .liftWrapper {
     height: 100%;
     width: 20%;
     opacity: 1;
     pointer-events: none;
-    background-color: rgba(255, 228, 196, 0.419);
+    box-shadow: $borderShadow;
+
     transition: all $openSpeed ease-out;
     overflow: hidden;
     &__show {
         transform: translateX(0%);
         pointer-events: all;
+    }
+    &:hover {
+        background-color: $hoverColor;
     }
 }
 
