@@ -2,24 +2,38 @@
 
 .icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
     outline: 1px solid rgba(0, 0, 0, 0.1);
-    font-size: 1.15rem;
-    padding: 3px;
-    margin: 0 3px;
     border-radius: 50%;
     cursor: pointer;
     flex-shrink: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    background-color: $darkModeWhite;
+    background-color: inherit;
     transition: all 150ms ease 20ms;
 
+    &__small {
+        padding: 3px;
+    }
+    &__medium {
+        padding: 6px;
+        font-size: 1.3rem;
+    }
+    &__large {
+        padding: 9px;
+        font-size: 1.5rem;
+        flex-shrink: 1;
+    }
+    &__xxl {
+        padding: 15px;
+        font-size: 1.8rem;
+        flex-shrink: 1;
+    }
+
     &:hover {
-        transform: scale(1.2);
-        background-color: darken($darkModeWhite, 5%);
-        box-shadow: none;
-        outline: none;
+        background-color: darken($darkModeWhite, 85%);
+        border-radius: 50%;
+        svg {
+            color: lighten($darkModeWhite, 60%);
+        }
     }
 
     &__disabled {

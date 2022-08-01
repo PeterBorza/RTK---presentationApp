@@ -6,23 +6,21 @@ import styles from "./LiftCabin.module.scss";
 
 interface Props {
     data: Lift;
-    speed: number;
+    speed?: number;
+    side: "left" | "right";
     levelCount: LevelCount;
 }
 
-const LiftCabin: React.FC<Props> = ({ data, speed, levelCount }) => {
-    const { name, doorsAreOpen, isMoving, position, blockPosition } = data;
+const LiftCabin: React.FC<Props> = ({ data, speed, side, levelCount }) => {
+    const { name, isMoving, position } = data;
 
     const cabinClasses = classNames(
         styles.cabinWrapper,
         [styles[`cabinWrapper__changePosition-${position}`]],
         [styles[`cabinWrapper__transitionSpeed-${speed}`]],
         [styles[`cabinWrapper__cabinHeight-${levelCount}`]],
-        [styles[`cabinWrapper__${blockPosition}`]],
-        {
-            [styles.closeDoors]: isMoving,
-            [styles.openDoors]: !isMoving || doorsAreOpen,
-        },
+        [styles[`cabinWrapper__${side}`]],
+        isMoving ? styles.closeDoors : styles.openDoors,
     );
 
     return <div className={cabinClasses} data-content={name} />;

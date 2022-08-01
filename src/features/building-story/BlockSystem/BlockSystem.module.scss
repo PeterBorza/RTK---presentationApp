@@ -15,7 +15,7 @@
     width: 14%;
     height: 100%;
     margin: auto;
-    gap: 1px;
-    @include fCenter(column-reverse);
+    display: flex;
+    flex-direction: column-reverse;
     box-shadow: $container-shadow;
 }

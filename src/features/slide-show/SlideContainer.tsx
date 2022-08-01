@@ -1,8 +1,9 @@
 import { SlideShow } from "shared-components";
-import { myImages } from "utils";
+import * as pics from "utils";
 
 const SlideContainer = () => {
-    return <SlideShow slides={myImages} />;
+    const withSameSize = pics.myImages.slice(1, -1);
+    return <SlideShow slides={withSameSize} />;
 };
 
 export default SlideContainer;

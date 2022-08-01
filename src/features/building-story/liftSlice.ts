@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState, LiftState, Lift, LiftName } from "./state";
+import { initialState, LiftState, Lift, LiftName, LevelCount, Direction } from "./state";
+
+export const getDirection = (level: LevelCount, position: number): Direction => {
+    if (level === position) return "static";
+    return level < position ? "down" : "up";
+};
 
 export const liftSlice = createSlice({
     name: "lift",
@@ -9,22 +14,27 @@ export const liftSlice = createSlice({
             const targetLift = lifts.find(l => l.name === payload);
             if (targetLift) {
                 targetLift.isMoving = false;
-                targetLift.doorsAreOpen = false;
                 targetLift.direction = "static";
             }
         },
-        moveLift: ({ lifts }: LiftState, { payload }: PayloadAction<Lift>) => {
-            const { name, position, doorsAreOpen, isMoving, direction } = payload;
+        moveLift: (
+            { lifts }: LiftState,
+            { payload }: PayloadAction<{ level: number; lift: Lift }>,
+        ) => {
+            const { name, position } = payload.lift;
             const lift = lifts.find(l => l.name === name);
+            const level = payload.level;
+
             if (lift) {
-                lift.position = position;
-                lift.doorsAreOpen = doorsAreOpen;
-                lift.direction = direction;
-                lift.isMoving = isMoving;
+                if (level === position) return;
+                lift.position = level;
+                lift.direction = getDirection(level, position);
+                lift.isMoving = true;
             }
         },
-        setLevelNumber: ({ numberOfLevels }: LiftState, { payload }: PayloadAction<number>) => {
-            numberOfLevels = payload;
+        setLevelNumber: (state, { payload }: PayloadAction<number>) => {
+            state.numberOfLevels = payload;
+            state.lifts[1].position = payload - 1;
         },
         setSpeed: ({ speed }: LiftState, { payload }: PayloadAction<number>) => {
             speed = payload;
