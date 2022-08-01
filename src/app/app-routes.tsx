@@ -18,7 +18,7 @@ interface AppRouteType {
     element: React.ReactNode;
     index?: boolean;
     nestedRoutes?: AppRouteType[];
-    isFunctional: boolean;
+    isFunctional?: boolean;
     id: string;
     to?: string;
     label?: string;
@@ -28,13 +28,11 @@ export const appRoutes: AppRouteType = {
     path: LinkUrls.HOME,
     element: <App />,
     id: uuid(),
-    isFunctional: true,
     nestedRoutes: [
         {
             path: "/",
             index: true,
             element: <Home />,
-            isFunctional: true,
             to: LinkUrls.HOME,
             label: Url.HOME,
             id: uuid(),
@@ -48,23 +46,19 @@ export const appRoutes: AppRouteType = {
                 {
                     index: true,
                     element: <UtilityPlatform />,
-                    isFunctional: true,
                     id: uuid(),
                 },
                 {
                     path: Url.GAS,
                     element: <Gas />,
-                    isFunctional: true,
                     id: uuid(),
                 },
                 {
                     path: Url.LIGHT,
                     element: <Light />,
-                    isFunctional: true,
                     id: uuid(),
                 },
             ],
-            isFunctional: true,
             id: uuid(),
         },
         {
@@ -76,23 +70,19 @@ export const appRoutes: AppRouteType = {
                 {
                     index: true,
                     element: <PhotosLandingPage />,
-                    isFunctional: true,
                     id: uuid(),
                 },
                 {
                     path: ":id",
                     element: <Photo />,
-                    isFunctional: true,
                     id: uuid(),
                 },
             ],
-            isFunctional: true,
             id: uuid(),
         },
         {
             path: LinkUrls.SCROLL,
             element: <ScrollPageContainer />,
-            isFunctional: true,
             to: LinkUrls.SCROLL,
             label: Url.SCROLL,
             id: uuid(),
@@ -100,13 +90,19 @@ export const appRoutes: AppRouteType = {
         {
             path: "*",
             element: <ErrorMessage isError={true} message="error in URL" />,
-            isFunctional: true,
             id: uuid(),
         },
     ],
 };
 
-const renderRoutes = ({ id, index, path, element, nestedRoutes, isFunctional }: AppRouteType) =>
+const renderRoutes = ({
+    id,
+    index,
+    path,
+    element,
+    nestedRoutes,
+    isFunctional = true,
+}: AppRouteType) =>
     isFunctional && (
         <Route key={id} path={path} index={index} element={element}>
             {nestedRoutes?.map(renderRoutes)}

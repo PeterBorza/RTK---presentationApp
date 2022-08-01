@@ -2,9 +2,8 @@ import LiftCabin from "./LiftCabin";
 import LiftSystem from "./LiftSystem";
 import BlockSystem from "./BlockSystem";
 import Building from "./Building";
-import Directions from "./Directions";
 
-export { Building, LiftCabin, LiftSystem, BlockSystem, Directions };
+export { Building, LiftCabin, LiftSystem, BlockSystem };
 
 export * from "./liftSlice";
 export * from "./selectors";

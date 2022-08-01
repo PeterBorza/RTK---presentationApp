@@ -1,11 +1,12 @@
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { LevelCount, Lift, Lift as LiftProps } from "../state";
+import { Lift as LiftProps } from "../state";
 import { moveLift, stopLift } from "../liftSlice";
-import { getDirection, levelsSelector, speedState } from "../selectors";
+import { levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
-import Directions from "../Directions";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
@@ -21,6 +22,12 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const dispatch = useDispatch();
     const { direction, isMoving, name, position } = data;
 
+    const directionIcons = {
+        down: <FaArrowDown className={styles.downArrow} />,
+        up: <FaArrowUp className={styles.upArrow} />,
+        static: <ImStop className={styles.static} />,
+    };
+
     const liftWrapper = classNames(styles.liftWrapper, {
         [styles.liftWrapper__show]: showPanel,
     });
@@ -29,36 +36,24 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
         isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
     }, [isMoving, speed, name, dispatch]);
 
-    const handleLiftButtons = (level: LevelCount) => {
-        if (level === position) return;
-        const newLift: Lift = {
-            ...data,
-            isMoving: true,
-            position: level,
-            direction: getDirection(level, position),
-            doorsAreOpen: true,
-        };
-        dispatch(moveLift(newLift));
+    const liftButtonHandler = (level: number) => {
+        dispatch(moveLift({ level, lift: data }));
     };
-
-    const lift_Panel = levels.map(level => (
-        <LiftButton
-            key={`lift-button-${level}`}
-            onClick={() => handleLiftButtons(level)}
-            disabled={isMoving}
-            value={level}
-            selected={level === position}
-            className={styles.panelButtons}
-        />
-    ));
 
     return (
         <div className={liftWrapper}>
-            <div className={styles.panelWrapper}>
-                <div className={styles.panelWrapper__icons}>
-                    <Directions direction={direction} />
-                </div>
-                <div className={styles.panelWrapper__buttons}>{lift_Panel}</div>
+            <div className={styles.liftWrapper__icons}>{directionIcons[direction]}</div>
+            <div className={styles.liftWrapper__buttons}>
+                {levels.map(level => (
+                    <LiftButton
+                        key={`lift-button-${level}`}
+                        onClick={() => liftButtonHandler(level)}
+                        disabled={isMoving}
+                        value={level}
+                        selected={level === position}
+                        className={styles.panelButtons}
+                    />
+                ))}
             </div>
         </div>
     );
