@@ -10,11 +10,10 @@ import {
     initialFormValues,
     UtilityLabels,
     UtilityTableLabels,
-    EditCard,
     UtilityTable,
     TotalPayedInfo,
-    UtilityCard,
     titleStyle,
+    UtilityTableItem,
 } from "../Utilities";
 import {
     deleteUtilityUnit,
@@ -43,27 +42,19 @@ const GasTable: FC = () => {
     }, [isUnits, fetchGasUnits]);
 
     const renderGasTableItems = units.map(unit => {
-        const billIsOut = unit.bill !== "";
         return (
-            <li key={unit.id}>
-                {!unit.edit ? (
-                    <UtilityCard
-                        onClick={() => dispatch(selectCard(unit.id))}
-                        onPayedClick={() => billIsOut && dispatch(togglePayedBill(unit))}
-                        onDelete={() => dispatch(deleteUtilityUnit(unit.id))}
-                        onEdit={() => dispatch(editCard(unit.id))}
-                        unit={unit}
-                        dark={darkMode}
-                    />
-                ) : (
-                    <EditCard
-                        resetEdit={() => dispatch(resetEdit())}
-                        editUnit={(editedUnit: UtilityStateUnit) => dispatch(editUnit(editedUnit))}
-                        units={units}
-                        {...unit}
-                    />
-                )}
-            </li>
+            <UtilityTableItem
+                key={unit.id}
+                unit={unit}
+                units={units}
+                darkMode={darkMode}
+                editCard={() => dispatch(editCard(unit.id))}
+                resetEdit={() => dispatch(resetEdit())}
+                selectCard={() => dispatch(selectCard(unit.id))}
+                deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
+                editUnit={unit => dispatch(editUnit(unit))}
+                togglePayedBill={() => dispatch(togglePayedBill(unit))}
+            />
         );
     });
 
