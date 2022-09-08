@@ -13,9 +13,7 @@ const GameHeader = ({ isFresh, onNewGameClick, title, buttonLabel }: Props) => {
     return (
         <div className="game_header">
             <h1 className="game_header__title">{title}</h1>
-            <div className="game_header__controls">
-                <Button isDisabled={isFresh} value={buttonLabel} onClick={onNewGameClick} />
-            </div>
+            <Button isDisabled={isFresh} value={buttonLabel} onClick={onNewGameClick} />
         </div>
     );
 };

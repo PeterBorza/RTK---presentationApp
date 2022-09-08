@@ -1,7 +1,6 @@
 import React from "react";
 import { IguessGameItem } from "../state";
 
-import classNames from "classnames";
 import { FlipCard } from "shared-components";
 
 type Props = {

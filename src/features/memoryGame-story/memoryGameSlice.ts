@@ -2,19 +2,36 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GameTheme, MemoryGameState } from "./types";
 import { imageData } from "utils";
 import { GamePhotoData } from ".";
-import { shuffledChristmas, shuffledMinions } from "./game-images";
+import {
+    shuffledChristmas,
+    shuffledMinions,
+    minionGameImages,
+    christmasGameImages,
+} from "./game-images";
+import { MemoryGameMessages as msg } from "./messages";
 
-export const gameThemes = {
+export const themeShuffledImages = {
     minions: shuffledMinions,
     christmas: shuffledChristmas,
 };
 
 const initialState: MemoryGameState = {
     photos: imageData,
-    gamePhotos: gameThemes["minions"],
+    gamePhotos: themeShuffledImages["minions"],
     pending: false,
     clickCount: 0,
-    gameThemes: "minions",
+    currentTheme: "minions",
+    maxCount: 26,
+    themes: [
+        {
+            images: minionGameImages,
+            theme: "minions",
+        },
+        {
+            images: christmasGameImages,
+            theme: "christmas",
+        },
+    ],
 };
 
 export const memoryGameSlice = createSlice({
@@ -49,7 +66,7 @@ export const memoryGameSlice = createSlice({
             state.clickCount = initialState.clickCount;
         },
         toggleTheme: (state: MemoryGameState, { payload }: PayloadAction<GameTheme>) => {
-            state.gameThemes = payload;
+            state.currentTheme = payload;
         },
     },
 });

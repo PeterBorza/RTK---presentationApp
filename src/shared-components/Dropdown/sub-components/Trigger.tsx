@@ -14,7 +14,7 @@ const Trigger: React.FC<TriggerProps> = ({ onToggleMenu, isDisabled, label, rese
 
     React.useEffect(() => {
         reset && setTriggerName("");
-    }, [reset]);
+    }, [reset, setTriggerName]);
 
     const toggleMenu = () => {
         onToggleMenu && onToggleMenu();

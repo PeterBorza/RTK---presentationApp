@@ -2,7 +2,6 @@ import React, { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { minionGameImages, christmasGameImages } from "../game-images";
 import { ImageType } from "utils/my-images";
 import { shuffle } from "utils";
 import { useWindowSize } from "hooks";
@@ -11,20 +10,11 @@ import {
     gamePhotosSelector,
     flippedCardsSelector,
     matchCardsSelector,
-    clickCountSelector,
-    gameThemeSelector,
+    memoryGameState,
 } from "../selectors";
 import { darkModeSelector } from "app";
 
-import {
-    GamePhotoData,
-    toggleFlip,
-    setMatch,
-    incrementCount,
-    resetGame,
-    gameThemes,
-    toggleTheme,
-} from "..";
+import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } from "..";
 
 import { Button, FlipCard } from "shared-components";
 import GameEnd from "../GameEnd";
@@ -33,14 +23,11 @@ import Controls from "../Controls";
 import classNames from "classnames";
 import styles from "./Game.module.scss";
 
-const MAX_CLICK_COUNT = 26;
-
 const Game = () => {
     const images = useSelector(gamePhotosSelector);
+    const { currentTheme, maxCount, themes, clickCount: count } = useSelector(memoryGameState);
     const flippedCards = useSelector(flippedCardsSelector);
     const matchCards = useSelector(matchCardsSelector);
-    const theme = useSelector(gameThemeSelector);
-    const count = useSelector(clickCountSelector);
     const darkMode = useSelector(darkModeSelector);
     const { width } = useWindowSize();
     const dispatch = useDispatch();
@@ -59,15 +46,15 @@ const Game = () => {
             [styles.faded]: match,
         });
 
-    const cardFrontClasses = classNames(styles.front, styles[`front__${theme}`]);
-    const containerClasses = classNames(styles.container, styles[`container__${theme}`]);
+    const cardFrontClasses = classNames(styles.front, styles[`front__${currentTheme}`]);
+    const containerClasses = classNames(styles.container, styles[`container__${currentTheme}`]);
 
     const gameHasStarted = flippedCards.length !== 0;
     const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
-        count > MAX_CLICK_COUNT && dispatch(resetGame(gameThemes[theme]));
-    }, [count, dispatch, theme]);
+        count > maxCount && dispatch(resetGame(themes[0].images));
+    }, [count, dispatch, currentTheme]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
@@ -96,39 +83,28 @@ const Game = () => {
         [dispatch],
     );
 
-    const gameButtons = [
-        {
-            onClick: () => {
-                newGameHandler(minionGameImages);
-                dispatch(toggleTheme("minions"));
-            },
-            value: msg.NEW_MINIONS,
-        },
-        {
-            onClick: () => {
-                newGameHandler(christmasGameImages);
-                dispatch(toggleTheme("christmas"));
-            },
-            value: msg.NEW_CHRISTMAS,
-        },
-    ];
-
-    const renderGameButtons = () =>
-        gameButtons.map(button => (
-            <Button key={button.value} {...button} className={styles.buttons} />
+    const gameButtons = () =>
+        themes.map(button => (
+            <Button
+                key={button.theme}
+                onClick={() => {
+                    newGameHandler(button.images);
+                    dispatch(toggleTheme(button.theme));
+                }}
+                value={button.theme}
+                className={styles.buttons}
+            />
         ));
 
     const renderGridTable = useMemo(() => {
-        const backContent = (src: ImageType) => {
-            return (
-                <div className={styles.back}>
-                    <img className={styles.game_image} src={src} alt="" />
-                </div>
-            );
-        };
+        const backContent = (src: ImageType) => (
+            <div className={styles.back}>
+                <img className={styles.game_image} src={src} alt="" />
+            </div>
+        );
 
         const renderImages = ({ id, frontSrc, isFlipped, match }: GamePhotoData, idx: number) => {
-            const checkIfMatchOrFLipped = !match ? isFlipped : match;
+            const checkIfMatchOrFLipped = match || isFlipped;
             return (
                 <div
                     key={`flip-image-${id}`}
@@ -147,21 +123,18 @@ const Game = () => {
         return images.map(renderImages);
     }, [images, cardFrontClasses, flipCardHandler]);
 
+    if (finishedGame)
+        <GameEnd
+            count={count}
+            message={msg.CONGRATS}
+            onClick={() => newGameHandler(themes[0].images)}
+            buttonLabel={msg.NEW_GAME}
+        />;
+
     return (
         <section className={containerClasses}>
-            {!finishedGame ? (
-                <>
-                    <Controls count={count} renderButtons={renderGameButtons} dark={darkMode} />
-                    <div className={gridClasses}>{renderGridTable}</div>
-                </>
-            ) : (
-                <GameEnd
-                    count={count}
-                    message={msg.CONGRATS}
-                    onClick={() => newGameHandler(gameThemes[theme])}
-                    buttonLabel={msg.NEW_GAME}
-                />
-            )}
+            <Controls count={count} renderButtons={gameButtons} dark={darkMode} />
+            <div className={gridClasses}>{renderGridTable}</div>
         </section>
     );
 };

@@ -5,6 +5,7 @@
     position: relative;
     overflow: hidden;
     background: $myYellow3;
+    color: $myGrey;
     border: none;
     outline: none;
     font-weight: bold;
@@ -15,6 +16,7 @@
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     transition: all 120ms ease-out;
     cursor: pointer;
+
     &::after {
         position: absolute;
         content: "";
@@ -26,41 +28,52 @@
         box-shadow: 0 2px 5px 10px rgba(255, 255, 255, 0.5);
         transition: all 200ms ease-in;
     }
+
     &:focus-within {
         outline: none;
         border: none;
     }
+
     &:hover {
         color: $navPrimaryBG;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+
         &::after {
-            transform: translateY(100px);
+            translate: y (100px);
         }
     }
+
     &:active {
-        transform: scale(0.95);
+        scale: 0.95;
     }
+
     &__disabled {
-        .defaultStyle__content {
-            color: rgba(255, 255, 255, 0.411);
+        .defaultStyle {
+            background-color: lighten($myYellow3, 40%);
+
+            &__content {
+                color: rgba(255, 255, 255, 0.6);
+            }
         }
+
         &:hover {
             background: transparent;
             cursor: not-allowed;
         }
-        &:active {
-            transform: none;
-        }
     }
+
     &__width {
         width: 200px;
     }
+
     &__dark {
         background-color: white;
+
         .defaultStyle__content {
             color: skyblue;
         }
     }
+
     &__display {
         display: block;
     }

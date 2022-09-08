@@ -4,8 +4,6 @@ import { UtilityStateUnit } from "features/Utilities";
 import UtilityCard from "./UtilityCard";
 import EditCard from "./EditCard";
 
-type UnitId = string;
-
 export interface UtilityTableItemProps {
     unit: UtilityStateUnit;
     units: UtilityStateUnit[];
