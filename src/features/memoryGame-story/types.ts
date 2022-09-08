@@ -21,10 +21,17 @@ export interface GamePhotoData {
 
 export type GameTheme = "minions" | "christmas";
 
+export type GameThemeType = {
+    images: GamePhotoData[];
+    theme: GameTheme;
+};
+
 export interface MemoryGameState {
     photos: ImageDataType[];
     gamePhotos: GamePhotoData[];
     pending: boolean;
     clickCount: number;
-    gameThemes: GameTheme;
+    currentTheme: GameTheme;
+    maxCount: number;
+    themes: GameThemeType[];
 }

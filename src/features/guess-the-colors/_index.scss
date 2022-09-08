@@ -50,29 +50,25 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
         text-align: center;
         color: $myYellow3;
     }
-    &__controls {
-        display: flex;
-        gap: 5px;
-        padding: 4px;
-        // TODO: replace with shared-component
-        button {
-            padding: 5px 8px;
-            border: none;
-            outline: none;
-            border-radius: 5px;
-            transition: all 150ms ease;
-            box-shadow: $shadow;
-            color: rgb(218, 29, 29);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-weight: bold;
-            &:hover {
-                background-color: darken($bg, 10%);
-                color: white;
-            }
-        }
-    }
+    // TODO: replace with shared-component
+    // button {
+    //     padding: 5px 8px;
+    //     border: none;
+    //     outline: none;
+    //     border-radius: 5px;
+    //     transition: all 150ms ease;
+    //     box-shadow: $shadow;
+    //     color: rgb(218, 29, 29);
+    //     letter-spacing: 2px;
+    //     text-transform: uppercase;
+    //     cursor: pointer;
+    //     font-weight: bold;
+
+    //     &:hover {
+    //         background-color: darken($bg, 10%);
+    //         color: white;
+    //     }
+    // }
 }
 
 .combination {
@@ -91,25 +87,6 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
         height: 60px;
         overflow: hidden;
         margin: 3px;
-
-        // &::after {
-        //     position: absolute;
-        //     content: "";
-        //     inset: 0;
-        //     background-color: rgb(40 64 73/0.7);
-        //     border-radius: 5px;
-        //     transform: translateY(0%);
-        //     transition: transform 800ms cubic-bezier(0.54, 0.23, 1, -0.95);
-        //     transition-delay: 100ms;
-        // }
-
-        // &__revealed {
-        //     &.hidden_combo {
-        //         &::after {
-        //             transform: translateY(100%);
-        //         }
-        //     }
-        // }
     }
 }
 
@@ -205,6 +182,10 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(2px, 1vw, 8px);
     padding: 4px;
+
+    &:hover {
+        cursor: pointer;
+    }
 
     .score_box {
         width: $box-size;

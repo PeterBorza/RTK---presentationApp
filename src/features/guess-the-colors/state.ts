@@ -43,7 +43,10 @@ export interface ErrorMessages {
     identicalColors: string;
 }
 
-export type TooltipType = string;
+export type TooltipType = {
+    valid: string;
+    invalid: string;
+};
 export interface GuessGameDataType {
     colorsToGuess: number;
     colorsToUse: number;
@@ -78,7 +81,7 @@ export const guessGameData: GuessGameDataType = {
     ],
     gameTitle: "Guess the colors game",
     newGame: "New Game",
-    tooltip: "evaluate here when fields are filled",
+    tooltip: { valid: "click to get results", invalid: "You have to fill in all the squares" },
 
     gameLegend: [
         {

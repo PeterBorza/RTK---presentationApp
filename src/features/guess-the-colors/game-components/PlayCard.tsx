@@ -119,7 +119,7 @@ const PlayCard = ({ attempt, gameCombo, isFinished, gameData }: PlayCardType) =>
                 handleResults={handleResults}
                 enabledResults={validCombo() && !results.length}
                 initialValues={resultValues}
-                tooltip={tooltip}
+                tooltip={!validCombo() ? tooltip.invalid : tooltip.valid}
             />
         </div>
     );
