@@ -329,6 +329,39 @@
       "estimate": 59.11,
       "payed": false,
       "edit": false
+    },
+    {
+      "id": "20c9178c-f8d7-4a19-a78f-5fa39fb4d1f4",
+      "readDate": "15/07/2022",
+      "selected": false,
+      "index": "5382",
+      "bill": "62.58",
+      "consumption": 20,
+      "estimate": 59.1,
+      "payed": true,
+      "edit": false
+    },
+    {
+      "id": "dc4977fb-93a7-4ff8-ae69-2e9cdb213b82",
+      "readDate": "16/08/2022",
+      "selected": false,
+      "index": "5405",
+      "bill": "74.78",
+      "consumption": 23,
+      "estimate": 71.97,
+      "payed": true,
+      "edit": false
+    },
+    {
+      "id": "c00c0631-907a-443b-bce2-2c14922c630d",
+      "readDate": "15/09/2022",
+      "selected": false,
+      "index": "5415",
+      "bill": "",
+      "consumption": 10,
+      "estimate": 32.51,
+      "payed": false,
+      "edit": false
     }
   ],
   "light": [
