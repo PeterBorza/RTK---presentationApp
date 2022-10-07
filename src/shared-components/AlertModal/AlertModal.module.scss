@@ -1,8 +1,8 @@
 $animation-speed: 200ms;
 $bg-color: rgb(0 0 0 / 0.5);
+$error-color: rgba(255, 0, 0, 0.8);
 
 @mixin boxSize {
-    width: 500px;
     max-width: 50%;
     height: 20vh;
     max-height: 30%;
@@ -14,7 +14,7 @@ $bg-color: rgb(0 0 0 / 0.5);
     justify-content: center;
 }
 
-@mixin scale-pop-up {
+@mixin scale-pop-up-animation {
     animation: scale-in $animation-speed ease-in-out forwards;
     @keyframes scale-in {
         from {
@@ -53,8 +53,20 @@ $bg-color: rgb(0 0 0 / 0.5);
         background-color: rgb(255 255 255/ 0.9);
         border-radius: 10px;
         box-shadow: 2px 2px 10px rgb(0 0 0 / 0.2);
-        padding: 0.7rem;
         @include centerAll();
-        @include scale-pop-up();
+        @include scale-pop-up-animation();
+    }
+
+    &__text {
+        padding: 1rem;
+    }
+
+    &__builder {
+        padding: 0;
+    }
+
+    &__error_message {
+        color: $error-color;
+        max-width: 100%;
     }
 }

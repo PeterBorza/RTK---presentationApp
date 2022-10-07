@@ -50,25 +50,6 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
         text-align: center;
         color: $myYellow3;
     }
-    // TODO: replace with shared-component
-    // button {
-    //     padding: 5px 8px;
-    //     border: none;
-    //     outline: none;
-    //     border-radius: 5px;
-    //     transition: all 150ms ease;
-    //     box-shadow: $shadow;
-    //     color: rgb(218, 29, 29);
-    //     letter-spacing: 2px;
-    //     text-transform: uppercase;
-    //     cursor: pointer;
-    //     font-weight: bold;
-
-    //     &:hover {
-    //         background-color: darken($bg, 10%);
-    //         color: white;
-    //     }
-    // }
 }
 
 .combination {
@@ -109,11 +90,6 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
     padding: $padding-clamp;
     overflow-y: auto;
     @include noVisibleScrollBar();
-
-    &__error-message {
-        color: rgba(255, 0, 0, 0.8);
-        max-width: 100%;
-    }
 }
 
 .playcard {

@@ -1,3 +1,5 @@
+import { RootState } from "app";
+
 export type UnitId = string;
 
 export interface FormProps {
@@ -21,5 +23,8 @@ export interface UtilityState {
         isLoading: boolean;
         message: string;
     };
-    error: string | null;
+    error: boolean;
+    maxIndex: number;
 }
+
+export const maxIndexSelector = ({ gas }: RootState) => gas.maxIndex;

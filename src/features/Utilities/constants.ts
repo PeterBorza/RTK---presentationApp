@@ -33,6 +33,10 @@ export enum UtilityTableLabels {
     INDEX_ALERT = "Make sure this is the correct index",
 }
 
+export enum UtilitiesLoading {
+    MESSAGE = "Loading, please wait...",
+}
+
 export enum ModeColors {
     DARKMODE_COLOR = "rgba(250, 253, 253, 0.8)", // overall color,also used in my_app.scss
     LIGHTMODE_COLOR = "rgb(40, 64, 73)", // overall color,also used in my_app.scss

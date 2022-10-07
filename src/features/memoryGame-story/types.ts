@@ -19,7 +19,10 @@ export interface GamePhotoData {
     match: boolean;
 }
 
-export type GameTheme = "minions" | "christmas";
+export enum GameTheme {
+    MINIONS = "minions",
+    CHRISTMAS = "christmas",
+}
 
 export type GameThemeType = {
     images: GamePhotoData[];
@@ -29,9 +32,8 @@ export type GameThemeType = {
 export interface MemoryGameState {
     photos: ImageDataType[];
     gamePhotos: GamePhotoData[];
-    pending: boolean;
-    clickCount: number;
-    currentTheme: GameTheme;
+    currentCount: number;
+    currentTheme?: GameTheme;
     maxCount: number;
     themes: GameThemeType[];
 }

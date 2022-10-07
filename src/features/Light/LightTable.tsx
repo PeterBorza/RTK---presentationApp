@@ -1,7 +1,7 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table, Error } from "shared-components";
+import { AlertModal, Table } from "shared-components";
 import {
     UtilityLabels,
     UtilityTableLabels,
@@ -12,9 +12,10 @@ import {
     UtilityTable,
     titleStyle,
     UtilityTableItem,
+    FormProps,
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
-import { selectCard, resetEdit, editCard, resetSelected } from "./lightSlice";
+import { selectCard, resetEdit, editCard, resetSelected, setUtilitiesError } from "./lightSlice";
 import {
     deleteUtilityUnit,
     getAsyncUtility,
@@ -22,7 +23,8 @@ import {
     postUtility,
     editUnit,
 } from "./thunks";
-import { darkModeSelector } from "app";
+import { darkModeSelector, Error } from "app";
+import { useOnClickOutside, useTime } from "hooks";
 
 const LightTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
@@ -30,8 +32,15 @@ const LightTable: FC = () => {
     const darkMode = useSelector(darkModeSelector);
     const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
+    const errorRef = useRef<HTMLDivElement | null>(null);
+
+    useOnClickOutside(errorRef, () => setUtilitiesError(false));
+
+    const timer = useTime("standard");
 
     const isUnits = units.length !== 0;
+
+    const lightFormValues: FormProps = { ...initialFormValues, readDate: timer };
 
     const fetchLightUnits = useCallback(() => {
         dispatch(getAsyncUtility());
@@ -64,12 +73,17 @@ const LightTable: FC = () => {
                 <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
                 <UtilitiesForm
                     postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
-                    formValues={initialFormValues}
+                    formValues={lightFormValues}
                     utilityUnits={units}
                 />
             </UtilityTable.Header>
             <UtilityTable.Body>
-                <Error message={error} isError={!!error} />
+                <AlertModal
+                    ref={errorRef}
+                    openModal={!!error}
+                    message={Error.MESSAGE}
+                    variant="text"
+                />
                 <Table
                     headers={Object.values(UtilityLabels)}
                     onClickOutside={() => dispatch(resetSelected())}

@@ -13,7 +13,7 @@ export const deleteAsyncUtility = async (
             .delete(`${BaseAPI.UTILITIES_URL}/${Url.LIGHT}/${id}`)
             .then(dispatch(deleteUnit(id)));
     } catch {
-        dispatch(setUtilitiesError());
+        dispatch(setUtilitiesError(true));
     } finally {
         dispatch(setUtilitiesPending(false));
     }

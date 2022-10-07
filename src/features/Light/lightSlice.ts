@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Error } from "app/constants";
 import { UtilityStateUnit, UtilityState, UnitId } from "../Utilities";
 
-import { initialState } from "./state";
+import { initialState } from "../Utilities/state";
 
 export const lightSlice = createSlice({
     name: "light",
@@ -45,8 +44,8 @@ export const lightSlice = createSlice({
         setUtilitiesPending: (state: UtilityState, { payload }: PayloadAction<boolean>) => {
             state.loading.isLoading = payload;
         },
-        setUtilitiesError: (state: UtilityState) => {
-            state.error = Error.MESSAGE;
+        setUtilitiesError: (state: UtilityState, { payload }: PayloadAction<boolean>) => {
+            state.error = payload;
         },
     },
 });

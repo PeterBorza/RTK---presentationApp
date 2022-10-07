@@ -1,6 +1,5 @@
 import Loader from "./Loader";
 import Button from "./Button";
-import Error from "./ErrorMessage";
 import SlideText from "./SlideText";
 import SimpleDrop from "./SimpleDrop";
 import DropdownContainer from "./Dropdown";
@@ -20,7 +19,6 @@ import { Form, ModalForm } from "./Form";
 import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
-import FlipBox from "./FlipBox";
 import FlipCard from "./FlipCard";
 import ImageCard from "./ImageCard";
 import LoadingWrapper from "./LoadingWrapper";
@@ -37,7 +35,6 @@ import FloatingImage from "./FloatingImage";
 export {
     Loader,
     Button,
-    Error,
     SlideText,
     SimpleDrop,
     DropdownContainer,
@@ -61,7 +58,6 @@ export {
     AsidePlatform,
     MenuButton,
     ToggleButton,
-    FlipBox,
     FlipCard,
     ImageCard,
     LoadingWrapper,
