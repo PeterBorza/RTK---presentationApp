@@ -2,22 +2,21 @@ import React, { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
-import { ImageType } from "utils/my-images";
 import { shuffle } from "utils";
 import { useWindowSize } from "hooks";
+import { GameTheme, GameThemeType } from "../types";
 
 import {
     gamePhotosSelector,
     flippedCardsSelector,
-    matchCardsSelector,
     memoryGameState,
+    finishedGameSelector,
 } from "../selectors";
 import { darkModeSelector } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } from "..";
 
-import { Button, FlipCard } from "shared-components";
-import GameEnd from "../GameEnd";
+import { AlertModal, Button, ButtonWrapper, FlipCard } from "shared-components";
 import Controls from "../Controls";
 
 import classNames from "classnames";
@@ -25,9 +24,15 @@ import styles from "./Game.module.scss";
 
 const Game = () => {
     const images = useSelector(gamePhotosSelector);
-    const { currentTheme, maxCount, themes, clickCount: count } = useSelector(memoryGameState);
+    const finishedGame = useSelector(finishedGameSelector);
+    const {
+        gamePhotos,
+        currentTheme,
+        maxCount,
+        themes,
+        currentCount: count,
+    } = useSelector(memoryGameState);
     const flippedCards = useSelector(flippedCardsSelector);
-    const matchCards = useSelector(matchCardsSelector);
     const darkMode = useSelector(darkModeSelector);
     const { width } = useWindowSize();
     const dispatch = useDispatch();
@@ -50,17 +55,16 @@ const Game = () => {
     const containerClasses = classNames(styles.container, styles[`container__${currentTheme}`]);
 
     const gameHasStarted = flippedCards.length !== 0;
-    const finishedGame = matchCards.length === images.length;
 
     useEffect(() => {
-        count > maxCount && dispatch(resetGame(themes[0].images));
-    }, [count, dispatch, currentTheme]);
+        count >= maxCount && dispatch(resetGame(gamePhotos));
+    }, [count, dispatch, currentTheme, maxCount, themes]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
             if (gameHasStarted && flippedCards[0].frontSrc.gameId === item.frontSrc.gameId) {
-                dispatch(setMatch({ id: flippedCards[0].id, match: true }));
-                dispatch(setMatch({ id: item.id, match: true }));
+                dispatch(setMatch(flippedCards[0].id));
+                dispatch(setMatch(item.id));
             }
         },
         [gameHasStarted, flippedCards, dispatch],
@@ -76,65 +80,68 @@ const Game = () => {
     );
 
     const newGameHandler = useCallback(
-        (arr: GamePhotoData[]) => {
-            const shuffled = shuffle(arr);
-            dispatch(resetGame(shuffled));
+        (gameTheme: GameTheme) => {
+            const { images, theme } = themes.find(t => t.theme === gameTheme)!;
+            if (theme && images) {
+                const shuffled = shuffle(images);
+                dispatch(resetGame(shuffled));
+                dispatch(toggleTheme(theme));
+            }
         },
         [dispatch],
     );
 
-    const gameButtons = () =>
-        themes.map(button => (
-            <Button
-                key={button.theme}
-                onClick={() => {
-                    newGameHandler(button.images);
-                    dispatch(toggleTheme(button.theme));
-                }}
-                value={button.theme}
-                className={styles.buttons}
-            />
-        ));
+    const gameButton = ({ theme = GameTheme.MINIONS }: Partial<GameThemeType>) => (
+        <Button
+            key={theme}
+            onClick={() => {
+                newGameHandler(theme);
+            }}
+            value={theme}
+            className={styles.buttons}
+        />
+    );
 
     const renderGridTable = useMemo(() => {
-        const backContent = (src: ImageType) => (
-            <div className={styles.back}>
-                <img className={styles.game_image} src={src} alt="" />
-            </div>
-        );
-
         const renderImages = ({ id, frontSrc, isFlipped, match }: GamePhotoData, idx: number) => {
-            const checkIfMatchOrFLipped = match || isFlipped;
             return (
                 <div
                     key={`flip-image-${id}`}
-                    className={cardWrapperClasses(checkIfMatchOrFLipped, match)}
+                    className={cardWrapperClasses(match || isFlipped, match)}
                 >
                     <FlipCard
-                        frontContent={() => <div className={cardFrontClasses} />}
-                        backContent={() => backContent(frontSrc.src)}
-                        darkBack
-                        flipped={checkIfMatchOrFLipped}
+                        flipped={match || isFlipped}
                         toggleFlip={() => flipCardHandler(images[idx])}
-                    />
+                    >
+                        <FlipCard.Front>
+                            <div className={cardFrontClasses} />
+                        </FlipCard.Front>
+                        <FlipCard.Back darkBack>
+                            <div className={styles.back}>
+                                <img className={styles.game_image} src={frontSrc.src} alt="" />
+                            </div>
+                        </FlipCard.Back>
+                    </FlipCard>
                 </div>
             );
         };
         return images.map(renderImages);
     }, [images, cardFrontClasses, flipCardHandler]);
 
-    if (finishedGame)
-        <GameEnd
-            count={count}
-            message={msg.CONGRATS}
-            onClick={() => newGameHandler(themes[0].images)}
-            buttonLabel={msg.NEW_GAME}
-        />;
+    const endMessage = msg.CONGRATS.replace("x", `${count}`);
 
     return (
         <section className={containerClasses}>
-            <Controls count={count} renderButtons={gameButtons} dark={darkMode} />
+            <Controls label={msg.SCORE} count={count} dark={darkMode}>
+                {themes.map(gameButton)}
+            </Controls>
             <div className={gridClasses}>{renderGridTable}</div>
+            <AlertModal openModal={finishedGame}>
+                <div className={styles.finished}>
+                    <h1>{endMessage}</h1>
+                    <ButtonWrapper position="center">{themes.map(gameButton)}</ButtonWrapper>
+                </div>
+            </AlertModal>
         </section>
     );
 };

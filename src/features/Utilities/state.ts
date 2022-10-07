@@ -1,23 +1,20 @@
 import { FormProps, UtilityState, UtilityStateUnit } from "../Utilities";
-import { Pending } from "app/constants";
-import { format } from "date-fns";
-import { DateFormats } from "hooks/useTime";
+import { UtilitiesLoading } from "./constants";
 
 const initialFormValues: FormProps = {
     index: "",
     bill: "",
-    readDate: format(new Date(), DateFormats.STANDARD),
+    readDate: "",
 };
-
-const MAX_UNIT_INDEX_ALLOWED = 300;
 
 const initialState: UtilityState = {
     units: [],
     loading: {
         isLoading: false,
-        message: Pending.MESSAGE,
+        message: UtilitiesLoading.MESSAGE,
     },
-    error: null,
+    error: false,
+    maxIndex: 300,
 };
 
 const initialEditUnit: UtilityStateUnit = {
@@ -30,4 +27,4 @@ const initialEditUnit: UtilityStateUnit = {
     edit: false,
 };
 
-export { MAX_UNIT_INDEX_ALLOWED, initialFormValues, initialState, initialEditUnit };
+export { initialFormValues, initialState, initialEditUnit };

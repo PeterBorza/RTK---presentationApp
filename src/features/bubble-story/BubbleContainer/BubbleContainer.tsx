@@ -12,8 +12,8 @@ import { Url, Pending } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
-import { Loader, Button, Error, ButtonWrapper, LoadingWrapper } from "shared-components";
-import { selectBubble, toggleBubbleFormModal } from "../bubbleSlice";
+import { Loader, Button, ButtonWrapper, LoadingWrapper, AlertModal } from "shared-components";
+import { selectBubble, setError, toggleBubbleFormModal } from "../bubbleSlice";
 import { toggleBubbles } from "app/appSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
@@ -21,13 +21,15 @@ import { ButtonProps } from "shared-components/Button/Button";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
+import { useOnClickOutside } from "hooks";
 
 const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const isFormOpen = useSelector(bubbleModalFormSelector);
     const { bubbles } = useSelector(bubbleState);
     const selected = useSelector(selectedBubble);
     const { isLoading } = useSelector(pendingState);
-    const error = useSelector(errorState);
+    const { message, error } = useSelector(errorState);
+    const errorRef = React.useRef<HTMLDivElement | null>(null);
     const dispatch = useDispatch();
 
     const isBubbles = bubbles.length !== 0;
@@ -35,6 +37,8 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     const wrapper = classNames(styles.container, {
         [styles.container__dark]: dark,
     });
+
+    useOnClickOutside(errorRef, () => dispatch(setError(false)));
 
     const handleBubbleClick = (id: number) => {
         dispatch(selectBubble(id));
@@ -66,21 +70,19 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
         />
     ));
 
-    const renderButtons = () => {
-        return (
-            <span className={styles.buttons}>
-                {getButtons}
-                {isBubbles && (
-                    <BubbleForm
-                        formObject={starterBubble}
-                        isOpen={isFormOpen}
-                        onToggleForm={(open: boolean) => dispatch(toggleBubbleFormModal(open))}
-                        onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
-                    />
-                )}
-            </span>
-        );
-    };
+    const renderButtons = () => (
+        <span className={styles.buttons}>
+            {getButtons}
+            {isBubbles && (
+                <BubbleForm
+                    formObject={starterBubble}
+                    isOpen={isFormOpen}
+                    onToggleForm={(open: boolean) => dispatch(toggleBubbleFormModal(open))}
+                    onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
+                />
+            )}
+        </span>
+    );
 
     const renderBubbles = ({ id, selected, cssProps }: BubbleType) => (
         <Bubble
@@ -96,8 +98,9 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
     return (
         <div className={wrapper}>
             <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
-            <Error message={error.message} isError={error.error} />
-            <ButtonWrapper renderButtons={renderButtons} dark={dark} />
+            <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
+
+            <ButtonWrapper dark={dark}>{renderButtons()}</ButtonWrapper>
             {bubbles.map(renderBubbles)}
         </div>
     );

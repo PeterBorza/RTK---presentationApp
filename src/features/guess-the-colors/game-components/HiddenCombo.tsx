@@ -9,20 +9,17 @@ type Props = {
 };
 
 const HiddenCombo = ({ finishedGame, gameCombo }: Props) => {
-    // const hiddenComboClasses = classNames("hidden_combo", {
-    //     hidden_combo__revealed: finishedGame,
-    // });
     const comboItem = ({ id, color }: IguessGameItem) => {
         return (
             <div className="hidden_combo" key={id}>
-                <FlipCard
-                    frontContent={() => <div key={id} className="front-card" />}
-                    backContent={() => (
+                <FlipCard flipped={finishedGame}>
+                    <FlipCard.Front>
+                        <div key={id} className="front-card" />
+                    </FlipCard.Front>
+                    <FlipCard.Back darkBack>
                         <div key={id} className="back-card" style={{ backgroundColor: color }} />
-                    )}
-                    flipped={finishedGame}
-                    darkBack
-                />
+                    </FlipCard.Back>
+                </FlipCard>
             </div>
         );
     };

@@ -46,9 +46,13 @@ const GameAttempts = ({ gameCombo, gameData }: Props) => {
                 />
             ))}
             {Boolean(errorMessage) && (
-                <AlertModal openModal={Boolean(errorMessage)} ref={errorRef} position="top-right">
-                    <h1 className="attempts_container__error-message">{errorMessage}</h1>
-                </AlertModal>
+                <AlertModal
+                    variant="text"
+                    openModal={Boolean(errorMessage)}
+                    ref={errorRef}
+                    position="top-right"
+                    message={errorMessage}
+                />
             )}
         </div>
     );

@@ -12,7 +12,7 @@ export const getAsyncUtility = createAsyncThunk(
                 .get(`${BaseAPI.UTILITIES_URL}/${Url.LIGHT}`) // ?_limit= 2 get only this amount
                 .then(response => thunkApi.dispatch(getUnits(response.data)));
         } catch (error) {
-            thunkApi.dispatch(setUtilitiesError());
+            thunkApi.dispatch(setUtilitiesError(true));
             console.warn(`This is due to: ${error}`);
         } finally {
             thunkApi.dispatch(setUtilitiesPending(false));

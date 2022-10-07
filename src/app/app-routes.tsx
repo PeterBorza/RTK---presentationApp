@@ -10,8 +10,9 @@ import { UtilityContainer, UtilityPlatform } from "features/Utilities";
 import { Url } from "app";
 import { Gas } from "features/Gas";
 import { Light } from "features/Light";
-import ErrorMessage from "shared-components/ErrorMessage";
 import { v4 as uuid } from "uuid";
+import { AlertModal } from "shared-components";
+import { Error } from "./constants";
 
 interface AppRouteType {
     path?: string;
@@ -89,7 +90,7 @@ export const appRoutes: AppRouteType = {
         },
         {
             path: "*",
-            element: <ErrorMessage isError={true} message="error in URL" />,
+            element: <AlertModal openModal variant="text" message={Error.MESSAGE} />,
             id: uuid(),
         },
     ],

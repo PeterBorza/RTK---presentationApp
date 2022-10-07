@@ -5,8 +5,9 @@ import { v4 as uuid } from "uuid";
 import { TextInput, ModalForm, AlertModal } from "shared-components";
 import { UtilityStateUnit, FormProps, UtilityFormValues } from "../Utilities";
 import { useForm, useOnClickOutside } from "hooks";
-import { MAX_UNIT_INDEX_ALLOWED } from "./state";
 import { UtilityTableLabels } from "./constants";
+import { useSelector } from "react-redux";
+import { maxIndexSelector } from "./types";
 
 type UtilityFormProps = {
     postData: (newUnit: UtilityStateUnit) => void;
@@ -16,6 +17,7 @@ type UtilityFormProps = {
 
 const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
     const modalRef = React.useRef<HTMLDivElement | null>(null);
+    const maxIndex = useSelector(maxIndexSelector);
     const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
 
     useOnClickOutside(modalRef, () => resetValues());
@@ -29,7 +31,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
     const checkIfValid = (input: string) => !isNaN(+input);
 
     const lastUnit = utilityUnits[utilityUnits.length - 1];
-    const highIndex = lastUnit && +values.index > +lastUnit.index + MAX_UNIT_INDEX_ALLOWED;
+    const highIndex = lastUnit && +values.index > +lastUnit.index + maxIndex;
     const lowIndex = lastUnit && +values.index < +lastUnit.index && values.index !== "";
 
     const onSubmitHandler = () => {
@@ -79,20 +81,26 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
         );
     });
 
-    return (
-        <>
-            <ModalForm
-                renderFields={renderInputs}
-                onSubmit={onSubmitHandler}
-                onCancel={resetValues}
-                buttonLabel={buttonLabel}
-                formWidth={formWidth}
-                formTitle={formTitle}
+    if (highIndex) {
+        return (
+            <AlertModal
+                message={UtilityTableLabels.INDEX_ALERT}
+                variant="text"
+                openModal={highIndex}
+                ref={modalRef}
             />
-            <AlertModal openModal={highIndex} ref={modalRef}>
-                <h1>{UtilityTableLabels.INDEX_ALERT}</h1>
-            </AlertModal>
-        </>
+        );
+    }
+
+    return (
+        <ModalForm
+            renderFields={renderInputs}
+            onSubmit={onSubmitHandler}
+            onCancel={resetValues}
+            buttonLabel={buttonLabel}
+            formWidth={formWidth}
+            formTitle={formTitle}
+        />
     );
 };
 

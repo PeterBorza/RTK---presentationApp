@@ -18,7 +18,7 @@ export const toggleAsyncPayed = async (
             })
             .then(dispatch(togglePayed(item.id)));
     } catch {
-        dispatch(setUtilitiesError());
+        dispatch(setUtilitiesError(true));
     } finally {
         dispatch(setUtilitiesPending(false));
     }

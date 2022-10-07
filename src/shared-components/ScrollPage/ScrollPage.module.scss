@@ -24,6 +24,8 @@ $sidebar-width: min(200px, 20%);
     margin-left: $sidebar-width;
     height: 100vh;
     overflow: hidden;
+    display: grid;
+    place-items: center;
     &__default {
         width: 100%;
         height: 100%;

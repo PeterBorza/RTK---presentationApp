@@ -17,7 +17,7 @@ export const postAsyncUtility = async (
     try {
         await instance.request({ data }).then(response => dispatch(addUnit(response.data)));
     } catch {
-        dispatch(setUtilitiesError());
+        dispatch(setUtilitiesError(true));
     } finally {
         dispatch(setUtilitiesPending(false));
     }

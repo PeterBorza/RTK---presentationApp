@@ -15,7 +15,7 @@ export const editAsyncUnit = async (
             dispatch(selectCard(item.id));
         });
     } catch {
-        dispatch(setUtilitiesError());
+        dispatch(setUtilitiesError(true));
     } finally {
         dispatch(setUtilitiesPending(false));
     }

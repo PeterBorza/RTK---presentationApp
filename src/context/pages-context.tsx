@@ -35,7 +35,7 @@ export const PagesContextProvider: React.FC = ({ children }) => {
             content: <ColorGame />,
         },
         {
-            id: "game",
+            id: "memory-game",
             label: "Memory Game",
             content: <Game />,
         },

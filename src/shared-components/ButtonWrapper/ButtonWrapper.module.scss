@@ -20,8 +20,19 @@
 }
 
 .buttonWrapper {
+    width: 100%;
     display: flex;
+    align-items: center;
     &__dark {
         background-color: $darkMode;
+    }
+    &--start {
+        align-items: flex-start;
+    }
+    &--center {
+        justify-content: center;
+    }
+    &--end {
+        justify-content: flex-end;
     }
 }

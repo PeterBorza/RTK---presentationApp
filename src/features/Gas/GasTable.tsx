@@ -1,9 +1,9 @@
-import { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Table, Error } from "shared-components";
+import { AlertModal, Table } from "shared-components";
 import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
-import { selectCard, editCard, resetEdit, resetSelected } from "./gasSlice";
+import { selectCard, editCard, resetEdit, resetSelected, setUtilitiesError } from "./gasSlice";
 import {
     UtilityStateUnit,
     UtilitiesForm,
@@ -14,6 +14,7 @@ import {
     TotalPayedInfo,
     titleStyle,
     UtilityTableItem,
+    FormProps,
 } from "../Utilities";
 import {
     deleteUtilityUnit,
@@ -22,7 +23,8 @@ import {
     postUtility,
     togglePayedBill,
 } from "./thunks";
-import { darkModeSelector } from "app";
+import { darkModeSelector, Error } from "app";
+import { useOnClickOutside, useTime } from "hooks";
 
 const GasTable: FC = () => {
     const { units, loading } = useSelector(utilityState);
@@ -30,8 +32,15 @@ const GasTable: FC = () => {
     const darkMode = useSelector(darkModeSelector);
     const sumOfBills = useSelector(sumOfBillsSelector);
     const dispatch = useDispatch();
+    const errorRef = React.useRef<HTMLDivElement | null>(null);
+
+    useOnClickOutside(errorRef, () => setUtilitiesError(false));
+
+    const timer = useTime("standard");
 
     const isUnits = units.length !== 0;
+
+    const gasFormValues: FormProps = { ...initialFormValues, readDate: timer };
 
     const fetchGasUnits = useCallback(() => {
         dispatch(getAsyncUtility());
@@ -64,12 +73,17 @@ const GasTable: FC = () => {
                 <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
                 <UtilitiesForm
                     postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
-                    formValues={initialFormValues}
+                    formValues={gasFormValues}
                     utilityUnits={units}
                 />
             </UtilityTable.Header>
             <UtilityTable.Body>
-                <Error message={error} isError={!!error} />
+                <AlertModal
+                    ref={errorRef}
+                    openModal={error}
+                    message={Error.MESSAGE}
+                    variant="text"
+                />
                 <Table
                     headers={Object.values(UtilityLabels)}
                     onClickOutside={() => dispatch(resetSelected())}
