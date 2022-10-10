@@ -29,6 +29,15 @@ import min10 from "./images/minion10-clean.png";
 import min11 from "./images/minion11-clean.png";
 import min12 from "./images/minion12.jpg";
 
+import cat from "./images/cat.png";
+import dog from "./images/dog.png";
+import chick from "./images/chick.png";
+import squirrel2 from "./images/squirrel2.png";
+import penguin from "./images/penguin.png";
+import hedgehog from "./images/hedgehog.png";
+import hamsters from "./images/hamsters.png";
+import owl from "./images/owl.png";
+
 import { GamePhotoData } from "../memoryGame-story";
 import { shuffle } from "utils";
 import { ImageType } from "utils/my-images";
@@ -86,11 +95,16 @@ const christmas: ImageType[] = [
     wreath,
 ];
 
+const cuteAnimals = [cat, dog, chick, owl, hedgehog, hamsters, squirrel2, penguin];
+
 const frontMinionImages: GameImage[] = minions.slice(2, 10).map(frontImages);
 export const minionGameImages = getGameImages(frontMinionImages);
 
 const frontChristmasImages: GameImage[] = christmas.slice(0, 8).map(frontImages);
 export const christmasGameImages = getGameImages(frontChristmasImages);
 
+export const cuteAnimalImages = getGameImages(cuteAnimals.map(frontImages));
+
 export const shuffledMinions: GamePhotoData[] = shuffle(minionGameImages);
 export const shuffledChristmas: GamePhotoData[] = shuffle(christmasGameImages);
+export const shuffledCuteAnimals: GamePhotoData[] = shuffle(cuteAnimalImages);

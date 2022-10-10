@@ -7,11 +7,14 @@ import {
     shuffledMinions,
     minionGameImages,
     christmasGameImages,
+    shuffledCuteAnimals,
+    cuteAnimalImages,
 } from "./game-images";
 
 export const themeShuffledImages: { [key: string]: GamePhotoData[] } = {
     [GameTheme.MINIONS]: shuffledMinions,
     [GameTheme.CHRISTMAS]: shuffledChristmas,
+    [GameTheme.CUTE_ANIMALS]: shuffledCuteAnimals,
 };
 
 const initialState: MemoryGameState = {
@@ -28,6 +31,10 @@ const initialState: MemoryGameState = {
         {
             images: christmasGameImages,
             theme: GameTheme.CHRISTMAS,
+        },
+        {
+            images: cuteAnimalImages,
+            theme: GameTheme.CUTE_ANIMALS,
         },
     ],
 };
