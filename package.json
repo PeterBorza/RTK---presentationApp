@@ -30,6 +30,7 @@
         "@types/react": "^17.0.24",
         "@types/react-dom": "^17.0.9",
         "@types/react-router-hash-link": "^2.4.5",
+        "@types/react-redux": "^7.1.24",
         "@types/uuid": "^8.3.1",
         "concurrently": "^7.0.0",
         "react-error-overlay": "^6.0.9",
