@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Lift as LiftProps } from "../state";
+import { Direction, Lift as LiftProps } from "../state";
 import { moveLift, stopLift } from "../liftSlice";
 import { levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
@@ -10,6 +10,7 @@ import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
+import { IconType } from "utils/Icons";
 
 type Props = {
     showPanel?: boolean;
@@ -22,10 +23,10 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const dispatch = useDispatch();
     const { direction, isMoving, name, position } = data;
 
-    const directionIcons = {
-        down: <FaArrowDown className={styles.downArrow} />,
-        up: <FaArrowUp className={styles.upArrow} />,
-        static: <ImStop className={styles.static} />,
+    const directionIcons: { [key: string]: JSX.Element } = {
+        [Direction.DOWN]: <FaArrowDown className={styles.downArrow} />,
+        [Direction.UP]: <FaArrowUp className={styles.upArrow} />,
+        [Direction.STATIC]: <ImStop className={styles.static} />,
     };
 
     const liftWrapper = classNames(styles.liftWrapper, {

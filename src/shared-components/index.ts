@@ -29,6 +29,7 @@ import MyRubik from "./GenericRubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
 import ScrollPage from "./ScrollPage";
+import Scroller from "./Scroller";
 import SlideShow from "./SlideShow";
 import FloatingImage from "./FloatingImage";
 
@@ -66,6 +67,7 @@ export {
     MyRubik,
     Box,
     ScrollPage,
+    Scroller,
     SlideShow,
     FloatingImage,
 };

@@ -24,7 +24,7 @@ import { HiOutlineArrowCircleRight, HiDotsHorizontal } from "react-icons/hi";
 import { GiCancel } from "react-icons/gi";
 import { ImStop } from "react-icons/im";
 
-type IconType = Record<string, JSX.Element>;
+export type IconType = Record<string, JSX.Element>;
 
 export const icons: IconType = {
     check: <FaCheck />,

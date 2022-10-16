@@ -1,4 +1,6 @@
 import { useWindowSize } from "hooks";
+import { Scroller } from "shared-components";
+import { puzzleImages } from "images/folder/image-stack";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
@@ -11,7 +13,11 @@ const Home = () => {
         [styles["container__small"]]: SMALL_SCREEN,
     });
 
-    return <div className={containerClasses}></div>;
+    return (
+        <div className={containerClasses}>
+            <Scroller images={puzzleImages} size="medium" />
+        </div>
+    );
 };
 
 export default Home;
