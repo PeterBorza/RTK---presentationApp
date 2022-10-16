@@ -1,0 +1,51 @@
+@use "css" as *;
+
+.scrollerContainer {
+    overflow: scroll;
+    // background-color: rgba(240, 248, 255, 0.191);
+    background-color: inherit;
+    @include noVisibleScrollBar();
+
+    &--small {
+        width: 200px;
+        // height: 150px;
+        aspect-ratio: 4 / 3;
+    }
+
+    &--medium {
+        width: 500px;
+        // height: 350px;
+        aspect-ratio: 4 / 3;
+    }
+
+    &--large {
+        width: 800px;
+        // height: 600px;
+        aspect-ratio: 4 / 3;
+    }
+
+    &--fit {
+        width: 100%;
+        // height: 600px;
+        aspect-ratio: 4 / 3;
+    }
+}
+
+.photo {
+    max-width: 100%;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.scrollerContent {
+    width: 90%;
+    min-height: 300vh;
+    margin: 0.5rem auto;
+}
+
+.box {
+    width: 100%;
+    height: 15vh;
+    background-color: coral;
+    margin-bottom: 2px;
+}

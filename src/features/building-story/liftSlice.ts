@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState, LiftState, Lift, LiftName, LevelCount, Direction } from "./state";
 
 export const getDirection = (level: LevelCount, position: number): Direction => {
-    if (level === position) return "static";
-    return level < position ? "down" : "up";
+    if (level === position) return Direction.STATIC;
+    return level < position ? Direction.DOWN : Direction.UP;
 };
 
 export const liftSlice = createSlice({
@@ -14,7 +14,7 @@ export const liftSlice = createSlice({
             const targetLift = lifts.find(l => l.name === payload);
             if (targetLift) {
                 targetLift.isMoving = false;
-                targetLift.direction = "static";
+                targetLift.direction = Direction.STATIC;
             }
         },
         moveLift: (

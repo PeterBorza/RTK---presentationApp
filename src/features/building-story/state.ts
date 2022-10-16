@@ -1,4 +1,8 @@
-export type Direction = "up" | "down" | "static";
+export enum Direction {
+    UP = "up",
+    DOWN = "down",
+    STATIC = "static",
+}
 export type LiftName = "A" | "B";
 export type LevelCount = number;
 
@@ -28,7 +32,7 @@ export const initialState: LiftState = {
         ...lift,
         isMoving: false,
         disabled: false,
-        direction: "static",
+        direction: Direction.STATIC,
         distanceFromCall: 0,
     })),
     numberOfLevels: INITIAL_NUMBER_OF_LEVELS,

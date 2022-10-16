@@ -21,7 +21,7 @@ const LiftButton = ({
     disabled,
     value,
     selected,
-    direction = "static",
+    direction = Direction.STATIC,
 }: Props & React.ComponentProps<"button">) => {
     const classes = classNames(styles.buttonStyle, className, {
         [styles.buttonStyle__active]: selected,
