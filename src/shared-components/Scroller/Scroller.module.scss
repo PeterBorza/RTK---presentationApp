@@ -1,51 +1,82 @@
 @use "css" as *;
 
-.scrollerContainer {
-    overflow: scroll;
-    // background-color: rgba(240, 248, 255, 0.191);
-    background-color: inherit;
-    @include noVisibleScrollBar();
+$scrollerBg: rgb(255 255 255 / 0.2);
+$tiny: 150px;
+$small: 200px;
+$medium: 500px;
+$large: 800px;
+$fit: 100%;
+
+.scrollerWrapper {
+    &--tiny {
+        width: $tiny;
+    }
 
     &--small {
-        width: 200px;
-        // height: 150px;
-        aspect-ratio: 4 / 3;
+        width: $small;
     }
 
     &--medium {
-        width: 500px;
-        // height: 350px;
-        aspect-ratio: 4 / 3;
+        width: $medium;
     }
 
     &--large {
-        width: 800px;
-        // height: 600px;
-        aspect-ratio: 4 / 3;
+        width: $large;
     }
 
     &--fit {
-        width: 100%;
-        // height: 600px;
-        aspect-ratio: 4 / 3;
+        width: $fit;
+    }
+}
+
+.scrollerContainer {
+    scroll-behavior: smooth;
+    overflow: scroll;
+    background-color: inherit;
+    @include noVisibleScrollBar();
+    border: 2px solid $scrollerBg;
+    width: 100%;
+    // padding: 0 2rem;
+
+    &__header {
+        background-color: $scrollerBg;
+        display: flex;
+        align-items: center;
+        padding: 1.2rem 2.5rem;
+        h2 {
+            @include truncate();
+        }
     }
 }
 
 .photo {
     max-width: 100%;
-    display: block;
-    margin-bottom: 0.5rem;
+    outline: 1px solid $scrollerBg;
+    outline-offset: 1px;
 }
 
 .scrollerContent {
-    width: 90%;
-    min-height: 300vh;
-    margin: 0.5rem auto;
+    display: flex;
+    padding: 0.5rem 2rem;
+    height: 37vh;
+    gap: 1rem;
+    flex-direction: row;
+
+    &--vertical {
+        flex-direction: column;
+    }
 }
 
-.box {
-    width: 100%;
-    height: 15vh;
-    background-color: coral;
-    margin-bottom: 2px;
+.bulletWrapper {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    @include noVisibleScrollBar();
+    padding: 3px;
+    gap: 2px;
+}
+
+.linkStyle {
+    font-size: 2rem;
+    color: white;
 }

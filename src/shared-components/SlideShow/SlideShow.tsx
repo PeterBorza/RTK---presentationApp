@@ -54,6 +54,7 @@ const SlideShow = ({ slides }: SlideShowType): JSX.Element | null => {
                                 className={classes(idx)}
                                 src={slide}
                                 alt="slide content"
+                                loading="lazy"
                             />
                         ),
                 )}
