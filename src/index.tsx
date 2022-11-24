@@ -10,13 +10,11 @@ import AppRoutes from "./app/app-routes";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <PagesContextProvider>
-                    <AppRoutes />
-                </PagesContextProvider>
-            </Provider>
-        </BrowserRouter>
+        <Provider store={store}>
+            <PagesContextProvider>
+                <AppRoutes />
+            </PagesContextProvider>
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root"),
 );
