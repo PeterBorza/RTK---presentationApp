@@ -53,6 +53,7 @@ const Scroller = ({
             <div className={styles.bulletWrapper}>
                 {createArray(images.length).map((_, index) => (
                     <HashLink
+                        key={`image-${index}`}
                         className={styles.linkStyle}
                         smooth
                         to={`/#pic-${index}`}
