@@ -2,6 +2,7 @@ import { Button, ButtonWrapper } from "..";
 
 import classNames from "classnames";
 import styles from "./Form.module.scss";
+import React from "react";
 
 export interface FormProps {
     onSubmit: (e: React.FormEvent) => void;
@@ -13,8 +14,12 @@ export interface FormProps {
 
 const Form = ({ onSubmit, onCancel, formTitle = "Form", width, renderFields }: FormProps) => {
     const formWrapper = classNames(styles.container, [styles[`${width}`]]);
+    const submitHandler = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        onSubmit(e);
+    };
     return (
-        <form className={formWrapper} onSubmit={onSubmit}>
+        <form className={formWrapper} onSubmit={submitHandler}>
             <h2>{formTitle}</h2>
             <div className={styles.wrapper}>{renderFields}</div>
             <ButtonWrapper>

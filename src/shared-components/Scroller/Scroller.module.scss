@@ -36,7 +36,6 @@ $fit: 100%;
     @include noVisibleScrollBar();
     border: 2px solid $scrollerBg;
     width: 100%;
-    // padding: 0 2rem;
 
     &__header {
         background-color: $scrollerBg;
@@ -58,9 +57,9 @@ $fit: 100%;
 .scrollerContent {
     display: flex;
     padding: 0.5rem 2rem;
-    height: 37vh;
     gap: 1rem;
     flex-direction: row;
+    justify-content: flex-start;
 
     &--vertical {
         flex-direction: column;

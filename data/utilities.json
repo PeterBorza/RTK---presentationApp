@@ -362,6 +362,28 @@
       "estimate": 32.51,
       "payed": false,
       "edit": false
+    },
+    {
+      "id": "1a13ce13-add2-424c-ae6d-77471a9db9ff",
+      "readDate": "16/10/2022",
+      "selected": false,
+      "index": "5435",
+      "bill": "64.91",
+      "consumption": 20,
+      "estimate": 65.68,
+      "payed": false,
+      "edit": false
+    },
+    {
+      "id": "f65c9ca5-f8d7-4347-add4-f1b367131948",
+      "readDate": "19/11/2022",
+      "selected": false,
+      "index": "5469",
+      "bill": "",
+      "consumption": 34,
+      "estimate": 110.35,
+      "payed": false,
+      "edit": false
     }
   ],
   "light": [

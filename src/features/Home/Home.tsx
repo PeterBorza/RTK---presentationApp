@@ -1,9 +1,9 @@
 import { useWindowSize } from "hooks";
 import { Scroller } from "shared-components";
-import { puzzleImages } from "images/folder/image-stack";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
+import { rainPhotos } from "utils";
 
 const Home = () => {
     const { width } = useWindowSize();
@@ -15,7 +15,7 @@ const Home = () => {
 
     return (
         <div className={containerClasses}>
-            <Scroller images={puzzleImages} size="medium" />
+            <Scroller images={rainPhotos} size="medium" />
         </div>
     );
 };
