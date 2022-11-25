@@ -2,6 +2,7 @@ import { TextInput, FadedModal, Form, Button } from "shared-components";
 import { BubbleFormValues } from "./constants";
 import { useForm } from "hooks";
 import { BubbleCssProps } from "./types";
+import React from "react";
 
 type BubbleFormType = {
     formObject: BubbleCssProps;
@@ -19,6 +20,7 @@ const BubbleForm = ({ formObject, isOpen, onToggleForm, onPost }: BubbleFormType
     };
 
     const onSubmitHandler = () => {
+        //TODO errorhandling missing!!!
         const newBubble = {
             left: `${values.left}%`,
             top: `${values.top}%`,

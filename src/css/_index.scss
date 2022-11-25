@@ -14,8 +14,26 @@ html {
     &::-webkit-scrollbar {
         display: none;
     }
+
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+body {
+    a {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    li {
+        list-style: none;
+    }
+
+    button {
+        background: none;
+        border: none;
+        outline: none;
+    }
 }
 
 $navHeight: 50px;
@@ -45,9 +63,11 @@ $darkModeWhite: rgb(250 253 253/0.85);
     position: relative;
     width: $width;
     height: $containerHeight;
+
     &__padding {
         padding-left: $SBsize;
     }
+
     transition: $SBtransition;
 }
 
@@ -93,4 +113,3 @@ $minWidth: 280px;
         }
     }
 }
-

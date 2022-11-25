@@ -1,12 +1,13 @@
-import { liftsState } from "../selectors";
-import { useSelector } from "react-redux";
+import { useLiftRedux } from "../selectors";
 import LiftSystem from "../LiftSystem";
 import BlockSystem from "../BlockSystem";
 
 import styles from "./Building.module.scss";
 
 const Building = () => {
-    const [liftA, liftB] = useSelector(liftsState);
+    const {
+        lifts: [liftA, liftB],
+    } = useLiftRedux();
 
     return (
         <div className={styles.container}>
