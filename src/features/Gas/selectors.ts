@@ -28,3 +28,5 @@ export const selectedGas = createSelector(unitsState, items =>
 export const editedGas = createSelector(unitsState, items =>
     items.filter(unit => unit.edit === true),
 );
+
+//TODO Create useRedux hook to export selectors and dispatch bulk
