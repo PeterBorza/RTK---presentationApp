@@ -17,9 +17,13 @@ import rd4900 from "../images/rd-4-900.jpg";
 import rd5900 from "../images/rd-5-900.jpg";
 import rd6900 from "../images/rd-6-900.jpg";
 
-import { generateId } from ".";
-
 export type ImageType = string | undefined;
+
+export type ImageDataType = {
+    id: string;
+    src: ImageType;
+    caption: string;
+};
 
 export const myImages: ImageType[] = [
     img1,
@@ -35,68 +39,26 @@ export const myImages: ImageType[] = [
     img11,
 ];
 
-export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
-
-export type ImageDataType = {
-    id: string;
-    src: string;
-    caption: string;
+const textForMyImages: { [key: string]: ImageType } = {
+    "Javascript Object": img1,
+    "Javascript operator": img2,
+    String: img3,
+    "HTTP status code": img4,
+    Regex: img5,
+    "Command line": img6,
+    "Javascript DOM": img7,
+    Date: img8,
+    Array: img9,
+    Cron: img10,
+    "Array methods": img11,
 };
 
-export const imageData: ImageDataType[] = [
-    {
-        id: generateId(),
-        src: img1,
-        caption: "Javascript object",
-    },
-    {
-        id: generateId(),
-        src: img2,
-        caption: "Javascript operator",
-    },
-    {
-        id: generateId(),
-        src: img3,
-        caption: "String",
-    },
-    {
-        id: generateId(),
-        src: img4,
-        caption: "HTTP status code",
-    },
-    {
-        id: generateId(),
-        src: img5,
-        caption: "regex",
-    },
-    {
-        id: generateId(),
-        src: img6,
-        caption: "Command line",
-    },
-    {
-        id: generateId(),
-        src: img7,
-        caption: "Javascript DOM",
-    },
-    {
-        id: generateId(),
-        src: img8,
-        caption: "Date",
-    },
-    {
-        id: generateId(),
-        src: img9,
-        caption: "Array",
-    },
-    {
-        id: generateId(),
-        src: img10,
-        caption: "Cron",
-    },
-    {
-        id: generateId(),
-        src: img11,
-        caption: "Array methods",
-    },
-];
+export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
+
+export const imageData = Object.entries(textForMyImages).map(([key, value]) => {
+    return {
+        id: key,
+        src: value,
+        caption: key,
+    } as unknown as ImageDataType;
+});

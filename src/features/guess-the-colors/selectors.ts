@@ -37,5 +37,7 @@ export const perfectMatchSelector = createSelector(playerResults, results =>
 );
 
 export const emptyAttemptSelector = createSelector(playerComboSelector, playerComboes => {
-    return playerComboes.every(combo => combo.every(c => c.color === invalidColor));
+    const allComboes = playerComboes.flatMap(combo => combo);
+    const isCleanGame = allComboes.every(cmb => cmb.color === invalidColor);
+    return isCleanGame;
 });

@@ -1,13 +1,15 @@
 @use "css/mixins" as *;
 
-$minWidth: 280px;
+$minWidth: 600px;
 $backColor: rgb(9, 77, 9);
+
+//TODO fix buttons overflow the control wrapper small screen
 
 .controls {
     @include fBetween;
     @include shadow3;
     background-color: rgba(255, 255, 255, 0.4);
-    min-width: $minWidth;
+    // width: $minWidth;
     width: 50%;
     padding: 0.3rem 1rem;
     transition: all 100ms;

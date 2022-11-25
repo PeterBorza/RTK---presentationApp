@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { photoSelector } from "..";
 import { togglePhotos } from "app/appSlice";
 import { photosOpenSelector } from "app/selectors";
@@ -21,24 +21,17 @@ const Photos = () => {
 
     const sideBarContent = () => <div className={styles.linkWrapper}>{renderLinks}</div>;
 
-    const openMenu = () => {
-        dispatch(togglePhotos(true));
-    };
-    const closeMenu = () => {
-        dispatch(togglePhotos(false));
-    };
-
     return (
         <AsidePlatform
             isOpen={openSideBar}
-            onClose={closeMenu}
+            onClose={() => dispatch(togglePhotos(false))}
             label={messages.HEADER_LABEL}
             renderSideBar={sideBarContent}
         >
             <div className={styles.container}>
                 <Button
                     className={styles.menuButton}
-                    onClick={openMenu}
+                    onClick={() => dispatch(togglePhotos(true))}
                     value={messages.MENU}
                     displayed={!openSideBar}
                 />

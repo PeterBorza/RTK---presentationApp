@@ -6,11 +6,9 @@ import classNames from "classnames";
 import { createArray } from "utils";
 import { HashLink } from "react-router-hash-link";
 
-export type ScrollerSizeType = "tiny" | "small" | "medium" | "large" | "fit";
-
 export interface ScrollerType {
     images: ImageType[];
-    size?: ScrollerSizeType;
+    size?: "tiny" | "small" | "medium" | "large" | "fit";
     scrollerTitle?: string;
     vertical?: boolean;
 }
@@ -53,7 +51,7 @@ const Scroller = ({
             <div className={styles.bulletWrapper}>
                 {createArray(images.length).map((_, index) => (
                     <HashLink
-                        key={`image-${index}`}
+                        key={`scroll-img-${index}`}
                         className={styles.linkStyle}
                         smooth
                         to={`/#pic-${index}`}

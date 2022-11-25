@@ -10,7 +10,7 @@ export interface DropContainerProps {
     position?: DropdownPositionType;
     toggleDisableTrigger?: boolean;
     label?: DropLabelType;
-    reset?: boolean;
+    reset: boolean;
 }
 
 const DropdownContainer: React.FC<DropContainerProps> = ({

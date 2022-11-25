@@ -7,6 +7,8 @@ import rd4900 from "shared-components/Rubik/rubik-images/rd-4-900.jpg";
 
 import styles from "./PhotosLandingPage.module.scss";
 
+//TODO organize into object and import rainPhotos
+
 const PhotosLandingPage = () => {
     return (
         <div className={styles.container}>

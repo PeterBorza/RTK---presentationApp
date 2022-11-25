@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
 import { shuffle } from "utils";
@@ -12,7 +12,7 @@ import {
     memoryGameState,
     finishedGameSelector,
 } from "../selectors";
-import { darkModeSelector } from "app";
+import { useAppRedux } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } from "..";
 
@@ -23,6 +23,7 @@ import classNames from "classnames";
 import styles from "./Game.module.scss";
 
 const Game = () => {
+    const { isDarkMode, dispatch } = useAppRedux();
     const images = useSelector(gamePhotosSelector);
     const finishedGame = useSelector(finishedGameSelector);
     const {
@@ -33,16 +34,14 @@ const Game = () => {
         currentCount: count,
     } = useSelector(memoryGameState);
     const flippedCards = useSelector(flippedCardsSelector);
-    const darkMode = useSelector(darkModeSelector);
     const { width } = useWindowSize();
-    const dispatch = useDispatch();
 
     const SMALL_PORTRAIT_SCREEN = width < 400;
     const SMALL_LANDSCAPE_SCREEN = width < 800 && width > 400;
 
     const gridClasses = classNames(styles.grid, {
-        [styles["grid__portrait"]]: SMALL_PORTRAIT_SCREEN,
-        [styles["grid__landscape"]]: SMALL_LANDSCAPE_SCREEN,
+        [styles.grid__portrait]: SMALL_PORTRAIT_SCREEN,
+        [styles.grid__landscape]: SMALL_LANDSCAPE_SCREEN,
     });
 
     const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
@@ -132,7 +131,7 @@ const Game = () => {
 
     return (
         <section className={containerClasses}>
-            <Controls label={msg.SCORE} count={count} dark={darkMode}>
+            <Controls label={msg.SCORE} count={count} dark={isDarkMode}>
                 {themes.map(gameButton)}
             </Controls>
             <div className={gridClasses}>{renderGridTable}</div>

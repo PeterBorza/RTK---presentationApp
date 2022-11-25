@@ -3,13 +3,6 @@ import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import classNames from "classnames";
 import styles from "./InputCard.module.scss";
 
-export enum InputSize {
-    SMALL = "small",
-    MEDIUM = "medium",
-    LARGE = "large",
-    XXL = "xxl",
-}
-
 export interface InputCardType {
     onClick?: () => void;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,7 +11,7 @@ export interface InputCardType {
     isButton?: boolean;
     name: string;
     value: string;
-    size?: InputSize;
+    size?: "small" | "medium" | "large" | "xxl";
 }
 
 const InputCard = ({
@@ -29,7 +22,7 @@ const InputCard = ({
     isButton = false,
     name,
     value,
-    size = InputSize.MEDIUM,
+    size = "medium",
 }: InputCardType) => {
     const inputWrapper = classNames(styles["input-wrapper"], [styles[`input-wrapper__${size}`]], {
         [styles["dark-mode"]]: isDark,

@@ -123,6 +123,7 @@ $front-background: rgba(255, 255, 525, 0.6);
     color: white;
     text-transform: uppercase;
     background-color: $backColor;
+    @include truncate();
     &:hover {
         color: red;
         background-color: lighten($backColor, 5%);

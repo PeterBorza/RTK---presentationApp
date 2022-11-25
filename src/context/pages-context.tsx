@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { useSelector } from "react-redux";
 
 import { Game } from "features/memoryGame-story";
 import city900 from "images/city900.jpg";
@@ -11,12 +10,12 @@ import BubbleContainer from "features/bubble-story/BubbleContainer";
 import ImageBox from "features/image-box";
 import { Building } from "features/building-story";
 import SlideContainer from "features/slide-show/SlideContainer";
-import { darkModeSelector } from "app";
+import { useAppRedux } from "app";
 
 export const PagesContext = createContext<PagesType<JSX.Element>[] | null>(null);
 
 export const PagesContextProvider: React.FC = ({ children }) => {
-    const darkMode = useSelector(darkModeSelector);
+    const { isDarkMode } = useAppRedux();
 
     const myPages: PagesType<JSX.Element>[] = [
         {
@@ -42,7 +41,7 @@ export const PagesContextProvider: React.FC = ({ children }) => {
         {
             id: "bubbles",
             label: "Bubbles",
-            content: <BubbleContainer dark={darkMode} />,
+            content: <BubbleContainer dark={isDarkMode} />,
         },
         {
             id: "lift",

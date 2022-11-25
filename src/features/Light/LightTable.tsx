@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { AlertModal, Table } from "shared-components";
 import {
@@ -23,15 +23,14 @@ import {
     postUtility,
     editUnit,
 } from "./thunks";
-import { darkModeSelector, Error } from "app";
+import { useAppRedux, Error } from "app";
 import { useOnClickOutside, useTime } from "hooks";
 
 const LightTable: FC = () => {
+    const { isDarkMode, dispatch } = useAppRedux();
     const { units, loading } = useSelector(utilityState);
     const error = useSelector(errorLightState);
-    const darkMode = useSelector(darkModeSelector);
     const sumOfBills = useSelector(sumOfBillsSelector);
-    const dispatch = useDispatch();
     const errorRef = useRef<HTMLDivElement | null>(null);
 
     useOnClickOutside(errorRef, () => setUtilitiesError(false));
@@ -56,7 +55,7 @@ const LightTable: FC = () => {
                 key={unit.id}
                 unit={unit}
                 units={units}
-                darkMode={darkMode}
+                darkMode={isDarkMode}
                 editCard={() => dispatch(editCard(unit.id))}
                 resetEdit={() => dispatch(resetEdit())}
                 selectCard={() => dispatch(selectCard(unit.id))}
@@ -68,9 +67,9 @@ const LightTable: FC = () => {
     });
 
     return (
-        <UtilityTable dark={darkMode}>
+        <UtilityTable dark={isDarkMode}>
             <UtilityTable.Header>
-                <h1 style={titleStyle(darkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
+                <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
                 <UtilitiesForm
                     postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
                     formValues={lightFormValues}
@@ -93,7 +92,7 @@ const LightTable: FC = () => {
                 </Table>
             </UtilityTable.Body>
             <UtilityTable.Footer>
-                <TotalPayedInfo sumOfBills={sumOfBills} dark={darkMode} />
+                <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />
             </UtilityTable.Footer>
         </UtilityTable>
     );

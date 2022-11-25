@@ -72,6 +72,6 @@ export default () => {
         <RouterProvider
             router={router}
             fallbackElement={<LoadingWrapper loading={false} loadingMessage="boom" />}
-        ></RouterProvider>
+        />
     );
 };
