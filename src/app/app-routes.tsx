@@ -66,7 +66,7 @@ export const appRoutes: RouteObject[] = [
     },
 ];
 
-export default () => {
+export default function () {
     const router = createBrowserRouter(appRoutes);
     return (
         <RouterProvider
@@ -74,4 +74,4 @@ export default () => {
             fallbackElement={<LoadingWrapper loading={false} loadingMessage="boom" />}
         />
     );
-};
+}

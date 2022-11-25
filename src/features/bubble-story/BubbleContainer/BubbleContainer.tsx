@@ -1,20 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    bubbleModalFormSelector,
-    bubbleState,
-    errorState,
-    pendingState,
-    selectedBubble,
-} from "../selectors";
+import { useBubbleRedux } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
 import { Url, Pending } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
 import { Loader, Button, ButtonWrapper, LoadingWrapper, AlertModal } from "shared-components";
-import { selectBubble, setError, toggleBubbleFormModal } from "../bubbleSlice";
-import { toggleBubbles } from "app/appSlice";
+import { setError, setSelectedBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
 import { ButtonProps } from "shared-components/Button/Button";
@@ -24,13 +16,15 @@ import styles from "./BubbleContainer.module.scss";
 import { useOnClickOutside } from "hooks";
 
 const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
-    const isFormOpen = useSelector(bubbleModalFormSelector);
-    const { bubbles } = useSelector(bubbleState);
-    const selected = useSelector(selectedBubble);
-    const { isLoading } = useSelector(pendingState);
-    const { message, error } = useSelector(errorState);
+    const {
+        bubbles: { bubbles },
+        selectedBubble: selected,
+        pendingBubbles: { isLoading },
+        bubbleError: { message, error },
+        isBubbleFormModalOpen,
+        dispatch,
+    } = useBubbleRedux();
     const errorRef = React.useRef<HTMLDivElement | null>(null);
-    const dispatch = useDispatch();
 
     const isBubbles = bubbles.length !== 0;
 
@@ -40,14 +34,9 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
 
     useOnClickOutside(errorRef, () => dispatch(setError(false)));
 
-    const handleBubbleClick = (id: number) => {
-        dispatch(selectBubble(id));
-        dispatch(toggleBubbles(true));
-    };
-
     const buttons: ButtonProps[] = [
         {
-            onClick: () => !isBubbles && dispatch(getBubbles(Url.BUBBLES)),
+            onClick: () => dispatch(getBubbles(Url.BUBBLES)),
             value: isLoading ? <Loader dots={5} /> : msg.FETCH,
             isDisabled: isBubbles,
             displayed: !isBubbles,
@@ -76,7 +65,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
             {isBubbles && (
                 <BubbleForm
                     formObject={starterBubble}
-                    isOpen={isFormOpen}
+                    isOpen={isBubbleFormModalOpen}
                     onToggleForm={(open: boolean) => dispatch(toggleBubbleFormModal(open))}
                     onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
                 />
@@ -84,12 +73,12 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
         </span>
     );
 
-    const renderBubbles = ({ id, selected, cssProps }: BubbleType) => (
+    const renderBubbles = ({ id, cssProps }: BubbleType) => (
         <Bubble
             key={id}
-            onClick={() => handleBubbleClick(id)}
+            onClick={() => dispatch(setSelectedBubble({ id, cssProps }))}
             title={msg.HOVER_TITLE}
-            selected={selected}
+            isSelected={selected?.id === id}
             cssProps={cssProps}
             id={id}
         />

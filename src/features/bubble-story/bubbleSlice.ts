@@ -6,11 +6,8 @@ export const bubbleSlice = createSlice({
     name: "bubbles",
     initialState,
     reducers: {
-        selectBubble: ({ bubbles }: BubbleState, { payload }: PayloadAction<number>) => {
-            bubbles.map(bub => (bub.selected = bub.id === payload ? true : false));
-        },
-        resetSelectedBubble: ({ bubbles }: BubbleState) => {
-            bubbles.map(bub => (bub.selected = false));
+        resetSelectedBubble: (state: BubbleState) => {
+            state.selectedBubble = null;
         },
         addBubble: ({ bubbles }: BubbleState, { payload }: PayloadAction<Bubble>) => {
             bubbles.push(payload);
@@ -31,11 +28,13 @@ export const bubbleSlice = createSlice({
             const idx = bubbles.findIndex(bub => bub.id === payload);
             bubbles.splice(idx, 1);
         },
+        setSelectedBubble: (state: BubbleState, { payload }: PayloadAction<Bubble>) => {
+            state.selectedBubble = payload;
+        },
     },
 });
 
 export const {
-    selectBubble,
     resetSelectedBubble,
     setBubbles,
     setPending,
@@ -43,6 +42,7 @@ export const {
     deleteBub,
     addBubble,
     toggleBubbleFormModal,
+    setSelectedBubble,
 } = bubbleSlice.actions;
 
 export default bubbleSlice.reducer;

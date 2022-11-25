@@ -42,7 +42,6 @@ const handlePostBubble = async (
     const maxIndex: number = Math.max(...ids);
     const newBubble: Bubble = {
         id: maxIndex + 1,
-        selected: false,
         cssProps: data,
     };
     try {
