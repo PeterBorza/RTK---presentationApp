@@ -1,17 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet, useParams } from "react-router-dom";
-import { photoSelector } from "..";
+import { Link, Outlet } from "react-router-dom";
 import { togglePhotos } from "app/appSlice";
-import { photosOpenSelector } from "app/selectors";
+import { useAppRedux } from "app";
 import { AsidePlatform, Button } from "shared-components";
 import { MemoryGameMessages as messages } from "../messages";
 
 import styles from "./Photos.module.scss";
+import { useMGameRedux } from "../selectors";
 
 const Photos = () => {
-    const dispatch = useDispatch();
-    const photos = useSelector(photoSelector);
-    const openSideBar = useSelector(photosOpenSelector);
+    const { photos, dispatch } = useMGameRedux();
+    const { isPhotosOpen: openSideBar } = useAppRedux();
 
     const renderLinks = photos.map(photo => (
         <Link className={styles.links} key={photo.id} to={photo.id}>

@@ -24,3 +24,5 @@ export const sumOfBillsSelector = createSelector(billsSelector, items =>
 export const selectedLight = createSelector(unitsState, items =>
     items.find(unit => unit.selected === true),
 );
+
+//TODO Create useRedux hook to export selectors and dispatch bulk

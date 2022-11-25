@@ -1,17 +1,11 @@
 import React, { useCallback, useMemo, useEffect } from "react";
-import { useSelector } from "react-redux";
 
 import { MemoryGameMessages as msg } from "../messages";
 import { shuffle } from "utils";
 import { useWindowSize } from "hooks";
 import { GameTheme, GameThemeType } from "../types";
 
-import {
-    gamePhotosSelector,
-    flippedCardsSelector,
-    memoryGameState,
-    finishedGameSelector,
-} from "../selectors";
+import { useMGameRedux } from "../selectors";
 import { useAppRedux } from "app";
 
 import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } from "..";
@@ -24,16 +18,11 @@ import styles from "./Game.module.scss";
 
 const Game = () => {
     const { isDarkMode, dispatch } = useAppRedux();
-    const images = useSelector(gamePhotosSelector);
-    const finishedGame = useSelector(finishedGameSelector);
     const {
-        gamePhotos,
-        currentTheme,
-        maxCount,
-        themes,
-        currentCount: count,
-    } = useSelector(memoryGameState);
-    const flippedCards = useSelector(flippedCardsSelector);
+        memoryGame: { gamePhotos, currentTheme, maxCount, themes, currentCount: count },
+        flippedCards,
+        isGameFinished,
+    } = useMGameRedux();
     const { width } = useWindowSize();
 
     const SMALL_PORTRAIT_SCREEN = width < 400;
@@ -110,7 +99,7 @@ const Game = () => {
                 >
                     <FlipCard
                         flipped={match || isFlipped}
-                        toggleFlip={() => flipCardHandler(images[idx])}
+                        toggleFlip={() => flipCardHandler(gamePhotos[idx])}
                     >
                         <FlipCard.Front>
                             <div className={cardFrontClasses} />
@@ -124,8 +113,8 @@ const Game = () => {
                 </div>
             );
         };
-        return images.map(renderImages);
-    }, [images, cardFrontClasses, flipCardHandler]);
+        return gamePhotos.map(renderImages);
+    }, [gamePhotos, cardFrontClasses, flipCardHandler]);
 
     const endMessage = msg.CONGRATS.replace("x", `${count}`);
 
@@ -135,7 +124,7 @@ const Game = () => {
                 {themes.map(gameButton)}
             </Controls>
             <div className={gridClasses}>{renderGridTable}</div>
-            <AlertModal openModal={finishedGame}>
+            <AlertModal openModal={isGameFinished}>
                 <div className={styles.finished}>
                     <h1>{endMessage}</h1>
                     <ButtonWrapper position="center">{themes.map(gameButton)}</ButtonWrapper>

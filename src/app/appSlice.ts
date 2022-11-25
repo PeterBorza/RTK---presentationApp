@@ -14,6 +14,7 @@ export const initialState: AppStateInterface = {
     utilsOpen: false,
     photosOpen: false,
     darkMode: false,
+    //TODO extract darkMode to separate context on router outlet prop in App.tsx
 };
 
 export const appSlice = createSlice({

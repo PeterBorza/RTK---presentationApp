@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { photoSelector } from "..";
+import { useMGameRedux } from "../selectors";
 
 import styles from "./Photos.module.scss";
 
 const Photo = () => {
+    const { photos } = useMGameRedux();
     const { id } = useParams();
-    const photos = useSelector(photoSelector);
 
     const image = photos.find(img => img.id === id);
 
