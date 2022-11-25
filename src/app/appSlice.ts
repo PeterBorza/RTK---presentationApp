@@ -20,45 +20,25 @@ export const appSlice = createSlice({
     name: "app",
     initialState,
     reducers: {
-        toggleBuilding: (
-            state: AppStateInterface,
-            { payload }: PayloadAction<boolean>
-        ) => {
+        toggleBuilding: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
             state.liftOpen = payload;
         },
-        togglePhotos: (
-            state: AppStateInterface,
-            { payload }: PayloadAction<boolean>
-        ) => {
+        togglePhotos: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
             state.photosOpen = payload;
         },
-        toggleUtils: (
-            state: AppStateInterface,
-            { payload }: PayloadAction<boolean>
-        ) => {
+        toggleUtils: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
             state.utilsOpen = payload;
         },
-        toggleBubbles: (
-            state: AppStateInterface,
-            { payload }: PayloadAction<boolean>
-        ) => {
+        toggleBubbles: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
             state.bubblesOpen = payload;
         },
-        toggleDarkMode: (
-            state: AppStateInterface,
-            { payload }: PayloadAction<boolean>
-        ) => {
+        toggleDarkMode: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
             state.darkMode = payload;
         },
     },
 });
 
-export const {
-    toggleBuilding,
-    togglePhotos,
-    toggleUtils,
-    toggleBubbles,
-    toggleDarkMode,
-} = appSlice.actions;
+export const { toggleBuilding, togglePhotos, toggleUtils, toggleBubbles, toggleDarkMode } =
+    appSlice.actions;
 
 export default appSlice.reducer;

@@ -9,11 +9,13 @@ export type ButtonProps = {
     isDisabled?: boolean;
     dark?: boolean;
     displayed?: boolean;
-} & Pick<ComponentProps<"button">, "type" | "onClick">;
+    type?: "button" | "submit" | "reset";
+    onClick?: () => void;
+};
 
 const Button = ({
     value = "Click",
-    type = "button",
+    type,
     className,
     onClick,
     isDisabled,
@@ -23,10 +25,12 @@ const Button = ({
     const classes = classNames(styles.defaultStyle, className, {
         [styles.defaultStyle__disabled]: isDisabled,
         [styles.defaultStyle__dark]: dark,
-        [styles.defaultStyle__display]: displayed,
+        [styles.defaultStyle__hidden]: !displayed,
+        [styles.submitButton]: type === "submit",
+        [styles.cancelButton]: value === "Cancel",
     });
     return (
-        <button className={classes} type={type} onClick={onClick} disabled={isDisabled}>
+        <button className={classes} type={type ?? "button"} onClick={onClick} disabled={isDisabled}>
             <span className={styles.defaultStyle__content}>{value}</span>
         </button>
     );

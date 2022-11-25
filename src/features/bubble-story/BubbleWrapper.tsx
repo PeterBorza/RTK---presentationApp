@@ -1,28 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectedBubble } from "./selectors";
 import { BubbleMessages as msg } from "./constants";
 import { SelectedBubble } from ".";
 import { AsidePlatform } from "shared-components";
 import { toggleBubbles } from "app/appSlice";
-import { bubblesOpenSelector, darkModeSelector } from "app/selectors";
+import { useAppRedux } from "app";
 import BubbleContainer from "./BubbleContainer";
 
 const BubbleWrapper = () => {
-    const openSideBar = useSelector(bubblesOpenSelector);
-    const darkMode = useSelector(darkModeSelector);
+    const { isBubblesOpen, isDarkMode, dispatch } = useAppRedux();
     const selected = useSelector(selectedBubble);
-    const dispatch = useDispatch();
 
     return (
         <AsidePlatform
-            isOpen={openSideBar}
+            isOpen={isBubblesOpen}
             onClose={() => dispatch(toggleBubbles(false))}
             label={msg.TITLE}
             renderSideBar={() => (
                 <SelectedBubble selectedBubble={selected} isSelected={!!selected} />
             )}
         >
-            <BubbleContainer dark={darkMode} />
+            <BubbleContainer dark={isDarkMode} />
         </AsidePlatform>
     );
 };

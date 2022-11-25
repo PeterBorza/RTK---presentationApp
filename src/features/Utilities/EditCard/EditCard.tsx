@@ -5,7 +5,6 @@ import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "hooks";
 
 import EditCell from "./EditCell";
-import { InputSize } from "shared-components/InputCard/InputCard";
 import { icons } from "utils";
 
 import styles from "./EditCard.module.scss";
@@ -60,7 +59,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
         <form className={styles.wrapper} onSubmit={onSubmitHandler}>
             <EditCell>
                 <InputCard
-                    size={InputSize.SMALL}
+                    size="small"
                     onChange={changeHandler}
                     name="readDate"
                     value={values.readDate}
@@ -68,7 +67,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
             </EditCell>
             <EditCell>
                 <InputCard
-                    size={InputSize.SMALL}
+                    size="small"
                     onChange={changeHandler}
                     name="index"
                     value={values.index}
@@ -81,12 +80,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
                 <p>{estimate}</p>
             </EditCell>
             <EditCell>
-                <InputCard
-                    size={InputSize.SMALL}
-                    onChange={changeHandler}
-                    name="bill"
-                    value={values.bill}
-                />
+                <InputCard size="small" onChange={changeHandler} name="bill" value={values.bill} />
             </EditCell>
             <EditCell>
                 <button type="submit" className={styles.submitEditButton}>

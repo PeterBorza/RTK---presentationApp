@@ -1,17 +1,10 @@
 import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { NavBar, ToggleButton } from "shared-components";
 import { LinkContext } from "context";
 import { useWindowSize } from "hooks";
-import {
-    utilsOpenSelector,
-    darkModeSelector,
-    photosOpenSelector,
-    toggleDarkMode,
-    OpenMenu,
-} from "app";
+import { toggleDarkMode, OpenMenu, useAppRedux } from "app";
 import { IProviderProps } from "context/link-context";
 import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
 
@@ -22,11 +15,8 @@ const { links: styleLinks, active, nav__dropdown } = styles;
 
 const Navigation = () => {
     const links = useContext(LinkContext);
-    const utilsOpen = useSelector(utilsOpenSelector);
-    const photosOpen = useSelector(photosOpenSelector);
-    const darkMode = useSelector(darkModeSelector);
+    const { isUtilsOpen, isPhotosOpen, isDarkMode, dispatch } = useAppRedux();
     const { width } = useWindowSize();
-    const dispatch = useDispatch();
 
     const SMALL_SCREEN = width < 600;
 
@@ -36,7 +26,7 @@ const Navigation = () => {
         });
 
     const containerClasses = classNames(styles.nav, {
-        [styles["nav__sidebar-closed"]]: !utilsOpen || !photosOpen,
+        [styles["nav__sidebar-closed"]]: !isUtilsOpen || !isPhotosOpen,
     });
 
     const renderMenuItems = links?.map(item => (
@@ -64,14 +54,14 @@ const Navigation = () => {
                     <>
                         {renderMenuItems}
                         <ToggleButton
-                            selected={darkMode}
-                            toggleSelected={() => dispatch(toggleDarkMode(!darkMode))}
+                            selected={isDarkMode}
+                            toggleSelected={() => dispatch(toggleDarkMode(!isDarkMode))}
                             size="large"
                         />
                     </>
                 ) : (
                     <div className={nav__dropdown}>
-                        <DropdownContainer label={OpenMenu.MESSAGE}>
+                        <DropdownContainer reset={false} label={OpenMenu.MESSAGE}>
                             {links.map(renderLinkItem)}
                         </DropdownContainer>
                     </div>

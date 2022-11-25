@@ -1,7 +1,10 @@
 @use "css" as *;
 
+$submitButtonColor: rgb(34, 116, 34);
+$cancelButtonColor: rgb(163, 33, 59);
+
 .defaultStyle {
-    display: none;
+    display: block;
     position: relative;
     overflow: hidden;
     background: $myYellow3;
@@ -74,7 +77,15 @@
         }
     }
 
-    &__display {
-        display: block;
+    &__hidden {
+        display: none;
+    }
+
+    &.submitButton {
+        color: $submitButtonColor;
+    }
+
+    &.cancelButton {
+        color: $cancelButtonColor;
     }
 }

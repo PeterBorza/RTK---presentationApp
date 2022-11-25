@@ -22,7 +22,7 @@
 .buttonWrapper {
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     &__dark {
         background-color: $darkMode;
     }
