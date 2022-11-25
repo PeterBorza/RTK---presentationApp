@@ -1,28 +1,28 @@
 export interface BubbleCssProps {
-	left: string;
-	top: string;
-	size: string;
-	opacity: string;
+    left: string;
+    top: string;
+    size: string;
+    opacity: string;
 }
 
 export interface Bubble {
-	id: number;
-	selected: boolean;
-	cssProps: BubbleCssProps;
+    id: number;
+    cssProps: BubbleCssProps;
 }
 
 export interface PendingState {
-	isLoading: boolean;
-	message: string;
+    isLoading: boolean;
+    message: string;
 }
 type ErrorState = {
-	error: boolean;
-	message: string;
+    error: boolean;
+    message: string;
 };
 
 export interface BubbleState {
-	bubbles: Bubble[];
-	loading: PendingState;
-	error: ErrorState;
-	isFormModalOpen: boolean;
+    bubbles: Bubble[];
+    loading: PendingState;
+    error: ErrorState;
+    isFormModalOpen: boolean;
+    selectedBubble: Bubble | null;
 }

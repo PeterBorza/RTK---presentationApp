@@ -4,14 +4,13 @@ import { BubbleMessages as msg } from "../constants";
 import styles from "./SelectedBubble.module.scss";
 
 interface Props {
-    selectedBubble: Omit<Bubble, "selected">;
-    isSelected: boolean;
+    selectedBubble: Bubble | null;
 }
 
-const SelectedBubble = ({ selectedBubble, isSelected }: Props) => {
+const SelectedBubble = ({ selectedBubble }: Props) => {
     return (
         <div className={styles.container}>
-            {isSelected ? (
+            {selectedBubble ? (
                 <>
                     <h2>{selectedBubble.id}</h2>
                     <ul>

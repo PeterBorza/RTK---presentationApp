@@ -1,4 +1,4 @@
-import { CSSProperties, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 
 import { Bubble as Props } from "../types";
 import { getRandomColor } from "utils";
@@ -9,17 +9,22 @@ import classNames from "classnames";
 interface BubbleProps extends Props {
     onClick: () => void;
     title: string;
+    isSelected: boolean;
 }
 
 const INITIAL_COLOR = "transparent";
 
-const Bubble = ({ onClick, title, id, selected, cssProps }: BubbleProps) => {
+const Bubble = ({ onClick, title, id, isSelected, cssProps }: BubbleProps) => {
     const ref = useRef<HTMLDivElement>(null);
     const [background, setBackground] = useState<string>(INITIAL_COLOR);
     const { left, top, size, opacity } = cssProps;
 
+    useEffect(() => {
+        isSelected && setBackground(getRandomColor());
+    }, [isSelected]);
+
     const bubbleClassNames = classNames(styles.bubbleStyle, {
-        [styles.bubbleStyle__active]: selected,
+        [styles.bubbleStyle__active]: isSelected,
     });
 
     const handleClick = () => {
