@@ -34,6 +34,11 @@ body {
         border: none;
         outline: none;
     }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
 }
 
 $navHeight: 50px;

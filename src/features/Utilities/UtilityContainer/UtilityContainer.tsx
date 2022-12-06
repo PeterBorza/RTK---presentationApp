@@ -1,50 +1,38 @@
-import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { toggleUtils } from "app/appSlice";
-import { Url } from "app/constants";
-import { darkModeSelector, utilsOpenSelector } from "app/selectors";
 import { AsidePlatform, Button } from "shared-components";
 import { UtilityTableLabels as messages } from "..";
+import { useAppRedux } from "app";
 
 import styles from "./UtilityContainer.module.scss";
-import { LinkUrls } from "context/link-context";
+import { getHomeLabel, LinkUrls, toggleUtils } from "app";
 
 const UtilityContainer: FC = () => {
-    const dispatch = useDispatch();
-    const darkMode = useSelector(darkModeSelector);
-    const openSideBar = useSelector(utilsOpenSelector);
+    const { isDarkMode, isUtilsOpen, dispatch } = useAppRedux();
+    const links = [LinkUrls.GAS, LinkUrls.LIGHT, LinkUrls.UTILITIES, LinkUrls.HOME];
 
-    const closeSidePanel = () => {
-        dispatch(toggleUtils(false));
-    };
+    const closeSidePanel = () => dispatch(toggleUtils(false));
+    const openSidePanel = () => dispatch(toggleUtils(true));
 
-    const openSidePanel = () => {
-        dispatch(toggleUtils(true));
-    };
+    const renderLinks = React.useMemo(
+        () =>
+            links.map(item => (
+                <Link
+                    key={`utility-link-${item}`}
+                    to={item === LinkUrls.UTILITIES ? "/" + item : item}
+                    onClick={closeSidePanel}
+                >
+                    {getHomeLabel(item)}
+                </Link>
+            )),
+        [links],
+    );
 
-    const platformBody = () => {
-        return (
-            <div className={styles.sideBarLinks}>
-                <Link to={Url.GAS} onClick={closeSidePanel}>
-                    {Url.GAS}
-                </Link>
-                <Link to={Url.LIGHT} onClick={closeSidePanel}>
-                    {Url.LIGHT}
-                </Link>
-                <Link to={`/${Url.UTILITIES}`} onClick={closeSidePanel}>
-                    {Url.UTILITIES}
-                </Link>
-                <Link to={`${LinkUrls.HOME}`} onClick={closeSidePanel}>
-                    {Url.HOME}
-                </Link>
-            </div>
-        );
-    };
+    const platformBody = () => <div className={styles.sideBarLinks}>{renderLinks}</div>;
 
     return (
         <AsidePlatform
-            isOpen={openSideBar}
+            isOpen={isUtilsOpen}
             onClose={closeSidePanel}
             renderSideBar={platformBody}
             label={messages.HEADER_TITLE}
@@ -53,8 +41,8 @@ const UtilityContainer: FC = () => {
                 className={styles.menuButton}
                 onClick={openSidePanel}
                 value={messages.MENU_BUTTON}
-                displayed={!openSideBar}
-                dark={darkMode}
+                displayed={!isUtilsOpen}
+                dark={isDarkMode}
             />
             <Outlet />
         </AsidePlatform>

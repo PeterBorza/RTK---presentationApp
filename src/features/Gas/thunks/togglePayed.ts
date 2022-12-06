@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { togglePayed, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
@@ -11,7 +11,7 @@ export const toggleAsyncPayed = async (
     dispatch(setUtilitiesPending(true));
     try {
         await axios
-            .put(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${item.id}`, {
+            .put(`${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}/${item.id}`, {
                 ...item,
                 payed: !item.payed,
                 selected: false,
@@ -24,4 +24,7 @@ export const toggleAsyncPayed = async (
     }
 };
 
-export const togglePayedBill = createAsyncThunk(`${Url.GAS}/toggleAsyncPayed`, toggleAsyncPayed);
+export const togglePayedBill = createAsyncThunk(
+    `${LinkUrls.GAS}/toggleAsyncPayed`,
+    toggleAsyncPayed,
+);

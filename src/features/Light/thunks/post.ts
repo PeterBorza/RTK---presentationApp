@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { addUnit, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `${BaseAPI.UTILITIES_URL}/${Url.LIGHT}`,
+    baseURL: `${BaseAPI.UTILITIES_URL}/${LinkUrls.LIGHT}`,
     method: "POST",
 });
 
@@ -23,4 +23,4 @@ export const postAsyncUtility = async (
     }
 };
 
-export const postUtility = createAsyncThunk(`${Url.LIGHT}/postAsyncUtility`, postAsyncUtility);
+export const postUtility = createAsyncThunk(`${LinkUrls.LIGHT}/postAsyncUtility`, postAsyncUtility);

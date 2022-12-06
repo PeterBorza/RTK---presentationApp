@@ -3,6 +3,7 @@ import Button from "./Button";
 import SlideText from "./SlideText";
 import SimpleDrop from "./SimpleDrop";
 import DropdownContainer from "./Dropdown";
+import DropSelect from "./DropSelect";
 import ScrollTable, { Table } from "./ScrollTable";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -39,6 +40,7 @@ export {
     SlideText,
     SimpleDrop,
     DropdownContainer,
+    DropSelect,
     Table,
     ScrollTable,
     NavBar,

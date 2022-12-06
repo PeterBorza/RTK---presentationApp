@@ -5,6 +5,7 @@ import styles from "./Scroller.module.scss";
 import classNames from "classnames";
 import { createArray } from "utils";
 import { HashLink } from "react-router-hash-link";
+import ImageCard from "shared-components/ImageCard";
 
 export interface ScrollerType {
     images: ImageType[];
@@ -25,18 +26,16 @@ const Scroller = ({
         vertical && [styles["scrollerContent--vertical"]],
     );
 
-    const puzzleImage = (img: ImageType, index: number) => {
-        return (
-            <img
-                loading="lazy"
-                className={styles.photo}
-                key={`image-${index}`}
-                src={img}
-                alt={`some pic ${index}`}
-                id={`pic-${index}`}
-            />
-        );
-    };
+    const puzzleImage = (img: ImageType, index: number) => (
+        <img
+            loading="lazy"
+            className={styles.photo}
+            key={`image-${index}`}
+            src={img}
+            alt={`some pic ${index}`}
+            id={`pic-${index}`}
+        />
+    );
 
     return (
         <>
@@ -55,7 +54,7 @@ const Scroller = ({
                         className={styles.linkStyle}
                         smooth
                         to={`/#pic-${index}`}
-                        scroll={el =>
+                        scroll={(el: HTMLElement) =>
                             el.scrollIntoView(
                                 vertical
                                     ? { behavior: "auto", block: "center" }

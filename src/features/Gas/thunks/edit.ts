@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { replaceUnit, selectCard, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 import { UtilityStateUnit } from "../../Utilities";
@@ -10,7 +10,7 @@ export const editAsyncUnit = async (
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
-        await axios.put(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${item.id}`, item).then(() => {
+        await axios.put(`${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}/${item.id}`, item).then(() => {
             dispatch(replaceUnit({ id: item.id, unit: item }));
             dispatch(selectCard(item.id));
         });
@@ -21,4 +21,4 @@ export const editAsyncUnit = async (
     }
 };
 
-export const editUnit = createAsyncThunk(`${Url.GAS}/editAsyncUnit`, editAsyncUnit);
+export const editUnit = createAsyncThunk(`${LinkUrls.GAS}/editAsyncUnit`, editAsyncUnit);

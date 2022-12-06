@@ -4,19 +4,23 @@ export enum BaseAPI {
     BUBBLES_URL = "http://localhost:5010",
 }
 
-export enum Url {
-    BUBBLES = "bubbles",
+// TODO Try and add the above to .env
+
+export enum LinkUrls {
+    HOME = "/",
+    UTILITIES = "utilities",
     GAS = "gas",
     LIGHT = "light",
-    HOME = "home",
-    UTILITIES = "utilities",
     BUILDING = "building",
+    BUBBLES = "bubbles",
     PHOTOS = "photos",
     GAME = "game",
     RUBIK = "rubik",
     SCROLL = "scroll",
     COINS = "coins",
 }
+
+export const getHomeLabel = (item: string) => (item === LinkUrls.HOME ? "home" : item);
 
 export enum Error {
     MESSAGE = "We are sorry, an error occured. Please try again later",
@@ -49,3 +53,5 @@ export enum Forbidden {
 export enum DummyText {
     MESSAGE = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!",
 }
+
+// TODO Organize the above enums into one object

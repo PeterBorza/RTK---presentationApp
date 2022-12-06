@@ -6,12 +6,12 @@ import classNames from "classnames";
 import styles from "./ImageCard.module.scss";
 
 type ImageCardType = {
-    position: "top" | "center" | "bottom";
+    position?: "top" | "center" | "bottom";
     src: ImageType;
-    caption: string;
+    caption?: string;
 };
 
-const ImageCard = ({ position, src, caption }: ImageCardType) => {
+const ImageCard = ({ position = "center", src, caption }: ImageCardType) => {
     const [wide, setWide] = React.useState(false);
 
     const captionClasses = classNames(
@@ -29,9 +29,10 @@ const ImageCard = ({ position, src, caption }: ImageCardType) => {
                 onClick={() => setWide(prev => !prev)}
                 className={wideClasses}
                 src={src}
-                alt="peisaj"
+                alt={caption}
+                loading="lazy"
             />
-            <p className={captionClasses}>{caption}</p>
+            {caption && <p className={captionClasses}>{caption}</p>}
         </div>
     );
 };
