@@ -1,7 +1,7 @@
 import React from "react";
 import { useBubbleRedux } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
-import { Url, Pending } from "app";
+import { LinkUrls, Pending } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
@@ -36,7 +36,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
 
     const buttons: ButtonProps[] = [
         {
-            onClick: () => dispatch(getBubbles(Url.BUBBLES)),
+            onClick: () => dispatch(getBubbles(LinkUrls.BUBBLES)),
             value: isLoading ? <Loader dots={5} /> : msg.FETCH,
             isDisabled: isBubbles,
             displayed: !isBubbles,

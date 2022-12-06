@@ -1,13 +1,12 @@
 import React from "react";
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "app/App";
-import { LinkUrls } from "context/link-context";
+import { LinkUrls } from "app";
 import Home from "features/Home";
 import { Photo, Photos } from "features/memoryGame-story";
 import PhotosLandingPage from "features/memoryGame-story/PhotosLandingPage";
 import ScrollPageContainer from "features/scroll-pages";
 import { UtilityContainer, UtilityPlatform } from "features/Utilities";
-import { Url } from "app";
 import { Gas } from "features/Gas";
 import { Light } from "features/Light";
 import { AlertModal, LoadingWrapper } from "shared-components";
@@ -15,7 +14,7 @@ import { Error } from "./constants";
 
 export const appRoutes: RouteObject[] = [
     {
-        path: LinkUrls.HOME,
+        path: "/",
         element: <App />,
         children: [
             {
@@ -31,11 +30,11 @@ export const appRoutes: RouteObject[] = [
                         element: <UtilityPlatform />,
                     },
                     {
-                        path: Url.GAS,
+                        path: LinkUrls.GAS,
                         element: <Gas />,
                     },
                     {
-                        path: Url.LIGHT,
+                        path: LinkUrls.LIGHT,
                         element: <Light />,
                     },
                 ],
@@ -66,7 +65,7 @@ export const appRoutes: RouteObject[] = [
     },
 ];
 
-export default function () {
+export default () => {
     const router = createBrowserRouter(appRoutes);
     return (
         <RouterProvider
@@ -74,4 +73,4 @@ export default function () {
             fallbackElement={<LoadingWrapper loading={false} loadingMessage="boom" />}
         />
     );
-}
+};

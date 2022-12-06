@@ -1,7 +1,7 @@
 import React, { ReactNode, ReactPortal } from "react";
 import styles from "./ScrollPage.module.scss";
 import { HashLink } from "react-router-hash-link";
-import { LinkUrls } from "context/link-context";
+import { LinkUrls } from "app";
 
 export interface PagesType<T> {
     id: string;

@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { addUnit, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `${BaseAPI.UTILITIES_URL}/${Url.GAS}`,
+    baseURL: `${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}`,
     method: "POST",
 });
 
@@ -23,4 +23,4 @@ export const postAsyncUtility = async (
     }
 };
 
-export const postUtility = createAsyncThunk(`${Url.GAS}/postAsyncUtility`, postAsyncUtility);
+export const postUtility = createAsyncThunk(`${LinkUrls.GAS}/postAsyncUtility`, postAsyncUtility);

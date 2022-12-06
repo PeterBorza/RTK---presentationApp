@@ -37,15 +37,6 @@
       }
     },
     {
-      "id": 24,
-      "cssProps": {
-        "left": "85%",
-        "top": "85%",
-        "size": "120px",
-        "opacity": "0.8"
-      }
-    },
-    {
       "id": 25,
       "cssProps": {
         "left": "78%",

@@ -10,7 +10,9 @@
 @mixin flexWrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; //child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for flexgrow, flexshrink, and flex-basis
+    justify-content: center;
+    // child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for
+    // flexgrow, flexshrink, and flex-basis
 }
 
 @mixin sideBar($px, $percentage) {
@@ -86,22 +88,6 @@
     top: 0px;
     background-color: rgba(0, 0, 0, 0.9);
     @include centered();
-}
-
-@mixin success {
-    color: green;
-    padding: 12px;
-    border: $green;
-    font-weight: bold;
-    width: 100px;
-}
-
-@mixin error {
-    color: red;
-    padding: 12px;
-    border: $red;
-    font-weight: bold;
-    width: 100px;
 }
 
 @mixin nightMode {
@@ -183,4 +169,12 @@
             transform: scale(1);
         }
     }
+}
+
+@mixin truncater($line-clamp) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: $line-clamp;
+    line-height: 165%;
 }

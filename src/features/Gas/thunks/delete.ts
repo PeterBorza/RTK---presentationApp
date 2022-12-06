@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { deleteUnit, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ export const deleteAsyncUtility = async (
     dispatch(setUtilitiesPending(true));
     try {
         await axios
-            .delete(`${BaseAPI.UTILITIES_URL}/${Url.GAS}/${id}`)
+            .delete(`${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}/${id}`)
             .then(dispatch(deleteUnit(id)));
     } catch {
         dispatch(setUtilitiesError(true));
@@ -20,6 +20,6 @@ export const deleteAsyncUtility = async (
 };
 
 export const deleteUtilityUnit = createAsyncThunk(
-    `${Url.GAS}/deleteAsyncUtility`,
+    `${LinkUrls.GAS}/deleteAsyncUtility`,
     deleteAsyncUtility,
 );

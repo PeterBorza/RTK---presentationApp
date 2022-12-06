@@ -8,3 +8,12 @@
     overflow: hidden;
     @include fCenter(column);
 }
+
+.dropContainer {
+    width: 250px;
+    background-color: cadetblue;
+}
+
+.menuItem {
+    background-color: darkgoldenrod;
+}

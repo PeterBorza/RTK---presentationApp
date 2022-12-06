@@ -9,7 +9,7 @@ type Props = {
 
 const ToggleButton: React.FC<Props> = ({ selected, toggleSelected, size = "large", children }) => {
     const buttonClasses = classNames(styles.dialog_button, {
-        [styles.disabled]: selected,
+        [styles.disabled]: !selected,
     });
 
     const componentControlClasses = classNames(

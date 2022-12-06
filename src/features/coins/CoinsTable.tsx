@@ -1,10 +1,10 @@
 import React from "react";
 import { useFetch } from "hooks";
-import { BaseAPI, Url } from "app/constants";
+import { BaseAPI, LinkUrls } from "app/constants";
 import { CoinsInterface } from "./types";
 
 const CoinsTable = () => {
-    const { data, error } = useFetch<CoinsInterface[]>(`${BaseAPI.COINS_URL}/${Url.COINS}`);
+    const { data, error } = useFetch<CoinsInterface[]>(`${BaseAPI.COINS_URL}/${LinkUrls.COINS}`);
 
     const sortByRelease = data?.sort((a, b) => a.released - b.released);
     const sortByCount = data?.sort((a, b) => a.count - b.count);

@@ -7,7 +7,6 @@ import EditCard from "./EditCard";
 import UtilityCard from "./UtilityCard";
 import UtilityTable from "./UtilityTable";
 import UtilityTableItem from "./UtilityTableItem";
-import { utilityRoutes } from "./utility-routes";
 export * from "./types";
 export * from "./state";
 export * from "./constants";
@@ -22,5 +21,4 @@ export {
     UtilityCard,
     UtilityTable,
     UtilityTableItem,
-    utilityRoutes,
 };
