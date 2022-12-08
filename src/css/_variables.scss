@@ -43,3 +43,21 @@ $navBarBgColor: rgba(26, 59, 87, 0.7);
 $container-shadow: 4px 4px 15px rgb(255 255 255 / 0.5), -2px -2px 10px rgb(255 255 255 / 0.6);
 $borderShadow: inset 0px 0px 5px white, inset 0px 0px 5px white;
 $hoverColor: rgb(255 255 255/0.1);
+
+// app related
+
+$navHeight: 50px;
+$containerHeight: calc(100vh - $navHeight);
+
+$navPrimaryBG: rgba(47, 49, 49, 0.6);
+$appBlack: rgb(24, 23, 23);
+$appYellow: rgb(255, 198, 0);
+
+$SBsize: max(10%, 150px);
+$SBborder: 1px dashed rgba(151, 136, 136, 0.4);
+$SBtransition: all 200ms ease;
+$SBhoverColor: rgb(134, 124, 124);
+$SBfontSize: 1.3rem;
+$SBnoMarginLeft: 0;
+$darkMode: rgb(40, 64, 73);
+$darkModeWhite: rgb(250 253 253/0.85);

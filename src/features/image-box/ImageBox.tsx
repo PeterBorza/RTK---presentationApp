@@ -1,21 +1,23 @@
 import React from "react";
 
 import { ImageCard, ToggleButton } from "shared-components";
-import { puzzleImages } from "images/folder/image-stack";
+import { puzzleImages } from "images/puzzlePhotos/image-stack";
 
 import styles from "./ImageBox.module.scss";
 import { useLocalStorage } from "hooks";
 
 const ImageBox = () => {
-    const [storedValue, setValue] = useLocalStorage("showImages", false);
+    const [showImages, setShowImages] = useLocalStorage("showImages", false);
 
     return (
         <div className={styles["image-grid-container"]}>
             <ToggleButton
-                selected={Boolean(storedValue)}
-                toggleSelected={() => setValue(!storedValue)}
+                darkMode={false}
+                variant="regular"
+                enabled={Boolean(showImages)}
+                toggleEnabled={() => setShowImages(!showImages)}
             />
-            {storedValue
+            {showImages
                 ? puzzleImages.map((img, index) => (
                       <ImageCard key={`puzzle-image-${index}`} position="center" src={img} />
                   ))

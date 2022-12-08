@@ -1,7 +1,7 @@
 import React from "react";
 import { useBubbleRedux } from "../selectors";
 import { getBubbles, deleteBubble, postBubble } from "../thunks";
-import { LinkUrls, Pending } from "app";
+import { LinkUrls, Pending, useAppRedux } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
@@ -15,7 +15,7 @@ import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
 import { useOnClickOutside } from "hooks";
 
-const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
+const BubbleContainer = () => {
     const {
         bubbles: { bubbles },
         selectedBubble: selected,
@@ -24,12 +24,13 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
         isBubbleFormModalOpen,
         dispatch,
     } = useBubbleRedux();
+    const { isDarkMode } = useAppRedux();
     const errorRef = React.useRef<HTMLDivElement | null>(null);
 
     const isBubbles = bubbles.length !== 0;
 
     const wrapper = classNames(styles.container, {
-        [styles.container__dark]: dark,
+        [styles.container__dark]: isDarkMode,
     });
 
     useOnClickOutside(errorRef, () => dispatch(setError(false)));
@@ -89,7 +90,7 @@ const BubbleContainer = ({ dark = false }: { dark?: boolean }) => {
             <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
             <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
 
-            <ButtonWrapper dark={dark}>{renderButtons()}</ButtonWrapper>
+            <ButtonWrapper dark={isDarkMode}>{renderButtons()}</ButtonWrapper>
             {bubbles.map(renderBubbles)}
         </div>
     );

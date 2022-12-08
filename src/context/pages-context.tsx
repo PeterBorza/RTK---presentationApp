@@ -1,22 +1,19 @@
-import { createContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
+
+import { MyRubik, Rubik } from "shared-components";
 
 import { Game } from "features/memoryGame-story";
-import city900 from "images/city900.jpg";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 import InputExamples from "features/InputExamples";
-import { FloatingImage, MyRubik } from "shared-components";
 import ColorGame from "features/guess-the-colors";
 import BubbleContainer from "features/bubble-story/BubbleContainer";
 import ImageBox from "features/image-box";
 import { Building } from "features/building-story";
-import SlideContainer from "features/slide-show/SlideContainer";
-import { useAppRedux } from "app";
+import SlideContainer from "features/slide-show";
 
 export const PagesContext = createContext<PagesType<JSX.Element>[] | null>(null);
 
 export const PagesContextProvider: React.FC = ({ children }) => {
-    const { isDarkMode } = useAppRedux();
-
     const myPages: PagesType<JSX.Element>[] = [
         {
             id: "inputs",
@@ -41,16 +38,12 @@ export const PagesContextProvider: React.FC = ({ children }) => {
         {
             id: "bubbles",
             label: "Bubbles",
-            content: <BubbleContainer dark={isDarkMode} />,
+            content: <BubbleContainer />,
         },
         {
             id: "lift",
             label: "Lift",
-            content: (
-                <FloatingImage src={city900}>
-                    <Building />
-                </FloatingImage>
-            ),
+            content: <Building />,
         },
         {
             id: "slide",
@@ -65,3 +58,5 @@ export const PagesContextProvider: React.FC = ({ children }) => {
     ];
     return <PagesContext.Provider value={myPages}>{children}</PagesContext.Provider>;
 };
+
+export const usePagesContext = () => useContext(PagesContext);

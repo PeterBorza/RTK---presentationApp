@@ -5,6 +5,7 @@ $SBtransition: all 200ms ease;
 .layout {
     position: relative;
     width: 100%;
+    height: calc(100% - $navHeight);
 }
 .container {
     position: relative;
@@ -14,5 +15,10 @@ $SBtransition: all 200ms ease;
     &__with-sidebar-open {
         padding-left: $SBsize;
     }
+    @include darkModeSelector($darkMode);
     transition: $SBtransition;
+}
+
+.menuButton {
+    @include menuButton();
 }

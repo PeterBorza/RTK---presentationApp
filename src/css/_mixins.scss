@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @function modal-black($opacity) {
     @return rgb(0 0 0 / $opacity);
 }
@@ -177,4 +179,48 @@
     overflow: hidden;
     -webkit-line-clamp: $line-clamp;
     line-height: 165%;
+}
+
+@mixin circle($size: "100px") {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+@mixin linksAnchorStyle {
+    a {
+        color: $appYellow;
+        &:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+}
+
+@mixin menuButton {
+    position: absolute;
+    left: 0;
+    top: calc($navHeight * -2);
+    z-index: 10;
+    animation: flowDown 600ms ease-out forwards;
+    @keyframes flowDown {
+        to {
+            top: calc($navHeight - 5px);
+        }
+    }
+}
+
+@mixin darkModeSelector($darkMode) {
+    &__darkMode {
+        background-color: $darkMode;
+    }
+}
+
+@mixin appContainer($darkMode) {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    @include fCenter(column);
+    @include darkModeSelector($darkMode);
 }

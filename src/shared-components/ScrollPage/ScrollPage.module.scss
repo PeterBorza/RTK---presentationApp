@@ -14,8 +14,8 @@ $sidebar-width: min(200px, 20%);
 .section {
     width: 100%;
     min-height: 100vh;
-    background: $darkMode;
     @include noVisibleScrollBar;
+    @include darkModeSelector($darkMode);
 }
 
 .article {
@@ -37,7 +37,7 @@ $sidebar-width: min(200px, 20%);
     }
 }
 
-.aside-navigation {
+.aside_navigation {
     position: fixed;
     left: 0;
     top: $navHeight;
@@ -55,7 +55,7 @@ $sidebar-width: min(200px, 20%);
     }
 }
 
-.link-shell {
+.link_shell {
     display: flex;
     flex-direction: column;
     text-align: right;
@@ -68,7 +68,6 @@ $sidebar-width: min(200px, 20%);
         display: inline-block;
         max-width: 100%;
         font-size: clamp(0.8rem, 2vw, 1.5rem);
-        text-decoration: none;
         text-transform: capitalize;
         color: $darkModeWhite;
         transition: color 120ms ease;

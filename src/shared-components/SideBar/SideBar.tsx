@@ -8,11 +8,20 @@ export interface SideBarProps {
     onClose: () => void;
     renderBody: () => React.ReactNode;
     label: string;
+    isDarkMode?: boolean;
 }
 
-const SideBar = ({ visible = false, isOpen, onClose, renderBody, label }: SideBarProps) => {
+const SideBar = ({
+    visible = false,
+    isOpen,
+    onClose,
+    renderBody,
+    label,
+    isDarkMode = false,
+}: SideBarProps) => {
     const sideBarClassNames = classNames(styles.wrapper, {
         [styles.wrapper__open]: isOpen,
+        [styles.wrapper__open__darkMode]: !isDarkMode,
         [styles.noDisplay]: !visible,
     });
 

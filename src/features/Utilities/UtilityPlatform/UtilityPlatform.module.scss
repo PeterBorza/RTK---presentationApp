@@ -1,11 +1,7 @@
 @use "css" as *;
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    @include fEven(column);
-    background-color: $darkMode;
+    @include appContainer($darkMode);
 }
 
 .inputContent {

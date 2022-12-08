@@ -32,6 +32,7 @@
     width: 100%;
     height: 100%;
     opacity: 0;
+    object-fit: cover;
     animation: enter forwards;
     animation-timing-function: cubic-bezier(0.1, 0.66, 0.11, 1.11);
 

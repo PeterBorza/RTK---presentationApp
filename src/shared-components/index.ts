@@ -5,7 +5,6 @@ import SimpleDrop from "./SimpleDrop";
 import DropdownContainer from "./Dropdown";
 import DropSelect from "./DropSelect";
 import ScrollTable, { Table } from "./ScrollTable";
-import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import BlackModal from "./BlackModal";
 import FadedModal from "./FadedModal";
@@ -43,7 +42,6 @@ export {
     DropSelect,
     Table,
     ScrollTable,
-    NavBar,
     SideBar,
     InputCard,
     CustomInput,

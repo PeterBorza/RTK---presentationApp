@@ -9,17 +9,17 @@ $header-footer-height: 4vh;
     height: 100%;
     padding-top: $navHeight;
     width: $SBsize;
-    transform: translateX(-100%);
+    translate: -100%;
     @include headerMainFooter;
     border-bottom-right-radius: 3px;
     overflow: hidden;
     padding: 2px;
-    background: transparent;
     @include shadowSB;
     transition: $SBtransition;
     z-index: 1;
     &__open {
-        transform: translateX(0);
+        translate: 0;
+        @include darkModeSelector(white);
     }
 }
 

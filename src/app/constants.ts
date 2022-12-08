@@ -54,4 +54,15 @@ export enum DummyText {
     MESSAGE = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!",
 }
 
+export enum AppMessages {
+    ERROR = "We are sorry, an error occured. Please try again later",
+    PENDING = "Loading, please wait...",
+    UNDER_CONSTRUCTION = "We are terribly sorry, this feature is currently under construction...",
+    COMING_SOON = "Coming soon...",
+    OPEN_MENU = "Open menu",
+    CLOSE_MENU = "Close menu",
+    FORBIDDEN = "You are not authorized to see this",
+    DUMMY_TEXT = "tetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!",
+}
+
 // TODO Organize the above enums into one object

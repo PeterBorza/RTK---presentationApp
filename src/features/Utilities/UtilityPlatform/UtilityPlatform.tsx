@@ -1,27 +1,15 @@
-import { FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { toggleUtils } from "app";
-import { CustomInput } from "shared-components";
-import { UtilityTableLabels } from "../constants";
-import styles from "./UtilityPlatform.module.scss";
+import React from "react";
 
-const UtilityPlatform: FC = () => {
-    const [name, setName] = useState("");
-    const validPass = name === "Peter";
-    const dispatch = useDispatch();
-    useEffect(() => {
-        validPass ? dispatch(toggleUtils(true)) : dispatch(toggleUtils(false));
-    }, [dispatch, validPass]);
-    return (
-        <div className={styles.container}>
-            <h2 style={{ color: validPass ? "limegreen" : "crimson" }}>
-                {validPass ? UtilityTableLabels.CORRECT_PASSWORD : UtilityTableLabels.NAME}
-            </h2>
-            <div className={styles.inputContent}>
-                <CustomInput name="Password" value={name} onChange={e => setName(e.target.value)} />
-            </div>
-        </div>
-    );
+import styles from "./UtilityPlatform.module.scss";
+import classNames from "classnames";
+import { useAppRedux } from "app";
+
+const UtilityPlatform = () => {
+    const { isDarkMode } = useAppRedux();
+    const classes = classNames(styles.container, {
+        [styles.container__darkMode]: isDarkMode,
+    });
+    return <div className={classes}></div>;
 };
 
 export default UtilityPlatform;
