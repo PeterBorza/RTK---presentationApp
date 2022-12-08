@@ -1,40 +1,49 @@
+import React, { useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { togglePhotos } from "app/appSlice";
-import { useAppRedux } from "app";
-import { AsidePlatform, Button } from "shared-components";
-import { MemoryGameMessages as messages } from "../messages";
 
-import styles from "./Photos.module.scss";
+import { LinkUrls, useAppRedux, togglePhotos } from "app";
+import { toInternalLink } from "context/link-context";
+
+import { AsidePlatform } from "shared-components";
+
+import { MemoryGameMessages as messages, PhotosMessages } from "../messages";
 import { useMGameRedux } from "../selectors";
+import styles from "./Photos.module.scss";
 
 const Photos = () => {
     const { photos, dispatch } = useMGameRedux();
     const { isPhotosOpen: openSideBar } = useAppRedux();
 
-    const renderLinks = photos.map(photo => (
-        <Link className={styles.links} key={photo.id} to={photo.id}>
-            {photo.caption}
-        </Link>
-    ));
+    const closeSidePanel = () => dispatch(togglePhotos(false));
+    const openSidePanel = () => dispatch(togglePhotos(true));
 
-    const sideBarContent = () => <div className={styles.linkWrapper}>{renderLinks}</div>;
+    const renderLinks = useMemo(
+        () => (
+            <div className={styles.linkWrapper}>
+                {photos.map(photo => (
+                    <Link className={styles.links} key={photo.id} to={photo.id}>
+                        <span>{photo.caption}</span>
+                    </Link>
+                ))}
+                <br />
+                <Link to={toInternalLink(LinkUrls.PHOTOS)} className={styles.links}>
+                    <span onClick={closeSidePanel}>{PhotosMessages.RETURN_LINK}</span>
+                </Link>
+            </div>
+        ),
+        [photos],
+    );
 
     return (
         <AsidePlatform
             isOpen={openSideBar}
-            onClose={() => dispatch(togglePhotos(false))}
+            onClose={closeSidePanel}
             label={messages.HEADER_LABEL}
-            renderSideBar={sideBarContent}
+            renderSideBar={() => renderLinks}
+            onOpen={openSidePanel}
+            buttonLabel={PhotosMessages.BUTTON_LABEL}
         >
-            <div className={styles.container}>
-                <Button
-                    className={styles.menuButton}
-                    onClick={() => dispatch(togglePhotos(true))}
-                    value={messages.MENU}
-                    displayed={!openSideBar}
-                />
-                <Outlet />
-            </div>
+            <Outlet />
         </AsidePlatform>
     );
 };

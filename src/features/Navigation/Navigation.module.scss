@@ -7,7 +7,6 @@
 
 .nav {
     display: flex;
-    align-items: center;
     position: fixed;
     left: 0;
     top: 0;
@@ -21,6 +20,11 @@
         height: 100%;
         @include fCenter();
     }
+}
+
+.list {
+    width: 100%;
+    @include fEven;
 }
 
 .links {

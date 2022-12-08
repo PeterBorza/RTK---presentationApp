@@ -1,12 +1,12 @@
 @use "css" as *;
 
 .wrapper {
-    // @include container(100%);
     position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
     overflow-y: auto;
+    background: none;
 }
 
 .container {
@@ -16,24 +16,13 @@
 }
 
 .sideBarLinks {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    gap: 5px;
     padding: 5px;
-    background-color: $myYellow3;
-    a {
-        font-size: clamp(0.8rem, 2vw, 1.4rem);
-        z-index: 100;
-        color: white;
-        transition: color 200ms ease;
-        &:hover {
-            color: $navPrimaryBG;
-        }
+    font-size: clamp(0.8rem, 2vw, 1.4rem);
+    z-index: 100;
+    transition: color 200ms ease;
+    &:hover {
+        color: $navPrimaryBG;
     }
 }
 
-.menuButton {
-    @include menuButton();
-}
+// TODO fix css around list items styling, maybe insert into sidebar as li

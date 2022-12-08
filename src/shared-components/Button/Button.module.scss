@@ -42,7 +42,7 @@ $cancelButtonColor: rgb(163, 33, 59);
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 
         &::after {
-            translate: y (100px);
+            transform: translateY(100px);
         }
     }
 

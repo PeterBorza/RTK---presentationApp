@@ -1,55 +1,104 @@
 @use "css" as *;
 
-$w: 50px;
-$h: calc($w / 2.2);
-$pad: 1px;
-$br: calc($w / 3);
-$btnpad: calc($h / 2 - ($pad * 2));
-$buttonWidth: calc(($h / 2) - ($pad * 1.7));
-$left: calc($w - ($buttonWidth * 2.4));
-$right: $w - ($buttonWidth * 2 + $pad * 3);
+$toggleSpeed: 200ms;
+$toggleButtonColor: rgb(191 207 174/ 0.4);
+$lightModeColor: rgb(49 52 46 / 0.5);
+$togglePadding: 0px;
+$sizes: (
+    "small": 40px,
+    "medium": 48px,
+    "large": 56px,
+    "xxl": 64px,
+);
+
+@mixin toggleHorizontally($value, $color) {
+    &__enabled {
+        animation: moveRight $toggleSpeed ease-out forwards;
+        @keyframes moveRight {
+            to {
+                translate: $value;
+                background-color: $color;
+                border: 1px solid $color;
+                box-shadow: 1px 1px 10px $color;
+            }
+        }
+    }
+
+    &__disabled {
+        animation: moveLeft $toggleSpeed ease-out forwards;
+        @keyframes moveLeft {
+            from {
+                translate: $value;
+                background-color: $color;
+                border: 1px solid $color;
+                box-shadow: 1px 1px 10px $color;
+            }
+            to {
+                translate: 0px;
+                background-color: $color;
+            }
+        }
+    }
+}
+
+@mixin getSizes {
+    @each $key, $value in $sizes {
+        &__#{$key} {
+            width: $value + $togglePadding * 2;
+            height: $value / 2 + $togglePadding;
+            border-radius: $value;
+        }
+    }
+}
+
+@mixin buttonSizes {
+    @each $key, $value in $sizes {
+        &__#{$key} {
+            @include circle($value / 2);
+            &__light {
+                @include toggleHorizontally(100%, red);
+            }
+            &__dark {
+                @include toggleHorizontally(100%, $myYellow3);
+            }
+        }
+    }
+}
 
 .toggle_container {
-    width: $w;
-    background-color: $darkModeWhite;
+    position: relative;
+    @include fAround();
+    flex-shrink: 0;
     cursor: pointer;
     user-select: none;
-    border-radius: $br;
-    padding: $pad;
-    height: $h;
-    position: relative;
-    border: 1px solid rgb(255 255 255 / 0.8);
-    &__small {
-        width: 30px;
+    padding: $togglePadding;
+    box-shadow: inset 0px 0px 10px $toggleButtonColor;
+    outline: 2px solid $lightModeColor;
+    @include getSizes();
+
+    .moon {
+        display: flex;
+        color: $lightModeColor;
     }
-    &__medium {
-        width: 40px;
+
+    .sun {
+        display: flex;
+        color: $lightModeColor;
     }
-    &__large {
-        width: 50px;
-    }
-    &__xxl {
-        width: 60px;
+
+    &__dark {
+        outline: 2px solid $myYellow3;
+        box-shadow: none;
+
+        .moon,
+        .sun {
+            color: $myYellow3;
+        }
     }
 }
 
-.dialog_button {
-    cursor: pointer;
-    background-color: $appYellow;
-    color: white;
-    padding: $btnpad;
-    border-radius: $buttonWidth;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: $buttonWidth;
-    min-width: unset;
-    box-sizing: border-box;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+.toggle_button {
     position: absolute;
-    left: $right;
-    transition: all 500ms ease;
-}
-
-.disabled {
-    background-color: $navPrimaryBG;
-    left: $pad;
+    left: $togglePadding;
+    @include buttonSizes();
 }

@@ -7,3 +7,8 @@ export enum MemoryGameMessages {
     MENU = "Menu",
     HEADER_LABEL = "Cheat Sheets",
 }
+
+export enum PhotosMessages {
+    BUTTON_LABEL = "Check out the photos",
+    RETURN_LINK = "Go back",
+}

@@ -4,10 +4,11 @@ import { HashLink } from "react-router-hash-link";
 import { LinkUrls } from "app";
 
 import styles from "./ScrollPage.module.scss";
+import classNames from "classnames";
 
 export interface PagesType<T> {
     id: string;
-    label: string | undefined;
+    label?: string;
     content: T;
 }
 
@@ -15,13 +16,17 @@ type Elements = ReactNode | ReactPortal;
 
 export interface ScrollProps<T> {
     pages: PagesType<T>[] | null;
+    isDarkMode?: boolean;
 }
 
-const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
+const ScrollPage = <T extends Elements>({ pages, isDarkMode = false }: ScrollProps<T>) => {
+    const sectionClasses = classNames(styles.section, {
+        [styles.section__darkMode]: isDarkMode,
+    });
     return (
-        <section className={styles.section}>
-            <aside className={styles["aside-navigation"]}>
-                <ul className={styles["link-shell"]}>
+        <>
+            <aside className={styles.aside_navigation}>
+                <ul className={styles.link_shell}>
                     {pages &&
                         pages.map(link => (
                             <li key={`scroll-label-${link.id}`}>
@@ -32,17 +37,19 @@ const ScrollPage = <T extends Elements>({ pages }: ScrollProps<T>) => {
                         ))}
                 </ul>
             </aside>
-            {pages &&
-                pages.map(link => (
-                    <article
-                        key={`scroll-content-${link.id}`}
-                        className={styles.article}
-                        id={link.label}
-                    >
-                        {link.content}
-                    </article>
-                ))}
-        </section>
+            <section className={sectionClasses}>
+                {pages &&
+                    pages.map(link => (
+                        <article
+                            key={`scroll-content-${link.id}`}
+                            className={styles.article}
+                            id={link.label}
+                        >
+                            {link.content}
+                        </article>
+                    ))}
+            </section>
+        </>
     );
 };
 

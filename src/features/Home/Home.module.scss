@@ -1,12 +1,7 @@
 @use "css" as *;
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-color: $darkMode;
-    overflow: hidden;
-    @include fCenter(column);
+    @include appContainer($darkMode);
 }
 
 .dropContainer {

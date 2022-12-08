@@ -23,6 +23,8 @@ import { FcHighPriority } from "react-icons/fc";
 import { HiOutlineArrowCircleRight, HiDotsHorizontal } from "react-icons/hi";
 import { GiCancel } from "react-icons/gi";
 import { ImStop } from "react-icons/im";
+import { BsSun } from "react-icons/bs";
+import { BsFillMoonFill } from "react-icons/bs";
 
 export type IconType = Record<string, JSX.Element>;
 
@@ -52,4 +54,6 @@ export const icons: IconType = {
     faUp: <FaArrowUp />,
     stop: <ImStop />,
     x: <FaTimes style={{ color: "crimson" }} />,
+    sun: <BsSun />,
+    moon: <BsFillMoonFill />,
 };

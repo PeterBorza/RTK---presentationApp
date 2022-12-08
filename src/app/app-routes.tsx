@@ -1,16 +1,18 @@
 import React from "react";
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import App from "app/App";
+import { AlertModal, LoadingWrapper } from "shared-components";
 import { LinkUrls } from "app";
+import { Error } from "./constants";
+
 import Home from "features/Home";
 import { Photo, Photos } from "features/memoryGame-story";
 import PhotosLandingPage from "features/memoryGame-story/PhotosLandingPage";
-import ScrollPageContainer from "features/scroll-pages";
+import ScrollPage from "features/scroll-pages";
 import { UtilityContainer, UtilityPlatform } from "features/Utilities";
 import { Gas } from "features/Gas";
 import { Light } from "features/Light";
-import { AlertModal, LoadingWrapper } from "shared-components";
-import { Error } from "./constants";
 
 export const appRoutes: RouteObject[] = [
     {
@@ -55,7 +57,7 @@ export const appRoutes: RouteObject[] = [
             },
             {
                 path: LinkUrls.SCROLL,
-                element: <ScrollPageContainer />,
+                element: <ScrollPage />,
             },
             {
                 path: "*",

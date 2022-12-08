@@ -1,1 +1,1 @@
-export { default } from "./ScrollPageContainer";
+export { default } from "./ScrollPage";

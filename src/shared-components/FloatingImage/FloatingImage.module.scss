@@ -9,20 +9,23 @@
 }
 
 .floatingImage {
+    display: block;
     position: absolute;
     left: 0;
     top: 0;
     width: 110%;
     height: 100vh;
-    transform: translateX(-10%);
+    translate: -10%;
     animation: floating 18000ms alternate-reverse forwards infinite ease-in-out;
 }
 @keyframes floating {
-    0% {
-        transform: translateX(-10%) scale(1.01);
+    from {
+        translate: -10%;
+        scale: 1.01;
     }
-    100% {
-        transform: translateX(0%) scale(1.06);
+    to {
+        translate: 0%;
+        scale: 1.06;
     }
 }
 

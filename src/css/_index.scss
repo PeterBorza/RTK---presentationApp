@@ -37,25 +37,9 @@ body {
 
     img {
         display: block;
-        max-width: 100%;
+        // max-width: 100%;
     }
 }
-
-$navHeight: 50px;
-$containerHeight: calc(100vh - $navHeight);
-
-$navPrimaryBG: rgba(47, 49, 49, 0.6);
-$appBlack: rgb(24, 23, 23);
-$appYellow: rgb(255, 198, 0);
-
-$SBsize: max(10%, 150px);
-$SBborder: 1px dashed rgba(151, 136, 136, 0.4);
-$SBtransition: all 200ms ease;
-$SBhoverColor: rgb(134, 124, 124);
-$SBfontSize: 1.3rem;
-$SBnoMarginLeft: 0;
-$darkMode: rgb(40, 64, 73);
-$darkModeWhite: rgb(250 253 253/0.85);
 
 @mixin shadowSB {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
@@ -94,27 +78,5 @@ $minWidth: 280px;
         top: 0;
         background: transparent url($pic) no-repeat center/cover;
         opacity: 0.15;
-    }
-}
-
-@mixin linksAnchorStyle {
-    a {
-        color: $appYellow;
-        &:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-    }
-}
-
-@mixin menuButton {
-    position: absolute;
-    left: 0;
-    top: calc($navHeight * -2);
-    z-index: 10;
-    animation: flowDown 600ms ease-out forwards;
-    @keyframes flowDown {
-        to {
-            top: calc($navHeight - 5px);
-        }
     }
 }

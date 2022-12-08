@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface AppStateInterface {
-    liftOpen: boolean;
-    bubblesOpen: boolean;
-    utilsOpen: boolean;
-    photosOpen: boolean;
-    darkMode: boolean;
-}
+export type AppState = Record<string, boolean>;
 
-export const initialState: AppStateInterface = {
+export const initialState: AppState = {
     liftOpen: false,
     bubblesOpen: false,
     utilsOpen: false,
@@ -21,19 +15,19 @@ export const appSlice = createSlice({
     name: "app",
     initialState,
     reducers: {
-        toggleBuilding: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
+        toggleBuilding: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.liftOpen = payload;
         },
-        togglePhotos: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
+        togglePhotos: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.photosOpen = payload;
         },
-        toggleUtils: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
+        toggleUtils: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.utilsOpen = payload;
         },
-        toggleBubbles: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
+        toggleBubbles: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.bubblesOpen = payload;
         },
-        toggleDarkMode: (state: AppStateInterface, { payload }: PayloadAction<boolean>) => {
+        toggleDarkMode: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.darkMode = payload;
         },
     },
