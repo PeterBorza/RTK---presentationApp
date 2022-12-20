@@ -29,6 +29,12 @@ const Navigation = () => {
         dispatch(toggleDarkMode(!isDarkMode));
     };
 
+    const Toggle = () => (
+        <li>
+            <ToggleButton variant="darkMode" enabled={!isDarkMode} toggleEnabled={toggleSelected} />
+        </li>
+    );
+
     useEffect(() => {
         Boolean(isDark) !== isDarkMode && setIsDark(Boolean(isDark));
     }, [dispatch, isDark, isDarkMode]);
@@ -42,17 +48,13 @@ const Navigation = () => {
                     </NavLink>
                 </li>
             ))}
-            <li>
-                <ToggleButton enabled={!isDarkMode} toggleEnabled={toggleSelected} />
-            </li>
+            <Toggle />
         </>
     );
 
     const RenderSmallScreenLinks = () => (
         <>
-            <li>
-                <ToggleButton enabled={!isDarkMode} toggleEnabled={toggleSelected} />
-            </li>
+            <Toggle />
             <div className={nav__dropdown}>
                 <DropdownContainer reset={false} label={OpenMenu.MESSAGE}>
                     {links.map(item => (

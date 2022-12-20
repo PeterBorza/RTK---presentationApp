@@ -44,8 +44,8 @@ $sizes: (
 @mixin getSizes {
     @each $key, $value in $sizes {
         &__#{$key} {
-            width: $value + $togglePadding * 2;
-            height: $value / 2 + $togglePadding;
+            width: calc($value + $togglePadding * 2);
+            height: calc($value / 2 + $togglePadding);
             border-radius: $value;
         }
     }
@@ -54,7 +54,7 @@ $sizes: (
 @mixin buttonSizes {
     @each $key, $value in $sizes {
         &__#{$key} {
-            @include circle($value / 2);
+            @include circle(calc($value / 2));
             &__light {
                 @include toggleHorizontally(100%, red);
             }

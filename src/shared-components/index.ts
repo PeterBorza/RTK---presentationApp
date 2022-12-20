@@ -21,7 +21,6 @@ import MenuButton from "./MenuButton";
 import ToggleButton from "./ToggleButton";
 import FlipCard from "./FlipCard";
 import ImageCard from "./ImageCard";
-import LoadingWrapper from "./LoadingWrapper";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
@@ -32,6 +31,8 @@ import ScrollPage from "./ScrollPage";
 import Scroller from "./Scroller";
 import SlideShow from "./SlideShow";
 import FloatingImage from "./FloatingImage";
+
+// TODO create split screen component
 
 export {
     Loader,
@@ -61,7 +62,6 @@ export {
     ToggleButton,
     FlipCard,
     ImageCard,
-    LoadingWrapper,
     ButtonWrapper,
     Rubik,
     MyRubik,

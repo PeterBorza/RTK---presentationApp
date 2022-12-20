@@ -9,8 +9,8 @@ export const bubbleSlice = createSlice({
         resetSelectedBubble: (state: BubbleState) => {
             state.selectedBubble = null;
         },
-        addBubble: ({ bubbles }: BubbleState, { payload }: PayloadAction<Bubble>) => {
-            bubbles.push(payload);
+        addBubble: (state: BubbleState, { payload }: PayloadAction<Bubble>) => {
+            state.bubbles.push(payload);
         },
         setBubbles: ({ bubbles }: BubbleState, { payload }: PayloadAction<Bubble[]>) => {
             bubbles.push(...payload);
@@ -24,9 +24,10 @@ export const bubbleSlice = createSlice({
         toggleBubbleFormModal: (state: BubbleState, { payload }: PayloadAction<boolean>) => {
             state.isFormModalOpen = payload;
         },
-        deleteBub: ({ bubbles }: BubbleState, { payload }: PayloadAction<number>) => {
-            const idx = bubbles.findIndex(bub => bub.id === payload);
-            bubbles.splice(idx, 1);
+        deleteBub: (state: BubbleState, { payload }: PayloadAction<number>) => {
+            const idx = state.bubbles.findIndex(bub => bub.id === payload);
+            state.bubbles.splice(idx, 1);
+            state.selectedBubble = null;
         },
         setSelectedBubble: (state: BubbleState, { payload }: PayloadAction<Bubble>) => {
             state.selectedBubble = payload;

@@ -2,7 +2,7 @@ import React from "react";
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "app/App";
-import { AlertModal, LoadingWrapper } from "shared-components";
+import { AlertModal, Loader } from "shared-components";
 import { LinkUrls } from "app";
 import { Error } from "./constants";
 
@@ -69,10 +69,5 @@ export const appRoutes: RouteObject[] = [
 
 export default () => {
     const router = createBrowserRouter(appRoutes);
-    return (
-        <RouterProvider
-            router={router}
-            fallbackElement={<LoadingWrapper loading={false} loadingMessage="boom" />}
-        />
-    );
+    return <RouterProvider router={router} fallbackElement={<Loader message="boom" />} />;
 };

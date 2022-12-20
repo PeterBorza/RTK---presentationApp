@@ -31,10 +31,6 @@
     object-fit: scale-down;
 }
 
-.menuButton {
-    @include menuButton;
-}
-
 .title {
     color: $appBlack;
     text-overflow: ellipsis;

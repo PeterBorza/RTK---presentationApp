@@ -1,6 +1,6 @@
 import { FC, useMemo, useRef } from "react";
 import ScrollTable from ".";
-import { LoadingWrapper } from "..";
+import { Loader } from "..";
 import { Pending } from "app";
 import { TableTitle } from "features/Utilities";
 import { useOnClickOutside } from "hooks";
@@ -22,7 +22,7 @@ const Table: FC<Props> = ({ children, headers, onClickOutside, loading }) => {
     return (
         <ScrollTable ref={tableRef}>
             {loading ? (
-                <LoadingWrapper loading={loading} loadingMessage={Pending.MESSAGE} />
+                <Loader message={Pending.MESSAGE} />
             ) : (
                 <>
                     <ScrollTable.Header>{renderHeaders}</ScrollTable.Header>

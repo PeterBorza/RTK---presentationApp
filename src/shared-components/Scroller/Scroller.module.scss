@@ -31,7 +31,7 @@ $fit: 100%;
 
 .scrollerContainer {
     scroll-behavior: smooth;
-    overflow: scroll;
+    overflow: auto;
     background-color: inherit;
     @include noVisibleScrollBar();
     border: 2px solid $scrollerBg;
@@ -49,14 +49,16 @@ $fit: 100%;
 }
 
 .photo {
+    display: block;
     outline: 1px solid $scrollerBg;
     outline-offset: 1px;
+    max-width: 100%;
 }
 
 .scrollerContent {
     display: flex;
-    padding: 0.5rem 2rem;
-    gap: 1rem;
+    // padding: 1rem;
+    // gap: 1rem;
     flex-direction: row;
     justify-content: flex-start;
 

@@ -3,7 +3,20 @@
 $submitButtonColor: rgb(34, 116, 34);
 $cancelButtonColor: rgb(163, 33, 59);
 
-.defaultStyle {
+@mixin menuButton {
+    position: absolute;
+    left: 0;
+    top: calc($navHeight * -2);
+    z-index: 10;
+    animation: flowDown 600ms ease-out forwards;
+    @keyframes flowDown {
+        to {
+            top: calc($navHeight - 5px);
+        }
+    }
+}
+
+.button {
     display: block;
     position: relative;
     overflow: hidden;
@@ -27,7 +40,7 @@ $cancelButtonColor: rgb(163, 33, 59);
         top: -10px;
         width: 100%;
         height: 0px;
-        background-color: white;
+        background-color: $darkModeWhite;
         box-shadow: 0 2px 5px 10px rgba(255, 255, 255, 0.5);
         transition: all 200ms ease-in;
     }
@@ -51,16 +64,12 @@ $cancelButtonColor: rgb(163, 33, 59);
     }
 
     &__disabled {
-        .defaultStyle {
-            background-color: lighten($myYellow3, 40%);
-
-            &__content {
-                color: rgba(255, 255, 255, 0.6);
-            }
-        }
+        background-color: lighten($myYellow3, 25%);
+        outline: 1px solid red;
 
         &:hover {
-            background: transparent;
+            background-color: transparent;
+            color: $darkModeWhite;
             cursor: not-allowed;
         }
     }
@@ -70,22 +79,23 @@ $cancelButtonColor: rgb(163, 33, 59);
     }
 
     &__dark {
-        background-color: white;
-
-        .defaultStyle__content {
-            color: skyblue;
-        }
+        background-color: $darkModeWhite;
+        color: skyblue;
     }
 
     &__hidden {
         display: none;
     }
 
-    &.submitButton {
+    &__submit {
         color: $submitButtonColor;
     }
 
-    &.cancelButton {
+    &__cancel {
         color: $cancelButtonColor;
+    }
+
+    &__menu {
+        @include menuButton();
     }
 }
