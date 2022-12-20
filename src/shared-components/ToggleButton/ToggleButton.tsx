@@ -16,7 +16,7 @@ const ToggleButton = ({
     toggleEnabled,
     size = "small",
     darkMode = true,
-    variant = "darkMode",
+    variant = "regular",
 }: Props) => {
     const buttonClasses = classNames(styles.toggle_button, styles[`toggle_button__${size}`], {
         [styles[`toggle_button__${size}__dark__enabled`]]: enabled && darkMode,

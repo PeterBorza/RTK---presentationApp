@@ -197,19 +197,6 @@
     }
 }
 
-@mixin menuButton {
-    position: absolute;
-    left: 0;
-    top: calc($navHeight * -2);
-    z-index: 10;
-    animation: flowDown 600ms ease-out forwards;
-    @keyframes flowDown {
-        to {
-            top: calc($navHeight - 5px);
-        }
-    }
-}
-
 @mixin darkModeSelector($darkMode) {
     &__darkMode {
         background-color: $darkMode;

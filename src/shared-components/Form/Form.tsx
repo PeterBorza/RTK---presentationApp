@@ -14,17 +14,19 @@ export interface FormProps {
 
 const Form = ({ onSubmit, onCancel, formTitle = "Form", width, renderFields }: FormProps) => {
     const formWrapper = classNames(styles.container, [styles[`${width}`]]);
-    const submitHandler = (e: React.SyntheticEvent) => {
+    const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         onSubmit(e);
     };
+
+    // TODO button values hardcoded ??
     return (
         <form className={formWrapper} onSubmit={submitHandler}>
             <h2>{formTitle}</h2>
             <div className={styles.wrapper}>{renderFields}</div>
             <ButtonWrapper>
-                <Button type="submit" value="Submit" className={styles.submit} />
-                <Button value="Cancel" onClick={onCancel} className={styles.cancel} />
+                <Button type="submit" value="Submit" />
+                <Button value="Cancel" onClick={onCancel} />
             </ButtonWrapper>
         </form>
     );

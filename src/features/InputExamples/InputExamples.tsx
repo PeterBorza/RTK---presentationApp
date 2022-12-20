@@ -26,6 +26,7 @@ const InputExamples = () => {
         e.preventDefault();
         resetValues();
     };
+    // TODO button value hardcoded ??
     return (
         <div className={styles.wrapper}>
             <h1>Types of input atoms</h1>
@@ -35,6 +36,7 @@ const InputExamples = () => {
                     name="username"
                     value={values.username}
                     onChange={changeHandler}
+                    error={values.username !== "Peter"}
                 />
                 <InputCard
                     onChange={changeHandler}
@@ -48,6 +50,8 @@ const InputExamples = () => {
                     value={values.text}
                     onChange={changeHandler}
                     className={styles.textInput}
+                    isValid={values.text === "Peter"}
+                    errorMessage="Try again"
                 />
                 <Button type="submit" value="Submit" />
             </form>

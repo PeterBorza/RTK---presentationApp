@@ -5,7 +5,7 @@ import { LinkUrls, Pending, useAppRedux } from "app";
 import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
-import { Loader, Button, ButtonWrapper, LoadingWrapper, AlertModal } from "shared-components";
+import { Loader, Button, ButtonWrapper, AlertModal } from "shared-components";
 import { setError, setSelectedBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
@@ -67,7 +67,8 @@ const BubbleContainer = () => {
                 <BubbleForm
                     formObject={starterBubble}
                     isOpen={isBubbleFormModalOpen}
-                    onToggleForm={(open: boolean) => dispatch(toggleBubbleFormModal(open))}
+                    openForm={() => dispatch(toggleBubbleFormModal(true))}
+                    closeForm={() => dispatch(toggleBubbleFormModal(false))}
                     onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
                 />
             )}
@@ -87,7 +88,7 @@ const BubbleContainer = () => {
 
     return (
         <div className={wrapper}>
-            <LoadingWrapper loading={isLoading} loadingMessage={Pending.MESSAGE} />
+            {isLoading && <Loader message={Pending.MESSAGE} />}
             <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
 
             <ButtonWrapper dark={isDarkMode}>{renderButtons()}</ButtonWrapper>

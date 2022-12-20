@@ -12,7 +12,7 @@ import styles from "./Photos.module.scss";
 
 const Photos = () => {
     const { photos, dispatch } = useMGameRedux();
-    const { isPhotosOpen: openSideBar } = useAppRedux();
+    const { isPhotosOpen: openSideBar, isDarkMode } = useAppRedux();
 
     const closeSidePanel = () => dispatch(togglePhotos(false));
     const openSidePanel = () => dispatch(togglePhotos(true));
@@ -42,6 +42,7 @@ const Photos = () => {
             renderSideBar={() => renderLinks}
             onOpen={openSidePanel}
             buttonLabel={PhotosMessages.BUTTON_LABEL}
+            isDarkMode={isDarkMode}
         >
             <Outlet />
         </AsidePlatform>

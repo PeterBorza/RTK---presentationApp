@@ -40,11 +40,11 @@ const AsidePlatform: React.FC<Props> = ({
             />
             <div className={wrapper}>
                 <Button
-                    className={styles.menuButton}
                     onClick={onOpen}
                     displayed={!isOpen}
                     dark={isDarkMode}
                     value={buttonLabel}
+                    variant="menu"
                 />
                 {children}
             </div>

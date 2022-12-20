@@ -1,48 +1,66 @@
 {
   "bubbles": [
     {
-      "id": 16,
+      "id": 24,
       "cssProps": {
-        "left": "23%",
-        "top": "23%",
-        "size": "200px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 17,
-      "cssProps": {
-        "left": "67%",
-        "top": "78%",
-        "size": "150px",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 19,
-      "cssProps": {
-        "left": "75%",
-        "top": "45%",
-        "size": "100px",
-        "opacity": ".7"
-      }
-    },
-    {
-      "id": 23,
-      "cssProps": {
-        "left": "23%",
-        "top": "56%",
-        "size": "120px",
+        "left": "80",
+        "top": "75",
+        "size": "100",
         "opacity": "1"
       }
     },
     {
       "id": 25,
       "cssProps": {
-        "left": "78%",
-        "top": "82%",
-        "size": "77px",
+        "left": "55",
+        "top": "25",
+        "size": "130",
         "opacity": "1"
+      }
+    },
+    {
+      "id": 26,
+      "cssProps": {
+        "left": "45",
+        "top": "90",
+        "size": "70",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 27,
+      "cssProps": {
+        "left": "44",
+        "top": "44",
+        "size": "220",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 28,
+      "cssProps": {
+        "left": "44",
+        "top": "78",
+        "size": "120",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 29,
+      "cssProps": {
+        "left": "90",
+        "top": "23",
+        "size": "90",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 31,
+      "cssProps": {
+        "left": "15",
+        "top": "50",
+        "size": "200",
+        "opacity": "0.6"
       }
     }
   ],

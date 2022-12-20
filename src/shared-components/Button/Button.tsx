@@ -11,6 +11,7 @@ export type ButtonProps = {
     displayed?: boolean;
     type?: "button" | "submit" | "reset";
     onClick?: () => void;
+    variant?: "regular" | "menu";
 };
 
 const Button = ({
@@ -21,13 +22,15 @@ const Button = ({
     isDisabled,
     dark,
     displayed = true,
+    variant = "regular",
 }: ButtonProps) => {
-    const classes = classNames(styles.defaultStyle, className, {
-        [styles.defaultStyle__disabled]: isDisabled,
-        [styles.defaultStyle__dark]: dark,
-        [styles.defaultStyle__hidden]: !displayed,
-        [styles.submitButton]: type === "submit",
-        [styles.cancelButton]: value === "Cancel",
+    const classes = classNames(styles.button, className, {
+        [styles.button__dark]: dark,
+        [styles.button__disabled]: isDisabled,
+        [styles.button__hidden]: !displayed,
+        [styles.button__submit]: type === "submit",
+        [styles.button__cancel]: value === "Cancel",
+        [styles.button__menu]: variant === "menu",
     });
     return (
         <button className={classes} type={type ?? "button"} onClick={onClick} disabled={isDisabled}>

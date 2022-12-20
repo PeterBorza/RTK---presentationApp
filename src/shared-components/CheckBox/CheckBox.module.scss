@@ -1,10 +1,20 @@
-.checkboxWrapper {
-	display: flex;
-	align-items: center;
-	padding: 0 5px;
-	border: 1px solid white;
-	user-select: none;
-	input[type="checkbox"] {
-		margin: 5px;
-	}
+@use "css" as *;
+
+.checkBox {
+    background-color: aliceblue;
+    &__label {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        gap: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        & span {
+            @include truncate;
+            user-select: none;
+        }
+    }
 }

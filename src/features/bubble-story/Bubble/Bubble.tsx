@@ -19,6 +19,7 @@ const Bubble = ({ onClick, title, id, isSelected, cssProps }: BubbleProps) => {
     const [background, setBackground] = useState<string>(INITIAL_COLOR);
     const { left, top, size, opacity } = cssProps;
 
+    // TODO set background inline
     useEffect(() => {
         isSelected && setBackground(getRandomColor());
     }, [isSelected]);
@@ -33,9 +34,9 @@ const Bubble = ({ onClick, title, id, isSelected, cssProps }: BubbleProps) => {
     };
 
     const inlineStyles: CSSProperties = {
-        left,
-        top,
-        width: size,
+        left: `${left}%`,
+        top: `${top}%`,
+        width: `${size}px`,
         opacity,
         background: `#${background}`,
     };

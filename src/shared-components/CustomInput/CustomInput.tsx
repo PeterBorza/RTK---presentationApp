@@ -7,9 +7,10 @@ type InputProps = Pick<React.ComponentProps<"input">, "name" | "onChange" | "val
 
 interface CustomInputType extends InputProps {
     isValid?: boolean;
+    error?: boolean;
 }
 
-const CustomInput = ({ name, onChange, value, isValid }: CustomInputType) => {
+const CustomInput = ({ name, onChange, value, isValid, error }: CustomInputType) => {
     const classes = classNames(styles.input, {
         [styles["input__valid"]]: isValid,
         [styles["input__invalid"]]: !isValid,
@@ -20,6 +21,7 @@ const CustomInput = ({ name, onChange, value, isValid }: CustomInputType) => {
             <label className={styles.label_name}>
                 <span className={styles.name_style}>{value !== "" ? "" : `${name}:`}</span>
             </label>
+            {error && <span>No good</span>}
         </div>
     );
 };

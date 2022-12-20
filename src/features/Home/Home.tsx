@@ -1,5 +1,5 @@
 import { useWindowSize } from "hooks";
-import { DropSelect, Scroller, ToggleButton } from "shared-components";
+import { CheckBox, DropSelect, Loader, Scroller, ToggleButton } from "shared-components";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
@@ -14,6 +14,7 @@ const Home = () => {
     const SMALL_SCREEN = width < 600;
     const [label, setLabel] = useState<MenuType>("Select");
     const [enableDot, setEnableDot] = useState(false);
+    const [clr, setClr] = useState("");
 
     const mockMenuList = [
         "1 pair",
@@ -27,6 +28,8 @@ const Home = () => {
         "very long word to see how it behaves when in container",
     ];
 
+    const colors = ["green", "red", "blue", "olive"];
+
     const containerClasses = classNames(styles.container, {
         [styles.container__small]: SMALL_SCREEN,
         [styles.container__darkMode]: isDarkMode,
@@ -39,20 +42,31 @@ const Home = () => {
 
     const x = () => {
         setEnableDot(prev => !prev);
-        console.log("click");
+        console.log(enableDot);
+    };
+
+    const renderCheckBoxes = (item: string) => {
+        return (
+            <CheckBox
+                key={item}
+                onChange={() => setClr(item)}
+                value={item}
+                name={item}
+                label={item}
+                isChecked={clr === item}
+            />
+        );
     };
 
     return (
-        <div className={containerClasses}>
-            {/* <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
+        <div className={containerClasses} style={{ backgroundColor: clr }}>
+            <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
             <div className={styles.dropContainer}>
                 <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
-            </div> */}
-            <ToggleButton
-                darkMode={isDarkMode}
-                enabled={enableDot}
-                toggleEnabled={() => setEnableDot(prev => !prev)}
-            />
+            </div>
+            {/* <ToggleButton darkMode={isDarkMode} enabled={enableDot} toggleEnabled={x} size="xxl" /> */}
+            {/* {colors.map(renderCheckBoxes)} */}
+            {/* <Loader dots={5} message="...loading, please wait" darkMode={isDarkMode} /> */}
         </div>
     );
 };

@@ -8,6 +8,7 @@ type InputProps = Pick<
 
 interface ITextInput extends InputProps {
     isValid?: boolean;
+    errorMessage?: string;
 }
 
 const TextInput = ({
@@ -19,6 +20,7 @@ const TextInput = ({
     title,
     onChange,
     isValid,
+    errorMessage,
 }: ITextInput) => {
     const labelClasses = classNames(styles.labelWrap, className);
     const inputClasses = classNames(styles.input, {
@@ -26,19 +28,22 @@ const TextInput = ({
     });
 
     return (
-        <label htmlFor={name} className={labelClasses}>
-            <span>{name}</span>:
-            <input
-                type={type}
-                name={name}
-                title={title}
-                value={value}
-                onChange={onChange}
-                placeholder={placeholder}
-                className={inputClasses}
-                autoComplete="off"
-            />
-        </label>
+        <>
+            <label htmlFor={name} className={labelClasses}>
+                <span>{name}</span>:
+                <input
+                    type={type}
+                    name={name}
+                    title={title}
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    className={inputClasses}
+                    autoComplete="off"
+                />
+            </label>
+            {!isValid && <span>{errorMessage}</span>}
+        </>
     );
 };
 

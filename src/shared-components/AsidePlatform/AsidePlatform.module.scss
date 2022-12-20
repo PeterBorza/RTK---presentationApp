@@ -18,7 +18,3 @@ $SBtransition: all 200ms ease;
     @include darkModeSelector($darkMode);
     transition: $SBtransition;
 }
-
-.menuButton {
-    @include menuButton();
-}

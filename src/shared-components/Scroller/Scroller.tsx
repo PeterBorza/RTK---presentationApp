@@ -1,11 +1,10 @@
-import React, { ReactElement, ReactHTMLElement } from "react";
+import React from "react";
 import { ImageType } from "utils/my-images";
 
 import styles from "./Scroller.module.scss";
 import classNames from "classnames";
 import { createArray } from "utils";
 import { HashLink } from "react-router-hash-link";
-import ImageCard from "shared-components/ImageCard";
 
 export interface ScrollerType {
     images: ImageType[];
@@ -62,7 +61,7 @@ const Scroller = ({
                             )
                         }
                     >
-                        &#8226;
+                        <span> &#8226;</span>
                     </HashLink>
                 ))}
             </div>
