@@ -5,7 +5,7 @@ $cancelButtonColor: rgb(163, 33, 59);
 
 @mixin menuButton {
     position: absolute;
-    left: 0;
+    left: 5px;
     top: calc($navHeight * -2);
     z-index: 10;
     animation: flowDown 600ms ease-out forwards;
@@ -17,16 +17,15 @@ $cancelButtonColor: rgb(163, 33, 59);
 }
 
 .button {
-    display: block;
+    display: flex;
+    flex-shrink: 1;
     position: relative;
     overflow: hidden;
     background: $myYellow3;
-    color: $myGrey;
     border: none;
     outline: none;
     font-weight: bold;
-    margin: 5px;
-    padding: 5px 10px;
+    padding: 0.3rem 0.7rem;
     border-radius: 3px;
     z-index: 100;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
@@ -74,10 +73,6 @@ $cancelButtonColor: rgb(163, 33, 59);
         }
     }
 
-    &__width {
-        width: 200px;
-    }
-
     &__dark {
         background-color: $darkModeWhite;
         color: skyblue;
@@ -87,15 +82,20 @@ $cancelButtonColor: rgb(163, 33, 59);
         display: none;
     }
 
-    &__submit {
-        color: $submitButtonColor;
+    &__menu {
+        @include menuButton();
     }
+}
+
+.content {
+    color: $myGrey;
+    @include truncate();
 
     &__cancel {
         color: $cancelButtonColor;
     }
 
-    &__menu {
-        @include menuButton();
+    &__submit {
+        color: $submitButtonColor;
     }
 }

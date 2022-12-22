@@ -22,6 +22,8 @@ export enum LinkUrls {
 
 export const getHomeLabel = (item: string) => (item === LinkUrls.HOME ? "home" : item);
 
+// TODO Organise the above enums into one object
+
 export enum Error {
     MESSAGE = "We are sorry, an error occured. Please try again later",
 }
@@ -46,8 +48,16 @@ export enum CloseMenu {
     MESSAGE = "Close menu",
 }
 
+export enum Submit {
+    SUBMIT = "Submit",
+}
+
+export enum Cancel {
+    CANCEL = "Cancel",
+}
+
 export enum Forbidden {
-    MESSAGE = "You are not authorized to see this",
+    MESSAGE = "You are not authorised to see this",
 }
 
 export enum DummyText {
@@ -61,8 +71,8 @@ export enum AppMessages {
     COMING_SOON = "Coming soon...",
     OPEN_MENU = "Open menu",
     CLOSE_MENU = "Close menu",
+    SUBMIT = "Submit",
+    CANCEL = "Cancel",
     FORBIDDEN = "You are not authorized to see this",
     DUMMY_TEXT = "tetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!",
 }
-
-// TODO Organize the above enums into one object

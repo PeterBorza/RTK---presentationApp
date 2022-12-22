@@ -6,7 +6,7 @@ import { BubbleMessages as msg } from "../constants";
 import Bubble from "../Bubble";
 import BubbleForm from "../BubbleForm";
 import { Loader, Button, ButtonWrapper, AlertModal } from "shared-components";
-import { setError, setSelectedBubble, toggleBubbleFormModal } from "../bubbleSlice";
+import { clearBubbles, setError, setSelectedBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
 import { starterBubble } from "../state";
 import { ButtonProps } from "shared-components/Button/Button";
@@ -48,6 +48,12 @@ const BubbleContainer = () => {
             isDisabled: !selected,
             displayed: isBubbles,
         },
+        {
+            onClick: () => dispatch(clearBubbles()),
+            value: msg.CLEAR,
+            isDisabled: !isBubbles,
+            displayed: isBubbles,
+        },
     ];
 
     const getButtons = buttons.map((item, idx) => (
@@ -61,7 +67,7 @@ const BubbleContainer = () => {
     ));
 
     const renderButtons = () => (
-        <span className={styles.buttons}>
+        <>
             {getButtons}
             {isBubbles && (
                 <BubbleForm
@@ -72,7 +78,7 @@ const BubbleContainer = () => {
                     onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
                 />
             )}
-        </span>
+        </>
     );
 
     const renderBubbles = ({ id, cssProps }: BubbleType) => (

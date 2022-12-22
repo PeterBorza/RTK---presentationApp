@@ -2,13 +2,20 @@ import React, { useCallback, useMemo, useEffect } from "react";
 
 import { MemoryGameMessages as msg } from "../messages";
 import { shuffle } from "utils";
-import { useWindowSize } from "hooks";
 import { GameTheme, GameThemeType } from "../types";
 
 import { useMGameRedux } from "../selectors";
 import { useAppRedux } from "app";
 
-import { GamePhotoData, toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } from "..";
+import {
+    GamePhotoData,
+    toggleFlip,
+    setMatch,
+    incrementCount,
+    resetGame,
+    toggleTheme,
+    setGameFinished,
+} from "..";
 
 import { AlertModal, Button, ButtonWrapper, FlipCard } from "shared-components";
 import Controls from "../Controls";
@@ -23,15 +30,6 @@ const Game = () => {
         flippedCards,
         isGameFinished,
     } = useMGameRedux();
-    const { width } = useWindowSize();
-
-    const SMALL_PORTRAIT_SCREEN = width < 400;
-    const SMALL_LANDSCAPE_SCREEN = width < 800 && width > 400;
-
-    const gridClasses = classNames(styles.grid, {
-        [styles.grid__portrait]: SMALL_PORTRAIT_SCREEN,
-        [styles.grid__landscape]: SMALL_LANDSCAPE_SCREEN,
-    });
 
     const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
         classNames(styles.box, {
@@ -46,7 +44,11 @@ const Game = () => {
 
     useEffect(() => {
         count >= maxCount && dispatch(resetGame(gamePhotos));
-    }, [count, dispatch, currentTheme, maxCount, themes]);
+    }, [count, dispatch, maxCount, gamePhotos]);
+
+    useEffect(() => {
+        gamePhotos.every(photo => photo.match === true) && dispatch(setGameFinished(true));
+    }, [dispatch, gamePhotos]);
 
     const freezeIfMatch = useCallback(
         (item: GamePhotoData) => {
@@ -76,18 +78,11 @@ const Game = () => {
                 dispatch(toggleTheme(theme));
             }
         },
-        [dispatch],
+        [dispatch, themes],
     );
 
-    const gameButton = ({ theme = GameTheme.MINIONS }: Partial<GameThemeType>) => (
-        <Button
-            key={theme}
-            onClick={() => {
-                newGameHandler(theme);
-            }}
-            value={theme}
-            className={styles.buttons}
-        />
+    const gameButton = ({ theme = currentTheme! }: Partial<GameThemeType>) => (
+        <Button key={theme} onClick={() => newGameHandler(theme)} value={theme} />
     );
 
     const renderGridTable = useMemo(() => {
@@ -123,11 +118,17 @@ const Game = () => {
             <Controls label={msg.SCORE} count={count} dark={isDarkMode}>
                 {themes.map(gameButton)}
             </Controls>
-            <div className={gridClasses}>{renderGridTable}</div>
+            <div className={styles.grid}>{renderGridTable}</div>
             <AlertModal openModal={isGameFinished}>
                 <div className={styles.finished}>
                     <h1>{endMessage}</h1>
-                    <ButtonWrapper position="center">{themes.map(gameButton)}</ButtonWrapper>
+                    <ButtonWrapper position="end">
+                        {themes.map(gameButton)}
+                        <Button
+                            value={msg.RETURN_LINK}
+                            onClick={() => dispatch(setGameFinished(false))}
+                        />
+                    </ButtonWrapper>
                 </div>
             </AlertModal>
         </section>

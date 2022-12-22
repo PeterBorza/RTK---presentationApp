@@ -81,7 +81,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
         );
     });
 
-    if (highIndex) {
+    if (highIndex)
         return (
             <AlertModal
                 message={UtilityTableLabels.INDEX_ALERT}
@@ -90,7 +90,6 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
                 ref={modalRef}
             />
         );
-    }
 
     return (
         <ModalForm

@@ -8,6 +8,8 @@ const photoSelector = ({ memoryGame }: RootState) => memoryGame.photos;
 
 const gamePhotosSelector = ({ memoryGame }: RootState) => memoryGame.gamePhotos;
 
+const finishedGameSelector = (state: RootState) => state.memoryGame.gameFinished;
+
 const flippedCardsSelector = createSelector(gamePhotosSelector, items =>
     items.filter(item => item.isFlipped === true),
 );
@@ -16,9 +18,9 @@ const matchCardsSelector = createSelector(gamePhotosSelector, items =>
     items.filter(item => item.match === true),
 );
 
-const finishedGameSelector = createSelector(gamePhotosSelector, items =>
-    items.every(item => item.match === true),
-);
+// const finishedGameSelector = createSelector(gamePhotosSelector, items =>
+//     items.every(item => item.match === true),
+// );
 
 export const useMGameRedux = () => ({
     memoryGame: useSelector(memoryGameState),
