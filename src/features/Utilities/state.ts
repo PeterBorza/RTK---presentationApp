@@ -17,6 +17,8 @@ const initialState: UtilityState = {
     maxIndex: 300,
 };
 
+// TODO add selected to state, represented with id.
+
 const initialEditUnit: UtilityStateUnit = {
     ...initialFormValues,
     id: "",

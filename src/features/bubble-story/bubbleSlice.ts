@@ -15,6 +15,10 @@ export const bubbleSlice = createSlice({
         setBubbles: ({ bubbles }: BubbleState, { payload }: PayloadAction<Bubble[]>) => {
             bubbles.push(...payload);
         },
+        clearBubbles: (state: BubbleState) => {
+            state.bubbles = [];
+            state.selectedBubble = null;
+        },
         setPending: (state: BubbleState, { payload }: PayloadAction<boolean>) => {
             state.loading.isLoading = payload;
         },
@@ -38,6 +42,7 @@ export const bubbleSlice = createSlice({
 export const {
     resetSelectedBubble,
     setBubbles,
+    clearBubbles,
     setPending,
     setError,
     deleteBub,

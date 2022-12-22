@@ -16,7 +16,7 @@ const Navigation = () => {
     const links = useLinkContext();
     const { width } = useWindowSize();
     const { dispatch, isDarkMode } = useAppRedux();
-    const [isDark, setIsDark] = useLocalStorage<boolean | null>("lightMode", null);
+    const [isDark, setIsDark] = useLocalStorage<boolean>("lightMode", true);
 
     const SMALL_SCREEN = width < 600;
 
@@ -26,7 +26,7 @@ const Navigation = () => {
         });
 
     const toggleSelected = () => {
-        dispatch(toggleDarkMode(!isDarkMode));
+        setIsDark(!isDark);
     };
 
     const Toggle = () => (
@@ -36,8 +36,8 @@ const Navigation = () => {
     );
 
     useEffect(() => {
-        Boolean(isDark) !== isDarkMode && setIsDark(Boolean(isDark));
-    }, [dispatch, isDark, isDarkMode]);
+        dispatch(toggleDarkMode(Boolean(isDark)));
+    }, [dispatch, isDark]);
 
     const RenderBigScreenLinks = () => (
         <>

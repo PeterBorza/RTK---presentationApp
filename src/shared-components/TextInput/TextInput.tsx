@@ -22,13 +22,13 @@ const TextInput = ({
     isValid,
     errorMessage,
 }: ITextInput) => {
-    const labelClasses = classNames(styles.labelWrap, className);
+    const labelClasses = classNames(styles.label__wrap, className);
     const inputClasses = classNames(styles.input, {
-        [styles["input__invalid"]]: !isValid,
+        [styles.input__invalid]: !isValid,
     });
 
     return (
-        <>
+        <div className={styles.label}>
             <label htmlFor={name} className={labelClasses}>
                 <span>{name}</span>:
                 <input
@@ -42,8 +42,8 @@ const TextInput = ({
                     autoComplete="off"
                 />
             </label>
-            {!isValid && <span>{errorMessage}</span>}
-        </>
+            <span className={styles.label__error}>{!isValid ? errorMessage : ""}</span>
+        </div>
     );
 };
 

@@ -6,6 +6,8 @@ type Props = {
     position?: "start" | "center" | "end";
 };
 
+// TODO fix position related issue
+
 const ButtonWrapper: React.FC<Props> = ({ children, dark = false, position = "end" }) => {
     const buttonWrapper = classNames(styles.buttonWrapper, [styles[`buttonWrapper--${position}`]], {
         [styles.buttonWrapper__dark]: dark,

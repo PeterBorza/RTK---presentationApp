@@ -23,6 +23,7 @@ const initialState: MemoryGameState = {
     currentCount: 0,
     currentTheme: GameTheme.MINIONS,
     maxCount: 28,
+    gameFinished: false,
     themes: [
         {
             images: minionGameImages,
@@ -67,10 +68,13 @@ export const memoryGameSlice = createSlice({
         toggleTheme: (state: MemoryGameState, { payload }: PayloadAction<GameTheme>) => {
             state.currentTheme = payload;
         },
+        setGameFinished: (state: MemoryGameState, { payload }: PayloadAction<boolean>) => {
+            state.gameFinished = payload;
+        },
     },
 });
 
-export const { toggleFlip, setMatch, incrementCount, resetGame, toggleTheme } =
+export const { toggleFlip, setMatch, incrementCount, resetGame, toggleTheme, setGameFinished } =
     memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

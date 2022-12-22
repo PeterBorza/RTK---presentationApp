@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { TextInput, FadedModal, Form, Button } from "shared-components";
 import { BubbleFormValues } from "./constants";
@@ -15,7 +15,6 @@ type BubbleFormType = {
 
 const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleFormType) => {
     const { values, changeHandler, resetValues } = useForm<BubbleCssProps>(formObject);
-    // const [valid, setValid] = useState(true);
 
     const onCancelHandler = () => {
         resetValues();
@@ -23,26 +22,25 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
     };
 
     const validResults = (key: keyof typeof values, value: string) => {
-        if (isNaN(+value) || value === "") {
-            return true;
+        if (isNaN(+value)) {
+            return false;
         } else {
             if (key === "left" || key === "top") {
-                if (+value < 0 || +value > 100) return true;
+                if (+value < 0 || +value > 100) return false;
             }
             if (key === "size") {
-                if (+value < 10 || +value > 612) return true;
+                if (+value < 0 || +value > 612) return false;
             }
             if (key === "opacity") {
-                if (+value < 0 || +value > 1) return true;
+                if (+value < 0 || +value > 1) return false;
             }
-            return false;
+            return true;
         }
     };
 
     const onSubmitHandler = () => {
         const { left, top, size, opacity } = values;
 
-        //TODO errorhandling missing!!!
         const newBubble = {
             left,
             top,
@@ -55,10 +53,10 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
     };
 
     const errorMessages: Record<keyof typeof values, string> = {
-        left: "percentages must be between 0 and 100",
-        top: "percentages must be between 0 and 100",
-        size: "size must be between 0 and 612",
-        opacity: "opacity must be between 0 and 1",
+        left: "0 to 100",
+        top: "0 to 100",
+        size: "0 to 612",
+        opacity: "0 to 1",
     };
 
     const renderFields = React.useMemo(
@@ -69,12 +67,14 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
                     value={value}
                     name={key}
                     onChange={changeHandler}
-                    isValid={!validResults(key as keyof typeof values, value)}
+                    isValid={validResults(key as keyof typeof values, value)}
                     errorMessage={errorMessages[key as keyof typeof values]}
                 />
             )),
         [values, changeHandler, validResults],
     );
+
+    const disabledSubmit = Object.values(values).some(v => v === "");
 
     return (
         <>
@@ -86,6 +86,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
                     renderFields={renderFields}
                     onCancel={onCancelHandler}
                     formTitle={BubbleFormValues.FORM_TITLE}
+                    disabled={disabledSubmit}
                 />
             </FadedModal>
         </>

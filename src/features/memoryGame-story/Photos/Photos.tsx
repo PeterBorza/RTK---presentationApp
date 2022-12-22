@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { LinkUrls, useAppRedux, togglePhotos } from "app";
@@ -14,8 +14,8 @@ const Photos = () => {
     const { photos, dispatch } = useMGameRedux();
     const { isPhotosOpen: openSideBar, isDarkMode } = useAppRedux();
 
-    const closeSidePanel = () => dispatch(togglePhotos(false));
-    const openSidePanel = () => dispatch(togglePhotos(true));
+    const closeSidePanel = useCallback(() => dispatch(togglePhotos(false)), [dispatch]);
+    const openSidePanel = useCallback(() => dispatch(togglePhotos(true)), [dispatch]);
 
     const renderLinks = useMemo(
         () => (
@@ -31,7 +31,7 @@ const Photos = () => {
                 </Link>
             </div>
         ),
-        [photos],
+        [photos, closeSidePanel],
     );
 
     return (

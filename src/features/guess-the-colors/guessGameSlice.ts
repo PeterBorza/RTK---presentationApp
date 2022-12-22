@@ -39,10 +39,9 @@ export const guessGameSlice = createSlice({
             const currentAttempt = currentAttemptFinder(state.attempts, payload);
             if (currentAttempt !== -1) state.attempts[currentAttempt].selected = false;
         },
-        resetGame: (state: IguessGame, { payload }: PayloadAction<IguessGameItem[]>) => {
-            state.attempts = initialState.attempts;
-            state.gameCombo = shuffle(payload).slice(0, 4);
-        },
+        resetGame: (state: IguessGame, { payload }: PayloadAction<IguessGameItem[]>) =>
+            (state = { ...initialState, gameCombo: shuffle(payload).slice(0, 4) }),
+
         setFinished: (state: IguessGame, { payload }: PayloadAction<boolean>) => {
             state.finished = payload;
         },

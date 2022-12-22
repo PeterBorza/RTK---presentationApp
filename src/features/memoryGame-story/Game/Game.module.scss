@@ -37,8 +37,9 @@ $front-background: rgba(255, 255, 525, 0.6);
 }
 
 .grid {
-    width: 600px;
-    height: 600px;
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat($cols, 1fr);
     gap: $gap;
@@ -47,15 +48,6 @@ $front-background: rgba(255, 255, 525, 0.6);
     border-radius: $gap;
     z-index: 5;
     @include shadowSB;
-    transition: all 100ms;
-    &__portrait {
-        width: 95%;
-        height: 50%;
-    }
-    &__landscape {
-        width: 50%;
-        height: 80%;
-    }
 }
 
 .box {
@@ -81,9 +73,6 @@ $front-background: rgba(255, 255, 525, 0.6);
         content: "";
         left: 5%;
         top: 5%;
-        background-image: url(../images/gru-clean.png);
-        background-position: center;
-        background-size: cover;
         width: 90%;
         height: 100%;
         opacity: 0.5;
@@ -92,14 +81,14 @@ $front-background: rgba(255, 255, 525, 0.6);
         &::after {
             background-image: url(../images/gru-clean.png);
             background-position: center;
-            background-size: cover;
+            background-size: contain;
         }
     }
     &__christmas {
         &::after {
             background-image: url(../images/merryChristmas_300.png);
             background-position: center;
-            background-size: cover;
+            background-size: contain;
         }
     }
 }

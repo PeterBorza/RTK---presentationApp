@@ -33,6 +33,7 @@ export type GameThemeType = {
 export interface MemoryGameState {
     photos: ImageDataType[];
     gamePhotos: GamePhotoData[];
+    gameFinished: boolean;
     currentCount: number;
     currentTheme?: GameTheme;
     maxCount: number;
