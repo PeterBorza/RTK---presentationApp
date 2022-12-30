@@ -11,30 +11,15 @@ export const speedState = ({ lift }: RootState) => lift.speed;
 
 export const liftsState = ({ lift }: RootState) => lift.lifts;
 
-export const distanceSelector = createSelector(liftsState, lifts =>
-    lifts.map(lift => lift.distanceFromCall),
-);
-
 export const levelsSelector = createSelector(levelsState, levels =>
     createArray(levels).map((_, idx) => idx),
 );
 
-export const useLiftRedux = () => {
-    const lift = useSelector(liftState);
-    const numberOfLevels = useSelector(levelsState);
-    const speed = useSelector(speedState);
-    const lifts = useSelector(liftsState);
-    const distance = useSelector(distanceSelector);
-    const levels = useSelector(levelsSelector);
-    const dispatch = useDispatch();
-
-    return {
-        lift,
-        numberOfLevels,
-        speed,
-        lifts,
-        distance,
-        levels,
-        dispatch,
-    };
-};
+export const useLiftRedux = () => ({
+    lift: useSelector(liftState),
+    numberOfLevels: useSelector(levelsState),
+    speed: useSelector(speedState),
+    lifts: useSelector(liftsState),
+    levels: useSelector(levelsSelector),
+    dispatch: useDispatch(),
+});

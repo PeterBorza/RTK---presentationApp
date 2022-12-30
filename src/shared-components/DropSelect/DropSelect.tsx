@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 
-import { useOnClickOutside } from "hooks";
+import { useOnClickOutside, useToggle } from "hooks";
 import { icons } from "utils";
 
 import styles from "./DropSelect.module.scss";
@@ -21,11 +21,9 @@ interface MenuItemProps {
 const DEFAULT_TRIGGER_LABEL = "Select";
 
 const DropSelect = ({ menu, onSelect }: DropSelectProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, toggleOpen, setIsOpen] = useToggle(false);
     const [selected, setSelected] = useState<MenuType>(DEFAULT_TRIGGER_LABEL);
     const dropSelectRef = useRef<HTMLUListElement | null>(null);
-
-    const toggleHandler = () => setIsOpen(prev => !prev);
 
     const selectHandler = (element: MenuType) => {
         onSelect && onSelect(element);
@@ -36,7 +34,7 @@ const DropSelect = ({ menu, onSelect }: DropSelectProps) => {
     useOnClickOutside(dropSelectRef, () => setIsOpen(false));
 
     const Trigger = () => (
-        <div className={styles.dropSelect__trigger} onClick={toggleHandler}>
+        <div className={styles.dropSelect__trigger} onClick={toggleOpen}>
             <span className={styles.dropSelect__trigger__label}>{selected}</span>
             <span className={styles.dropSelect__trigger__icon}>
                 {isOpen ? icons.up : icons.down}

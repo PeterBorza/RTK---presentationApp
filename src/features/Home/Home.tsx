@@ -1,10 +1,10 @@
-import { useWindowSize } from "hooks";
-import { CheckBox, DropSelect, Loader, Scroller, ToggleButton } from "shared-components";
+import { useToggle, useWindowSize } from "hooks";
+import { CheckBox, DropSelect, Scroller, ToggleButton, Range } from "shared-components";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
 import { rainPhotos } from "utils";
-import { useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { MenuType } from "shared-components/DropSelect/DropSelect";
 import { useAppRedux } from "app";
 
@@ -13,7 +13,8 @@ const Home = () => {
     const { width } = useWindowSize();
     const SMALL_SCREEN = width < 600;
     const [label, setLabel] = useState<MenuType>("Select");
-    const [enableDot, setEnableDot] = useState(false);
+    const [range, setRange] = useState(10);
+    const [enableDot, toggleDot] = useToggle(false);
     const [clr, setClr] = useState("");
 
     const mockMenuList = [
@@ -35,16 +36,6 @@ const Home = () => {
         [styles.container__darkMode]: isDarkMode,
     });
 
-    const dotClasses = classNames(
-        styles.dot,
-        enableDot ? styles.dot__enabled : styles.dot__disabled,
-    );
-
-    const x = () => {
-        setEnableDot(prev => !prev);
-        console.log(enableDot);
-    };
-
     const renderCheckBoxes = (item: string) => {
         return (
             <CheckBox
@@ -58,15 +49,34 @@ const Home = () => {
         );
     };
 
+    const HomeBox: FC = ({ children }) => <div className={styles.homeBox}>{children}</div>;
+
     return (
         <div className={containerClasses} style={{ backgroundColor: clr }}>
-            <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
-            <div className={styles.dropContainer}>
-                <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
-            </div>
-            {/* <ToggleButton darkMode={isDarkMode} enabled={enableDot} toggleEnabled={x} size="xxl" /> */}
-            {/* {colors.map(renderCheckBoxes)} */}
-            {/* <Loader dots={5} message="...loading, please wait" darkMode={isDarkMode} /> */}
+            <HomeBox>
+                <Scroller scrollerTitle={label as string} images={rainPhotos} />
+            </HomeBox>
+
+            <HomeBox>
+                <div className={styles.dropContainer}>
+                    <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
+                </div>
+            </HomeBox>
+
+            <HomeBox>
+                <ToggleButton
+                    darkMode={isDarkMode}
+                    enabled={enableDot}
+                    toggleEnabled={() => toggleDot()}
+                    size="xxl"
+                />
+            </HomeBox>
+
+            <HomeBox>{colors.map(renderCheckBoxes)}</HomeBox>
+
+            <HomeBox>
+                <Range name="left" value={range} onChange={(value: number) => setRange(value)} />
+            </HomeBox>
         </div>
     );
 };

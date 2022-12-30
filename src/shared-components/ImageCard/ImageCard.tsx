@@ -4,6 +4,7 @@ import { ImageType } from "utils/my-images";
 
 import classNames from "classnames";
 import styles from "./ImageCard.module.scss";
+import { useToggle } from "hooks";
 
 type ImageCardType = {
     position?: "top" | "center" | "bottom";
@@ -12,7 +13,7 @@ type ImageCardType = {
 };
 
 const ImageCard = ({ position = "center", src, caption }: ImageCardType) => {
-    const [wide, setWide] = React.useState(false);
+    const [wide, toggle] = useToggle(false);
 
     const captionClasses = classNames(
         styles["card__caption"],
@@ -25,13 +26,7 @@ const ImageCard = ({ position = "center", src, caption }: ImageCardType) => {
 
     return (
         <div className={styles["outer-wrapper"]}>
-            <img
-                onClick={() => setWide(prev => !prev)}
-                className={wideClasses}
-                src={src}
-                alt={caption}
-                loading="lazy"
-            />
+            <img onClick={toggle} className={wideClasses} src={src} alt={caption} loading="lazy" />
             {caption && <p className={captionClasses}>{caption}</p>}
         </div>
     );

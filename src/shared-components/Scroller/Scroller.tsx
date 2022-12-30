@@ -14,7 +14,7 @@ export interface ScrollerType {
 }
 
 const Scroller = ({
-    size = "small",
+    size = "fit",
     images,
     scrollerTitle = "title here",
     vertical = false,
@@ -37,7 +37,7 @@ const Scroller = ({
     );
 
     return (
-        <>
+        <div>
             <div className={wrapper}>
                 <div className={styles.scrollerContainer__header}>
                     <h2 title={scrollerTitle}>{scrollerTitle}</h2>
@@ -65,7 +65,7 @@ const Scroller = ({
                     </HashLink>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

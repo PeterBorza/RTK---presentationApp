@@ -1,0 +1,12 @@
+.range {
+    background-color: beige;
+    cursor: pointer;
+}
+
+.range_label {
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10000;
+}
+
+// TODO style the range input

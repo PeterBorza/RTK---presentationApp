@@ -24,6 +24,7 @@ import ImageCard from "./ImageCard";
 import ButtonWrapper from "./ButtonWrapper";
 import CustomInput from "./CustomInput";
 import Rubik from "./Rubik";
+import Range from "./Range";
 import MyRubik from "./GenericRubik";
 import CustomImage from "./CustomImage";
 import Box from "./Box";
@@ -64,6 +65,7 @@ export {
     ImageCard,
     ButtonWrapper,
     Rubik,
+    Range,
     MyRubik,
     Box,
     ScrollPage,

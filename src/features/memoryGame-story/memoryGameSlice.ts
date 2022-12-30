@@ -1,60 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GameTheme, MemoryGameState } from "./types";
+import { GameTheme, GameThemeType, MemoryGameState } from "./types";
 import { imageData } from "utils";
 import { GamePhotoData } from ".";
-import {
-    shuffledChristmas,
-    shuffledMinions,
-    minionGameImages,
-    christmasGameImages,
-    shuffledCuteAnimals,
-    cuteAnimalImages,
-} from "./game-images";
+import { shuffledChristmas, shuffledMinions, shuffledCuteAnimals } from "./game-images";
 
-export const themeShuffledImages: { [key: string]: GamePhotoData[] } = {
-    [GameTheme.MINIONS]: shuffledMinions,
-    [GameTheme.CHRISTMAS]: shuffledChristmas,
-    [GameTheme.CUTE_ANIMALS]: shuffledCuteAnimals,
+export const themeShuffledImages: Record<GameTheme, GamePhotoData[]> = {
+    minions: shuffledMinions,
+    christmas: shuffledChristmas,
+    cute_animals: shuffledCuteAnimals,
 };
+
+const christmasTime = new Date().getMonth() === 11;
+
+// TODO set animals theme photos
 
 const initialState: MemoryGameState = {
     photos: imageData,
-    gamePhotos: themeShuffledImages[GameTheme.MINIONS],
+    gamePhotos: themeShuffledImages[christmasTime ? "christmas" : "minions"],
     currentCount: 0,
-    currentTheme: GameTheme.MINIONS,
+    currentTheme: christmasTime ? GameTheme.CHRISTMAS : GameTheme.MINIONS,
     maxCount: 28,
     gameFinished: false,
-    themes: [
-        {
-            images: minionGameImages,
-            theme: GameTheme.MINIONS,
-        },
-        {
-            images: christmasGameImages,
-            theme: GameTheme.CHRISTMAS,
-        },
-        {
-            images: cuteAnimalImages,
-            theme: GameTheme.CUTE_ANIMALS,
-        },
-    ],
+    themes: Object.entries(themeShuffledImages).map(([key, value]) => ({
+        images: value,
+        theme: key,
+    })) as GameThemeType[],
 };
 
 export const memoryGameSlice = createSlice({
     name: "memoryGame",
     initialState,
     reducers: {
-        toggleFlip: ({ gamePhotos }: MemoryGameState, { payload }: PayloadAction<string>) => {
-            gamePhotos.map(item => (item.isFlipped = item.id === payload ? true : false));
+        toggleFlip: (state, { payload }: PayloadAction<string>) => {
+            state.gamePhotos.map(item => (item.isFlipped = item.id === payload));
+            state.currentCount++;
         },
-        setMatch: ({ gamePhotos }: MemoryGameState, { payload }: PayloadAction<string>) => {
+        setMatch: ({ gamePhotos }, { payload }: PayloadAction<string>) => {
             const selected = gamePhotos.find(item => item.id === payload);
             if (selected) selected.match = true;
         },
-        incrementCount: (state: MemoryGameState) => {
-            state.currentCount++;
-        },
-        resetGame: (state: MemoryGameState, { payload }: PayloadAction<GamePhotoData[]>) => {
+        resetGame: (state, { payload }: PayloadAction<GamePhotoData[]>) => {
             const newGame = payload.map(item => {
                 return {
                     ...item,
@@ -64,17 +49,18 @@ export const memoryGameSlice = createSlice({
             });
             state.gamePhotos = newGame;
             state.currentCount = initialState.currentCount;
+            state.gameFinished = false;
         },
-        toggleTheme: (state: MemoryGameState, { payload }: PayloadAction<GameTheme>) => {
+        setTheme: (state, { payload }: PayloadAction<GameTheme>) => {
             state.currentTheme = payload;
         },
-        setGameFinished: (state: MemoryGameState, { payload }: PayloadAction<boolean>) => {
+        setGameFinished: (state, { payload }: PayloadAction<boolean>) => {
             state.gameFinished = payload;
         },
     },
 });
 
-export const { toggleFlip, setMatch, incrementCount, resetGame, toggleTheme, setGameFinished } =
+export const { toggleFlip, setMatch, resetGame, setTheme, setGameFinished } =
     memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;

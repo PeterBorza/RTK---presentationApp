@@ -23,31 +23,30 @@ const ScrollPage = <T extends Elements>({ pages, isDarkMode = false }: ScrollPro
     const sectionClasses = classNames(styles.section, {
         [styles.section__darkMode]: isDarkMode,
     });
+    if (!pages) return null;
     return (
         <>
             <aside className={styles.aside_navigation}>
                 <ul className={styles.link_shell}>
-                    {pages &&
-                        pages.map(link => (
-                            <li key={`scroll-label-${link.id}`}>
-                                <HashLink smooth to={`/${LinkUrls.SCROLL}#${link.label}`}>
-                                    {link.label}
-                                </HashLink>
-                            </li>
-                        ))}
+                    {pages.map(link => (
+                        <li key={`scroll-label-${link.id}`}>
+                            <HashLink smooth to={`/${LinkUrls.SCROLL}#${link.label}`}>
+                                {link.label}
+                            </HashLink>
+                        </li>
+                    ))}
                 </ul>
             </aside>
             <section className={sectionClasses}>
-                {pages &&
-                    pages.map(link => (
-                        <article
-                            key={`scroll-content-${link.id}`}
-                            className={styles.article}
-                            id={link.label}
-                        >
-                            {link.content}
-                        </article>
-                    ))}
+                {pages.map(link => (
+                    <article
+                        key={`scroll-content-${link.id}`}
+                        className={styles.article}
+                        id={link.label}
+                    >
+                        {link.content}
+                    </article>
+                ))}
             </section>
         </>
     );

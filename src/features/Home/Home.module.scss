@@ -1,7 +1,16 @@
 @use "css" as *;
 
+$lineUp: 3;
+
 .container {
-    @include appContainer($darkMode);
+    @include appContainer($darkMode, $lineUp);
+}
+
+.homeBox {
+    padding: 1rem;
+    @include fCenter();
+    @include shadow3();
+    border-radius: 5px;
 }
 
 .dropContainer {

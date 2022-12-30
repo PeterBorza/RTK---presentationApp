@@ -10,47 +10,11 @@
       }
     },
     {
-      "id": 25,
-      "cssProps": {
-        "left": "55",
-        "top": "25",
-        "size": "130",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 26,
-      "cssProps": {
-        "left": "45",
-        "top": "90",
-        "size": "70",
-        "opacity": "1"
-      }
-    },
-    {
       "id": 27,
       "cssProps": {
         "left": "44",
         "top": "44",
         "size": "220",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 28,
-      "cssProps": {
-        "left": "44",
-        "top": "78",
-        "size": "120",
-        "opacity": "1"
-      }
-    },
-    {
-      "id": 29,
-      "cssProps": {
-        "left": "90",
-        "top": "23",
-        "size": "90",
         "opacity": "1"
       }
     },
@@ -69,6 +33,24 @@
         "left": "20",
         "top": "45",
         "size": "123",
+        "opacity": "1"
+      }
+    },
+    {
+      "id": 33,
+      "cssProps": {
+        "left": "30",
+        "top": "70",
+        "size": "220",
+        "opacity": "0.9"
+      }
+    },
+    {
+      "id": 34,
+      "cssProps": {
+        "left": "55",
+        "top": "75",
+        "size": "300",
         "opacity": "1"
       }
     }

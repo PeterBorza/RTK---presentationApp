@@ -38,7 +38,7 @@ const BubbleContainer = () => {
     const buttons: ButtonProps[] = [
         {
             onClick: () => dispatch(getBubbles(LinkUrls.BUBBLES)),
-            value: isLoading ? <Loader dots={5} /> : msg.FETCH,
+            value: msg.FETCH,
             isDisabled: isBubbles,
             displayed: !isBubbles,
         },
@@ -91,6 +91,8 @@ const BubbleContainer = () => {
             id={id}
         />
     );
+
+    // TODO resolve pending issues on button state
 
     return (
         <div className={wrapper}>
