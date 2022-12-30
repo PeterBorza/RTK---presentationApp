@@ -6,13 +6,6 @@ $lineUp: 3;
     @include appContainer($darkMode, $lineUp);
 }
 
-.homeBox {
-    padding: 1rem;
-    @include fCenter();
-    @include shadow3();
-    border-radius: 5px;
-}
-
 .dropContainer {
     width: 250px;
     background-color: cadetblue;

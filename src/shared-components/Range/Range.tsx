@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Range.module.scss";
 
 export interface RangeProps {
@@ -9,6 +9,8 @@ export interface RangeProps {
     step?: number;
     onChange: (value: number) => void;
 }
+
+// TODO style up and upgrade here
 
 const Range = ({ name, min = 0, max = 100, value, step = 1, onChange }: RangeProps) => {
     return (
