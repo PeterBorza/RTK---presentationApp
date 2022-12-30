@@ -24,13 +24,16 @@ $hoverColor: rgb(255 255 255/0.1);
 
     transition: all $openSpeed ease-out;
     overflow: hidden;
+
     &__show {
         transform: translateX(0%);
         pointer-events: all;
     }
+
     &:hover {
         background-color: $hoverColor;
     }
+
     &__buttons {
         width: 100%;
         display: flex;
@@ -40,41 +43,16 @@ $hoverColor: rgb(255 255 255/0.1);
         overflow-y: scroll;
         @include noVisibleScrollBar();
     }
+
     &__icons {
         display: flex;
         font-size: clamp(1rem, 2.5vw, 3rem);
         border-radius: 50%;
         color: crimson;
+
+        &__static {
+            display: flex;
+            color: limegreen;
+        }
     }
-}
-
-.transform-left {
-    transform: translateX(20%);
-    opacity: 0;
-}
-.transform-right {
-    transform: translateX(-20%);
-    opacity: 0;
-}
-
-.panelButtons {
-    background: transparent;
-    border-radius: 50%;
-    width: 50%;
-    height: 50%;
-    aspect-ratio: 1 / 1;
-}
-
-// .downArrow,
-// .upArrow,
-// .static {
-//     font-size: clamp(1rem, 2.5vw, 3rem);
-//     color: transparent;
-//     border-radius: 50%;
-//     color: crimson;
-// }
-
-.static {
-    display: flex;
-    color: limegreen;
 }

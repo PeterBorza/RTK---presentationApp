@@ -1,3 +1,5 @@
+import { icons } from "utils";
+
 export enum Direction {
     UP = "up",
     DOWN = "down",
@@ -18,6 +20,14 @@ export interface LiftState {
     numberOfLevels: LevelCount;
     speed: number;
 }
+
+const { faDown, faUp, stop } = icons;
+
+export const directionIcons: Record<Direction, JSX.Element> = {
+    down: faDown,
+    up: faUp,
+    static: stop,
+};
 
 const INITIAL_NUMBER_OF_LEVELS = 9;
 

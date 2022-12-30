@@ -1,12 +1,14 @@
+import { useState } from "react";
+import { useAppRedux } from "app";
 import { useToggle, useWindowSize } from "hooks";
 import { CheckBox, DropSelect, Scroller, ToggleButton, Range } from "shared-components";
+import { rainPhotos } from "utils";
+
+import { MenuType } from "shared-components/DropSelect/DropSelect";
+import DemoBox from "./DemoBox";
 
 import classNames from "classnames";
 import styles from "./Home.module.scss";
-import { rainPhotos } from "utils";
-import { FC, useCallback, useState } from "react";
-import { MenuType } from "shared-components/DropSelect/DropSelect";
-import { useAppRedux } from "app";
 
 const Home = () => {
     const { isDarkMode } = useAppRedux();
@@ -29,54 +31,46 @@ const Home = () => {
         "very long word to see how it behaves when in container",
     ];
 
-    const colors = ["green", "red", "blue", "olive"];
+    const colors = ["green", "red", "blue", "olive", "rgb(40, 64, 73)"];
 
     const containerClasses = classNames(styles.container, {
         [styles.container__small]: SMALL_SCREEN,
         [styles.container__darkMode]: isDarkMode,
     });
 
-    const renderCheckBoxes = (item: string) => {
-        return (
-            <CheckBox
-                key={item}
-                onChange={() => setClr(item)}
-                value={item}
-                name={item}
-                label={item}
-                isChecked={clr === item}
-            />
-        );
-    };
-
-    const HomeBox: FC = ({ children }) => <div className={styles.homeBox}>{children}</div>;
+    const renderCheckBoxes = (item: string) => (
+        <CheckBox
+            key={item}
+            onChange={() => setClr(item)}
+            value={item}
+            name={item}
+            label={item}
+            isChecked={clr === item}
+        />
+    );
 
     return (
         <div className={containerClasses} style={{ backgroundColor: clr }}>
-            <HomeBox>
-                <Scroller scrollerTitle={label as string} images={rainPhotos} />
-            </HomeBox>
-
-            <HomeBox>
+            <DemoBox>
+                <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
+            </DemoBox>
+            <DemoBox>
                 <div className={styles.dropContainer}>
                     <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
                 </div>
-            </HomeBox>
-
-            <HomeBox>
+            </DemoBox>
+            <DemoBox>
                 <ToggleButton
                     darkMode={isDarkMode}
                     enabled={enableDot}
                     toggleEnabled={() => toggleDot()}
                     size="xxl"
                 />
-            </HomeBox>
-
-            <HomeBox>{colors.map(renderCheckBoxes)}</HomeBox>
-
-            <HomeBox>
+            </DemoBox>
+            <DemoBox>{colors.map(renderCheckBoxes)}</DemoBox>
+            <DemoBox>
                 <Range name="left" value={range} onChange={(value: number) => setRange(value)} />
-            </HomeBox>
+            </DemoBox>
         </div>
     );
 };
