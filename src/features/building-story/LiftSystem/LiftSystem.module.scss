@@ -40,6 +40,12 @@ $hoverColor: rgb(255 255 255/0.1);
         overflow-y: scroll;
         @include noVisibleScrollBar();
     }
+    &__icons {
+        display: flex;
+        font-size: clamp(1rem, 2.5vw, 3rem);
+        border-radius: 50%;
+        color: crimson;
+    }
 }
 
 .transform-left {
@@ -56,18 +62,19 @@ $hoverColor: rgb(255 255 255/0.1);
     border-radius: 50%;
     width: 50%;
     height: 50%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
 }
 
-.downArrow,
-.upArrow,
-.static {
-    font-size: clamp(1rem, 2.5vw, 3rem);
-    color: transparent;
-    border-radius: 50%;
-    color: crimson;
-}
+// .downArrow,
+// .upArrow,
+// .static {
+//     font-size: clamp(1rem, 2.5vw, 3rem);
+//     color: transparent;
+//     border-radius: 50%;
+//     color: crimson;
+// }
 
 .static {
+    display: flex;
     color: limegreen;
 }

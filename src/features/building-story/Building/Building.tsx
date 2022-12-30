@@ -13,12 +13,10 @@ const ElevatorSystem = () => {
     } = useLiftRedux();
 
     return (
-        <div className={styles.container}>
-            <div className={styles.systemContainer}>
-                <LiftSystem data={liftA} />
-                <BlockSystem />
-                <LiftSystem data={liftB} />
-            </div>
+        <div className={styles.systemContainer}>
+            <LiftSystem data={liftA} />
+            <BlockSystem />
+            <LiftSystem data={liftB} />
         </div>
     );
 };

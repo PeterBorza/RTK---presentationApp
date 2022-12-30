@@ -1,4 +1,5 @@
 import React from "react";
+import { useToggle } from "hooks";
 
 export type TriggerNameType = React.ReactNode | string;
 
@@ -7,6 +8,7 @@ export interface IDropContext {
     setIsOpen: (isOpen: boolean) => void;
     triggerName: TriggerNameType;
     setTriggerName: (value: TriggerNameType) => void;
+    toggle: () => void;
 }
 
 const initialContext: IDropContext = {
@@ -14,12 +16,13 @@ const initialContext: IDropContext = {
     setIsOpen: () => null,
     triggerName: "",
     setTriggerName: () => null,
+    toggle: () => null,
 };
 
 export const DropdownContext = React.createContext<IDropContext>(initialContext);
 
 export const DropdownContextProvider: React.FC = ({ children }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, toggle, setIsOpen] = useToggle(false);
     const [triggerName, setTriggerName] = React.useState<TriggerNameType>("");
 
     const context = React.useMemo(
@@ -28,8 +31,9 @@ export const DropdownContextProvider: React.FC = ({ children }) => {
             setIsOpen,
             triggerName,
             setTriggerName,
+            toggle,
         }),
-        [isOpen, setIsOpen, triggerName, setTriggerName],
+        [isOpen, setIsOpen, triggerName, setTriggerName, toggle],
     );
     return <DropdownContext.Provider value={context}>{children}</DropdownContext.Provider>;
 };

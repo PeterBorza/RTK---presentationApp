@@ -29,14 +29,14 @@ import min10 from "./images/minion10-clean.png";
 import min11 from "./images/minion11-clean.png";
 import min12 from "./images/minion12.jpg";
 
-import cat from "./images/cat.png";
-import dog from "./images/dog.png";
-import chick from "./images/chick.png";
-import squirrel2 from "./images/squirrel2.png";
-import penguin from "./images/penguin.png";
-import hedgehog from "./images/hedgehog.png";
-import hamsters from "./images/hamsters.png";
-import owl from "./images/owl.png";
+import owl from "./images/icon_owl.png";
+import clown_fish from "./images/icon_clown-fish.png";
+import elephant from "./images/icon_elephant.png";
+import bird from "./images/icon_bird.png";
+import butterflyIcon from "./images/icon_butterfly.png";
+import chicken from "./images/icon_chicken.png";
+import snail from "./images/icon_snail.png";
+import rabbit from "./images/icon_rabbit.png";
 
 import { GamePhotoData } from "../memoryGame-story";
 import { shuffle } from "utils";
@@ -95,7 +95,7 @@ const christmas: ImageType[] = [
     wreath,
 ];
 
-const cuteAnimals = [cat, dog, chick, owl, hedgehog, hamsters, squirrel2, penguin];
+const cuteAnimals = [snail, bird, chicken, owl, elephant, rabbit, butterflyIcon, clown_fish];
 
 const frontMinionImages: GameImage[] = minions.slice(2, 10).map(frontImages);
 export const minionGameImages = getGameImages(frontMinionImages);

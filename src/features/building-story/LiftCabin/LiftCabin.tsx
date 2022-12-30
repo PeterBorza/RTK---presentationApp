@@ -6,7 +6,7 @@ import styles from "./LiftCabin.module.scss";
 
 interface Props {
     data: Lift;
-    speed?: number;
+    speed: number;
     side: "left" | "right";
     levelCount: LevelCount;
 }

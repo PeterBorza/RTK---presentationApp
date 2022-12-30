@@ -1,16 +1,14 @@
-import { FC, useEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { icons } from "utils";
 import { Direction, Lift as LiftProps } from "../state";
 import { moveLift, stopLift } from "../liftSlice";
 import { levelsSelector, speedState } from "../selectors";
 import LiftButton from "../LiftButton";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { ImStop } from "react-icons/im";
 
 import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
-import { IconType } from "utils/Icons";
 
 type Props = {
     showPanel?: boolean;
@@ -22,40 +20,46 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
     const speed = useSelector(speedState);
     const dispatch = useDispatch();
     const { direction, isMoving, name, position } = data;
+    const { faDown, faUp, stop } = icons;
 
-    const directionIcons: { [key: string]: JSX.Element } = {
-        [Direction.DOWN]: <FaArrowDown className={styles.downArrow} />,
-        [Direction.UP]: <FaArrowUp className={styles.upArrow} />,
-        [Direction.STATIC]: <ImStop className={styles.static} />,
+    const directionIcons: Record<Direction, JSX.Element> = {
+        down: faDown,
+        up: faUp,
+        static: stop,
     };
+
+    const IconLayout = ({ direction }: { direction: Direction }) =>
+        direction === Direction.STATIC ? (
+            <span className={styles.static}>{directionIcons[direction]}</span>
+        ) : (
+            directionIcons[direction]
+        );
 
     const liftWrapper = classNames(styles.liftWrapper, {
         [styles.liftWrapper__show]: showPanel,
     });
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
     }, [isMoving, speed, name, dispatch]);
 
-    const liftButtonHandler = (level: number) => {
-        dispatch(moveLift({ level, lift: data }));
-    };
+    const liftButtons = (level: number) => (
+        <LiftButton
+            key={`lift-button-${level}`}
+            onClick={() => dispatch(moveLift({ level, lift: data }))}
+            disabled={isMoving}
+            value={level}
+            selected={level === position}
+            className={styles.panelButtons}
+        />
+    );
 
     return (
         <div className={liftWrapper}>
-            <div className={styles.liftWrapper__icons}>{directionIcons[direction]}</div>
-            <div className={styles.liftWrapper__buttons}>
-                {levels.map(level => (
-                    <LiftButton
-                        key={`lift-button-${level}`}
-                        onClick={() => liftButtonHandler(level)}
-                        disabled={isMoving}
-                        value={level}
-                        selected={level === position}
-                        className={styles.panelButtons}
-                    />
-                ))}
+            <div className={styles.liftWrapper__icons}>
+                <IconLayout direction={direction} />
             </div>
+            <div className={styles.liftWrapper__buttons}>{levels.map(liftButtons)}</div>
         </div>
     );
 };

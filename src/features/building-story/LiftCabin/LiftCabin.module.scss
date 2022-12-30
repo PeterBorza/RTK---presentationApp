@@ -2,6 +2,7 @@
 
 $doorSpeed: 300ms;
 $doorColor: rgb(255 255 255 / 0.7);
+$transition: transform $doorSpeed;
 
 .cabinWrapper {
     position: absolute;
@@ -16,9 +17,7 @@ $doorColor: rgb(255 255 255 / 0.7);
     &::after {
         position: absolute;
         content: attr(data-content);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include fCenter();
         font-size: 2rem;
         color: limegreen;
         width: 50%;
@@ -62,12 +61,12 @@ $doorColor: rgb(255 255 255 / 0.7);
     &.cabinWrapper {
         &::after {
             transform: translateX(100%);
-            transition: transform $doorSpeed linear;
+            transition: $transition;
             transition-delay: $doorSpeed;
         }
         &::before {
             transform: translateX(-100%);
-            transition: transform $doorSpeed linear;
+            transition: $transition;
             transition-delay: $doorSpeed;
         }
     }
@@ -77,11 +76,11 @@ $doorColor: rgb(255 255 255 / 0.7);
     &.cabinWrapper {
         &::after {
             transform: translateX(0%);
-            transition: transform $doorSpeed linear;
+            transition: $transition;
         }
         &::before {
             transform: translateX(0%);
-            transition: transform $doorSpeed linear;
+            transition: $transition;
         }
     }
 }

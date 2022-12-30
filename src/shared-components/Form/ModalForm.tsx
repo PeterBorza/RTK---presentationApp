@@ -1,4 +1,6 @@
-import { ReactNode, useState, FormEvent } from "react";
+import { ReactNode, FormEvent } from "react";
+
+import { useToggle } from "hooks";
 import { Form } from ".";
 import { Button, FadedModal } from "..";
 export interface FormWrapProps {
@@ -18,7 +20,7 @@ const ModalForm = ({
     buttonLabel = "FORM",
     formTitle,
 }: FormWrapProps) => {
-    const [openModal, setIsOpenModal] = useState(false);
+    const [openModal, , setIsOpenModal] = useToggle(false);
 
     const onCancelHandler = () => {
         onCancel();

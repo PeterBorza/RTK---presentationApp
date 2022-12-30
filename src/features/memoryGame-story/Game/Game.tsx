@@ -7,15 +7,7 @@ import { GameTheme, GameThemeType } from "../types";
 import { useMGameRedux } from "../selectors";
 import { useAppRedux } from "app";
 
-import {
-    GamePhotoData,
-    toggleFlip,
-    setMatch,
-    incrementCount,
-    resetGame,
-    toggleTheme,
-    setGameFinished,
-} from "..";
+import { GamePhotoData, toggleFlip, setMatch, resetGame, setTheme, setGameFinished } from "..";
 
 import { AlertModal, Button, ButtonWrapper, FlipCard } from "shared-components";
 import Controls from "../Controls";
@@ -43,7 +35,7 @@ const Game = () => {
     const gameHasStarted = flippedCards.length !== 0;
 
     useEffect(() => {
-        count >= maxCount && dispatch(resetGame(gamePhotos));
+        count > maxCount && dispatch(resetGame(gamePhotos));
     }, [count, dispatch, maxCount, gamePhotos]);
 
     useEffect(() => {
@@ -63,7 +55,6 @@ const Game = () => {
     const flipCardHandler = useCallback(
         (item: GamePhotoData) => {
             freezeIfMatch(item);
-            dispatch(incrementCount());
             dispatch(toggleFlip(item.id));
         },
         [dispatch, freezeIfMatch],
@@ -75,7 +66,7 @@ const Game = () => {
             if (theme && images) {
                 const shuffled = shuffle(images);
                 dispatch(resetGame(shuffled));
-                dispatch(toggleTheme(theme));
+                dispatch(setTheme(theme));
             }
         },
         [dispatch, themes],

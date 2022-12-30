@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState, LiftState, Lift, LiftName, LevelCount, Direction } from "./state";
+import { initialState, Lift, LiftName, LevelCount, Direction } from "./state";
 
 export const getDirection = (level: LevelCount, position: number): Direction => {
     if (level === position) return Direction.STATIC;
@@ -10,34 +10,38 @@ export const liftSlice = createSlice({
     name: "lift",
     initialState,
     reducers: {
-        stopLift: ({ lifts }: LiftState, { payload }: PayloadAction<LiftName>) => {
-            const targetLift = lifts.find(l => l.name === payload);
+        stopLift: (state, { payload }: PayloadAction<LiftName>) => {
+            const targetLift = state.lifts.find(l => l.name === payload);
             if (targetLift) {
                 targetLift.isMoving = false;
                 targetLift.direction = Direction.STATIC;
+                state.speed = initialState.speed;
             }
         },
-        moveLift: (
-            { lifts }: LiftState,
-            { payload }: PayloadAction<{ level: number; lift: Lift }>,
-        ) => {
-            const { name, position } = payload.lift;
-            const lift = lifts.find(l => l.name === name);
-            const level = payload.level;
+        moveLift: (state, { payload }: PayloadAction<{ level: number; lift: Lift }>) => {
+            const {
+                level,
+                lift: { name, position },
+            } = payload;
 
-            if (lift) {
+            const targetLift = state.lifts.find(l => l.name === name);
+
+            if (state.lifts.some(lift => lift.isMoving === true)) return;
+
+            if (targetLift) {
                 if (level === position) return;
-                lift.position = level;
-                lift.direction = getDirection(level, position);
-                lift.isMoving = true;
+                targetLift.position = level;
+                targetLift.direction = getDirection(level, position);
+                targetLift.isMoving = true;
+                state.speed = Math.abs(level - position) * state.speed;
             }
         },
         setLevelNumber: (state, { payload }: PayloadAction<number>) => {
             state.numberOfLevels = payload;
             state.lifts[1].position = payload - 1;
         },
-        setSpeed: ({ speed }: LiftState, { payload }: PayloadAction<number>) => {
-            speed = payload;
+        setSpeed: (state, { payload }: PayloadAction<number>) => {
+            state.speed = payload;
         },
     },
 });

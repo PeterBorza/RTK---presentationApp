@@ -18,7 +18,7 @@ const BlockSystem = () => {
         const difA = Math.abs(positionA - level);
         const difB = Math.abs(positionB - level);
 
-        // TODO set it up to disable moving elevator, but still call the other one
+        //  TODO set it up to disable moving elevator, but still call the other one
 
         difA < difB
             ? dispatch(moveLift({ level, lift: liftA }))
@@ -32,7 +32,6 @@ const BlockSystem = () => {
     return (
         <div className={styles.blockContainer}>
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftA} side="left" />
-            <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftB} side="right" />
             <div className={styles.shaftContainer}>
                 {levels.map((level: number) => (
                     <LiftButton
@@ -44,6 +43,7 @@ const BlockSystem = () => {
                     />
                 ))}
             </div>
+            <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftB} side="right" />
         </div>
     );
 };

@@ -12,7 +12,6 @@ export interface Lift {
     position: number;
     disabled: boolean;
     direction: Direction;
-    distanceFromCall: number;
 }
 export interface LiftState {
     lifts: Lift[];
@@ -22,19 +21,19 @@ export interface LiftState {
 
 const INITIAL_NUMBER_OF_LEVELS = 9;
 
-const lifts: Pick<Lift, "name" | "position">[] = [
-    { name: "A", position: 0 },
-    { name: "B", position: INITIAL_NUMBER_OF_LEVELS - 1 },
-];
+const lifts: Record<LiftName, number> = {
+    A: 0,
+    B: INITIAL_NUMBER_OF_LEVELS - 1,
+};
 
 export const initialState: LiftState = {
-    lifts: lifts.map(lift => ({
-        ...lift,
+    lifts: Object.entries(lifts).map(([key, value]) => ({
+        name: key as LiftName,
+        position: value,
         isMoving: false,
         disabled: false,
         direction: Direction.STATIC,
-        distanceFromCall: 0,
     })),
     numberOfLevels: INITIAL_NUMBER_OF_LEVELS,
-    speed: 2000,
+    speed: 1000,
 };

@@ -22,7 +22,7 @@ export interface GamePhotoData {
 export enum GameTheme {
     MINIONS = "minions",
     CHRISTMAS = "christmas",
-    CUTE_ANIMALS = "cute animals",
+    CUTE_ANIMALS = "cute_animals",
 }
 
 export type GameThemeType = {

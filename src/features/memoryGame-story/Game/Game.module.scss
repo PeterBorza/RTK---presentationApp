@@ -26,12 +26,17 @@ $front-background: rgba(255, 255, 525, 0.6);
     }
     &__minions {
         &::after {
-            background: black url(../images/Minions.png) no-repeat bottom/cover;
+            background: black url(../images/Minions.png) no-repeat center/cover;
         }
     }
     &__christmas {
         &::after {
-            background: black url(../images/christmas-background_640.jpg) no-repeat bottom/cover;
+            background: black url(../images/christmas-background_640.jpg) no-repeat center/cover;
+        }
+    }
+    &__cute_animals {
+        &::after {
+            background: black url(../images/sheep-bg.jpg) no-repeat center/cover;
         }
     }
 }
@@ -68,27 +73,32 @@ $front-background: rgba(255, 255, 525, 0.6);
     height: 100%;
     background-color: $front-background;
     @include fCenter();
+
     &::after {
         position: absolute;
         content: "";
-        left: 5%;
-        top: 5%;
         width: 90%;
-        height: 100%;
+        aspect-ratio: 1 / 1;
         opacity: 0.5;
+        background-position: center;
+        background-size: contain;
     }
+
     &__minions {
         &::after {
             background-image: url(../images/gru-clean.png);
-            background-position: center;
-            background-size: contain;
         }
     }
+
     &__christmas {
         &::after {
             background-image: url(../images/merryChristmas_300.png);
-            background-position: center;
-            background-size: contain;
+        }
+    }
+
+    &__cute_animals {
+        &::after {
+            background-image: url(../images/animals_bg.jpg);
         }
     }
 }
