@@ -12,7 +12,8 @@
 .systemContainer {
     width: min(500px, 70vw);
     height: 70vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 70% 1fr;
     gap: 0.4rem;
     border-radius: 10px;
     overflow: hidden;

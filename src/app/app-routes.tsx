@@ -67,7 +67,9 @@ export const appRoutes: RouteObject[] = [
     },
 ];
 
-export default () => {
+const AppRoutes = () => {
     const router = createBrowserRouter(appRoutes);
     return <RouterProvider router={router} fallbackElement={<Loader message="boom" />} />;
 };
+
+export default AppRoutes;

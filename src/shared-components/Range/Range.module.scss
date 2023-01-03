@@ -1,12 +1,64 @@
-.range {
-    background-color: beige;
-    cursor: pointer;
-}
+@use "css" as *;
 
 .range_label {
+    width: 300px;
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     z-index: 10000;
+
+    &__value {
+        width: 2rem;
+    }
+
+    &__dark {
+        color: $myYellow3;
+    }
 }
 
 // TODO style the range input
+
+input[type="range"] {
+    -webkit-appearance: none;
+    // width: 200px;
+    height: 0.5rem;
+    border-radius: 5px;
+    background: black;
+    background-image: linear-gradient($myYellow3, $myYellow3);
+    background-repeat: no-repeat;
+
+    &.range__dark {
+        background: transparent;
+        background-image: linear-gradient($myYellow3, $myYellow3);
+        background-repeat: no-repeat;
+    }
+
+    &:active {
+        outline: 1px solid $myYellow3;
+    }
+
+    @for $i from 0 through 100 {
+        &.range__#{$i} {
+            background-size: $i * 1% 100%;
+        }
+    }
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 50%;
+    background: $myYellow3;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}

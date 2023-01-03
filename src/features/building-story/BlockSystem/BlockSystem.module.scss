@@ -3,7 +3,6 @@
 .blockContainer {
     position: relative;
     @include fCenter();
-    width: 100%;
     box-shadow: $borderShadow;
     transition: all 300ms ease;
     &:hover {

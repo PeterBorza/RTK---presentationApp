@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { FaWindowClose } from "react-icons/fa";
+import { Button } from "shared-components";
 
 import classNames from "classnames";
 import styles from "../SideBar.module.scss";
@@ -16,7 +16,7 @@ const Header: FC<HeaderProps> = ({ className, label, onClose }) => {
     return (
         <header className={wrapper}>
             <h3 className={styles.sideBarLabel}>{label}</h3>
-            <FaWindowClose className={styles.toggle__close} onClick={onClose} />
+            <Button variant="close" onClick={onClose} />
         </header>
     );
 };

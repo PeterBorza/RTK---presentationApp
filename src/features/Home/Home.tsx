@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { useAppRedux } from "app";
-import { useToggle, useWindowSize } from "hooks";
-import { CheckBox, DropSelect, Scroller, ToggleButton, Range } from "shared-components";
-import { rainPhotos } from "utils";
+import { useForm, useToggle, useWindowSize } from "hooks";
+import {
+    CheckBox,
+    DropSelect,
+    Scroller,
+    ToggleButton,
+    Range,
+    TextInput,
+    Form,
+    Button,
+    GradientText,
+} from "shared-components";
+import { icons, rainPhotos } from "utils";
 
 import { MenuType } from "shared-components/DropSelect/DropSelect";
 import DemoBox from "./DemoBox";
@@ -15,9 +25,17 @@ const Home = () => {
     const { width } = useWindowSize();
     const SMALL_SCREEN = width < 600;
     const [label, setLabel] = useState<MenuType>("Select");
-    const [range, setRange] = useState(10);
+    const [range, setRange] = useState(50);
     const [enableDot, toggleDot] = useToggle(false);
     const [clr, setClr] = useState("");
+
+    const { values, changeHandler, resetValues } = useForm({ name: "" });
+
+    const submitHandler = (e: React.FormEvent) => {
+        e.preventDefault();
+        setLabel(values.name);
+        resetValues();
+    };
 
     const mockMenuList = [
         "1 pair",
@@ -51,15 +69,15 @@ const Home = () => {
 
     return (
         <div className={containerClasses} style={{ backgroundColor: clr }}>
-            <DemoBox>
+            <DemoBox componentName="Scroller" darkMode={isDarkMode}>
                 <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
             </DemoBox>
-            <DemoBox>
+            <DemoBox componentName="DropSelect" darkMode={isDarkMode}>
                 <div className={styles.dropContainer}>
                     <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
                 </div>
             </DemoBox>
-            <DemoBox>
+            <DemoBox componentName="ToggleButton" darkMode={isDarkMode}>
                 <ToggleButton
                     darkMode={isDarkMode}
                     enabled={enableDot}
@@ -67,9 +85,39 @@ const Home = () => {
                     size="xxl"
                 />
             </DemoBox>
-            <DemoBox>{colors.map(renderCheckBoxes)}</DemoBox>
-            <DemoBox>
-                <Range name="left" value={range} onChange={(value: number) => setRange(value)} />
+            <DemoBox componentName="CheckBox" darkMode={isDarkMode}>
+                {colors.map(renderCheckBoxes)}
+            </DemoBox>
+            <DemoBox componentName="Range" darkMode={isDarkMode}>
+                <Range
+                    name="left"
+                    value={range}
+                    onChange={(value: number) => setRange(value)}
+                    darkMode={isDarkMode}
+                />
+            </DemoBox>
+            <DemoBox componentName="Form" darkMode={isDarkMode}>
+                <Form
+                    formTitle="Scroller title"
+                    renderFields={
+                        <TextInput
+                            value={values.name}
+                            onChange={changeHandler}
+                            name={"name"}
+                            isValid={isNaN(+values.name)}
+                        />
+                    }
+                    onSubmit={submitHandler}
+                    onCancel={resetValues}
+                    width="large"
+                    disabled={values.name === ""}
+                />
+            </DemoBox>
+            <DemoBox componentName="Button" darkMode={isDarkMode}>
+                <Button value={icons.bars} onClick={() => setLabel("Select")} />
+            </DemoBox>
+            <DemoBox componentName="GradientText" darkMode={isDarkMode}>
+                <GradientText />
             </DemoBox>
         </div>
     );

@@ -5,11 +5,7 @@ import { useValidation } from "hooks";
 
 import styles from "./InputExamples.module.scss";
 
-type MockValues = {
-    username: string;
-    password: string;
-    text: string;
-};
+type MockValues = Record<"username" | "password" | "text", string>;
 
 const initialMockValues: MockValues = {
     username: "",
@@ -53,7 +49,7 @@ const InputExamples = () => {
                     isValid={values.text === "Peter"}
                     errorMessage="Try again"
                 />
-                <Button type="submit" value="Submit" />
+                <Button variant="submit" />
             </form>
             <div className={styles.output}>
                 <h2 style={{ backgroundColor: isUserNameValid ? "limegreen" : "crimson" }}>
