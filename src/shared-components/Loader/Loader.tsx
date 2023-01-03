@@ -8,7 +8,7 @@ interface LoaderProps {
     darkMode?: boolean;
 }
 
-const Loader = ({ dots = 5, speed = 130, message = "Loading", darkMode = true }: LoaderProps) => {
+const Loader = ({ dots = 5, speed = 130, message, darkMode = true }: LoaderProps) => {
     const loaderClasses = classNames(styles.loader__dot, {
         [styles.loader__dot__dark]: darkMode,
     });

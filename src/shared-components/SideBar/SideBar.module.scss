@@ -61,16 +61,6 @@ $header-footer-height: 4vh;
     overflow-y: auto;
 }
 
-.toggle {
-    &__close {
-        font-size: $SBfontSize;
-        margin-left: auto;
-        &:hover {
-            color: $SBhoverColor;
-        }
-    }
-}
-
 .noDisplay {
     display: none;
 }

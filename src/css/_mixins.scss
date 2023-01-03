@@ -205,11 +205,10 @@
 
 @mixin appContainer($darkMode, $lineUp: 2) {
     position: relative;
-    width: 100%;
-    min-height: 100vh;
     overflow: scroll;
     @include lineUp($lineUp);
-    padding: 5rem 2rem 2rem 2rem;
+    padding: 2rem;
+    padding-top: 6rem;
     gap: 1rem;
     @include darkModeSelector($darkMode);
     @include noVisibleScrollBar();

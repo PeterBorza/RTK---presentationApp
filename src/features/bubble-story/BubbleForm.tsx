@@ -39,7 +39,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
     };
 
     const onSubmitHandler = () => {
-        const { left, top, size, opacity } = values;
+        const { left, top, size, opacity } = values as BubbleCssProps;
 
         const newBubble = {
             left,

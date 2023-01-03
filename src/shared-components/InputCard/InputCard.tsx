@@ -1,4 +1,5 @@
-import { HiOutlineArrowCircleRight } from "react-icons/hi";
+import React from "react";
+import { icons } from "utils";
 
 import classNames from "classnames";
 import styles from "./InputCard.module.scss";
@@ -39,8 +40,10 @@ const InputCard = ({
                 onChange={onChange}
             />
             {isButton && (
-                <button type="button" className={styles["button-style"]} onClick={onClick}>
-                    <HiOutlineArrowCircleRight className={styles["input-icon"]} />
+                <button type="button" className={styles.button_style} onClick={onClick}>
+                    <span style={{ fontSize: "1.5rem", display: "flex" }}>
+                        {icons.outlineArrowRight}
+                    </span>
                 </button>
             )}
         </div>

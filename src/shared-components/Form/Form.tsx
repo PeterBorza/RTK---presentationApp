@@ -7,7 +7,7 @@ import { AppMessages } from "app";
 
 export interface FormProps {
     onSubmit: (e: React.FormEvent) => void;
-    onCancel: () => void;
+    onCancel?: () => void;
     formTitle?: string;
     width: "small" | "medium" | "large" | "xxl";
     renderFields: React.ReactNode;
@@ -33,12 +33,7 @@ const Form = ({
             <h2>{formTitle}</h2>
             <div className={styles.wrapper}>{renderFields}</div>
             <ButtonWrapper>
-                <Button
-                    isDisabled={disabled}
-                    type="submit"
-                    variant="submit"
-                    value={AppMessages.SUBMIT}
-                />
+                <Button isDisabled={disabled} variant="submit" value={AppMessages.SUBMIT} />
                 <Button value={AppMessages.CANCEL} variant="cancel" onClick={onCancel} />
             </ButtonWrapper>
         </form>

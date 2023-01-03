@@ -19,7 +19,7 @@ const TextInput = ({
     placeholder,
     title,
     onChange,
-    isValid,
+    isValid = true,
     errorMessage,
 }: ITextInput) => {
     const labelClasses = classNames(styles.label__wrap, className);

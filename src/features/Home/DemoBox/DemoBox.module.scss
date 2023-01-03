@@ -1,8 +1,17 @@
 @use "css" as *;
 
-.homeBox {
+.demoBox {
     padding: 1rem;
-    @include fCenter();
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     @include shadow3();
     border-radius: 5px;
+    &__title {
+        text-align: center;
+        margin-bottom: 2rem;
+        &__dark {
+            color: rgba(236, 227, 227, 0.823);
+        }
+    }
 }

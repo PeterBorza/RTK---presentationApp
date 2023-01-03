@@ -6,7 +6,7 @@ import { Button, FadedModal } from "..";
 export interface FormWrapProps {
     formWidth: "small" | "medium" | "large" | "xxl";
     renderFields: ReactNode;
-    onSubmit: (e: FormEvent) => void;
+    onSubmit: () => void;
     onCancel: () => void;
     buttonLabel?: string;
     formTitle?: string;
@@ -27,13 +27,10 @@ const ModalForm = ({
         setIsOpenModal(false);
     };
 
-    const onOpenHandler = () => {
-        setIsOpenModal(true);
-    };
+    const onOpenHandler = () => setIsOpenModal(true);
 
-    const submitHandler = (e: FormEvent) => {
-        e.preventDefault();
-        onSubmit(e);
+    const submitHandler = () => {
+        onSubmit();
         setIsOpenModal(false);
     };
 

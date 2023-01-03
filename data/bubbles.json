@@ -55,20 +55,11 @@
       }
     },
     {
-      "id": 31,
+      "id": 35,
       "cssProps": {
-        "left": "15",
-        "top": "50",
-        "size": "200",
-        "opacity": "0.6"
-      }
-    },
-    {
-      "id": 32,
-      "cssProps": {
-        "left": "20",
-        "top": "45",
-        "size": "123",
+        "left": "55",
+        "top": "55",
+        "size": "155",
         "opacity": "1"
       }
     }

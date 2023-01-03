@@ -327,7 +327,7 @@
       "bill": "59.10",
       "consumption": 20,
       "estimate": 59.11,
-      "payed": false,
+      "payed": true,
       "edit": false
     },
     {
@@ -360,7 +360,7 @@
       "bill": "32.84",
       "consumption": 10,
       "estimate": 32.51,
-      "payed": false,
+      "payed": true,
       "edit": false
     },
     {
@@ -371,7 +371,7 @@
       "bill": "64.91",
       "consumption": 20,
       "estimate": 65.68,
-      "payed": false,
+      "payed": true,
       "edit": false
     },
     {
@@ -382,7 +382,7 @@
       "bill": "102.61",
       "consumption": 34,
       "estimate": 110.35,
-      "payed": false,
+      "payed": true,
       "edit": false
     },
     {
