@@ -86,9 +86,14 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
             </EditCell>
             <EditCell>
                 <button type="submit" className={styles.submitEditButton}>
-                    <CustomIcon title={UtilityTableLabels.CONFIRM} icon={icons.enter} />
+                    <CustomIcon
+                        type="confirm"
+                        title={UtilityTableLabels.CONFIRM}
+                        icon={icons.enter}
+                    />
                 </button>
                 <CustomIcon
+                    type="cancel"
                     title={UtilityTableLabels.CANCEL_EDIT}
                     onClick={resetEdit}
                     icon={icons.cancel}

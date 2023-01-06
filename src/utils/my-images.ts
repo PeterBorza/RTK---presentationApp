@@ -55,10 +55,11 @@ const textForMyImages: { [key: string]: ImageType } = {
 
 export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
 
-export const imageData = Object.entries(textForMyImages).map(([key, value]) => {
-    return {
-        id: key,
-        src: value,
-        caption: key,
-    } as unknown as ImageDataType;
-});
+export const imageData = Object.entries(textForMyImages).map(
+    ([key, value]) =>
+        ({
+            id: key,
+            src: value,
+            caption: key,
+        } as ImageDataType),
+);

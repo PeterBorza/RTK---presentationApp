@@ -40,16 +40,19 @@ const UtilityCard: React.FC<Props> = ({
     const iconGroup: IconProps[] = [
         {
             onClick: onPayedClick,
+            type: payed ? "check" : "danger",
             title: payed ? UtilityTableLabels.PAYED : UtilityTableLabels.NOT_PAYED,
             icon: payed ? check : danger,
         },
         {
             onClick: onDelete,
+            type: "delete",
             title: UtilityTableLabels.DELETE,
             icon: trash,
         },
         {
             onClick: onEdit,
+            type: "edit",
             title: UtilityTableLabels.EDIT,
             icon: edit2,
         },
