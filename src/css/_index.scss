@@ -29,15 +29,20 @@ body {
         list-style: none;
     }
 
-    button {
+    button,
+    input[type="text"] {
         background: none;
         border: none;
         outline: none;
+        &:focus,
+        :active {
+            outline: none;
+            border: none;
+        }
     }
 
     img {
         display: block;
-        // max-width: 100%;
     }
 }
 

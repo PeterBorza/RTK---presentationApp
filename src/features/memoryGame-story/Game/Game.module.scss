@@ -1,18 +1,13 @@
 @use "css" as *;
 
-$cols: 4;
-$gap: 5px;
 $backColor: rgb(9, 77, 9);
-$white-bg: rgba(247, 241, 241, 0.9);
-$grid-background: rgb(1, 51, 20);
-$front-background: rgba(255, 255, 525, 0.6);
 
 .container {
     position: relative;
     width: 100%;
     height: 100%;
     @include fCenter(column);
-    @include shadowSB;
+    @include shadowSB();
     overflow: hidden;
     &::after {
         position: absolute;
@@ -37,115 +32,6 @@ $front-background: rgba(255, 255, 525, 0.6);
     &__cute_animals {
         &::after {
             background: black url(../images/sheep-bg.jpg) no-repeat center/cover;
-        }
-    }
-}
-
-.grid {
-    width: 80%;
-    max-width: 600px;
-    aspect-ratio: 1 / 1;
-    display: grid;
-    grid-template-columns: repeat($cols, 1fr);
-    gap: $gap;
-    padding: calc($gap * 1.5);
-    background: $grid-background;
-    border-radius: $gap;
-    z-index: 5;
-    @include shadowSB;
-}
-
-.box {
-    border-radius: 2px;
-    overflow: hidden;
-    pointer-events: all;
-    user-select: none;
-}
-
-.game_image {
-    height: 80%;
-    display: block;
-}
-
-.front {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: $front-background;
-    @include fCenter();
-
-    &::after {
-        position: absolute;
-        content: "";
-        width: 90%;
-        aspect-ratio: 1 / 1;
-        opacity: 0.5;
-        background-position: center;
-        background-size: contain;
-    }
-
-    &__minions {
-        &::after {
-            background-image: url(../images/gru-clean.png);
-        }
-    }
-
-    &__christmas {
-        &::after {
-            background-image: url(../images/merryChristmas_300.png);
-        }
-    }
-
-    &__cute_animals {
-        &::after {
-            background-image: url(../images/animals_bg.jpg);
-        }
-    }
-}
-
-.back {
-    background-color: $white-bg;
-    width: 100%;
-    height: 100%;
-    @include fCenter();
-}
-
-.disabled {
-    pointer-events: none;
-}
-
-.faded {
-    opacity: 0.5;
-}
-
-.buttons {
-    color: white;
-    text-transform: uppercase;
-    background-color: $backColor;
-    @include truncate();
-    &:hover {
-        color: red;
-        background-color: lighten($backColor, 5%);
-    }
-}
-
-.finished {
-    width: 100%;
-    height: 100%;
-    min-width: 180px;
-    background-color: rgba(9, 77, 9, 0.637);
-    @include fEven(column);
-    user-select: none;
-    h1 {
-        //TODO adjust font size to message, it's sticking out below 470px
-        font-size: 220%;
-        overflow: hidden;
-        color: rgba(255, 0, 0, 0.8);
-        text-align: center;
-        text-shadow: 3px 3px 15px rgba(247, 241, 241, 0.8);
-        span {
-            color: white;
-            margin: 0 0.6rem;
         }
     }
 }

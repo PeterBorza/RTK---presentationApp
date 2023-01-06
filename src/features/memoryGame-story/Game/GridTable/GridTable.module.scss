@@ -1,0 +1,24 @@
+$cols: 4;
+$gap: 5px;
+$grid-background: rgb(1, 51, 20);
+
+@mixin shadowSB {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    &:hover {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.grid {
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat($cols, 1fr);
+    gap: $gap;
+    padding: calc($gap * 1.5);
+    background: $grid-background;
+    border-radius: $gap;
+    z-index: 5;
+    @include shadowSB;
+}
