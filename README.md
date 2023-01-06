@@ -22,7 +22,7 @@ This app is using json-server, fetching data from two separate paths.<br />
 Running this command will fetch all data at startup for you !!!
 
 ```
-npm run startall
+npm run startall / yarn startall
 ```
 
 Will run with concurrently, starting up the application as well as the data ports.
