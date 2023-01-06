@@ -1,0 +1,71 @@
+@use "css" as *;
+
+$cols: 4;
+$gap: 5px;
+$backColor: rgb(9, 77, 9);
+$white-bg: rgba(247, 241, 241, 0.9);
+$grid-background: rgb(1, 51, 20);
+$front-background: rgba(255, 255, 525, 0.6);
+
+.box {
+    border-radius: 2px;
+    overflow: hidden;
+    pointer-events: all;
+    user-select: none;
+}
+
+.front {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: $front-background;
+    @include fCenter();
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 90%;
+        aspect-ratio: 1 / 1;
+        opacity: 0.5;
+        background-position: center;
+        background-size: contain;
+    }
+
+    &__minions {
+        &::after {
+            background-image: url(../../images/gru-clean.png);
+        }
+    }
+
+    &__christmas {
+        &::after {
+            background-image: url(../../images/merryChristmas_300.png);
+        }
+    }
+
+    &__cute_animals {
+        &::after {
+            background-image: url(../../images/animals_bg.jpg);
+        }
+    }
+}
+
+.back {
+    background-color: $white-bg;
+    width: 100%;
+    height: 100%;
+    @include fCenter();
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.faded {
+    opacity: 0.5;
+}
+
+.game_image {
+    height: 80%;
+    display: block;
+}

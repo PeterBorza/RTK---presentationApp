@@ -1,10 +1,7 @@
 @use "css" as *;
 
 .box {
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    @include centered;
+    padding: 0.5rem;
     &__h1 {
         background: linear-gradient(rgba(225, 214, 214, 0.89) 45%, black);
         background-clip: text;
@@ -12,6 +9,7 @@
         font-weight: bolder;
         font-family: "Source Sans Pro", sans-serif;
         transition: background 500ms ease-in;
+        font-size: 2rem;
         &:hover {
             background: linear-gradient(rgba(225, 214, 214, 0.89) 35%, black);
             background-clip: text;

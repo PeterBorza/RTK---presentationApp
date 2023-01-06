@@ -1,12 +1,9 @@
 .rubikContainer {
-    width: 100%;
-    height: 100%;
     perspective: 1000px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    z-index: 1;
 }
 
 .rubikSide {
@@ -72,6 +69,7 @@
             }
         }
     }
+
     @keyframes animate-1 {
         0% {
             transform: rotateY(0deg) rotateZ(0deg) rotateX(0deg);

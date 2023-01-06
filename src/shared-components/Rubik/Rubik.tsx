@@ -26,6 +26,8 @@ export interface RubikType {
 const Rubik: React.FC<RubikType> = ({ withAnimation = "rollY", sides, size }) => {
     const wrapper = React.useRef<HTMLDivElement | null>(null);
 
+    // TODO dropselect to have all animations available
+
     const mapRender: RubikSideType[] = sides.map((source, idx) => ({
         id: idx + 1,
         content: (

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useMGameRedux } from "../selectors";
+import { useMGameRedux } from "../Game/redux/selectors";
 
 import styles from "./Photos.module.scss";
 

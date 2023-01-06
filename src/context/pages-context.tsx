@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, useContext } from "react";
 
-import { MyRubik, Rubik } from "shared-components";
+import { MyRubik } from "shared-components";
 
 import { Game } from "features/memoryGame-story";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";

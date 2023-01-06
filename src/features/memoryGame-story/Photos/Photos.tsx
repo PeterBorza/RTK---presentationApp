@@ -6,8 +6,8 @@ import { toInternalLink } from "context/link-context";
 
 import { AsidePlatform } from "shared-components";
 
-import { MemoryGameMessages as messages, PhotosMessages } from "../messages";
-import { useMGameRedux } from "../selectors";
+import { MemoryGameMessages as messages, PhotosMessages } from "../Game/redux/messages";
+import { useMGameRedux } from "../Game/redux/selectors";
 import styles from "./Photos.module.scss";
 
 const Photos = () => {

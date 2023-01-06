@@ -1,0 +1,115 @@
+@use "css" as *;
+
+$borderRadius: 5px;
+$transitionSpeed: 150ms;
+$lightMode: rgb(241, 227, 227);
+$darkMode: #1a1818;
+
+@mixin gradientBlack {
+    background: -webkit-linear-gradient(to right, #434343, #000000);
+    background: linear-gradient(to right, #434343, #000000);
+}
+
+.form {
+    display: flex;
+    border-radius: $borderRadius;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow $transitionSpeed ease;
+    &:hover {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.input_wrapper {
+    display: flex;
+    align-items: center;
+    &__small {
+        width: 150px;
+    }
+
+    &__medium {
+        width: 300px;
+    }
+
+    &__large {
+        width: 400px;
+    }
+
+    &__xxl {
+        width: 500px;
+    }
+
+    &__fullSize {
+        width: 100%;
+    }
+    &__darkMode {
+        @include gradientBlack();
+        color: $lightMode;
+    }
+}
+
+.inputStyle {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: $borderRadius;
+    transition: all $transitionSpeed ease-out;
+    @include truncate();
+    cursor: pointer;
+
+    &::-webkit-input-placeholder {
+        opacity: 0.3;
+    }
+
+    &:focus {
+        &::-webkit-input-placeholder {
+            opacity: 0;
+        }
+    }
+
+    &__darkMode {
+        @include gradientBlack();
+        color: $lightMode;
+        border-radius: 10px;
+    }
+}
+
+.buttonStyle {
+    position: relative;
+    height: 100%;
+    padding: 0 0.3rem;
+    transition: border $transitionSpeed ease-in;
+    cursor: pointer;
+
+    &__icon {
+        display: flex;
+        font-size: 1.4rem;
+    }
+
+    &:hover {
+        &__icon {
+            font-size: 5rem;
+        }
+    }
+
+    &__darkMode {
+        background-color: #000000;
+
+        &:hover {
+            &.buttonStyle__icon {
+                font-size: 5rem;
+            }
+        }
+    }
+
+    &__invalid {
+        .buttonStyle__icon {
+            color: crimson;
+        }
+    }
+
+    &__valid {
+        .buttonStyle__icon {
+            color: limegreen;
+        }
+    }
+}
