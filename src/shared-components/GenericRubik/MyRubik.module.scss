@@ -1,4 +1,4 @@
-$size: 100px;
+$size: 70px;
 
 $transforms: (
     1: translateZ(-$size) rotateY(180deg),
@@ -10,14 +10,11 @@ $transforms: (
 );
 
 .rubikContainer {
-    width: 100%;
-    height: 100%;
     perspective: 1000px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    z-index: 1;
 }
 
 .rubikWrapper {
@@ -59,10 +56,8 @@ $transforms: (
     display: grid;
     place-items: center;
     backface-visibility: hidden;
-}
 
-@each $key, $value in $transforms {
-    .rubikSide {
+    @each $key, $value in $transforms {
         &:nth-child(#{$key}) {
             transform: $value;
             border-radius: 3px;

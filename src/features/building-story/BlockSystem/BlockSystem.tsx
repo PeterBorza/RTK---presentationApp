@@ -39,6 +39,8 @@ const BlockSystem = () => {
         />
     );
 
+    // TODO when one of the lifts is moving, user is still able to call the other one from the shaft
+
     return (
         <div className={styles.blockContainer}>
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftA} side="left" />

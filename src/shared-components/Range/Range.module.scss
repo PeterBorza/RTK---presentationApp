@@ -1,7 +1,8 @@
 @use "css" as *;
 
+// TODO set width dynamically here
+
 .range_label {
-    width: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,25 +18,19 @@
     }
 }
 
-// TODO style the range input
-
 input[type="range"] {
     -webkit-appearance: none;
-    // width: 200px;
     height: 0.5rem;
     border-radius: 5px;
     background: black;
     background-image: linear-gradient($myYellow3, $myYellow3);
     background-repeat: no-repeat;
+    outline: 1px solid $myYellow3;
 
     &.range__dark {
         background: transparent;
         background-image: linear-gradient($myYellow3, $myYellow3);
         background-repeat: no-repeat;
-    }
-
-    &:active {
-        outline: 1px solid $myYellow3;
     }
 
     @for $i from 0 through 100 {

@@ -33,6 +33,7 @@ import Scroller from "./Scroller";
 import SlideShow from "./SlideShow";
 import FloatingImage from "./FloatingImage";
 import GradientText from "./GradientText";
+import UserField from "./UserField";
 
 // TODO create split screen component
 
@@ -74,4 +75,5 @@ export {
     SlideShow,
     FloatingImage,
     GradientText,
+    UserField,
 };

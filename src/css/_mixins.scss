@@ -207,7 +207,9 @@
     position: relative;
     overflow: scroll;
     @include lineUp($lineUp);
-    padding: 2rem;
+    @include RAM(350px, 1fr);
+    min-height: 100vh;
+    padding: 1rem;
     padding-top: 6rem;
     gap: 1rem;
     @include darkModeSelector($darkMode);

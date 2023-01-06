@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "shared-components";
+import { Button, GradientText } from "shared-components";
 
 type Props = {
     isFresh: boolean;
@@ -12,7 +12,8 @@ type Props = {
 const GameHeader = ({ isFresh, onNewGameClick, title, buttonLabel }: Props) => {
     return (
         <div className="game_header">
-            <h1 className="game_header__title">{title}</h1>
+            <GradientText animatedText={title} />
+            {/* <h1 className="game_header__title">{title}</h1> */}
             <Button isDisabled={isFresh} value={buttonLabel} onClick={onNewGameClick} />
         </div>
     );

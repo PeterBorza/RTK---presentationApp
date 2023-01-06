@@ -1,7 +1,6 @@
-export { default as Photos } from "./Photos/Photos";
-export { default as Photo } from "./Photos/Photo";
-export { default as Game } from "./Game/Game";
+import Photos from "./Photos";
+import Photo from "./Photos/Photo";
+import PhotosLandingPage from "./PhotosLandingPage";
+import Game from "./Game";
 
-export * from "./memoryGameSlice";
-export * from "./types";
-export * from "./selectors";
+export { Photo, Photos, PhotosLandingPage, Game };

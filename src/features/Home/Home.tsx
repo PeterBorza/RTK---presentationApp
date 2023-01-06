@@ -10,7 +10,7 @@ import {
     TextInput,
     Form,
     Button,
-    GradientText,
+    UserField,
 } from "shared-components";
 import { icons, rainPhotos } from "utils";
 
@@ -24,10 +24,12 @@ const Home = () => {
     const { isDarkMode } = useAppRedux();
     const { width } = useWindowSize();
     const SMALL_SCREEN = width < 600;
+
     const [label, setLabel] = useState<MenuType>("Select");
     const [range, setRange] = useState(50);
     const [enableDot, toggleDot] = useToggle(false);
     const [clr, setClr] = useState("");
+    const [userField, setUserField] = useState("");
 
     const { values, changeHandler, resetValues } = useForm({ name: "" });
 
@@ -49,7 +51,7 @@ const Home = () => {
         "very long word to see how it behaves when in container",
     ];
 
-    const colors = ["green", "red", "blue", "olive", "rgb(40, 64, 73)"];
+    const colors = ["green", "red", "blue", "olive"];
 
     const containerClasses = classNames(styles.container, {
         [styles.container__small]: SMALL_SCREEN,
@@ -59,18 +61,17 @@ const Home = () => {
     const renderCheckBoxes = (item: string) => (
         <CheckBox
             key={item}
-            onChange={() => setClr(item)}
+            onChange={(isChecked: boolean) => setClr(isChecked ? item : "")}
             value={item}
             name={item}
             label={item}
-            isChecked={clr === item}
         />
     );
 
     return (
         <div className={containerClasses} style={{ backgroundColor: clr }}>
             <DemoBox componentName="Scroller" darkMode={isDarkMode}>
-                <Scroller scrollerTitle={label as string} images={rainPhotos} size="medium" />
+                <Scroller scrollerTitle={label as string} images={rainPhotos} size="small" />
             </DemoBox>
             <DemoBox componentName="DropSelect" darkMode={isDarkMode}>
                 <div className={styles.dropContainer}>
@@ -96,6 +97,16 @@ const Home = () => {
                     darkMode={isDarkMode}
                 />
             </DemoBox>
+            <DemoBox componentName="UserField" darkMode={isDarkMode}>
+                <UserField
+                    name="userField"
+                    value={userField}
+                    onSubmit={value => setUserField(value)}
+                    isDark={isDarkMode}
+                    size="medium"
+                    placeHolder="type to validate submit"
+                />
+            </DemoBox>
             <DemoBox componentName="Form" darkMode={isDarkMode}>
                 <Form
                     formTitle="Scroller title"
@@ -109,15 +120,12 @@ const Home = () => {
                     }
                     onSubmit={submitHandler}
                     onCancel={resetValues}
-                    width="large"
+                    width="xxl"
                     disabled={values.name === ""}
                 />
             </DemoBox>
             <DemoBox componentName="Button" darkMode={isDarkMode}>
                 <Button value={icons.bars} onClick={() => setLabel("Select")} />
-            </DemoBox>
-            <DemoBox componentName="GradientText" darkMode={isDarkMode}>
-                <GradientText />
             </DemoBox>
         </div>
     );
