@@ -1,4 +1,7 @@
 $iconDistanceFromContainer: 1.5rem;
+$slideDuration: 200ms;
+$slideDistance: 20%;
+$slideDelay: 20ms;
 
 .slideWrapper {
     display: flex;
@@ -25,28 +28,34 @@ $iconDistanceFromContainer: 1.5rem;
     }
 
     &__animated_image_fromLeft {
-        animation: slide-in-from-left 200ms linear forwards;
+        animation: slide-in-from-left $slideDuration ease-in forwards;
+        animation-delay: $slideDelay;
     }
 
     &__animated_image_fromRight {
-        animation: slide-in-from-right 200ms linear forwards;
+        animation: slide-in-from-right $slideDuration ease-in forwards;
+        animation-delay: $slideDelay;
     }
 
     @keyframes slide-in-from-left {
         from {
-            transform: translateX(-100%);
+            transform: translateX(-$slideDistance);
+            opacity: 0.5;
         }
         to {
             transform: translateX(0%);
+            opacity: 1;
         }
     }
 
     @keyframes slide-in-from-right {
         from {
-            transform: translateX(100%);
+            transform: translateX($slideDistance);
+            opacity: 0.5;
         }
         to {
             transform: translateX(0%);
+            opacity: 1;
         }
     }
 }

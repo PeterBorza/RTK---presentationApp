@@ -46,17 +46,16 @@ const SlideShow = ({ slides }: SlideShowType): JSX.Element | null => {
                 onClick={slideToPrevious}
             />
             <div className={styles.container}>
-                {slides.map(
-                    (slide, idx) =>
-                        idx === current && (
-                            <img
-                                key={`slide-${idx}`}
-                                className={classes(idx)}
-                                src={slide}
-                                alt="slide content"
-                                loading="lazy"
-                            />
-                        ),
+                {slides.map((slide, idx) =>
+                    idx === current ? (
+                        <img
+                            key={`slide-${idx}`}
+                            className={classes(idx)}
+                            src={slide}
+                            alt="slide content"
+                            loading="lazy"
+                        />
+                    ) : null,
                 )}
             </div>
             <CustomIcon size="large" title="slide right" icon={icons.right} onClick={slideToNext} />

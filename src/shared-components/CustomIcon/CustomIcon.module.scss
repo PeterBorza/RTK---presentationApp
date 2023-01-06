@@ -1,12 +1,21 @@
 @use "css" as *;
 
+$iconTypes: (
+    "disabled": crimson,
+    "check": limegreen,
+    "danger": rgba(221, 23, 63, 0.767),
+    "delete": crimson,
+    "edit": rgba(51, 51, 177, 0.8),
+    "confirm": limegreen,
+    "cancel": crimson,
+);
+
 .icon {
     display: flex;
-    outline: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     cursor: pointer;
     flex-shrink: 0;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     background-color: inherit;
     transition: all 150ms ease 20ms;
 
@@ -36,32 +45,14 @@
         }
     }
 
+    @each $key, $value in $iconTypes {
+        &__#{$key} {
+            color: $value;
+        }
+    }
+
     &__disabled {
         opacity: 0.5;
         pointer-events: none;
-    }
-
-    &__payed {
-        color: limegreen;
-    }
-
-    &__not-payed {
-        color: rgba(221, 23, 63, 0.767);
-    }
-
-    &__delete {
-        color: rgb(32, 29, 29);
-    }
-
-    &__edit {
-        color: rgba(51, 51, 177, 0.8);
-    }
-
-    &__confirm {
-        color: limegreen;
-    }
-
-    &__cancel {
-        color: crimson;
     }
 }
