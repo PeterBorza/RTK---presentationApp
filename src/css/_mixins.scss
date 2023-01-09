@@ -139,6 +139,7 @@
 
 @mixin shadow3 {
     box-shadow: 0px 6px 15px modal-black(0.3);
+    transition: box-shadow 300ms ease-in-out;
     &:hover {
         box-shadow: 0px 2px 4px modal-black(0.3);
     }

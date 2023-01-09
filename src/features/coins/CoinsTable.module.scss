@@ -1,0 +1,82 @@
+@use "css" as *;
+
+$coinBlue: #0ff;
+$coinborder: 1px solid darken($coinBlue, 30%);
+
+.dataTable {
+    display: grid;
+    @include RAM(300px, 1fr);
+    height: 60vh;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.coinCard {
+    flex: 1 0 350px;
+    height: 100%;
+    box-shadow: 1px 1px 20px $coinBlue;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    cursor: default;
+    transition: scale 400ms ease-in-out;
+
+    &:hover {
+        scale: 1.01;
+    }
+
+    &__title {
+        color: darken($coinBlue, 5%);
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__dropDown {
+        margin: auto;
+        width: 400px;
+        background-color: burlywood;
+    }
+
+    &__table_row {
+        border: $coinborder;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-left: 1rem;
+        cursor: pointer;
+        transition: background-color 500ms ease;
+
+        &:hover {
+            background-color: rgba(171, 159, 159, 0.2);
+        }
+
+        & > * {
+            padding: 0.5rem;
+            color: darken($coinBlue, 20%);
+        }
+
+        & *:nth-of-type(1) {
+            @include truncate();
+        }
+
+        & *:nth-of-type(2) {
+            width: 2rem;
+            margin-left: auto;
+            border-left: $coinborder;
+            text-align: right;
+        }
+
+        & *:nth-of-type(3) {
+            border-left: $coinborder;
+        }
+
+        &__selected {
+            outline: 1px solid red;
+        }
+    }
+}

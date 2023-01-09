@@ -24,16 +24,16 @@ export const appSlice = createSlice({
         toggleUtils: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.utilsOpen = payload;
         },
-        toggleBubbles: (state: AppState, { payload }: PayloadAction<boolean>) => {
+        updateBubbles: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.bubblesOpen = payload;
         },
-        toggleDarkMode: (state: AppState, { payload }: PayloadAction<boolean>) => {
+        updateDarkMode: (state: AppState, { payload }: PayloadAction<boolean>) => {
             state.darkMode = payload;
         },
     },
 });
 
-export const { toggleBuilding, togglePhotos, toggleUtils, toggleBubbles, toggleDarkMode } =
+export const { toggleBuilding, togglePhotos, toggleUtils, updateBubbles, updateDarkMode } =
     appSlice.actions;
 
 export default appSlice.reducer;

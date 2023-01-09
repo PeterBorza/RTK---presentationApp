@@ -11,6 +11,8 @@ $sizes: (
     "xxl": 64px,
 );
 
+// TODO fix outline/border issue, check if correct classnames are used
+
 @mixin toggleHorizontally($value, $color) {
     &__enabled {
         animation: moveRight $toggleSpeed ease-out forwards;

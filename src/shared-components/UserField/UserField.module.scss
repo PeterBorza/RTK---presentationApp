@@ -70,12 +70,15 @@ $darkMode: #1a1818;
         @include gradientBlack();
         color: $lightMode;
         border-radius: 10px;
+
+        &::-webkit-input-placeholder {
+            opacity: 0.8;
+        }
     }
 }
 
 .buttonStyle {
     position: relative;
-    height: 100%;
     padding: 0 0.3rem;
     transition: border $transitionSpeed ease-in;
     cursor: pointer;

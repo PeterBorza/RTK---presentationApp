@@ -15,6 +15,8 @@ type UtilityFormProps = {
     utilityUnits: UtilityStateUnit[];
 };
 
+// TODO manage index update between items, date issues, sortability, filter by consumption, estimation
+
 const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utilityUnits }) => {
     const modalRef = React.useRef<HTMLDivElement | null>(null);
     const maxIndex = useSelector(maxIndexSelector);

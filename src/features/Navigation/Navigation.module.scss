@@ -38,10 +38,12 @@
     color: $myYellow3;
     cursor: pointer;
     margin: auto;
+
     &:focus-within {
         outline: none;
         border: none;
     }
+
     &:hover {
         color: darken($myYellow3, 10%);
     }

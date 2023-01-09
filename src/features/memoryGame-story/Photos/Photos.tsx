@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-import { LinkUrls, useAppRedux, togglePhotos } from "app";
-import { toInternalLink } from "context/link-context";
+import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
+import { useLinkContext } from "context/link-context";
 
 import { AsidePlatform } from "shared-components";
 
@@ -11,6 +11,7 @@ import { useMGameRedux } from "../Game/redux/selectors";
 import styles from "./Photos.module.scss";
 
 const Photos = () => {
+    const { toInternalLink } = useLinkContext();
     const { photos, dispatch } = useMGameRedux();
     const { isPhotosOpen: openSideBar, isDarkMode } = useAppRedux();
 
@@ -26,7 +27,7 @@ const Photos = () => {
                     </Link>
                 ))}
                 <br />
-                <Link to={toInternalLink(LinkUrls.PHOTOS)} className={styles.links}>
+                <Link to={toInternalLink(NavLinkUrls.PHOTOS)} className={styles.links}>
                     <span onClick={closeSidePanel}>{PhotosMessages.RETURN_LINK}</span>
                 </Link>
             </div>

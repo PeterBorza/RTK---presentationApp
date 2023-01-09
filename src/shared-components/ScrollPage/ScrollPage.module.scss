@@ -12,7 +12,6 @@ $blue-background: rgba(205, 217, 240, 0.885);
 $sidebar-width: min(200px, 20%);
 
 .section {
-    width: 100%;
     min-height: 100vh;
     @include noVisibleScrollBar;
     @include darkModeSelector($darkMode);
@@ -60,12 +59,8 @@ $sidebar-width: min(200px, 20%);
     flex-direction: column;
     text-align: right;
     padding-right: 10px;
-    li {
-        list-style-type: none;
-        margin: 0.3rem;
-    }
-    a {
-        display: inline-block;
+    &__link {
+        margin: 0.25rem;
         max-width: 100%;
         font-size: clamp(0.8rem, 2vw, 1.5rem);
         text-transform: capitalize;
@@ -77,5 +72,16 @@ $sidebar-width: min(200px, 20%);
         &:hover {
             background-color: rgba(242, 231, 231, 0.3);
         }
+    }
+}
+
+@media (max-width: 450px) {
+    .aside_navigation {
+        display: none;
+    }
+
+    .article {
+        width: 100%;
+        margin-left: 0;
     }
 }

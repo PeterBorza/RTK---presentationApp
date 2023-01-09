@@ -4,23 +4,27 @@ export enum BaseAPI {
     BUBBLES_URL = "http://localhost:5010",
 }
 
-// TODO Try and add the above to .env
+// TODO  Add the above to .env
 
 export enum LinkUrls {
-    HOME = "/",
-    UTILITIES = "utilities",
     GAS = "gas",
     LIGHT = "light",
     BUILDING = "building",
     BUBBLES = "bubbles",
-    PHOTOS = "photos",
     GAME = "game",
     RUBIK = "rubik",
-    SCROLL = "scroll",
     COINS = "coins",
 }
 
-export const getHomeLabel = (item: string) => (item === LinkUrls.HOME ? "home" : item);
+export enum NavLinkUrls {
+    HOME = "/",
+    UTILITIES = "utilities",
+    PHOTOS = "photos",
+    SCROLL = "scroll",
+    TESTER = "tester",
+}
+
+export const getHomeLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" : item);
 
 // TODO Organise the above enums into one object
 

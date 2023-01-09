@@ -1,18 +1,31 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
 
-import { LinkUrls } from "app/constants";
+import { NavLinkUrls } from "app";
 
-const LinkContext = createContext<string[]>([]);
+interface LinkContextType {
+    links: NavLinkUrls[];
+    toInternalLink: (link: NavLinkUrls) => string;
+}
+
+const init = {
+    links: [],
+    toInternalLink: () => "",
+};
+
+const LinkContext = createContext<LinkContextType>(init);
 
 export const LinkContextProvider: React.FC = ({ children }) => {
-    const context = useMemo(
-        () => [LinkUrls.HOME, LinkUrls.UTILITIES, LinkUrls.PHOTOS, LinkUrls.SCROLL],
-        [],
-    );
+    const links = Object.values(NavLinkUrls);
+    const toInternalLink = (link: NavLinkUrls) => `/${link}`;
+
+    const context: LinkContextType = useMemo(() => {
+        return {
+            links,
+            toInternalLink,
+        } as LinkContextType;
+    }, [links, toInternalLink]);
 
     return <LinkContext.Provider value={context}>{children}</LinkContext.Provider>;
 };
-
-export const toInternalLink = (link: LinkUrls) => `/${link}`;
 
 export const useLinkContext = () => useContext(LinkContext);
