@@ -119,7 +119,7 @@
       "bill": "91.81",
       "payed": true,
       "edit": false,
-      "estimate": 92.18
+      "estimate": 93.86
     },
     {
       "id": "70b78853-d7f7-4db5-8dbb-a755ba98d979",
@@ -393,7 +393,7 @@
       "bill": "292.06",
       "consumption": 101,
       "estimate": 304.81,
-      "payed": false,
+      "payed": true,
       "edit": false
     }
   ],

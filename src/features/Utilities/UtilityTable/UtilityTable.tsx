@@ -11,4 +11,7 @@ const UtilityTable: FC<{ dark?: boolean }> = ({ dark = false, children }) => {
     return <div className={wrapper}>{children}</div>;
 };
 
+// TODO extract MANAGE to header near ADD NEW INDEX and pass selected list item
+// this way you gain horizontal space in table
+
 export default UtilityTable;

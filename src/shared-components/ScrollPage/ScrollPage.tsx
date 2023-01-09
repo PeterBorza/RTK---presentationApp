@@ -1,7 +1,7 @@
 import React, { ReactNode, ReactPortal } from "react";
 
 import { HashLink } from "react-router-hash-link";
-import { LinkUrls } from "app";
+import { NavLinkUrls } from "app";
 
 import styles from "./ScrollPage.module.scss";
 import classNames from "classnames";
@@ -12,14 +12,13 @@ export interface PagesType<T> {
     content: T;
 }
 
-type Elements = ReactNode | ReactPortal;
-
 export interface ScrollProps<T> {
     pages: PagesType<T>[] | null;
+    baseUrl: NavLinkUrls;
     isDarkMode?: boolean;
 }
 
-const ScrollPage = <T extends Elements>({ pages, isDarkMode = false }: ScrollProps<T>) => {
+const ScrollPage = <T,>({ pages, baseUrl, isDarkMode = false }: ScrollProps<T>) => {
     const sectionClasses = classNames(styles.section, {
         [styles.section__darkMode]: isDarkMode,
     });
@@ -30,8 +29,8 @@ const ScrollPage = <T extends Elements>({ pages, isDarkMode = false }: ScrollPro
                 <ul className={styles.link_shell}>
                     {pages.map(link => (
                         <li key={`scroll-label-${link.id}`}>
-                            <HashLink smooth to={`/${LinkUrls.SCROLL}#${link.label}`}>
-                                {link.label}
+                            <HashLink smooth to={`/${baseUrl}#${link.label}`}>
+                                <div className={styles.link_shell__link}>{link.label}</div>
                             </HashLink>
                         </li>
                     ))}

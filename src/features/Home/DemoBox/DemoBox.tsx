@@ -13,8 +13,11 @@ const DemoBox: FC<DemoBoxProps> = ({ children, componentName, darkMode = true })
     const classes = classNames(styles.demoBox__title, {
         [styles.demoBox__title__dark]: darkMode,
     });
+    const demoBoxClasses = classNames(styles.demoBox, {
+        [styles.demoBox__dark]: darkMode,
+    });
     return (
-        <div className={styles.demoBox}>
+        <div className={demoBoxClasses}>
             <span className={classes}>
                 <GradientText animatedText={componentName} />
             </span>

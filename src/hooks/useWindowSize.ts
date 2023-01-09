@@ -1,35 +1,45 @@
-import { useLayoutEffect, useState } from "react";
+import React, { MutableRefObject, RefObject, useEffect, useLayoutEffect, useState } from "react";
 
 // See: https://usehooks-ts.com/react-hook/use-event-listener
 import useEventListener from "./useEventListener";
 
 interface WindowSize {
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
 }
 
-function useWindowSize(): WindowSize {
+function useWindowSize<T extends HTMLElement = HTMLElement>(
+    ref: RefObject<T>,
+    edge: number,
+): boolean {
     const [windowSize, setWindowSize] = useState<WindowSize>({
         width: 0,
         height: 0,
     });
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     const handleSize = () => {
         setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight,
+            width: ref.current?.clientWidth,
+            height: ref.current?.clientHeight,
         });
     };
 
-    useEventListener("resize", handleSize);
-
-    // Set size at the first client-side load
     useLayoutEffect(() => {
+        const el = ref?.current;
+        if (!el) return;
+
         handleSize();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    useEventListener("resize", handleSize);
 
-    return windowSize;
+    useEffect(() => {
+        setIsSmallScreen(windowSize.width && windowSize.width < edge ? true : false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return isSmallScreen;
 }
 
 export default useWindowSize;
