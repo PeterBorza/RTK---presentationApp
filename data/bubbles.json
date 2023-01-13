@@ -19,24 +19,6 @@
       }
     },
     {
-      "id": 31,
-      "cssProps": {
-        "left": "15",
-        "top": "50",
-        "size": "200",
-        "opacity": "0.6"
-      }
-    },
-    {
-      "id": 32,
-      "cssProps": {
-        "left": "20",
-        "top": "45",
-        "size": "123",
-        "opacity": "1"
-      }
-    },
-    {
       "id": 33,
       "cssProps": {
         "left": "30",
@@ -79,6 +61,15 @@
         "top": "40",
         "size": "480",
         "opacity": "1"
+      }
+    },
+    {
+      "id": 38,
+      "cssProps": {
+        "left": "5",
+        "top": "6",
+        "size": "34",
+        "opacity": "0.3"
       }
     }
   ],
