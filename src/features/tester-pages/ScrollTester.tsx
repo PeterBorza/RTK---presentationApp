@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { NavLinkUrls, useAppRedux } from "app";
 import { useForm, useToggle } from "hooks";
-import { icons, rainPhotos } from "utils";
+import { icons } from "utils";
 
 import DemoBox from "../Home/DemoBox";
 import { MenuType } from "shared-components/DropSelect/DropSelect";
@@ -11,7 +11,6 @@ import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 import {
     CheckBox,
     DropSelect,
-    Scroller,
     ToggleButton,
     Range,
     TextInput,
@@ -20,6 +19,7 @@ import {
     UserField,
     ScrollPage as Pages,
 } from "shared-components";
+import NeonButton from "shared-components/NeonButton";
 
 const mockMenuList = [
     "1 pair",
@@ -79,14 +79,18 @@ const ScrollTester = () => {
             id: "dropSelect",
             label: "drop-select",
             content: (
-                <div style={{ backgroundColor: "cadetblue", width: "30%" }}>
-                    <DropSelect menu={mockMenuList} onSelect={element => setLabel(element)} />
+                <div style={{ width: "30%" }}>
+                    <DropSelect
+                        menu={mockMenuList}
+                        onSelect={element => setLabel(element)}
+                        isDarkMode={isDarkMode}
+                    />
                 </div>
             ),
         },
         {
             id: "toggleButton",
-            label: "toggle-button",
+            label: "toggle-button" + label,
             content: (
                 <ToggleButton
                     darkMode={isDarkMode}
@@ -96,20 +100,6 @@ const ScrollTester = () => {
                 />
             ),
         },
-        // {
-        //     id: "scroller",
-        //     label: "Scroller",
-        //     content: (
-        //         <DemoBox componentName="Scroller" darkMode={isDarkMode}>
-        //             <Scroller
-        //                 route={NavLinkUrls.TESTER}
-        //                 scrollerTitle={label as string}
-        //                 images={rainPhotos}
-        //                 size="small"
-        //             />
-        //         </DemoBox>
-        //     ),
-        // },
         {
             id: "checkBoxes",
             label: "checkbox",
@@ -170,6 +160,21 @@ const ScrollTester = () => {
             id: "menuButton",
             label: "menu-button",
             content: <Button value={icons.bars} onClick={() => setLabel("Select")} />,
+        },
+        {
+            id: "neonButton",
+            label: "neon-button",
+            content: (
+                <>
+                    <NeonButton onClick={() => setLabel("green")}>{label}</NeonButton>
+                    <NeonButton onClick={() => setLabel("violet")} color="violet">
+                        {label}
+                    </NeonButton>
+                    <NeonButton onClick={() => setLabel("blue")} color="blue" mirrorEffect>
+                        {label}
+                    </NeonButton>
+                </>
+            ),
         },
     ];
 

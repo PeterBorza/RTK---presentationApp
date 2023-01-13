@@ -19,7 +19,7 @@ const DemoBox: FC<DemoBoxProps> = ({ children, componentName, darkMode = true })
     return (
         <div className={demoBoxClasses}>
             <span className={classes}>
-                <GradientText animatedText={componentName} />
+                <GradientText animatedText={componentName!!} size={25} />
             </span>
             {children}
         </div>

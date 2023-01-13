@@ -33,11 +33,13 @@ const GasTable: FC = () => {
     const sumOfBills = useSelector(sumOfBillsSelector);
     const errorRef = React.useRef<HTMLDivElement | null>(null);
 
+    const isUnits = units.length > 0;
+
     useOnClickOutside(errorRef, () => setUtilitiesError(false));
 
-    const timer = useTime("standard");
+    // TODO sorting in a different file, as hook
 
-    const isUnits = units.length !== 0;
+    const timer = useTime("standard");
 
     const gasFormValues: FormProps = { ...initialFormValues, readDate: timer };
 
@@ -49,12 +51,12 @@ const GasTable: FC = () => {
         !isUnits && fetchGasUnits();
     }, [isUnits, fetchGasUnits]);
 
-    const renderGasTableItems = units.map(unit => {
-        return (
+    const renderGasTableItems = (arr: UtilityStateUnit[]) =>
+        arr.map(unit => (
             <UtilityTableItem
                 key={unit.id}
                 unit={unit}
-                units={units}
+                units={arr}
                 darkMode={isDarkMode}
                 editCard={() => dispatch(editCard(unit.id))}
                 resetEdit={() => dispatch(resetEdit())}
@@ -63,8 +65,7 @@ const GasTable: FC = () => {
                 editUnit={unit => dispatch(editUnit(unit))}
                 togglePayedBill={() => dispatch(togglePayedBill(unit))}
             />
-        );
-    });
+        ));
 
     return (
         <UtilityTable dark={isDarkMode}>
@@ -88,7 +89,7 @@ const GasTable: FC = () => {
                     onClickOutside={() => dispatch(resetSelected())}
                     loading={loading.isLoading}
                 >
-                    {isUnits && renderGasTableItems}
+                    {isUnits && renderGasTableItems(units)}
                 </Table>
             </UtilityTable.Body>
             <UtilityTable.Footer>

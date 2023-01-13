@@ -28,12 +28,12 @@ const SlideShow = ({ slides }: SlideShowType): JSX.Element | null => {
     const nextItem = current === lastItem ? 0 : current + 1;
 
     const slideToPrevious = () => {
-        setCurrent(previousItem);
+        setCurrent(nextItem);
         setDirection("fromLeft");
     };
 
     const slideToNext = () => {
-        setCurrent(nextItem);
+        setCurrent(previousItem);
         setDirection("fromRight");
     };
 

@@ -18,6 +18,7 @@ import FieldSet from "./FieldSet";
 import { Form, ModalForm } from "./Form";
 import AsidePlatform from "./AsidePlatform";
 import MenuButton from "./MenuButton";
+import NeonButton from "./NeonButton";
 import ToggleButton from "./ToggleButton";
 import FlipCard from "./FlipCard";
 import ImageCard from "./ImageCard";
@@ -62,6 +63,7 @@ export {
     ModalForm,
     AsidePlatform,
     MenuButton,
+    NeonButton,
     ToggleButton,
     FlipCard,
     ImageCard,

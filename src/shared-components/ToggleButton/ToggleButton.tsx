@@ -11,6 +11,8 @@ type Props = {
     variant?: "darkMode" | "regular";
 };
 
+// TODO see if styling could be simplified
+
 const ToggleButton = ({
     enabled,
     toggleEnabled,

@@ -1,0 +1,106 @@
+$neonBlue: #03e9f4;
+$bg: #050801;
+$spanThickness: 2px;
+
+@mixin spanLines($name, $bendColor, $delay) {
+    background: linear-gradient($bendColor, transparent, $neonBlue);
+    animation: $name 1s linear infinite;
+    animation-delay: $delay;
+
+    @keyframes animate-top {
+        to {
+            left: 100%;
+        }
+    }
+    @keyframes animate-right {
+        50%,
+        100% {
+            top: 100%;
+        }
+    }
+    @keyframes animate-bottom {
+        50%,
+        100% {
+            right: 100%;
+        }
+    }
+    @keyframes animate-left {
+        50%,
+        100% {
+            bottom: 100%;
+        }
+    }
+}
+
+.neon {
+    position: relative;
+    display: inline-block;
+    padding: 5px 8px;
+    color: $neonBlue;
+    border-radius: 0 10px 0 10px;
+    background-color: transparent;
+    font-size: clamp(0.8rem, 3vw, 1.5rem);
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 500ms;
+
+    &__mirrorEffect {
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
+
+    &__blue {
+        filter: hue-rotate(0deg);
+    }
+
+    &__green {
+        filter: hue-rotate(290deg);
+    }
+
+    &__violet {
+        filter: hue-rotate(110deg);
+    }
+
+    &:hover {
+        background: $neonBlue;
+        color: $bg;
+        box-shadow: 0 0 5px $neonBlue, 0 0 25px $neonBlue, 0 0 50px $neonBlue, 0 0 200px $neonBlue;
+        cursor: pointer;
+    }
+}
+
+.span {
+    position: absolute;
+    display: inline-block;
+
+    &__top {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: $spanThickness;
+        @include spanLines(animate-top, 90deg, 0ms);
+    }
+
+    &__right {
+        top: -100%;
+        right: 0;
+        width: $spanThickness;
+        height: 100%;
+        @include spanLines(animate-right, 180deg, 250ms);
+    }
+
+    &__bottom {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: $spanThickness;
+        @include spanLines(animate-bottom, 270deg, 500ms);
+    }
+
+    &__left {
+        bottom: -100%;
+        left: 0;
+        width: $spanThickness;
+        height: 100%;
+        @include spanLines(animate-left, 360deg, 750ms);
+    }
+}

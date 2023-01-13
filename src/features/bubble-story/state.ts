@@ -1,15 +1,15 @@
-import { Pending, Error } from "app/constants";
+import { AppMessages } from "app/constants";
 import { BubbleState, BubbleCssProps } from "./types";
 
 export const initialState: BubbleState = {
     bubbles: [],
     loading: {
         isLoading: false,
-        message: Pending.MESSAGE,
+        message: AppMessages.PENDING,
     },
     error: {
         error: false,
-        message: Error.MESSAGE,
+        message: AppMessages.ERROR,
     },
     isFormModalOpen: false,
     selectedBubble: null,

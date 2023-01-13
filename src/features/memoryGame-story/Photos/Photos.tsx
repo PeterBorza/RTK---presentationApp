@@ -32,7 +32,7 @@ const Photos = () => {
                 </Link>
             </div>
         ),
-        [photos, closeSidePanel],
+        [photos, closeSidePanel, toInternalLink],
     );
 
     return (

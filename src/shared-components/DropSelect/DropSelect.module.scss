@@ -1,56 +1,84 @@
 @use "css" as *;
 
+$darkModeColor: #b2d6f4cc;
+$lightModeColor: #1a171de3;
+
+@function shadows($color) {
+    @return 1px 1px 10px $color;
+}
+
 .dropSelect {
     position: relative;
     width: 100%;
     height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: shadows($lightModeColor);
+    cursor: pointer;
+    border-radius: 3px;
 
-    &__trigger {
-        width: 100%;
-        height: 100%;
+    &__icon {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 5px;
+        flex-shrink: 0;
+        padding: 5px;
+        color: $lightModeColor;
+    }
 
-        &:hover {
-            cursor: pointer;
-        }
-
-        &__icon {
-            display: flex;
-            flex-shrink: 0;
-        }
-
-        &__label {
-            @include truncate();
-        }
+    &__label {
+        @include truncate();
+        padding: 5px;
+        color: $lightModeColor;
     }
 
     &__menu {
         position: absolute;
-        background-color: goldenrod;
         width: 100%;
         z-index: 1000;
-        top: 105%;
-        display: flex;
-        flex-direction: column;
+        top: 110%;
         overflow: hidden;
+        box-shadow: shadows($lightModeColor);
+
+        border-radius: 3px;
+
+        &__darkMode {
+            box-shadow: shadows($darkModeColor);
+        }
+
+        &__open {
+            display: block;
+        }
+
+        &__close {
+            display: none;
+        }
     }
 
-    &__menuList {
-        width: 100%;
-        height: 100%;
+    &__item {
+        @include truncate();
+        padding: 1px 0.5rem;
+        cursor: pointer;
+        color: $lightModeColor;
+        &:hover {
+            background-color: rgba(204, 203, 203, 0.3);
+        }
+    }
 
-        &__item {
-            @include truncate();
-            padding: 1px 0.5rem;
-            &:hover {
-                background-color: rgba(225, 149, 95, 0.734);
-                cursor: pointer;
+    &__darkMode {
+        box-shadow: shadows($darkModeColor);
+
+        color: $darkModeColor;
+
+        &.darkMode {
+            &__icon,
+            &__label,
+            &__item {
+                color: $darkModeColor;
             }
         }
     }
 }
 
 // TODO fix ui for menu inside .dropSelect => __menuList
+// style it!!!
+// darkMode as well

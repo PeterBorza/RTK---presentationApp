@@ -1,17 +1,23 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
+import { urlToLabel, LinkUrls, toggleUtils, useAppRedux, NavLinkUrls } from "app";
 import { AsidePlatform } from "shared-components";
+
 import { UtilityTableLabels as messages } from "..";
-import { getHomeLabel, LinkUrls, toggleUtils, useAppRedux, NavLinkUrls } from "app";
 
 import styles from "./UtilityContainer.module.scss";
+import { useLinkContext } from "context";
 
 const UtilityContainer: FC = () => {
+    const links = useMemo(
+        () => [LinkUrls.GAS, LinkUrls.LIGHT, NavLinkUrls.UTILITIES, NavLinkUrls.HOME],
+        [],
+    );
+    const { toInternalLink } = useLinkContext();
     const { isDarkMode, isUtilsOpen, dispatch } = useAppRedux();
-    const links = [LinkUrls.GAS, LinkUrls.LIGHT, NavLinkUrls.UTILITIES, NavLinkUrls.HOME];
 
-    const closeSidePanel = () => dispatch(toggleUtils(false));
+    const closeSidePanel = useCallback(() => dispatch(toggleUtils(false)), [dispatch]);
     const openSidePanel = () => dispatch(toggleUtils(true));
 
     const platformBody = useMemo(
@@ -20,16 +26,16 @@ const UtilityContainer: FC = () => {
                 {links.map(item => (
                     <Link
                         key={`utility-link-${item}`}
-                        to={item === NavLinkUrls.UTILITIES ? "/" + item : item}
+                        to={item === NavLinkUrls.UTILITIES ? toInternalLink(item) : item}
                     >
                         <span className={styles.sideBarLinks} onClick={closeSidePanel}>
-                            {getHomeLabel(item)}
+                            {urlToLabel(item)}
                         </span>
                     </Link>
                 ))}
             </>
         ),
-        [links],
+        [links, closeSidePanel, toInternalLink],
     );
 
     return (

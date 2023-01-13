@@ -1,10 +1,18 @@
 import React from "react";
+
+import classNames from "classnames";
 import styles from "./GradientText.module.scss";
 
-const GradientText = ({ animatedText = "colorful" }: { animatedText?: string }) => {
+interface GradientTextProps {
+    animatedText: string;
+    size?: number;
+}
+
+const GradientText = ({ animatedText, size }: GradientTextProps) => {
+    const textClasses = classNames(styles.box__h1, styles[`box__h1__${size}`]);
     return (
         <div className={styles.box}>
-            <h1 className={styles.box__h1}>{animatedText}</h1>
+            <h1 className={textClasses}>{animatedText}</h1>
         </div>
     );
 };
