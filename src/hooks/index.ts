@@ -13,4 +13,4 @@ export { default as useFetch } from "./useFetch";
 export { default as useValidation } from "./useValidation";
 export { default as useDebounce } from "./useDebounce";
 export { default as useToggle } from "./useToggle";
-export { default as useSort } from "./useSort";
+export { default as useSearch } from "./useSearch";

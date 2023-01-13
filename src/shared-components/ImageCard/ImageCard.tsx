@@ -1,10 +1,10 @@
 import React from "react";
 
 import { ImageType } from "utils/my-images";
+import { useToggle } from "hooks";
 
 import classNames from "classnames";
 import styles from "./ImageCard.module.scss";
-import { useToggle } from "hooks";
 
 type ImageCardType = {
     position?: "top" | "center" | "bottom";
@@ -21,7 +21,7 @@ const ImageCard = ({ position = "center", src, caption }: ImageCardType) => {
     );
 
     const wideClasses = classNames(styles.card__image, {
-        [styles["card__image__wide"]]: wide,
+        [styles.card__image__wide]: wide,
     });
 
     return (

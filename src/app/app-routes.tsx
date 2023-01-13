@@ -1,9 +1,8 @@
 import React from "react";
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from "app/App";
+import { App, LinkUrls, Error, NavLinkUrls } from "app";
 import { AlertModal, Loader } from "shared-components";
-import { LinkUrls, Error, NavLinkUrls } from "app";
 
 import Home from "features/Home";
 import { Photo, Photos } from "features/memoryGame-story";
@@ -14,7 +13,7 @@ import { UtilityContainer, UtilityPlatform } from "features/Utilities";
 import { Gas } from "features/Gas";
 import { Light } from "features/Light";
 
-export const appRoutes: RouteObject[] = [
+const appRoutes: RouteObject[] = [
     {
         path: "/",
         element: <App />,
@@ -56,7 +55,7 @@ export const appRoutes: RouteObject[] = [
                 ],
             },
             {
-                path: NavLinkUrls.SCROLL,
+                path: NavLinkUrls.FEATURES,
                 element: <ScrollPage />,
             },
             {

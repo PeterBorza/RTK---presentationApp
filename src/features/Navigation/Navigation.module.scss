@@ -1,55 +1,66 @@
 @use "css" as *;
 
 @mixin gradientNav($degrees) {
-    background: rgba(255, 255, 255, 0.071);
     background: linear-gradient($degrees, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.01) 100%);
 }
 
 .nav {
     display: flex;
+    align-items: center;
     position: fixed;
+    padding: 0 1.8rem;
+    gap: 1.8rem;
     left: 0;
     top: 0;
     width: 100%;
     height: $navHeight;
     z-index: 1000;
-    padding-left: $SBsize;
     @include gradientNav(180deg);
-    &__dropdown {
-        width: 30%;
-        height: 100%;
-        @include fCenter();
-    }
 }
 
 .list {
     width: 100%;
-    @include fEven;
+    @include fBetween();
+    padding: 1.8rem;
 }
 
 .links {
     text-transform: uppercase;
     font-family: "PT Sans", sans-serif;
     font-size: clamp(0.9rem, 2vw + 0.4rem, 2.2rem);
-    transition: color 150ms ease-out;
-    outline: none;
-    border: none;
-    text-decoration: none;
     color: $myYellow3;
     cursor: pointer;
-    margin: auto;
-
-    &:focus-within {
-        outline: none;
-        border: none;
-    }
+    transition: color 150ms ease-out;
 
     &:hover {
-        color: darken($myYellow3, 10%);
+        border-bottom: 1px solid $myYellow3;
+        transform: scale(0.95);
     }
 }
 
 .active {
-    transform: scale(0.95);
-    color: $myYellow3;
+    & a:target {
+        color: red;
+    }
+    .links {
+        color: limegreen;
+        &:hover {
+            border-bottom: 1px solid limegreen;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .nav {
+        padding: 0 0.5rem;
+        gap: 0.5rem;
+    }
+    // .nav__dropdown {
+    //     width: 30%;
+    //     height: 100%;
+    //     @include fCenter();
+    // }
+    .list {
+        padding: 0 5px;
+    }
 }

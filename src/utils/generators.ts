@@ -1,7 +1,3 @@
-export const generateId = (): string => {
-    return Math.random().toString(36).substr(2, 9);
-};
-
 export const shuffle = <T>(arr: T[]) =>
     arr
         .map(value => ({ value, sort: Math.random() }))
@@ -13,3 +9,25 @@ export const randomize = (num: number): string => `#${Math.floor(Math.random() *
 export const getRandomColor = () => Math.floor(Math.random() * 16777215).toString(16);
 
 export const createArray = (count: number) => new Array(count).fill(null);
+
+export const getRandomElement = <T>(arr: T[]) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+};
+
+type ArrayType = string;
+
+interface ResultedObjectType {
+    [key: string]: string;
+}
+
+export const arrToObject = (arr: string[], cb: (val?: string, index?: number) => {}) =>
+    arr.reduce<ResultedObjectType[]>((acc, value, index) => {
+        return { ...acc, [value]: cb(value, index) };
+    }, []);
+
+// map the above to see the results
+
+export const mapToObject = (arr: string[], cb: (val?: string, index?: number) => {}) =>
+    arr.reduce<ResultedObjectType[]>((acc, value, index) => {
+        return { ...acc, [value]: cb(value, index) };
+    }, []);

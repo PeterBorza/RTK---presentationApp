@@ -5,7 +5,7 @@ import styles from "./Scroller.module.scss";
 import classNames from "classnames";
 import { createArray } from "utils";
 import { HashLink } from "react-router-hash-link";
-import { Link, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 export interface ScrollerType {
     images: ImageType[];
@@ -24,8 +24,8 @@ const Scroller = ({
     vertical = false,
     route,
 }: ScrollerType) => {
-    const location = useLocation();
-    console.log({ location });
+    // const location = useLocation();
+    // console.log({ location });
 
     const wrapper = classNames(styles.scrollerWrapper, styles[`scrollerWrapper--${size}`]);
     const content = classNames(

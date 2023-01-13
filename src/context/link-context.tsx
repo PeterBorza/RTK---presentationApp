@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 
 import { NavLinkUrls } from "app";
 
@@ -16,7 +16,7 @@ const LinkContext = createContext<LinkContextType>(init);
 
 export const LinkContextProvider: React.FC = ({ children }) => {
     const links = Object.values(NavLinkUrls);
-    const toInternalLink = (link: NavLinkUrls) => `/${link}`;
+    const toInternalLink = useCallback((link: NavLinkUrls) => `/${link}`, []);
 
     const context: LinkContextType = useMemo(() => {
         return {

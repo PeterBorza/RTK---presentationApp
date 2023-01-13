@@ -22,7 +22,7 @@ html {
 body {
     a {
         text-decoration: none;
-        color: rgba(0, 0, 0, 0.4);
+        color: #0f0f0f66;
     }
 
     li {
@@ -48,9 +48,10 @@ body {
 }
 
 @mixin shadowSB {
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    $color: #0000004d;
+    box-shadow: 0px 6px 15px $color;
     &:hover {
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 4px $color;
     }
 }
 

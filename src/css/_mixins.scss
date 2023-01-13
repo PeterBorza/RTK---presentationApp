@@ -47,11 +47,17 @@
 }
 
 @mixin lineUp($rows) {
-    // height: auto;
     display: grid;
     grid-template-columns: repeat($rows, 1fr);
-    // child : justify-content : space-between;
-    // flex-direction: column;
+}
+
+// TODO flex mixins below should be one mixin with justify-content param added near direction
+
+@mixin flex($content: "center", $direction: "row") {
+    display: flex;
+    justify-content: $content;
+    align-items: center;
+    flex-direction: $direction;
 }
 
 @mixin fAround($direction: "row") {
@@ -204,11 +210,11 @@
     }
 }
 
-@mixin appContainer($darkMode, $lineUp: 2) {
+@mixin appContainer($darkMode, $lineUp: 2, $boxSize: 350px) {
     position: relative;
     overflow: scroll;
-    @include lineUp($lineUp);
-    @include RAM(350px, 1fr);
+    @include flex(center, column);
+    // @include RAM($boxSize, 1fr);
     min-height: 100vh;
     padding: 1rem;
     padding-top: 6rem;

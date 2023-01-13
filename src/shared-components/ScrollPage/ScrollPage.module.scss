@@ -21,7 +21,7 @@ $sidebar-width: min(200px, 20%);
     width: calc(100% - $sidebar-width);
     padding-top: clamp($navHeight, 1vw, 20px);
     margin-left: $sidebar-width;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     display: grid;
     place-items: center;

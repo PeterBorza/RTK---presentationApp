@@ -20,11 +20,11 @@ export enum NavLinkUrls {
     HOME = "/",
     UTILITIES = "utilities",
     PHOTOS = "photos",
-    SCROLL = "scroll",
+    FEATURES = "features",
     TESTER = "tester",
 }
 
-export const getHomeLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" : item);
+export const urlToLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" : item);
 
 // TODO Organise the above enums into one object
 
@@ -34,38 +34,6 @@ export enum Error {
 
 export enum Pending {
     MESSAGE = "Loading, please wait...",
-}
-
-export enum UnderConstructionText {
-    MESSAGE = "We are terribly sorry, this feature is currently under construction...",
-}
-
-export enum ComingSoonText {
-    MESSAGE = "Coming Soon...",
-}
-
-export enum OpenMenu {
-    MESSAGE = "Open menu",
-}
-
-export enum CloseMenu {
-    MESSAGE = "Close menu",
-}
-
-export enum Submit {
-    SUBMIT = "Submit",
-}
-
-export enum Cancel {
-    CANCEL = "Cancel",
-}
-
-export enum Forbidden {
-    MESSAGE = "You are not authorised to see this",
-}
-
-export enum DummyText {
-    MESSAGE = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt dolores enim iure! Culpa eaque nemo officia aspernatur debitis, atque commodi? Atque quae eos consectetur quas. Nisi voluptate ut ipsam quos! Cupiditate animi quaerat inventore saepe repudiandae distinctio ipsam. Magnam numquam dolorum nihil inventore fuga amet!",
 }
 
 export enum AppMessages {

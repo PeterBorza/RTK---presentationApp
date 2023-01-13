@@ -33,7 +33,4 @@ const ColorGame = () => {
 };
 
 //TODO rewrite game, this is outdated and has a bug:
-//     When starting new game after finished one,
-//     dropdown triggers do not reset
-
 export default ColorGame;

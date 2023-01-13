@@ -1,16 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { ReactNode, useEffect, useRef } from "react";
 
-import { updateDarkMode, OpenMenu, getHomeLabel, useAppRedux } from "app";
-import { ToggleButton } from "shared-components";
-import Dropdown, { DropdownContainer } from "shared-components/Dropdown";
+import { NavLinkUrls, updateDarkMode, useAppRedux } from "app";
 import { useLocalStorage, useWindowSize } from "hooks";
 import { useLinkContext } from "context";
+import { ToggleButton } from "shared-components";
 
-import classNames from "classnames";
+import SmallNavBar from "./SmallNavBar";
+import NavBar from "./NavBar";
+
 import styles from "./Navigation.module.scss";
 
-const { links: styleLinks, active, nav__dropdown } = styles;
+export interface NavProps {
+    links: NavLinkUrls[];
+}
+
+// TODO useWindowSize is not working
 
 const Navigation = () => {
     const { links } = useLinkContext();
@@ -21,64 +25,23 @@ const Navigation = () => {
 
     const [isDark, setIsDark] = useLocalStorage<boolean>("lightMode", true);
 
-    const linkClasses = (isActive: boolean) =>
-        classNames(styleLinks, {
-            [active]: isActive,
-        });
-
-    <ToggleButton
-        variant="darkMode"
-        enabled={!isDarkMode}
-        toggleEnabled={() => setIsDark(!isDark)}
-    />;
+    const navBarProps: NavProps = { links };
 
     useEffect(() => {
         dispatch(updateDarkMode(Boolean(isDark)));
     }, [dispatch, isDark, isDarkMode]);
 
-    const RenderBigScreenLinks = () => (
-        <>
-            {links.map(item => (
-                <li key={`navigation-link-${item}`}>
-                    <NavLink className={({ isActive }) => linkClasses(isActive)} to={item}>
-                        {getHomeLabel(item)}
-                    </NavLink>
-                </li>
-            ))}
-            <ToggleButton
-                variant="darkMode"
-                enabled={!isDarkMode}
-                toggleEnabled={() => setIsDark(!isDark)}
-            />
-        </>
-    );
-
-    const RenderSmallScreenLinks = () => (
-        <>
-            <ToggleButton
-                variant="darkMode"
-                enabled={!isDarkMode}
-                toggleEnabled={() => setIsDark(!isDark)}
-            />
-            <div className={nav__dropdown}>
-                <DropdownContainer reset={false} label={OpenMenu.MESSAGE}>
-                    {links.map(item => (
-                        <Dropdown.MenuItem key={`navigation-link-${item}`}>
-                            <NavLink className={({ isActive }) => linkClasses(isActive)} to={item}>
-                                {getHomeLabel(item)}
-                            </NavLink>
-                        </Dropdown.MenuItem>
-                    ))}
-                </DropdownContainer>
-            </div>
-        </>
-    );
-
     return (
         <div ref={ref} className={styles.nav}>
             <ul className={styles.list}>
-                {SMALL_SCREEN ? <RenderSmallScreenLinks /> : <RenderBigScreenLinks />}
+                {SMALL_SCREEN ? <SmallNavBar {...navBarProps} /> : <NavBar {...navBarProps} />}
             </ul>
+            <ToggleButton
+                variant="darkMode"
+                enabled={!isDarkMode}
+                toggleEnabled={() => setIsDark(!isDark)}
+                darkMode={isDarkMode}
+            />
         </div>
     );
 };

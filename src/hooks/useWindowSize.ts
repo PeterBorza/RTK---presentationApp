@@ -1,4 +1,4 @@
-import React, { MutableRefObject, RefObject, useEffect, useLayoutEffect, useState } from "react";
+import { RefObject, useEffect, useLayoutEffect, useState } from "react";
 
 // See: https://usehooks-ts.com/react-hook/use-event-listener
 import useEventListener from "./useEventListener";
