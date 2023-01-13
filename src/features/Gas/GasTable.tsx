@@ -37,7 +37,7 @@ const GasTable: FC = () => {
 
     useOnClickOutside(errorRef, () => setUtilitiesError(false));
 
-    // TODO sorting in a different file, as hook
+    // TODO add sorting
 
     const timer = useTime("standard");
 
@@ -66,6 +66,11 @@ const GasTable: FC = () => {
                 togglePayedBill={() => dispatch(togglePayedBill(unit))}
             />
         ));
+
+    // TODO extract managing utility from table column into header , to handle selected utility from there
+    // payed, delete and edit, also sorting would go into header
+
+    // TODO extract error component
 
     return (
         <UtilityTable dark={isDarkMode}>

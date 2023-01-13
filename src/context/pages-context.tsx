@@ -36,7 +36,7 @@ export const PagesContextProvider: React.FC = ({ children }) => {
         ([label, content]) =>
             ({
                 id: sanitise(label),
-                label: label,
+                label,
                 content,
             } as PagesType<JSX.Element>),
     );

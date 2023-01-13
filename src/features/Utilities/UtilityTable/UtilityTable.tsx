@@ -13,5 +13,6 @@ const UtilityTable: FC<{ dark?: boolean }> = ({ dark = false, children }) => {
 
 // TODO extract MANAGE to header near ADD NEW INDEX and pass selected list item
 // this way you gain horizontal space in table
+// also sorting should be available here or near titles
 
 export default UtilityTable;

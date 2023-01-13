@@ -18,6 +18,8 @@ const Photos = () => {
     const closeSidePanel = useCallback(() => dispatch(togglePhotos(false)), [dispatch]);
     const openSidePanel = useCallback(() => dispatch(togglePhotos(true)), [dispatch]);
 
+    //  TODO Photos and Photo with landing page do not belong to memorygame!! extract and images // folder as well
+
     const renderLinks = useMemo(
         () => (
             <div className={styles.linkWrapper}>

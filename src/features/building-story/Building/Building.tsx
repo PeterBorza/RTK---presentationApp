@@ -21,6 +21,8 @@ const ElevatorSystem = () => {
     );
 };
 
+// TODO add user input for speedand level of choice, limited to window possibilities
+
 const Building = () => (
     <FloatingImage src={city900}>
         <ElevatorSystem />

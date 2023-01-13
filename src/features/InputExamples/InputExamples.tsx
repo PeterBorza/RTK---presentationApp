@@ -13,6 +13,10 @@ const initialMockValues: MockValues = {
     text: "",
 };
 
+// TODO
+// multiple types of input, same functionality.
+// Why not all the same component, but diff variants ?
+
 const InputExamples = () => {
     const { values, changeHandler, resetValues } = useForm<MockValues>(initialMockValues);
 

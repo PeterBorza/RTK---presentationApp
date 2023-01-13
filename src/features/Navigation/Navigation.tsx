@@ -14,7 +14,7 @@ export interface NavProps {
     links: NavLinkUrls[];
 }
 
-// TODO useWindowSize is not working
+// TODO useWindowSize is not working. Why? was adding ref as param a good idea?
 
 const Navigation = () => {
     const { links } = useLinkContext();

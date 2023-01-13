@@ -41,3 +41,5 @@ export const emptyAttemptSelector = createSelector(playerComboSelector, playerCo
     const isCleanGame = allComboes.every(cmb => cmb.color === invalidColor);
     return isCleanGame;
 });
+
+// TODO useColorGameRedux as in other selectors

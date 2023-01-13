@@ -10,6 +10,8 @@ const initialValidation: ValidType = {
     message: "no errors found",
 };
 
+//TODO validate string or number , by the param given
+
 const useValidation = (value: string) => {
     const [valid, setValid] = React.useState<ValidType>(initialValidation);
 

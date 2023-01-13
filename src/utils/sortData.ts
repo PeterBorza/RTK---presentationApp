@@ -4,6 +4,8 @@ interface SortType<T> {
     reversed?: boolean;
 }
 
+// TODO sort by boolean ? false -1 true 1
+
 const sortData = <T>({ data, dataProperty: key, reversed = false }: SortType<T>): T[] => {
     const reverseValue = reversed ? -1 : 1;
 
