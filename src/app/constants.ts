@@ -26,7 +26,7 @@ export enum NavLinkUrls {
 
 export const urlToLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" : item);
 
-// TODO Organise the above enums into one object
+// TODO Error and Pending are already in AppMessages!
 
 export enum Error {
     MESSAGE = "We are sorry, an error occured. Please try again later",

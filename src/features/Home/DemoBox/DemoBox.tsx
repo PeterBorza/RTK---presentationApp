@@ -9,6 +9,8 @@ interface DemoBoxProps {
     darkMode?: boolean;
 }
 
+// TODO move this to shared components once it's done
+
 const DemoBox: FC<DemoBoxProps> = ({ children, componentName, darkMode = true }) => {
     const classes = classNames(styles.demoBox__title, {
         [styles.demoBox__title__dark]: darkMode,

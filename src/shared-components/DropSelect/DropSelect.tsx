@@ -25,6 +25,9 @@ const DropSelect = ({ menu, onSelect, isDarkMode = false }: DropSelectProps) => 
     const [selected, setSelected] = useState<MenuType>(DEFAULT_TRIGGER_LABEL);
     const dropSelectRef = useRef<HTMLUListElement | null>(null);
 
+    // TODO needs proper css for light and dark mode
+    // needs animation for dropdown
+
     const classes = classNames(styles.dropSelect, {
         [styles.dropSelect__darkMode]: isDarkMode,
     });

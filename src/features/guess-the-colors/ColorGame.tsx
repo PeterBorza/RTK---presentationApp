@@ -8,6 +8,8 @@ import { guessGameData } from "./state";
 
 import "./_index.scss";
 
+//TODO do not show hidden combo data from devTools
+
 const ColorGame = () => {
     const { gameLegend, attemptCount, gameTitle, newGame } = guessGameData;
 

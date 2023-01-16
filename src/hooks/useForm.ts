@@ -6,6 +6,8 @@ interface ReturnForm<T> {
     resetValues: () => void;
 }
 
+// TODO generic type T - it takes only an object. Adjust typescript
+
 const useForm = <T>(data: T): ReturnForm<T> => {
     const [values, setValues] = useState<T>(data);
 
