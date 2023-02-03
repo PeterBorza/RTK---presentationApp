@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { useForm } from "hooks";
-import { CustomInput, Button, InputCard, TextInput } from "shared-components";
+import { Button, InputCard, TextInput } from "shared-components";
 import { useValidation } from "hooks";
 
 import styles from "./InputExamples.module.scss";
@@ -31,13 +31,6 @@ const InputExamples = () => {
         <div className={styles.wrapper}>
             <h1>Types of input atoms</h1>
             <form className={styles.form} onSubmit={submitHandler}>
-                <CustomInput
-                    isValid={isUserNameValid}
-                    name="username"
-                    value={values.username}
-                    onChange={changeHandler}
-                    error={values.username !== "Peter"}
-                />
                 <InputCard
                     onChange={changeHandler}
                     name="password"

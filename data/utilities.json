@@ -395,6 +395,17 @@
       "estimate": 304.81,
       "payed": true,
       "edit": false
+    },
+    {
+      "id": "e266cac4-8a7d-457b-a379-34043f5557fe",
+      "readDate": "18/01/2023",
+      "selected": false,
+      "index": "5689",
+      "bill": "344.28",
+      "consumption": 119,
+      "estimate": 344.11,
+      "payed": false,
+      "edit": false
     }
   ],
   "light": [

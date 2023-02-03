@@ -5,6 +5,14 @@ $transitionSpeed: 150ms;
 $lightMode: rgb(241, 227, 227);
 $darkMode: #1a1818;
 
+$inputSizes: (
+    "small": min(150px, 100%),
+    "medium": min(300px, 100%),
+    "large": min(400px, 100%),
+    "xxl": min(500px, 100%),
+    "fullSize": 100%,
+);
+
 @mixin gradientBlack {
     background: -webkit-linear-gradient(to right, #434343, #000000);
     background: linear-gradient(to right, #434343, #000000);
@@ -12,7 +20,6 @@ $darkMode: #1a1818;
 
 .form {
     display: flex;
-    border-radius: $borderRadius;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     transition: box-shadow $transitionSpeed ease;
     &:hover {
@@ -21,27 +28,22 @@ $darkMode: #1a1818;
 }
 
 .input_wrapper {
+    width: 100%;
     display: flex;
     align-items: center;
-    &__small {
-        width: 150px;
+    padding: 0 5px;
+    flex: 1;
+
+    span {
+        text-transform: capitalize;
     }
 
-    &__medium {
-        width: 300px;
+    @each $key, $value in $inputSizes {
+        &__#{$key} {
+            width: $value;
+        }
     }
 
-    &__large {
-        width: 400px;
-    }
-
-    &__xxl {
-        width: 500px;
-    }
-
-    &__fullSize {
-        width: 100%;
-    }
     &__darkMode {
         @include gradientBlack();
         color: $lightMode;
@@ -53,6 +55,7 @@ $darkMode: #1a1818;
     padding: 0.5rem;
     border-radius: $borderRadius;
     transition: all $transitionSpeed ease-out;
+    color: $myBlue;
     @include truncate();
     cursor: pointer;
 
@@ -60,7 +63,7 @@ $darkMode: #1a1818;
         opacity: 0.3;
     }
 
-    &:focus {
+    &:focus-within {
         &::-webkit-input-placeholder {
             opacity: 0;
         }
@@ -68,11 +71,11 @@ $darkMode: #1a1818;
 
     &__darkMode {
         @include gradientBlack();
-        color: $lightMode;
-        border-radius: 10px;
+        color: $myYellow3;
 
         &::-webkit-input-placeholder {
-            opacity: 0.8;
+            opacity: 0.3;
+            color: $myYellow3;
         }
     }
 }
@@ -86,6 +89,7 @@ $darkMode: #1a1818;
     &__icon {
         display: flex;
         font-size: 1.4rem;
+        color: limegreen;
     }
 
     &:hover {
@@ -104,15 +108,11 @@ $darkMode: #1a1818;
         }
     }
 
-    &__invalid {
+    &:disabled {
+        cursor: not-allowed;
         .buttonStyle__icon {
             color: crimson;
-        }
-    }
-
-    &__valid {
-        .buttonStyle__icon {
-            color: limegreen;
+            opacity: 0.4;
         }
     }
 }

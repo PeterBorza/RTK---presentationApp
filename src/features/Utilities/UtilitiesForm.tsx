@@ -22,13 +22,15 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
     const maxIndex = useSelector(maxIndexSelector);
     const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
 
-    useOnClickOutside(modalRef, () => resetValues());
+    useOnClickOutside([modalRef], () => resetValues());
 
     const {
         FORM_BUTTON_LABEL: buttonLabel,
         FORM_WIDTH: formWidth,
         FORM_TITLE: formTitle,
     } = UtilityFormValues;
+
+    // TODO validation into separate file reconsidered
 
     const checkIfValid = (input: string) => !isNaN(+input);
 

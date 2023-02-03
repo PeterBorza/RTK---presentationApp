@@ -1,30 +1,26 @@
 import { RefObject, useEffect } from "react";
 
-type AnyEvent = MouseEvent | TouchEvent;
-
 function useOnClickOutside<T extends HTMLElement = HTMLElement>(
-	ref: RefObject<T>,
-	handler: (event: AnyEvent) => void
+    refs: RefObject<T>[],
+    handler: () => void,
 ): void {
-	useEffect(() => {
-		const listener = (event: AnyEvent) => {
-			const el = ref?.current;
+    useEffect(() => {
+        const listener = (event: Event) => {
+            const target = refs.find(
+                ref => !ref.current || ref.current.contains(event.target as T),
+            );
+            if (target) return;
+            handler();
+        };
 
-			if (!el || el.contains(event.target as Node)) {
-				return;
-			}
+        document.addEventListener(`mousedown`, listener);
+        document.addEventListener(`touchstart`, listener);
 
-			handler(event);
-		};
-
-		document.addEventListener(`mousedown`, listener);
-		document.addEventListener(`touchstart`, listener);
-
-		return () => {
-			document.removeEventListener(`mousedown`, listener);
-			document.removeEventListener(`touchstart`, listener);
-		};
-	}, [ref, handler]);
+        return () => {
+            document.removeEventListener(`mousedown`, listener);
+            document.removeEventListener(`touchstart`, listener);
+        };
+    }, [refs, handler]);
 }
 
 export default useOnClickOutside;

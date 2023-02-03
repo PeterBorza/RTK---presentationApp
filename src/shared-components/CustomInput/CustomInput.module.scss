@@ -1,4 +1,7 @@
 $custom-color: #5fa8d3;
+$dark: rgb(245, 240, 240);
+$light: #19191ae2;
+
 @mixin style {
     transform: translateY(-150%);
     font-size: 1rem;
@@ -9,13 +12,15 @@ $custom-color: #5fa8d3;
     transform: translateX(0%);
     transition: all 0.3s ease;
 }
+
 .custom {
     position: relative;
     width: 100%;
-    height: max(3rem, 5vh);
+    height: max(3rem, 4vh);
     overflow: hidden;
 
-    label {
+    &__label {
+        color: $light;
         position: absolute;
         bottom: 0px;
         left: 0%;
@@ -33,52 +38,53 @@ $custom-color: #5fa8d3;
             border-bottom: 3px solid $custom-color;
             transform: translateX(-100%);
         }
-    }
-}
 
-.input {
-    width: 100%;
-    height: 100%;
-    padding-top: 0.5rem;
-    padding-left: 1rem;
-    font-size: 1.3rem;
-    color: white;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    &:focus-within + .label_name .name_style,
-    // &:valid + .label_name .name_style,
-    &:hover + .label_name .name_style {
-        @include style();
+        &__dark {
+            color: $dark;
+        }
     }
-    &:focus-within + .label_name::after,
-    // &:valid + .label_name::after,
-    &:hover + .label_name::after {
-        @include after();
+
+    &__name {
+        position: absolute;
+        bottom: 5px;
+        left: 0px;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
     }
-    &__valid {
-        color: white;
-    }
-    &__invalid {
-        animation: danger 400ms ease infinite;
-        @keyframes danger {
-            from {
-                color: white;
-            }
-            to {
-                color: crimson;
+
+    &__input {
+        width: 100%;
+        height: 100%;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
+        cursor: pointer;
+
+        &:hover + .custom__label .custom__name,
+        &:focus-within + .custom__label .custom__name,
+        &__active + .custom__label .custom__name {
+            @include style();
+        }
+
+        &:hover + .custom__label::after,
+        &:focus-within + .custom__label::after,
+        &__active + .custom__label::after {
+            @include after();
+        }
+
+        &__valid {
+            color: white;
+        }
+
+        &__invalid {
+            animation: danger 600ms ease infinite;
+            @keyframes danger {
+                from {
+                    color: white;
+                }
+                to {
+                    color: crimson;
+                }
             }
         }
     }
-}
-
-.label_name {
-    color: white;
-}
-.name_style {
-    position: absolute;
-    bottom: 5px;
-    left: 0px;
-    transition: all 0.3s ease;
 }

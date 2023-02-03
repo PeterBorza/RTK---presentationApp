@@ -24,16 +24,15 @@ $coinborder: 1px solid darken($coinBlue, 30%);
 }
 
 .coinCard {
-    flex: 1 0 350px;
     height: 100%;
     box-shadow: 1px 1px 20px $coinBlue;
     padding: 1rem;
     border-radius: 0.6rem;
     cursor: default;
-    transition: scale 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out;
 
     &:hover {
-        scale: 1.003;
+        background-color: rgba(173, 242, 242, 0.1);
     }
 
     &__title {
@@ -55,11 +54,8 @@ $coinborder: 1px solid darken($coinBlue, 30%);
 
     &__table_row {
         border: $coinborder;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding-left: 1rem;
+        display: grid;
+        grid-template-columns: 70% 3rem 1fr;
         cursor: pointer;
         transition: background-color 500ms ease;
 
@@ -68,7 +64,8 @@ $coinborder: 1px solid darken($coinBlue, 30%);
         }
 
         & > h2 {
-            padding: 0.5rem;
+            padding: 0.1rem 0.3rem;
+            outline: 1px solid darken($coinBlue, 10%);
             color: darken($coinBlue, 20%);
             @include blinkAnimation(darken($coinBlue, 20%));
         }
@@ -78,14 +75,11 @@ $coinborder: 1px solid darken($coinBlue, 30%);
         }
 
         & h2:nth-of-type(2) {
-            width: 2rem;
-            margin-left: auto;
-            border-left: $coinborder;
-            text-align: right;
+            text-align: center;
         }
 
         & h2:nth-of-type(3) {
-            border-left: $coinborder;
+            text-align: center;
         }
 
         &__selected {

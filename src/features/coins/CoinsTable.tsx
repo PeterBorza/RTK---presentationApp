@@ -6,6 +6,7 @@ import useSortedCoins from "./useSortedCoins";
 
 import classNames from "classnames";
 import styles from "./CoinsTable.module.scss";
+import { useAppRedux } from "app";
 
 const {
     dataTable,
@@ -14,19 +15,20 @@ const {
     coinCard__table_row: _table_row,
     coinCard__content: _content,
     coinCard__dropDown: _dropDown,
-    coinCard__table_row__selected: _table_row__selected,
+    coinCard__table_row__selected: _selected,
 } = styles;
 
 // TODO add header to table, highlight sorted property, highlight title on hover
 // add index as first column -  optional param
 
 const CoinsTable = () => {
+    const { isDarkMode } = useAppRedux();
     const { error, selected, sortedTable, setSortedTable, sortedByKeys, selectCoinHandler } =
         useSortedCoins();
 
     const rowClasses = (coinId: string) =>
         classNames(_table_row, {
-            [_table_row__selected]: selected && selected?.id === coinId,
+            [_selected]: selected && selected?.id === coinId,
         });
 
     const toProperTitle = (title: string) => `sort by ${title}`;
@@ -59,6 +61,7 @@ const CoinsTable = () => {
                 <DropSelect
                     menu={Object.keys(sortedByKeys)}
                     onSelect={value => setSortedTable(value as string)}
+                    isDarkMode={isDarkMode}
                 />
             </div>
             <ul className={dataTable}>

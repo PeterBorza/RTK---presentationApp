@@ -24,6 +24,7 @@ const DropSelect = ({ menu, onSelect, isDarkMode = false }: DropSelectProps) => 
     const [isOpen, toggleOpen, setIsOpen] = useToggle(false);
     const [selected, setSelected] = useState<MenuType>(DEFAULT_TRIGGER_LABEL);
     const dropSelectRef = useRef<HTMLUListElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     // TODO needs proper css for light and dark mode
     // needs animation for dropdown
@@ -40,29 +41,39 @@ const DropSelect = ({ menu, onSelect, isDarkMode = false }: DropSelectProps) => 
         },
     );
 
+    const listElementStyles = classNames(styles.dropSelect__item);
+    const triggerElementStyles = classNames(styles.dropSelect__label);
+
     const selectHandler = (element: MenuType) => {
         onSelect && onSelect(element);
         setSelected(element);
         setIsOpen(false);
     };
 
-    useOnClickOutside(dropSelectRef, () => setIsOpen(false));
+    useOnClickOutside<HTMLDivElement | HTMLUListElement>([dropSelectRef, containerRef], () =>
+        setIsOpen(false),
+    );
+
+    const onItemClick = (e: React.MouseEvent<HTMLLIElement>, element: MenuType) => {
+        e.stopPropagation();
+        selectHandler(element);
+    };
 
     const MenuItem = ({ element }: MenuItemProps) => (
-        <li className={styles.dropSelect__item} onClick={() => selectHandler(element)}>
+        <li className={listElementStyles} onClick={e => onItemClick(e, element)}>
             {element}
         </li>
     );
 
     return (
-        <div className={classes} onClick={toggleOpen}>
-            <span className={styles.dropSelect__label}>{selected}</span>
-            <span className={styles.dropSelect__icon}>{isOpen ? icons.up : icons.down}</span>
+        <div ref={containerRef} className={classes} onClick={toggleOpen}>
+            <span className={triggerElementStyles}>{selected}</span>
             <ul ref={dropSelectRef} className={menuClasses}>
                 {menu.map((element, index) => (
                     <MenuItem key={`menu-item-${index}`} element={element} />
                 ))}
             </ul>
+            <span className={styles.dropSelect__icon}>{isOpen ? icons.up : icons.down}</span>
         </div>
     );
 };

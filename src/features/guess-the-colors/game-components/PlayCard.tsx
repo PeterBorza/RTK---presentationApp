@@ -34,7 +34,7 @@ const PlayCard = ({ attempt, gameCombo, isFinished, gameData }: PlayCardType) =>
         playcard__selected: selected,
         playcard__disabled: results.length !== 0,
     });
-    useOnClickOutside(playCardRef, () => selected && dispatch(resetSelected(id)));
+    useOnClickOutside([playCardRef], () => selected && dispatch(resetSelected(id)));
 
     const hasIdenticalItems = () => {
         const colors = playerCombo.map(item => item.color);

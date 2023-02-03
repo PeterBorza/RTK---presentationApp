@@ -28,8 +28,6 @@ const UserField = ({
     });
 
     const buttonClasses = classNames(styles.buttonStyle, {
-        [styles.buttonStyle__invalid]: inputValue === "",
-        [styles.buttonStyle__valid]: inputValue !== "",
         [styles.buttonStyle__darkMode]: isDark,
     });
 
@@ -42,14 +40,15 @@ const UserField = ({
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (inputValue === "") return;
-        onSubmit(inputValue);
+        if (inputValue.trim() === "") return;
+        onSubmit(inputValue.trim());
         setInputValue("");
     };
 
     return (
         <form className={styles.form} onSubmit={submitHandler}>
             <label className={inputWrapper} htmlFor={name}>
+                <span>{name}:</span>
                 <input
                     className={inputClasses}
                     type="text"
@@ -60,7 +59,7 @@ const UserField = ({
                     autoComplete="off"
                 />
             </label>
-            <button type="submit" className={buttonClasses}>
+            <button type="submit" className={buttonClasses} disabled={inputValue.trim() === ""}>
                 <span className={styles.buttonStyle__icon}>{icons.outlineArrowRight}</span>
             </button>
         </form>

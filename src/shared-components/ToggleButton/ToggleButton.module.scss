@@ -50,8 +50,8 @@ $sizes: (
     cursor: pointer;
     user-select: none;
     padding: $togglePadding;
-    box-shadow: inset 0px 0px 10px $toggleButtonColor;
-    outline: 2px solid $myYellow3;
+    box-shadow: 1px 1px 3px $myYellow3, inset 1px 1px 10px $toggleButtonColor;
+
     @each $key, $value in $sizes {
         &__#{$key} {
             width: calc($value + $togglePadding * 2);
@@ -60,18 +60,10 @@ $sizes: (
         }
     }
 
-    .moon {
-        color: $myYellow3;
-    }
-
+    .moon,
     .sun {
         display: flex;
-        color: $lightModeColor;
-    }
-
-    &__dark {
-        // outline: 2px solid $myYellow3;
-        box-shadow: none;
+        color: $myYellow3;
     }
 }
 
@@ -81,9 +73,11 @@ $sizes: (
     background-color: $myYellow3;
     border: 1px solid $myYellow3;
     box-shadow: 1px 1px 10px $myYellow3;
+
     @each $key, $value in $sizes {
         &__#{$key} {
             @include circle(calc($value / 2));
+            box-shadow: 1px 1px 10px $myYellow3;
             &__light {
                 @include toggleHorizontally(100%, red);
             }

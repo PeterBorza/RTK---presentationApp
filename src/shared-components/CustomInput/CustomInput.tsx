@@ -1,27 +1,45 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 import classNames from "classnames";
 import styles from "./CustomInput.module.scss";
 
-type InputProps = Pick<React.ComponentProps<"input">, "name" | "onChange" | "value">;
-
-interface CustomInputType extends InputProps {
+interface CustomInputType {
     isValid?: boolean;
-    error?: boolean;
+    onChange: (val: string) => void;
+    darkMode?: boolean;
+    value: string;
+    name: string;
 }
 
-const CustomInput = ({ name, onChange, value, isValid, error }: CustomInputType) => {
-    const classes = classNames(styles.input, {
-        [styles["input__valid"]]: isValid,
-        [styles["input__invalid"]]: !isValid,
+const CustomInput = ({ name, onChange, value, isValid, darkMode = true }: CustomInputType) => {
+    const classes = classNames(styles.custom__input, {
+        [styles.custom__input__valid]: isValid && darkMode,
+        [styles.custom__input__invalid]: !isValid,
+        [styles.custom__input__active]: value !== "",
     });
+
+    const labelClasses = classNames(styles.custom__label, {
+        [styles.custom__label__dark]: darkMode,
+    });
+
+    const nameClasses = classNames(styles.custom__name);
+
+    const addColon = (name?: string) => name && name + ":";
+
     return (
         <div className={styles.custom}>
-            <input className={classes} type="text" onChange={onChange} value={value} name={name} />
-            <label className={styles.label_name}>
-                <span className={styles.name_style}>{value !== "" ? "" : `${name}:`}</span>
+            <input
+                className={classes}
+                type="text"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+                value={value}
+                name={name}
+                autoFocus={value.trim() !== ""}
+                autoComplete="off"
+            />
+            <label className={labelClasses}>
+                <span className={nameClasses}>{addColon(name)}</span>
             </label>
-            {error && <span>No good</span>}
         </div>
     );
 };

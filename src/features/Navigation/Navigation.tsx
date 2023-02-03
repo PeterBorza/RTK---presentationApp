@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { NavLinkUrls, updateDarkMode, useAppRedux } from "app";
 import { useLocalStorage, useWindowSize } from "hooks";
@@ -21,7 +21,9 @@ const Navigation = () => {
     const { dispatch, isDarkMode } = useAppRedux();
 
     const ref = useRef<HTMLDivElement | null>(null);
-    const SMALL_SCREEN = useWindowSize(ref, 600);
+    const { width } = useWindowSize();
+
+    const SMALL_SCREEN = width < 550;
 
     const [isDark, setIsDark] = useLocalStorage<boolean>("lightMode", true);
 

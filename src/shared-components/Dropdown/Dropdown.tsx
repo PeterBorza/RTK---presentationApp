@@ -16,7 +16,7 @@ const Dropdown: React.FC<DropdownType> = ({ onCloseMenu, children }) => {
         setIsOpen(false);
     };
 
-    useOnClickOutside(targetRef, closeMenu);
+    useOnClickOutside([targetRef], closeMenu);
 
     return (
         <div ref={targetRef} className={styles.drop_wrap}>

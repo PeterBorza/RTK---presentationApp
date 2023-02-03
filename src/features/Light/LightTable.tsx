@@ -33,7 +33,7 @@ const LightTable: FC = () => {
     const sumOfBills = useSelector(sumOfBillsSelector);
     const errorRef = useRef<HTMLDivElement | null>(null);
 
-    useOnClickOutside(errorRef, () => setUtilitiesError(false));
+    useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
     const timer = useTime("standard");
 

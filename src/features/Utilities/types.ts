@@ -27,6 +27,6 @@ export interface UtilityState {
     maxIndex: number;
 }
 
-// TODO add below selector to gas and light selcetors.It doesn't belong here
+// TODO add below selector to gas and light selectors.It doesn't belong here
 
 export const maxIndexSelector = ({ gas }: RootState) => gas.maxIndex;
