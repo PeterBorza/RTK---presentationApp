@@ -33,7 +33,7 @@ const BubbleContainer = () => {
         [styles.container__dark]: isDarkMode,
     });
 
-    useOnClickOutside(errorRef, () => dispatch(setError(false)));
+    useOnClickOutside([errorRef], () => dispatch(setError(false)));
 
     const buttons: ButtonProps[] = [
         {

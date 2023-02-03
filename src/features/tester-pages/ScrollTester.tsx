@@ -125,14 +125,17 @@ const ScrollTester = () => {
             id: "userField",
             label: "userField",
             content: (
-                <UserField
-                    name="userField"
-                    value={userField}
-                    onSubmit={(value: string) => setUserField(value)}
-                    isDark={isDarkMode}
-                    size="fullSize"
-                    placeHolder="type to validate submit"
-                />
+                <div style={{ width: "min(500px, 100%)" }}>
+                    <UserField
+                        name="userField"
+                        value={userField}
+                        onSubmit={(value: string) => setUserField(value)}
+                        isDark={isDarkMode}
+                        size="large"
+                        placeHolder="type to validate submit"
+                    />
+                    <span>{userField}</span>
+                </div>
             ),
         },
         {

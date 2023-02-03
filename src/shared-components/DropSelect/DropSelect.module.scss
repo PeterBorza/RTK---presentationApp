@@ -34,23 +34,52 @@ $lightModeColor: #1a171de3;
     &__menu {
         position: absolute;
         width: 100%;
-        z-index: 1000;
-        top: 110%;
         overflow: hidden;
         box-shadow: shadows($lightModeColor);
-
+        backdrop-filter: blur(5px);
         border-radius: 3px;
+        opacity: 0;
 
         &__darkMode {
             box-shadow: shadows($darkModeColor);
         }
 
         &__open {
-            display: block;
+            animation: drop 200ms forwards ease-in-out;
+            @keyframes drop {
+                0% {
+                    opacity: 0;
+                    top: 0;
+                }
+                90% {
+                    opacity: 0.5;
+                }
+                100% {
+                    top: 110%;
+                    opacity: 1;
+                }
+            }
         }
 
         &__close {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            animation: close 100ms forwards ease-in-out;
+            @keyframes close {
+                0% {
+                    opacity: 1;
+                    top: 110%;
+                }
+                10% {
+                    opacity: 0.2;
+                    top: 50%;
+                }
+                100% {
+                    top: 0%;
+                    opacity: 0;
+                }
+            }
         }
     }
 
@@ -69,12 +98,10 @@ $lightModeColor: #1a171de3;
 
         color: $darkModeColor;
 
-        &.darkMode {
-            &__icon,
-            &__label,
-            &__item {
-                color: $darkModeColor;
-            }
+        .dropSelect__icon,
+        .dropSelect__label,
+        .dropSelect__item {
+            color: $darkModeColor;
         }
     }
 }

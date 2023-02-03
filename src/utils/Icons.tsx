@@ -25,6 +25,7 @@ import { GiCancel } from "react-icons/gi";
 import { ImStop } from "react-icons/im";
 import { BsSun } from "react-icons/bs";
 import { BsFillMoonFill } from "react-icons/bs";
+import { FiSearch } from "react-icons/fi";
 
 export type IconType = Record<string, JSX.Element>;
 
@@ -56,4 +57,5 @@ export const icons: IconType = {
     x: <FaTimes style={{ color: "crimson" }} />,
     sun: <BsSun />,
     moon: <BsFillMoonFill />,
+    search: <FiSearch />,
 };

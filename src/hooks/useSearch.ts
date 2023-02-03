@@ -1,35 +1,24 @@
 import { useEffect, useState } from "react";
+import useDebounce from "./useDebounce";
 
 const DEFAULT_DEBOUNCE_TIME = 250;
 
-const useDebouncedValue = (value: string, time: number) => {
-    const [debouncedValue, setDebouncedValue] = useState(value);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => setDebouncedValue(value), time);
-
-        return () => clearTimeout(timeout);
-    }, [value, time]);
-
-    return debouncedValue;
-};
-
-const useSearch = (inputValue: string, data: string[]) => {
-    const debouncedValue = useDebouncedValue(inputValue, DEFAULT_DEBOUNCE_TIME);
+const useSearch = (inputValue: string, data: string[]): [string, string[]] => {
+    const debouncedValue = useDebounce(inputValue, DEFAULT_DEBOUNCE_TIME);
     const [filteredData, setFilteredData] = useState<string[]>([]);
 
     useEffect(() => {
         setFilteredData([]);
-        if (data.length > 0 && inputValue !== "") {
+        if (data.length > 0 && inputValue.trim() !== "") {
             const filtered = data.filter(val =>
-                val.toLowerCase().includes(debouncedValue.trim().toLowerCase()),
+                val.trim().toLowerCase().includes(debouncedValue.trim().toLowerCase()),
             );
 
             setFilteredData(filtered);
         }
-    }, [data, debouncedValue]);
+    }, [data, debouncedValue, inputValue]);
 
-    return filteredData;
+    return [debouncedValue.trim(), filteredData];
 };
 
 export default useSearch;

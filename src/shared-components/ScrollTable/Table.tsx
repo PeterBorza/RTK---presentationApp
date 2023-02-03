@@ -13,7 +13,7 @@ export interface Props {
 
 const Table: FC<Props> = ({ children, headers, onClickOutside, loading }) => {
     const tableRef = useRef<HTMLDivElement>(null);
-    useOnClickOutside(tableRef, onClickOutside);
+    useOnClickOutside([tableRef], onClickOutside);
 
     const renderHeaders = useMemo(
         () => headers.map(label => <TableTitle key={label} name={label} />),

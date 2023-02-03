@@ -9,12 +9,12 @@ import { GamePhotoData } from "../redux/types";
 import classNames from "classnames";
 import styles from "./GameCard.module.scss";
 
-interface GameCard {
+interface GameCardProps {
     card: GamePhotoData;
     idx: number;
 }
 
-const GameCard = ({ card, idx }: GameCard) => {
+const GameCard = ({ card, idx }: GameCardProps) => {
     const { id, frontSrc, isFlipped, match } = card;
     const {
         memoryGame: { gamePhotos, currentTheme },

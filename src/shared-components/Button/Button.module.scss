@@ -21,9 +21,6 @@ $disabledButtonColor: rgb(163, 33, 59);
     position: relative;
     overflow: hidden;
     background: $myYellow3;
-    border: none;
-    outline: none;
-    font-weight: bold;
     padding: 0.3rem 0.7rem;
     border-radius: 3px;
     z-index: 100;
@@ -43,11 +40,6 @@ $disabledButtonColor: rgb(163, 33, 59);
         transition: all 200ms ease-in;
     }
 
-    &:focus-within {
-        outline: none;
-        border: none;
-    }
-
     &:hover {
         color: $navPrimaryBG;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
@@ -61,16 +53,13 @@ $disabledButtonColor: rgb(163, 33, 59);
         scale: 0.95;
     }
 
-    &__disabled {
+    &:disabled {
         background-color: lighten($myYellow3, 25%);
         outline: 1px solid red;
-        .content__submit {
-            color: $disabledButtonColor;
-        }
 
-        &:hover {
+        &.button :hover {
             background-color: transparent;
-            color: $darkModeWhite;
+            color: $disabledButtonColor;
             cursor: not-allowed;
         }
     }
@@ -105,5 +94,8 @@ $disabledButtonColor: rgb(163, 33, 59);
     &__cancel,
     &__submit {
         color: $validButtonColor;
+    }
+    &__regular {
+        font-weight: bold;
     }
 }

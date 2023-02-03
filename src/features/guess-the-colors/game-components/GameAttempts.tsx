@@ -28,7 +28,7 @@ const GameAttempts = ({ gameCombo, gameData }: Props) => {
     const errorRef = React.useRef<HTMLDivElement | null>(null);
     const dispatch = useDispatch();
 
-    useOnClickOutside(errorRef, () => dispatch(setError(null)));
+    useOnClickOutside([errorRef], () => dispatch(setError(null)));
 
     React.useEffect(() => {
         (perfectGuess || allValidResults) && dispatch(setFinished(true));

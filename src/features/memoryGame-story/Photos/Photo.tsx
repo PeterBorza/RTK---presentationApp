@@ -11,7 +11,7 @@ const Photo = () => {
 
     return (
         <div className={styles.imageWrapper}>
-            <img className={styles.imageStyle} src={image?.src} alt="No image found" />
+            <img className={styles.imageStyle} src={image?.src} alt="No data found" />
         </div>
     );
 };

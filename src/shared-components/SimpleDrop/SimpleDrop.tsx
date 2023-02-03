@@ -19,7 +19,7 @@ const SimpleDrop: FC<DropDownProps> = ({ children, title = "Click", contentStyle
         setDrop(!drop);
     };
 
-    useOnClickOutside(headerRef, () => setDrop(false));
+    useOnClickOutside([headerRef], () => setDrop(false));
     const classes = classNames(
         styles.content,
         styles[`content__${height}`],

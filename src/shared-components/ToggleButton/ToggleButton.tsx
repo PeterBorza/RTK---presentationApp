@@ -27,12 +27,13 @@ const ToggleButton = ({
         [styles[`toggle_button__${size}__light__disabled`]]: !enabled && !darkMode,
     });
 
-    const dotClasses = classNames(styles.toggle_container, styles[`toggle_container__${size}`], {
-        [styles.toggle_container__dark]: darkMode,
-    });
+    const containerClasses = classNames(
+        styles.toggle_container,
+        styles[`toggle_container__${size}`],
+    );
 
     return (
-        <button className={dotClasses} onClick={toggleEnabled}>
+        <button className={containerClasses} onClick={toggleEnabled}>
             {variant === "darkMode" && <span className={styles.sun}>{icons.sun}</span>}
             <div className={buttonClasses} />
             {variant === "darkMode" && <span className={styles.moon}>{icons.moon}</span>}

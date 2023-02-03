@@ -27,7 +27,6 @@ const Button = ({
 }: ButtonProps) => {
     const classes = classNames(styles.button, [styles[`button__${variant}`]], {
         [styles.button__dark]: dark,
-        [styles.button__disabled]: isDisabled,
         [styles.button__hidden]: !displayed,
     });
     const contentStyles = classNames(styles.content, [styles[`content__${variant}`]]);

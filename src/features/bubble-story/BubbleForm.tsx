@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { TextInput, FadedModal, Form, Button } from "shared-components";
 import { BubbleFormValues } from "./constants";
@@ -21,7 +21,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
         closeForm();
     };
 
-    const validResults = (key: keyof typeof values, value: string) => {
+    const validResults = useCallback((key: keyof typeof values, value: string) => {
         if (isNaN(+value)) {
             return false;
         } else {
@@ -36,7 +36,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
             }
             return true;
         }
-    };
+    }, []);
 
     const onSubmitHandler = () => {
         const { left, top, size, opacity } = values as BubbleCssProps;
@@ -52,12 +52,16 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
         closeForm();
     };
 
-    const errorMessages: Record<keyof typeof values, string> = {
-        left: "0 to 100",
-        top: "0 to 100",
-        size: "0 to 612",
-        opacity: "0 to 1",
-    };
+    const errorMessages = useMemo(
+        () =>
+            ({
+                left: "0 to 100",
+                top: "0 to 100",
+                size: "0 to 612",
+                opacity: "0 to 1",
+            } as Record<keyof typeof values, string>),
+        [],
+    );
 
     const renderFields = React.useMemo(
         () =>
@@ -71,7 +75,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
                     errorMessage={errorMessages[key as keyof typeof values]}
                 />
             )),
-        [values, changeHandler, validResults],
+        [values, changeHandler, validResults, errorMessages],
     );
 
     const disabledSubmit = Object.values(values).some(v => v === "");

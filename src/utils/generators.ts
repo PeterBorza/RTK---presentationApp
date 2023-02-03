@@ -14,8 +14,6 @@ export const getRandomElement = <T>(arr: T[]) => {
     return arr[Math.floor(Math.random() * arr.length)];
 };
 
-type ArrayType = string;
-
 interface ResultedObjectType {
     [key: string]: string;
 }

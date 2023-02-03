@@ -35,7 +35,7 @@ const GasTable: FC = () => {
 
     const isUnits = units.length > 0;
 
-    useOnClickOutside(errorRef, () => setUtilitiesError(false));
+    useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
     // TODO add sorting
 

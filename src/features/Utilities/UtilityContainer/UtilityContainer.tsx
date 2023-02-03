@@ -38,6 +38,8 @@ const UtilityContainer: FC = () => {
         [links, closeSidePanel, toInternalLink],
     );
 
+    // TODO try and reduce data from server in utilities
+
     return (
         <AsidePlatform
             isOpen={isUtilsOpen}
