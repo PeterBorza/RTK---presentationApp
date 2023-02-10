@@ -10,6 +10,7 @@ export interface FormWrapProps {
     onCancel: () => void;
     buttonLabel?: string;
     formTitle?: string;
+    disabled?: boolean;
 }
 
 const ModalForm = ({
@@ -19,6 +20,7 @@ const ModalForm = ({
     onCancel,
     buttonLabel = "FORM",
     formTitle,
+    disabled = false,
 }: FormWrapProps) => {
     const [openModal, , setIsOpenModal] = useToggle(false);
 
@@ -44,6 +46,7 @@ const ModalForm = ({
                     renderFields={renderFields}
                     onCancel={onCancelHandler}
                     formTitle={formTitle}
+                    disabled={disabled}
                 />
             </FadedModal>
         </>

@@ -64,7 +64,7 @@ $sidebar-width: min(200px, 20%);
         max-width: 100%;
         font-size: clamp(0.8rem, 2vw, 1.5rem);
         text-transform: capitalize;
-        color: $darkModeWhite;
+        color: $myYellow3;
         transition: color 120ms ease;
         padding: 2px;
         @include truncate;

@@ -6,7 +6,7 @@ $disabledButtonColor: rgb(163, 33, 59);
 @mixin menuButton {
     position: absolute;
     left: 5px;
-    top: calc($navHeight * -2);
+    top: calc($navHeight * -1);
     z-index: 10;
     animation: flowDown 600ms ease-out forwards;
     @keyframes flowDown {
@@ -20,7 +20,7 @@ $disabledButtonColor: rgb(163, 33, 59);
     display: flex;
     position: relative;
     overflow: hidden;
-    background: $myYellow3;
+    background-color: $myYellow3;
     padding: 0.3rem 0.7rem;
     border-radius: 3px;
     z-index: 100;
@@ -37,7 +37,7 @@ $disabledButtonColor: rgb(163, 33, 59);
         height: 0px;
         background-color: $darkModeWhite;
         box-shadow: 0 2px 5px 10px rgba(255, 255, 255, 0.5);
-        transition: all 200ms ease-in;
+        transition: all 200ms ease;
     }
 
     &:hover {
@@ -54,12 +54,14 @@ $disabledButtonColor: rgb(163, 33, 59);
     }
 
     &:disabled {
-        background-color: lighten($myYellow3, 25%);
         outline: 1px solid red;
 
-        &.button :hover {
-            background-color: transparent;
+        .content__submit {
             color: $disabledButtonColor;
+        }
+
+        &:hover {
+            background-color: transparent;
             cursor: not-allowed;
         }
     }
@@ -88,7 +90,7 @@ $disabledButtonColor: rgb(163, 33, 59);
 
 .content {
     display: flex;
-    color: $myGrey;
+    color: $navPrimaryBG;
     @include truncate();
 
     &__cancel,

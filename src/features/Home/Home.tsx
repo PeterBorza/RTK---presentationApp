@@ -5,7 +5,8 @@ import CoinsTable from "features/coins";
 
 import styles from "./Home.module.scss";
 import { useSearch } from "hooks";
-import { CustomInput, Loader } from "shared-components";
+import { CustomInput, Loader, Rubik } from "shared-components";
+import { rainPhotos } from "utils";
 
 const { container, container__darkMode: dark } = styles;
 
@@ -30,30 +31,14 @@ const Home = () => {
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
-            <a
-                href="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"
-                target="RTK"
-            >
-                {" "}
-                Open iframe
-            </a>
+            <Rubik sides={rainPhotos} size={100} withAnimation="still" />
             {/* <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/ODIHw8NvhEE"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-            ></iframe> */}
-            {/* {!loaded ? <Loader /> : null} */}
-            <iframe
                 className={styles.iframeRTK}
                 // src="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"
                 frameBorder="0"
                 onLoad={onLoadedIframe}
                 name="RTK"
-            />
+            /> */}
             {/* <CoinsTable /> */}
             {/* <div>
                 <CustomInput

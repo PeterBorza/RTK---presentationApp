@@ -11,8 +11,6 @@ type Props = {
     variant?: "darkMode" | "regular";
 };
 
-// TODO see if styling could be simplified
-
 const ToggleButton = ({
     enabled,
     toggleEnabled,
@@ -20,23 +18,27 @@ const ToggleButton = ({
     darkMode = true,
     variant = "regular",
 }: Props) => {
-    const buttonClasses = classNames(styles.toggle_button, styles[`toggle_button__${size}`], {
-        [styles[`toggle_button__${size}__dark__enabled`]]: enabled && darkMode,
-        [styles[`toggle_button__${size}__dark__disabled`]]: !enabled && darkMode,
-        [styles[`toggle_button__${size}__light__enabled`]]: enabled && !darkMode,
-        [styles[`toggle_button__${size}__light__disabled`]]: !enabled && !darkMode,
-    });
+    const buttonClasses = classNames(styles.toggle_button, styles[`toggle_button__${size}`], [
+        styles[
+            `toggle_button__${size}__${darkMode ? "dark" : "light"}__${
+                enabled ? "enabled" : "disabled"
+            }`
+        ],
+    ]);
 
     const containerClasses = classNames(
         styles.toggle_container,
         styles[`toggle_container__${size}`],
     );
 
+    const showDarkModeIcons = () =>
+        variant === "darkMode" ? (
+            <span className={styles.icons}>{icons[enabled ? "sun" : "moon"]}</span>
+        ) : null;
+
     return (
         <button className={containerClasses} onClick={toggleEnabled}>
-            {variant === "darkMode" && <span className={styles.sun}>{icons.sun}</span>}
-            <div className={buttonClasses} />
-            {variant === "darkMode" && <span className={styles.moon}>{icons.moon}</span>}
+            <div className={buttonClasses}>{showDarkModeIcons()}</div>
         </button>
     );
 };

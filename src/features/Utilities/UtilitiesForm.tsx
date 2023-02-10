@@ -42,7 +42,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
         const lastIndex = lastUnit.index;
         const { index, bill, readDate: date } = values;
 
-        const isIndexValid = checkIfValid(index) && +index >= +lastIndex;
+        const isIndexValid = checkIfValid(index) && +index > +lastIndex;
         const isBillValid = checkIfValid(bill) && +bill >= 0;
 
         const newConsumption = +index - +lastIndex;
@@ -103,6 +103,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, utili
             buttonLabel={buttonLabel}
             formWidth={formWidth}
             formTitle={formTitle}
+            disabled={false}
         />
     );
 };
