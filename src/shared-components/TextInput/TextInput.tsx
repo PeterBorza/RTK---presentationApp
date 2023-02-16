@@ -7,7 +7,7 @@ type InputProps = Pick<
 >;
 
 interface ITextInput extends InputProps {
-    isValid?: boolean;
+    isValid: boolean;
     errorMessage?: string;
 }
 

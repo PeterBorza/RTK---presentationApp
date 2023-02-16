@@ -1,10 +1,11 @@
 import { ScrollPage as Pages } from "shared-components";
 import { usePagesContext } from "context";
-import { NavLinkUrls } from "app";
+import { NavLinkUrls, useAppRedux } from "app";
 
 const ScrollPage = () => {
+    const { isDarkMode } = useAppRedux();
     const myPages = usePagesContext();
-    return <Pages baseUrl={NavLinkUrls.FEATURES} pages={myPages} isDarkMode />;
+    return <Pages baseUrl={NavLinkUrls.FEATURES} pages={myPages} isDarkMode={isDarkMode} />;
 };
 
 export default ScrollPage;

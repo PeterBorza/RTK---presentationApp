@@ -1,11 +1,7 @@
 import { FC } from "react";
 
-import classNames from "classnames";
 import styles from "./ScrollTable.module.scss";
 
-const Header: FC<{ className?: string }> = ({ className, children }) => {
-    const classes = classNames(styles.header, className);
-    return <div className={classes}>{children}</div>;
-};
+const Header: FC = ({ children }) => <div className={styles.header}>{children}</div>;
 
 export default Header;

@@ -16,7 +16,7 @@ const useTime = (text: TimeProp): string => {
 
     useEffect(() => {
         const timer = () => setTime(new Date());
-        const time = setInterval(timer, 1000);
+        const time = setInterval(timer, 60000);
         return () => clearInterval(time);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -194,7 +194,7 @@ const ScrollTester = () => {
         ...item,
         content: insertToDemoBox(item.content, item.label),
     }));
-    return <Pages baseUrl={NavLinkUrls.TESTER} pages={toTesterPages} isDarkMode />;
+    return <Pages baseUrl={NavLinkUrls.TESTER} pages={toTesterPages} isDarkMode={isDarkMode} />;
 };
 
 export default ScrollTester;

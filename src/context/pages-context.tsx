@@ -16,7 +16,7 @@ export const PagesContext = createContext<PagesType<JSX.Element>[] | null>(null)
 
 export const PagesContextProvider: React.FC = ({ children }) => {
     const pages: {} = {
-        "Input Examples": <InputExamples />,
+        "Input examples": <InputExamples />,
         Rubik: <MyRubik withAnimation />,
         "Color game": <ColorGame />,
         "Memory game": <Game />,

@@ -1,7 +1,11 @@
-import React, { FC, useCallback, useEffect } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 
-import { AlertModal, Table } from "shared-components";
+import { Error, Pending, useAppRedux } from "app";
+import { useOnClickOutside } from "hooks";
+import { AlertModal, Loader, Table } from "shared-components";
+import { formatToDate, getTimeFormat } from "utils";
+
 import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
 import { selectCard, editCard, resetEdit, resetSelected, setUtilitiesError } from "./gasSlice";
 import {
@@ -10,79 +14,82 @@ import {
     initialFormValues,
     UtilityLabels,
     UtilityTableLabels,
-    UtilityTable,
+    UtilityTable as T,
     TotalPayedInfo,
     titleStyle,
     UtilityTableItem,
-    FormProps,
+    TableTitle,
 } from "../Utilities";
-import {
-    deleteUtilityUnit,
-    editUnit,
-    getAsyncUtility,
-    postUtility,
-    togglePayedBill,
-} from "./thunks";
-import { Error, useAppRedux } from "app";
-import { useOnClickOutside, useTime } from "hooks";
+import { deleteUtilityUnit, editUnit, postUtility, togglePayedBill } from "./thunks";
 
-const GasTable: FC = () => {
-    const { units, loading } = useSelector(utilityState);
+const GasTable = () => {
+    const {
+        units,
+        loading: { isLoading },
+    } = useSelector(utilityState);
     const error = useSelector(errorState);
     const { isDarkMode, dispatch } = useAppRedux();
     const sumOfBills = useSelector(sumOfBillsSelector);
     const errorRef = React.useRef<HTMLDivElement | null>(null);
 
-    const isUnits = units.length > 0;
+    // TODO below state should be set in redux  - getUnits - rename it to setUnits -
 
     useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
+    const sortByDate = (units: UtilityStateUnit[]) => {
+        const formated = (dateA: string, dateB: string) =>
+            formatToDate(dateA).getTime() - formatToDate(dateB).getTime();
+        return units.slice().sort((a, b) => formated(a.readDate, b.readDate));
+    };
+
     // TODO add sorting
 
-    const timer = useTime("standard");
-
-    const gasFormValues: FormProps = { ...initialFormValues, readDate: timer };
-
-    const fetchGasUnits = useCallback(() => {
-        dispatch(getAsyncUtility());
-    }, [dispatch]);
-
-    useEffect(() => {
-        !isUnits && fetchGasUnits();
-    }, [isUnits, fetchGasUnits]);
-
-    const renderGasTableItems = (arr: UtilityStateUnit[]) =>
-        arr.map(unit => (
-            <UtilityTableItem
-                key={unit.id}
-                unit={unit}
-                units={arr}
-                darkMode={isDarkMode}
-                editCard={() => dispatch(editCard(unit.id))}
-                resetEdit={() => dispatch(resetEdit())}
-                selectCard={() => dispatch(selectCard(unit.id))}
-                deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
-                editUnit={unit => dispatch(editUnit(unit))}
-                togglePayedBill={() => dispatch(togglePayedBill(unit))}
-            />
-        ));
+    const renderGasTableItems = useMemo(
+        () =>
+            units.map(unit => (
+                <UtilityTableItem
+                    key={unit.id}
+                    unit={unit}
+                    units={units}
+                    darkMode={isDarkMode}
+                    editCard={() => dispatch(editCard(unit.id))}
+                    resetEdit={() => dispatch(resetEdit())}
+                    selectCard={() => dispatch(selectCard(unit.id))}
+                    deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
+                    editUnit={unit => dispatch(editUnit(unit))}
+                    togglePayedBill={() => dispatch(togglePayedBill(unit))}
+                />
+            )),
+        [units, isDarkMode, dispatch],
+    );
 
     // TODO extract managing utility from table column into header , to handle selected utility from there
     // payed, delete and edit, also sorting would go into header
 
     // TODO extract error component
 
+    const renderHeaders = useMemo(
+        () =>
+            Object.values(UtilityLabels).map(label => (
+                <TableTitle key={label} name={label} isDarkMode={isDarkMode} />
+            )),
+        [isDarkMode],
+    );
+
     return (
-        <UtilityTable dark={isDarkMode}>
-            <UtilityTable.Header>
+        <T dark={isDarkMode}>
+            <T.Header>
                 <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
                 <UtilitiesForm
                     postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
-                    formValues={gasFormValues}
-                    utilityUnits={units}
+                    formValues={{
+                        ...initialFormValues,
+                        readDate: getTimeFormat(),
+                    }}
+                    lastUnit={units.at(-1)!}
                 />
-            </UtilityTable.Header>
-            <UtilityTable.Body>
+            </T.Header>
+            <T.Body>
                 <AlertModal
                     ref={errorRef}
                     openModal={error}
@@ -90,17 +97,16 @@ const GasTable: FC = () => {
                     variant="text"
                 />
                 <Table
-                    headers={Object.values(UtilityLabels)}
+                    renderHeaders={() => renderHeaders}
                     onClickOutside={() => dispatch(resetSelected())}
-                    loading={loading.isLoading}
                 >
-                    {isUnits && renderGasTableItems(units)}
+                    {isLoading ? <Loader message={Pending.MESSAGE} /> : renderGasTableItems}
                 </Table>
-            </UtilityTable.Body>
-            <UtilityTable.Footer>
+            </T.Body>
+            <T.Footer>
                 <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />
-            </UtilityTable.Footer>
-        </UtilityTable>
+            </T.Footer>
+        </T>
     );
 };
 

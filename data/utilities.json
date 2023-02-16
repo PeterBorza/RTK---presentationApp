@@ -35,14 +35,14 @@
     },
     {
       "id": "4e4cb0ff-1a6c-7693-9cd1-5ed7fca8f27a",
-      "readDate": "17/03/2020",
+      "readDate": "17/05/2020",
       "selected": false,
       "index": "6011",
       "consumption": 73,
       "bill": "227.80",
       "payed": true,
       "edit": false,
-      "estimate": 69.04
+      "estimate": 56.37
     },
     {
       "id": "df9d2608-947c-4b66-b8a1-b965b26a6f47",
@@ -60,7 +60,7 @@
       "readDate": "15/04/2020",
       "selected": false,
       "index": "6110",
-      "consumption": 45,
+      "consumption": 99,
       "bill": "76.45",
       "payed": true,
       "edit": false,
@@ -71,7 +71,7 @@
       "readDate": "16/06/2020",
       "selected": false,
       "index": "6145",
-      "consumption": 35,
+      "consumption": 134,
       "bill": "76.45",
       "payed": true,
       "edit": false,
@@ -404,7 +404,7 @@
       "bill": "344.28",
       "consumption": 119,
       "estimate": 344.11,
-      "payed": false,
+      "payed": true,
       "edit": false
     }
   ],
