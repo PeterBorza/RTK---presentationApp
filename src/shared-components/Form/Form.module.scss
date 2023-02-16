@@ -1,3 +1,11 @@
+$sizes: (
+    "small": 20%,
+    "medium": 30%,
+    "large": 40%,
+    "xxl": 50%,
+    "full-size": 100%,
+);
+
 .container {
     background: -webkit-linear-gradient(to left, #eef2f3, #8e9eab);
     background: linear-gradient(to left, #eef2f3, #8e9eab);
@@ -14,26 +22,15 @@
         font-size: clamp(0.8rem, 3vh, 3rem);
         font-family: monospace;
     }
+
+    @each $key, $value in $sizes {
+        &__#{$key} {
+            width: $value;
+        }
+    }
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
-}
-
-.buttons {
-    margin-left: auto;
-}
-
-.small {
-    width: 20%;
-}
-.medium {
-    width: 30%;
-}
-.large {
-    width: 40%;
-}
-.xxl {
-    width: 50%;
 }

@@ -1,22 +1,26 @@
-import { FC } from "react";
+import React from "react";
 
 import classNames from "classnames";
 import styles from "./TableTitle.module.scss";
+import { UtilityStateUnit } from "../types";
 
 type TitleProps = {
-    name?: string | null;
+    name: string;
+    isDarkMode: boolean;
+    onSort?: () => void;
 };
 
-const TableTitle: FC<TitleProps> = ({ name = null }) => {
-    const multiName =
-        name && name.includes(",") ? (
-            name.split(",").map(item => <span key={item}>{item}</span>)
-        ) : (
-            <span>{name}</span>
-        );
-
-    const classes = classNames(styles.titleContainer, styles.titleContent);
-    return <div className={classes}>{multiName}</div>;
+const TableTitle = ({ name, isDarkMode, onSort }: TitleProps) => {
+    const contentClasses = classNames(styles.titleContent, {
+        [styles.titleContent__dark]: isDarkMode,
+    });
+    return (
+        <div className={styles.titleContainer}>
+            <span onClick={onSort} className={contentClasses}>
+                {name}
+            </span>
+        </div>
+    );
 };
 
 export default TableTitle;

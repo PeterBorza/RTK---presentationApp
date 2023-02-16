@@ -8,16 +8,27 @@ import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
 import { useLinkContext } from "context";
+import { getAsyncUtility as getGas } from "features/Gas/thunks";
+import { getAsyncUtility as getLight } from "features/Light/thunks";
+
+type LinkType = LinkUrls | NavLinkUrls;
 
 const UtilityContainer: FC = () => {
-    const links = useMemo(
+    const links: LinkType[] = useMemo(
         () => [LinkUrls.GAS, LinkUrls.LIGHT, NavLinkUrls.UTILITIES, NavLinkUrls.HOME],
         [],
     );
     const { toInternalLink } = useLinkContext();
     const { isDarkMode, isUtilsOpen, dispatch } = useAppRedux();
 
-    const closeSidePanel = useCallback(() => dispatch(toggleUtils(false)), [dispatch]);
+    const closeSidePanel = useCallback(
+        (item: LinkType) => {
+            dispatch(toggleUtils(false));
+            item === LinkUrls.GAS && dispatch(getGas());
+            item === LinkUrls.LIGHT && dispatch(getLight());
+        },
+        [dispatch],
+    );
     const openSidePanel = () => dispatch(toggleUtils(true));
 
     const platformBody = useMemo(
@@ -28,7 +39,7 @@ const UtilityContainer: FC = () => {
                         key={`utility-link-${item}`}
                         to={item === NavLinkUrls.UTILITIES ? toInternalLink(item) : item}
                     >
-                        <span className={styles.sideBarLinks} onClick={closeSidePanel}>
+                        <span className={styles.sideBarLinks} onClick={() => closeSidePanel(item)}>
                             {urlToLabel(item)}
                         </span>
                     </Link>
@@ -43,7 +54,7 @@ const UtilityContainer: FC = () => {
     return (
         <AsidePlatform
             isOpen={isUtilsOpen}
-            onClose={closeSidePanel}
+            onClose={() => closeSidePanel}
             renderSideBar={() => platformBody}
             label={messages.HEADER_TITLE}
             isDarkMode={isDarkMode}

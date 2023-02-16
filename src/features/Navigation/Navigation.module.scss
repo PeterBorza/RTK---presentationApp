@@ -21,7 +21,7 @@
 .list {
     width: 100%;
     @include fBetween();
-    padding: 1.8rem;
+    padding: 0 1.8rem;
 }
 
 .links {
@@ -55,11 +55,6 @@
         padding: 0 0.5rem;
         gap: 0.5rem;
     }
-    // .nav__dropdown {
-    //     width: 30%;
-    //     height: 100%;
-    //     @include fCenter();
-    // }
     .list {
         padding: 0 5px;
     }

@@ -1,31 +1,20 @@
 @use "css" as *;
 
 $scrollerBg: rgb(255 255 255 / 0.2);
-$tiny: 150px;
-$small: 200px;
-$medium: 500px;
-$large: 800px;
-$fit: 100%;
+
+$sizes: (
+    "tiny": "150px",
+    "small": "200px",
+    "medium": "500px",
+    "large": "800px",
+    "fit": "100%",
+);
 
 .scrollerWrapper {
-    &--tiny {
-        width: $tiny;
-    }
-
-    &--small {
-        width: $small;
-    }
-
-    &--medium {
-        width: $medium;
-    }
-
-    &--large {
-        width: $large;
-    }
-
-    &--fit {
-        width: $fit;
+    @each $key, $value in $sizes {
+        &--#{$key} {
+            width: $value;
+        }
     }
 }
 
@@ -57,8 +46,6 @@ $fit: 100%;
 
 .scrollerContent {
     display: flex;
-    // padding: 1rem;
-    // gap: 1rem;
     flex-direction: row;
     justify-content: flex-start;
 

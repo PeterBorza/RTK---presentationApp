@@ -1,7 +1,10 @@
-import { FC, useCallback, useEffect, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { AlertModal, Table } from "shared-components";
+import { useAppRedux, Error, Pending } from "app";
+import { useOnClickOutside } from "hooks";
+import { getTimeFormat } from "utils";
+import { AlertModal, Loader, Table } from "shared-components";
 import {
     UtilityLabels,
     UtilityTableLabels,
@@ -13,58 +16,55 @@ import {
     titleStyle,
     UtilityTableItem,
     FormProps,
+    TableTitle,
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
 import { selectCard, resetEdit, editCard, resetSelected, setUtilitiesError } from "./lightSlice";
-import {
-    deleteUtilityUnit,
-    getAsyncUtility,
-    togglePayedBill,
-    postUtility,
-    editUnit,
-} from "./thunks";
-import { useAppRedux, Error } from "app";
-import { useOnClickOutside, useTime } from "hooks";
+import { deleteUtilityUnit, togglePayedBill, postUtility, editUnit } from "./thunks";
 
-const LightTable: FC = () => {
+const LightTable = () => {
     const { isDarkMode, dispatch } = useAppRedux();
-    const { units, loading } = useSelector(utilityState);
+    const {
+        units,
+        loading: { isLoading },
+    } = useSelector(utilityState);
     const error = useSelector(errorLightState);
     const sumOfBills = useSelector(sumOfBillsSelector);
     const errorRef = useRef<HTMLDivElement | null>(null);
 
     useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
-    const timer = useTime("standard");
+    const lightFormValues: FormProps = {
+        ...initialFormValues,
+        readDate: getTimeFormat(),
+    };
 
-    const isUnits = units.length !== 0;
+    const renderLightTableItems = useMemo(
+        () =>
+            units.map(unit => (
+                <UtilityTableItem
+                    key={unit.id}
+                    unit={unit}
+                    units={units}
+                    darkMode={isDarkMode}
+                    editCard={() => dispatch(editCard(unit.id))}
+                    resetEdit={() => dispatch(resetEdit())}
+                    selectCard={() => dispatch(selectCard(unit.id))}
+                    deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
+                    editUnit={unit => dispatch(editUnit(unit))}
+                    togglePayedBill={() => dispatch(togglePayedBill(unit))}
+                />
+            )),
+        [units, isDarkMode, dispatch],
+    );
 
-    const lightFormValues: FormProps = { ...initialFormValues, readDate: timer };
-
-    const fetchLightUnits = useCallback(() => {
-        dispatch(getAsyncUtility());
-    }, [dispatch]);
-
-    useEffect(() => {
-        !isUnits && fetchLightUnits();
-    }, [isUnits, fetchLightUnits]);
-
-    const renderLightTableItems = units.map(unit => {
-        return (
-            <UtilityTableItem
-                key={unit.id}
-                unit={unit}
-                units={units}
-                darkMode={isDarkMode}
-                editCard={() => dispatch(editCard(unit.id))}
-                resetEdit={() => dispatch(resetEdit())}
-                selectCard={() => dispatch(selectCard(unit.id))}
-                deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
-                editUnit={unit => dispatch(editUnit(unit))}
-                togglePayedBill={() => dispatch(togglePayedBill(unit))}
-            />
-        );
-    });
+    const renderHeaders = useMemo(
+        () =>
+            Object.values(UtilityLabels).map(label => (
+                <TableTitle key={label} name={label} isDarkMode={isDarkMode} onSort={() => null} />
+            )),
+        [isDarkMode],
+    );
 
     return (
         <UtilityTable dark={isDarkMode}>
@@ -73,7 +73,7 @@ const LightTable: FC = () => {
                 <UtilitiesForm
                     postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
                     formValues={lightFormValues}
-                    utilityUnits={units}
+                    lastUnit={units.at(-1)!}
                 />
             </UtilityTable.Header>
             <UtilityTable.Body>
@@ -84,11 +84,10 @@ const LightTable: FC = () => {
                     variant="text"
                 />
                 <Table
-                    headers={Object.values(UtilityLabels)}
+                    renderHeaders={() => renderHeaders}
                     onClickOutside={() => dispatch(resetSelected())}
-                    loading={loading.isLoading}
                 >
-                    {isUnits && renderLightTableItems}
+                    {isLoading ? <Loader message={Pending.MESSAGE} /> : renderLightTableItems}
                 </Table>
             </UtilityTable.Body>
             <UtilityTable.Footer>

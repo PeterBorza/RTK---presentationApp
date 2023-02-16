@@ -19,9 +19,6 @@ $sizes: (
         @keyframes moveRight {
             to {
                 translate: $value;
-                // background-color: $color;
-                // border: 1px solid $color;
-                // box-shadow: 1px 1px 10px $color;
             }
         }
     }
@@ -31,13 +28,9 @@ $sizes: (
         @keyframes moveLeft {
             from {
                 translate: $value;
-                // background-color: $color;
-                // border: 1px solid $color;
-                // box-shadow: 1px 1px 10px $color;
             }
             to {
                 translate: 0px;
-                // background-color: $color;
             }
         }
     }
@@ -60,10 +53,9 @@ $sizes: (
         }
     }
 
-    .moon,
-    .sun {
+    .icons {
         display: flex;
-        color: $myYellow3;
+        color: white;
     }
 }
 
@@ -73,6 +65,7 @@ $sizes: (
     background-color: $myYellow3;
     border: 1px solid $myYellow3;
     box-shadow: 1px 1px 10px $myYellow3;
+    @include centered();
 
     @each $key, $value in $sizes {
         &__#{$key} {

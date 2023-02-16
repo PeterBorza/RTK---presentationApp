@@ -5,13 +5,21 @@ import CoinsTable from "features/coins";
 
 import styles from "./Home.module.scss";
 import { useSearch } from "hooks";
-import { CustomInput, Loader } from "shared-components";
+import { CustomInput, Loader, Rubik } from "shared-components";
+import sortData, { rainPhotos } from "utils";
 
 const { container, container__darkMode: dark } = styles;
 
 const nums = [3, 5, 7, 3, 1, 4, 8, 9, 64, 32, 3, 578, 8, 0, -1];
 const strings = ["alpha", "ro", "nu", "omega", "epsilon", "beta", "gamma", "delta", "teta", ""];
 const bools = [true, false, false, true, true, false, false, false];
+
+const numss = Array(10)
+    .fill(null)
+    .map(() => +(Math.random() * 10).toFixed(2));
+const dsgf = sortData({ data: numss });
+
+console.log(dsgf);
 
 const Home = () => {
     const [loaded, setLoaded] = useState(false);
@@ -30,30 +38,14 @@ const Home = () => {
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
-            <a
-                href="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"
-                target="RTK"
-            >
-                {" "}
-                Open iframe
-            </a>
+            <Rubik sides={rainPhotos} size={100} withAnimation="still" />
             {/* <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/ODIHw8NvhEE"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-            ></iframe> */}
-            {/* {!loaded ? <Loader /> : null} */}
-            <iframe
                 className={styles.iframeRTK}
                 // src="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"
                 frameBorder="0"
                 onLoad={onLoadedIframe}
                 name="RTK"
-            />
+            /> */}
             {/* <CoinsTable /> */}
             {/* <div>
                 <CustomInput

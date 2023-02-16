@@ -1,5 +1,3 @@
-$darkModeColor: rgba(238, 228, 228, 0.954);
-
 .loader {
     height: 100%;
     display: flex;
@@ -32,11 +30,11 @@ $darkModeColor: rgba(238, 228, 228, 0.954);
         }
 
         &__dark {
-            background-color: $darkModeColor;
+            background-color: #ffc600;
         }
     }
 
     &__dark {
-        color: $darkModeColor;
+        color: #ffc600;
     }
 }

@@ -34,9 +34,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
 
         const editedUnit: UtilityStateUnit = {
             ...unit,
-            readDate: values.readDate,
-            index: values.index,
-            bill: values.bill,
+            ...values,
             consumption: +consumption + +values.index - +index,
             selected: false,
             edit: false,

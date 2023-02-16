@@ -1,3 +1,5 @@
+$animationStyle: "forwards infinite alternate-reverse";
+
 .rubikContainer {
     perspective: 1000px;
     display: flex;
@@ -36,29 +38,26 @@
         6: translateZ($size) rotateX(360deg),
     );
 
+    $animations: (
+        "animate-1": "10000ms ease",
+        "animate-2": "12000ms ease",
+        "rollX": "10000ms ease-in-out",
+        "rollY": "10000ms ease-in-out",
+        "roll-both": "15000ms ease-in-out",
+        "still": "5000ms ease-in-out",
+    );
+
     .rubikWrapper-#{$i} {
         position: relative;
         width: $size * 2;
         height: $size * 2;
         transform-style: preserve-3d;
         transition: transform 1200ms ease;
-        &__animate-1 {
-            animation: animate-1 10000ms forwards infinite alternate-reverse ease;
-        }
-        &__animate-2 {
-            animation: animate-2 12000ms forwards infinite alternate-reverse ease;
-        }
-        &__rollX {
-            animation: rollX 10000ms forwards infinite alternate-reverse ease-in-out;
-        }
-        &__rollY {
-            animation: rollY 10000ms forwards infinite alternate-reverse ease-in-out;
-        }
-        &__roll-both {
-            animation: roll-both 15000ms forwards infinite alternate-reverse ease-in-out;
-        }
-        &__still {
-            animation: still 5000ms forwards infinite alternate-reverse ease-in-out;
+
+        @each $key, $value in $animations {
+            &__#{$key} {
+                animation: #{$key} #{$value} #{$animationStyle};
+            }
         }
     }
 

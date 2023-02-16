@@ -17,6 +17,9 @@ const sortData = <T>({ data, dataProperty: key, reversed = false }: SortType<T>)
         if (typeof x === "boolean" && typeof y === "boolean") {
             return x === y ? 0 : (reversed ? x : y) ? -1 : 1;
         }
+        if (typeof x === "number" && typeof y === "number") {
+            return reversed ? y - x : x - y;
+        }
         return x !== y ? (x < y ? -1 : 1) * reverseValue : 0;
     };
 

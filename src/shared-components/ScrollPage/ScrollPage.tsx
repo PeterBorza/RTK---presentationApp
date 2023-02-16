@@ -22,15 +22,21 @@ const ScrollPage = <T,>({ pages, baseUrl, isDarkMode = false }: ScrollProps<T>) 
     const sectionClasses = classNames(styles.section, {
         [styles.section__darkMode]: isDarkMode,
     });
+    const pageLinkClasses = classNames(styles.link_shell__link, {
+        [styles.link_shell__link__darkMode]: isDarkMode,
+    });
+    const asideClasses = classNames(styles.aside_navigation, {
+        [styles.aside_navigation__dark]: isDarkMode,
+    });
     if (!pages) return null;
     return (
         <>
-            <aside className={styles.aside_navigation}>
+            <aside className={asideClasses}>
                 <ul className={styles.link_shell}>
                     {pages.map(link => (
                         <li key={`scroll-label-${link.id}`}>
                             <HashLink smooth to={`/${baseUrl}#${link.id}`}>
-                                <div className={styles.link_shell__link}>{link.label}</div>
+                                <div className={pageLinkClasses}>{link.label}</div>
                             </HashLink>
                         </li>
                     ))}

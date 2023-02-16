@@ -90,7 +90,7 @@ const ScrollTester = () => {
         },
         {
             id: "toggleButton",
-            label: "toggle-button" + label,
+            label: "toggler",
             content: (
                 <ToggleButton
                     darkMode={isDarkMode}
@@ -154,7 +154,7 @@ const ScrollTester = () => {
                     }
                     onSubmit={submitHandler}
                     onCancel={resetValues}
-                    width="xxl"
+                    width="full-size"
                     disabled={values.name === ""}
                 />
             ),
@@ -168,7 +168,16 @@ const ScrollTester = () => {
             id: "neonButton",
             label: "neon-button",
             content: (
-                <>
+                <div
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "1rem",
+                    }}
+                >
                     <NeonButton onClick={() => setLabel("green")}>{label}</NeonButton>
                     <NeonButton onClick={() => setLabel("violet")} color="violet">
                         {label}
@@ -176,7 +185,7 @@ const ScrollTester = () => {
                     <NeonButton onClick={() => setLabel("blue")} color="blue" mirrorEffect>
                         {label}
                     </NeonButton>
-                </>
+                </div>
             ),
         },
     ];
@@ -185,7 +194,7 @@ const ScrollTester = () => {
         ...item,
         content: insertToDemoBox(item.content, item.label),
     }));
-    return <Pages baseUrl={NavLinkUrls.TESTER} pages={toTesterPages} isDarkMode />;
+    return <Pages baseUrl={NavLinkUrls.TESTER} pages={toTesterPages} isDarkMode={isDarkMode} />;
 };
 
 export default ScrollTester;
