@@ -1,5 +1,5 @@
 import { AppMessages } from "app/constants";
-import { BubbleState, BubbleCssProps } from "./types";
+import { BubbleState } from "./types";
 
 export const initialState: BubbleState = {
     bubbles: [],
@@ -13,11 +13,4 @@ export const initialState: BubbleState = {
     },
     isFormModalOpen: false,
     selectedBubble: null,
-};
-
-export const starterBubble: BubbleCssProps = {
-    left: "",
-    top: "",
-    size: "",
-    opacity: "",
 };

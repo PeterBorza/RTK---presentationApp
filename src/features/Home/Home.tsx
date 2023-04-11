@@ -7,6 +7,7 @@ import styles from "./Home.module.scss";
 import { useSearch } from "hooks";
 import { CustomInput, Loader, Rubik } from "shared-components";
 import sortData, { rainPhotos } from "utils";
+import { newArray } from "utils/generators";
 
 const { container, container__darkMode: dark } = styles;
 
@@ -18,8 +19,6 @@ const numss = Array(10)
     .fill(null)
     .map(() => +(Math.random() * 10).toFixed(2));
 const dsgf = sortData({ data: numss });
-
-console.log(dsgf);
 
 const Home = () => {
     const [loaded, setLoaded] = useState(false);
@@ -38,7 +37,7 @@ const Home = () => {
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
-            <Rubik sides={rainPhotos} size={100} withAnimation="still" />
+            {/* <Rubik sides={rainPhotos} size={100} withAnimation="still" /> */}
             {/* <iframe
                 className={styles.iframeRTK}
                 // src="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"

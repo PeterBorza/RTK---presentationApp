@@ -1,4 +1,11 @@
-export { shuffle, randomize, getRandomColor, createArray, getRandomElement } from "./generators";
+export {
+    shuffle,
+    randomize,
+    getRandomColor,
+    createArray,
+    getRandomElement,
+    newArray,
+} from "./generators";
 export { myImages, imageData, rainPhotos } from "./my-images";
 export { icons } from "./Icons";
 export { default } from "./sortData";

@@ -1,10 +1,11 @@
 import React from "react";
+import { HashLink } from "react-router-hash-link";
+
+import { newArray } from "utils";
 import { ImageType } from "utils/my-images";
 
-import styles from "./Scroller.module.scss";
 import classNames from "classnames";
-import { createArray } from "utils";
-import { HashLink } from "react-router-hash-link";
+import styles from "./Scroller.module.scss";
 
 export interface ScrollerType {
     images: ImageType[];
@@ -15,6 +16,8 @@ export interface ScrollerType {
 }
 
 // TODO when navigating with dots, jumps back to home. BUG
+
+const SCROLL_DOT = "&#8226;";
 
 const Scroller = ({
     size = "fit",
@@ -51,12 +54,12 @@ const Scroller = ({
                 </div>
             </div>
             <div className={styles.bulletWrapper}>
-                {createArray(images.length).map((_, index) => (
+                {newArray(images.length).map(item => (
                     <HashLink
-                        key={`scroll-img-${index}`}
+                        key={`scroll-img-${item}`}
                         className={styles.linkStyle}
                         smooth
-                        to={`/${route}#pic-${index}`}
+                        to={`/${route}#pic-${item}`}
                         scroll={(el: HTMLElement) =>
                             el.scrollIntoView(
                                 vertical
@@ -65,7 +68,7 @@ const Scroller = ({
                             )
                         }
                     >
-                        <span> &#8226;</span>
+                        <span>{SCROLL_DOT}</span>
                     </HashLink>
                 ))}
             </div>

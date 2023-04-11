@@ -3,7 +3,7 @@
 .buttonWrapper {
     width: 100%;
     display: flex;
-    padding: 3px;
+    padding: 0.5rem;
     gap: 5px;
     &__dark {
         background-color: $darkMode;

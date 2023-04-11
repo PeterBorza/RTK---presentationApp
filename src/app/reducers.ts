@@ -18,9 +18,6 @@ const reducers = {
     app: appReducer,
 };
 
-const createRootReducer = () =>
-    combineReducers({
-        ...reducers,
-    });
+const createRootReducer = () => combineReducers({ ...reducers });
 
 export const rootReducer = createRootReducer();

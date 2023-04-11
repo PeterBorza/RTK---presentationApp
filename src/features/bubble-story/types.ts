@@ -1,13 +1,18 @@
-export interface BubbleCssProps {
-    left: string;
-    top: string;
-    size: string;
-    opacity: string;
-}
+export type InputValueType = "left" | "top" | "size" | "opacity";
+
+export type BubbleCssProps = Record<InputValueType, string>;
+
+export type MinMaxValuesType = {
+    min: number;
+    max: number;
+    inputValue: string;
+};
+
+export type BubbleWithValidationsType = Record<InputValueType, MinMaxValuesType>;
 
 export interface Bubble {
     id: number;
-    cssProps: BubbleCssProps;
+    cssProps: Record<InputValueType, string>;
 }
 
 export interface PendingState {

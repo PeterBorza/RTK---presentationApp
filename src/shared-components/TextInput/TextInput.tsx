@@ -3,7 +3,7 @@ import styles from "./TextInput.module.scss";
 
 type InputProps = Pick<
     React.ComponentProps<"input">,
-    "type" | "className" | "name" | "value" | "placeholder" | "title" | "onChange"
+    "type" | "className" | "name" | "value" | "placeholder" | "title" | "onChange" | "required"
 >;
 
 interface ITextInput extends InputProps {
@@ -19,6 +19,7 @@ const TextInput = ({
     placeholder,
     title,
     onChange,
+    required = false,
     isValid = true,
     errorMessage,
 }: ITextInput) => {
@@ -40,9 +41,10 @@ const TextInput = ({
                     placeholder={placeholder}
                     className={inputClasses}
                     autoComplete="off"
+                    required={required}
                 />
             </label>
-            <span className={styles.label__error}>{!isValid ? errorMessage : ""}</span>
+            {<span className={styles.label__error}>{!isValid && errorMessage}</span>}
         </div>
     );
 };
