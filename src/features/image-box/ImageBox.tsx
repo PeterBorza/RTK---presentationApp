@@ -3,11 +3,13 @@ import React from "react";
 import { ImageCard, ToggleButton } from "shared-components";
 import { puzzleImages } from "images/puzzlePhotos/image-stack";
 
-import styles from "./ImageBox.module.scss";
 import { useLocalStorage } from "hooks";
+import { LocalStorageKeys as LS } from "common/localStorageKeys";
+
+import styles from "./ImageBox.module.scss";
 
 const ImageBox = () => {
-    const [showImages, setShowImages] = useLocalStorage("showImages", false);
+    const [showImages, setShowImages] = useLocalStorage(LS.PUZZLE, false);
 
     return (
         <div className={styles["image-grid-container"]}>

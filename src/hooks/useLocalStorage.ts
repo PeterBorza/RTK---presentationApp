@@ -1,6 +1,7 @@
+import { LocalStorageKeys as LS } from "common/localStorageKeys";
 import { useState } from "react";
 
-const useLocalStorage = <T>(key: string, initialValue: T): [string, typeof setValue] => {
+const useLocalStorage = <T>(key: LS, initialValue: T) => {
     const [storedValue, setStoredValue] = useState(() => {
         try {
             const item = window.localStorage.getItem(key);
@@ -18,7 +19,11 @@ const useLocalStorage = <T>(key: string, initialValue: T): [string, typeof setVa
         } catch (error) {}
     };
 
-    return [storedValue, setValue];
+    const removeValue = () => {
+        window.localStorage.removeItem(key);
+    };
+
+    return [storedValue, setValue, removeValue];
 };
 
 export default useLocalStorage;
