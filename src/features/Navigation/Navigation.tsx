@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { NavLinkUrls, updateDarkMode, useAppRedux } from "app";
 import { useLocalStorage, useWindowSize } from "hooks";
 import { useLinkContext } from "context";
+import { LocalStorageKeys as LS } from "common/localStorageKeys";
 import { ToggleButton } from "shared-components";
 
 import SmallNavBar from "./SmallNavBar";
@@ -25,7 +26,7 @@ const Navigation = () => {
 
     const SMALL_SCREEN = width < 550;
 
-    const [isDark, setIsDark] = useLocalStorage<boolean>("lightMode", true);
+    const [isDark, setIsDark] = useLocalStorage<boolean>(LS.DARK_MODE, true);
 
     const navBarProps: NavProps = { links };
 
