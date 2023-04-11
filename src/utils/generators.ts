@@ -10,6 +10,8 @@ export const getRandomColor = () => Math.floor(Math.random() * 16777215).toStrin
 
 export const createArray = (count: number) => new Array(count).fill(null);
 
+export const newArray = (count: number) => Array.from({ length: count }, (_, i) => i);
+
 export const getRandomElement = <T>(arr: T[]) => {
     return arr[Math.floor(Math.random() * arr.length)];
 };

@@ -1,12 +1,13 @@
-import React, { useCallback, useMemo } from "react";
+import React from "react";
 
 import { TextInput, FadedModal, Form, Button } from "shared-components";
 import { BubbleFormValues } from "./constants";
 import { useForm } from "hooks";
-import { BubbleCssProps } from "./types";
+import { BubbleCssProps, BubbleWithValidationsType, InputValueType } from "./types";
+import { getValidation, getErrorMessage, bubbleValidations } from "./bubbleValidation";
 
 type BubbleFormType = {
-    formObject: BubbleCssProps;
+    formObject: BubbleWithValidationsType;
     isOpen: boolean;
     openForm: () => void;
     closeForm: () => void;
@@ -14,71 +15,39 @@ type BubbleFormType = {
 };
 
 const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleFormType) => {
-    const { values, changeHandler, resetValues } = useForm<BubbleCssProps>(formObject);
+    const myValues = Object.entries(formObject).reduce<BubbleCssProps>((acc, [key, value]) => {
+        return { ...acc, [key]: value.inputValue };
+    }, {} as BubbleCssProps);
 
+    const { values, changeHandler, resetValues } = useForm(myValues);
+
+    console.log({ myValues, values });
     const onCancelHandler = () => {
         resetValues();
         closeForm();
     };
 
-    const validResults = useCallback((key: keyof typeof values, value: string) => {
-        if (isNaN(+value)) {
-            return false;
-        } else {
-            if (key === "left" || key === "top") {
-                if (+value < 0 || +value > 100) return false;
-            }
-            if (key === "size") {
-                if (+value < 0 || +value > 612) return false;
-            }
-            if (key === "opacity") {
-                if (+value < 0 || +value > 1) return false;
-            }
-            return true;
-        }
-    }, []);
-
     const onSubmitHandler = () => {
-        const { left, top, size, opacity } = values as BubbleCssProps;
-
-        const newBubble = {
-            left,
-            top,
-            size,
-            opacity,
-        };
-        onPost(newBubble);
+        onPost(values);
         resetValues();
         closeForm();
     };
 
-    const errorMessages = useMemo(
-        () =>
-            ({
-                left: "0 to 100",
-                top: "0 to 100",
-                size: "0 to 612",
-                opacity: "0 to 1",
-            } as Record<keyof typeof values, string>),
-        [],
-    );
-
-    const renderFields = React.useMemo(
-        () =>
-            Object.entries(values).map(([key, value]) => (
+    const renderInputsFromX = () =>
+        Object.entries(bubbleValidations).map(([key, value]) => {
+            const inputValue = values[key as InputValueType];
+            return (
                 <TextInput
                     key={key}
-                    value={value}
+                    value={inputValue}
                     name={key}
                     onChange={changeHandler}
-                    isValid={validResults(key as keyof typeof values, value)}
-                    errorMessage={errorMessages[key as keyof typeof values]}
+                    isValid={getValidation(value)}
+                    errorMessage={getErrorMessage(value)}
+                    required
                 />
-            )),
-        [values, changeHandler, validResults, errorMessages],
-    );
-
-    const disabledSubmit = Object.values(values).some(v => v === "");
+            );
+        });
 
     return (
         <>
@@ -87,10 +56,10 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
                 <Form
                     onSubmit={onSubmitHandler}
                     width={BubbleFormValues.FORM_WIDTH}
-                    renderFields={renderFields}
+                    renderFields={React.useMemo(renderInputsFromX, [bubbleValidations, values])}
                     onCancel={onCancelHandler}
                     formTitle={BubbleFormValues.FORM_TITLE}
-                    disabled={disabledSubmit}
+                    disabled={Object.values(values).some(value => value === "")}
                 />
             </FadedModal>
         </>

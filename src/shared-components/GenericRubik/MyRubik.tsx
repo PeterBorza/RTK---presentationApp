@@ -2,7 +2,7 @@ import React from "react";
 
 import classNames from "classnames";
 import styles from "./MyRubik.module.scss";
-import { createArray } from "utils";
+import { newArray } from "utils";
 
 const RUBIK_SIDES = 6;
 
@@ -15,8 +15,8 @@ const MyRubik = ({ withAnimation = false }: { withAnimation?: boolean }) => {
         [styles.rubikWrapper__animated]: withAnimation,
     });
 
-    const sides = createArray(RUBIK_SIDES).map((_, i) => (
-        <div key={`side${i}`} className={styles.rubikSide} />
+    const sides = newArray(RUBIK_SIDES).map(item => (
+        <div key={`side${item}`} className={styles.rubikSide} />
     ));
 
     return (

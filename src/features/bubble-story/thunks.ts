@@ -39,7 +39,7 @@ const handlePostBubble = async (
     const { bubbles } = getState() as RootState;
 
     const ids: number[] = bubbles.bubbles.map(bub => bub.id);
-    const maxIndex: number = Math.max(...ids);
+    const maxIndex = Math.max(...ids);
     const newBubble: Bubble = {
         id: maxIndex + 1,
         cssProps: data,

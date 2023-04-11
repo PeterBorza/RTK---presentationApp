@@ -8,8 +8,8 @@ import BubbleForm from "../BubbleForm";
 import { Loader, Button, ButtonWrapper, AlertModal } from "shared-components";
 import { clearBubbles, setError, setSelectedBubble, toggleBubbleFormModal } from "../bubbleSlice";
 import { Bubble as BubbleType, BubbleCssProps } from "../types";
-import { starterBubble } from "../state";
 import { ButtonProps } from "shared-components/Button/Button";
+import { bubbleValidations } from "../bubbleValidation";
 
 import classNames from "classnames";
 import styles from "./BubbleContainer.module.scss";
@@ -43,7 +43,7 @@ const BubbleContainer = () => {
             displayed: !isBubbles,
         },
         {
-            onClick: () => selected && dispatch(deleteBubble(selected.id)),
+            onClick: () => dispatch(deleteBubble(selected!!.id)),
             value: msg.DELETE,
             isDisabled: !selected,
             displayed: isBubbles,
@@ -56,22 +56,14 @@ const BubbleContainer = () => {
         },
     ];
 
-    const getButtons = buttons.map((item, idx) => (
-        <Button
-            key={`button-${idx}`}
-            onClick={item.onClick}
-            value={item.value}
-            isDisabled={item.isDisabled}
-            displayed={item.displayed}
-        />
-    ));
+    const getButtons = buttons.map((item, idx) => <Button key={`button-${idx}`} {...item} />);
 
     const renderButtons = () => (
         <>
             {getButtons}
             {isBubbles && (
                 <BubbleForm
-                    formObject={starterBubble}
+                    formObject={bubbleValidations}
                     isOpen={isBubbleFormModalOpen}
                     openForm={() => dispatch(toggleBubbleFormModal(true))}
                     closeForm={() => dispatch(toggleBubbleFormModal(false))}
@@ -81,10 +73,14 @@ const BubbleContainer = () => {
         </>
     );
 
-    const renderBubbles = ({ id, cssProps }: BubbleType) => (
+    const onBubbleClick = ({ id, cssProps }: BubbleType) => {
+        dispatch(setSelectedBubble({ id, cssProps }));
+    };
+
+    const renderBubble = ({ id, cssProps }: BubbleType) => (
         <Bubble
             key={id}
-            onClick={() => dispatch(setSelectedBubble({ id, cssProps }))}
+            onClick={() => onBubbleClick({ id, cssProps })}
             title={msg.HOVER_TITLE}
             isSelected={selected?.id === id}
             cssProps={cssProps}
@@ -99,8 +95,10 @@ const BubbleContainer = () => {
             {isLoading && <Loader message={Pending.MESSAGE} />}
             <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
 
-            <ButtonWrapper dark={isDarkMode}>{renderButtons()}</ButtonWrapper>
-            {bubbles.map(renderBubbles)}
+            <ButtonWrapper position="start" dark={isDarkMode}>
+                {renderButtons()}
+            </ButtonWrapper>
+            {bubbles.map(renderBubble)}
         </div>
     );
 };

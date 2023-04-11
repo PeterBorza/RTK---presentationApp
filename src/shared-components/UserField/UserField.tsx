@@ -22,6 +22,7 @@ const UserField = ({
     size = "medium",
 }: UserFieldType) => {
     const [inputValue, setInputValue] = useState(value);
+    const emptyInputValue = inputValue.trim() === "";
 
     const inputWrapper = classNames(styles.input_wrapper, [styles[`input_wrapper__${size}`]], {
         [styles.input_wrapper__darkMode]: isDark,
@@ -40,7 +41,7 @@ const UserField = ({
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (inputValue.trim() === "") return;
+        if (emptyInputValue) return;
         onSubmit(inputValue.trim());
         setInputValue("");
     };
@@ -59,7 +60,7 @@ const UserField = ({
                     autoComplete="off"
                 />
             </label>
-            <button type="submit" className={buttonClasses} disabled={inputValue.trim() === ""}>
+            <button type="submit" className={buttonClasses} disabled={emptyInputValue}>
                 <span className={styles.buttonStyle__icon}>{icons.outlineArrowRight}</span>
             </button>
         </form>

@@ -22,7 +22,7 @@ $text-input-color: rgb(63, 63, 165);
         }
 
         &:focus-within {
-            background-color: rgb(255, 255, 255);
+            outline: 1px solid white;
             box-shadow: none;
         }
 
@@ -34,6 +34,7 @@ $text-input-color: rgb(63, 63, 165);
     &__error {
         text-align: center;
         height: 1rem;
+        color: crimson;
         @include truncate();
     }
 }

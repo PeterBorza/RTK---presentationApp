@@ -49,7 +49,7 @@ const Bubble = ({ onClick, title, id, isSelected, cssProps }: BubbleProps) => {
             title={title}
             ref={ref}
         >
-            <span className={styles.bubbleStyle__span}>{id}</span>
+            <span className={styles.bubbleStyle__id}>{id}</span>
         </div>
     );
 };

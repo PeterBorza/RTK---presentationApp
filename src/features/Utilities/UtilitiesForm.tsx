@@ -31,7 +31,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, lastU
         FORM_TITLE: formTitle,
     } = UtilityFormValues;
 
-    // TODO validation into separate file reconsidered
+    // TODO validation into separate file
 
     const checkIfValid = (input: string) => !isNaN(+input);
 
@@ -81,8 +81,9 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, lastU
                 value={value}
                 name={key}
                 onChange={changeHandler}
-                placeholder={index && lastUnit ? lastUnit.index : ""}
+                placeholder={index && lastUnit ? `-- ${lastUnit.index} --` : ""}
                 errorMessage="Invalid value"
+                required={key === "index" && true}
             />
         );
     });
