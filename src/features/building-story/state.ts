@@ -1,10 +1,6 @@
 import { icons } from "utils";
 
-export enum Direction {
-    UP = "up",
-    DOWN = "down",
-    STATIC = "static",
-}
+export type DirectionType = "up" | "down" | "static";
 export type LiftName = "A" | "B";
 export type LevelCount = number;
 
@@ -13,7 +9,7 @@ export interface Lift {
     isMoving: boolean;
     position: number;
     disabled: boolean;
-    direction: Direction;
+    direction: DirectionType;
 }
 export interface LiftState {
     lifts: Lift[];
@@ -23,7 +19,7 @@ export interface LiftState {
 
 const { faDown, faUp, stop } = icons;
 
-export const directionIcons: Record<Direction, JSX.Element> = {
+export const directionIcons: Record<DirectionType, JSX.Element> = {
     down: faDown,
     up: faUp,
     static: stop,
@@ -42,7 +38,7 @@ export const initialState: LiftState = {
         position: value,
         isMoving: false,
         disabled: false,
-        direction: Direction.STATIC,
+        direction: "static",
     })),
     numberOfLevels: INITIAL_NUMBER_OF_LEVELS,
     speed: 1000,

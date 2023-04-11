@@ -1,12 +1,12 @@
 import React from "react";
 
-import { directionIcons, Direction } from "../state";
+import { directionIcons, DirectionType } from "../state";
 
 import classNames from "classnames";
 import styles from "./LiftButton.module.scss";
 interface Props {
     selected: boolean;
-    direction?: Direction;
+    direction?: DirectionType;
     variant: "shaft" | "panel";
 }
 
@@ -15,7 +15,7 @@ const LiftButton = ({
     disabled,
     value,
     selected,
-    direction = Direction.STATIC,
+    direction = "static",
     variant,
 }: Props & React.ComponentProps<"button">) => {
     const classes = classNames(styles.buttonStyle, {
@@ -32,7 +32,7 @@ const LiftButton = ({
             disabled={disabled}
             title="click on desired floor"
         >
-            {direction === Direction.STATIC ? getCorrectValue : directionIcons[direction]}
+            {direction === "static" ? getCorrectValue : directionIcons[direction]}
         </button>
     );
 };

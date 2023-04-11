@@ -1,10 +1,10 @@
 import React from "react";
-import { Direction, directionIcons } from "../state";
+import { DirectionType, directionIcons } from "../state";
 
 import styles from "./LiftSystem.module.scss";
 
-const IconLayout = ({ direction }: { direction: Direction }) => {
-    return direction === Direction.STATIC ? (
+const IconLayout = ({ direction }: { direction: DirectionType }) => {
+    return direction === "static" ? (
         <span className={styles.liftWrapper__icons__static}>{directionIcons[direction]}</span>
     ) : (
         directionIcons[direction]

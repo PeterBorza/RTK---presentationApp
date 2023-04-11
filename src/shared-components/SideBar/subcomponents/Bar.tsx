@@ -1,9 +1,9 @@
-import { FC, ReactNode } from "react";
+import React from "react";
 interface BarProps {
     className?: string;
 }
 
-const Bar: FC<BarProps> = ({ className, children }) => {
+const Bar: React.FC<BarProps> = ({ className, children }) => {
     return <div className={className}>{children}</div>;
 };
 
