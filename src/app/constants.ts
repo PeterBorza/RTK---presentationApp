@@ -41,7 +41,7 @@ export enum AppMessages {
     PENDING = "Loading, please wait...",
     UNDER_CONSTRUCTION = "We are terribly sorry, this feature is currently under construction...",
     COMING_SOON = "Coming soon...",
-    OPEN_MENU = "Open menu",
+    OPEN_MENU = "Menu",
     CLOSE_MENU = "Close menu",
     SUBMIT = "Submit",
     CANCEL = "Cancel",

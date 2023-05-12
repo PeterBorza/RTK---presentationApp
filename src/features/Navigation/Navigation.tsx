@@ -28,17 +28,19 @@ const Navigation = () => {
 
     const [isDark, setIsDark] = useLocalStorage<boolean>(LS.DARK_MODE, true);
 
-    const navBarProps: NavProps = { links };
-
     useEffect(() => {
         dispatch(updateDarkMode(Boolean(isDark)));
     }, [dispatch, isDark, isDarkMode]);
 
     return (
         <div ref={ref} className={styles.nav}>
-            <ul className={styles.list}>
-                {SMALL_SCREEN ? <SmallNavBar {...navBarProps} /> : <NavBar {...navBarProps} />}
-            </ul>
+            {!SMALL_SCREEN ? (
+                <ul className={styles.list}>
+                    <NavBar links={links} />
+                </ul>
+            ) : (
+                <SmallNavBar links={links} />
+            )}
             <ToggleButton
                 variant="darkMode"
                 enabled={!isDarkMode}

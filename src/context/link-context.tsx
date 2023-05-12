@@ -18,12 +18,14 @@ export const LinkContextProvider: React.FC = ({ children }) => {
     const links = Object.values(NavLinkUrls);
     const toInternalLink = useCallback((link: NavLinkUrls) => `/${link}`, []);
 
-    const context: LinkContextType = useMemo(() => {
-        return {
-            links,
-            toInternalLink,
-        } as LinkContextType;
-    }, [links, toInternalLink]);
+    const context: LinkContextType = useMemo(
+        () =>
+            ({
+                links,
+                toInternalLink,
+            } as LinkContextType),
+        [links, toInternalLink],
+    );
 
     return <LinkContext.Provider value={context}>{children}</LinkContext.Provider>;
 };

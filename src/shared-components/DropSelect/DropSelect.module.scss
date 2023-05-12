@@ -10,7 +10,6 @@ $lightModeColor: #1a171de3;
 .dropSelect {
     position: relative;
     width: 100%;
-    height: 3vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,13 +20,13 @@ $lightModeColor: #1a171de3;
     &__icon {
         display: flex;
         flex-shrink: 0;
-        padding: 5px;
+        padding: 5px 10px;
         color: $lightModeColor;
     }
 
     &__label {
         @include truncate();
-        padding: 5px;
+        padding: 5px 10px;
         color: $lightModeColor;
     }
 

@@ -1,16 +1,10 @@
-@mixin noVisibleScrollBar {
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+@use "css" as *;
 
 .image-grid-container {
+    padding: clamp($navHeight, 1vw, 20px) 0.5rem 0.5rem 0.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 0.5rem;
-    padding: 0.5em;
     background: rgb(228, 218, 218);
     width: 100%;
     height: 100%;

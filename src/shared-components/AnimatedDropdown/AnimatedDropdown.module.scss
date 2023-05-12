@@ -1,0 +1,74 @@
+@use "css" as *;
+
+@mixin onHover {
+    display: block;
+    overflow: scroll;
+    @for $child from 1 to 12 {
+        li:nth-child(#{$child}) {
+            display: block;
+            animation: menu1 200ms ease-in-out forwards;
+            animation-delay: 75ms * $child;
+        }
+    }
+}
+
+@keyframes menu1 {
+    from {
+        translate: 0px 50px;
+        rotate: Y 180deg;
+    }
+    to {
+        translate: 0px 0px;
+        rotate: Y 0deg;
+        opacity: 1;
+    }
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    perspective: 1000px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    transition: all 200ms;
+    cursor: pointer;
+    z-index: 1;
+    overflow: scroll;
+    &:hover {
+        @include onHover();
+    }
+    li {
+        display: none;
+        border: 1px solid white;
+        width: 100%;
+        color: white;
+        text-align: center;
+        opacity: 0;
+        padding: 3px;
+    }
+}
+
+.header {
+    font-size: clamp(0.8rem, 2vw + 0.5rem, 1.5rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: white;
+    width: 100%;
+    // height: 30px;
+    padding: 0 4px;
+    cursor: pointer;
+    @include truncate();
+    text-align: center;
+
+    &:hover {
+        + .content {
+            @include onHover();
+        }
+    }
+}

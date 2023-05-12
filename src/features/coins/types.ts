@@ -13,3 +13,5 @@ export interface CoinsInterface {
     theme: string;
     details: ICoinDetails;
 }
+
+export type PartialCoins = Partial<CoinsInterface>;

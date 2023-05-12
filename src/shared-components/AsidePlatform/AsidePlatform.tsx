@@ -6,7 +6,7 @@ import styles from "./AsidePlatform.module.scss";
 export type Props = {
     isOpen: boolean;
     isDarkMode?: boolean;
-    onClose?: (label: string) => void;
+    onClose: (label: string) => void;
     onOpen?: () => void;
     renderSideBar: () => React.ReactNode;
     label: string;
@@ -33,7 +33,7 @@ const AsidePlatform: React.FC<Props> = ({
             <SideBar
                 isOpen={isOpen}
                 visible
-                onClose={() => onClose && onClose(label)}
+                onClose={() => onClose(label)}
                 renderBody={renderSideBar}
                 label={label}
                 isDarkMode={isDarkMode}

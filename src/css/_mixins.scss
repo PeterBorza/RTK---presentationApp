@@ -106,7 +106,7 @@
 @mixin absoluteMiddle {
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    translate: -50% -50%;
 }
 
 @mixin landScape {
@@ -138,8 +138,8 @@
     // box-shadow: inset 0 5px 15px  rgba(0,0,0,0.5);
     &:hover {
         box-shadow: 0 15px 70px 0 modal-black(0.35);
-        transform: scale(1.001);
-        transition: transform 200ms, box-shadow 200ms;
+        scale: 1.001;
+        transition: scale 200ms, box-shadow 200ms;
     }
 }
 
@@ -171,11 +171,11 @@
     @keyframes pop {
         from {
             opacity: 0;
-            transform: scale(0);
+            scale: 0;
         }
         to {
             opacity: 1;
-            transform: scale(1);
+            scale: 1;
         }
     }
 }
@@ -221,4 +221,24 @@
     gap: 1rem;
     @include darkModeSelector($darkMode);
     @include noVisibleScrollBar();
+}
+
+@mixin underline($bgColor) {
+    &::after {
+        position: absolute;
+        content: "";
+        width: 120%;
+        height: 2px;
+        background-color: $bgColor;
+        top: 100%;
+        left: -10%;
+        scale: 0;
+        transition: scale 150ms;
+    }
+
+    &:hover {
+        &::after {
+            scale: 1;
+        }
+    }
 }

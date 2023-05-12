@@ -19,6 +19,7 @@ const BubbleWrapper = () => {
             isOpen={isBubblesOpen}
             label={msg.TITLE}
             renderSideBar={() => <SelectedBubble selectedBubble={selected} />}
+            onClose={() => console.log("not used")}
         >
             <BubbleContainer />
         </AsidePlatform>

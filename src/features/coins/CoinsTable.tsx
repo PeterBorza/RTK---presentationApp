@@ -21,6 +21,8 @@ const {
 // TODO add header to table, highlight sorted property, highlight title on hover
 // add index as first column -  optional param
 
+// fetching at every rerender ... memoize or use other way to fetch!!
+
 const CoinsTable = () => {
     const { isDarkMode } = useAppRedux();
     const { error, selected, sortedTable, setSortedTable, sortedByKeys, selectCoinHandler } =
@@ -33,26 +35,17 @@ const CoinsTable = () => {
 
     const toProperTitle = (title: string) => `sort by ${title}`;
 
-    const renderCoinCard = (title: string, arr?: CoinsInterface[]) => (
-        <div key={title} className={card} tabIndex={1}>
-            <h1 className={_title}>{toProperTitle(title)}</h1>
-            {arr?.map(coin => (
-                <div
-                    key={`${coin.id}-${title}`}
-                    className={rowClasses(coin.id)}
-                    onClick={() => selectCoinHandler(coin.id)}
-                >
-                    <h2>{coin.theme}</h2>
-                    <h2>{coin.count}</h2>
-                    <h2>{coin.released}</h2>
-                </div>
-            ))}
-        </div>
+    const renderCoinCard = (coin: CoinsInterface) => (
+        <li
+            key={`${coin.id}`}
+            className={rowClasses(coin.id)}
+            onClick={() => selectCoinHandler(coin.id)}
+        >
+            <h2>{coin.theme}</h2>
+            <h2>{coin.count}</h2>
+            <h2>{coin.released}</h2>
+        </li>
     );
-
-    // const renderTable = Object.entries(sortedByKeys).map(([key, value]) =>
-    //     renderCoinCard(key, value),
-    // );
 
     return (
         <div className={_content}>
@@ -64,10 +57,12 @@ const CoinsTable = () => {
                     isDarkMode={isDarkMode}
                 />
             </div>
-            <ul className={dataTable}>
-                {renderCoinCard(sortedTable as string, sortedByKeys[sortedTable])}
-                {/* {renderTable} */}
-            </ul>
+            <div className={dataTable}>
+                <ul className={card} tabIndex={1}>
+                    <h1 className={_title}>{toProperTitle(sortedTable as string)}</h1>
+                    {sortedByKeys[sortedTable].map(coin => renderCoinCard(coin))}
+                </ul>
+            </div>
         </div>
     );
 };

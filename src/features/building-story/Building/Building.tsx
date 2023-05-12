@@ -1,15 +1,16 @@
 import city900 from "images/city900.jpg";
 
 import { useLiftRedux } from "../selectors";
-import { setLevelNumber } from "../liftSlice";
+import { actions } from "../liftSlice";
 import LiftSystem from "../LiftSystem";
 import BlockSystem from "../BlockSystem";
 
 import styles from "./Building.module.scss";
-import { FloatingImage, UserField } from "shared-components";
+import { Button, FloatingImage, UserField } from "shared-components";
 import { useEffect, useState } from "react";
 
 const ElevatorSystem = () => {
+    const { setLevelNumber, resetLevelNumber } = actions;
     const {
         lifts: [liftA, liftB],
         dispatch,
@@ -28,12 +29,15 @@ const ElevatorSystem = () => {
 
     return (
         <div className={styles.container}>
-            <UserField
-                isDark
-                onSubmit={val => handleInputValues(val)}
-                name="number of levels"
-                value={val}
-            />
+            <div className={styles.controls}>
+                <UserField
+                    isDark
+                    onSubmit={val => handleInputValues(val)}
+                    name="number of levels"
+                    value={val}
+                />
+                <Button value="Reset" onClick={() => dispatch(resetLevelNumber())} />
+            </div>
             <div className={styles.systemContainer}>
                 <LiftSystem data={liftA} />
                 <BlockSystem />

@@ -12,7 +12,7 @@ const NavBar = ({ links }: NavProps) => {
     return (
         <>
             {links.map(item => (
-                <li key={`navigation-link-${item}`}>
+                <li key={`navigation-link-${item}`} tabIndex={0}>
                     <NavLink
                         className={({ isActive }) => (isActive ? active : undefined)}
                         to={item}
