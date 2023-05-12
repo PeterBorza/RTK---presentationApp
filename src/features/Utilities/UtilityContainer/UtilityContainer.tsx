@@ -54,7 +54,7 @@ const UtilityContainer: FC = () => {
     return (
         <AsidePlatform
             isOpen={isUtilsOpen}
-            onClose={() => closeSidePanel}
+            onClose={label => closeSidePanel(label as LinkType)}
             renderSideBar={() => platformBody}
             label={messages.HEADER_TITLE}
             isDarkMode={isDarkMode}

@@ -1,12 +1,13 @@
 import { LevelCount } from "../state";
 import { useLiftRedux } from "../selectors";
-import { moveLift } from "../liftSlice";
+import { actions } from "../liftSlice";
 import { LiftCabin } from "..";
 import LiftButton from "../LiftButton";
 
 import styles from "./BlockSystem.module.scss";
 
 const BlockSystem = () => {
+    const { moveLift } = actions;
     const { levels, lift, dispatch } = useLiftRedux();
     const { numberOfLevels, speed, lifts } = lift;
     const [liftA, liftB] = lifts;

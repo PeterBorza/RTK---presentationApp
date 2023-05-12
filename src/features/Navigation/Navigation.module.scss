@@ -16,6 +16,19 @@
     height: $navHeight;
     z-index: 1000;
     @include gradientNav(180deg);
+
+    &__dropdown {
+        position: relative;
+        width: 100px;
+        height: 300px;
+        // overflow: hidden;
+    }
+
+    &__menuContainer {
+        position: absolute;
+        width: 200px;
+        height: 500px;
+    }
 }
 
 .list {
@@ -25,37 +38,28 @@
 }
 
 .links {
+    position: relative;
     text-transform: uppercase;
     font-family: "PT Sans", sans-serif;
-    font-size: clamp(0.9rem, 2vw + 0.4rem, 2.2rem);
+    font-size: clamp(1.3rem, 2vw + 0.4rem, 2.2rem);
     color: $myYellow3;
     cursor: pointer;
     transition: color 150ms ease-out;
-
-    &:hover {
-        border-bottom: 1px solid $myYellow3;
-        transform: scale(0.95);
-    }
+    @include underline($myYellow3);
 }
 
 .active {
-    & a:target {
-        color: red;
-    }
+    $activeColor: rgb(238, 231, 231);
     .links {
-        color: limegreen;
-        &:hover {
-            border-bottom: 1px solid limegreen;
-        }
+        color: $activeColor;
+        @include underline($activeColor);
     }
 }
 
-@media (max-width: 600px) {
+@media (width < 600px) {
     .nav {
-        padding: 0 0.5rem;
-        gap: 0.5rem;
-    }
-    .list {
-        padding: 0 5px;
+        align-items: start;
+        justify-content: space-evenly;
+        padding-top: 1rem;
     }
 }

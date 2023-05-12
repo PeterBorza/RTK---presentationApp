@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type AppState = Record<string, boolean>;
+export type AppState = { [key: string]: boolean };
 
 export const initialState: AppState = {
     liftOpen: false,

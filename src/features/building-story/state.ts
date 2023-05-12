@@ -25,7 +25,7 @@ export const directionIcons: Record<DirectionType, JSX.Element> = {
     static: stop,
 };
 
-const INITIAL_NUMBER_OF_LEVELS = 9;
+export const INITIAL_NUMBER_OF_LEVELS = 7;
 
 const lifts: Record<LiftName, number> = {
     A: 0,

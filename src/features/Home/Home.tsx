@@ -1,13 +1,15 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, ReactNode, useState } from "react";
 
 import { useAppRedux } from "app";
 import CoinsTable from "features/coins";
 
 import styles from "./Home.module.scss";
 import { useSearch } from "hooks";
-import { CustomInput, Loader, Rubik } from "shared-components";
-import sortData, { rainPhotos } from "utils";
-import { newArray } from "utils/generators";
+import { AnimatedDropdown, CustomInput, Loader, Rubik } from "shared-components";
+import { sortData } from "utils";
+import { createArray, newArray } from "utils/generators";
+
+import classNames from "classnames";
 
 const { container, container__darkMode: dark } = styles;
 
@@ -21,7 +23,7 @@ const numss = Array(10)
 const dsgf = sortData({ data: numss });
 
 const Home = () => {
-    const [loaded, setLoaded] = useState(false);
+    const [val, setVal] = useState<ReactNode | null>(null);
     const [query, setQuery] = useState("");
     const [debouncedValue, filteredData] = useSearch(query, strings);
     const { isDarkMode } = useAppRedux();
@@ -30,22 +32,14 @@ const Home = () => {
         color: isDarkMode ? "white" : "black",
     };
 
-    const onLoadedIframe = () => {
-        setLoaded(true);
-        console.log("loaded");
-    };
+    const dropItems: ReactNode[] = createArray(10)
+        .fill("item")
+        .map((t, i) => t + (i + 1));
+
+    const handleItemClick = (item: ReactNode) => setVal(item === "reset" ? "" : item);
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
-            {/* <Rubik sides={rainPhotos} size={100} withAnimation="still" /> */}
-            {/* <iframe
-                className={styles.iframeRTK}
-                // src="https://rtk-presentation-qdl7qsvol-peterborza.vercel.app/features"
-                frameBorder="0"
-                onLoad={onLoadedIframe}
-                name="RTK"
-            /> */}
-            {/* <CoinsTable /> */}
             {/* <div>
                 <CustomInput
                     name="Search"
@@ -67,7 +61,16 @@ const Home = () => {
                         </li>
                     ))
                 )}
+                <p style={listColor}>{val}</p>
             </ul> */}
+            <div className={styles.dropContainer}>
+                <AnimatedDropdown
+                    label="tester component"
+                    items={[...dropItems, "reset"]}
+                    onItemClick={item => handleItemClick(item)}
+                />
+            </div>
+            <p style={listColor}>{val}</p>
         </div>
     );
 };
