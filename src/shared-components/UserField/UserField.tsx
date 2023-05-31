@@ -48,7 +48,7 @@ const UserField = ({
 
     return (
         <form className={styles.form} onSubmit={submitHandler}>
-            <label className={inputWrapper} htmlFor={name}>
+            <label className={inputWrapper}>
                 <span>{name}:</span>
                 <input
                     className={inputClasses}

@@ -1,6 +1,7 @@
 @use "css" as *;
 
 $doorSpeed: 300ms;
+$maxFloorLevels: 15;
 $doorColor: rgb(255 255 255 / 0.7);
 $transition: transform $doorSpeed;
 
@@ -38,20 +39,20 @@ $transition: transform $doorSpeed;
     }
 }
 
-@for $position from 1 to 12 {
+@for $position from 1 through $maxFloorLevels {
     .cabinWrapper__changePosition-#{$position} {
         transform: translateY(-100% * $position);
     }
 }
 
-@for $speed from 1000 to 10000 {
+@for $speed from 100 to 15000 {
     .cabinWrapper__transitionSpeed-#{$speed} {
         transition: transform 1ms * $speed ease-out;
         transition-delay: $doorSpeed;
     }
 }
 
-@for $height from 1 to 100 {
+@for $height from 1 through 100 {
     .cabinWrapper__cabinHeight-#{$height} {
         height: calc(100% / $height);
     }

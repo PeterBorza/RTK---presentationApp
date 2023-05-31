@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import city900 from "images/city900.jpg";
 
 import { useLiftRedux } from "../selectors";
@@ -7,34 +8,40 @@ import BlockSystem from "../BlockSystem";
 
 import styles from "./Building.module.scss";
 import { Button, FloatingImage, UserField } from "shared-components";
-import { useEffect, useState } from "react";
+
+const LIFT_INPUT_LEVEL = "number of levels";
 
 const ElevatorSystem = () => {
-    const { setLevelNumber, resetLevelNumber } = actions;
+    const { setLevelNumber, resetLevelNumber, moveLift } = actions;
     const {
         lifts: [liftA, liftB],
+        numberOfLevels,
         dispatch,
     } = useLiftRedux();
-    const [val, setVal] = useState("");
 
-    const handleInputValues = (val: string) => {
-        if (+val > 15) setVal("15");
-        else if (+val < 3 || isNaN(+val)) setVal("3");
-        else setVal(val);
+    const handleInputValues = (level: number) => {
+        if (level > 15) dispatch(setLevelNumber(15));
+        else if (level < 3 || isNaN(level)) dispatch(setLevelNumber(3));
+        else dispatch(setLevelNumber(level));
     };
 
     useEffect(() => {
-        val !== "" && dispatch(setLevelNumber(+val));
-    }, [val, dispatch]);
+        dispatch(
+            moveLift({
+                level: numberOfLevels - 1,
+                lift: { ...liftB, name: "B", position: numberOfLevels },
+            }),
+        );
+    }, [numberOfLevels]);
 
     return (
         <div className={styles.container}>
             <div className={styles.controls}>
                 <UserField
                     isDark
-                    onSubmit={val => handleInputValues(val)}
-                    name="number of levels"
-                    value={val}
+                    onSubmit={val => handleInputValues(+val)}
+                    name={LIFT_INPUT_LEVEL}
+                    value=""
                 />
                 <Button value="Reset" onClick={() => dispatch(resetLevelNumber())} />
             </div>

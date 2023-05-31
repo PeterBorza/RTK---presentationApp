@@ -3,10 +3,11 @@ import { BaseAPI, LinkUrls } from "app/constants";
 import { replaceUnit, selectCard, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 import { UtilityStateUnit } from "../../Utilities";
+import { AppDispatch } from "app";
 
 export const editAsyncUnit = async (
     item: UtilityStateUnit,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -21,4 +22,8 @@ export const editAsyncUnit = async (
     }
 };
 
-export const editUnit = createAsyncThunk(`${LinkUrls.GAS}/editAsyncUnit`, editAsyncUnit);
+export const editUnit = createAsyncThunk<
+    Promise<void>,
+    UtilityStateUnit,
+    { dispatch: AppDispatch }
+>(`${LinkUrls.GAS}/editAsyncUnit`, editAsyncUnit);

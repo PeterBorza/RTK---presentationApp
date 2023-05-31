@@ -3,10 +3,11 @@ import { BaseAPI, LinkUrls } from "app/constants";
 import { togglePayed, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
+import { AppDispatch } from "app";
 
-export const toggleAsyncPayed = async (
+export const toggleLightThunk = async (
     item: UtilityStateUnit,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -15,7 +16,7 @@ export const toggleAsyncPayed = async (
                 ...item,
                 payed: !item.payed,
             })
-            .then(dispatch(togglePayed(item.id)));
+            .then(() => dispatch(togglePayed(item.id)));
     } catch {
         dispatch(setUtilitiesError(true));
     } finally {
@@ -23,7 +24,8 @@ export const toggleAsyncPayed = async (
     }
 };
 
-export const togglePayedBill = createAsyncThunk(
-    `${LinkUrls.LIGHT}/toggleAsyncPayed`,
-    toggleAsyncPayed,
-);
+export const togglePayedBill = createAsyncThunk<
+    Promise<void>,
+    UtilityStateUnit,
+    { dispatch: AppDispatch }
+>(`${LinkUrls.LIGHT}/togglePayedBill`, toggleLightThunk);

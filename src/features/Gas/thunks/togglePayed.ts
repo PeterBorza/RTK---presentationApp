@@ -3,10 +3,11 @@ import { BaseAPI, LinkUrls } from "app/constants";
 import { togglePayed, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
+import { AppDispatch } from "app";
 
 export const toggleAsyncPayed = async (
     item: UtilityStateUnit,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -16,7 +17,7 @@ export const toggleAsyncPayed = async (
                 payed: !item.payed,
                 selected: false,
             })
-            .then(dispatch(togglePayed(item.id)));
+            .then(() => dispatch(togglePayed(item.id)));
     } catch {
         dispatch(setUtilitiesError(true));
     } finally {
@@ -24,7 +25,8 @@ export const toggleAsyncPayed = async (
     }
 };
 
-export const togglePayedBill = createAsyncThunk(
-    `${LinkUrls.GAS}/toggleAsyncPayed`,
-    toggleAsyncPayed,
-);
+export const togglePayedBill = createAsyncThunk<
+    Promise<void>,
+    UtilityStateUnit,
+    { dispatch: AppDispatch }
+>(`${LinkUrls.GAS}/togglePayedBill`, toggleAsyncPayed);

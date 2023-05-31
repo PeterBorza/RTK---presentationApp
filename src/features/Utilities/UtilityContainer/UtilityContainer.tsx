@@ -8,8 +8,8 @@ import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
 import { useLinkContext } from "context";
-import { getAsyncUtility as getGas } from "features/Gas/thunks";
-import { getAsyncUtility as getLight } from "features/Light/thunks";
+import { getAsyncUtility } from "features/Gas/thunks";
+import { getLight } from "features/Light/thunks";
 
 type LinkType = LinkUrls | NavLinkUrls;
 
@@ -24,7 +24,7 @@ const UtilityContainer: FC = () => {
     const closeSidePanel = useCallback(
         (item: LinkType) => {
             dispatch(toggleUtils(false));
-            item === LinkUrls.GAS && dispatch(getGas());
+            item === LinkUrls.GAS && dispatch(getAsyncUtility());
             item === LinkUrls.LIGHT && dispatch(getLight());
         },
         [dispatch],

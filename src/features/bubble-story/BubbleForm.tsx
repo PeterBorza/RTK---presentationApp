@@ -21,7 +21,6 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
 
     const { values, changeHandler, resetValues } = useForm(myValues);
 
-    console.log({ myValues, values });
     const onCancelHandler = () => {
         resetValues();
         closeForm();

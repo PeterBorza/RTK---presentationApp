@@ -1,13 +1,12 @@
 import React, { CSSProperties, ReactNode, useState } from "react";
 
 import { useAppRedux } from "app";
-import CoinsTable from "features/coins";
 
 import styles from "./Home.module.scss";
 import { useSearch } from "hooks";
-import { AnimatedDropdown, CustomInput, Loader, Rubik } from "shared-components";
-import { sortData } from "utils";
-import { createArray, newArray } from "utils/generators";
+import { AnimatedDropdown, Container } from "shared-components";
+import { icons, sortData } from "utils";
+import { createArray } from "utils/generators";
 
 import classNames from "classnames";
 
@@ -23,6 +22,7 @@ const numss = Array(10)
 const dsgf = sortData({ data: numss });
 
 const Home = () => {
+    const [moveTo, setMoveTo] = useState(0);
     const [val, setVal] = useState<ReactNode | null>(null);
     const [query, setQuery] = useState("");
     const [debouncedValue, filteredData] = useSearch(query, strings);
@@ -35,6 +35,17 @@ const Home = () => {
     const dropItems: ReactNode[] = createArray(10)
         .fill("item")
         .map((t, i) => t + (i + 1));
+
+    const textArr = [
+        "Home",
+        "Utilities",
+        "Photos",
+        "Features",
+        "Tester",
+        "MoreText",
+        "Radu",
+        "Peter",
+    ];
 
     const handleItemClick = (item: ReactNode) => setVal(item === "reset" ? "" : item);
 
@@ -70,7 +81,27 @@ const Home = () => {
                     onItemClick={item => handleItemClick(item)}
                 />
             </div>
-            <p style={listColor}>{val}</p>
+            <Container moveToItem={moveTo} darkMode={isDarkMode} itemCount={textArr.length}>
+                {textArr.map((item, index) => (
+                    <div
+                        style={{
+                            textAlign: "center",
+                            padding: "2px",
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            maxWidth: "100%",
+                            color: `${moveTo === index ? "white" : "grey"}`,
+                            transition: "color 200ms ease-in-out",
+                            cursor: "pointer",
+                        }}
+                        key={index}
+                        onClick={() => setMoveTo(index)}
+                    >
+                        {item}
+                    </div>
+                ))}
+            </Container>
         </div>
     );
 };

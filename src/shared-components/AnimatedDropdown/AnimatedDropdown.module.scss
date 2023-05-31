@@ -27,7 +27,7 @@
 .container {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -60,15 +60,16 @@
     text-transform: uppercase;
     background-color: white;
     width: 100%;
-    // height: 30px;
     padding: 0 4px;
     cursor: pointer;
     @include truncate();
     text-align: center;
 
-    &:hover {
-        + .content {
-            @include onHover();
+    &__hoverable {
+        &:hover {
+            + .content {
+                @include onHover();
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ interface CheckBoxProps {
 const CheckBox = ({ id, name, label, onChange, value }: CheckBoxProps) => {
     return (
         <div className={styles.checkBox}>
-            <label className={styles.checkBox__label} title={label} htmlFor={id}>
+            <label className={styles.checkBox__label} title={label}>
                 <input
                     type="checkbox"
                     id={id}

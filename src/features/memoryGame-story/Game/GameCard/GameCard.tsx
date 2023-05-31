@@ -14,19 +14,17 @@ interface GameCardProps {
     idx: number;
 }
 
-const GameCard = ({ card, idx }: GameCardProps) => {
-    const { id, frontSrc, isFlipped, match } = card;
+const GameCard = ({ card: { id, frontSrc, isFlipped, match }, idx }: GameCardProps) => {
     const {
         memoryGame: { gamePhotos, currentTheme },
         flippedCards,
         dispatch,
     } = useMGameRedux();
 
-    const cardWrapperClasses = (isFlipped: boolean, match: boolean) =>
-        classNames(styles.box, {
-            [styles.disabled]: isFlipped,
-            [styles.faded]: match,
-        });
+    const cardWrapperClasses = classNames(styles.box, {
+        [styles.disabled]: match || isFlipped,
+        [styles.faded]: match,
+    });
     const cardFrontClasses = classNames(styles.front, styles[`front__${currentTheme}`]);
 
     const gameHasStarted = flippedCards.length !== 0;
@@ -50,7 +48,7 @@ const GameCard = ({ card, idx }: GameCardProps) => {
     );
 
     return (
-        <div key={`flip-image-${id}`} className={cardWrapperClasses(match || isFlipped, match)}>
+        <div key={`flip-image-${id}`} className={cardWrapperClasses}>
             <FlipCard
                 flipped={match || isFlipped}
                 toggleFlip={() => flipCardHandler(gamePhotos[idx])}

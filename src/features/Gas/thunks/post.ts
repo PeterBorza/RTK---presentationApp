@@ -3,15 +3,16 @@ import { BaseAPI, LinkUrls } from "app/constants";
 import { addUnit, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
+import { AppDispatch } from "app";
 
 const instance = axios.create({
     baseURL: `${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}`,
     method: "POST",
 });
 
-export const postAsyncUtility = async (
+export const createGasThunk = async (
     data: UtilityStateUnit,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -23,4 +24,8 @@ export const postAsyncUtility = async (
     }
 };
 
-export const postUtility = createAsyncThunk(`${LinkUrls.GAS}/postAsyncUtility`, postAsyncUtility);
+export const createGas = createAsyncThunk<
+    Promise<void>,
+    UtilityStateUnit,
+    { dispatch: AppDispatch }
+>(`${LinkUrls.GAS}/createGas`, createGasThunk);

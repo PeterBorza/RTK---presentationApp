@@ -11,9 +11,9 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: rotate 350ms ease-in-out;
     &.turn {
-        transform: rotateY(180deg);
+        rotate: Y 180deg;
     }
 }
 
@@ -27,20 +27,10 @@
 }
 
 .back {
-    transform: rotateY(180deg);
+    rotate: Y 180deg;
     overflow: hidden;
 }
 
 .black_bg {
     background: rgb(26, 25, 25);
 }
-
-// $flipColors: (black, white, lightgrey, yellow);
-
-// @function flipColors($key) {
-// 	@return map-get($flipColors, $key);
-// }
-
-// @mixin flipColors($key) {
-// 	background-color: $key;
-// }

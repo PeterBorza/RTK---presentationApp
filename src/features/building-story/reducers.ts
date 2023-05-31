@@ -26,12 +26,11 @@ const reducers = {
             targetLift.position = level;
             targetLift.direction = getDirection(level, position);
             targetLift.isMoving = true;
-            state.speed = Math.abs(level - position) * state.speed;
+            state.speed = Math.abs(level - position) * initialState.speed;
         }
     },
     setLevelNumber: (state: LiftState, { payload }: PayloadAction<number>) => {
         state.numberOfLevels = payload;
-        state.lifts = [...initialState.lifts, { ...initialState.lifts[1], position: payload - 1 }];
     },
     resetLevelNumber: (state: LiftState) => {
         state.lifts = initialState.lifts;

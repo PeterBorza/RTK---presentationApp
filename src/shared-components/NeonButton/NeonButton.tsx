@@ -11,6 +11,7 @@ interface NeonButtonProps {
     tabIndex?: number;
     color?: ButtonColors;
     mirrorEffect?: boolean;
+    animated?: boolean;
 }
 
 const buttonSides = ["top", "right", "bottom", "left"];
@@ -24,6 +25,7 @@ const NeonButton: React.FC<NeonButtonProps> = ({
     tabIndex,
     color = "green",
     mirrorEffect = false,
+    animated = true,
 }) => {
     const classes = classNames(neon, [styles[`neon__${color}`]], {
         [mirror]: mirrorEffect,
@@ -32,7 +34,7 @@ const NeonButton: React.FC<NeonButtonProps> = ({
     const renderSpans = useMemo(
         () =>
             buttonSides.map(side => {
-                const spanStyles = classNames(span, [styles[`span__${side}`]]);
+                const spanStyles = classNames(span, styles[`span__${side}`]);
                 return <span key={side} className={spanStyles} />;
             }),
         [],
@@ -46,7 +48,7 @@ const NeonButton: React.FC<NeonButtonProps> = ({
             tabIndex={tabIndex}
         >
             {children}
-            {renderSpans}
+            {animated && renderSpans}
         </button>
     );
 };

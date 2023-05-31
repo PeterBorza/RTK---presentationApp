@@ -1,4 +1,4 @@
-export { postUtility } from "./post";
+export { createGas } from "./post";
 export { deleteUtilityUnit } from "./delete";
 export { editUnit } from "./edit";
 export { getAsyncUtility } from "./get";

@@ -39,8 +39,10 @@ const Game = () => {
             const { images, theme } = themes.find(t => t.theme === gameTheme)!;
             if (theme && images) {
                 const shuffled = shuffle(images);
-                dispatch(resetGame(shuffled));
-                dispatch(setTheme(theme));
+                setTimeout(() => {
+                    dispatch(setTheme(theme));
+                    dispatch(resetGame(shuffled));
+                }, 500);
             }
         },
         [dispatch, themes],

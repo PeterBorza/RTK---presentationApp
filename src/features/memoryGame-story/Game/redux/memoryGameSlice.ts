@@ -40,13 +40,12 @@ export const memoryGameSlice = createSlice({
             if (selected) selected.match = true;
         },
         resetGame: (state, { payload }: PayloadAction<GamePhotoData[]>) => {
-            const newGame = payload.map(item => {
-                return {
-                    ...item,
-                    isFlipped: false,
-                    match: false,
-                };
-            });
+            const newGame = payload.map(item => ({
+                ...item,
+                isFlipped: false,
+                match: false,
+            }));
+
             state.gamePhotos = newGame;
             state.currentCount = initialState.currentCount;
             state.gameFinished = false;
