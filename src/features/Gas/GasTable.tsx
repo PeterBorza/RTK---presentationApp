@@ -20,7 +20,7 @@ import {
     UtilityTableItem,
     TableTitle,
 } from "../Utilities";
-import { deleteUtilityUnit, editUnit, postUtility, togglePayedBill } from "./thunks";
+import { deleteUtilityUnit, editUnit, createGas, togglePayedBill } from "./thunks";
 
 const GasTable = () => {
     const {
@@ -81,7 +81,7 @@ const GasTable = () => {
             <T.Header>
                 <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
                 <UtilitiesForm
-                    postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
+                    postData={newUnit => dispatch(createGas(newUnit))}
                     formValues={{
                         ...initialFormValues,
                         readDate: getTimeFormat(),

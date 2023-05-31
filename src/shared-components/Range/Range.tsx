@@ -24,7 +24,7 @@ const Range = ({ name, min = 0, max = 100, value, step = 1, onChange, darkMode }
         [styles.range_label__dark]: darkMode,
     });
     return (
-        <label className={labelClasses} htmlFor={name}>
+        <label className={labelClasses}>
             <span> {name}</span>
             <input
                 className={classes}

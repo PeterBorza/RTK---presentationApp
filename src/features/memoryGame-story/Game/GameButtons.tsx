@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Button, ButtonWrapper } from "shared-components";
+import { ButtonWrapper, NeonButton } from "shared-components";
 import { GameTheme, GameThemeType } from "./redux/types";
+import { ButtonColors } from "shared-components/NeonButton/NeonButton";
 
 interface GameButtonsProps {
     themes: GameThemeType[];
@@ -10,10 +11,20 @@ interface GameButtonsProps {
 }
 
 const GameButtons: React.FC<GameButtonsProps> = ({ themes, onNewGame, dark, children }) => {
+    const buttonColors: Record<number, ButtonColors> = ["violet", "green", "blue"];
+
     return (
         <ButtonWrapper position="center" dark={dark}>
-            {themes.map(({ theme }) => (
-                <Button key={theme} onClick={() => onNewGame(theme)} value={theme} />
+            {themes.map(({ theme }, index) => (
+                <NeonButton
+                    key={theme}
+                    onClick={() => onNewGame(theme)}
+                    color={buttonColors[index]}
+                    mirrorEffect
+                    animated={false}
+                >
+                    {theme}
+                </NeonButton>
             ))}
             {children}
         </ButtonWrapper>

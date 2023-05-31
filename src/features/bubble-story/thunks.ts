@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, RootState } from "app";
+import { AppDispatch, BaseAPI, GetState, RootState } from "app";
 import { setBubbles, setPending, setError, deleteBub, addBubble } from "./bubbleSlice";
-import { Bubble, BubbleCssProps } from "./types";
+import { Bubble, BubbleCssProps, BubbleState } from "./types";
+
+const getNewBubbleid = (state: BubbleState) => {};
 
 const getAsyncBubbles = async (
     url: string,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     try {
         dispatch(setPending(true));
@@ -21,7 +23,7 @@ const getAsyncBubbles = async (
     }
 };
 
-const handleDeleteBubble = async (id: number, { dispatch }: { dispatch: Function }) => {
+const handleDeleteBubble = async (id: number, { dispatch }: { dispatch: AppDispatch }) => {
     try {
         await fetch(`${BaseAPI.BUBBLES_URL}/bubbles/${id}`, {
             method: "DELETE",
@@ -34,11 +36,11 @@ const handleDeleteBubble = async (id: number, { dispatch }: { dispatch: Function
 
 const handlePostBubble = async (
     data: BubbleCssProps,
-    { dispatch, getState }: { dispatch: Function; getState: Function },
+    { dispatch, getState }: { dispatch: AppDispatch; getState: GetState },
 ) => {
-    const { bubbles } = getState() as RootState;
+    const { bubbles } = getState();
 
-    const ids: number[] = bubbles.bubbles.map(bub => bub.id);
+    const ids = bubbles.bubbles.map(bub => bub.id);
     const maxIndex = Math.max(...ids);
     const newBubble: Bubble = {
         id: maxIndex + 1,
@@ -56,10 +58,20 @@ const handlePostBubble = async (
     }
 };
 
-const getBubbles = createAsyncThunk("bubbles/getAsyncBubbles", getAsyncBubbles);
+const getBubbles = createAsyncThunk<Promise<void>, string, { dispatch: AppDispatch }>(
+    "bubbles/getAsyncBubbles",
+    getAsyncBubbles,
+);
 
-const deleteBubble = createAsyncThunk("bubbles/handleDeleteBubble", handleDeleteBubble);
+const deleteBubble = createAsyncThunk<Promise<void>, number, { dispatch: AppDispatch }>(
+    "bubbles/handleDeleteBubble",
+    handleDeleteBubble,
+);
 
-const postBubble = createAsyncThunk("bubbles/handlePostBubble", handlePostBubble);
+const postBubble = createAsyncThunk<
+    Promise<void>,
+    BubbleCssProps,
+    { dispatch: AppDispatch; state: RootState }
+>("bubbles/handlePostBubble", handlePostBubble);
 
 export { getBubbles, deleteBubble, postBubble };

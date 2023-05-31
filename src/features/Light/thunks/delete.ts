@@ -2,16 +2,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BaseAPI, LinkUrls } from "app/constants";
 import { deleteUnit, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
 import axios from "axios";
+import { AppDispatch } from "app";
 
 export const deleteAsyncUtility = async (
     id: string,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
         await axios
             .delete(`${BaseAPI.UTILITIES_URL}/${LinkUrls.LIGHT}/${id}`)
-            .then(dispatch(deleteUnit(id)));
+            .then(() => dispatch(deleteUnit(id)));
     } catch {
         dispatch(setUtilitiesError(true));
     } finally {
@@ -19,7 +20,7 @@ export const deleteAsyncUtility = async (
     }
 };
 
-export const deleteUtilityUnit = createAsyncThunk(
-    `${LinkUrls.LIGHT}/deleteAsyncUtility`,
+export const deleteLight = createAsyncThunk<Promise<void>, string, { dispatch: AppDispatch }>(
+    `${LinkUrls.LIGHT}/deleteLight`,
     deleteAsyncUtility,
 );

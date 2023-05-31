@@ -4,13 +4,12 @@ $primary-background: rgb(180, 225, 243);
 $secondary-background: rgba(9, 51, 68, 0.842);
 
 .container {
-    padding-top: clamp($navHeight, 1vw, 20px);
     position: relative;
+    padding-top: clamp($navHeight, 1vw, 20px);
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     background-color: $secondary-background;
-    // clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
     &__dark {
         background: none;
     }

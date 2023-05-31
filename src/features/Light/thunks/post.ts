@@ -3,15 +3,16 @@ import { BaseAPI, LinkUrls } from "app/constants";
 import { addUnit, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
+import { AppDispatch } from "app";
 
 const instance = axios.create({
     baseURL: `${BaseAPI.UTILITIES_URL}/${LinkUrls.LIGHT}`,
     method: "POST",
 });
 
-export const postAsyncUtility = async (
+export const createLightThunk = async (
     data: UtilityStateUnit,
-    { dispatch }: { dispatch: Function },
+    { dispatch }: { dispatch: AppDispatch },
 ): Promise<void> => {
     dispatch(setUtilitiesPending(true));
     try {
@@ -23,4 +24,8 @@ export const postAsyncUtility = async (
     }
 };
 
-export const postUtility = createAsyncThunk(`${LinkUrls.LIGHT}/postAsyncUtility`, postAsyncUtility);
+export const createLight = createAsyncThunk<
+    Promise<void>,
+    UtilityStateUnit,
+    { dispatch: AppDispatch }
+>(`${LinkUrls.LIGHT}/createLight`, createLightThunk);

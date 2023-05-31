@@ -43,6 +43,7 @@ $spanThickness: 2px;
     text-transform: uppercase;
     overflow: hidden;
     transition: 500ms;
+    z-index: 1;
 
     &__mirrorEffect {
         -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);

@@ -30,7 +30,7 @@ const TextInput = ({
 
     return (
         <div className={styles.label}>
-            <label htmlFor={name} className={labelClasses}>
+            <label className={labelClasses}>
                 <span>{name}</span>:
                 <input
                     type={type}

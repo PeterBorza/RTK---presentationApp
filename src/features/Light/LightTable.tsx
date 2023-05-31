@@ -20,7 +20,7 @@ import {
 } from "../Utilities";
 import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
 import { selectCard, resetEdit, editCard, resetSelected, setUtilitiesError } from "./lightSlice";
-import { deleteUtilityUnit, togglePayedBill, postUtility, editUnit } from "./thunks";
+import { deleteLight, togglePayedBill, createLight, editLight } from "./thunks";
 
 const LightTable = () => {
     const { isDarkMode, dispatch } = useAppRedux();
@@ -50,8 +50,8 @@ const LightTable = () => {
                     editCard={() => dispatch(editCard(unit.id))}
                     resetEdit={() => dispatch(resetEdit())}
                     selectCard={() => dispatch(selectCard(unit.id))}
-                    deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
-                    editUnit={unit => dispatch(editUnit(unit))}
+                    deleteUtilityUnit={() => dispatch(deleteLight(unit.id))}
+                    editUnit={unit => dispatch(editLight(unit))}
                     togglePayedBill={() => dispatch(togglePayedBill(unit))}
                 />
             )),
@@ -71,7 +71,7 @@ const LightTable = () => {
             <UtilityTable.Header>
                 <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.LIGHT_TITLE}</h1>
                 <UtilitiesForm
-                    postData={(newUnit: UtilityStateUnit) => dispatch(postUtility(newUnit))}
+                    postData={(newUnit: UtilityStateUnit) => dispatch(createLight(newUnit))}
                     formValues={lightFormValues}
                     lastUnit={units.at(-1)!}
                 />

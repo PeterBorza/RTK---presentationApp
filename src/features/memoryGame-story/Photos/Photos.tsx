@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
 import { useLinkContext } from "context/link-context";
 
-import { AsidePlatform } from "shared-components";
+import { AnimatedDropdown, AsidePlatform } from "shared-components";
 
 import { MemoryGameMessages as messages, PhotosMessages } from "../Game/redux/messages";
 import { useMGameRedux } from "../Game/redux/selectors";
@@ -37,12 +37,32 @@ const Photos = () => {
         [photos, closeSidePanel, toInternalLink],
     );
 
+    const links = photos.map(photo => (
+        <Link className={styles.links} key={photo.id} to={photo.id}>
+            <span>{photo.caption}</span>
+        </Link>
+    ));
+
+    const renderMenu = () => {
+        return (
+            <>
+                <div className={styles.linkWrapper}>
+                    <AnimatedDropdown label="photos" items={links} />
+                    <br />
+                </div>
+                <Link to={toInternalLink(NavLinkUrls.PHOTOS)} className={styles.links}>
+                    <span onClick={closeSidePanel}>{PhotosMessages.RETURN_LINK}</span>
+                </Link>
+            </>
+        );
+    };
+
     return (
         <AsidePlatform
             isOpen={openSideBar}
             onClose={closeSidePanel}
             label={messages.HEADER_LABEL}
-            renderSideBar={() => renderLinks}
+            renderSideBar={renderMenu}
             onOpen={openSidePanel}
             buttonLabel={PhotosMessages.BUTTON_LABEL}
             isDarkMode={isDarkMode}

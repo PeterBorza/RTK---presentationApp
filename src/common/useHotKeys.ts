@@ -1,6 +1,5 @@
 import { NavLinkUrls } from "app";
 import { useEffect, useState } from "react";
-import { features } from "./hotKeys";
 
 const useHotKeys = () => {
     const [currentKey, setCurrentKey] = useState("/");

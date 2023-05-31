@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import styles from "./AnimatedDropdown.module.scss";
 import ListContent from "./ListContent/ListContent";
+import classNames from "classnames";
 
 interface DropProps {
     label: string;
@@ -9,10 +10,16 @@ interface DropProps {
 }
 
 const AnimatedDropdown = ({ label, items, onItemClick }: DropProps) => {
+    const headerClasses = classNames(styles.header, styles.header__hoverable);
+
+    const handleItemClick = (item: ReactNode) => {
+        onItemClick && onItemClick(item);
+    };
+
     return (
         <div className={styles.container}>
-            <div className={styles.header}>{label}</div>
-            <ListContent items={items} onItemClick={onItemClick} />
+            <div className={headerClasses}>{label}</div>
+            <ListContent items={items} onItemClick={item => handleItemClick(item)} />
         </div>
     );
 };

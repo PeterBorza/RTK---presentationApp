@@ -14,10 +14,15 @@ interface BubbleProps extends Props {
 
 const INITIAL_COLOR = "transparent";
 
-const Bubble = ({ onClick, title, id, isSelected, cssProps }: BubbleProps) => {
+const Bubble = ({
+    onClick,
+    title,
+    id,
+    isSelected,
+    cssProps: { left, top, size, opacity },
+}: BubbleProps) => {
     const ref = useRef<HTMLDivElement>(null);
     const [background, setBackground] = useState<string>(INITIAL_COLOR);
-    const { left, top, size, opacity } = cssProps;
 
     // TODO set background inline
     useEffect(() => {
