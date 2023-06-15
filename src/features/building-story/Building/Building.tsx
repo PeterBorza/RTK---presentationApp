@@ -32,7 +32,7 @@ const ElevatorSystem = () => {
                 lift: { ...liftB, name: "B", position: numberOfLevels },
             }),
         );
-    }, [numberOfLevels]);
+    }, [numberOfLevels, setLevelNumber, dispatch, liftB, moveLift]);
 
     return (
         <div className={styles.container}>

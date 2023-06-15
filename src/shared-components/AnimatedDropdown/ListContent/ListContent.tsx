@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 import styles from "../AnimatedDropdown.module.scss";
 import { useOnClickOutside } from "hooks";
 
@@ -14,7 +14,7 @@ const ListContent = ({ items, onItemClick }: Props) => {
         ulRef?.current?.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    useOnClickOutside([ulRef], () => scrollToTop());
+    useOnClickOutside([ulRef], scrollToTop);
 
     return (
         <ul ref={ulRef} className={styles.content}>

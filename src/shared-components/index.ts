@@ -1,4 +1,4 @@
-import Container from "./Container";
+import TabMenu from "./TabMenu";
 import Loader from "./Loader";
 import Button from "./Button";
 import SlideText from "./SlideText";
@@ -41,7 +41,7 @@ import AnimatedDropdown from "./AnimatedDropdown";
 // TODO create split screen component
 
 export {
-    Container,
+    TabMenu,
     Loader,
     Button,
     SlideText,

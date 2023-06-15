@@ -25,7 +25,7 @@ const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
 
     useLayoutEffect(() => {
         isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
-    }, [isMoving, speed, name, dispatch]);
+    }, [isMoving, speed, name, stopLift, dispatch]);
 
     const liftButtons = (level: number) => (
         <LiftButton

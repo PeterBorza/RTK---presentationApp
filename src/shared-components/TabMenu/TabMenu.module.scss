@@ -1,0 +1,62 @@
+@use "css" as *;
+
+$counter: 1.5;
+
+@mixin tabUnderlineAnimation($moveTo: 0) {
+    &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 100%;
+        height: 2px;
+        background-color: black;
+        transition: translate 200ms ease-in-out;
+    }
+
+    &.moveTo-#{$moveTo} {
+        &::after {
+            translate: (100% * $moveTo);
+        }
+    }
+}
+
+.tabMenu {
+    position: relative;
+
+    &__item {
+        text-align: center;
+        padding: 2px;
+        @include truncate;
+        color: grey;
+        cursor: pointer;
+        transition: color 200ms ease-in-out;
+
+        &__selected {
+            color: white;
+        }
+    }
+
+    @for $itemCount from 1 through 20 {
+        @include tabUnderlineAnimation($itemCount);
+        font-size: 1rem * $counter;
+        width: $itemCount * 80px;
+        @include RAM(100% / $itemCount, 1fr);
+        &.itemCount-#{$itemCount} {
+            &::after {
+                width: calc(100% / $itemCount);
+            }
+        }
+    }
+
+    &__darkMode {
+        background-color: transparent;
+
+        & > * {
+            color: white;
+        }
+
+        &::after {
+            background-color: red;
+        }
+    }
+}
