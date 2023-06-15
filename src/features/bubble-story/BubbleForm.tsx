@@ -32,21 +32,24 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
         closeForm();
     };
 
-    const renderInputsFromX = () =>
-        Object.entries(bubbleValidations).map(([key, value]) => {
-            const inputValue = values[key as InputValueType];
-            return (
-                <TextInput
-                    key={key}
-                    value={inputValue}
-                    name={key}
-                    onChange={changeHandler}
-                    isValid={getValidation(value)}
-                    errorMessage={getErrorMessage(value)}
-                    required
-                />
-            );
-        });
+    const renderInputsFromX = React.useMemo(
+        () =>
+            Object.entries(bubbleValidations).map(([key, value]) => {
+                const inputValue = values[key as InputValueType];
+                return (
+                    <TextInput
+                        key={key}
+                        value={inputValue}
+                        name={key}
+                        onChange={changeHandler}
+                        isValid={getValidation(value)}
+                        errorMessage={getErrorMessage(value)}
+                        required
+                    />
+                );
+            }),
+        [values, changeHandler],
+    );
 
     return (
         <>
@@ -55,7 +58,7 @@ const BubbleForm = ({ formObject, isOpen, openForm, closeForm, onPost }: BubbleF
                 <Form
                     onSubmit={onSubmitHandler}
                     width={BubbleFormValues.FORM_WIDTH}
-                    renderFields={React.useMemo(renderInputsFromX, [bubbleValidations, values])}
+                    renderFields={renderInputsFromX}
                     onCancel={onCancelHandler}
                     formTitle={BubbleFormValues.FORM_TITLE}
                     disabled={Object.values(values).some(value => value === "")}

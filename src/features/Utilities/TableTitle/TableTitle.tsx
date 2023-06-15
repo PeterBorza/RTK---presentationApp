@@ -2,7 +2,6 @@ import React from "react";
 
 import classNames from "classnames";
 import styles from "./TableTitle.module.scss";
-import { UtilityStateUnit } from "../types";
 
 type TitleProps = {
     name: string;

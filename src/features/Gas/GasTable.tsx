@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import { Error, Pending, useAppRedux } from "app";
 import { useOnClickOutside } from "hooks";
 import { AlertModal, Loader, Table } from "shared-components";
-import { formatToDate, getTimeFormat } from "utils";
+import { getTimeFormat } from "utils";
 
 import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
 import { selectCard, editCard, resetEdit, resetSelected, setUtilitiesError } from "./gasSlice";
 import {
-    UtilityStateUnit,
     UtilitiesForm,
     initialFormValues,
     UtilityLabels,
@@ -36,11 +35,11 @@ const GasTable = () => {
 
     useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
-    const sortByDate = (units: UtilityStateUnit[]) => {
-        const formated = (dateA: string, dateB: string) =>
-            formatToDate(dateA).getTime() - formatToDate(dateB).getTime();
-        return units.slice().sort((a, b) => formated(a.readDate, b.readDate));
-    };
+    // const sortByDate = (units: UtilityStateUnit[]) => {
+    //     const formated = (dateA: string, dateB: string) =>
+    //         formatToDate(dateA).getTime() - formatToDate(dateB).getTime();
+    //     return units.slice().sort((a, b) => formated(a.readDate, b.readDate));
+    // };
 
     // TODO add sorting
 

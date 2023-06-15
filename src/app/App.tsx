@@ -10,7 +10,7 @@ const App = () => {
 
     useEffect(() => {
         key && navigate(key);
-    }, [key]);
+    }, [key, navigate]);
 
     return (
         <LinkContextProvider>
