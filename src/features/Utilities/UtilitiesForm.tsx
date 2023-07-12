@@ -83,7 +83,7 @@ const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, lastU
                 onChange={changeHandler}
                 placeholder={index && lastUnit ? `-- ${lastUnit.index} --` : ""}
                 errorMessage="Invalid value"
-                required={key === "index" && true}
+                required={index}
             />
         );
     });

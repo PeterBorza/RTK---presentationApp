@@ -3,7 +3,6 @@ import { forwardRef, ReactNode, RefObject } from "react";
 import styles from "./ScrollTable.module.scss";
 
 export interface TableProps {
-    ref: RefObject<HTMLDivElement | null>;
     children: ReactNode;
 }
 

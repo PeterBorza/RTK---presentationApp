@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, LinkUrls } from "app/constants";
+import { UTILITIES_URL, LinkUrls } from "app/constants";
 import { togglePayed, setUtilitiesError, setUtilitiesPending } from "../lightSlice";
 import { UtilityStateUnit } from "../../Utilities";
 import axios from "axios";
@@ -12,7 +12,7 @@ export const toggleLightThunk = async (
     dispatch(setUtilitiesPending(true));
     try {
         await axios
-            .put(`${BaseAPI.UTILITIES_URL}/${LinkUrls.LIGHT}/${item.id}`, {
+            .put(`${UTILITIES_URL}/${LinkUrls.LIGHT}/${item.id}`, {
                 ...item,
                 payed: !item.payed,
             })

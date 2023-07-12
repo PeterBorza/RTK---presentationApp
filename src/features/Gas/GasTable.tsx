@@ -1,13 +1,13 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { Error, Pending, useAppRedux } from "app";
-import { useOnClickOutside } from "hooks";
-import { AlertModal, Loader, Table } from "shared-components";
+import { useOnClickOutside, useToggle } from "hooks";
+import { AlertModal, Loader, Table, WarningModal } from "shared-components";
 import { getTimeFormat } from "utils";
 
-import { utilityState, errorState, sumOfBillsSelector } from "./selectors";
-import { selectCard, editCard, resetEdit, resetSelected, setUtilitiesError } from "./gasSlice";
+import { utilityState, errorState, sumOfBillsSelector, selectedGas, editedGas } from "./selectors";
+import { selectCard, resetEdit, setUtilitiesError, resetSelected } from "./gasSlice";
 import {
     UtilitiesForm,
     initialFormValues,
@@ -19,21 +19,27 @@ import {
     UtilityTableItem,
     TableTitle,
 } from "../Utilities";
-import { deleteUtilityUnit, editUnit, createGas, togglePayedBill } from "./thunks";
+import { deleteUtilityUnit, editUnit, createGas } from "./thunks";
+import ManageGas from "./ManageGas";
 
 const GasTable = () => {
+    const [modalOpen, , setModalOpen] = useToggle();
     const {
         units,
         loading: { isLoading },
     } = useSelector(utilityState);
-    const error = useSelector(errorState);
     const { isDarkMode, dispatch } = useAppRedux();
+    const error = useSelector(errorState);
     const sumOfBills = useSelector(sumOfBillsSelector);
-    const errorRef = React.useRef<HTMLDivElement | null>(null);
-
+    console.log("sumOfBills:", sumOfBills);
+    const selectedGasUnit = useSelector(selectedGas);
+    const errorRef = React.useRef<HTMLDivElement>(null);
+    const manageContentRef = React.useRef<HTMLDivElement>(null);
+    const tableRef = React.useRef<HTMLDivElement>(null);
+    const modalRef = React.useRef<HTMLDivElement>(null);
+    const editedGasUnit = useSelector(editedGas);
+    const isInEditMode = editedGasUnit.length > 0;
     // TODO below state should be set in redux  - getUnits - rename it to setUnits -
-
-    useOnClickOutside([errorRef], () => setUtilitiesError(false));
 
     // const sortByDate = (units: UtilityStateUnit[]) => {
     //     const formated = (dateA: string, dateB: string) =>
@@ -43,7 +49,7 @@ const GasTable = () => {
 
     // TODO add sorting
 
-    const renderGasTableItems = useMemo(
+    const renderGasTableItems = React.useMemo(
         () =>
             units.map(unit => (
                 <UtilityTableItem
@@ -51,12 +57,9 @@ const GasTable = () => {
                     unit={unit}
                     units={units}
                     darkMode={isDarkMode}
-                    editCard={() => dispatch(editCard(unit.id))}
                     resetEdit={() => dispatch(resetEdit())}
                     selectCard={() => dispatch(selectCard(unit.id))}
-                    deleteUtilityUnit={() => dispatch(deleteUtilityUnit(unit.id))}
                     editUnit={unit => dispatch(editUnit(unit))}
-                    togglePayedBill={() => dispatch(togglePayedBill(unit))}
                 />
             )),
         [units, isDarkMode, dispatch],
@@ -67,7 +70,7 @@ const GasTable = () => {
 
     // TODO extract error component
 
-    const renderHeaders = useMemo(
+    const renderHeaders = React.useMemo(
         () =>
             Object.values(UtilityLabels).map(label => (
                 <TableTitle key={label} name={label} isDarkMode={isDarkMode} />
@@ -75,37 +78,59 @@ const GasTable = () => {
         [isDarkMode],
     );
 
+    const resetSelection = () => {
+        selectedGasUnit && dispatch(resetSelected());
+        if (isInEditMode) dispatch(resetEdit());
+    };
+
+    useOnClickOutside([errorRef], () => setUtilitiesError(false));
+    useOnClickOutside([tableRef, manageContentRef], () => {
+        if (!modalRef.current) resetSelection();
+    });
+    useOnClickOutside([modalRef], () => {
+        setModalOpen(false);
+        resetSelection();
+    });
+
     return (
-        <T dark={isDarkMode}>
-            <T.Header>
-                <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
-                <UtilitiesForm
-                    postData={newUnit => dispatch(createGas(newUnit))}
-                    formValues={{
-                        ...initialFormValues,
-                        readDate: getTimeFormat(),
-                    }}
-                    lastUnit={units.at(-1)!}
-                />
-            </T.Header>
-            <T.Body>
-                <AlertModal
-                    ref={errorRef}
-                    openModal={error}
-                    message={Error.MESSAGE}
-                    variant="text"
-                />
-                <Table
-                    renderHeaders={() => renderHeaders}
-                    onClickOutside={() => dispatch(resetSelected())}
-                >
-                    {isLoading ? <Loader message={Pending.MESSAGE} /> : renderGasTableItems}
-                </Table>
-            </T.Body>
-            <T.Footer>
-                <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />
-            </T.Footer>
-        </T>
+        <>
+            <AlertModal ref={errorRef} openModal={error} message={Error.MESSAGE} variant="text" />
+            <WarningModal
+                onClose={() => setModalOpen(false)}
+                isModalopen={modalOpen}
+                title={UtilityTableLabels.WARNING}
+                onApply={() => selectedGasUnit && dispatch(deleteUtilityUnit(selectedGasUnit.id))}
+                cancelLabel={UtilityTableLabels.CANCEL}
+                applyLabel={UtilityTableLabels.DELETE}
+                ref={modalRef}
+            />
+            <T dark={isDarkMode}>
+                <T.Header>
+                    <h1 style={titleStyle(isDarkMode)}>{UtilityTableLabels.GAS_TITLE}</h1>
+                    <UtilitiesForm
+                        postData={newUnit => dispatch(createGas(newUnit))}
+                        formValues={{
+                            ...initialFormValues,
+                            readDate: getTimeFormat(),
+                        }}
+                        lastUnit={units.at(-1)!}
+                    />
+                    <ManageGas ref={manageContentRef} openModal={() => setModalOpen(true)} />
+                </T.Header>
+                <T.Body>
+                    <Table
+                        renderHeaders={() => renderHeaders}
+                        ref={tableRef}
+                        children={
+                            isLoading ? <Loader message={Pending.MESSAGE} /> : renderGasTableItems
+                        }
+                    />
+                </T.Body>
+                <T.Footer>
+                    <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />
+                </T.Footer>
+            </T>
+        </>
     );
 };
 

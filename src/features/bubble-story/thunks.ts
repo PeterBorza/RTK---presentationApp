@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AppDispatch, BaseAPI, GetState, RootState } from "app";
+import { AppDispatch, BUBBLES_URL, GetState, RootState } from "app";
 import { setBubbles, setPending, setError, deleteBub, addBubble } from "./bubbleSlice";
 import { Bubble, BubbleCssProps, BubbleState } from "./types";
 
@@ -11,7 +11,7 @@ const getAsyncBubbles = async (
 ): Promise<void> => {
     try {
         dispatch(setPending(true));
-        const response = await fetch(`${BaseAPI.BUBBLES_URL}/${url}`);
+        const response = await fetch(`${BUBBLES_URL}/${url}`);
         const data = await response.json();
         dispatch(setBubbles(data));
         return data;
@@ -25,7 +25,7 @@ const getAsyncBubbles = async (
 
 const handleDeleteBubble = async (id: number, { dispatch }: { dispatch: AppDispatch }) => {
     try {
-        await fetch(`${BaseAPI.BUBBLES_URL}/bubbles/${id}`, {
+        await fetch(`${BUBBLES_URL}/bubbles/${id}`, {
             method: "DELETE",
         });
         dispatch(deleteBub(id));
@@ -47,7 +47,7 @@ const handlePostBubble = async (
         cssProps: data,
     };
     try {
-        await fetch(`${BaseAPI.BUBBLES_URL}/bubbles`, {
+        await fetch(`${BUBBLES_URL}/bubbles`, {
             method: "POST",
             body: JSON.stringify(newBubble),
             headers: { "Content-Type": "application/json" },

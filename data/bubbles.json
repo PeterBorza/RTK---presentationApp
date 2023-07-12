@@ -1,15 +1,6 @@
 {
   "bubbles": [
     {
-      "id": 24,
-      "cssProps": {
-        "left": "80",
-        "top": "75",
-        "size": "100",
-        "opacity": "1"
-      }
-    },
-    {
       "id": 27,
       "cssProps": {
         "left": "44",
@@ -88,6 +79,15 @@
         "top": "44",
         "size": "200",
         "opacity": "1"
+      }
+    },
+    {
+      "id": 45,
+      "cssProps": {
+        "left": "21",
+        "top": "45",
+        "size": "300",
+        "opacity": ".5"
       }
     }
   ],

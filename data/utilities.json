@@ -6,7 +6,7 @@
       "selected": false,
       "index": "5648",
       "consumption": 7,
-      "bill": "6.91",
+      "bill": "6.90",
       "payed": true,
       "edit": false,
       "estimate": 0
@@ -427,6 +427,28 @@
       "consumption": 54,
       "estimate": 157.65,
       "payed": true,
+      "edit": false
+    },
+    {
+      "id": "2c5545b9-8d1b-4c86-bb02-4bffe8d8499a",
+      "readDate": "15/04/2023",
+      "selected": false,
+      "index": "5854",
+      "bill": "28.55",
+      "consumption": 9,
+      "estimate": 27.88,
+      "payed": false,
+      "edit": false
+    },
+    {
+      "id": "db9acafb-3e53-421f-8f0f-b88c2aa134d1",
+      "readDate": "16/05/2023",
+      "selected": false,
+      "index": "5870",
+      "bill": "46.61",
+      "consumption": 16,
+      "estimate": 50.76,
+      "payed": false,
       "edit": false
     }
   ],

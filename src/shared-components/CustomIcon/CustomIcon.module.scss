@@ -52,7 +52,10 @@ $iconTypes: (
     }
 
     &__disabled {
-        opacity: 0.5;
-        pointer-events: none;
+        opacity: 0.3;
+        // pointer-events: none;
+        &:hover {
+            cursor: not-allowed;
+        }
     }
 }

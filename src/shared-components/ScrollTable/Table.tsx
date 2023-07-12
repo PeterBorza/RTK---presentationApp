@@ -1,22 +1,18 @@
-import { FC, ReactNode, useRef } from "react";
+import React, { ReactNode } from "react";
 import { default as Tbl } from ".";
-import { useOnClickOutside } from "hooks";
 
 export interface Props {
-    onClickOutside: () => void;
     renderHeaders: () => ReactNode;
+    children: ReactNode;
 }
 
-const Table: FC<Props> = ({ children, onClickOutside, renderHeaders }) => {
-    const tableRef = useRef<HTMLDivElement>(null);
-    useOnClickOutside([tableRef], onClickOutside);
-
+const Table = React.forwardRef<HTMLDivElement, Props>(({ children, renderHeaders }, ref) => {
     return (
-        <Tbl ref={tableRef}>
+        <Tbl ref={ref}>
             <Tbl.Header>{renderHeaders()}</Tbl.Header>
             <Tbl.Body>{children}</Tbl.Body>
         </Tbl>
     );
-};
+});
 
 export default Table;
