@@ -8,7 +8,7 @@ type AlertModalProps = {
     position?: "center" | "top-right";
     variant?: "builder" | "text";
     message?: string | ErrorMessageType;
-    children?: React.ReactNode;
+    children?: JSX.Element;
 };
 
 const AlertModal = React.forwardRef<HTMLDivElement, AlertModalProps>(

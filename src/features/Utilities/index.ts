@@ -7,6 +7,7 @@ import EditCard from "./EditCard";
 import UtilityCard from "./UtilityCard";
 import UtilityTable from "./UtilityTable";
 import UtilityTableItem from "./UtilityTableItem";
+import UtilityManager from "./UtilityManager";
 export * from "./types";
 export * from "./state";
 export * from "./constants";
@@ -21,4 +22,5 @@ export {
     UtilityCard,
     UtilityTable,
     UtilityTableItem,
+    UtilityManager,
 };

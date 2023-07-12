@@ -92,7 +92,7 @@ const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units
                 </button>
                 <CustomIcon
                     type="cancel"
-                    title={UtilityTableLabels.CANCEL_EDIT}
+                    title={UtilityTableLabels.CANCEL}
                     onClick={resetEdit}
                     icon={icons.cancel}
                 />

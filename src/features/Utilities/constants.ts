@@ -10,7 +10,6 @@ export enum UtilityLabels {
     CONSUMPTION = "consumption",
     ESTIMATE = "estimate",
     BILL = "bill",
-    MANAGE = "manage",
 }
 
 export enum UtilityTableLabels {
@@ -26,11 +25,13 @@ export enum UtilityTableLabels {
     EDIT = "edit",
     NOT_PAYED = "not-payed",
     CONFIRM = "confirm",
-    CANCEL_EDIT = "cancel",
+    CANCEL = "cancel",
     CORRECT_PASSWORD = "Correct password",
     NAME = "Type in owner's first name to see menu",
     MANAGE = "manage",
     INDEX_ALERT = "Make sure this is the correct index",
+    WARNING = "Are you sure you want to delete this item?",
+    PAY = "Pay",
 }
 
 export enum UtilitiesLoading {
@@ -44,4 +45,5 @@ export enum ModeColors {
 
 export const titleStyle = (darkMode: boolean) => ({
     color: darkMode ? ModeColors.DARKMODE_COLOR : ModeColors.LIGHTMODE_COLOR,
+    flex: 1,
 });

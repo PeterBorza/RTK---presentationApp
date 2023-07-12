@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useAppRedux, Error, Pending } from "app";
 import { useOnClickOutside } from "hooks";
 import { getTimeFormat } from "utils";
-import { AlertModal, Loader, Table } from "shared-components";
+import { AlertModal, Button, Loader, Table } from "shared-components";
 import {
     UtilityLabels,
     UtilityTableLabels,
@@ -18,7 +18,7 @@ import {
     FormProps,
     TableTitle,
 } from "../Utilities";
-import { utilityState, errorLightState, sumOfBillsSelector } from "./selectors";
+import { utilityState, errorLightState, sumOfBillsSelector, selectedLight } from "./selectors";
 import { selectCard, resetEdit, editCard, resetSelected, setUtilitiesError } from "./lightSlice";
 import { deleteLight, togglePayedBill, createLight, editLight } from "./thunks";
 
@@ -30,9 +30,12 @@ const LightTable = () => {
     } = useSelector(utilityState);
     const error = useSelector(errorLightState);
     const sumOfBills = useSelector(sumOfBillsSelector);
-    const errorRef = useRef<HTMLDivElement | null>(null);
+    const selectedLightUnit = useSelector(selectedLight);
+    const errorRef = useRef<HTMLDivElement>(null);
+    const tableRef = useRef<HTMLDivElement>(null);
 
     useOnClickOutside([errorRef], () => setUtilitiesError(false));
+    useOnClickOutside([tableRef], () => dispatch(resetSelected()));
 
     const lightFormValues: FormProps = {
         ...initialFormValues,
@@ -47,12 +50,9 @@ const LightTable = () => {
                     unit={unit}
                     units={units}
                     darkMode={isDarkMode}
-                    editCard={() => dispatch(editCard(unit.id))}
                     resetEdit={() => dispatch(resetEdit())}
                     selectCard={() => dispatch(selectCard(unit.id))}
-                    deleteUtilityUnit={() => dispatch(deleteLight(unit.id))}
                     editUnit={unit => dispatch(editLight(unit))}
-                    togglePayedBill={() => dispatch(togglePayedBill(unit))}
                 />
             )),
         [units, isDarkMode, dispatch],
@@ -75,6 +75,23 @@ const LightTable = () => {
                     formValues={lightFormValues}
                     lastUnit={units.at(-1)!}
                 />
+                <Button
+                    value="Manage"
+                    onClick={() => selectedLightUnit && dispatch(editCard(selectedLightUnit.id))}
+                />
+                {!selectedLightUnit?.payed && (
+                    <Button
+                        value="Pay"
+                        onClick={() =>
+                            selectedLightUnit && dispatch(togglePayedBill(selectedLightUnit))
+                        }
+                    />
+                )}
+                <Button
+                    value="Delete"
+                    onClick={() => selectedLightUnit && dispatch(deleteLight(selectedLightUnit.id))}
+                />
+                <h2>{selectedLightUnit?.index}</h2>
             </UtilityTable.Header>
             <UtilityTable.Body>
                 <AlertModal
@@ -85,10 +102,11 @@ const LightTable = () => {
                 />
                 <Table
                     renderHeaders={() => renderHeaders}
-                    onClickOutside={() => dispatch(resetSelected())}
-                >
-                    {isLoading ? <Loader message={Pending.MESSAGE} /> : renderLightTableItems}
-                </Table>
+                    ref={tableRef}
+                    children={
+                        isLoading ? <Loader message={Pending.MESSAGE} /> : renderLightTableItems
+                    }
+                />
             </UtilityTable.Body>
             <UtilityTable.Footer>
                 <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />

@@ -7,7 +7,6 @@
     margin: 1px;
     padding: 2px 0px 2px 0px;
     transition: all 120ms ease-out;
-    // background-color: rgba(245, 247, 239, 0.4);
     box-shadow: inset 0px 0px 3px rgba(0 0 0/0.1);
 
     & div:nth-child(1) {
@@ -30,7 +29,18 @@
         & div:nth-child(1) {
             color: $darkModeWhite;
         }
+        &:hover .wrapper {
+            background-color: rgba(221, 221, 221, 0.662);
+        }
     }
+}
+
+.selected {
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    background-color: $myYellow3;
+    // &:hover .wrapper {
+    //     background-color: darken($myYellow3, 2%);
+    // }
 }
 
 .data {
@@ -47,34 +57,7 @@
     }
 }
 
-.selected {
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-    background-color: $myYellow3;
-    &:hover {
-        background-color: darken($myYellow3, 2%);
-    }
-}
-
 .tableIcons {
     width: 100%;
     @include fCenter;
-}
-
-.manageCell {
-    @include fCenter;
-    width: 100%;
-}
-
-.hiddenManage {
-    display: flex;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-30%);
-    transition: all 200ms ease-in-out;
-    &__show {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: all;
-        gap: 6px;
-    }
 }

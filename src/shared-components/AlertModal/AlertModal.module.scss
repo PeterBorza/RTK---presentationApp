@@ -57,12 +57,9 @@ $error-color: rgba(255, 0, 0, 0.8);
         @include scale-pop-up-animation();
     }
 
-    &__text {
-        padding: 1rem;
-    }
-
+    &__text,
     &__builder {
-        padding: 0;
+        padding: 1rem;
     }
 
     &__error_message {

@@ -31,7 +31,11 @@ const CustomIcon = ({
         },
     );
     return (
-        <span className={iconStyles} onClick={() => onClick && onClick()} title={title}>
+        <span
+            className={iconStyles}
+            onClick={() => onClick && !isDisabled && onClick()}
+            title={title}
+        >
             {icon}
         </span>
     );

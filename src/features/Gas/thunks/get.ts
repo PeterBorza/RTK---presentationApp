@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BaseAPI, LinkUrls } from "app/constants";
+import { LinkUrls, UTILITIES_URL } from "app/constants";
 import { getUnits, setUtilitiesError, setUtilitiesPending } from "../gasSlice";
 import axios from "axios";
 import { AppDispatch } from "app";
@@ -8,7 +8,7 @@ const getGas = async (_: void, { dispatch }: { dispatch: AppDispatch }) => {
     try {
         dispatch(setUtilitiesPending(true));
         await axios
-            .get(`${BaseAPI.UTILITIES_URL}/${LinkUrls.GAS}`) // ?_limit= 2 "get only this amount"
+            .get(`${UTILITIES_URL}/${LinkUrls.GAS}`) // ?_limit= 2 "get only this amount"
             .then(response => {
                 dispatch(getUnits(response.data));
             });

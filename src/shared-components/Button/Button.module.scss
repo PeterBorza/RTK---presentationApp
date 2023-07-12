@@ -27,6 +27,7 @@ $disabledButtonColor: rgb(163, 33, 59);
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     transition: all 120ms ease-out;
     cursor: pointer;
+    line-height: 2;
 
     &::after {
         position: absolute;

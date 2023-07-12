@@ -37,6 +37,7 @@ import FloatingImage from "./FloatingImage";
 import GradientText from "./GradientText";
 import UserField from "./UserField";
 import AnimatedDropdown from "./AnimatedDropdown";
+import WarningModal from "./WarningModal";
 
 // TODO create split screen component
 
@@ -82,6 +83,7 @@ export {
     GradientText,
     UserField,
     AnimatedDropdown,
+    WarningModal,
 };
 
 // TODO create warning modal with "are you sure you want to"...

@@ -1,10 +1,12 @@
-export enum BaseAPI {
-    UTILITIES_URL = "http://localhost:5006",
-    COINS_URL = "http://localhost:5008",
-    BUBBLES_URL = "http://localhost:5010",
-}
+const utilitiesPort = process.env.REACT_APP_UTILITIES_PORT;
+const coinsPort = process.env.REACT_APP_COINS_PORT;
+const bubblesPort = process.env.REACT_APP_BUBBLES_PORT;
 
-// TODO  Add the above to .env
+const BASE_URL = "http://localhost:";
+
+export const UTILITIES_URL = BASE_URL + utilitiesPort;
+export const COINS_URL = BASE_URL + coinsPort;
+export const BUBBLES_URL = BASE_URL + bubblesPort;
 
 export enum LinkUrls {
     GAS = "gas",
