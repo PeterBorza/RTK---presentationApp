@@ -49,7 +49,7 @@ const ScrollPage = <T,>({ pages, baseUrl, isDarkMode = false }: ScrollProps<T>) 
                         className={styles.article}
                         id={link.id}
                     >
-                        {link.content}
+                        {link.content as React.ReactNode}
                     </article>
                 ))}
             </section>

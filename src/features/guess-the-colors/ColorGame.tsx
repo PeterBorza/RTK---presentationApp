@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { GameAttempts, GameControls, GameHeader, HiddenCombo } from "./game-components";
@@ -18,6 +18,10 @@ const ColorGame = () => {
     const baseColors = useSelector(baseColorsState);
     const freshGame = useSelector(emptyAttemptSelector);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        gameCombo.length === 0 && dispatch(resetGame(baseColors));
+    }, [gameCombo, baseColors, dispatch]);
 
     return (
         <div className="game_container">

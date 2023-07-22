@@ -5,9 +5,10 @@ import "./_index.scss";
 
 export interface IMenuItem {
     onClick?: () => void;
+    children?: React.ReactNode;
 }
 
-const MenuItem: React.FC<IMenuItem> = ({ onClick, children }) => {
+const MenuItem = ({ onClick, children }: IMenuItem) => {
     const { setIsOpen, setTriggerName } = React.useContext(DropdownContext);
 
     const menuItemClickHandler = () => {

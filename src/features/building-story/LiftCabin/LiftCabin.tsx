@@ -11,7 +11,7 @@ interface Props {
     levelCount: LevelCount;
 }
 
-const LiftCabin: React.FC<Props> = ({ data, speed, side, levelCount }) => {
+const LiftCabin = ({ data, speed, side, levelCount }: Props) => {
     const { name, isMoving, position } = data;
 
     const cabinClasses = classNames(

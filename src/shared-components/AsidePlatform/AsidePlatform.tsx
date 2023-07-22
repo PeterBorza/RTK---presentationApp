@@ -11,9 +11,10 @@ export type Props = {
     renderSideBar: () => React.ReactNode;
     label: string;
     buttonLabel?: string;
+    children?: React.ReactNode;
 };
 
-const AsidePlatform: React.FC<Props> = ({
+const AsidePlatform = ({
     isOpen,
     isDarkMode = false,
     children,
@@ -22,7 +23,7 @@ const AsidePlatform: React.FC<Props> = ({
     renderSideBar,
     label,
     buttonLabel = "Menu",
-}) => {
+}: Props) => {
     const wrapper = classNames(styles.container, {
         [styles["container__with-sidebar-open"]]: isOpen,
         [styles["container__dark-mode"]]: isDarkMode,

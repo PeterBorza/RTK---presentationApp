@@ -18,7 +18,7 @@ type ValidationType = Record<keyof FormProps, boolean>;
 
 // TODO manage index update between items, date issues, sortability, filter by consumption, estimation
 
-const UtilitiesForm: React.FC<UtilityFormProps> = ({ postData, formValues, lastUnit }) => {
+const UtilitiesForm = ({ postData, formValues, lastUnit }: UtilityFormProps) => {
     const modalRef = React.useRef<HTMLDivElement | null>(null);
     const maxIndex = useSelector(maxIndexSelector);
     const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);

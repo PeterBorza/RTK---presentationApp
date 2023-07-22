@@ -5,9 +5,10 @@ import { DropdownContext } from "./context";
 
 type DropdownType = {
     onCloseMenu?: () => void;
+    children?: React.ReactNode;
 };
 
-const Dropdown: React.FC<DropdownType> = ({ onCloseMenu, children }) => {
+const Dropdown = ({ onCloseMenu, children }: DropdownType) => {
     const { setIsOpen } = React.useContext(DropdownContext);
     const targetRef = React.useRef<HTMLDivElement | null>(null);
 

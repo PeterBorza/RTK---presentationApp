@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { urlToLabel, LinkUrls, toggleUtils, useAppRedux, NavLinkUrls } from "app";
@@ -13,7 +13,7 @@ import { getLight } from "features/Light/thunks";
 
 type LinkType = LinkUrls | NavLinkUrls;
 
-const UtilityContainer: FC = () => {
+const UtilityContainer = () => {
     const links: LinkType[] = useMemo(
         () => [LinkUrls.GAS, LinkUrls.LIGHT, NavLinkUrls.UTILITIES, NavLinkUrls.HOME],
         [],

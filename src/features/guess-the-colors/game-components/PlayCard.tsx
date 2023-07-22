@@ -115,7 +115,7 @@ const PlayCard = ({ attempt, gameCombo, isFinished, gameData }: PlayCardType) =>
                 ))}
             </div>
             <Evaluation
-                results={results}
+                results={results.length !== 0 ? results : dropdownCounter}
                 handleResults={handleResults}
                 enabledResults={validCombo() && !results.length}
                 initialValues={resultValues}

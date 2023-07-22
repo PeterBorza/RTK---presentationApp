@@ -23,7 +23,7 @@ export interface RubikType {
     size: number;
 }
 
-const Rubik: React.FC<RubikType> = ({ withAnimation = "rollY", sides, size }) => {
+const Rubik = ({ withAnimation = "rollY", sides, size }: RubikType) => {
     const wrapper = React.useRef<HTMLDivElement | null>(null);
 
     // TODO dropselect to have all animations available

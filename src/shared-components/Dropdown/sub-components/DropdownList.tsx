@@ -8,9 +8,10 @@ export type DropdownPositionType = "top" | "right" | "bottom" | "left";
 
 type DropdownListType = {
     position: DropdownPositionType;
+    children?: React.ReactNode;
 };
 
-const DropdownList: React.FC<DropdownListType> = ({ position, children }) => {
+const DropdownList = ({ position, children }: DropdownListType) => {
     const { isOpen } = React.useContext(DropdownContext);
     const classes = classNames(
         styles.drop_content,

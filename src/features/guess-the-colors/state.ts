@@ -103,7 +103,7 @@ export const guessGameData: GuessGameDataType = {
     },
 };
 
-const { colorsToGuess, colorsToUse, attemptCount, colorPalette, invalidColor } = guessGameData;
+const { colorsToUse, attemptCount, colorPalette } = guessGameData;
 
 export const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((item, idx) => {
     return {
@@ -112,27 +112,16 @@ export const setup: IguessGameItem[] = colorPalette.slice(0, colorsToUse).map((i
     };
 });
 
-export const initialResults = createArray(colorsToGuess).map(_ => 0);
-
-export const initialPlayerCombo: IguessGameItem[] = createArray(colorsToGuess).map((_, idx) => ({
-    id: 1000 + idx,
-    color: invalidColor,
-}));
-
-const newGame: IguessGameItem[] = shuffle(setup).slice(0, colorsToGuess);
-
 export const initialState: IguessGame = {
     baseColors: setup,
-    gameCombo: newGame,
-    attempts: createArray(attemptCount).map((_, idx) => {
-        return {
-            id: 10001 + idx,
-            playerCombo: initialPlayerCombo,
-            results: [],
-            selected: false,
-            base: setup,
-        };
-    }),
+    gameCombo: [],
+    attempts: createArray(attemptCount).map((_, idx) => ({
+        id: 10001 + idx,
+        playerCombo: [],
+        results: [],
+        selected: false,
+        base: setup,
+    })),
     finished: false,
     errorMessage: null,
 };

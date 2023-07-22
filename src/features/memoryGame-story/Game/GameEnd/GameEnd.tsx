@@ -8,9 +8,10 @@ import styles from "./GameEnd.module.scss";
 interface GameEndProps {
     count: number;
     isGameFinished: boolean;
+    children?: React.ReactNode;
 }
 
-const GameEnd: React.FC<GameEndProps> = ({ children, count, isGameFinished }) => {
+const GameEnd = ({ children, count, isGameFinished }: GameEndProps) => {
     const endMessage = msg.CONGRATS.replace("x", String(count));
 
     if (!isGameFinished) return null;

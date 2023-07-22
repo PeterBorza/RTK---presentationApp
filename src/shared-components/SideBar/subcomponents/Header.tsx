@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { Button } from "shared-components";
 
 import classNames from "classnames";
@@ -11,7 +9,7 @@ interface HeaderProps {
     onClose: () => void;
 }
 
-const Header: FC<HeaderProps> = ({ className, label, onClose }) => {
+const Header = ({ className, label, onClose }: HeaderProps) => {
     const wrapper = classNames(styles.header, className);
     return (
         <header className={wrapper}>

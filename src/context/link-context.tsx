@@ -14,7 +14,7 @@ const init = {
 
 const LinkContext = createContext<LinkContextType>(init);
 
-export const LinkContextProvider: React.FC = ({ children }) => {
+export const LinkContextProvider = ({ children }: { children?: React.ReactNode }) => {
     const links = Object.values(NavLinkUrls);
     const toInternalLink = useCallback((link: NavLinkUrls) => `/${link}`, []);
 
