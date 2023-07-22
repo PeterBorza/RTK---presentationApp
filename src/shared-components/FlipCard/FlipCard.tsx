@@ -5,9 +5,10 @@ const { flip_box, inner, turn } = styles;
 type Props = {
     flipped: boolean;
     toggleFlip?: () => void;
+    children?: React.ReactNode;
 };
 
-const FlipCard: React.FC<Props> = ({ children, flipped, toggleFlip }) => {
+const FlipCard = ({ children, flipped, toggleFlip }: Props) => {
     const classes = classNames(inner, { [turn]: flipped });
     return (
         <div className={flip_box} onClick={toggleFlip}>

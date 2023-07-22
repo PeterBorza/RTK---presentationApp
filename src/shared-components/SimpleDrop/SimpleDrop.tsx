@@ -1,4 +1,4 @@
-import { useState, useRef, FC } from "react";
+import { useState, useRef } from "react";
 import { useOnClickOutside } from "hooks";
 
 import classNames from "classnames";
@@ -8,9 +8,10 @@ export interface DropDownProps {
     title?: string;
     contentStyle?: string | null;
     height: "small" | "medium" | "large" | "xxl";
+    children?: React.ReactNode;
 }
 
-const SimpleDrop: FC<DropDownProps> = ({ children, title = "Click", contentStyle, height }) => {
+const SimpleDrop = ({ children, title = "Click", contentStyle, height }: DropDownProps) => {
     const [drop, setDrop] = useState<boolean>(false);
     const headerRef = useRef<HTMLDivElement>(null);
     const dropDownRef = useRef<HTMLDivElement>(null);

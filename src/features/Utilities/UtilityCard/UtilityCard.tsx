@@ -12,7 +12,7 @@ interface Props {
     unit: UtilityStateUnit;
 }
 
-const UtilityCard: React.FC<Props> = ({ onClick, dark = false, unit }) => {
+const UtilityCard = ({ onClick, dark = false, unit }: Props) => {
     const { readDate, index, consumption, estimate, bill, selected } = unit;
     const classes = classNames(styles.wrapper, {
         [styles.selected]: selected,

@@ -11,16 +11,17 @@ export interface DropContainerProps {
     toggleDisableTrigger?: boolean;
     label?: DropLabelType;
     reset: boolean;
+    children?: React.ReactNode;
 }
 
-const DropdownContainer: React.FC<DropContainerProps> = ({
+const DropdownContainer = ({
     onToggleMenu,
     position = "bottom",
     toggleDisableTrigger = false,
     label = "",
     reset,
     children,
-}) => {
+}: DropContainerProps) => {
     /*
     /* use Dropdown.MenuItem to render the dropdown list !!!
     */

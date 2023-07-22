@@ -60,7 +60,7 @@ const CoinsTable = () => {
             <div className={dataTable}>
                 <ul className={card} tabIndex={1}>
                     <h1 className={_title}>{toProperTitle(sortedTable as string)}</h1>
-                    {sortedByKeys[sortedTable].map(coin => renderCoinCard(coin))}
+                    {sortedByKeys[sortedTable].map(renderCoinCard)}
                 </ul>
             </div>
         </div>

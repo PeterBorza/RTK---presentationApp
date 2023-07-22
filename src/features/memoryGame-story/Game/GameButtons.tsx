@@ -8,9 +8,10 @@ interface GameButtonsProps {
     themes: GameThemeType[];
     onNewGame: (theme: GameTheme) => void;
     dark: boolean;
+    children?: React.ReactNode;
 }
 
-const GameButtons: React.FC<GameButtonsProps> = ({ themes, onNewGame, dark, children }) => {
+const GameButtons = ({ themes, onNewGame, dark, children }: GameButtonsProps) => {
     const buttonColors: Record<number, ButtonColors> = ["violet", "green", "blue"];
 
     return (

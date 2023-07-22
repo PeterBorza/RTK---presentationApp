@@ -33,17 +33,17 @@ const TabMenu = ({ menuItems, onItemClick, darkMode = false }: TabMenuProps) => 
     };
 
     return (
-        <div className={classes}>
+        <ul className={classes}>
             {menuItems.map((item, index) => (
-                <div
+                <li
                     key={`tabMenuItem-${index}`}
                     className={itemClasses(index)}
                     onClick={() => handleItemClick(index)}
                 >
                     {item}
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 };
 

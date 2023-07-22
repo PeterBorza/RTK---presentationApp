@@ -8,7 +8,7 @@ interface MenuItemProps<T> {
     onItemClick: (e: React.MouseEvent<HTMLLIElement>, element: T) => void;
 }
 
-const MenuItem = <T,>({ element, onItemClick }: MenuItemProps<T>) => {
+const MenuItem = <T extends React.ReactNode>({ element, onItemClick }: MenuItemProps<T>) => {
     const listElementStyles = classNames(styles.dropSelect__item);
 
     const handleMenuItemClick = (e: React.MouseEvent<HTMLLIElement>, element: T) => {

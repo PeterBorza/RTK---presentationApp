@@ -1,14 +1,14 @@
-import { FC, FormEvent } from "react";
+import { FormEvent } from "react";
 
 import { CustomIcon, InputCard } from "shared-components";
-import { UtilityStateUnit, UtilityTableLabels } from "..";
 import { useForm } from "hooks";
-
-import EditCell from "./EditCell";
 import { icons } from "utils";
 
-import styles from "./EditCard.module.scss";
 import { FormProps } from "../types";
+import { UtilityStateUnit, UtilityTableLabels } from "..";
+import EditCell from "./EditCell";
+
+import styles from "./EditCard.module.scss";
 
 type Props = {
     resetEdit: () => void;
@@ -16,7 +16,7 @@ type Props = {
     units: UtilityStateUnit[];
 };
 
-const EditFormCard: FC<UtilityStateUnit & Props> = ({ resetEdit, editUnit, units, ...unit }) => {
+const EditFormCard = ({ resetEdit, editUnit, units, ...unit }: UtilityStateUnit & Props) => {
     const { readDate, index, consumption, estimate, bill, id } = unit;
     const { values, changeHandler } = useForm<FormProps>({
         readDate,

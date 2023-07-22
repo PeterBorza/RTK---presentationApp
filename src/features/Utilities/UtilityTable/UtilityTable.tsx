@@ -1,9 +1,12 @@
-import { FC } from "react";
-
 import classNames from "classnames";
 import styles from "./UtilityTable.module.scss";
 
-const UtilityTable: FC<{ dark?: boolean }> = ({ dark = false, children }) => {
+interface TableProps {
+    dark?: boolean;
+    children?: React.ReactNode;
+}
+
+const UtilityTable = ({ dark = false, children }: TableProps) => {
     const wrapper = classNames(styles.container, {
         [styles.container__dark]: dark,
     });

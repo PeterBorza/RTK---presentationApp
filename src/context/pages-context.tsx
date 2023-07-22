@@ -12,9 +12,9 @@ import { Building } from "features/building-story";
 import SlideContainer from "features/slide-show";
 import CoinsTable from "features/coins";
 
-export const PagesContext = createContext<PagesType<JSX.Element>[] | null>(null);
+export const PagesContext = createContext<PagesType<React.ReactNode>[] | null>(null);
 
-export const PagesContextProvider: React.FC = ({ children }) => {
+export const PagesContextProvider = ({ children }: { children?: React.ReactNode }) => {
     const pages: {} = {
         "Input examples": <InputExamples />,
         Rubik: <MyRubik withAnimation />,
@@ -38,7 +38,7 @@ export const PagesContextProvider: React.FC = ({ children }) => {
                 id: sanitise(label),
                 label,
                 content,
-            } as PagesType<JSX.Element>),
+            } as PagesType<React.ReactNode>),
     );
 
     return <PagesContext.Provider value={renderMyPages}>{children}</PagesContext.Provider>;

@@ -9,7 +9,7 @@ type TriggerProps = {
     reset: boolean;
 };
 
-const Trigger: React.FC<TriggerProps> = ({ onToggleMenu, isDisabled, label, reset = false }) => {
+const Trigger = ({ onToggleMenu, isDisabled, label, reset = false }: TriggerProps) => {
     const { isOpen, triggerName, setTriggerName, toggle } = React.useContext(DropdownContext);
 
     React.useEffect(() => {

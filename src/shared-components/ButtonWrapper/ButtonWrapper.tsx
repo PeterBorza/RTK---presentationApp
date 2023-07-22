@@ -4,11 +4,12 @@ import classNames from "classnames";
 type Props = {
     dark?: boolean;
     position?: "start" | "center" | "end";
+    children?: React.ReactNode;
 };
 
 // TODO fix position related issue
 
-const ButtonWrapper: React.FC<Props> = ({ children, dark = false, position = "end" }) => {
+const ButtonWrapper = ({ children, dark = false, position = "end" }: Props) => {
     const buttonWrapper = classNames(styles.buttonWrapper, [styles[`buttonWrapper--${position}`]], {
         [styles.buttonWrapper__dark]: dark,
     });

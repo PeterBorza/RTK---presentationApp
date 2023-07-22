@@ -1,14 +1,13 @@
-import { FC } from "react";
-
 import styles from "./Controls.module.scss";
 
 interface Props {
     count: number;
     dark?: boolean;
     label: string;
+    children?: React.ReactNode;
 }
 
-const Controls: FC<Props> = ({ children, count, dark, label }) => {
+const Controls = ({ children, count, dark, label }: Props) => {
     return (
         <div className={styles.controls}>
             <div className={styles.clicks}>

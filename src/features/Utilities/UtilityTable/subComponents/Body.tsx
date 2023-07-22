@@ -1,16 +1,12 @@
-import { FC } from "react";
 import styles from "../UtilityTable.module.scss";
 
 type BodyProps = {
     className?: string;
+    children?: React.ReactNode;
 };
 
-const Body: FC<BodyProps> = ({ className, children }) => {
-    return (
-        <div className={!className ? `${styles.tableBody}` : className}>
-            {children}
-        </div>
-    );
+const Body = ({ className, children }: BodyProps) => {
+    return <div className={!className ? `${styles.tableBody}` : className}>{children}</div>;
 };
 
 export default Body;

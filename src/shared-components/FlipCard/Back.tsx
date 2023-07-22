@@ -5,9 +5,10 @@ import styles from "./FlipCard.module.scss";
 
 export type Props = {
     darkBack: boolean;
+    children?: React.ReactNode;
 };
 
-const Back: React.FC<Props> = ({ children, darkBack }) => {
+const Back = ({ children, darkBack }: Props) => {
     const backFlipClasses = classNames(styles.back, {
         [styles.black_bg]: darkBack,
     });

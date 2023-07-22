@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import { Lift as LiftProps } from "../state";
 import { actions } from "../liftSlice";
@@ -14,7 +14,7 @@ type Props = {
     data: LiftProps;
 };
 
-const LiftSystem: FC<Props> = ({ showPanel = true, data }) => {
+const LiftSystem = ({ showPanel = true, data }: Props) => {
     const { moveLift, stopLift } = actions;
     const { levels, speed, dispatch } = useLiftRedux();
     const { direction, isMoving, name, position } = data;

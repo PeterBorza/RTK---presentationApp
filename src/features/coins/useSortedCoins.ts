@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { COINS_URL, LinkUrls } from "app";
 import { useFetch } from "hooks";
@@ -16,21 +16,24 @@ const useSortedCoins = () => {
     const [selected, setSelected] = useState<PartialCoins>({});
     const [sortedTable, setSortedTable] = useState<keyof SortedbyKeysType>("data");
 
-    const sortedByKeys: SortedbyKeysType = {
-        released: sortData<CoinsInterface>({
-            data: data ?? [],
-            dataProperty: "released",
+    const sortedByKeys: SortedbyKeysType = useMemo(
+        () => ({
+            released: sortData<CoinsInterface>({
+                data: data ?? [],
+                dataProperty: "released",
+            }),
+            count: sortData<CoinsInterface>({
+                data: data ?? [],
+                dataProperty: "count",
+            }),
+            theme: sortData<CoinsInterface>({
+                data: data ?? [],
+                dataProperty: "theme",
+            }),
+            data: data || [],
         }),
-        count: sortData<CoinsInterface>({
-            data: data ?? [],
-            dataProperty: "count",
-        }),
-        theme: sortData<CoinsInterface>({
-            data: data ?? [],
-            dataProperty: "theme",
-        }),
-        data: data || [],
-    };
+        [sortData, data],
+    );
 
     const selectCoinHandler = (id: string) => {
         const selection = data?.find(coin => coin.id === id) ?? ({} as CoinsInterface);

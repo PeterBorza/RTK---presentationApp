@@ -12,13 +12,14 @@ interface NeonButtonProps {
     color?: ButtonColors;
     mirrorEffect?: boolean;
     animated?: boolean;
+    children?: React.ReactNode;
 }
 
 const buttonSides = ["top", "right", "bottom", "left"];
 
 const { neon, neon__mirrorEffect: mirror, span } = styles;
 
-const NeonButton: React.FC<NeonButtonProps> = ({
+const NeonButton = ({
     children,
     onClick,
     onContextMenuClick,
@@ -26,7 +27,7 @@ const NeonButton: React.FC<NeonButtonProps> = ({
     color = "green",
     mirrorEffect = false,
     animated = true,
-}) => {
+}: NeonButtonProps) => {
     const classes = classNames(neon, [styles[`neon__${color}`]], {
         [mirror]: mirrorEffect,
     });

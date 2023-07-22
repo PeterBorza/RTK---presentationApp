@@ -21,7 +21,7 @@ const initialContext: IDropContext = {
 
 export const DropdownContext = React.createContext<IDropContext>(initialContext);
 
-export const DropdownContextProvider: React.FC = ({ children }) => {
+export const DropdownContextProvider = ({ children }: { children?: React.ReactNode }) => {
     const [isOpen, toggle, setIsOpen] = useToggle(false);
     const [triggerName, setTriggerName] = React.useState<TriggerNameType>("");
 

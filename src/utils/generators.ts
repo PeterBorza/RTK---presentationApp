@@ -20,8 +20,8 @@ interface ResultedObjectType {
     [key: string]: string;
 }
 
-export const arrToObject = (arr: string[], cb: (val?: string, index?: number) => {}) =>
-    arr.reduce<ResultedObjectType[]>((acc, value, index) => {
+export const arrToObject = (arr: string[], cb: (val?: string, index?: number) => void) =>
+    [...arr].reduce<ResultedObjectType[]>((acc, value, index) => {
         return { ...acc, [value]: cb(value, index) };
     }, []);
 
