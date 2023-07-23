@@ -1,4 +1,4 @@
-import { shuffle, createArray } from "utils";
+import { createArray } from "utils";
 
 export type AttemptId = {
     id: number;
