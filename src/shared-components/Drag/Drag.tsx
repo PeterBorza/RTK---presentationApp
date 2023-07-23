@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DndContext, DragEndEvent, UniqueIdentifier, closestCenter } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
 import {
     SortableContext,
     SortingStrategy,

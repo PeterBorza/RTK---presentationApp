@@ -1,9 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AppDispatch, BUBBLES_URL, GetState, RootState } from "app";
 import { setBubbles, setPending, setError, deleteBub, addBubble } from "./bubbleSlice";
-import { Bubble, BubbleCssProps, BubbleState } from "./types";
-
-const getNewBubbleid = (state: BubbleState) => {};
+import { Bubble, BubbleCssProps } from "./types";
 
 const getAsyncBubbles = async (
     url: string,

@@ -32,7 +32,7 @@ const useSortedCoins = () => {
             }),
             data: data || [],
         }),
-        [sortData, data],
+        [data],
     );
 
     const selectCoinHandler = (id: string) => {

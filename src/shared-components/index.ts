@@ -39,6 +39,7 @@ import UserField from "./UserField";
 import AnimatedDropdown from "./AnimatedDropdown";
 import WarningModal from "./WarningModal";
 import { Drag, SortableItem } from "./Drag";
+import Droppable from "./Droppable";
 
 // TODO create split screen component
 
@@ -87,6 +88,7 @@ export {
     WarningModal,
     Drag,
     SortableItem,
+    Droppable,
 };
 
 // TODO create warning modal with "are you sure you want to"...

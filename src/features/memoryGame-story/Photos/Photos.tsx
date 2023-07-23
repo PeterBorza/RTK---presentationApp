@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
@@ -19,23 +19,6 @@ const Photos = () => {
     const openSidePanel = useCallback(() => dispatch(togglePhotos(true)), [dispatch]);
 
     //  TODO Photos and Photo with landing page do not belong to memorygame!! extract and images // folder as well
-
-    const renderLinks = useMemo(
-        () => (
-            <div className={styles.linkWrapper}>
-                {photos.map(photo => (
-                    <Link className={styles.links} key={photo.id} to={photo.id}>
-                        <span>{photo.caption}</span>
-                    </Link>
-                ))}
-                <br />
-                <Link to={toInternalLink(NavLinkUrls.PHOTOS)} className={styles.links}>
-                    <span onClick={closeSidePanel}>{PhotosMessages.RETURN_LINK}</span>
-                </Link>
-            </div>
-        ),
-        [photos, closeSidePanel, toInternalLink],
-    );
 
     const links = photos.map(photo => (
         <Link className={styles.links} key={photo.id} to={photo.id}>
