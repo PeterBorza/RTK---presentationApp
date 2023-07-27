@@ -1,0 +1,9 @@
+.container {
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    border-radius: 150px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+}

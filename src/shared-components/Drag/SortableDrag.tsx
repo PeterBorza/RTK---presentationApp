@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ElementType, ReactNode } from "react";
 
-import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, DragStartEvent, closestCenter } from "@dnd-kit/core";
 import {
     SortableContext,
     SortingStrategy,
@@ -9,6 +9,7 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import SortableItem from "./SortableItem";
 
 type Strategies = "horizontal" | "vertical";
 export type DragItemsType = string[];
@@ -16,11 +17,20 @@ export type DragItemsType = string[];
 interface DragProps {
     items: DragItemsType;
     onDragEnd: (items: DragItemsType) => void;
-    children?: React.ReactNode;
+    onDragStart?: (id: string) => void;
     sortingStrategy?: Strategies;
+    className?: string;
+    sortableItem: (id: string, isDragging?: boolean) => React.ReactNode;
 }
 
-const Drag = ({ children, items, onDragEnd, sortingStrategy = "vertical" }: DragProps) => {
+const SortableDrag = ({
+    items,
+    onDragEnd,
+    onDragStart,
+    sortingStrategy = "vertical",
+    sortableItem,
+    className,
+}: DragProps) => {
     const strategies: Record<Strategies, SortingStrategy> = {
         horizontal: horizontalListSortingStrategy,
         vertical: verticalListSortingStrategy,
@@ -36,17 +46,31 @@ const Drag = ({ children, items, onDragEnd, sortingStrategy = "vertical" }: Drag
             onDragEnd(newItems);
         }
     };
+
+    const dragStartHandler = (event: DragStartEvent) => {
+        const { active } = event;
+        onDragStart && onDragStart(active.id.toString());
+    };
     return (
         <DndContext
             collisionDetection={closestCenter}
             onDragEnd={dragEndHandler}
+            onDragStart={dragStartHandler}
             modifiers={[restrictToVerticalAxis]}
         >
             <SortableContext items={items} strategy={strategies[sortingStrategy]}>
-                {children}
+                <div className={className}>
+                    {items.map(str => (
+                        <SortableItem
+                            key={str}
+                            id={str}
+                            getContent={isDragging => sortableItem(str, isDragging)}
+                        />
+                    ))}
+                </div>
             </SortableContext>
         </DndContext>
     );
 };
 
-export default Drag;
+export default SortableDrag;

@@ -1,5 +1,7 @@
 @use "css" as *;
 
+// TODO elements are not clickable under dropdown content
+
 @mixin onHover {
     display: block;
     overflow: scroll;

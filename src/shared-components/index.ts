@@ -38,8 +38,8 @@ import GradientText from "./GradientText";
 import UserField from "./UserField";
 import AnimatedDropdown from "./AnimatedDropdown";
 import WarningModal from "./WarningModal";
-import { Drag, SortableItem } from "./Drag";
-import Droppable from "./Droppable";
+import { SimpleDrag, SortableDrag, SortableItem, Droppable, Draggable } from "./Drag";
+import Container from "./Container";
 
 // TODO create split screen component
 
@@ -86,9 +86,10 @@ export {
     UserField,
     AnimatedDropdown,
     WarningModal,
-    Drag,
+    SimpleDrag,
+    SortableDrag,
     SortableItem,
     Droppable,
+    Draggable,
+    Container,
 };
-
-// TODO create warning modal with "are you sure you want to"...

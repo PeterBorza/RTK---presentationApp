@@ -1,2 +1,7 @@
-export { default as Drag } from "./Drag";
-export { default as SortableItem } from "./SortableItem";
+import SortableDrag from "./SortableDrag";
+import SortableItem from "./SortableItem";
+import SimpleDrag from "./SimpleDrag";
+import Draggable from "./Draggable";
+import Droppable from "./Droppable";
+
+export { SortableDrag, SortableItem, SimpleDrag, Draggable, Droppable };
