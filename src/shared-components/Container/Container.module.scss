@@ -1,0 +1,130 @@
+@use "css" as *;
+
+$transition: 200ms ease-in-out;
+$componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1);
+
+.container {
+    position: relative;
+    display: flex;
+    box-shadow: $componentShadow;
+    overflow: scroll;
+
+    &__medium {
+        width: max(320px, 70%);
+        height: 75vh;
+    }
+
+    &__fullScreen {
+        width: 100%;
+        height: calc(100vh - $navHeight - 10vh);
+    }
+
+    &__darkMode {
+        color: white;
+        box-shadow: $componentShadow;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    transition: padding $transition;
+
+    &__sideBar_open {
+        padding-left: max(100px, 20%);
+    }
+}
+
+.header {
+    padding: 0 2rem;
+    width: 100%;
+    height: min(10vh, 10%);
+    box-shadow: $componentShadow;
+}
+
+.body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $componentShadow;
+    margin: 0.3rem;
+}
+
+.sideBar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: max(100px, 20%);
+    translate: -100%;
+    transition: translate $transition;
+    @include fCenter();
+
+    &__open {
+        translate: 0%;
+        box-shadow: $componentShadow;
+    }
+
+    &__covering {
+        &Dark {
+            background-color: $darkMode;
+        }
+
+        &Light {
+            background-color: white;
+        }
+    }
+}
+
+@mixin hovering {
+    transition: $transition;
+    transition-property: background-color;
+    &:hover {
+        background-color: whitesmoke;
+    }
+}
+
+.chevron {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: -15px;
+    top: 1rem;
+    border-radius: 50%;
+    box-shadow: $componentShadow;
+    @include fCenter();
+    background-color: white;
+    transition: $transition;
+    transition-property: right, top, background-color;
+    cursor: pointer;
+
+    &:hover {
+        @include hovering();
+    }
+
+    @include darkModeSelector($darkMode);
+
+    &__darkMode {
+        &:hover {
+            box-shadow: 2px 2px 10px rgba(255 255 255 / 0.2);
+        }
+    }
+
+    &__hidden {
+        right: -30px;
+        top: 3rem;
+        box-shadow: none;
+        &:hover {
+            box-shadow: 2px 2px 10px rgba(255 255 255 / 0.2);
+            @include hovering();
+        }
+    }
+
+    svg {
+        fill: $appYellow;
+    }
+}

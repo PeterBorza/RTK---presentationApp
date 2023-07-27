@@ -12,6 +12,7 @@ import ScrollTester from "features/tester-pages";
 import { UtilityContainer, UtilityPlatform } from "features/Utilities";
 import { Gas } from "features/Gas";
 import { Light } from "features/Light";
+import DragContainer from "features/drag-api/DragContainer";
 
 const appRoutes: RouteObject[] = [
     {
@@ -61,6 +62,10 @@ const appRoutes: RouteObject[] = [
             {
                 path: NavLinkUrls.TESTER,
                 element: <ScrollTester />,
+            },
+            {
+                path: NavLinkUrls.DRAG,
+                element: <DragContainer />,
             },
             {
                 path: "*",

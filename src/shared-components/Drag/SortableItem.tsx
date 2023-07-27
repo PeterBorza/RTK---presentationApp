@@ -4,7 +4,7 @@ import { CSSProperties } from "react";
 
 interface SortableProps {
     id: string;
-    getContent: (isDragging: boolean) => React.ReactNode;
+    getContent: (isDragging?: boolean) => React.ReactNode;
 }
 
 const SortableItem = ({ id, getContent }: SortableProps) => {
@@ -16,8 +16,7 @@ const SortableItem = ({ id, getContent }: SortableProps) => {
     const style: CSSProperties = {
         transform: CSS.Transform.toString(transform),
         transition,
-        backgroundColor: isDragging ? "violet" : "darkgoldenrod",
-        opacity: isOver ? 0.5 : 1,
+        opacity: isOver ? 0.8 : 1,
     };
 
     return (

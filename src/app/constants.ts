@@ -24,6 +24,7 @@ export enum NavLinkUrls {
     PHOTOS = "photos",
     FEATURES = "features",
     TESTER = "tester",
+    DRAG = "d'n'd",
 }
 
 export const urlToLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" : item);

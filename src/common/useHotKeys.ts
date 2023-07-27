@@ -1,8 +1,10 @@
 import { NavLinkUrls } from "app";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useHotKeys = () => {
-    const [currentKey, setCurrentKey] = useState("/");
+    const navigate = useNavigate();
+    const [currentKey, setCurrentKey] = useState("");
 
     const features: Record<string, NavLinkUrls> = useMemo(
         () => ({
@@ -17,20 +19,22 @@ const useHotKeys = () => {
 
     const handleMenuKBNavigation = useCallback(
         (e: KeyboardEvent) => {
-            // if (e.key === "L") window.location.href = `${NavLinkUrls.FEATURES}#lift`;
             if (features[e.key] && e.shiftKey) setCurrentKey(features[e.key]);
         },
-        [features, setCurrentKey],
+        [features, currentKey],
     );
 
-    window.addEventListener("keydown", handleMenuKBNavigation);
+    useEffect(() => {
+        currentKey && navigate(currentKey);
+    }, [currentKey, navigate]);
 
     useEffect(() => {
-        window.removeEventListener("keydown", handleMenuKBNavigation);
+        window.addEventListener("keydown", handleMenuKBNavigation);
         setCurrentKey("");
+        return () => window.removeEventListener("keydown", handleMenuKBNavigation);
     }, [handleMenuKBNavigation]);
 
-    return currentKey;
+    return null;
 };
 
 export default useHotKeys;

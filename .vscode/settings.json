@@ -1,7 +1,7 @@
 {
     "folderTemplates.structures": [
         {
-            "name": "My Custom Template",
+            "name": "React Component Barrel",
             "omitParentDirectory": false,
             "openFilesWhenDone": ["Typescript Functional Component"],
             "structure": [
