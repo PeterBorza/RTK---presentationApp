@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import { NavLinkUrls, updateDarkMode, useAppRedux } from "app";
 import { useLocalStorage, useWindowSize } from "hooks";
-import { useLinkContext } from "context";
+import { useLinkContext } from "providers";
 import { LocalStorageKeys } from "common/localStorageKeys";
 import { ToggleButton } from "shared-components";
 

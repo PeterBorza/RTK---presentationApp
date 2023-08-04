@@ -21,7 +21,7 @@ const Container = ({
     darkMode = false,
 }: ContainerProps) => {
     const [openMenu, setOpenMenu] = useState(false);
-    const { left, right, bars } = icons;
+    const { left, bars } = icons;
 
     const containerClasses = classNames(styles.container, [styles[`container__${size}`]], {
         [styles.container__darkMode]: darkMode,

@@ -1,14 +1,17 @@
 import React, { ReactNode, useState } from "react";
 
-import { useAppRedux } from "app";
+import { COINS_URL, LinkUrls, useAppRedux } from "app";
 
 import styles from "./Home.module.scss";
-import { AnimatedDropdown, TabMenu, SortableDrag } from "shared-components";
+import { AnimatedDropdown, TabMenu, SortableDrag, Loader } from "shared-components";
 import { createArray } from "utils/generators";
 import classNames from "classnames";
 import { DragItemsType } from "shared-components/Drag/SortableDrag";
 import ColorBall from "features/guess-the-colors/game-components/guess-with-drag/GuessGame/sub-components/ColorBall/ColorBall";
 import { GuessGame } from "features/guess-the-colors/game-components/guess-with-drag";
+import { useQueryHook } from "providers";
+import { jsonUsersUrl, urlStack } from "providers/tanstack-react-query";
+import { CoinsInterface } from "features/coins/types";
 
 const { container, container__darkMode: dark } = styles;
 
@@ -49,7 +52,28 @@ const objectToDrag = [
         label: "four",
     },
 ];
+
+export interface Users {
+    id: number;
+    name: string;
+    username: string;
+}
 const Home = () => {
+    const { resData, isLoading, dataUpdatedAt } = useQueryHook<Users[]>({
+        key: "json-placeholder",
+        url: jsonUsersUrl,
+    });
+
+    const { resData: coins } = useQueryHook<CoinsInterface[]>({
+        key: "coins",
+        url: `${COINS_URL}/${LinkUrls.COINS}`,
+    });
+
+    console.log("COINS", coins);
+
+    const time = new Date(dataUpdatedAt).toLocaleTimeString();
+
+    console.log({ resData, dataUpdatedAt });
     const [dragStrings, setDragStrings] = useState(strings);
     const { isDarkMode } = useAppRedux();
     const dropItems: ReactNode[] = createArray(10)
@@ -69,6 +93,7 @@ const Home = () => {
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
+            {isLoading ? <Loader /> : <p>{time}</p>}
             {/* <SortableDrag
                 items={dragStrings}
                 onDragEnd={onDragEndHandler}

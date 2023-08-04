@@ -7,7 +7,7 @@ import { AsidePlatform } from "shared-components";
 import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
-import { useLinkContext } from "context";
+import { useLinkContext } from "providers";
 import { getAsyncUtility } from "features/Gas/thunks";
 import { getLight } from "features/Light/thunks";
 

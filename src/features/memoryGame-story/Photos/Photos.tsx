@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
-import { useLinkContext } from "context/link-context";
+import { useLinkContext } from "providers";
 
 import { AnimatedDropdown, AsidePlatform } from "shared-components";
 

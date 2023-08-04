@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, RefObject } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import styles from "./ScrollTable.module.scss";
 
