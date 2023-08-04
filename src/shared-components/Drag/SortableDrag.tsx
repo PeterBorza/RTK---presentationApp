@@ -1,4 +1,4 @@
-import React, { ElementType, ReactNode } from "react";
+import React from "react";
 
 import { DndContext, DragEndEvent, DragStartEvent, closestCenter } from "@dnd-kit/core";
 import {

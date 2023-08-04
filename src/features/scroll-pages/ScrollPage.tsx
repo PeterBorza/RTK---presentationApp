@@ -1,5 +1,5 @@
 import { ScrollPage as Pages } from "shared-components";
-import { usePagesContext } from "context";
+import { usePagesContext } from "providers";
 import { NavLinkUrls, useAppRedux } from "app";
 
 const ScrollPage = () => {

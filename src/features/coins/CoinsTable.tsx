@@ -25,8 +25,14 @@ const {
 
 const CoinsTable = () => {
     const { isDarkMode } = useAppRedux();
-    const { error, selected, sortedTable, setSortedTable, sortedByKeys, selectCoinHandler } =
-        useSortedCoins();
+    const {
+        isError: error,
+        selected,
+        sortedTable,
+        setSortedTable,
+        sortedByKeys,
+        selectCoinHandler,
+    } = useSortedCoins();
 
     const rowClasses = (coinId: string) =>
         classNames(_table_row, {

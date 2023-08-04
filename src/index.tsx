@@ -1,17 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
 
-import AppRoutes, { store } from "app";
-import { PagesContextProvider } from "context";
+import AppRoutes from "app";
+import Providers from "providers/providers";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <PagesContextProvider>
-                <AppRoutes />
-            </PagesContextProvider>
-        </Provider>
+        <Providers>
+            <AppRoutes />
+        </Providers>
     </React.StrictMode>,
     document.getElementById("root"),
 );
