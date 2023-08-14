@@ -1,4 +1,3 @@
-import React from "react";
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { App, LinkUrls, Error, NavLinkUrls } from "app";

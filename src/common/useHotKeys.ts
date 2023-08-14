@@ -13,6 +13,7 @@ const useHotKeys = () => {
             P: NavLinkUrls.PHOTOS,
             T: NavLinkUrls.TESTER,
             U: NavLinkUrls.UTILITIES,
+            D: NavLinkUrls.DRAG,
         }),
         [],
     );

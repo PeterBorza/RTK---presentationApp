@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DropSelect } from "shared-components";
+import { DropSelect, Loader } from "shared-components";
 import { CoinsInterface } from "./types";
 import useSortedCoins from "./useSortedCoins";
 
@@ -27,6 +27,7 @@ const CoinsTable = () => {
     const { isDarkMode } = useAppRedux();
     const {
         isError: error,
+        isLoading,
         selected,
         sortedTable,
         setSortedTable,
@@ -52,6 +53,8 @@ const CoinsTable = () => {
             <h2>{coin.released}</h2>
         </li>
     );
+
+    if (isLoading) return <Loader />;
 
     return (
         <div className={_content}>
