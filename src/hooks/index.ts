@@ -13,3 +13,4 @@ export { default as useValidation } from "./useValidation";
 export { default as useDebounce } from "./useDebounce";
 export { default as useToggle } from "./useToggle";
 export { default as useSearch } from "./useSearch";
+export { default as useAnimatedCount } from "./useAnimatedCount";

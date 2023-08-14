@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 
-import { COINS_URL, LinkUrls } from "app";
 import { sortData } from "utils";
 import { CoinsInterface, PartialCoins } from "./types";
-import { useQueryHook } from "providers";
+import { useCoins } from "./thunks";
 
 interface SortedbyKeysType {
     [key: string]: CoinsInterface[];
@@ -12,10 +11,7 @@ interface SortedbyKeysType {
 // TODO see how you can implement order as argument for useSort();
 
 const useSortedCoins = () => {
-    const { resData: data, isError } = useQueryHook<CoinsInterface[]>({
-        key: "coins",
-        url: `${COINS_URL}/${LinkUrls.COINS}`,
-    });
+    const { data, isError, isLoading } = useCoins();
     const [selected, setSelected] = useState<PartialCoins>({});
     const [sortedTable, setSortedTable] = useState<keyof SortedbyKeysType>("data");
 
@@ -46,6 +42,7 @@ const useSortedCoins = () => {
     return {
         data,
         isError,
+        isLoading,
         selected,
         setSelected,
         sortedTable,

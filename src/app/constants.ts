@@ -16,6 +16,7 @@ export enum LinkUrls {
     GAME = "game",
     RUBIK = "rubik",
     COINS = "coins",
+    COLORS = "colorSets",
 }
 
 export enum NavLinkUrls {

@@ -19,11 +19,10 @@ export const LinkContextProvider = ({ children }: { children?: React.ReactNode }
     const toInternalLink = useCallback((link: NavLinkUrls) => `/${link}`, []);
 
     const context: LinkContextType = useMemo(
-        () =>
-            ({
-                links,
-                toInternalLink,
-            } as LinkContextType),
+        () => ({
+            links,
+            toInternalLink,
+        }),
         [links, toInternalLink],
     );
 

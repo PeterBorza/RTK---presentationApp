@@ -33,7 +33,7 @@ const Navigation = () => {
     }, [dispatch, isDark, isDarkMode]);
 
     return (
-        <div ref={ref} className={styles.nav}>
+        <nav ref={ref} className={styles.nav}>
             {!SMALL_SCREEN ? (
                 <ul className={styles.list}>
                     <NavBar links={links} />
@@ -47,7 +47,7 @@ const Navigation = () => {
                 toggleEnabled={() => setIsDark(!isDark)}
                 darkMode={isDarkMode}
             />
-        </div>
+        </nav>
     );
 };
 
