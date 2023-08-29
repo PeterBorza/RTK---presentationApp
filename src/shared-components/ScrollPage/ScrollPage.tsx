@@ -6,19 +6,23 @@ import { NavLinkUrls } from "app";
 import styles from "./ScrollPage.module.scss";
 import classNames from "classnames";
 
-export interface PagesType<T> {
+export interface PagesType<T extends React.ReactNode> {
     id: string;
     label?: string;
     content: T;
 }
 
-export interface ScrollProps<T> {
+export interface ScrollProps<T extends React.ReactNode> {
     pages: PagesType<T>[] | null;
     baseUrl: NavLinkUrls;
     isDarkMode?: boolean;
 }
 
-const ScrollPage = <T,>({ pages, baseUrl, isDarkMode = false }: ScrollProps<T>) => {
+const ScrollPage = <T extends React.ReactNode>({
+    pages,
+    baseUrl,
+    isDarkMode = false,
+}: ScrollProps<T>) => {
     const sectionClasses = classNames(styles.section, {
         [styles.section__darkMode]: isDarkMode,
     });

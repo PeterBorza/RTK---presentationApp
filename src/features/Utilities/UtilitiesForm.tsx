@@ -19,7 +19,7 @@ type ValidationType = Record<keyof FormProps, boolean>;
 // TODO manage index update between items, date issues, sortability, filter by consumption, estimation
 
 const UtilitiesForm = ({ postData, formValues, lastUnit }: UtilityFormProps) => {
-    const modalRef = React.useRef<HTMLDivElement | null>(null);
+    const modalRef = React.useRef<HTMLDivElement>(null);
     const maxIndex = useSelector(maxIndexSelector);
     const { values, changeHandler, resetValues } = useForm<FormProps>(formValues);
 
@@ -54,7 +54,7 @@ const UtilitiesForm = ({ postData, formValues, lastUnit }: UtilityFormProps) => 
             id: uuid(),
             readDate,
             selected: false,
-            index: index,
+            index,
             bill: isBillValid ? bill : "",
             consumption: checkNewConsumption,
             estimate: +estimatedValue.toFixed(2),
@@ -69,8 +69,8 @@ const UtilitiesForm = ({ postData, formValues, lastUnit }: UtilityFormProps) => 
     const renderInputs = Object.entries(values).map(([key, value]) => {
         const index = key === "index";
         const validate: ValidationType = {
-            index: !lowIndex && checkIfValid(value),
-            bill: checkIfValid(value),
+            index: !lowIndex && checkIfValid(value as string),
+            bill: checkIfValid(value as string),
             readDate: true,
         };
 
@@ -78,7 +78,7 @@ const UtilitiesForm = ({ postData, formValues, lastUnit }: UtilityFormProps) => 
             <TextInput
                 key={key}
                 isValid={validate[key as keyof ValidationType]}
-                value={value}
+                value={value as string}
                 name={key}
                 onChange={changeHandler}
                 placeholder={index && lastUnit ? `-- ${lastUnit.index} --` : ""}

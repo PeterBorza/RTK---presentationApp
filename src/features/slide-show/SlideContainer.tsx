@@ -1,3 +1,5 @@
+import React from "react";
+
 import { SlideShow } from "shared-components";
 import * as pics from "utils";
 

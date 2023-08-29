@@ -22,7 +22,7 @@ export const guessGameSlice = createSlice({
             const { id: attemptId, order, item: attempt } = payload;
             const currentAttempt = currentAttemptFinder(state.attempts, attemptId);
             if (currentAttempt !== -1) {
-                let currentCombo = state.attempts[currentAttempt].playerCombo;
+                const currentCombo = state.attempts[currentAttempt].playerCombo;
                 currentCombo[order] = attempt;
             }
         },
@@ -49,7 +49,7 @@ export const guessGameSlice = createSlice({
             state.errorMessage = payload;
         },
         filterBase: ({ attempts }: IguessGame, { payload }: PayloadAction<IguessGameItem>) => {
-            let current = attempts.find(attempt => attempt.id === payload.id);
+            const current = attempts.find(attempt => attempt.id === payload.id);
             if (current) current.base = current.base.filter(item => item.color !== payload.color);
         },
     },

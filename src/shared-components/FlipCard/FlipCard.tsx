@@ -1,3 +1,5 @@
+import React from "react";
+
 import classNames from "classnames";
 import styles from "./FlipCard.module.scss";
 const { flip_box, inner, turn } = styles;

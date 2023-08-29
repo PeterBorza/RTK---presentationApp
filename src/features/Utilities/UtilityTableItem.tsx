@@ -1,3 +1,5 @@
+import React from "react";
+
 import { UtilityStateUnit } from "features/Utilities";
 import UtilityCard from "./UtilityCard";
 import EditCard from "./EditCard";
@@ -24,12 +26,7 @@ const UtilityTableItem = ({
             {!unit.edit ? (
                 <UtilityCard onClick={selectCard} unit={unit} dark={darkMode} />
             ) : (
-                <EditCard
-                    resetEdit={resetEdit}
-                    editUnit={editedUnit => editUnit(editedUnit)}
-                    units={units}
-                    {...unit}
-                />
+                <EditCard resetEdit={resetEdit} editUnit={editUnit} units={units} {...unit} />
             )}
         </li>
     );

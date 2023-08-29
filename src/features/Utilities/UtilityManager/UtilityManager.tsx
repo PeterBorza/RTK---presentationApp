@@ -8,6 +8,7 @@ interface Props {
     isManageActive: boolean;
 }
 
+// eslint-disable-next-line react/display-name
 const UtilityManager = React.forwardRef<HTMLDivElement, Props>(({ icons, isManageActive }, ref) => {
     const wrapper = classNames(styles.manageWrapper, {
         [styles.manageWrapper__selected]: isManageActive,

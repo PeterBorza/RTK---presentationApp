@@ -61,5 +61,5 @@ export const imageData = Object.entries(textForMyImages).map(
             id: key,
             src: value,
             caption: key,
-        } as ImageDataType),
+        }) as ImageDataType,
 );

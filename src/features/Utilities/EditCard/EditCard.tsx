@@ -1,3 +1,4 @@
+import React from "react";
 import { FormEvent } from "react";
 
 import { CustomIcon, InputCard } from "shared-components";
@@ -63,6 +64,7 @@ const EditFormCard = ({ resetEdit, editUnit, units, ...unit }: UtilityStateUnit 
                     onChange={changeHandler}
                     name="readDate"
                     value={values.readDate}
+                    focused
                 />
             </EditCell>
             <EditCell>
@@ -82,7 +84,7 @@ const EditFormCard = ({ resetEdit, editUnit, units, ...unit }: UtilityStateUnit 
             <EditCell>
                 <InputCard size="small" onChange={changeHandler} name="bill" value={values.bill} />
             </EditCell>
-            <EditCell>
+            <div className={styles.editControls}>
                 <button type="submit" className={styles.submitEditButton}>
                     <CustomIcon
                         type="confirm"
@@ -96,7 +98,7 @@ const EditFormCard = ({ resetEdit, editUnit, units, ...unit }: UtilityStateUnit 
                     onClick={resetEdit}
                     icon={icons.cancel}
                 />
-            </EditCell>
+            </div>
         </form>
     );
 };

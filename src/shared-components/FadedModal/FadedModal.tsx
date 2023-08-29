@@ -1,3 +1,5 @@
+import React from "react";
+
 import styles from "./FadedModal.module.scss";
 
 interface Props {

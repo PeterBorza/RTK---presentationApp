@@ -2,7 +2,7 @@ import { RootState } from "app";
 
 export type UnitId = string;
 
-export interface FormProps {
+export interface FormProps extends Record<string, unknown> {
     index: string;
     bill: string;
     readDate: string;

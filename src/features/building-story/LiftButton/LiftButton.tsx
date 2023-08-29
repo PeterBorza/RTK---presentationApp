@@ -4,7 +4,7 @@ import { directionIcons, DirectionType } from "../state";
 
 import classNames from "classnames";
 import styles from "./LiftButton.module.scss";
-interface Props {
+interface Props extends React.ComponentProps<"button"> {
     selected: boolean;
     direction?: DirectionType;
     variant: "shaft" | "panel";
@@ -17,7 +17,7 @@ const LiftButton = ({
     selected,
     direction = "static",
     variant,
-}: Props & React.ComponentProps<"button">) => {
+}: Props) => {
     const classes = classNames(styles.buttonStyle, {
         [styles.buttonStyle__active]: selected,
         [styles.panelButtons]: variant === "panel",

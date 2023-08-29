@@ -77,7 +77,7 @@ const PlayCard = ({ attempt, gameCombo, isFinished, gameData }: PlayCardType) =>
     const handleResults = () => {
         errorHandler();
 
-        let results: ResultType = [];
+        const results: ResultType = [];
         const missing = gameCombo.filter(item => playerCombo.includes(item) === false);
         const included = checkIfIncluded(playerCombo);
         const match = gameCombo.filter((item, index) => item.id === playerCombo[index].id);

@@ -14,6 +14,7 @@ interface WarningModalProps {
     position?: "center" | "top-right";
 }
 
+// eslint-disable-next-line react/display-name
 const WarningModal = React.forwardRef<HTMLDivElement, WarningModalProps>(
     (
         { title, onApply, cancelLabel, applyLabel, onClose, isModalopen, position = "center" },

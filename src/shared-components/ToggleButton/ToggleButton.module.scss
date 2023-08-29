@@ -43,7 +43,9 @@ $sizes: (
     cursor: pointer;
     user-select: none;
     padding: $togglePadding;
-    box-shadow: 1px 1px 3px $myYellow3, inset 1px 1px 10px $toggleButtonColor;
+    box-shadow:
+        1px 1px 3px $myYellow3,
+        inset 1px 1px 10px $toggleButtonColor;
 
     @each $key, $value in $sizes {
         &__#{$key} {
@@ -63,7 +65,6 @@ $sizes: (
     position: absolute;
     left: $togglePadding;
     background-color: $myYellow3;
-    border: 1px solid $myYellow3;
     box-shadow: 1px 1px 10px $myYellow3;
     @include centered();
 

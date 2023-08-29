@@ -1,3 +1,5 @@
+import React from "react";
+
 import styles from "./MenuButton.module.scss";
 import classNames from "classnames";
 import { FaBars } from "react-icons/fa";

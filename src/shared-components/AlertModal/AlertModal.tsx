@@ -11,6 +11,7 @@ type AlertModalProps = {
     children?: JSX.Element;
 };
 
+// eslint-disable-next-line react/display-name
 const AlertModal = React.forwardRef<HTMLDivElement, AlertModalProps>(
     ({ openModal, position = "center", variant = "builder", children, message }, ref) => {
         const modalClasses = classNames(styles.alert_modal, styles[`alert_modal__${position}`], [

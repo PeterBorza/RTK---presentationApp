@@ -21,13 +21,13 @@ const GameControls = ({ baseColors, legend, count }: Props) => {
             </ul>
             <p>
                 Try and guess the right colors and in the right order, by submitting your
-                combinations on the left panel's circle-group.
+                combinations on the left panel&apos;s circle-group.
             </p>
             <p>
                 You have
                 <strong> {count} </strong>
-                attempts, and your score for every turn is reflected in results you're given on each
-                submit.
+                attempts, and your score for every turn is reflected in results you&apos;re given on
+                each submit.
             </p>
             <ul className="ul-list">
                 {legend.map(item => (

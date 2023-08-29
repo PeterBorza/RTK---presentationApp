@@ -127,7 +127,9 @@
 
 @mixin shadow($speed) {
     transition: box-shadow $speed ease;
-    box-shadow: 0px 0px 2px modal-black(0.1), -1px -1px 2px modal-black(0.1);
+    box-shadow:
+        0px 0px 2px modal-black(0.1),
+        -1px -1px 2px modal-black(0.1);
     &:hover {
         box-shadow: 4px 4px 12px modal-black(0.3);
     }
@@ -139,7 +141,9 @@
     &:hover {
         box-shadow: 0 15px 70px 0 modal-black(0.35);
         scale: 1.001;
-        transition: scale 200ms, box-shadow 200ms;
+        transition:
+            scale 200ms,
+            box-shadow 200ms;
     }
 }
 

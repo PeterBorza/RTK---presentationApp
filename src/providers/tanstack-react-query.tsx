@@ -1,5 +1,7 @@
+import React from "react";
+
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();

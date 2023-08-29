@@ -1,14 +1,12 @@
 import { useState } from "react";
 
-interface ReturnForm<T> {
+interface ReturnForm<T extends Record<string, unknown>> {
     values: T;
     changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
     resetValues: () => void;
 }
 
-// TODO generic type T - it takes only an object. Adjust typescript
-
-const useForm = <T>(data: T): ReturnForm<T> => {
+const useForm = <T extends Record<string, unknown>>(data: T): ReturnForm<T> => {
     const [values, setValues] = useState<T>(data);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

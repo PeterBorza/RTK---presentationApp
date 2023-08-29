@@ -1,3 +1,4 @@
+import React from "react";
 import { useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 
@@ -100,13 +101,9 @@ const LightTable = () => {
                     message={Error.MESSAGE}
                     variant="text"
                 />
-                <Table
-                    renderHeaders={() => renderHeaders}
-                    ref={tableRef}
-                    children={
-                        isLoading ? <Loader message={Pending.MESSAGE} /> : renderLightTableItems
-                    }
-                />
+                <Table renderHeaders={() => renderHeaders} ref={tableRef}>
+                    {isLoading ? <Loader message={Pending.MESSAGE} /> : renderLightTableItems}
+                </Table>
             </UtilityTable.Body>
             <UtilityTable.Footer>
                 <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />

@@ -43,7 +43,7 @@ const BubbleContainer = () => {
             displayed: !isBubbles,
         },
         {
-            onClick: () => dispatch(deleteBubble(selected!!.id)),
+            onClick: () => selected && dispatch(deleteBubble(selected.id)),
             value: msg.DELETE,
             isDisabled: !selected,
             displayed: isBubbles,

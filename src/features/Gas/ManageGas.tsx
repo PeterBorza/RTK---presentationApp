@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useAppRedux } from "app";
 import { useSelector } from "react-redux";
 
@@ -12,8 +12,8 @@ import { togglePayedBill } from "./thunks";
 interface Props {
     openModal: () => void;
 }
-
-const ManageGas = React.forwardRef<HTMLDivElement, Props>(({ openModal }, ref) => {
+// eslint-disable-next-line react/display-name
+const ManageGas = forwardRef<HTMLDivElement, Props>(({ openModal }, ref) => {
     const { dispatch } = useAppRedux();
     const { check, trash, edit } = icons;
     const selectedGasUnit = useSelector(selectedGas);
