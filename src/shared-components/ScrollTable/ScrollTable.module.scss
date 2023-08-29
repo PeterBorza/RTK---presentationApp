@@ -20,7 +20,6 @@
 .body {
     width: 100%;
     height: calc(100% - $navHeight);
-    overflow: hidden auto;
-    // background-color: rgb(31, 29, 29); darkmode TODO
+    overflow-y: auto;
     @include noVisibleScrollBar;
 }

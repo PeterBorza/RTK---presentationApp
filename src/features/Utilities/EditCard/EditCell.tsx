@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./EditCard.module.scss";
 
 const EditCell = ({ children }: { children?: React.ReactNode }) => {

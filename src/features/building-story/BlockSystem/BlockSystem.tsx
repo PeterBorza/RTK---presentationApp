@@ -1,3 +1,5 @@
+import React from "react";
+
 import { LevelCount } from "../state";
 import { useLiftRedux } from "../selectors";
 import { actions } from "../liftSlice";

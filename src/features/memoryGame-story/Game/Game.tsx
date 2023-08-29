@@ -50,7 +50,7 @@ const Game = () => {
 
     return (
         <section className={containerClasses}>
-            <Controls label={msg.SCORE} count={count} dark={isDarkMode}>
+            <Controls label={msg.SCORE} count={count}>
                 <GameButtons
                     themes={themes}
                     onNewGame={theme => newGameHandler(theme)}

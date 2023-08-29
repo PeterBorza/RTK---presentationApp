@@ -31,7 +31,6 @@ const GasTable = () => {
     const { isDarkMode, dispatch } = useAppRedux();
     const error = useSelector(errorState);
     const sumOfBills = useSelector(sumOfBillsSelector);
-    console.log("sumOfBills:", sumOfBills);
     const selectedGasUnit = useSelector(selectedGas);
     const errorRef = React.useRef<HTMLDivElement>(null);
     const manageContentRef = React.useRef<HTMLDivElement>(null);
@@ -118,13 +117,9 @@ const GasTable = () => {
                     <ManageGas ref={manageContentRef} openModal={() => setModalOpen(true)} />
                 </T.Header>
                 <T.Body>
-                    <Table
-                        renderHeaders={() => renderHeaders}
-                        ref={tableRef}
-                        children={
-                            isLoading ? <Loader message={Pending.MESSAGE} /> : renderGasTableItems
-                        }
-                    />
+                    <Table renderHeaders={() => renderHeaders} ref={tableRef}>
+                        {isLoading ? <Loader message={Pending.MESSAGE} /> : renderGasTableItems}
+                    </Table>
                 </T.Body>
                 <T.Footer>
                     <TotalPayedInfo sumOfBills={sumOfBills} dark={isDarkMode} />

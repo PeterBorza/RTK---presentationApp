@@ -8,6 +8,8 @@ import { LocalStorageKeys as LS } from "common/localStorageKeys";
 
 import styles from "./ImageBox.module.scss";
 
+//TODO pagination
+
 const ImageBox = () => {
     const [showImages, setShowImages] = useLocalStorage(LS.PUZZLE, false);
 

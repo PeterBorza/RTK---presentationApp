@@ -4,6 +4,7 @@
 $fontSize: 1.15rem;
 
 .wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -43,4 +44,11 @@ $fontSize: 1.15rem;
         outline: none;
         border: none;
     }
+}
+
+.editControls {
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    right: 1px;
 }

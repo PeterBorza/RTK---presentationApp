@@ -27,7 +27,10 @@ export const arrToObject = (arr: string[], cb: (val?: string, index?: number) =>
 
 // map the above to see the results
 
-export const mapToObject = (arr: string[], cb: (val?: string, index?: number) => {}) =>
+export const mapToObject = (
+    arr: string[],
+    cb: (val?: string, index?: number) => NonNullable<unknown>,
+) =>
     arr.reduce<ResultedObjectType[]>((acc, value, index) => {
         return { ...acc, [value]: cb(value, index) };
     }, []);

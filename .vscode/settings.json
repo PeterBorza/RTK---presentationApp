@@ -43,5 +43,8 @@
             "}"
         ],
         "IndexFile": ["export {default} from './<FTName % pascalcase>';"]
-    }
+    },
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
 }

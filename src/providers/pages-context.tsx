@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import React, { ReactNode, createContext, useContext } from "react";
 
 import { MyRubik } from "shared-components";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
@@ -15,7 +15,7 @@ import CoinsTable from "features/coins";
 export const PagesContext = createContext<PagesType<React.ReactNode>[] | null>(null);
 
 export const PagesContextProvider = ({ children }: { children?: React.ReactNode }) => {
-    const pages: {} = {
+    const pages: NonNullable<unknown> = {
         "Input examples": <InputExamples />,
         Rubik: <MyRubik withAnimation />,
         "Color game": <ColorGame />,
@@ -38,7 +38,7 @@ export const PagesContextProvider = ({ children }: { children?: React.ReactNode 
                 id: sanitise(label),
                 label,
                 content,
-            } as PagesType<React.ReactNode>),
+            }) as PagesType<ReactNode>,
     );
 
     return <PagesContext.Provider value={renderMyPages}>{children}</PagesContext.Provider>;

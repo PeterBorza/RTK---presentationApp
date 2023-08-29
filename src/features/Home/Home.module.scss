@@ -14,7 +14,7 @@ $lineUp: 3;
 
 .iframeRTK {
     width: 50%;
-    height: 60vh;
+    height: 20vh;
 }
 
 .sortableContainer {
@@ -26,7 +26,7 @@ $lineUp: 3;
     flex-direction: column;
     border: 1px solid white;
     overflow-x: scroll;
-    cursor: grab;
+    cursor: move;
 }
 
 .sortableItem {
@@ -37,6 +37,7 @@ $lineUp: 3;
     padding: 3px 8px;
     width: 100%;
     border-radius: 5px;
+    border: 1px solid white;
 }
 
 .menuItem {

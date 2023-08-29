@@ -40,6 +40,7 @@ import AnimatedDropdown from "./AnimatedDropdown";
 import WarningModal from "./WarningModal";
 import { SimpleDrag, SortableDrag, SortableItem, Droppable, Draggable } from "./Drag";
 import Container from "./Container";
+import GlowText from "./GlowText";
 
 // TODO create split screen component
 
@@ -92,4 +93,5 @@ export {
     Droppable,
     Draggable,
     Container,
+    GlowText,
 };

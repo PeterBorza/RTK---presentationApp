@@ -6,6 +6,7 @@ export interface Props {
     children: ReactNode;
 }
 
+// eslint-disable-next-line react/display-name
 const Table = React.forwardRef<HTMLDivElement, Props>(({ children, renderHeaders }, ref) => {
     return (
         <Tbl ref={ref}>

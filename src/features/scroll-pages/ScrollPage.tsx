@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ScrollPage as Pages } from "shared-components";
 import { usePagesContext } from "providers";
 import { NavLinkUrls, useAppRedux } from "app";

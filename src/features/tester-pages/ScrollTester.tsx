@@ -68,7 +68,7 @@ const ScrollTester = () => {
         const toSentenceCase = (text: string) =>
             text.trim().replace(text.charAt(0), text.charAt(0).toLocaleUpperCase());
         return (
-            <DemoBox componentName={toSentenceCase(label!!)} darkMode={isDarkMode}>
+            <DemoBox componentName={toSentenceCase(label || "")} darkMode={isDarkMode}>
                 {content}
             </DemoBox>
         );

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
 import { Lift as LiftProps } from "../state";
 import { actions } from "../liftSlice";
