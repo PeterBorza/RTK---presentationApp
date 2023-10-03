@@ -1,5 +1,3 @@
-@use "css" as *;
-
 $doorSpeed: 300ms;
 $maxFloorLevels: 15;
 $doorColor: rgb(255 255 255 / 0.7);
@@ -18,14 +16,16 @@ $transition: transform $doorSpeed;
     &::after {
         position: absolute;
         content: attr(data-content);
-        @include fCenter();
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 2rem;
         color: limegreen;
         width: 50%;
         height: 100%;
         left: 0;
         top: 0;
-        background-color: $appBlack;
+        background-color: rgb(24, 24, 23);
     }
     &::after {
         left: 50%;

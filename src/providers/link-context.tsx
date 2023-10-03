@@ -7,14 +7,14 @@ interface LinkContextType {
     toInternalLink: (link: NavLinkUrls) => string;
 }
 
-const init = {
+const init: LinkContextType = {
     links: [],
     toInternalLink: () => "",
 };
 
 const LinkContext = createContext<LinkContextType>(init);
 
-export const LinkContextProvider = ({ children }: { children?: React.ReactNode }) => {
+export const LinkContextProvider = ({ children }: { children: React.ReactNode }) => {
     const links = Object.values(NavLinkUrls);
     const toInternalLink = useCallback((link: NavLinkUrls) => `/${link}`, []);
 

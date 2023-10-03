@@ -19,6 +19,6 @@ $grid-background: rgb(1, 51, 20);
     padding: calc($gap * 1.5);
     background: $grid-background;
     border-radius: $gap;
-    z-index: 5;
+    z-index: 1;
     @include shadowSB;
 }
