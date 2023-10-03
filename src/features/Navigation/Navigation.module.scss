@@ -14,7 +14,7 @@
     top: 0;
     width: 100%;
     height: $navHeight;
-    z-index: 1000;
+    @include z-index("navigation");
     @include gradientNav(180deg);
 
     &__dropdown {

@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useContext } from "react";
+import React, { ReactNode, createContext, useContext, useMemo } from "react";
 
 import { MyRubik } from "shared-components";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
@@ -32,13 +32,17 @@ export const PagesContextProvider = ({ children }: { children?: React.ReactNode 
         return cleanString.reduce((acc, str) => acc.concat(str), "");
     };
 
-    const renderMyPages = Object.entries(pages).map(
-        ([label, content]) =>
-            ({
-                id: sanitise(label),
-                label,
-                content,
-            }) as PagesType<ReactNode>,
+    const renderMyPages = useMemo(
+        () =>
+            Object.entries(pages).map(
+                ([label, content]): PagesType<ReactNode> =>
+                    ({
+                        id: sanitise(label),
+                        label,
+                        content,
+                    }) as PagesType<ReactNode>,
+            ),
+        [pages],
     );
 
     return <PagesContext.Provider value={renderMyPages}>{children}</PagesContext.Provider>;

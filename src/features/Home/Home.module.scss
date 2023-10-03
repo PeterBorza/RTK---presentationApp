@@ -47,3 +47,11 @@ $lineUp: 3;
 .isDragging {
     background-color: limegreen;
 }
+
+.motionDiv {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    display: grid;
+    place-items: center;
+}
