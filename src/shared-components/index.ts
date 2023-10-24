@@ -1,5 +1,6 @@
 import TabMenu from "./TabMenu";
 import Loader from "./Loader";
+import Loader2 from "./Loader2";
 import Button from "./Button";
 import SlideText from "./SlideText";
 import SimpleDrop from "./SimpleDrop";
@@ -47,6 +48,7 @@ import GlowText from "./GlowText";
 export {
     TabMenu,
     Loader,
+    Loader2,
     Button,
     SlideText,
     SimpleDrop,

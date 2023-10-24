@@ -1,4 +1,5 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 $headerHeight: 8%;
 $small: 20px;
@@ -12,12 +13,14 @@ $xxl: 60px;
     position: relative;
     background-color: transparent;
     overflow: hidden;
+
     .white-bg {
         background-color: white;
     }
+
     &__collapsed {
         &.nav_container__smallScreen {
-            height: $navHeight;
+            height: var.$navHeight;
         }
     }
 }
@@ -32,7 +35,7 @@ $xxl: 60px;
     z-index: 100;
     cursor: pointer;
     user-select: none;
-    @include fCenter();
+    @include mix.fCenter();
 }
 
 .content {

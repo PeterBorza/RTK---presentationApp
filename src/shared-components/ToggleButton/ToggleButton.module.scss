@@ -1,4 +1,5 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 $toggleSpeed: 200ms;
 $toggleButtonColor: rgb(191 207 174/ 0.4);
@@ -16,6 +17,7 @@ $sizes: (
 @mixin toggleHorizontally($value, $color) {
     &__enabled {
         animation: moveRight $toggleSpeed ease-out forwards;
+
         @keyframes moveRight {
             to {
                 translate: $value;
@@ -25,6 +27,7 @@ $sizes: (
 
     &__disabled {
         animation: moveLeft $toggleSpeed ease-out forwards;
+
         @keyframes moveLeft {
             from {
                 translate: $value;
@@ -38,13 +41,13 @@ $sizes: (
 
 .toggle_container {
     position: relative;
-    @include fAround();
+    @include mix.fAround();
     flex-shrink: 0;
     cursor: pointer;
     user-select: none;
     padding: $togglePadding;
     box-shadow:
-        1px 1px 3px $myYellow3,
+        1px 1px 3px var.$myYellow3,
         inset 1px 1px 10px $toggleButtonColor;
 
     @each $key, $value in $sizes {
@@ -64,20 +67,22 @@ $sizes: (
 .toggle_button {
     position: absolute;
     left: $togglePadding;
-    background-color: $myYellow3;
-    box-shadow: 1px 1px 10px $myYellow3;
-    @include centered();
+    background-color: var.$myYellow3;
+    box-shadow: 1px 1px 10px var.$myYellow3;
+    @include mix.centered();
 
     @each $key, $value in $sizes {
         &__#{$key} {
-            @include circle(calc($value / 2));
-            box-shadow: 1px 1px 10px $myYellow3;
+            @include mix.circle(calc($value / 2));
+            box-shadow: 1px 1px 10px var.$myYellow3;
             &__light {
                 @include toggleHorizontally(100%, red);
             }
             &__dark {
-                @include toggleHorizontally(100%, $myYellow3);
+                @include toggleHorizontally(100%, var.$myYellow3);
             }
         }
     }
 }
+
+// TODO fix issues here

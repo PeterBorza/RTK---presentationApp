@@ -22,7 +22,7 @@ const DemoBox = ({ children, componentName, darkMode = true }: DemoBoxProps) => 
     return (
         <div className={demoBoxClasses}>
             <span className={classes}>
-                <GradientText animatedText={componentName || ""} size={25} />
+                <GradientText animatedText={componentName || "Hello"} size={25} />
             </span>
             {children}
         </div>

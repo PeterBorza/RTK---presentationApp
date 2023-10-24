@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/mixins" as mix;
 
 .checkBox {
     background-color: aliceblue;
@@ -13,7 +13,7 @@
         }
 
         & span {
-            @include truncate;
+            @include mix.truncate;
             user-select: none;
         }
     }

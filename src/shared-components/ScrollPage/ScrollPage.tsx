@@ -23,7 +23,7 @@ const ScrollPage = <T extends React.ReactNode>({
     baseUrl,
     isDarkMode = false,
 }: ScrollProps<T>) => {
-    const sectionClasses = classNames(styles.section, {
+    const sectionClasses = classNames(styles.section, "no-scrollBar", {
         [styles.section__darkMode]: isDarkMode,
     });
     const pageLinkClasses = classNames(styles.link_shell__link, {

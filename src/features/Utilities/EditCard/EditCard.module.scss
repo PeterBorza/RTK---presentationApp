@@ -1,5 +1,4 @@
-@use "css/variables" as *;
-@use "css/mixins" as *;
+@use "css/variables" as var;
 
 $fontSize: 1.15rem;
 
@@ -14,7 +13,9 @@ $fontSize: 1.15rem;
 }
 
 .edit_cell {
-    @include fAround;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     width: 100%;
     animation: growMargin 120ms forwards linear 1;
     font-size: $fontSize;
@@ -22,7 +23,7 @@ $fontSize: 1.15rem;
         &:focus {
             border: none;
             outline: none;
-            background-color: $myYellow3;
+            background-color: var.$myYellow3;
         }
         &:hover {
             cursor: pointer;

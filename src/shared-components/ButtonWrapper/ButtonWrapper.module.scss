@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/variables" as var;
 
 .buttonWrapper {
     width: 100%;
@@ -6,7 +6,7 @@
     padding: 0.5rem;
     gap: 5px;
     &__dark {
-        background-color: $darkMode;
+        background-color: var.$darkMode;
     }
     &--start {
         align-items: flex-start;

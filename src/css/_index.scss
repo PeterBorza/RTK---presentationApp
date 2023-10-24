@@ -1,66 +1,89 @@
 @forward "./variables";
 @forward "./mixins";
 @forward "./z-index";
+@use "./base";
 
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: monospace;
-}
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap");
 
-html {
-    font-size: 100%;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+$shadow:
+    3px 3px 10px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.3);
+$mixinShadow:
+    0px 0px 2px rgba(0, 0, 0, 0.1),
+    -1px -1px 2px rgba(0, 0, 0, 0.1);
+$mixinShadowHover: 4px 4px 12px rgba(0, 0, 0, 0.3);
+$bd-coral: 1px solid coral;
+$bd-yellow: 1px solid rgb(255, 255, 0);
 
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+$backgroundColor: rgb(219, 210, 231);
+$blackbcg: rgb(87, 83, 83);
+$greenbcg: rgb(16, 119, 16);
+$redbcg: rgb(201, 82, 82);
+$bluebcg: rgb(143, 143, 228);
+$yellowbcg: rgb(241, 241, 3);
+$blackHue: rgba(0, 0, 0, 0.8);
+$myGreen: #2a5a24;
+$myBlue: #298c93;
+$myYellow: #bf8c3f;
+$myYellow2: #f0bb0e;
+$myYellow3: #ffc600;
+$myRed: #c14242;
+$btnColor: cadetblue;
 
-body {
-    a {
-        text-decoration: none;
-        color: #0f0f0f66;
-    }
+$myGrey: rgba(78, 72, 72, 0.87);
+$mybg: rgb(39, 19, 19);
 
-    li {
-        list-style: none;
-        list-style-type: none;
-    }
+$w: 100%;
+$h: 100vh;
+$fs: 20px;
 
-    button,
-    input[type="text"] {
-        background: none;
-        border: none;
-        outline: none;
-        &:focus,
-        :active {
-            outline: none;
-            border: none;
-        }
-    }
+$t: all 2s ease;
 
-    img {
-        display: block;
-    }
-}
+$black: 1px solid black;
+$red: 1px solid red;
+$white: 1px solid rgba(220, 210, 210, 0.802);
+$appBorder: 1px solid #ffc600;
+$blue: 1px solid blue;
+$green: 1px solid green;
 
-@mixin shadowSB {
-    $color: #0000004d;
-    box-shadow: 0px 6px 15px $color;
-    &:hover {
-        box-shadow: 0px 2px 4px $color;
-    }
-}
+$primaryColor: cadetblue;
+$secondaryColor: rgba(255, 255, 255, 0.15);
+$tertiaryColor: rgba(235, 225, 225, 0.6);
+$navBarBgColor: rgba(26, 59, 87, 0.7);
+$container-shadow:
+    4px 4px 15px rgb(255 255 255 / 0.5),
+    -2px -2px 10px rgb(255 255 255 / 0.6);
+$borderShadow:
+    inset 0px 0px 5px white,
+    inset 0px 0px 5px white;
+$hoverColor: rgb(255 255 255/0.1);
 
-@mixin container($width) {
+// app related
+
+$navHeight: 50px;
+$containerHeight: calc(100vh - $navHeight);
+
+$navPrimaryBG: rgba(47, 49, 49, 0.6);
+$appBlack: rgb(24, 23, 23);
+$appYellow: #ffc600;
+
+$SBsize: max(10%, 150px);
+$SBborder: 1px dashed rgba(151, 136, 136, 0.4);
+$SBtransition: all 200ms ease;
+$SBhoverColor: rgb(134, 124, 124);
+$SBfontSize: 1.3rem;
+$SBnoMarginLeft: 0;
+$darkMode: rgb(40, 64, 73);
+$darkModeWhite: rgb(250 253 253/0.85);
+
+@mixin container($width: "100%") {
     position: relative;
     width: $width;
     height: $containerHeight;
+    height: calc(100svh - $navHeight);
+    height: calc(100dvh - $navHeight);
 
     &__padding {
         padding-left: $SBsize;
@@ -69,23 +92,31 @@ body {
     transition: $SBtransition;
 }
 
-// memory-game
-
-$cols: 4;
-$gap: 5px;
-$border: 1px solid white;
-$backColor: rgb(9, 77, 9);
-$minWidth: 280px;
-
-@mixin before($pic) {
-    &::before {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background: transparent url($pic) no-repeat center/cover;
-        opacity: 0.15;
+@mixin noVisibleScrollBar {
+    &::-webkit-scrollbar {
+        display: none;
     }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@mixin linksAnchorStyle {
+    a {
+        color: $appYellow;
+        &:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+}
+
+.container-g {
+    @include container();
+}
+
+.anchor-g {
+    @include linksAnchorStyle();
+}
+
+.no-scrollBar {
+    @include noVisibleScrollBar();
 }

@@ -1,15 +1,16 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 .container {
     position: relative;
-    @include fCenter(column);
+    @include mix.fCenter(column);
     width: 100%;
     height: 100vh;
     padding: 0 10%;
-    background-color: $darkModeWhite;
+    background-color: var.$darkModeWhite;
 
     &__dark {
-        background-color: $darkMode;
+        background-color: var.$darkMode;
     }
 }
 
@@ -40,7 +41,7 @@
     }
 
     &__dark {
-        color: $darkModeWhite;
+        color: var.$darkModeWhite;
     }
 
     &__data {

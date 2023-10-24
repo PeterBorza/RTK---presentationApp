@@ -10,7 +10,7 @@ type Props = {
 
 const GameControls = ({ baseColors, legend, count }: Props) => {
     return (
-        <div className="controls">
+        <div className="controls no-scrollBar">
             <p>A palette of six colors is given:</p>
             <ul className="ol-list">
                 {baseColors.map(({ id, color }) => (

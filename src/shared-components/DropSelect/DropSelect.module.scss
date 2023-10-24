@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/mixins" as mix;
 
 $darkModeColor: #b2d6f4cc;
 $lightModeColor: #1a171de3;
@@ -25,7 +25,7 @@ $lightModeColor: #1a171de3;
     }
 
     &__label {
-        @include truncate();
+        @include mix.truncate();
         padding: 5px 10px;
         color: $lightModeColor;
     }
@@ -83,7 +83,7 @@ $lightModeColor: #1a171de3;
     }
 
     &__item {
-        @include truncate();
+        @include mix.truncate();
         padding: 1px 0.5rem;
         cursor: pointer;
         color: $lightModeColor;

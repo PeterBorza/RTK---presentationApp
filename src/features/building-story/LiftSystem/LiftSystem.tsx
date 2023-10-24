@@ -23,6 +23,8 @@ const LiftSystem = ({ showPanel = true, data }: Props) => {
         [styles.liftWrapper__show]: showPanel,
     });
 
+    const buttonClasses = classNames(styles.liftWrapper__buttons, "no-scrollBar");
+
     useLayoutEffect(() => {
         isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
     }, [isMoving, speed, name, stopLift, dispatch]);
@@ -43,7 +45,7 @@ const LiftSystem = ({ showPanel = true, data }: Props) => {
             <div className={styles.liftWrapper__icons}>
                 <IconLayout direction={direction} />
             </div>
-            <div className={styles.liftWrapper__buttons}>{levels.map(liftButtons)}</div>
+            <div className={buttonClasses}>{levels.map(liftButtons)}</div>
         </div>
     );
 };

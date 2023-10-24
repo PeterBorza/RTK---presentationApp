@@ -1,15 +1,14 @@
 $z-index: (
     navigation: 100,
     modal: 500,
-    base: 1,
     button: 50,
     dropdown: 2,
 );
 
 @function z-index($key) {
-    @return map-get($z-index, $key);
+    @return map-get($z-index, $key) or 1;
 }
 
-@mixin z-index($key) {
+@mixin z-index($key: 1) {
     z-index: z-index($key);
 }
