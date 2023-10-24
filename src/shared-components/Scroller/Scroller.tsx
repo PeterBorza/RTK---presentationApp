@@ -49,11 +49,11 @@ const Scroller = ({
                 <div className={styles.scrollerContainer__header}>
                     <h2 title={scrollerTitle}>{scrollerTitle}</h2>
                 </div>
-                <div className={styles.scrollerContainer}>
+                <div className={`${styles.scrollerContainer} no-scrollBar`}>
                     <div className={content}>{images.map(puzzleImage)}</div>
                 </div>
             </div>
-            <div className={styles.bulletWrapper}>
+            <div className={`${styles.bulletWrapper} no-scrollBar`}>
                 {newArray(images.length).map(item => (
                     <HashLink
                         key={`scroll-img-${item}`}

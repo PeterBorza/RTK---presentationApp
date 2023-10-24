@@ -1,26 +1,31 @@
-@use "css" as *;
+@use "../../../css/mixins" as mix;
+@use "../../../css/variables" as var;
 
 .buttonStyle {
-    @include fEven(column);
+    @include mix.fEven(column);
     outline: none;
     border: none;
     width: 100%;
     height: 100%;
     background-color: transparent;
     box-shadow: inset 0px 0px 1px white;
-    color: $appYellow;
+    color: var.$appYellow;
     transition: all 200ms ease;
     border-radius: 2px;
     font-size: 1.6rem;
     cursor: pointer;
+
     &__active {
         font-size: 2rem;
         color: white;
         font-weight: bold;
-        box-shadow: inset 2px 2px 4px $appYellow, inset -2px -2px 4px $appYellow;
+        box-shadow:
+            inset 2px 2px 4px var.$appYellow,
+            inset -2px -2px 4px var.$appYellow;
     }
+
     &:hover {
-        background-color: lighten($appBlack, 20%);
+        background-color: lighten(var.$appBlack, 20%);
     }
 }
 

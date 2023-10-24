@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/z-index" as z;
 
 $animation-speed: 200ms;
 $bg-color: rgb(0 0 0 / 0.5);
@@ -36,7 +36,7 @@ $error-color: rgba(255, 0, 0, 0.8);
     height: 100vh;
     inset: 0;
     background-color: $bg-color;
-    @include z-index("modal");
+    @include z.z-index("modal");
 
     &__center {
         @include centerAll();

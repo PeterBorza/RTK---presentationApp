@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/mixins" as mix;
 
 $counter: 1.5;
 
@@ -27,7 +27,7 @@ $counter: 1.5;
     &__item {
         text-align: center;
         padding: 2px;
-        @include truncate;
+        @include mix.truncate;
         color: grey;
         cursor: pointer;
         transition: color 200ms ease-in-out;
@@ -41,7 +41,8 @@ $counter: 1.5;
         @include tabUnderlineAnimation($itemCount);
         font-size: 1rem * $counter;
         width: $itemCount * 80px;
-        @include RAM(100% / $itemCount, 1fr);
+        @include mix.RAM(100% / $itemCount, 1fr);
+
         &.itemCount-#{$itemCount} {
             &::after {
                 width: calc(100% / $itemCount);
@@ -61,3 +62,5 @@ $counter: 1.5;
         }
     }
 }
+
+// TODO fix issues here

@@ -14,7 +14,7 @@ const ImageBox = () => {
     const [showImages, setShowImages] = useLocalStorage(LS.PUZZLE, false);
 
     return (
-        <div className={styles["image-grid-container"]}>
+        <div className={`${styles["image-grid-container"]} no-scrollBar`}>
             <ToggleButton
                 darkMode={false}
                 variant="regular"

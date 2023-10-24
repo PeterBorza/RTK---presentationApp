@@ -1,12 +1,13 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 .blockContainer {
     position: relative;
-    @include fCenter();
-    box-shadow: $borderShadow;
+    @include mix.fCenter();
+    box-shadow: var.$borderShadow;
     transition: all 300ms ease;
     &:hover {
-        background-color: $hoverColor;
+        background-color: var.$hoverColor;
     }
 }
 
@@ -15,5 +16,5 @@
     height: 100%;
     display: flex;
     flex-direction: column-reverse;
-    box-shadow: $container-shadow;
+    box-shadow: var.$container-shadow;
 }

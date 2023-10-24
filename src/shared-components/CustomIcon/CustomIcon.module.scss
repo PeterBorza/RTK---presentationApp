@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/variables" as var;
 
 $iconTypes: (
     "disabled": crimson,
@@ -38,10 +38,10 @@ $iconTypes: (
     }
 
     &:hover {
-        background-color: darken($darkModeWhite, 85%);
+        background-color: darken(var.$darkModeWhite, 85%);
         border-radius: 50%;
         svg {
-            color: lighten($darkModeWhite, 60%);
+            color: lighten(var.$darkModeWhite, 60%);
         }
     }
 

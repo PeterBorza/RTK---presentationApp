@@ -35,7 +35,7 @@ const GameAttempts = ({ gameCombo, gameData }: Props) => {
     }, [perfectGuess, allValidResults, dispatch]);
 
     return (
-        <div className="attempts_container">
+        <div className="attempts_container no-scrollBar">
             {gameAttempts.map(attempt => (
                 <PlayCard
                     key={`playcard-${attempt.id}`}

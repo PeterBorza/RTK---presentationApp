@@ -1,4 +1,5 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 $scrollerBg: rgb(255 255 255 / 0.2);
 
@@ -22,7 +23,6 @@ $sizes: (
     scroll-behavior: smooth;
     overflow: auto;
     background-color: inherit;
-    @include noVisibleScrollBar();
     border: 2px solid $scrollerBg;
     width: 100%;
 
@@ -32,7 +32,7 @@ $sizes: (
         align-items: center;
         padding: 1.2rem 2.5rem;
         h2 {
-            @include truncate();
+            @include mix.truncate();
         }
     }
 }
@@ -58,7 +58,6 @@ $sizes: (
     min-width: 100%;
     display: flex;
     justify-content: center;
-    @include noVisibleScrollBar();
     padding: 3px;
     gap: 2px;
 }

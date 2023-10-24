@@ -1,11 +1,11 @@
-@use "css/mixins" as *;
-
 .wrapper {
     width: 40%;
     padding: 10px;
     border: 1px solid white;
     background-color: darkgray;
-    @include fCenter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .select {

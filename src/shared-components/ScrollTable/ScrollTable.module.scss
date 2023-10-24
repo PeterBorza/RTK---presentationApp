@@ -1,25 +1,24 @@
-@use "css" as *;
+@use "css/variables" as var;
 
 .wrapper {
     width: 100%;
     height: 70vh;
     padding: 0.5rem;
-    box-shadow: $shadow;
+    box-shadow: var.$shadow;
     padding-bottom: 0;
 }
 
 .header {
     width: 100%;
-    height: $navHeight;
+    height: var.$navHeight;
     display: flex;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
-    background-color: $navPrimaryBG;
+    background-color: var.$navPrimaryBG;
 }
 
 .body {
     width: 100%;
-    height: calc(100% - $navHeight);
+    height: calc(100% - var.$navHeight);
     overflow-y: auto;
-    @include noVisibleScrollBar;
 }

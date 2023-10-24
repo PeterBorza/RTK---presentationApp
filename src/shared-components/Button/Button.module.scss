@@ -1,4 +1,6 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
+@use "css/z-index" as z;
 
 $validButtonColor: rgb(34, 116, 34);
 $disabledButtonColor: rgb(163, 33, 59);
@@ -6,28 +8,26 @@ $disabledButtonColor: rgb(163, 33, 59);
 @mixin menuButton {
     position: absolute;
     left: 5px;
-    top: calc($navHeight * -1);
+    top: calc(var.$navHeight * -1);
     z-index: 10;
     animation: flowDown 600ms ease-out forwards;
     @keyframes flowDown {
         to {
-            top: calc($navHeight - 5px);
+            top: calc(var.$navHeight - 5px);
         }
     }
 }
 
 .button {
-    display: flex;
     position: relative;
     overflow: hidden;
-    background-color: $myYellow3;
+    background-color: var.$myYellow3;
     padding: 0.3rem 0.7rem;
     border-radius: 3px;
-    z-index: 100;
+    @include z.z-index("navigation");
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     transition: all 120ms ease-out;
     cursor: pointer;
-    line-height: 2;
 
     &::after {
         position: absolute;
@@ -36,13 +36,13 @@ $disabledButtonColor: rgb(163, 33, 59);
         top: -10px;
         width: 100%;
         height: 0px;
-        background-color: $darkModeWhite;
+        background-color: var.$darkModeWhite;
         box-shadow: 0 2px 5px 10px rgba(255, 255, 255, 0.5);
         transition: all 200ms ease;
     }
 
     &:hover {
-        color: $navPrimaryBG;
+        color: var.$navPrimaryBG;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 
         &::after {
@@ -68,8 +68,8 @@ $disabledButtonColor: rgb(163, 33, 59);
     }
 
     &__dark {
-        background-color: $darkModeWhite;
-        color: skyblue;
+        background-color: var.$darkModeWhite;
+        color: gray;
     }
     // TODO resolve dark mode
 
@@ -91,13 +91,14 @@ $disabledButtonColor: rgb(163, 33, 59);
 
 .content {
     display: flex;
-    color: $navPrimaryBG;
-    @include truncate();
+    color: var.$navPrimaryBG;
+    @include mix.truncate();
 
     &__cancel,
     &__submit {
         color: $validButtonColor;
     }
+
     &__regular {
         font-weight: bold;
     }

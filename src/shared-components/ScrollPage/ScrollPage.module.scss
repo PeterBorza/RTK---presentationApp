@@ -1,20 +1,12 @@
-@use "css" as *;
-
-@mixin noVisibleScrollBar {
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 $blue-background: rgba(205, 217, 240, 0.885);
 $sidebar-width: min(200px, 20%);
 
 .section {
     min-height: 100vh;
-    @include noVisibleScrollBar;
-    @include darkModeSelector($darkMode);
+    @include mix.darkModeSelector();
 }
 
 .article {
@@ -32,14 +24,14 @@ $sidebar-width: min(200px, 20%);
         align-items: center;
         justify-content: center;
         font-size: 5rem;
-        color: $darkModeWhite;
+        color: var.$darkModeWhite;
     }
 }
 
 .aside_navigation {
     position: fixed;
     left: 0;
-    top: $navHeight;
+    top: var.$navHeight;
     bottom: 0;
     width: $sidebar-width;
     z-index: 5;
@@ -51,12 +43,12 @@ $sidebar-width: min(200px, 20%);
         top: 2%;
         bottom: 2%;
         width: 2px;
-        background: $myYellow3;
+        background: var.$myYellow3;
     }
 
     &__dark {
         &::after {
-            background: $myYellow3;
+            background: var.$myYellow3;
         }
     }
 }
@@ -73,7 +65,7 @@ $sidebar-width: min(200px, 20%);
         text-transform: capitalize;
         transition: color 120ms ease;
         padding: 2px;
-        @include truncate;
+        @include mix.truncate;
         word-break: break-all;
 
         &:hover {
@@ -81,7 +73,7 @@ $sidebar-width: min(200px, 20%);
         }
 
         &__darkMode {
-            color: $myYellow3;
+            color: var.$myYellow3;
         }
     }
 }

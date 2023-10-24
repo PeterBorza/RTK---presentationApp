@@ -8,6 +8,8 @@ import { AnimatedDropdown, AsidePlatform } from "shared-components";
 
 import { MemoryGameMessages as messages, PhotosMessages } from "../Game/redux/messages";
 import { useMGameRedux } from "../Game/redux/selectors";
+
+import classNames from "classnames";
 import styles from "./Photos.module.scss";
 
 const Photos = () => {
@@ -27,9 +29,10 @@ const Photos = () => {
     ));
 
     const renderMenu = () => {
+        const classes = classNames(styles.linkWrapper, "anchor-g");
         return (
             <>
-                <div className={styles.linkWrapper}>
+                <div className={classes}>
                     <AnimatedDropdown label="photos" items={links} />
                     <br />
                 </div>

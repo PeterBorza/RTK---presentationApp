@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/mixins" as mix;
 
 $backColor: rgb(9, 77, 9);
 
@@ -6,8 +6,8 @@ $backColor: rgb(9, 77, 9);
     position: relative;
     width: 100%;
     height: 100%;
-    @include flex(center, column);
-    @include shadowSB();
+    @include mix.flex(center, column);
+    @include mix.shadowSB();
     overflow: hidden;
     &::after {
         position: absolute;

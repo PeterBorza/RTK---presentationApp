@@ -1,4 +1,5 @@
-@use "css" as *;
+@use "css/z-index" as z;
+@use "css/variables" as var;
 
 .wrapper {
     position: relative;
@@ -18,10 +19,10 @@
 .sideBarLinks {
     padding: 5px;
     font-size: clamp(0.8rem, 2vw, 1.4rem);
-    z-index: 100;
+    @include z.z-index("navigation");
     transition: color 200ms ease;
     &:hover {
-        color: $navPrimaryBG;
+        color: var.$navPrimaryBG;
     }
 }
 

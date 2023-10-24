@@ -6,6 +6,8 @@ interface BodyProps {
     children?: React.ReactNode;
 }
 
-const Body = ({ children }: BodyProps) => <ul className={styles.body}>{children}</ul>;
+const Body = ({ children }: BodyProps) => (
+    <ul className={`${styles.body} no-scrollBar`}>{children}</ul>
+);
 
 export default Body;

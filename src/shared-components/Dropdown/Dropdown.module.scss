@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/mixins" as mix;
 
 $light-background-color: rgb(244, 242, 242);
 $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
@@ -11,7 +11,7 @@ $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
 
 .label_style {
     max-width: 100%;
-    @include truncate;
+    @include mix.truncate;
 }
 
 .drop_content {
@@ -20,8 +20,10 @@ $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
     background-color: $light-background-color;
     box-shadow: $shadow;
     border-radius: 5px;
+
     &__animated {
         animation: show-up 250ms forwards ease-in-out;
+
         @keyframes show-up {
             from {
                 opacity: 0;

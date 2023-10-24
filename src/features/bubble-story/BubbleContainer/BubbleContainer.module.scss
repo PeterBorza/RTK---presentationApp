@@ -1,15 +1,14 @@
-@use "css" as *;
+@use "css/variables" as var;
 
-$primary-background: rgb(180, 225, 243);
-$secondary-background: rgba(9, 51, 68, 0.842);
+$primary-background: rgba(9, 51, 68, 0.842);
 
 .container {
     position: relative;
-    padding-top: clamp($navHeight, 1vw, 20px);
+    padding-top: clamp(var.$navHeight, 1vw, 20px);
     width: 100%;
     height: 100%;
     overflow: scroll;
-    background-color: $secondary-background;
+    background-color: $primary-background;
     &__dark {
         background: none;
     }

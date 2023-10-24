@@ -1,20 +1,21 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 $SBtransition: all 200ms ease;
 
 .layout {
     position: relative;
     width: 100%;
-    height: calc(100% - $navHeight);
+    height: calc(100% - var.$navHeight);
 }
 .container {
     position: relative;
     width: 100%;
-    height: calc(100% - $navHeight);
+    height: calc(100% - var.$navHeight);
     overflow: hidden;
     &__with-sidebar-open {
-        padding-left: $SBsize;
+        padding-left: var.$SBsize;
     }
-    @include darkModeSelector($darkMode);
+    @include mix.darkModeSelector();
     transition: $SBtransition;
 }

@@ -1,7 +1,8 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
 
 .container {
-    @include appContainer($darkMode);
+    @include mix.appContainer(var.$darkMode);
 }
 
 .inputContent {

@@ -1,4 +1,6 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
+@use "css/z-index" as z;
 
 $borderRadius: 5px;
 $transitionSpeed: 150ms;
@@ -22,7 +24,7 @@ $inputSizes: (
     display: flex;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     transition: box-shadow $transitionSpeed ease;
-    z-index: 1;
+    @include z.z-index();
     &:hover {
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     }
@@ -56,8 +58,8 @@ $inputSizes: (
     padding: 0.5rem;
     border-radius: $borderRadius;
     transition: all $transitionSpeed ease-out;
-    color: $myBlue;
-    @include truncate();
+    color: var.$myBlue;
+    @include mix.truncate();
     cursor: pointer;
 
     &::-webkit-input-placeholder {
@@ -72,11 +74,11 @@ $inputSizes: (
 
     &__darkMode {
         @include gradientBlack();
-        color: $myYellow3;
+        color: var.$myYellow3;
 
         &::-webkit-input-placeholder {
             opacity: 0.3;
-            color: $myYellow3;
+            color: var.$myYellow3;
         }
     }
 }
@@ -111,6 +113,7 @@ $inputSizes: (
 
     &:disabled {
         cursor: not-allowed;
+
         .buttonStyle__icon {
             color: crimson;
             opacity: 0.4;

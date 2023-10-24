@@ -1,0 +1,46 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+html {
+    font-size: 100%;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body {
+    a {
+        text-decoration: none;
+        color: #0f0f0f66;
+    }
+
+    li {
+        list-style: none;
+        list-style-type: none;
+    }
+
+    button,
+    input[type="text"] {
+        background: none;
+        border: none;
+        outline: none;
+        &:focus,
+        :active {
+            outline: none;
+            border: none;
+        }
+    }
+
+    img {
+        display: block;
+    }
+}

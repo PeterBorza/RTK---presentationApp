@@ -1,7 +1,11 @@
-@use "css" as *;
+@use "css/variables" as var;
+@use "css/mixins" as mix;
+@use "css/z-index" as z;
 
 $transition: 200ms ease-in-out;
-$componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1);
+$componentShadow:
+    2px 2px 5px rgba(0 0 0 / 0.1),
+    -2px -2px 5px rgba(0 0 0 / 0.1);
 
 .container {
     position: relative;
@@ -16,7 +20,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
 
     &__fullScreen {
         width: 100%;
-        height: calc(100vh - $navHeight - 10vh);
+        height: calc(100vh - var.$navHeight - 10vh);
     }
 
     &__darkMode {
@@ -62,7 +66,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
     width: max(100px, 20%);
     translate: -100%;
     transition: translate $transition;
-    @include fCenter();
+    @include mix.fCenter();
 
     &__open {
         translate: 0%;
@@ -71,7 +75,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
 
     &__covering {
         &Dark {
-            background-color: $darkMode;
+            background-color: var.$darkMode;
         }
 
         &Light {
@@ -96,7 +100,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
     top: 1rem;
     border-radius: 50%;
     box-shadow: $componentShadow;
-    @include fCenter();
+    @include mix.fCenter();
     background-color: white;
     transition: $transition;
     transition-property: right, top, background-color;
@@ -106,7 +110,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
         @include hovering();
     }
 
-    @include darkModeSelector($darkMode);
+    @include mix.darkModeSelector();
 
     &__darkMode {
         &:hover {
@@ -118,6 +122,7 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
         right: -30px;
         top: 3rem;
         box-shadow: none;
+
         &:hover {
             box-shadow: 2px 2px 10px rgba(255 255 255 / 0.2);
             @include hovering();
@@ -125,6 +130,6 @@ $componentShadow: 2px 2px 5px rgba(0 0 0 / 0.1), -2px -2px 5px rgba(0 0 0 / 0.1)
     }
 
     svg {
-        fill: $appYellow;
+        fill: var.$appYellow;
     }
 }

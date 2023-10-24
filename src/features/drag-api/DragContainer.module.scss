@@ -1,10 +1,11 @@
-@use "css" as *;
+@use "css/mixins" as mix;
+@use "css/variables" as var;
 
 $lineUp: 3;
 
 .container {
-    @include appContainer($darkMode, $lineUp);
-    @include flex(center, row);
+    @include mix.appContainer(var.$darkMode, $lineUp);
+    @include mix.flex(center, row);
     gap: 1rem;
 }
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+// import { AnimatePresence, motion } from "framer-motion";
 
 import { useAppRedux } from "app";
 
@@ -65,11 +65,11 @@ const Home = () => {
 
     // const time = new Date(dataUpdatedAt).toLocaleTimeString();
     const { isDarkMode } = useAppRedux();
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
     return (
         <div className={isDarkMode ? `${container} ${dark}` : container}>
-            <button onClick={() => setShow(prev => !prev)}>Click</button>
+            {/* <button onClick={() => setShow(prev => !prev)}>Click</button>
             <AnimatePresence>
                 {show ? (
                     <motion.div
@@ -82,7 +82,8 @@ const Home = () => {
                         Blana
                     </motion.div>
                 ) : null}
-            </AnimatePresence>
+            </AnimatePresence> */}
+            {/* <Loader2 /> */}
             {/* {isLoading ? <Loader /> : <p>{time}</p>} */}
             {/* <div className={styles.iframeRTK}>
                 <GlowText text="Informer" />

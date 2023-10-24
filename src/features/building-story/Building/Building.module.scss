@@ -1,4 +1,4 @@
-@use "css" as *;
+@use "css/z-index" as z;
 
 .container {
     width: 100%;
@@ -21,7 +21,7 @@
 
 .controls {
     width: 400px;
-    z-index: 1;
+    @include z.z-index();
     display: flex;
     align-items: center;
     justify-content: space-between;

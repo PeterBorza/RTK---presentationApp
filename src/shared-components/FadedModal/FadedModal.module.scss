@@ -1,4 +1,5 @@
-@use "css" as *;
+@use "css/mixins" as mix;
+@use "css/z-index" as z;
 
 .generalWrapper {
     position: fixed;
@@ -8,6 +9,6 @@
     left: 0;
     top: 0;
     overflow: hidden;
-    @include fCenter;
-    z-index: 100;
+    @include mix.fCenter;
+    @include z.z-index("navigation");
 }
