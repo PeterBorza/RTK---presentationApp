@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
@@ -17,8 +17,8 @@ const Photos = () => {
     const { photos, dispatch } = useMGameRedux();
     const { isPhotosOpen: openSideBar, isDarkMode } = useAppRedux();
 
-    const closeSidePanel = useCallback(() => dispatch(togglePhotos(false)), [dispatch]);
-    const openSidePanel = useCallback(() => dispatch(togglePhotos(true)), [dispatch]);
+    const closeSidePanel = () => dispatch(togglePhotos(false));
+    const openSidePanel = () => dispatch(togglePhotos(true));
 
     //  TODO Photos and Photo with landing page do not belong to memorygame!! extract and images // folder as well
 

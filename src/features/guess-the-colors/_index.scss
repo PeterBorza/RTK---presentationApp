@@ -27,7 +27,7 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
     background-color: transparent;
     box-shadow: inset $container-shadow;
     border-radius: 5px;
-    margin: 1rem auto;
+    margin: calc(var.$navHeight + 2rem) auto;
     display: grid;
     grid-template-columns: minmax(70%, 1.5fr) auto;
     grid-template-rows: 0.4fr 0.2fr auto;
@@ -156,7 +156,6 @@ $option-item-size: clamp(8px, 1.2vw, 2rem);
 }
 
 .evaluation_wrapper {
-    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(2px, 1vw, 8px);

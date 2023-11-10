@@ -27,6 +27,8 @@ export const PagesContextProvider = ({ children }: { children?: React.ReactNode 
         Puzzles: <ImageBox />,
     };
 
+    // TODO move Puzzles to PHOTOS section
+
     const sanitise = (label: string) => {
         const cleanString = label.trim().toLocaleLowerCase().split(" ");
         return cleanString.reduce((acc, str) => acc.concat(str), "");

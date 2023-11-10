@@ -34,6 +34,7 @@ import Box from "./Box";
 import ScrollPage from "./ScrollPage";
 import Scroller from "./Scroller";
 import SlideShow from "./SlideShow";
+import SlideShow2 from "./SlideShow2";
 import FloatingImage from "./FloatingImage";
 import GradientText from "./GradientText";
 import UserField from "./UserField";
@@ -42,6 +43,8 @@ import WarningModal from "./WarningModal";
 import { SimpleDrag, SortableDrag, SortableItem, Droppable, Draggable } from "./Drag";
 import Container from "./Container";
 import GlowText from "./GlowText";
+import FadeOnScroll from "./FadeOnScroll";
+import Icon from "./Icon";
 
 // TODO create split screen component
 
@@ -84,6 +87,7 @@ export {
     ScrollPage,
     Scroller,
     SlideShow,
+    SlideShow2,
     FloatingImage,
     GradientText,
     UserField,
@@ -96,4 +100,6 @@ export {
     Draggable,
     Container,
     GlowText,
+    FadeOnScroll,
+    Icon,
 };

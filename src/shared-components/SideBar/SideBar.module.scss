@@ -4,23 +4,26 @@
 
 $header-footer-height: 4vh;
 $side_bar_font: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+$SBsize: max(10%, 150px);
+$SBtransition: all 200ms ease;
+$SBborder: 1px dashed rgba(151, 136, 136, 0.4);
 
 .wrapper {
     position: absolute;
     left: 0;
     top: 0;
+    height: 100vh;
+    height: 100svh;
     height: 100%;
-    padding-top: var.$navHeight;
-    width: var.$SBsize;
+    width: $SBsize;
     translate: -100%;
     @include mix.headerMainFooter;
     border-bottom-right-radius: 3px;
     overflow: hidden;
     padding: 2px;
     @include mix.shadowSB;
-    transition: var.$SBtransition;
+    transition: $SBtransition;
     @include z.z-index();
-
     &__open {
         translate: 0;
         @include mix.darkModeSelector(white);
@@ -40,11 +43,11 @@ $side_bar_font: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     padding-bottom: 0.8rem;
     padding-top: calc(var.$navHeight + 0.5rem);
     user-select: none;
-    border-bottom: var.$SBborder;
+    border-bottom: $SBborder;
 }
 
 .footer {
-    border-top: var.$SBborder;
+    border-top: $SBborder;
     display: flex;
     justify-content: flex-end;
     width: 100%;

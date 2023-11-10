@@ -3,6 +3,8 @@
 .container {
     width: 100%;
     height: 100vh;
+    height: 100svh;
+    background-color: cornflowerblue;
 }
 
 .linkWrapper {
@@ -21,6 +23,7 @@
     max-width: 700px;
     margin: 5vh auto;
     object-fit: scale-down;
+    height: 100%;
 }
 
 .title {

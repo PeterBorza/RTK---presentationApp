@@ -9,6 +9,7 @@ import {
     IResultsType,
     IAttempt,
     ErrorMessageType,
+    initialPlayerCombo,
 } from "./state";
 
 const currentAttemptFinder = (state: IAttempt[], payload: number) =>
@@ -52,6 +53,13 @@ export const guessGameSlice = createSlice({
             const current = attempts.find(attempt => attempt.id === payload.id);
             if (current) current.base = current.base.filter(item => item.color !== payload.color);
         },
+        resetPlayerCombo: (
+            { attempts }: IguessGame,
+            { payload }: PayloadAction<IguessGameItem>,
+        ) => {
+            const current = attempts.find(attempt => attempt.id === payload.id);
+            if (current) current.playerCombo = initialPlayerCombo;
+        },
     },
 });
 
@@ -64,5 +72,6 @@ export const {
     setFinished,
     setError,
     filterBase,
+    resetPlayerCombo,
 } = guessGameSlice.actions;
 export default guessGameSlice.reducer;

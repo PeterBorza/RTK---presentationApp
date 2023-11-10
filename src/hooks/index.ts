@@ -14,3 +14,4 @@ export { default as useDebounce } from "./useDebounce";
 export { default as useToggle } from "./useToggle";
 export { default as useSearch } from "./useSearch";
 export { default as useAnimatedCount } from "./useAnimatedCount";
+export { default as useFadeInOnScroll } from "./useFadeInOnScroll";

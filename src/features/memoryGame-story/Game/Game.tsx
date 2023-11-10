@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from "react";
 import { MemoryGameMessages as msg } from "./redux/messages";
 import { useAppRedux } from "app";
 import { shuffle } from "utils";
-import { Button } from "shared-components";
+import { Button, FadeOnScroll } from "shared-components";
 
 import { GameTheme } from "./redux/types";
 import { useMGameRedux } from "./redux/selectors";
@@ -49,28 +49,30 @@ const Game = () => {
     );
 
     return (
-        <section className={containerClasses}>
-            <Controls label={msg.SCORE} count={count}>
-                <GameButtons
-                    themes={themes}
-                    onNewGame={theme => newGameHandler(theme)}
-                    dark={isDarkMode}
-                />
-            </Controls>
-            <GridTable gamePhotos={gamePhotos} />
-            <GameEnd count={count} isGameFinished={isGameFinished}>
-                <GameButtons
-                    themes={themes}
-                    onNewGame={theme => newGameHandler(theme)}
-                    dark={isDarkMode}
-                >
-                    <Button
-                        value={msg.RETURN_LINK}
-                        onClick={() => dispatch(setGameFinished(false))}
+        <FadeOnScroll>
+            <section className={containerClasses}>
+                <Controls label={msg.SCORE} count={count}>
+                    <GameButtons
+                        themes={themes}
+                        onNewGame={theme => newGameHandler(theme)}
+                        dark={isDarkMode}
                     />
-                </GameButtons>
-            </GameEnd>
-        </section>
+                </Controls>
+                <GridTable gamePhotos={gamePhotos} />
+                <GameEnd count={count} isGameFinished={isGameFinished}>
+                    <GameButtons
+                        themes={themes}
+                        onNewGame={theme => newGameHandler(theme)}
+                        dark={isDarkMode}
+                    >
+                        <Button
+                            value={msg.RETURN_LINK}
+                            onClick={() => dispatch(setGameFinished(false))}
+                        />
+                    </GameButtons>
+                </GameEnd>
+            </section>
+        </FadeOnScroll>
     );
 };
 

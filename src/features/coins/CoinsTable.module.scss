@@ -17,8 +17,8 @@ $coinborder: 1px solid darken($coinBlue, 30%);
 
 .dataTable {
     display: grid;
-    @include mix.RAM(300px, 1fr);
-    height: 60vh;
+    height: 70%;
+    min-height: 450px;
     gap: 2rem;
     padding: 2rem;
 }
