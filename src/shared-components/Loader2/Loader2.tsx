@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Loader2.module.scss";
 import { newArray } from "utils";
 import classNames from "classnames";

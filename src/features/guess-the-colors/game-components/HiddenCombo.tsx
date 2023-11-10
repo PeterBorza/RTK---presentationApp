@@ -1,4 +1,3 @@
-import React from "react";
 import { IguessGameItem } from "../state";
 
 import { FlipCard } from "shared-components";

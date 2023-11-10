@@ -1,4 +1,3 @@
-import React from "react";
 import { FormEvent } from "react";
 
 import { CustomIcon, InputCard } from "shared-components";

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
 import classNames from "classnames";
 import styles from "./CustomInput.module.scss";

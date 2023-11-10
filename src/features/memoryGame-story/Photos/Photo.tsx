@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useParams } from "react-router-dom";
 import { useMGameRedux } from "../Game/redux/selectors";
 

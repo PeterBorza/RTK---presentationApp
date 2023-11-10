@@ -7,7 +7,6 @@ module.exports = {
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "plugin:react/jsx-runtime",
     ],
     overrides: [
         {
@@ -27,7 +26,7 @@ module.exports = {
     },
     plugins: ["@typescript-eslint", "react", "react-hooks"],
     rules: {
-        "react/react-in-jsx-scope": "warn",
+        "react/react-in-jsx-scope": "off",
         "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
         "@typescript-eslint/no-unused-vars": "off",
     },

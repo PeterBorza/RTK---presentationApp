@@ -1,4 +1,3 @@
-import React from "react";
 import { LevelCount, Lift } from "../state";
 
 import classNames from "classnames";

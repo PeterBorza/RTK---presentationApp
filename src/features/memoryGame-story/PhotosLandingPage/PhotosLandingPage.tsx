@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CustomImage } from "shared-components";
 
 import rd1900 from "shared-components/Rubik/rubik-images/rd-1-900.jpg";

@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from "react";
+import { ReactNode, useRef } from "react";
 import styles from "../AnimatedDropdown.module.scss";
 import { useOnClickOutside } from "hooks";
 

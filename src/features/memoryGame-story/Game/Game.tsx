@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { MemoryGameMessages as msg } from "./redux/messages";
 import { useAppRedux } from "app";

@@ -12,6 +12,7 @@
 /build
 
 # misc
+.tool-versions
 .vscode
 .env
 .DS_Store

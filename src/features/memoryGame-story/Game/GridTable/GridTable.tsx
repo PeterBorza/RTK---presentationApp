@@ -1,5 +1,3 @@
-import React from "react";
-
 import GameCard from "../GameCard";
 import { GamePhotoData } from "../redux/types";
 

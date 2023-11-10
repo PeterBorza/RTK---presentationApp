@@ -10,7 +10,7 @@ ReactDOM.render(
     <React.StrictMode>
         <Providers>
             <AppRoutes />
-        </Providers>
+        </Providers>,
     </React.StrictMode>,
     document.getElementById("root"),
 );

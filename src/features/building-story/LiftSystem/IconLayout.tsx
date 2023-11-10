@@ -1,4 +1,3 @@
-import React from "react";
 import { DirectionType, directionIcons } from "../state";
 
 import styles from "./LiftSystem.module.scss";

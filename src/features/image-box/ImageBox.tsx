@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ImageCard, ToggleButton } from "shared-components";
 import { puzzleImages } from "images/puzzlePhotos/image-stack";
 
