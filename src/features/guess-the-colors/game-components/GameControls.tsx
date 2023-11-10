@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IguessGameItem, EvaluateType } from "../state";
 
 type Props = {

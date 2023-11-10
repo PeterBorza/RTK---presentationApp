@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DragOverlay } from "@dnd-kit/core";
 
 import { useAppRedux } from "app";

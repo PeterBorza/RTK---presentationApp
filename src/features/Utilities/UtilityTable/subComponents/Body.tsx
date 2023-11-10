@@ -1,10 +1,10 @@
-import React from "react";
+import { ReactNode } from "react";
 
 import styles from "../UtilityTable.module.scss";
 
 type BodyProps = {
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 };
 
 const Body = ({ className, children }: BodyProps) => {

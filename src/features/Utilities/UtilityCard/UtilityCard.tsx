@@ -1,4 +1,3 @@
-import React from "react";
 import { UtilityStateUnit } from "../types";
 
 import CardCell from "./CardCell";

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./AnimatedDropdown.module.scss";
 import ListContent from "./ListContent/ListContent";
 import classNames from "classnames";

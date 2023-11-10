@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ImageType } from "utils/my-images";
 import { useToggle } from "hooks";
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { useMGameRedux } from "../redux/selectors";
 import { FlipCard } from "shared-components";

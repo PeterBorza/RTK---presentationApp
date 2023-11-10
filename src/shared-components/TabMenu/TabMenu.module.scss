@@ -41,7 +41,7 @@ $counter: 1.5;
         @include tabUnderlineAnimation($itemCount);
         font-size: 1rem * $counter;
         width: $itemCount * 80px;
-        @include mix.RAM(100% / $itemCount, 1fr);
+        @include mix.RAM(calc(100% / $itemCount), 1fr);
 
         &.itemCount-#{$itemCount} {
             &::after {

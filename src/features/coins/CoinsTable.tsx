@@ -1,5 +1,3 @@
-import React from "react";
-
 import { DropSelect, Loader } from "shared-components";
 import { CoinsInterface } from "./types";
 import useSortedCoins from "./useSortedCoins";

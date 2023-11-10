@@ -1,9 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 
 import styles from "./ScrollTable.module.scss";
 
 interface BodyProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
 const Body = ({ children }: BodyProps) => (

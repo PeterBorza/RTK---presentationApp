@@ -1,8 +1,7 @@
-import React from "react";
+import { useAppRedux } from "app";
 
 import styles from "./UtilityPlatform.module.scss";
 import classNames from "classnames";
-import { useAppRedux } from "app";
 
 const UtilityPlatform = () => {
     const { isDarkMode } = useAppRedux();

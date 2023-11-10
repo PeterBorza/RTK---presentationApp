@@ -1,5 +1,3 @@
-import React from "react";
-
 import { UtilityStateUnit } from "features/Utilities";
 import UtilityCard from "./UtilityCard";
 import EditCard from "./EditCard";

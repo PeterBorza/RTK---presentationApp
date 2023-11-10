@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 
 import { useOnClickOutside, useToggle } from "hooks";
 import { icons } from "utils";

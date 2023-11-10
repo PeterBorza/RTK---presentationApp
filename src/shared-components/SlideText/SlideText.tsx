@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./SlideText.module.scss";
 
 const SlideText = ({ text = "This component is for animated text" }: { text?: string }) => {

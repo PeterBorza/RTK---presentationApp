@@ -1,4 +1,3 @@
-import React from "react";
 import { iconCollection } from "./svg-icons";
 import { SvgIconSize, SvgIconType } from "./types";
 

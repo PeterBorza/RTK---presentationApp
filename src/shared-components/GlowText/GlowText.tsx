@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./GlowText.module.scss";
 
 interface GlowTextProps {

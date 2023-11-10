@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import city900 from "images/city900.jpg";
 
 import { Button, FloatingImage, UserField } from "shared-components";
