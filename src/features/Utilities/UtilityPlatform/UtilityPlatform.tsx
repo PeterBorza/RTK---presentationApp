@@ -8,7 +8,7 @@ const UtilityPlatform = () => {
     const classes = classNames(styles.container, {
         [styles.container__darkMode]: isDarkMode,
     });
-    return <div className={classes}></div>;
+    return <div className={classes} />;
 };
 
 export default UtilityPlatform;
