@@ -5,17 +5,23 @@ $blue-background: rgba(205, 217, 240, 0.885);
 $sidebar-width: min(200px, 20%);
 
 .section {
+    width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     @include mix.darkModeSelector();
+    overflow: auto;
+    scroll-snap-type: y mandatory;
 }
 
 .article {
     width: calc(100% - $sidebar-width);
     margin-left: $sidebar-width;
     min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
     display: grid;
     place-items: center;
+    scroll-snap-align: top;
 
     &__default {
         width: 100%;

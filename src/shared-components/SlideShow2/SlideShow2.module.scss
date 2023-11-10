@@ -1,0 +1,40 @@
+$iconDistanceFromContainer: 1.5rem;
+$slideDuration: 200ms;
+$slideDistance: 20%;
+$slideDelay: 20ms;
+
+.slideWrapper {
+    // position: relative;
+    height: 600px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.container {
+    position: relative;
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    &__image {
+        position: absolute;
+        object-fit: cover;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        display: block;
+        transition: opacity 300ms ease-in-out;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    z-index: 100;
+    background: white;
+    border-radius: 50%;
+}

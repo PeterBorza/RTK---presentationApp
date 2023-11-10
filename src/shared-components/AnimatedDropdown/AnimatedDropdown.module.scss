@@ -6,6 +6,7 @@
 @mixin onHover {
     display: block;
     overflow: scroll;
+    pointer-events: all;
     @for $child from 1 to 12 {
         li:nth-child(#{$child}) {
             display: block;
@@ -43,11 +44,14 @@
     height: 100%;
     transition: all 200ms;
     cursor: pointer;
-    @include z.z-index();
+
     overflow: scroll;
+    pointer-events: none;
+
     &:hover {
         @include onHover();
     }
+
     li {
         display: none;
         border: 1px solid white;
@@ -56,6 +60,7 @@
         text-align: center;
         opacity: 0;
         padding: 3px;
+        pointer-events: all;
     }
 }
 
@@ -75,6 +80,8 @@
             + .content {
                 height: 100%;
                 @include onHover();
+                pointer-events: all;
+                @include z.z-index();
             }
         }
     }

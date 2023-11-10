@@ -5,8 +5,11 @@ import { GameAttempts, GameControls, GameHeader, HiddenCombo } from "./game-comp
 import { resetGame } from "./guessGameSlice";
 import { baseColorsState, emptyAttemptSelector, finishedState, gameComboState } from "./selectors";
 import { guessGameData } from "./state";
+import { featureFlags } from "flags";
 
 import "./_index.scss";
+import { FadeOnScroll } from "shared-components";
+import { GuessGame } from "./game-components/guess-with-drag";
 
 //TODO do not show hidden combo data from devTools
 
@@ -24,17 +27,29 @@ const ColorGame = () => {
     }, [gameCombo, baseColors, dispatch]);
 
     return (
-        <div className="game_container">
-            <GameHeader
-                onNewGameClick={() => dispatch(resetGame(baseColors))}
-                isFresh={freshGame}
-                title={gameTitle}
-                buttonLabel={newGame}
-            />
-            <HiddenCombo finishedGame={finishedGame} gameCombo={gameCombo} />
-            <GameControls baseColors={baseColors} legend={gameLegend} count={attemptCount} />
-            <GameAttempts gameCombo={gameCombo} gameData={guessGameData} />
-        </div>
+        <>
+            {featureFlags.guessTheColors ? (
+                <GuessGame />
+            ) : (
+                <FadeOnScroll>
+                    <div className="game_container">
+                        <GameHeader
+                            onNewGameClick={() => dispatch(resetGame(baseColors))}
+                            isFresh={freshGame}
+                            title={gameTitle}
+                            buttonLabel={newGame}
+                        />
+                        <HiddenCombo finishedGame={finishedGame} gameCombo={gameCombo} />
+                        <GameControls
+                            baseColors={baseColors}
+                            legend={gameLegend}
+                            count={attemptCount}
+                        />
+                        <GameAttempts gameCombo={gameCombo} gameData={guessGameData} />
+                    </div>
+                </FadeOnScroll>
+            )}
+        </>
     );
 };
 

@@ -456,9 +456,20 @@
       "readDate": "16/08/2023",
       "selected": false,
       "index": "5930",
-      "bill": "",
+      "bill": "175",
       "consumption": 60,
       "estimate": 174.79,
+      "payed": true,
+      "edit": false
+    },
+    {
+      "id": "d47bc9a9-297b-49bc-8d2d-a895d6fa7a6d",
+      "readDate": "24/10/2023",
+      "selected": false,
+      "index": "5969",
+      "bill": "",
+      "consumption": 39,
+      "estimate": 113.75,
       "payed": false,
       "edit": false
     }

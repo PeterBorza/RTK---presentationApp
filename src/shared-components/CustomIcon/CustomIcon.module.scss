@@ -16,7 +16,6 @@ $iconTypes: (
     cursor: pointer;
     flex-shrink: 0;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-    background-color: inherit;
     transition: all 150ms ease 20ms;
 
     &__small {
@@ -42,6 +41,8 @@ $iconTypes: (
         border-radius: 50%;
         svg {
             color: lighten(var.$darkModeWhite, 60%);
+            stroke: "black";
+            fill: "white";
         }
     }
 
