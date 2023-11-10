@@ -66,6 +66,7 @@ $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     overflow-y: auto;
 }
 

@@ -1,6 +1,5 @@
 import { ImageCard, ToggleButton } from "shared-components";
-import { puzzleImages } from "images/puzzlePhotos/image-stack";
-
+import { miniLandscapes } from "utils/my-images";
 import { useLocalStorage } from "hooks";
 import { LocalStorageKeys as LS } from "common/localStorageKeys";
 
@@ -20,7 +19,7 @@ const ImageBox = () => {
                 toggleEnabled={() => setShowImages(!showImages)}
             />
             {showImages
-                ? puzzleImages.map((img, index) => (
+                ? miniLandscapes.map((img, index) => (
                       <ImageCard key={`puzzle-image-${index}`} position="center" src={img} />
                   ))
                 : null}

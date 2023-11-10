@@ -57,15 +57,16 @@
         "@babel/core": "^7.13.0"
     },
     "scripts": {
-        "start": "PORT=3100 react-scripts start",
+        "start": "set PORT=3100 && react-scripts start",
+        "start_mac": "PORT=3100 react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "bubbles": "json-server --watch data/bubbles.json --port 5010 --delay 1000",
         "coins": "json-server --watch data/coins.json --port 5008 --delay 1000",
         "utilities": "json-server --watch data/utilities.json --port 5006 --delay 1000",
-        "all": "start npm run start && start npm run bubbles && start npm run utilities",
         "startall": "concurrently \"npm run utilities\" \"npm run bubbles\" \"npm run coins\" \"npm start\"",
+        "startall_mac": "concurrently \"npm run utilities\" \"npm run bubbles\" \"npm run coins\" \"npm start_mac\"",
         "lint": "eslint src/*.{ts,tsx}",
         "lint:fix": "eslint --fix src/*.{ts,tsx}",
         "format": "prettier --write src/**/*.{ts,tsx,md,scss} --config ./.prettierrc",
