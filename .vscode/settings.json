@@ -23,14 +23,13 @@
     "workbench.startupEditor": "none",
     "folderTemplates.fileTemplates": {
         "Typescript Functional Component": [
-            "import React from 'react';",
             "import styles from './<FTName % pascalcase>.module.scss'",
             "",
             "interface <FTName % pascalcase>Props {",
             "}",
             "",
             "const <FTName % pascalcase> = (props: <FTName % pascalcase>Props) => {",
-            "  return <div className={styles.container}>Test</div>;",
+            "  return <div className={styles.container}><FTName % pascalcase> component</div>;",
             "};",
             "",
             "export default <FTName % pascalcase>;"

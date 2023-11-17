@@ -56,36 +56,27 @@ const BubbleContainer = () => {
         },
     ];
 
-    const getButtons = buttons.map((item, idx) => <Button key={`button-${idx}`} {...item} />);
-
-    const renderButtons = () => (
+    const ManageBubbles = () => (
         <>
-            {getButtons}
-            {isBubbles && (
-                <BubbleForm
-                    formObject={bubbleValidations}
-                    isOpen={isBubbleFormModalOpen}
-                    openForm={() => dispatch(toggleBubbleFormModal(true))}
-                    closeForm={() => dispatch(toggleBubbleFormModal(false))}
-                    onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
-                />
-            )}
+            {buttons.map((item, idx) => (
+                <Button key={`button-${idx}`} {...item} />
+            ))}
         </>
     );
 
-    const onBubbleClick = ({ id, cssProps }: BubbleType) => {
-        dispatch(setSelectedBubble({ id, cssProps }));
-    };
-
-    const renderBubble = ({ id, cssProps }: BubbleType) => (
-        <Bubble
-            key={id}
-            onClick={() => onBubbleClick({ id, cssProps })}
-            title={msg.HOVER_TITLE}
-            isSelected={selected?.id === id}
-            cssProps={cssProps}
-            id={id}
-        />
+    const Bubbles = () => (
+        <>
+            {bubbles.map(({ id, cssProps }: BubbleType) => (
+                <Bubble
+                    key={id}
+                    onClick={() => dispatch(setSelectedBubble({ id, cssProps }))}
+                    title={msg.HOVER_TITLE}
+                    isSelected={selected?.id === id}
+                    cssProps={cssProps}
+                    id={id}
+                />
+            ))}
+        </>
     );
 
     // TODO resolve pending issues on button state
@@ -96,9 +87,18 @@ const BubbleContainer = () => {
             <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
 
             <ButtonWrapper position="start" dark={isDarkMode}>
-                {renderButtons()}
+                <ManageBubbles />
+                {isBubbles && (
+                    <BubbleForm
+                        formObject={bubbleValidations}
+                        isOpen={isBubbleFormModalOpen}
+                        openForm={() => dispatch(toggleBubbleFormModal(true))}
+                        closeForm={() => dispatch(toggleBubbleFormModal(false))}
+                        onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
+                    />
+                )}
             </ButtonWrapper>
-            {bubbles.map(renderBubble)}
+            <Bubbles />
         </div>
     );
 };

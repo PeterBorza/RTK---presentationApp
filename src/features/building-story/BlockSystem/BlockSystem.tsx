@@ -28,24 +28,28 @@ const BlockSystem = () => {
             : dispatch(moveLift({ level, lift: liftB }));
     };
 
-    const renderLiftButton = (level: number) => (
-        <LiftButton
-            key={`shaft-button-${level}`}
-            onClick={() => shaft_ButtonsHandler(level)}
-            disabled={isMovingA || isMovingB}
-            value={level}
-            selected={level === positionA || level === positionB}
-            direction={isMovingA ? dirA : dirB}
-            variant="shaft"
-        />
+    const LiftButtons = () => (
+        <>
+            {levels.map((level: number) => (
+                <LiftButton
+                    key={`shaft-button-${level}`}
+                    onClick={() => shaft_ButtonsHandler(level)}
+                    disabled={isMovingA || isMovingB}
+                    value={level}
+                    selected={level === positionA || level === positionB}
+                    direction={isMovingA ? dirA : dirB}
+                    variant="shaft"
+                />
+            ))}
+        </>
     );
-
-    // TODO when one of the lifts is moving, user is still able to call the other one from the shaft
 
     return (
         <div className={styles.blockContainer}>
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftA} side="left" />
-            <div className={styles.shaftContainer}>{levels.map(renderLiftButton)}</div>
+            <div className={styles.shaftContainer}>
+                <LiftButtons />
+            </div>
             <LiftCabin levelCount={numberOfLevels} speed={speed} data={liftB} side="right" />
         </div>
     );
