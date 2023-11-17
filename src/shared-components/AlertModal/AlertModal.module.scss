@@ -5,9 +5,10 @@ $bg-color: rgb(0 0 0 / 0.5);
 $error-color: rgba(255, 0, 0, 0.8);
 
 @mixin boxSize {
-    max-width: 50%;
-    height: 20vh;
-    max-height: 30%;
+    width: 100%;
+    max-width: 700px;
+    min-height: 20vh;
+    max-height: max-content;
 }
 
 @mixin centerAll {
@@ -33,7 +34,8 @@ $error-color: rgba(255, 0, 0, 0.8);
 .alert_modal {
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
     inset: 0;
     background-color: $bg-color;
     @include z.z-index("modal");

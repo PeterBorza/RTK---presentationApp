@@ -3,29 +3,12 @@
 import { useAppRedux } from "app";
 
 import styles from "./Home.module.scss";
-// import { GlowText } from "shared-components";
+import { TabMenu } from "shared-components";
 // import { jsonUsersUrl, useQueryHook } from "providers/tanstack-react-query";
 
 const { container, container__darkMode: dark } = styles;
 
-// const strings = [
-//     "alpha",
-//     "ro",
-//     "nu",
-//     "omega",
-//     "epsilon",
-//     "beta",
-//     "gamma",
-//     "delta",
-//     "teta",
-//     "sdgfhng",
-//     "sdgfb",
-//     "xbd",
-//     "gfdgnfsh",
-//     "asfdgbfngfh",
-//     "dfvbdf",
-//     "xzv cvcnzbf",
-// ];
+const strings = ["alpha", "ro", "nu", "omega", "epsilon", "beta", "gamma", "delta", "teta"];
 
 // const objectToDrag = [
 //     {
@@ -91,7 +74,7 @@ const Home = () => {
             {/* <div className={styles.dropContainer}>
                 <AnimatedDropdown label="tester component" items={[...dropItems, "reset"]} />
             </div> */}
-            {/* <TabMenu darkMode={isDarkMode} menuItems={strings} /> */}
+            <TabMenu darkMode={isDarkMode} menuItems={strings} />
         </div>
     );
 };

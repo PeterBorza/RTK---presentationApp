@@ -52,10 +52,8 @@ $sidebar-width: min(200px, 20%);
         background: var.$myYellow3;
     }
 
-    &__dark {
-        &::after {
-            background: var.$myYellow3;
-        }
+    &__dark::after {
+        background: var.$myYellow3;
     }
 }
 

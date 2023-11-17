@@ -10,7 +10,7 @@ $grid-background: rgb(1, 51, 20);
 }
 
 .grid {
-    width: 80%;
+    width: 100%;
     max-width: 600px;
     aspect-ratio: 1 / 1;
     display: grid;
@@ -21,4 +21,11 @@ $grid-background: rgb(1, 51, 20);
     border-radius: $gap;
     z-index: 1;
     @include shadowSB;
+}
+
+@media (max-width: 920px) {
+    .grid {
+        width: 320px;
+        max-width: 70%;
+    }
 }
