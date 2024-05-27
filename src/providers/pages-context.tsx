@@ -4,7 +4,7 @@ import { MyRubik } from "shared-components";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 
 import { Game } from "features/memoryGame-story";
-import InputExamples from "features/InputExamples";
+import MusicGame from "features/MusicGame";
 import ColorGame from "features/guess-the-colors";
 import BubbleContainer from "features/bubble-story/BubbleContainer";
 import ImageBox from "features/image-box";
@@ -16,7 +16,7 @@ export const PagesContext = createContext<PagesType<React.ReactNode>[] | null>(n
 
 export const PagesContextProvider = ({ children }: { children?: React.ReactNode }) => {
     const pages: NonNullable<unknown> = {
-        "Input examples": <InputExamples />,
+        "Music game": <MusicGame />,
         Rubik: <MyRubik withAnimation />,
         "Color game": <ColorGame />,
         "Memory game": <Game />,
