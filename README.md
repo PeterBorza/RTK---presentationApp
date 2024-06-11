@@ -4,26 +4,26 @@ It is my first project using RTK, some of my ideas are brought to screen, studyi
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, for Windows, you can:
 
 ```
-npm run all
+npm run startall
+```
+
+or for Mac OS, just have:
+
+```
+npm run startmac
 ```
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3100](http://localhost:3100) to view it in the browser.
 
 The page will reload if you make edits.<br />
 This app is using json-server, fetching data from two separate paths.<br />
 
 [http://localhost:5006](http://localhost:5006) for utilities gas/light,<br />
 [http://localhost:5010](http://localhost:5010) for bubbles/colorSets.<br />
-
-Running this command will fetch all data at startup for you !!!
-
-```
-npm run startall / yarn startall
-```
 
 Will run with concurrently, starting up the application as well as the data ports.
 
@@ -32,7 +32,7 @@ Will run with concurrently, starting up the application as well as the data port
 ```
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3100](http://localhost:3100) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
@@ -67,7 +67,7 @@ You will also see any lint errors in the console.
 
 ![Gas-RTK](https://user-images.githubusercontent.com/68942716/162625175-9af29bea-8c49-410f-9aa1-df38bd205616.png)
 
-You will also find some interesting shared-components , which are created stateless, ready to be implemented anywhere in your project too.
+You will also find some interesting shared-components , which are created stateless, ready to be implemented anywhere in your project.
 
 Rubik,
 CustomImage,
@@ -80,5 +80,3 @@ Loader,
 FlipBox,
 Modal
 and many more...
-
-#### New player around the Repository - Radu B Joined
