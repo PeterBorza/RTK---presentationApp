@@ -34,7 +34,7 @@
         "@types/babel__core": "^7.20.4",
         "@types/caniuse-lite": "^1.0.4",
         "@types/eslint": "^8.44.7",
-        "@types/jest": "^27.0.2",
+        "@types/jest": "^29.5.12",
         "@types/json-server": "^0.14.7",
         "@types/node": "^16.9.6",
         "@types/react": "17.0.14",
@@ -51,7 +51,7 @@
         "eslint-plugin-react": "^7.33.2",
         "prettier": "3.0.2",
         "react-error-overlay": "^6.0.9",
-        "typescript": "^5.1.6"
+        "typescript": "^4.9.5"
     },
     "peerDependencies": {
         "@babel/core": "^7.13.0"
