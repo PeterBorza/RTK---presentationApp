@@ -25,17 +25,7 @@ This app is using json-server, fetching data from two separate paths.<br />
 [http://localhost:5006](http://localhost:5006) for utilities gas/light,<br />
 [http://localhost:5010](http://localhost:5010) for bubbles/colorSets.<br />
 
-Will run with concurrently, starting up the application as well as the data ports.
-
-```
- npm start
-```
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3100](http://localhost:3100) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Will run with concurrently, starting up the application as well as json-server.
 
 ### `App created to exercise redux-toolkit and typescript.`
 
