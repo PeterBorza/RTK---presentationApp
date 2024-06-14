@@ -12,14 +12,15 @@ export type MenuType = string | number | ReactNode;
 interface DropSelectProps {
     menu: string[] | number[] | ReactNode[];
     onSelect?: (element: MenuType) => void;
+    initialSelect?: MenuType;
     isDarkMode?: boolean;
 }
 
 const DEFAULT_TRIGGER_LABEL = "Select";
 
-const DropSelect = ({ menu, onSelect, isDarkMode = false }: DropSelectProps) => {
+const DropSelect = ({ menu, onSelect, initialSelect, isDarkMode = false }: DropSelectProps) => {
     const [isOpen, toggleOpen, setIsOpen] = useToggle(false);
-    const [selected, setSelected] = useState<MenuType>(DEFAULT_TRIGGER_LABEL);
+    const [selected, setSelected] = useState<MenuType>(initialSelect ?? DEFAULT_TRIGGER_LABEL);
     const dropSelectRef = useRef<HTMLUListElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -52,7 +53,7 @@ const DropSelect = ({ menu, onSelect, isDarkMode = false }: DropSelectProps) => 
 
     return (
         <div ref={containerRef} className={classes} onClick={toggleOpen}>
-            <span className={triggerElementStyles}>{selected}</span>
+            <span className={triggerElementStyles}>{selected || menu[0]}</span>
             <ul ref={dropSelectRef} className={menuClasses}>
                 {menu.map((element, index) => (
                     <MenuItem

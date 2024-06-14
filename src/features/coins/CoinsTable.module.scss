@@ -45,11 +45,20 @@ $coinborder: 1px solid darken($coinBlue, 30%);
     &__content {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
+        &_title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            &_dark {
+                font-weight: 600;
+                font-size: 1.3rem;
+                color: red;
+            }
+        }
     }
 
     &__dropDown {
-        margin: auto;
-        width: 400px;
+        width: 380px;
     }
 
     &__table_row {

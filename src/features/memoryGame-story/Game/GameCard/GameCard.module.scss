@@ -1,3 +1,5 @@
+@use "css/variables" as var;
+
 $cols: 4;
 $gap: 5px;
 $backColor: rgb(9, 77, 9);
@@ -7,9 +9,16 @@ $front-background: rgba(255, 255, 525, 0.6);
 
 .box {
     border-radius: 2px;
+    outline: 1px solid var.$darkBlue;
     overflow: hidden;
     pointer-events: all;
     user-select: none;
+    &--disabled {
+        pointer-events: none;
+    }
+    &--faded {
+        opacity: 0.5;
+    }
 }
 
 .front {
@@ -57,14 +66,6 @@ $front-background: rgba(255, 255, 525, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.disabled {
-    pointer-events: none;
-}
-
-.faded {
-    opacity: 0.5;
 }
 
 .game_image {

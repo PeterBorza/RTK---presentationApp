@@ -3,7 +3,7 @@ import styles from "./CustomImage.module.scss";
 
 type AnimationDirection = "up" | "down" | "fromLeft" | "fromRight";
 
-export type ImageType = {
+export type CustomImageType = {
     src: string | undefined;
     delay: number;
     duration: number;
@@ -11,7 +11,7 @@ export type ImageType = {
     direction?: AnimationDirection;
 };
 
-const CustomImage = ({ src, delay, duration, spacing, direction }: ImageType) => {
+const CustomImage = ({ src, delay, duration, spacing, direction }: CustomImageType) => {
     const imageClasses = classNames(
         styles.imageStyles,
         [styles[`imageStyles__direction-${direction}__${spacing}`]],
