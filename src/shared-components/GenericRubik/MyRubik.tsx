@@ -1,8 +1,9 @@
 import React from "react";
 
+import { newArray } from "utils";
+
 import classNames from "classnames";
 import styles from "./MyRubik.module.scss";
-import { newArray } from "utils";
 
 const RUBIK_SIDES = 6;
 

@@ -83,6 +83,7 @@ const ScrollTester = () => {
                     <DropSelect
                         menu={mockMenuList}
                         onSelect={element => setLabel(element)}
+                        initialSelect={mockMenuList[0]}
                         isDarkMode={isDarkMode}
                     />
                 </div>

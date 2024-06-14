@@ -24,7 +24,10 @@ const Game = () => {
         isGameFinished,
     } = useMGameRedux();
 
-    const containerClasses = classNames(styles.container, styles[`container__${currentTheme}`]);
+    const themeContainerClasses = classNames(
+        styles.container,
+        styles[`container__${currentTheme}`],
+    );
 
     useEffect(() => {
         count > maxCount && dispatch(resetGame(gamePhotos));
@@ -50,7 +53,7 @@ const Game = () => {
 
     return (
         <FadeOnScroll>
-            <section className={containerClasses}>
+            <section className={themeContainerClasses}>
                 <Controls label={msg.SCORE} count={count}>
                     <GameButtons
                         themes={themes}

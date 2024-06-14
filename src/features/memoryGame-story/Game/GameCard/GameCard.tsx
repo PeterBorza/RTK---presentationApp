@@ -22,8 +22,8 @@ const GameCard = ({ card: { id, frontSrc, isFlipped, match }, idx }: GameCardPro
     } = useMGameRedux();
 
     const cardWrapperClasses = classNames(styles.box, {
-        [styles.disabled]: match || isFlipped,
-        [styles.faded]: match,
+        [styles["box--disabled"]]: match || isFlipped,
+        [styles["box--faded"]]: match,
     });
     const cardFrontClasses = classNames(styles.front, styles[`front__${currentTheme}`]);
 
@@ -58,7 +58,11 @@ const GameCard = ({ card: { id, frontSrc, isFlipped, match }, idx }: GameCardPro
                 </FlipCard.Front>
                 <FlipCard.Back darkBack>
                     <div className={styles.back}>
-                        <img className={styles.game_image} src={frontSrc.src} alt="" />
+                        <img
+                            className={styles.game_image}
+                            src={frontSrc.src}
+                            alt={`card-${frontSrc.gameId}`}
+                        />
                     </div>
                 </FlipCard.Back>
             </FlipCard>

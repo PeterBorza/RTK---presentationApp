@@ -1,8 +1,9 @@
 import React from "react";
 
+import { ImageType } from "utils/my-images";
+
 import classNames from "classnames";
 import styles from "./Rubik.module.scss";
-import { ImageType } from "utils/my-images";
 
 export type RubikAnimationType =
     | "animate-1"

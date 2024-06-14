@@ -48,10 +48,11 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.fontFamily": "Comic Mono",
+    "editor.fontFamily": "Cascadia Code",
     "editor.fontLigatures": true,
     "json.schemas": [],
     "editor.lineHeight": 22,
     "terminal.integrated.fontFamily": "Comic Mono",
-    "terminal.integrated.fontSize": 16
+    "terminal.integrated.fontSize": 14,
+    "files.autoSave": "onFocusChange"
 }

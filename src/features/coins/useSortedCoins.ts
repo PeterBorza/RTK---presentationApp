@@ -35,7 +35,7 @@ const useSortedCoins = () => {
     );
 
     const selectCoinHandler = (id: string) => {
-        const selection = data?.find(coin => coin.id === id) ?? ({} as CoinsInterface);
+        const selection = data?.find(coin => coin.id === id);
         if (selection) setSelected(selection);
     };
 
