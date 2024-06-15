@@ -52,7 +52,8 @@
     "editor.fontLigatures": true,
     "json.schemas": [],
     "editor.lineHeight": 22,
-    "terminal.integrated.fontFamily": "Comic Mono",
+    "terminal.integrated.fontFamily": "Fira Code Medium",
     "terminal.integrated.fontSize": 14,
-    "files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "workbench.preferredHighContrastColorTheme": "Default Dark Modern"
 }
