@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { shuffle } from "utils";
+
+import { initialState } from "./state";
+
+import { reducers } from "./reducers";
 
 export const musicGameSlice = createSlice({
     name: "musicGame",
-    initialState: {},
-    reducers: {},
+    initialState,
+    reducers,
 });
 
-export const {} = musicGameSlice.actions;
+const actions = musicGameSlice.actions;
+
+export { actions };
 export default musicGameSlice.reducer;
