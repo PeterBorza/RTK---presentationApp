@@ -5,7 +5,7 @@ import { AlertModal, Loader } from "shared-components";
 
 import Home from "features/Home";
 import { Photo, Photos } from "features/memoryGame-story";
-import PhotosLandingPage from "features/memoryGame-story/PhotosLandingPage";
+import { PhotosLandingPage } from "features/AnimatedPhotos/";
 import ScrollPage from "features/scroll-pages";
 import ScrollTester from "features/tester-pages";
 import { UtilityContainer, UtilityPlatform } from "features/Utilities";

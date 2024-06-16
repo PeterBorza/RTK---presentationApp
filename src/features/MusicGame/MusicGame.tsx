@@ -7,7 +7,6 @@ import { musicGameState, shuffledSongsState } from "./redux/selectors";
 const MusicGame = () => {
     const music = useSelector(musicGameState);
     const songs = useSelector(shuffledSongsState);
-    console.log(music, songs);
 
     if (!featureFlags.musicGame) return <div>opening soon</div>;
     return (
