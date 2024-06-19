@@ -3,7 +3,7 @@ import React, { ReactNode, createContext, useContext, useMemo } from "react";
 import { MyRubik } from "shared-components";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 
-import { Game } from "features/memoryGame-story";
+import Game from "features/memoryGame-story";
 import MusicGame from "features/MusicGame";
 import ColorGame from "features/guess-the-colors";
 import BubbleContainer from "features/bubble-story/BubbleContainer";

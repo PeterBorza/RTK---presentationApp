@@ -33,7 +33,7 @@ export const urlToLabel = (item: string) => (item === NavLinkUrls.HOME ? "home" 
 // TODO Error and Pending are already in AppMessages!
 
 export enum Error {
-    MESSAGE = "We are sorry, an error occured. Please try again later",
+    MESSAGE = "We are sorry, an error occured. Please try again later.",
 }
 
 export enum Pending {

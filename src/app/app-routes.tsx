@@ -1,17 +1,14 @@
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { App, LinkUrls, Error, NavLinkUrls } from "app";
+import { App, Error, NavLinkUrls } from "app";
 import { AlertModal, Loader } from "shared-components";
 
 import Home from "features/Home";
-import { Photo, Photos } from "features/memoryGame-story";
-import { PhotosLandingPage } from "features/AnimatedPhotos/";
 import ScrollPage from "features/scroll-pages";
 import ScrollTester from "features/tester-pages";
-import { UtilityContainer, UtilityPlatform } from "features/Utilities";
-import { Gas } from "features/Gas";
-import { Light } from "features/Light";
+import { utilitiesRoute } from "features/Utilities";
 import DragContainer from "features/drag-api/DragContainer";
+import { photosRoute } from "features/AnimatedPhotos";
 
 const appRoutes: RouteObject[] = [
     {
@@ -22,38 +19,8 @@ const appRoutes: RouteObject[] = [
                 index: true,
                 element: <Home />,
             },
-            {
-                path: NavLinkUrls.UTILITIES,
-                element: <UtilityContainer />,
-                children: [
-                    {
-                        index: true,
-                        element: <UtilityPlatform />,
-                    },
-                    {
-                        path: LinkUrls.GAS,
-                        element: <Gas />,
-                    },
-                    {
-                        path: LinkUrls.LIGHT,
-                        element: <Light />,
-                    },
-                ],
-            },
-            {
-                path: NavLinkUrls.PHOTOS,
-                element: <Photos />,
-                children: [
-                    {
-                        index: true,
-                        element: <PhotosLandingPage />,
-                    },
-                    {
-                        path: ":id",
-                        element: <Photo />,
-                    },
-                ],
-            },
+            utilitiesRoute,
+            photosRoute(NavLinkUrls.PHOTOS),
             {
                 path: NavLinkUrls.FEATURES,
                 element: <ScrollPage />,
