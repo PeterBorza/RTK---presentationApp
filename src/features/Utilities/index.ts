@@ -12,6 +12,8 @@ export * from "./types";
 export * from "./state";
 export * from "./constants";
 
+export { utilitiesRoute } from "./route";
+
 export {
     UtilityContainer,
     UtilityPlatform,
