@@ -84,7 +84,8 @@
         "format": "prettier --write src/**/*.{ts,tsx,md,scss} --config ./.prettierrc",
         "postinstall": "npx typesync",
         "test": "jest --watch",
-        "coverage": "jest --coverage"
+        "coverage": "jest --coverage",
+        "pr": "bash ./scripts/pr.sh"
     },
     "eslintConfig": {
         "extends": "react-app"
