@@ -1,5 +1,5 @@
 export const featureFlags = {
-    guessTheColors: process.env.NODE_ENV === "development",
+    guessTheColors: false,
     homePage: true,
     showPuzzleImages: false,
     musicGame: process.env.NODE_ENV === "development",
