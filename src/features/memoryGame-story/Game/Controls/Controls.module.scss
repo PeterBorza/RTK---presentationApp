@@ -3,8 +3,6 @@
 $maxWidth: 600px;
 $backColor: rgb(9, 77, 9);
 
-//TODO fix buttons overflow the control wrapper small screen
-
 .controls {
     display: flex;
     align-items: center;
@@ -15,6 +13,7 @@ $backColor: rgb(9, 77, 9);
     padding: 0.3rem 1rem;
     margin-bottom: 0.5rem;
     backdrop-filter: blur(15px) brightness(170%);
+    z-index: 1;
 }
 
 .clicks {
