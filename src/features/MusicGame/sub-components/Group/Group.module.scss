@@ -1,12 +1,12 @@
 .heading {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .group {
-    border-bottom: 1px solid teal;
-    padding: 0.3rem 1rem;
-    transition: background 200ms ease;
-    &:hover {
-        background-color: rgb(245, 239, 239);
-    }
+  border-bottom: 1px solid teal;
+  padding: 0.3rem 1rem;
+  transition: background 200ms ease;
+  &:hover {
+    background-color: rgb(245, 239, 239);
+  }
 }

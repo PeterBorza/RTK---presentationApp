@@ -4,55 +4,55 @@
 $lineUp: 3;
 
 .container {
-    @include mix.appContainer(var.$darkMode, $lineUp);
-    @include mix.flex(center, row);
-    gap: 1px;
+  @include mix.appContainer(var.$darkMode, $lineUp);
+  @include mix.flex(center, row);
+  gap: 1px;
 }
 
 .dropContainer {
-    height: 200px;
+  height: 200px;
 }
 
 .iframeRTK {
-    width: 50%;
-    height: 20vh;
+  width: 50%;
+  height: 20vh;
 }
 
 .sortableContainer {
-    padding: 5px;
-    width: 500px;
-    height: 40vh;
-    display: flex;
-    gap: 0.5rem;
-    flex-direction: column;
-    border: 1px solid white;
-    overflow-x: scroll;
-    cursor: move;
+  padding: 5px;
+  width: 500px;
+  height: 40vh;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  border: 1px solid white;
+  overflow-x: scroll;
+  cursor: move;
 }
 
 .sortableItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    padding: 3px 8px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 3px 8px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
 .menuItem {
-    background-color: darkgoldenrod;
+  background-color: darkgoldenrod;
 }
 
 .isDragging {
-    background-color: limegreen;
+  background-color: limegreen;
 }
 
 .motionDiv {
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    display: grid;
-    place-items: center;
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  display: grid;
+  place-items: center;
 }

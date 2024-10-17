@@ -3,53 +3,53 @@
 $fontSize: 1.15rem;
 
 .wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    transition: all 120ms ease-out;
-    background-color: rgba(235, 240, 239, 0.7);
-    margin: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: all 120ms ease-out;
+  background-color: rgba(235, 240, 239, 0.7);
+  margin: 4px;
 }
 
 .edit_cell {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    animation: growMargin 120ms forwards linear 1;
-    font-size: $fontSize;
-    input {
-        &:focus {
-            border: none;
-            outline: none;
-            background-color: var.$myYellow3;
-        }
-        &:hover {
-            cursor: pointer;
-        }
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  animation: growMargin 120ms forwards linear 1;
+  font-size: $fontSize;
+  input {
+    &:focus {
+      border: none;
+      outline: none;
+      background-color: var.$myYellow3;
     }
-    @keyframes growMargin {
-        to {
-            margin: 6px;
-        }
+    &:hover {
+      cursor: pointer;
     }
+  }
+  @keyframes growMargin {
+    to {
+      margin: 6px;
+    }
+  }
 }
 
 .submitEditButton {
-    display: block;
+  display: block;
+  outline: none;
+  border: none;
+  background: transparent;
+  &:focus {
     outline: none;
     border: none;
-    background: transparent;
-    &:focus {
-        outline: none;
-        border: none;
-    }
+  }
 }
 
 .editControls {
-    position: absolute;
-    display: flex;
-    gap: 5px;
-    right: 1px;
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  right: 1px;
 }

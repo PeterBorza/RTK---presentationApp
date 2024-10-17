@@ -1,1 +1,1 @@
-export { default } from './SimpleDrop';
+export { default } from "./SimpleDrop";

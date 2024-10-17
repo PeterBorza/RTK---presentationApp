@@ -1,36 +1,36 @@
 .defaultStyle {
-	background: transparent;
-	border: none;
-	outline: none;
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 2px;
-	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-	transition: all 120ms ease-out;
-	&:hover {
-		background-color: rgb(194, 190, 190);
-	}
-	&:active {
-		transform: scale(0.95);
-	}
-	&__disabled {
-		.defaultStyle__content {
-			color: rgba(141, 8, 8, 0.5);
-		}
-		&:hover {
-			background: transparent;
-		}
-		&:active {
-			transform: none;
-		}
-	}
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 120ms ease-out;
+  &:hover {
+    background-color: rgb(194, 190, 190);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &__disabled {
+    .defaultStyle__content {
+      color: rgba(141, 8, 8, 0.5);
+    }
+    &:hover {
+      background: transparent;
+    }
+    &:active {
+      transform: none;
+    }
+  }
 }
 
 .toggleMenu {
-	margin: 0.5rem;
-	font-size: 1.3rem;
-	color: white;
-	&:hover {
-		color: rgb(134, 124, 124);
-	}
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  color: white;
+  &:hover {
+    color: rgb(134, 124, 124);
+  }
 }

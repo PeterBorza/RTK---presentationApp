@@ -1,8 +1,8 @@
 export const shuffle = <T>(arr: T[]) =>
-    arr
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+  arr
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
 export const randomize = (num: number): string => `#${Math.floor(Math.random() * num)}`;
 
@@ -13,24 +13,24 @@ export const createArray = (count: number) => new Array(count).fill(null);
 export const newArray = (count: number) => Array.from({ length: count }, (_, i) => i);
 
 export const getRandomElement = <T>(arr: T[]) => {
-    return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)];
 };
 
 interface ResultedObjectType {
-    [key: string]: string;
+  [key: string]: string;
 }
 
 export const arrToObject = (arr: string[], cb: (val?: string, index?: number) => void) =>
-    [...arr].reduce<ResultedObjectType[]>((acc, value, index) => {
-        return { ...acc, [value]: cb(value, index) };
-    }, []);
+  [...arr].reduce<ResultedObjectType[]>((acc, value, index) => {
+    return { ...acc, [value]: cb(value, index) };
+  }, []);
 
 // map the above to see the results
 
 export const mapToObject = (
-    arr: string[],
-    cb: (val?: string, index?: number) => NonNullable<unknown>,
+  arr: string[],
+  cb: (val?: string, index?: number) => NonNullable<unknown>,
 ) =>
-    arr.reduce<ResultedObjectType[]>((acc, value, index) => {
-        return { ...acc, [value]: cb(value, index) };
-    }, []);
+  arr.reduce<ResultedObjectType[]>((acc, value, index) => {
+    return { ...acc, [value]: cb(value, index) };
+  }, []);

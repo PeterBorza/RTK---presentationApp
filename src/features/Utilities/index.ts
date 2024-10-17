@@ -15,14 +15,14 @@ export * from "./constants";
 export { utilitiesRoute } from "./route";
 
 export {
-    UtilityContainer,
-    UtilityPlatform,
-    TotalPayedInfo,
-    TableTitle,
-    UtilitiesForm,
-    EditCard,
-    UtilityCard,
-    UtilityTable,
-    UtilityTableItem,
-    UtilityManager,
+  UtilityContainer,
+  UtilityPlatform,
+  TotalPayedInfo,
+  TableTitle,
+  UtilitiesForm,
+  EditCard,
+  UtilityCard,
+  UtilityTable,
+  UtilityTableItem,
+  UtilityManager,
 };

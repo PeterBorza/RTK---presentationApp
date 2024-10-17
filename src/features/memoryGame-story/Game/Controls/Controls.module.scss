@@ -4,24 +4,24 @@ $maxWidth: 600px;
 $backColor: rgb(9, 77, 9);
 
 .controls {
-    display: flex;
-    align-items: center;
-    @include mix.shadow3;
-    width: 100%;
-    max-width: $maxWidth;
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 0.3rem 1rem;
-    margin-bottom: 0.5rem;
-    backdrop-filter: blur(15px) brightness(170%);
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  @include mix.shadow3;
+  width: 100%;
+  max-width: $maxWidth;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.3rem 1rem;
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(15px) brightness(170%);
+  z-index: 1;
 }
 
 .clicks {
-    color: red;
-    text-transform: uppercase;
-    span {
-        color: $backColor;
-        font-weight: bold;
-        font-size: 2rem;
-    }
+  color: red;
+  text-transform: uppercase;
+  span {
+    color: $backColor;
+    font-weight: bold;
+    font-size: 2rem;
+  }
 }

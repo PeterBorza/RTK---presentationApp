@@ -1,19 +1,19 @@
 .titleContent {
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-    color: #ffc600;
-    user-select: none;
-    letter-spacing: 1px;
-    cursor: pointer;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffc600;
+  user-select: none;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .titleContainer {
-    width: 100%;
-    display: flex;
-    &__dark {
-        &.titleContent {
-            color: rgba(255, 255, 255, 0.817);
-        }
+  width: 100%;
+  display: flex;
+  &__dark {
+    &.titleContent {
+      color: rgba(255, 255, 255, 0.817);
     }
+  }
 }

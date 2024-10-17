@@ -4,105 +4,105 @@ $darkModeColor: #b2d6f4cc;
 $lightModeColor: #1a171de3;
 
 @function shadows($color) {
-    @return 1px 1px 10px $color;
+  @return 1px 1px 10px $color;
 }
 
 .dropSelect {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: shadows($lightModeColor);
+  cursor: pointer;
+  border-radius: 3px;
+
+  &__icon {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-shrink: 0;
+    padding: 5px 10px;
+    color: $lightModeColor;
+  }
+
+  &__label {
+    @include mix.truncate();
+    padding: 5px 10px;
+    color: $lightModeColor;
+  }
+
+  &__menu {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
     box-shadow: shadows($lightModeColor);
-    cursor: pointer;
+    backdrop-filter: blur(5px);
     border-radius: 3px;
-
-    &__icon {
-        display: flex;
-        flex-shrink: 0;
-        padding: 5px 10px;
-        color: $lightModeColor;
-    }
-
-    &__label {
-        @include mix.truncate();
-        padding: 5px 10px;
-        color: $lightModeColor;
-    }
-
-    &__menu {
-        position: absolute;
-        width: 100%;
-        overflow: hidden;
-        box-shadow: shadows($lightModeColor);
-        backdrop-filter: blur(5px);
-        border-radius: 3px;
-        opacity: 0;
-
-        &__darkMode {
-            box-shadow: shadows($darkModeColor);
-        }
-
-        &__open {
-            animation: drop 200ms forwards ease-in-out;
-            @keyframes drop {
-                0% {
-                    opacity: 0;
-                    top: 0;
-                }
-                90% {
-                    opacity: 0.5;
-                }
-                100% {
-                    top: 110%;
-                    opacity: 1;
-                }
-            }
-        }
-
-        &__close {
-            opacity: 0;
-            pointer-events: none;
-            top: 0;
-            animation: close 100ms forwards ease-in-out;
-            @keyframes close {
-                0% {
-                    opacity: 1;
-                    top: 110%;
-                }
-                10% {
-                    opacity: 0.2;
-                    top: 50%;
-                }
-                100% {
-                    top: 0%;
-                    opacity: 0;
-                }
-            }
-        }
-    }
-
-    &__item {
-        @include mix.truncate();
-        padding: 1px 0.5rem;
-        cursor: pointer;
-        color: $lightModeColor;
-        &:hover {
-            background-color: rgba(204, 203, 203, 0.3);
-        }
-    }
+    opacity: 0;
 
     &__darkMode {
-        box-shadow: shadows($darkModeColor);
-
-        color: $darkModeColor;
-
-        .dropSelect__icon,
-        .dropSelect__label,
-        .dropSelect__item {
-            color: $darkModeColor;
-        }
+      box-shadow: shadows($darkModeColor);
     }
+
+    &__open {
+      animation: drop 200ms forwards ease-in-out;
+      @keyframes drop {
+        0% {
+          opacity: 0;
+          top: 0;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          top: 110%;
+          opacity: 1;
+        }
+      }
+    }
+
+    &__close {
+      opacity: 0;
+      pointer-events: none;
+      top: 0;
+      animation: close 100ms forwards ease-in-out;
+      @keyframes close {
+        0% {
+          opacity: 1;
+          top: 110%;
+        }
+        10% {
+          opacity: 0.2;
+          top: 50%;
+        }
+        100% {
+          top: 0%;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &__item {
+    @include mix.truncate();
+    padding: 1px 0.5rem;
+    cursor: pointer;
+    color: $lightModeColor;
+    &:hover {
+      background-color: rgba(204, 203, 203, 0.3);
+    }
+  }
+
+  &__darkMode {
+    box-shadow: shadows($darkModeColor);
+
+    color: $darkModeColor;
+
+    .dropSelect__icon,
+    .dropSelect__label,
+    .dropSelect__item {
+      color: $darkModeColor;
+    }
+  }
 }
 
 // TODO fix ui for menu inside .dropSelect => __menuList

@@ -4,58 +4,58 @@ $light-background-color: rgb(244, 242, 242);
 $shadow: 0px 0px 15px rgb(0 0 0 / 0.3);
 
 .drop_wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .label_style {
-    max-width: 100%;
-    @include mix.truncate;
+  max-width: 100%;
+  @include mix.truncate;
 }
 
 .drop_content {
-    position: absolute;
-    width: 100%;
-    background-color: $light-background-color;
-    box-shadow: $shadow;
-    border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  background-color: $light-background-color;
+  box-shadow: $shadow;
+  border-radius: 5px;
 
-    &__animated {
-        animation: show-up 250ms forwards ease-in-out;
+  &__animated {
+    animation: show-up 250ms forwards ease-in-out;
 
-        @keyframes show-up {
-            from {
-                opacity: 0;
-                z-index: -1;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                z-index: 1;
-                transform: translateY(0);
-            }
-        }
+    @keyframes show-up {
+      from {
+        opacity: 0;
+        z-index: -1;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        z-index: 1;
+        transform: translateY(0);
+      }
     }
+  }
 
-    &__bottom {
-        left: 0;
-        top: 100%;
-        margin-top: 3px;
-    }
-    &__top {
-        left: 0;
-        top: -100%;
-        margin-bottom: 3px;
-    }
-    &__left {
-        left: -100%;
-        top: 0;
-        margin-right: 3px;
-    }
-    &__right {
-        left: 100%;
-        top: 0;
-        margin-left: 3px;
-    }
+  &__bottom {
+    left: 0;
+    top: 100%;
+    margin-top: 3px;
+  }
+  &__top {
+    left: 0;
+    top: -100%;
+    margin-bottom: 3px;
+  }
+  &__left {
+    left: -100%;
+    top: 0;
+    margin-right: 3px;
+  }
+  &__right {
+    left: 100%;
+    top: 0;
+    margin-left: 3px;
+  }
 }

@@ -6,60 +6,55 @@ import classNames from "classnames";
 import styles from "./Rubik.module.scss";
 
 export type RubikAnimationType =
-    | "animate-1"
-    | "animate-2"
-    | "rollX"
-    | "rollY"
-    | "roll-both"
-    | "still";
+  | "animate-1"
+  | "animate-2"
+  | "rollX"
+  | "rollY"
+  | "roll-both"
+  | "still";
 
 export type RubikSideType = {
-    id: number;
-    content: React.ReactNode;
+  id: number;
+  content: React.ReactNode;
 };
 
 export interface RubikType {
-    withAnimation?: RubikAnimationType;
-    sides: ImageType[];
-    size: number;
+  withAnimation?: RubikAnimationType;
+  sides: ImageType[];
+  size: number;
 }
 
 const Rubik = ({ withAnimation = "rollY", sides, size }: RubikType) => {
-    const wrapper = React.useRef<HTMLDivElement | null>(null);
+  const wrapper = React.useRef<HTMLDivElement | null>(null);
 
-    // TODO dropselect to have all animations available
+  // TODO dropselect to have all animations available
 
-    const mapRender: RubikSideType[] = sides.map((source, idx) => ({
-        id: idx + 1,
-        content: (
-            <img
-                className={styles.rubikSideImage}
-                src={source}
-                alt={`side-${idx + 1}`}
-                loading="lazy"
-            />
-        ),
-    }));
+  const mapRender: RubikSideType[] = sides.map((source, idx) => ({
+    id: idx + 1,
+    content: (
+      <img className={styles.rubikSideImage} src={source} alt={`side-${idx + 1}`} loading="lazy" />
+    ),
+  }));
 
-    const classes = classNames(styles[`rubikWrapper-${size}`], [
-        styles[`rubikWrapper-${size}__${withAnimation}`],
-    ]);
+  const classes = classNames(styles[`rubikWrapper-${size}`], [
+    styles[`rubikWrapper-${size}__${withAnimation}`],
+  ]);
 
-    const sideClasses = classNames(styles.rubikSide, styles[`rubikSide-${size}`]);
+  const sideClasses = classNames(styles.rubikSide, styles[`rubikSide-${size}`]);
 
-    const renderSides = mapRender.map(({ id, content }) => (
-        <div key={`rubik-side-${id}`} className={sideClasses}>
-            {content}
-        </div>
-    ));
+  const renderSides = mapRender.map(({ id, content }) => (
+    <div key={`rubik-side-${id}`} className={sideClasses}>
+      {content}
+    </div>
+  ));
 
-    return (
-        <div className={styles.rubikContainer}>
-            <div ref={wrapper} className={classes}>
-                {renderSides}
-            </div>
-        </div>
-    );
+  return (
+    <div className={styles.rubikContainer}>
+      <div ref={wrapper} className={classes}>
+        {renderSides}
+      </div>
+    </div>
+  );
 };
 
 export default Rubik;

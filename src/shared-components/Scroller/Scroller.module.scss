@@ -4,65 +4,65 @@
 $scrollerBg: rgb(255 255 255 / 0.2);
 
 $sizes: (
-    "tiny": "150px",
-    "small": "200px",
-    "medium": "500px",
-    "large": "800px",
-    "fit": "100%",
+  "tiny": "150px",
+  "small": "200px",
+  "medium": "500px",
+  "large": "800px",
+  "fit": "100%",
 );
 
 .scrollerWrapper {
-    @each $key, $value in $sizes {
-        &--#{$key} {
-            width: $value;
-        }
+  @each $key, $value in $sizes {
+    &--#{$key} {
+      width: $value;
     }
+  }
 }
 
 .scrollerContainer {
-    scroll-behavior: smooth;
-    overflow: auto;
-    background-color: inherit;
-    border: 2px solid $scrollerBg;
-    width: 100%;
+  scroll-behavior: smooth;
+  overflow: auto;
+  background-color: inherit;
+  border: 2px solid $scrollerBg;
+  width: 100%;
 
-    &__header {
-        background-color: $scrollerBg;
-        display: flex;
-        align-items: center;
-        padding: 1.2rem 2.5rem;
-        h2 {
-            @include mix.truncate();
-        }
+  &__header {
+    background-color: $scrollerBg;
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    h2 {
+      @include mix.truncate();
     }
+  }
 }
 
 .photo {
-    display: block;
-    outline: 1px solid $scrollerBg;
-    outline-offset: 1px;
-    max-width: 100%;
+  display: block;
+  outline: 1px solid $scrollerBg;
+  outline-offset: 1px;
+  max-width: 100%;
 }
 
 .scrollerContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 
-    &--vertical {
-        flex-direction: column;
-    }
+  &--vertical {
+    flex-direction: column;
+  }
 }
 
 .bulletWrapper {
-    min-width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 3px;
-    gap: 2px;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 3px;
+  gap: 2px;
 }
 
 .linkStyle {
-    font-size: 2rem;
-    color: white;
+  font-size: 2rem;
+  color: white;
 }

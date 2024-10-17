@@ -4,35 +4,35 @@
 $lineUp: 3;
 
 .container {
-    @include mix.appContainer(var.$darkMode, $lineUp);
-    @include mix.flex(center, row);
-    gap: 1rem;
+  @include mix.appContainer(var.$darkMode, $lineUp);
+  @include mix.flex(center, row);
+  gap: 1rem;
 }
 
 .listCont,
 .listCont_start {
-    border-radius: 0.5rem;
-    width: 420px;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    box-shadow: 2px 2px 12px rgba(0 0 0/0.3);
-    overflow-y: scroll;
+  border-radius: 0.5rem;
+  width: 420px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 12px rgba(0 0 0/0.3);
+  overflow-y: scroll;
 }
 
 .listCont_start {
-    justify-content: start;
+  justify-content: start;
 }
 
 .dragCard {
-    width: 100%;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    border-radius: 5px;
-    padding: 5px 10px;
-    background-color: aqua;
-    cursor: move;
+  width: 100%;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: aqua;
+  cursor: move;
 }

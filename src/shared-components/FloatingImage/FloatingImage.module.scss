@@ -1,33 +1,33 @@
 .imageContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .floatingImage {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 110%;
-    height: 100vh;
-    translate: -10%;
-    animation: floating 18000ms alternate-reverse forwards infinite ease-in-out;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 110%;
+  height: 100vh;
+  translate: -10%;
+  animation: floating 18000ms alternate-reverse forwards infinite ease-in-out;
 }
 @keyframes floating {
-    from {
-        translate: -10%;
-        scale: 1.01;
-    }
-    to {
-        translate: 0%;
-        scale: 1.06;
-    }
+  from {
+    translate: -10%;
+    scale: 1.01;
+  }
+  to {
+    translate: 0%;
+    scale: 1.06;
+  }
 }
 
 .childrenContainer {
-    width: 100%;
-    height: 100vh;
-    color: whitesmoke;
+  width: 100%;
+  height: 100vh;
+  color: whitesmoke;
 }

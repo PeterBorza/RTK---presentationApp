@@ -1,51 +1,51 @@
 $openSpeed: 300ms;
 $container-shadow:
-    4px 4px 15px rgb(255 255 255 / 0.5),
-    -2px -2px 10px rgb(255 255 255 / 0.6);
+  4px 4px 15px rgb(255 255 255 / 0.5),
+  -2px -2px 10px rgb(255 255 255 / 0.6);
 $borderShadow:
-    inset 0px 0px 5px white,
-    inset 0px 0px 5px white;
+  inset 0px 0px 5px white,
+  inset 0px 0px 5px white;
 $hoverColor: rgb(255 255 255/0.1);
 
 .liftWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: $borderShadow;
+
+  transition: all $openSpeed ease-out;
+  overflow: hidden;
+
+  &__show {
+    transform: translateX(0%);
+    pointer-events: all;
+  }
+
+  &:hover {
+    background-color: $hoverColor;
+  }
+
+  &__buttons {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    opacity: 1;
-    pointer-events: none;
-    box-shadow: $borderShadow;
+    flex-direction: column-reverse;
+    gap: 1px;
+    overflow-y: scroll;
+  }
 
-    transition: all $openSpeed ease-out;
-    overflow: hidden;
+  &__icons {
+    display: flex;
+    font-size: clamp(1rem, 2.5vw, 3rem);
+    border-radius: 50%;
+    color: crimson;
 
-    &__show {
-        transform: translateX(0%);
-        pointer-events: all;
+    &__static {
+      display: flex;
+      color: limegreen;
     }
-
-    &:hover {
-        background-color: $hoverColor;
-    }
-
-    &__buttons {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column-reverse;
-        gap: 1px;
-        overflow-y: scroll;
-    }
-
-    &__icons {
-        display: flex;
-        font-size: clamp(1rem, 2.5vw, 3rem);
-        border-radius: 50%;
-        color: crimson;
-
-        &__static {
-            display: flex;
-            color: limegreen;
-        }
-    }
+  }
 }

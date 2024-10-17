@@ -8,115 +8,115 @@ $lightMode: rgb(241, 227, 227);
 $darkMode: #1a1818;
 
 $inputSizes: (
-    "small": min(150px, 100%),
-    "medium": min(300px, 100%),
-    "large": min(400px, 100%),
-    "xxl": min(500px, 100%),
-    "fullSize": 100%,
+  "small": min(150px, 100%),
+  "medium": min(300px, 100%),
+  "large": min(400px, 100%),
+  "xxl": min(500px, 100%),
+  "fullSize": 100%,
 );
 
 @mixin gradientBlack {
-    background: -webkit-linear-gradient(to right, #434343, #000000);
-    background: linear-gradient(to right, #434343, #000000);
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
 }
 
 .form {
-    display: flex;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow $transitionSpeed ease;
-    @include z.z-index();
-    &:hover {
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    }
+  display: flex;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow $transitionSpeed ease;
+  @include z.z-index();
+  &:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .input_wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  flex: 1;
 
-    span {
-        text-transform: capitalize;
-    }
+  span {
+    text-transform: capitalize;
+  }
 
-    @each $key, $value in $inputSizes {
-        &__#{$key} {
-            width: $value;
-        }
+  @each $key, $value in $inputSizes {
+    &__#{$key} {
+      width: $value;
     }
+  }
 
-    &__darkMode {
-        @include gradientBlack();
-        color: $lightMode;
-    }
+  &__darkMode {
+    @include gradientBlack();
+    color: $lightMode;
+  }
 }
 
 .inputStyle {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: $borderRadius;
-    transition: all $transitionSpeed ease-out;
-    color: var.$myBlue;
-    @include mix.truncate();
-    cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: $borderRadius;
+  transition: all $transitionSpeed ease-out;
+  color: var.$myBlue;
+  @include mix.truncate();
+  cursor: pointer;
+
+  &::-webkit-input-placeholder {
+    opacity: 0.3;
+  }
+
+  &:focus-within {
+    &::-webkit-input-placeholder {
+      opacity: 0;
+    }
+  }
+
+  &__darkMode {
+    @include gradientBlack();
+    color: var.$myYellow3;
 
     &::-webkit-input-placeholder {
-        opacity: 0.3;
+      opacity: 0.3;
+      color: var.$myYellow3;
     }
-
-    &:focus-within {
-        &::-webkit-input-placeholder {
-            opacity: 0;
-        }
-    }
-
-    &__darkMode {
-        @include gradientBlack();
-        color: var.$myYellow3;
-
-        &::-webkit-input-placeholder {
-            opacity: 0.3;
-            color: var.$myYellow3;
-        }
-    }
+  }
 }
 
 .buttonStyle {
-    position: relative;
-    padding: 0 0.3rem;
-    transition: border $transitionSpeed ease-in;
-    cursor: pointer;
+  position: relative;
+  padding: 0 0.3rem;
+  transition: border $transitionSpeed ease-in;
+  cursor: pointer;
 
+  &__icon {
+    display: flex;
+    font-size: 1.4rem;
+    color: limegreen;
+  }
+
+  &:hover {
     &__icon {
-        display: flex;
-        font-size: 1.4rem;
-        color: limegreen;
+      font-size: 5rem;
     }
+  }
+
+  &__darkMode {
+    background-color: #000000;
 
     &:hover {
-        &__icon {
-            font-size: 5rem;
-        }
+      &.buttonStyle__icon {
+        font-size: 5rem;
+      }
     }
+  }
 
-    &__darkMode {
-        background-color: #000000;
+  &:disabled {
+    cursor: not-allowed;
 
-        &:hover {
-            &.buttonStyle__icon {
-                font-size: 5rem;
-            }
-        }
+    .buttonStyle__icon {
+      color: crimson;
+      opacity: 0.4;
     }
-
-    &:disabled {
-        cursor: not-allowed;
-
-        .buttonStyle__icon {
-            color: crimson;
-            opacity: 0.4;
-        }
-    }
+  }
 }

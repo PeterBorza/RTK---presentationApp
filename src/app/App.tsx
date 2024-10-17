@@ -5,15 +5,15 @@ import useHotKeys from "common/useHotKeys";
 import useDocumentTitle from "./useDocumentTitle";
 
 const App = () => {
-    useHotKeys();
-    useDocumentTitle();
+  useHotKeys();
+  useDocumentTitle();
 
-    return (
-        <LinkContextProvider>
-            <Navigation />
-            <Outlet />
-        </LinkContextProvider>
-    );
+  return (
+    <LinkContextProvider>
+      <Navigation />
+      <Outlet />
+    </LinkContextProvider>
+  );
 };
 
 export default App;

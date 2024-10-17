@@ -1,20 +1,20 @@
 @use "css/mixins" as mix;
 
 .checkBox {
-    background-color: aliceblue;
-    &__label {
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        gap: 5px;
+  background-color: aliceblue;
+  &__label {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
 
-        &:hover {
-            cursor: pointer;
-        }
-
-        & span {
-            @include mix.truncate;
-            user-select: none;
-        }
+    &:hover {
+      cursor: pointer;
     }
+
+    & span {
+      @include mix.truncate;
+      user-select: none;
+    }
+  }
 }

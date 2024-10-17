@@ -1,1 +1,1 @@
-export {default} from "./LiftSystem"
+export { default } from "./LiftSystem";

@@ -9,67 +9,67 @@ $SBtransition: all 200ms ease;
 $SBborder: 1px dashed rgba(151, 136, 136, 0.4);
 
 .wrapper {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    height: 100%;
-    width: $SBsize;
-    translate: -100%;
-    @include mix.headerMainFooter;
-    border-bottom-right-radius: 3px;
-    overflow: hidden;
-    padding: 2px;
-    @include mix.shadowSB;
-    transition: $SBtransition;
-    @include z.z-index();
-    &__open {
-        translate: 0;
-        @include mix.darkModeSelector(white);
-    }
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  height: 100%;
+  width: $SBsize;
+  translate: -100%;
+  @include mix.headerMainFooter;
+  border-bottom-right-radius: 3px;
+  overflow: hidden;
+  padding: 2px;
+  @include mix.shadowSB;
+  transition: $SBtransition;
+  @include z.z-index();
+  &__open {
+    translate: 0;
+    @include mix.darkModeSelector(white);
+  }
 }
 
 .sideBarLabel {
-    @include mix.truncate;
+  @include mix.truncate;
 }
 
 .header {
-    width: 100%;
-    height: $header-footer-height;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 0.8rem;
-    padding-top: calc(var.$navHeight + 0.5rem);
-    user-select: none;
-    border-bottom: $SBborder;
+  width: 100%;
+  height: $header-footer-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.8rem;
+  padding-top: calc(var.$navHeight + 0.5rem);
+  user-select: none;
+  border-bottom: $SBborder;
 }
 
 .footer {
-    border-top: $SBborder;
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    height: $header-footer-height;
-    padding: 0.5rem;
-    user-select: none;
+  border-top: $SBborder;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: $header-footer-height;
+  padding: 0.5rem;
+  user-select: none;
 
-    p {
-        font-family: $side_bar_font;
-        font-size: 0.8rem;
-    }
+  p {
+    font-family: $side_bar_font;
+    font-size: 0.8rem;
+  }
 }
 
 .body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: auto;
 }
 
 .noDisplay {
-    display: none;
+  display: none;
 }

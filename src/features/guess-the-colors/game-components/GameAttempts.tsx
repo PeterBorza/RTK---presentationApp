@@ -5,57 +5,57 @@ import { useOnClickOutside } from "hooks";
 import { AlertModal } from "shared-components";
 import { setError, setFinished } from "../guessGameSlice";
 import {
-    allValidComboesSelector,
-    errorState,
-    finishedState,
-    gameAttemptsState,
-    perfectMatchSelector,
+  allValidComboesSelector,
+  errorState,
+  finishedState,
+  gameAttemptsState,
+  perfectMatchSelector,
 } from "../selectors";
 import { GuessGameDataType, IguessGameItem } from "../state";
 import PlayCard from "./PlayCard";
 
 type Props = {
-    gameCombo: IguessGameItem[];
-    gameData: GuessGameDataType;
+  gameCombo: IguessGameItem[];
+  gameData: GuessGameDataType;
 };
 
 const GameAttempts = ({ gameCombo, gameData }: Props) => {
-    const allValidResults = useSelector(allValidComboesSelector);
-    const perfectGuess = useSelector(perfectMatchSelector);
-    const gameAttempts = useSelector(gameAttemptsState);
-    const errorMessage = useSelector(errorState);
-    const isFinished = useSelector(finishedState);
-    const errorRef = React.useRef<HTMLDivElement | null>(null);
-    const dispatch = useDispatch();
+  const allValidResults = useSelector(allValidComboesSelector);
+  const perfectGuess = useSelector(perfectMatchSelector);
+  const gameAttempts = useSelector(gameAttemptsState);
+  const errorMessage = useSelector(errorState);
+  const isFinished = useSelector(finishedState);
+  const errorRef = React.useRef<HTMLDivElement | null>(null);
+  const dispatch = useDispatch();
 
-    useOnClickOutside([errorRef], () => dispatch(setError(null)));
+  useOnClickOutside([errorRef], () => dispatch(setError(null)));
 
-    React.useEffect(() => {
-        (perfectGuess || allValidResults) && dispatch(setFinished(true));
-    }, [perfectGuess, allValidResults, dispatch]);
+  React.useEffect(() => {
+    (perfectGuess || allValidResults) && dispatch(setFinished(true));
+  }, [perfectGuess, allValidResults, dispatch]);
 
-    return (
-        <div className="attempts_container no-scrollBar">
-            {gameAttempts.map(attempt => (
-                <PlayCard
-                    key={`playcard-${attempt.id}`}
-                    attempt={attempt}
-                    gameCombo={gameCombo}
-                    isFinished={isFinished}
-                    gameData={gameData}
-                />
-            ))}
-            {Boolean(errorMessage) && (
-                <AlertModal
-                    variant="text"
-                    openModal={Boolean(errorMessage)}
-                    ref={errorRef}
-                    position="top-right"
-                    message={errorMessage}
-                />
-            )}
-        </div>
-    );
+  return (
+    <div className="attempts_container no-scrollBar">
+      {gameAttempts.map(attempt => (
+        <PlayCard
+          key={`playcard-${attempt.id}`}
+          attempt={attempt}
+          gameCombo={gameCombo}
+          isFinished={isFinished}
+          gameData={gameData}
+        />
+      ))}
+      {Boolean(errorMessage) && (
+        <AlertModal
+          variant="text"
+          openModal={Boolean(errorMessage)}
+          ref={errorRef}
+          position="top-right"
+          message={errorMessage}
+        />
+      )}
+    </div>
+  );
 };
 
 export default GameAttempts;

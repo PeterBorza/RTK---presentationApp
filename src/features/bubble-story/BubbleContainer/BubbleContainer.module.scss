@@ -3,12 +3,12 @@
 $primary-background: rgba(9, 51, 68, 0.842);
 
 .container {
-    position: relative;
-    padding-top: clamp(var.$navHeight, 1vw, 20px);
-    width: 100%;
-    height: 100%;
-    background-color: $primary-background;
-    &__dark {
-        background: none;
-    }
+  position: relative;
+  padding-top: clamp(var.$navHeight, 1vw, 20px);
+  width: 100%;
+  height: 100%;
+  background-color: $primary-background;
+  &__dark {
+    background: none;
+  }
 }

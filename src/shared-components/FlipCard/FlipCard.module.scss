@@ -1,34 +1,34 @@
 .flip_box {
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
 }
 
 .inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: rotate 350ms ease-in-out;
-    &.turn {
-        rotate: Y 180deg;
-    }
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: rotate 350ms ease-in-out;
+  &.turn {
+    rotate: Y 180deg;
+  }
 }
 
 .front,
 .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .back {
-    rotate: Y 180deg;
-    overflow: hidden;
+  rotate: Y 180deg;
+  overflow: hidden;
 }
 
 .black_bg {
-    background: rgb(26, 25, 25);
+  background: rgb(26, 25, 25);
 }

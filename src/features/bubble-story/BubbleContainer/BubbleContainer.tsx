@@ -16,91 +16,91 @@ import styles from "./BubbleContainer.module.scss";
 import { useOnClickOutside } from "hooks";
 
 const BubbleContainer = () => {
-    const {
-        bubbles: { bubbles },
-        selectedBubble: selected,
-        pendingBubbles: { isLoading },
-        bubbleError: { message, error },
-        isBubbleFormModalOpen,
-        dispatch,
-    } = useBubbleRedux();
-    const { isDarkMode } = useAppRedux();
-    const errorRef = React.useRef<HTMLDivElement | null>(null);
+  const {
+    bubbles: { bubbles },
+    selectedBubble: selected,
+    pendingBubbles: { isLoading },
+    bubbleError: { message, error },
+    isBubbleFormModalOpen,
+    dispatch,
+  } = useBubbleRedux();
+  const { isDarkMode } = useAppRedux();
+  const errorRef = React.useRef<HTMLDivElement | null>(null);
 
-    const isBubbles = bubbles.length !== 0;
+  const isBubbles = bubbles.length !== 0;
 
-    const wrapper = classNames(styles.container, {
-        [styles.container__dark]: isDarkMode,
-    });
+  const wrapper = classNames(styles.container, {
+    [styles.container__dark]: isDarkMode,
+  });
 
-    useOnClickOutside([errorRef], () => dispatch(setError(false)));
+  useOnClickOutside([errorRef], () => dispatch(setError(false)));
 
-    const buttons: ButtonProps[] = [
-        {
-            onClick: () => dispatch(getBubbles(LinkUrls.BUBBLES)),
-            value: msg.FETCH,
-            isDisabled: isBubbles,
-            displayed: !isBubbles,
-        },
-        {
-            onClick: () => selected && dispatch(deleteBubble(selected.id)),
-            value: msg.DELETE,
-            isDisabled: !selected,
-            displayed: isBubbles,
-        },
-        {
-            onClick: () => dispatch(clearBubbles()),
-            value: msg.CLEAR,
-            isDisabled: !isBubbles,
-            displayed: isBubbles,
-        },
-    ];
+  const buttons: ButtonProps[] = [
+    {
+      onClick: () => dispatch(getBubbles(LinkUrls.BUBBLES)),
+      value: msg.FETCH,
+      isDisabled: isBubbles,
+      displayed: !isBubbles,
+    },
+    {
+      onClick: () => selected && dispatch(deleteBubble(selected.id)),
+      value: msg.DELETE,
+      isDisabled: !selected,
+      displayed: isBubbles,
+    },
+    {
+      onClick: () => dispatch(clearBubbles()),
+      value: msg.CLEAR,
+      isDisabled: !isBubbles,
+      displayed: isBubbles,
+    },
+  ];
 
-    const ManageBubbles = () => (
-        <>
-            {buttons.map((item, idx) => (
-                <Button key={`button-${idx}`} {...item} />
-            ))}
-        </>
-    );
+  const ManageBubbles = () => (
+    <>
+      {buttons.map((item, idx) => (
+        <Button key={`button-${idx}`} {...item} />
+      ))}
+    </>
+  );
 
-    const Bubbles = () => (
-        <>
-            {bubbles.map(({ id, cssProps }: BubbleType) => (
-                <Bubble
-                    key={id}
-                    onClick={() => dispatch(setSelectedBubble({ id, cssProps }))}
-                    title={msg.HOVER_TITLE}
-                    isSelected={selected?.id === id}
-                    cssProps={cssProps}
-                    id={id}
-                />
-            ))}
-        </>
-    );
+  const Bubbles = () => (
+    <>
+      {bubbles.map(({ id, cssProps }: BubbleType) => (
+        <Bubble
+          key={id}
+          onClick={() => dispatch(setSelectedBubble({ id, cssProps }))}
+          title={msg.HOVER_TITLE}
+          isSelected={selected?.id === id}
+          cssProps={cssProps}
+          id={id}
+        />
+      ))}
+    </>
+  );
 
-    // TODO resolve pending issues on button state
+  // TODO resolve pending issues on button state
 
-    return (
-        <div className={wrapper}>
-            {isLoading && <Loader message={Pending.MESSAGE} />}
-            <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
+  return (
+    <div className={wrapper}>
+      {isLoading && <Loader message={Pending.MESSAGE} />}
+      <AlertModal ref={errorRef} openModal={error} message={message} variant="text" />
 
-            <ButtonWrapper position="start" dark={isDarkMode}>
-                <ManageBubbles />
-                {isBubbles && (
-                    <BubbleForm
-                        formObject={bubbleValidations}
-                        isOpen={isBubbleFormModalOpen}
-                        openForm={() => dispatch(toggleBubbleFormModal(true))}
-                        closeForm={() => dispatch(toggleBubbleFormModal(false))}
-                        onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
-                    />
-                )}
-            </ButtonWrapper>
-            <Bubbles />
-        </div>
-    );
+      <ButtonWrapper position="start" dark={isDarkMode}>
+        <ManageBubbles />
+        {isBubbles && (
+          <BubbleForm
+            formObject={bubbleValidations}
+            isOpen={isBubbleFormModalOpen}
+            openForm={() => dispatch(toggleBubbleFormModal(true))}
+            closeForm={() => dispatch(toggleBubbleFormModal(false))}
+            onPost={(formObject: BubbleCssProps) => dispatch(postBubble(formObject))}
+          />
+        )}
+      </ButtonWrapper>
+      <Bubbles />
+    </div>
+  );
 };
 
 export default BubbleContainer;

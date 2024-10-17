@@ -6,39 +6,39 @@ import { DropdownContextProvider } from "./context";
 export type DropLabelType = string | React.ReactNode;
 
 export interface DropContainerProps {
-    onToggleMenu?: () => void;
-    position?: DropdownPositionType;
-    toggleDisableTrigger?: boolean;
-    label?: DropLabelType;
-    reset: boolean;
-    children?: React.ReactNode;
+  onToggleMenu?: () => void;
+  position?: DropdownPositionType;
+  toggleDisableTrigger?: boolean;
+  label?: DropLabelType;
+  reset: boolean;
+  children?: React.ReactNode;
 }
 
 const DropdownContainer = ({
-    onToggleMenu,
-    position = "bottom",
-    toggleDisableTrigger = false,
-    label = "",
-    reset,
-    children,
+  onToggleMenu,
+  position = "bottom",
+  toggleDisableTrigger = false,
+  label = "",
+  reset,
+  children,
 }: DropContainerProps) => {
-    /*
+  /*
     /* use Dropdown.MenuItem to render the dropdown list !!!
     */
 
-    return (
-        <DropdownContextProvider>
-            <Dropdown>
-                <Dropdown.Trigger
-                    onToggleMenu={() => onToggleMenu && onToggleMenu()}
-                    isDisabled={toggleDisableTrigger}
-                    label={label}
-                    reset={reset}
-                />
-                <Dropdown.DropdownList position={position}>{children}</Dropdown.DropdownList>
-            </Dropdown>
-        </DropdownContextProvider>
-    );
+  return (
+    <DropdownContextProvider>
+      <Dropdown>
+        <Dropdown.Trigger
+          onToggleMenu={() => onToggleMenu && onToggleMenu()}
+          isDisabled={toggleDisableTrigger}
+          label={label}
+          reset={reset}
+        />
+        <Dropdown.DropdownList position={position}>{children}</Dropdown.DropdownList>
+      </Dropdown>
+    </DropdownContextProvider>
+  );
 };
 
 export default DropdownContainer;

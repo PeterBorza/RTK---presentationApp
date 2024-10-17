@@ -10,44 +10,44 @@ import classNames from "classnames";
 import styles from "./LiftSystem.module.scss";
 
 type Props = {
-    showPanel?: boolean;
-    data: LiftProps;
+  showPanel?: boolean;
+  data: LiftProps;
 };
 
 const LiftSystem = ({ showPanel = true, data }: Props) => {
-    const { moveLift, stopLift } = actions;
-    const { levels, speed, dispatch } = useLiftRedux();
-    const { direction, isMoving, name, position } = data;
+  const { moveLift, stopLift } = actions;
+  const { levels, speed, dispatch } = useLiftRedux();
+  const { direction, isMoving, name, position } = data;
 
-    const liftWrapper = classNames(styles.liftWrapper, {
-        [styles.liftWrapper__show]: showPanel,
-    });
+  const liftWrapper = classNames(styles.liftWrapper, {
+    [styles.liftWrapper__show]: showPanel,
+  });
 
-    const buttonClasses = classNames(styles.liftWrapper__buttons, "no-scrollBar");
+  const buttonClasses = classNames(styles.liftWrapper__buttons, "no-scrollBar");
 
-    useLayoutEffect(() => {
-        isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
-    }, [isMoving, speed, name, stopLift, dispatch]);
+  useLayoutEffect(() => {
+    isMoving && setTimeout(() => dispatch(stopLift(name)), speed);
+  }, [isMoving, speed, name, stopLift, dispatch]);
 
-    const liftButtons = (level: number) => (
-        <LiftButton
-            key={`lift-button-${level}`}
-            onClick={() => dispatch(moveLift({ level, lift: data }))}
-            disabled={isMoving}
-            value={level}
-            selected={level === position}
-            variant="panel"
-        />
-    );
+  const liftButtons = (level: number) => (
+    <LiftButton
+      key={`lift-button-${level}`}
+      onClick={() => dispatch(moveLift({ level, lift: data }))}
+      disabled={isMoving}
+      value={level}
+      selected={level === position}
+      variant="panel"
+    />
+  );
 
-    return (
-        <div className={liftWrapper}>
-            <div className={styles.liftWrapper__icons}>
-                <IconLayout direction={direction} />
-            </div>
-            <div className={buttonClasses}>{levels.map(liftButtons)}</div>
-        </div>
-    );
+  return (
+    <div className={liftWrapper}>
+      <div className={styles.liftWrapper__icons}>
+        <IconLayout direction={direction} />
+      </div>
+      <div className={buttonClasses}>{levels.map(liftButtons)}</div>
+    </div>
+  );
 };
 
 export default LiftSystem;

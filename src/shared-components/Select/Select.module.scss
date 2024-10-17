@@ -1,34 +1,34 @@
 .wrapper {
-    width: 40%;
-    padding: 10px;
-    border: 1px solid white;
-    background-color: darkgray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 40%;
+  padding: 10px;
+  border: 1px solid white;
+  background-color: darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .select {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  &:hover {
     outline: none;
     border: none;
-    cursor: pointer;
-    padding: 5px;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+    border: none;
+  }
+  &__label {
+    margin: 0 3px;
+  }
+  &__option {
+    background-color: darkkhaki;
     &:hover {
-        outline: none;
-        border: none;
+      color: rgb(139, 135, 68);
     }
-    &:active,
-    &:focus {
-        outline: none;
-        border: none;
-    }
-    &__label {
-        margin: 0 3px;
-    }
-    &__option {
-        background-color: darkkhaki;
-        &:hover {
-            color: rgb(139, 135, 68);
-        }
-    }
+  }
 }

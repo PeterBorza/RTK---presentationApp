@@ -1,1 +1,1 @@
-export {default} from "./BlockSystem"
+export { default } from "./BlockSystem";

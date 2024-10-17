@@ -1,4 +1,4 @@
 export enum LocalStorageKeys {
-    PUZZLE = "showImages",
-    DARK_MODE = "darkMode",
+  PUZZLE = "showImages",
+  DARK_MODE = "darkMode",
 }

@@ -6,83 +6,83 @@ $toggleButtonColor: rgb(191 207 174/ 0.4);
 $lightModeColor: rgb(49 52 46 / 0.5);
 $togglePadding: 0px;
 $sizes: (
-    "small": 40px,
-    "medium": 48px,
-    "large": 56px,
-    "xxl": 64px,
+  "small": 40px,
+  "medium": 48px,
+  "large": 56px,
+  "xxl": 64px,
 );
 
 // TODO fix outline/border issue, check if correct classnames are used
 
 @mixin toggleHorizontally($value, $color) {
-    &__enabled {
-        animation: moveRight $toggleSpeed ease-out forwards;
+  &__enabled {
+    animation: moveRight $toggleSpeed ease-out forwards;
 
-        @keyframes moveRight {
-            to {
-                translate: $value;
-            }
-        }
+    @keyframes moveRight {
+      to {
+        translate: $value;
+      }
     }
+  }
 
-    &__disabled {
-        animation: moveLeft $toggleSpeed ease-out forwards;
+  &__disabled {
+    animation: moveLeft $toggleSpeed ease-out forwards;
 
-        @keyframes moveLeft {
-            from {
-                translate: $value;
-            }
-            to {
-                translate: 0px;
-            }
-        }
+    @keyframes moveLeft {
+      from {
+        translate: $value;
+      }
+      to {
+        translate: 0px;
+      }
     }
+  }
 }
 
 .toggle_container {
-    position: relative;
-    @include mix.fAround();
-    flex-shrink: 0;
-    cursor: pointer;
-    user-select: none;
-    padding: $togglePadding;
-    box-shadow:
-        1px 1px 3px var.$myYellow3,
-        inset 1px 1px 10px $toggleButtonColor;
+  position: relative;
+  @include mix.fAround();
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  padding: $togglePadding;
+  box-shadow:
+    1px 1px 3px var.$myYellow3,
+    inset 1px 1px 10px $toggleButtonColor;
 
-    @each $key, $value in $sizes {
-        &__#{$key} {
-            width: calc($value + $togglePadding * 2);
-            height: calc($value / 2 + $togglePadding);
-            border-radius: $value;
-        }
+  @each $key, $value in $sizes {
+    &__#{$key} {
+      width: calc($value + $togglePadding * 2);
+      height: calc($value / 2 + $togglePadding);
+      border-radius: $value;
     }
+  }
 
-    .icons {
-        display: flex;
-        color: white;
-    }
+  .icons {
+    display: flex;
+    color: white;
+  }
 }
 
 .toggle_button {
-    position: absolute;
-    left: $togglePadding;
-    background-color: var.$myYellow3;
-    box-shadow: 1px 1px 10px var.$myYellow3;
-    @include mix.centered();
+  position: absolute;
+  left: $togglePadding;
+  background-color: var.$myYellow3;
+  box-shadow: 1px 1px 10px var.$myYellow3;
+  @include mix.centered();
 
-    @each $key, $value in $sizes {
-        &__#{$key} {
-            @include mix.circle(calc($value / 2));
-            box-shadow: 1px 1px 10px var.$myYellow3;
-            &__light {
-                @include toggleHorizontally(100%, red);
-            }
-            &__dark {
-                @include toggleHorizontally(100%, var.$myYellow3);
-            }
-        }
+  @each $key, $value in $sizes {
+    &__#{$key} {
+      @include mix.circle(calc($value / 2));
+      box-shadow: 1px 1px 10px var.$myYellow3;
+      &__light {
+        @include toggleHorizontally(100%, red);
+      }
+      &__dark {
+        @include toggleHorizontally(100%, var.$myYellow3);
+      }
     }
+  }
 }
 
 // TODO fix issues here

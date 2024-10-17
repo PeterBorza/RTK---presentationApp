@@ -15,39 +15,39 @@ import CoinsTable from "features/coins";
 export const PagesContext = createContext<PagesType<React.ReactNode>[] | null>(null);
 
 export const PagesContextProvider = ({ children }: { children?: React.ReactNode }) => {
-    const pages: NonNullable<unknown> = {
-        "Music game": <MusicGame />,
-        Rubik: <MyRubik withAnimation />,
-        "Color game": <ColorGame />,
-        "Memory game": <Game />,
-        Coins: <CoinsTable />,
-        Bubbles: <BubbleContainer />,
-        Lift: <Building />,
-        Slidehow: <SlideContainer />,
-        Landscapes: <ImageBox />,
-    };
+  const pages: NonNullable<unknown> = {
+    "Music game": <MusicGame />,
+    Rubik: <MyRubik withAnimation />,
+    "Color game": <ColorGame />,
+    "Memory game": <Game />,
+    Coins: <CoinsTable />,
+    Bubbles: <BubbleContainer />,
+    Lift: <Building />,
+    Slidehow: <SlideContainer />,
+    Landscapes: <ImageBox />,
+  };
 
-    // TODO move Puzzles to PHOTOS section
+  // TODO move Puzzles to PHOTOS section
 
-    const sanitise = (label: string) => {
-        const cleanString = label.trim().toLocaleLowerCase().split(" ");
-        return cleanString.reduce((acc, str) => acc.concat(str), "");
-    };
+  const sanitise = (label: string) => {
+    const cleanString = label.trim().toLocaleLowerCase().split(" ");
+    return cleanString.reduce((acc, str) => acc.concat(str), "");
+  };
 
-    const renderMyPages = useMemo(
-        () =>
-            Object.entries(pages).map(
-                ([label, content]): PagesType<ReactNode> =>
-                    ({
-                        id: sanitise(label),
-                        label,
-                        content,
-                    }) as PagesType<ReactNode>,
-            ),
-        [pages],
-    );
+  const renderMyPages = useMemo(
+    () =>
+      Object.entries(pages).map(
+        ([label, content]): PagesType<ReactNode> =>
+          ({
+            id: sanitise(label),
+            label,
+            content,
+          }) as PagesType<ReactNode>,
+      ),
+    [pages],
+  );
 
-    return <PagesContext.Provider value={renderMyPages}>{children}</PagesContext.Provider>;
+  return <PagesContext.Provider value={renderMyPages}>{children}</PagesContext.Provider>;
 };
 
 export const usePagesContext = () => useContext(PagesContext);

@@ -14,10 +14,10 @@ export const liftsState = ({ lift }: RootState) => lift.lifts;
 export const levelsSelector = createSelector(levelsState, levels => newArray(levels));
 
 export const useLiftRedux = () => ({
-    lift: useSelector(liftState),
-    numberOfLevels: useSelector(levelsState),
-    speed: useSelector(speedState),
-    lifts: useSelector(liftsState),
-    levels: useSelector(levelsSelector),
-    dispatch: useDispatch(),
+  lift: useSelector(liftState),
+  numberOfLevels: useSelector(levelsState),
+  speed: useSelector(speedState),
+  lifts: useSelector(liftsState),
+  levels: useSelector(levelsSelector),
+  dispatch: useDispatch(),
 });

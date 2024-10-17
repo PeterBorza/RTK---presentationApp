@@ -1,20 +1,20 @@
 type Mutable<Type> = {
-    -readonly [Key in keyof Type]: Type[Key];
+  -readonly [Key in keyof Type]: Type[Key];
 };
 
 type ITypes = readonly string[];
 
 const ICON_TYPES: ITypes = [
-    "user",
-    "trash",
-    "sun",
-    "moon",
-    "arrowRight",
-    "arrowLeft",
-    "arrowDown",
-    "arrowUp",
-    "check",
-    "bars",
+  "user",
+  "trash",
+  "sun",
+  "moon",
+  "arrowRight",
+  "arrowLeft",
+  "arrowDown",
+  "arrowUp",
+  "check",
+  "bars",
 ];
 
 type Icons = typeof ICON_TYPES;

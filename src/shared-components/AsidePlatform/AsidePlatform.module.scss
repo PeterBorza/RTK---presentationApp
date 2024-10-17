@@ -5,21 +5,21 @@ $SBtransition: all 200ms ease;
 $SBsize: max(10%, 150px);
 
 .layout {
-    position: relative;
-    height: calc(100vh - var.$navHeight);
-    height: calc(100svh - var.$navHeight);
+  position: relative;
+  height: calc(100vh - var.$navHeight);
+  height: calc(100svh - var.$navHeight);
 }
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
 
-    &__with-sidebar-open {
-        padding-left: $SBsize;
-    }
-    @include mix.darkModeSelector();
-    transition: $SBtransition;
+  &__with-sidebar-open {
+    padding-left: $SBsize;
+  }
+  @include mix.darkModeSelector();
+  transition: $SBtransition;
 }

@@ -5,9 +5,9 @@ import { initialState } from "./state";
 import { reducers } from "./reducers";
 
 export const musicGameSlice = createSlice({
-    name: "musicGame",
-    initialState,
-    reducers,
+  name: "musicGame",
+  initialState,
+  reducers,
 });
 
 const actions = musicGameSlice.actions;

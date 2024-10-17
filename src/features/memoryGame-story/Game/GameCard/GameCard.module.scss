@@ -8,67 +8,67 @@ $grid-background: rgb(1, 51, 20);
 $front-background: rgba(255, 255, 525, 0.6);
 
 .box {
-    border-radius: 2px;
-    outline: 1px solid var.$darkBlue;
-    overflow: hidden;
-    pointer-events: all;
-    user-select: none;
-    &--disabled {
-        pointer-events: none;
-    }
-    &--faded {
-        opacity: 0.5;
-    }
+  border-radius: 2px;
+  outline: 1px solid var.$darkBlue;
+  overflow: hidden;
+  pointer-events: all;
+  user-select: none;
+  &--disabled {
+    pointer-events: none;
+  }
+  &--faded {
+    opacity: 0.5;
+  }
 }
 
 .front {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: $front-background;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $front-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  &::after {
+    position: absolute;
+    content: "";
+    width: 90%;
+    aspect-ratio: 1 / 1;
+    opacity: 0.5;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &__minions {
     &::after {
-        position: absolute;
-        content: "";
-        width: 90%;
-        aspect-ratio: 1 / 1;
-        opacity: 0.5;
-        background-position: center;
-        background-size: contain;
+      background-image: url(../../images/gru-clean.png);
     }
+  }
 
-    &__minions {
-        &::after {
-            background-image: url(../../images/gru-clean.png);
-        }
+  &__christmas {
+    &::after {
+      background-image: url(../../images/merryChristmas_300.png);
     }
+  }
 
-    &__christmas {
-        &::after {
-            background-image: url(../../images/merryChristmas_300.png);
-        }
+  &__cute_animals {
+    &::after {
+      background-image: url(../../images/animals_bg.jpg);
     }
-
-    &__cute_animals {
-        &::after {
-            background-image: url(../../images/animals_bg.jpg);
-        }
-    }
+  }
 }
 
 .back {
-    background-color: $white-bg;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: $white-bg;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .game_image {
-    height: 80%;
-    display: block;
+  height: 80%;
+  display: block;
 }

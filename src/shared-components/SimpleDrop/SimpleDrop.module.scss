@@ -8,69 +8,69 @@ $large: 35px;
 $xxl: 60px;
 
 .dropdown-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-color: transparent;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
 
-    .white-bg {
-        background-color: white;
-    }
+  .white-bg {
+    background-color: white;
+  }
 
-    &__collapsed {
-        &.nav_container__smallScreen {
-            height: var.$navHeight;
-        }
+  &__collapsed {
+    &.nav_container__smallScreen {
+      height: var.$navHeight;
     }
+  }
 }
 
 .header {
-    position: absolute;
-    background-color: transparent;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: $headerHeight;
-    z-index: 100;
-    cursor: pointer;
-    user-select: none;
-    @include mix.fCenter();
+  position: absolute;
+  background-color: transparent;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: $headerHeight;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+  @include mix.fCenter();
 }
 
 .content {
-    position: absolute;
-    overflow: hidden;
-    left: 0;
-    width: 100%;
-    height: 0;
-    transition: all 250ms ease;
-    &__drop {
-        height: 92%;
-    }
-    &__small {
-        top: $small;
-    }
-    &__medium {
-        top: $medium;
-    }
-    &__large {
-        top: $large;
-    }
-    &__xxl {
-        top: $xxl;
-    }
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transition: all 250ms ease;
+  &__drop {
+    height: 92%;
+  }
+  &__small {
+    top: $small;
+  }
+  &__medium {
+    top: $medium;
+  }
+  &__large {
+    top: $large;
+  }
+  &__xxl {
+    top: $xxl;
+  }
 }
 
 .small {
-    height: $small;
+  height: $small;
 }
 .medium {
-    height: $medium;
+  height: $medium;
 }
 .large {
-    height: $large;
+  height: $large;
 }
 .xxl {
-    height: $xxl;
+  height: $xxl;
 }

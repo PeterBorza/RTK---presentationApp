@@ -2,72 +2,72 @@
 @use "../../css/variables" as var;
 
 $sizes: (
-    "mini": 20px,
-    "small": 26px,
-    "medium": 30px,
-    "large": 34px,
+  "mini": 20px,
+  "small": 26px,
+  "medium": 30px,
+  "large": 34px,
 );
 
 .svgStyle {
-    border-radius: 100%;
-    padding: 3px;
+  border-radius: 100%;
+  padding: 3px;
+  background-color: var.$appYellow;
+  box-shadow: var.$shadow;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  margin: 5px;
+
+  &:focus-within {
+    outline: none;
+    border: 1px solid var.$darkMode;
+  }
+
+  &:focus-visible {
+    outline: 2px solid lightblue;
+    outline-offset: 4px;
+    background-color: lightskyblue;
+  }
+
+  &__bordered {
+    border: 1px solid var.$darkMode;
+  }
+
+  &__disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  @each $key, $value in $sizes {
+    &__#{$key} {
+      width: $value;
+      height: $value;
+    }
+  }
+
+  svg {
+    stroke: var.$darkMode;
+  }
+
+  &:hover {
+    scale: 1.1;
     background-color: var.$appYellow;
-    box-shadow: var.$shadow;
-    cursor: pointer;
-    transition: all 200ms ease-in-out;
-    margin: 5px;
-
-    &:focus-within {
-        outline: none;
-        border: 1px solid var.$darkMode;
-    }
-
-    &:focus-visible {
-        outline: 2px solid lightblue;
-        outline-offset: 4px;
-        background-color: lightskyblue;
-    }
-
-    &__bordered {
-        border: 1px solid var.$darkMode;
-    }
-
-    &__disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-    }
-
-    @each $key, $value in $sizes {
-        &__#{$key} {
-            width: $value;
-            height: $value;
-        }
-    }
 
     svg {
-        stroke: var.$darkMode;
+      stroke: var.$darkMode;
+    }
+  }
+
+  &__dark {
+    svg {
+      stroke: var.$darkMode;
     }
 
     &:hover {
-        scale: 1.1;
-        background-color: var.$appYellow;
+      background-color: var.$darkMode;
 
-        svg {
-            stroke: var.$darkMode;
-        }
+      svg {
+        stroke: var.$appYellow;
+      }
     }
-
-    &__dark {
-        svg {
-            stroke: var.$darkMode;
-        }
-
-        &:hover {
-            background-color: var.$darkMode;
-
-            svg {
-                stroke: var.$appYellow;
-            }
-        }
-    }
+  }
 }

@@ -4,44 +4,44 @@ $shadow: 0px 0px 6px rgb(0 0 0 / 0.2);
 $item-font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.5rem);
 
 .dropdown {
-    &__menu__item {
-        list-style: none;
-        font-size: $item-font-size;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        border-radius: 3px;
-        padding: 2px 5px;
-        height: 100%;
+  &__menu__item {
+    list-style: none;
+    font-size: $item-font-size;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    padding: 2px 5px;
+    height: 100%;
 
-        &:hover {
-            background-color: darken($light-background-color, $percent);
-            color: $light-background-color;
-        }
+    &:hover {
+      background-color: darken($light-background-color, $percent);
+      color: $light-background-color;
     }
+  }
 }
 
 .drop_trigger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    outline: none;
-    border: none;
-    overflow: hidden;
-    box-shadow: $shadow;
-    color: white;
-    background: $light-background-color;
-    font-weight: bold;
-    padding: 5px;
-    border-radius: 5px;
-    transition: all 200ms ease-in-out;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  box-shadow: $shadow;
+  color: white;
+  background: $light-background-color;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
 
-    &:hover {
-        color: $light-background-color;
-        background: darken($light-background-color, $percent);
-    }
+  &:hover {
+    color: $light-background-color;
+    background: darken($light-background-color, $percent);
+  }
 }

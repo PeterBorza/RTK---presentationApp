@@ -9,10 +9,10 @@ import Providers from "providers/providers";
 const rootContainer = document.getElementById("root");
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Providers>
-            <AppRoutes />
-        </Providers>
-    </React.StrictMode>,
-    rootContainer,
+  <React.StrictMode>
+    <Providers>
+      <AppRoutes />
+    </Providers>
+  </React.StrictMode>,
+  rootContainer,
 );
