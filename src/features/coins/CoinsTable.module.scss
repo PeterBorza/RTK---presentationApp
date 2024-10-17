@@ -4,95 +4,95 @@ $coinBlue: #0ff;
 $coinborder: 1px solid darken($coinBlue, 30%);
 
 @mixin blinkAnimation($initial, $blink: 30%) {
-    animation: blink 300ms ease-out forwards;
-    @keyframes blink {
-        20% {
-            color: lighten($coinBlue, $blink);
-        }
-        100% {
-            color: $initial;
-        }
+  animation: blink 300ms ease-out forwards;
+  @keyframes blink {
+    20% {
+      color: lighten($coinBlue, $blink);
     }
+    100% {
+      color: $initial;
+    }
+  }
 }
 
 .dataTable {
-    display: grid;
-    height: 70%;
-    min-height: 450px;
-    gap: 2rem;
-    padding: 2rem;
+  display: grid;
+  height: 70%;
+  min-height: 450px;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .coinCard {
-    height: 100%;
-    box-shadow: 1px 1px 20px $coinBlue;
-    padding: 1rem;
-    border-radius: 0.6rem;
-    cursor: default;
-    transition: background-color 300ms ease-in-out;
+  height: 100%;
+  box-shadow: 1px 1px 20px $coinBlue;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  cursor: default;
+  transition: background-color 300ms ease-in-out;
+
+  &:hover {
+    background-color: rgba(173, 242, 242, 0.1);
+  }
+
+  &__title {
+    color: darken($coinBlue, 5%);
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+    @include blinkAnimation(darken($coinBlue, 5%));
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    &_title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      &_dark {
+        font-weight: 600;
+        font-size: 1.3rem;
+        color: red;
+      }
+    }
+  }
+
+  &__dropDown {
+    width: 380px;
+  }
+
+  &__table_row {
+    border: $coinborder;
+    display: grid;
+    grid-template-columns: 70% 3rem 1fr;
+    cursor: pointer;
+    transition: background-color 500ms ease;
 
     &:hover {
-        background-color: rgba(173, 242, 242, 0.1);
+      background-color: rgba(99, 95, 95, 0.2);
     }
 
-    &__title {
-        color: darken($coinBlue, 5%);
-        margin-bottom: 1rem;
-        text-transform: capitalize;
-        @include blinkAnimation(darken($coinBlue, 5%));
+    & > h2 {
+      padding: 0.1rem 0.3rem;
+      outline: 1px solid darken($coinBlue, 10%);
+      color: darken($coinBlue, 20%);
+      @include blinkAnimation(darken($coinBlue, 20%));
     }
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        &_title {
-            font-weight: 600;
-            font-size: 1.3rem;
-            &_dark {
-                font-weight: 600;
-                font-size: 1.3rem;
-                color: red;
-            }
-        }
+    & h2:nth-of-type(1) {
+      @include mix.truncate();
     }
 
-    &__dropDown {
-        width: 380px;
+    & h2:nth-of-type(2) {
+      text-align: center;
     }
 
-    &__table_row {
-        border: $coinborder;
-        display: grid;
-        grid-template-columns: 70% 3rem 1fr;
-        cursor: pointer;
-        transition: background-color 500ms ease;
-
-        &:hover {
-            background-color: rgba(99, 95, 95, 0.2);
-        }
-
-        & > h2 {
-            padding: 0.1rem 0.3rem;
-            outline: 1px solid darken($coinBlue, 10%);
-            color: darken($coinBlue, 20%);
-            @include blinkAnimation(darken($coinBlue, 20%));
-        }
-
-        & h2:nth-of-type(1) {
-            @include mix.truncate();
-        }
-
-        & h2:nth-of-type(2) {
-            text-align: center;
-        }
-
-        & h2:nth-of-type(3) {
-            text-align: center;
-        }
-
-        &__selected {
-            outline: 1px solid $coinBlue;
-        }
+    & h2:nth-of-type(3) {
+      text-align: center;
     }
+
+    &__selected {
+      outline: 1px solid $coinBlue;
+    }
+  }
 }

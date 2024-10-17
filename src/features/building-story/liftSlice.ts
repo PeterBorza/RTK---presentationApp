@@ -3,9 +3,9 @@ import { initialState } from "./state";
 import reducers from "./reducers";
 
 export const liftSlice = createSlice({
-    name: "lift",
-    initialState,
-    reducers,
+  name: "lift",
+  initialState,
+  reducers,
 });
 
 const actions = liftSlice.actions;

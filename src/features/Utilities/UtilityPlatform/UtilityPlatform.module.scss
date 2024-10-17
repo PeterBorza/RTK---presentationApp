@@ -2,9 +2,9 @@
 @use "css/mixins" as mix;
 
 .container {
-    @include mix.appContainer(var.$darkMode);
+  @include mix.appContainer(var.$darkMode);
 }
 
 .inputContent {
-    width: 20%;
+  width: 20%;
 }

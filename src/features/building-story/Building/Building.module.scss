@@ -1,29 +1,29 @@
 @use "css/z-index" as z;
 
 .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .systemContainer {
-    width: min(500px, 70vw);
-    height: 70vh;
-    display: grid;
-    grid-template-columns: 1fr 70% 1fr;
-    gap: 0.4rem;
-    border-radius: 10px;
-    overflow: hidden;
+  width: min(500px, 70vw);
+  height: 70vh;
+  display: grid;
+  grid-template-columns: 1fr 70% 1fr;
+  gap: 0.4rem;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .controls {
-    width: 400px;
-    @include z.z-index();
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
+  width: 400px;
+  @include z.z-index();
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
 }

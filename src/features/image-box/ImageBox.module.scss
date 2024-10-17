@@ -1,12 +1,12 @@
 @use "css/variables" as var;
 
 .image-grid-container {
-    padding: clamp(var.$navHeight, 1vw, 20px) 0.5rem 0.5rem 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 0.5rem;
-    background: rgb(228, 218, 218);
-    width: 100%;
-    height: 100%;
-    overflow: scroll;
+  padding: clamp(var.$navHeight, 1vw, 20px) 0.5rem 0.5rem 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.5rem;
+  background: rgb(228, 218, 218);
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 }

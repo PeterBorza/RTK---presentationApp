@@ -1,160 +1,160 @@
 {
-    "coins": [
-        {
-            "id": "13642014",
-            "selected": false,
-            "theme": "Vladislav I. Vlaicu",
-            "released": 2014,
-            "celebrating": 1364,
-            "count": 1,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "19892019",
-            "selected": false,
-            "theme": "Romanian Revolution",
-            "released": 2019,
-            "celebrating": 1989,
-            "count": 17,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "00002019",
-            "selected": false,
-            "theme": "Ferdinand I",
-            "released": 2019,
-            "celebrating": null,
-            "count": 9,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "138614182011",
-            "selected": false,
-            "theme": "Mircea cel Batran",
-            "released": 2011,
-            "celebrating": 1418,
-            "count": 30,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "15122012",
-            "selected": false,
-            "theme": "Neagoe Basarab",
-            "released": 2012,
-            "celebrating": 1512,
-            "count": 3,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "19182018",
-            "selected": false,
-            "theme": "Marea Adunare",
-            "released": 2018,
-            "celebrating": 1918,
-            "count": 3,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "20192019",
-            "selected": false,
-            "theme": "Papa Francisc",
-            "released": 2019,
-            "celebrating": 2019,
-            "count": 8,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "19102010",
-            "selected": false,
-            "theme": "Aurel Vlaicu",
-            "released": 2010,
-            "celebrating": 1910,
-            "count": 12,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "00012019",
-            "selected": false,
-            "theme": "Regina Maria",
-            "released": 2019,
-            "celebrating": null,
-            "count": 7,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "14562016",
-            "selected": false,
-            "theme": "Iancu de Hunedoara",
-            "released": 2016,
-            "celebrating": 1456,
-            "count": 2,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "020052015",
-            "selected": false,
-            "theme": "Join EU",
-            "released": 2015,
-            "celebrating": 2005,
-            "count": 6,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        },
-        {
-            "id": "120052015",
-            "selected": false,
-            "theme": "Denomination",
-            "released": 2015,
-            "celebrating": 2005,
-            "count": 5,
-            "details": {
-                "front": "",
-                "back": "",
-                "storyLink": ""
-            }
-        }
-    ]
+  "coins": [
+    {
+      "id": "13642014",
+      "selected": false,
+      "theme": "Vladislav I. Vlaicu",
+      "released": 2014,
+      "celebrating": 1364,
+      "count": 1,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "19892019",
+      "selected": false,
+      "theme": "Romanian Revolution",
+      "released": 2019,
+      "celebrating": 1989,
+      "count": 17,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "00002019",
+      "selected": false,
+      "theme": "Ferdinand I",
+      "released": 2019,
+      "celebrating": null,
+      "count": 9,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "138614182011",
+      "selected": false,
+      "theme": "Mircea cel Batran",
+      "released": 2011,
+      "celebrating": 1418,
+      "count": 30,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "15122012",
+      "selected": false,
+      "theme": "Neagoe Basarab",
+      "released": 2012,
+      "celebrating": 1512,
+      "count": 3,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "19182018",
+      "selected": false,
+      "theme": "Marea Adunare",
+      "released": 2018,
+      "celebrating": 1918,
+      "count": 3,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "20192019",
+      "selected": false,
+      "theme": "Papa Francisc",
+      "released": 2019,
+      "celebrating": 2019,
+      "count": 8,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "19102010",
+      "selected": false,
+      "theme": "Aurel Vlaicu",
+      "released": 2010,
+      "celebrating": 1910,
+      "count": 12,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "00012019",
+      "selected": false,
+      "theme": "Regina Maria",
+      "released": 2019,
+      "celebrating": null,
+      "count": 7,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "14562016",
+      "selected": false,
+      "theme": "Iancu de Hunedoara",
+      "released": 2016,
+      "celebrating": 1456,
+      "count": 2,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "020052015",
+      "selected": false,
+      "theme": "Join EU",
+      "released": 2015,
+      "celebrating": 2005,
+      "count": 6,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    },
+    {
+      "id": "120052015",
+      "selected": false,
+      "theme": "Denomination",
+      "released": 2015,
+      "celebrating": 2005,
+      "count": 5,
+      "details": {
+        "front": "",
+        "back": "",
+        "storyLink": ""
+      }
+    }
+  ]
 }

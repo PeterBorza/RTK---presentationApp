@@ -30,28 +30,28 @@ const strings = ["alpha", "ro", "nu", "omega", "epsilon", "beta", "gamma", "delt
 // ];
 
 export interface Users {
-    id: number;
-    name: string;
-    username: string;
+  id: number;
+  name: string;
+  username: string;
 }
 const Home = () => {
-    // const { isLoading, dataUpdatedAt } = useQueryHook<Users[]>({
-    //     key: "json-placeholder",
-    //     url: jsonUsersUrl,
-    // });
+  // const { isLoading, dataUpdatedAt } = useQueryHook<Users[]>({
+  //     key: "json-placeholder",
+  //     url: jsonUsersUrl,
+  // });
 
-    // const { resData: coins } = useQueryHook<CoinsInterface[]>({
-    //     key: "coins",
-    //     url: `${COINS_URL}/${LinkUrls.COINS}`,
-    // });
+  // const { resData: coins } = useQueryHook<CoinsInterface[]>({
+  //     key: "coins",
+  //     url: `${COINS_URL}/${LinkUrls.COINS}`,
+  // });
 
-    // const time = new Date(dataUpdatedAt).toLocaleTimeString();
-    const { isDarkMode } = useAppRedux();
-    // const [show, setShow] = useState(false);
+  // const time = new Date(dataUpdatedAt).toLocaleTimeString();
+  const { isDarkMode } = useAppRedux();
+  // const [show, setShow] = useState(false);
 
-    return (
-        <div className={isDarkMode ? `${container} ${dark}` : container}>
-            {/* <button onClick={() => setShow(prev => !prev)}>Click</button>
+  return (
+    <div className={isDarkMode ? `${container} ${dark}` : container}>
+      {/* <button onClick={() => setShow(prev => !prev)}>Click</button>
             <AnimatePresence>
                 {show ? (
                     <motion.div
@@ -65,18 +65,18 @@ const Home = () => {
                     </motion.div>
                 ) : null}
             </AnimatePresence> */}
-            {/* <Loader2 /> */}
-            {/* {isLoading ? <Loader /> : <p>{time}</p>} */}
-            {/* <div className={styles.iframeRTK}>
+      {/* <Loader2 /> */}
+      {/* {isLoading ? <Loader /> : <p>{time}</p>} */}
+      {/* <div className={styles.iframeRTK}>
                 <GlowText text="Informer" />
             </div> */}
-            {/* <GuessGame /> */}
-            {/* <div className={styles.dropContainer}>
+      {/* <GuessGame /> */}
+      {/* <div className={styles.dropContainer}>
                 <AnimatedDropdown label="tester component" items={[...dropItems, "reset"]} />
             </div> */}
-            <TabMenu darkMode={isDarkMode} menuItems={strings} />
-        </div>
-    );
+      <TabMenu darkMode={isDarkMode} menuItems={strings} />
+    </div>
+  );
 };
 
 export default Home;

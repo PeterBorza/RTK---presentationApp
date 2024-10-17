@@ -1,19 +1,19 @@
 .container {
-    width: 100%;
-    height: 100%;
-    background-color: rebeccapurple;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    ul {
-        li {
-            list-style: none;
-            line-height: 2;
-            font-size: large;
-            span {
-                color: rgb(179, 153, 120);
-            }
-        }
+  width: 100%;
+  height: 100%;
+  background-color: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  ul {
+    li {
+      list-style: none;
+      line-height: 2;
+      font-size: large;
+      span {
+        color: rgb(179, 153, 120);
+      }
     }
+  }
 }

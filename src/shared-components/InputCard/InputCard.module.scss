@@ -6,105 +6,105 @@ $hoverBorder: cyan;
 $buttonArrowSize: 1.4rem;
 
 @mixin gradientBlack {
-    background: -webkit-linear-gradient(to right, #434343, #000000);
-    background: linear-gradient(to right, #434343, #000000);
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
 }
 
 .input-wrapper {
-    height: 2rem;
-    max-width: 100%;
-    display: flex;
-    border-radius: $borderRadius;
-    transition: box-shadow $transitionSpeed ease;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    &:hover {
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    &__small {
-        width: 150px;
-        height: 1.5rem;
-    }
-    &__medium {
-        width: 300px;
-    }
-    &__large {
-        width: 400px;
-    }
-    &__xxl {
-        width: 500px;
-    }
+  height: 2rem;
+  max-width: 100%;
+  display: flex;
+  border-radius: $borderRadius;
+  transition: box-shadow $transitionSpeed ease;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  &__small {
+    width: 150px;
+    height: 1.5rem;
+  }
+  &__medium {
+    width: 300px;
+  }
+  &__large {
+    width: 400px;
+  }
+  &__xxl {
+    width: 500px;
+  }
 }
 
 .input-style {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    padding-left: 1rem;
-    margin-right: -1px;
-    font-weight: bold;
-    border-radius: $borderRadius;
-    // border-bottom-left-radius: $borderRadius;
-    transition: all $transitionSpeed ease-out;
-    &:hover {
-        cursor: pointer;
-        &::-webkit-input-placeholder {
-            opacity: 0.3;
-        }
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 1rem;
+  margin-right: -1px;
+  font-weight: bold;
+  border-radius: $borderRadius;
+  // border-bottom-left-radius: $borderRadius;
+  transition: all $transitionSpeed ease-out;
+  &:hover {
+    cursor: pointer;
+    &::-webkit-input-placeholder {
+      opacity: 0.3;
     }
-    &:focus-within {
-        color: blue;
-    }
+  }
+  &:focus-within {
+    color: blue;
+  }
 }
 
 .button_style {
-    position: relative;
-    height: 100%;
-    border: none;
+  position: relative;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: white;
+  padding: 0 0.5rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+  transition: border $transitionSpeed ease-in;
+  &:focus,
+  :active {
     outline: none;
-    background-color: white;
-    padding: 0 0.5rem 0 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-right-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
-    transition: border $transitionSpeed ease-in;
-    &:focus,
-    :active {
-        outline: none;
-        border: none;
-    }
+    border: none;
+  }
 
-    &:hover {
-        cursor: pointer;
-        .inputIcon {
-            background-color: $darkMode;
-            color: $lightMode;
-        }
+  &:hover {
+    cursor: pointer;
+    .inputIcon {
+      background-color: $darkMode;
+      color: $lightMode;
     }
+  }
 }
 
 .dark-mode {
-    .input-style {
-        @include gradientBlack();
-        color: $lightMode;
+  .input-style {
+    @include gradientBlack();
+    color: $lightMode;
+  }
+  .button-style {
+    background-color: black;
+    color: $lightMode;
+    i {
+      background-color: $darkMode;
+      color: $lightMode;
+      border-radius: 50%;
     }
-    .button-style {
-        background-color: black;
-        color: $lightMode;
-        i {
-            background-color: $darkMode;
-            color: $lightMode;
-            border-radius: 50%;
-        }
-        &:hover i {
-            background-color: $lightMode;
-            color: $darkMode;
-        }
+    &:hover i {
+      background-color: $lightMode;
+      color: $darkMode;
     }
+  }
 }
 
 .input-icon {
-    font-size: $buttonArrowSize;
+  font-size: $buttonArrowSize;
 }

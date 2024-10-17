@@ -11,39 +11,39 @@ import DragContainer from "features/drag-api/DragContainer";
 import { photosRoute } from "features/AnimatedPhotos";
 
 const appRoutes: RouteObject[] = [
-    {
-        path: "/",
-        element: <App />,
-        children: [
-            {
-                index: true,
-                element: <Home />,
-            },
-            utilitiesRoute,
-            photosRoute(NavLinkUrls.PHOTOS),
-            {
-                path: NavLinkUrls.FEATURES,
-                element: <ScrollPage />,
-            },
-            {
-                path: NavLinkUrls.TESTER,
-                element: <ScrollTester />,
-            },
-            {
-                path: NavLinkUrls.DRAG,
-                element: <DragContainer />,
-            },
-            {
-                path: "*",
-                element: <AlertModal openModal variant="text" message={Error.MESSAGE} />,
-            },
-        ],
-    },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      utilitiesRoute,
+      photosRoute(NavLinkUrls.PHOTOS),
+      {
+        path: NavLinkUrls.FEATURES,
+        element: <ScrollPage />,
+      },
+      {
+        path: NavLinkUrls.TESTER,
+        element: <ScrollTester />,
+      },
+      {
+        path: NavLinkUrls.DRAG,
+        element: <DragContainer />,
+      },
+      {
+        path: "*",
+        element: <AlertModal openModal variant="text" message={Error.MESSAGE} />,
+      },
+    ],
+  },
 ];
 
 const AppRoutes = () => {
-    const router = createBrowserRouter(appRoutes);
-    return <RouterProvider router={router} fallbackElement={<Loader message="boom" />} />;
+  const router = createBrowserRouter(appRoutes);
+  return <RouterProvider router={router} fallbackElement={<Loader message="boom" />} />;
 };
 
 export default AppRoutes;

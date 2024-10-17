@@ -5,18 +5,18 @@ import { AnimationFadeType } from "hooks/useFadeInOnScroll";
 import styles from "./FadeOnScroll.module.scss";
 
 interface FadeOnScrollProps {
-    children: React.ReactNode;
-    animate?: AnimationFadeType;
+  children: React.ReactNode;
+  animate?: AnimationFadeType;
 }
 
 const FadeOnScroll = ({ children, animate }: FadeOnScrollProps) => {
-    const divRef = useRef<HTMLDivElement>(null);
-    useFadeInOnScroll({ ref: divRef, animate });
-    return (
-        <div className={styles.cont} ref={divRef}>
-            {children}
-        </div>
-    );
+  const divRef = useRef<HTMLDivElement>(null);
+  useFadeInOnScroll({ ref: divRef, animate });
+  return (
+    <div className={styles.cont} ref={divRef}>
+      {children}
+    </div>
+  );
 };
 
 export default FadeOnScroll;

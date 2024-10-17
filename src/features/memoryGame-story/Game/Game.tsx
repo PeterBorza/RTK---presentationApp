@@ -18,65 +18,55 @@ import classNames from "classnames";
 import styles from "./Game.module.scss";
 
 const Game = () => {
-    const { isDarkMode, dispatch } = useAppRedux();
-    const {
-        memoryGame: { gamePhotos, currentTheme, maxCount, themes, currentCount: count },
-        isGameFinished,
-    } = useMGameRedux();
+  const { isDarkMode, dispatch } = useAppRedux();
+  const {
+    memoryGame: { gamePhotos, currentTheme, maxCount, themes, currentCount: count },
+    isGameFinished,
+  } = useMGameRedux();
 
-    const themeContainerClasses = classNames(
-        styles.container,
-        styles[`container__${currentTheme}`],
-    );
+  const themeContainerClasses = classNames(styles.container, styles[`container__${currentTheme}`]);
 
-    useEffect(() => {
-        count > maxCount && dispatch(resetGame(gamePhotos));
-    }, [count, dispatch, maxCount, gamePhotos]);
+  useEffect(() => {
+    count > maxCount && dispatch(resetGame(gamePhotos));
+  }, [count, dispatch, maxCount, gamePhotos]);
 
-    useEffect(() => {
-        gamePhotos.every(photo => photo.match === true) && dispatch(setGameFinished(true));
-    }, [dispatch, gamePhotos]);
+  useEffect(() => {
+    gamePhotos.every(photo => photo.match === true) && dispatch(setGameFinished(true));
+  }, [dispatch, gamePhotos]);
 
-    const newGameHandler = useCallback(
-        (gameTheme: GameTheme) => {
-            const { images, theme } = themes.find(t => t.theme === gameTheme)!;
-            if (theme && images) {
-                const shuffled = shuffle(images);
-                setTimeout(() => {
-                    dispatch(setTheme(theme));
-                    dispatch(resetGame(shuffled));
-                }, 500);
-            }
-        },
-        [dispatch, themes],
-    );
+  const newGameHandler = useCallback(
+    (gameTheme: GameTheme) => {
+      const { images, theme } = themes.find(t => t.theme === gameTheme)!;
+      if (theme && images) {
+        const shuffled = shuffle(images);
+        setTimeout(() => {
+          dispatch(setTheme(theme));
+          dispatch(resetGame(shuffled));
+        }, 500);
+      }
+    },
+    [dispatch, themes],
+  );
 
-    return (
-        <FadeOnScroll>
-            <section className={themeContainerClasses}>
-                <Controls label={msg.SCORE} count={count}>
-                    <GameButtons
-                        themes={themes}
-                        onNewGame={theme => newGameHandler(theme)}
-                        dark={isDarkMode}
-                    />
-                </Controls>
-                <GridTable gamePhotos={gamePhotos} />
-                <GameEnd count={count} isGameFinished={isGameFinished}>
-                    <GameButtons
-                        themes={themes}
-                        onNewGame={theme => newGameHandler(theme)}
-                        dark={isDarkMode}
-                    >
-                        <Button
-                            value={msg.RETURN_LINK}
-                            onClick={() => dispatch(setGameFinished(false))}
-                        />
-                    </GameButtons>
-                </GameEnd>
-            </section>
-        </FadeOnScroll>
-    );
+  return (
+    <FadeOnScroll>
+      <section className={themeContainerClasses}>
+        <Controls label={msg.SCORE} count={count}>
+          <GameButtons
+            themes={themes}
+            onNewGame={theme => newGameHandler(theme)}
+            dark={isDarkMode}
+          />
+        </Controls>
+        <GridTable gamePhotos={gamePhotos} />
+        <GameEnd count={count} isGameFinished={isGameFinished}>
+          <GameButtons themes={themes} onNewGame={theme => newGameHandler(theme)} dark={isDarkMode}>
+            <Button value={msg.RETURN_LINK} onClick={() => dispatch(setGameFinished(false))} />
+          </GameButtons>
+        </GameEnd>
+      </section>
+    </FadeOnScroll>
+  );
 };
 
 export default Game;

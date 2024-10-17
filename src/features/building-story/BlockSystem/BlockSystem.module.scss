@@ -2,19 +2,19 @@
 @use "css/mixins" as mix;
 
 .blockContainer {
-    position: relative;
-    @include mix.fCenter();
-    box-shadow: var.$borderShadow;
-    transition: all 300ms ease;
-    &:hover {
-        background-color: var.$hoverColor;
-    }
+  position: relative;
+  @include mix.fCenter();
+  box-shadow: var.$borderShadow;
+  transition: all 300ms ease;
+  &:hover {
+    background-color: var.$hoverColor;
+  }
 }
 
 .shaftContainer {
-    width: 14%;
-    height: 100%;
-    display: flex;
-    flex-direction: column-reverse;
-    box-shadow: var.$container-shadow;
+  width: 14%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  box-shadow: var.$container-shadow;
 }

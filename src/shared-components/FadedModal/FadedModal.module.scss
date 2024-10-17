@@ -2,13 +2,13 @@
 @use "css/z-index" as z;
 
 .generalWrapper {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 100%;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    @include mix.fCenter;
-    @include z.z-index("navigation");
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  @include mix.fCenter;
+  @include z.z-index("navigation");
 }

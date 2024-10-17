@@ -1,48 +1,48 @@
 @use "css/variables" as var;
 
 .loader {
-    position: relative;
-    background-color: var.$appYellow;
+  position: relative;
+  background-color: var.$appYellow;
 
-    &_small {
-        width: 28px;
-        height: 28px;
+  &_small {
+    width: 28px;
+    height: 28px;
+  }
+
+  &_medium {
+    width: 44px;
+    height: 44px;
+  }
+
+  &_large {
+    width: 76px;
+    height: 76px;
+  }
+
+  @for $delay from 1 through 12 {
+    .bar#{$delay} {
+      position: absolute;
+      width: 8%;
+      height: 24%;
+      background: rgb(128, 128, 128);
+      left: 50%;
+      top: 30%;
+      opacity: 0;
+      border-radius: 50px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+      transform: rotate($delay * 30deg) translate(0, -130%);
+      animation: fader 1000ms linear infinite;
+      animation-delay: calc(100ms * $delay);
+    }
+  }
+
+  @keyframes fader {
+    from {
+      opacity: 1;
     }
 
-    &_medium {
-        width: 44px;
-        height: 44px;
+    to {
+      opacity: 0.25;
     }
-
-    &_large {
-        width: 76px;
-        height: 76px;
-    }
-
-    @for $delay from 1 through 12 {
-        .bar#{$delay} {
-            position: absolute;
-            width: 8%;
-            height: 24%;
-            background: rgb(128, 128, 128);
-            left: 50%;
-            top: 30%;
-            opacity: 0;
-            border-radius: 50px;
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-            transform: rotate($delay * 30deg) translate(0, -130%);
-            animation: fader 1000ms linear infinite;
-            animation-delay: calc(100ms * $delay);
-        }
-    }
-
-    @keyframes fader {
-        from {
-            opacity: 1;
-        }
-
-        to {
-            opacity: 0.25;
-        }
-    }
+  }
 }

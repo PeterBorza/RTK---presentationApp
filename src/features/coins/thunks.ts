@@ -3,22 +3,22 @@ import { CoinsInterface } from "./types";
 import { useQueryHook } from "providers";
 
 export const useCoins = (): {
-    data: [] | CoinsInterface[];
-    isError: boolean;
-    isLoading: boolean;
+  data: CoinsInterface[];
+  isError: boolean;
+  isLoading: boolean;
 } => {
-    const {
-        resData: data,
-        isError,
-        isLoading,
-    } = useQueryHook<CoinsInterface[]>({
-        key: "coins",
-        url: `${COINS_URL}/${LinkUrls.COINS}`,
-    });
+  const {
+    resData: data,
+    isError,
+    isLoading,
+  } = useQueryHook<CoinsInterface[]>({
+    key: "coins",
+    url: `${COINS_URL}/${LinkUrls.COINS}`,
+  });
 
-    return {
-        data,
-        isError,
-        isLoading,
-    };
+  return {
+    data,
+    isError,
+    isLoading,
+  };
 };

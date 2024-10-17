@@ -10,39 +10,39 @@ import { editCard } from "./gasSlice";
 import { togglePayedBill } from "./thunks";
 
 interface Props {
-    openModal: () => void;
+  openModal: () => void;
 }
 // eslint-disable-next-line react/display-name
 const ManageGas = forwardRef<HTMLDivElement, Props>(({ openModal }, ref) => {
-    const { dispatch } = useAppRedux();
-    const { check, trash, edit } = icons;
-    const selectedGasUnit = useSelector(selectedGas);
+  const { dispatch } = useAppRedux();
+  const { check, trash, edit } = icons;
+  const selectedGasUnit = useSelector(selectedGas);
 
-    const iconGroup: IconProps[] = [
-        {
-            onClick: () => dispatch(editCard(selectedGasUnit!.id)),
-            type: "edit",
-            title: UtilityTableLabels.EDIT,
-            icon: edit,
-            isDisabled: !selectedGasUnit,
-        },
-        {
-            onClick: openModal,
-            type: "delete",
-            title: UtilityTableLabels.DELETE,
-            icon: trash,
-            isDisabled: !selectedGasUnit,
-        },
-        {
-            onClick: () => dispatch(togglePayedBill(selectedGasUnit!)),
-            type: "check",
-            title: UtilityTableLabels.PAY,
-            icon: check,
-            isDisabled: !selectedGasUnit || !selectedGasUnit?.bill || selectedGasUnit?.payed,
-        },
-    ];
+  const iconGroup: IconProps[] = [
+    {
+      onClick: () => dispatch(editCard(selectedGasUnit!.id)),
+      type: "edit",
+      title: UtilityTableLabels.EDIT,
+      icon: edit,
+      isDisabled: !selectedGasUnit,
+    },
+    {
+      onClick: openModal,
+      type: "delete",
+      title: UtilityTableLabels.DELETE,
+      icon: trash,
+      isDisabled: !selectedGasUnit,
+    },
+    {
+      onClick: () => dispatch(togglePayedBill(selectedGasUnit!)),
+      type: "check",
+      title: UtilityTableLabels.PAY,
+      icon: check,
+      isDisabled: !selectedGasUnit || !selectedGasUnit?.bill || selectedGasUnit?.payed,
+    },
+  ];
 
-    return <UtilityManager icons={iconGroup} isManageActive={Boolean(selectedGasUnit)} ref={ref} />;
+  return <UtilityManager icons={iconGroup} isManageActive={Boolean(selectedGasUnit)} ref={ref} />;
 });
 
 export default ManageGas;

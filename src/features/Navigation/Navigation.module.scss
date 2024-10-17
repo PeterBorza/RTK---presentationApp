@@ -3,64 +3,64 @@
 @use "css/variables" as var;
 
 @mixin gradientNav($degrees) {
-    background: linear-gradient($degrees, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.01) 100%);
+  background: linear-gradient($degrees, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.01) 100%);
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    padding: 0 1.8rem;
-    gap: 1.8rem;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: var.$navHeight;
-    @include z.z-index("navigation");
-    @include gradientNav(180deg);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  padding: 0 1.8rem;
+  gap: 1.8rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: var.$navHeight;
+  @include z.z-index("navigation");
+  @include gradientNav(180deg);
 
-    &__dropdown {
-        position: relative;
-        width: 100px;
-        height: 300px;
-    }
+  &__dropdown {
+    position: relative;
+    width: 100px;
+    height: 300px;
+  }
 
-    &__menuContainer {
-        position: absolute;
-        width: 200px;
-        height: 500px;
-    }
+  &__menuContainer {
+    position: absolute;
+    width: 200px;
+    height: 500px;
+  }
 }
 
 .list {
-    width: 100%;
-    @include mix.fBetween();
-    padding: 0 1.8rem;
+  width: 100%;
+  @include mix.fBetween();
+  padding: 0 1.8rem;
 }
 
 .links {
-    position: relative;
-    text-transform: uppercase;
-    font-family: "PT Sans", sans-serif;
-    font-size: clamp(1.3rem, 2vw + 0.4rem, 2.2rem);
-    color: var.$myYellow3;
-    cursor: pointer;
-    transition: color 150ms ease-out;
-    @include mix.underline(var.$myYellow3);
+  position: relative;
+  text-transform: uppercase;
+  font-family: "PT Sans", sans-serif;
+  font-size: clamp(1.3rem, 2vw + 0.4rem, 2.2rem);
+  color: var.$myYellow3;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+  @include mix.underline(var.$myYellow3);
 }
 
 .active {
-    $activeColor: rgb(238, 231, 231);
-    .links {
-        color: $activeColor;
-        @include mix.underline($activeColor);
-    }
+  $activeColor: rgb(238, 231, 231);
+  .links {
+    color: $activeColor;
+    @include mix.underline($activeColor);
+  }
 }
 
 @media (width < 600px) {
-    .nav {
-        align-items: start;
-        justify-content: space-evenly;
-        padding-top: 1rem;
-    }
+  .nav {
+    align-items: start;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+  }
 }

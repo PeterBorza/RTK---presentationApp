@@ -3,88 +3,88 @@ $dark: rgb(245, 240, 240);
 $light: #19191ae2;
 
 @mixin style {
-    transform: translateY(-150%);
-    font-size: 1rem;
-    color: $custom-color;
+  transform: translateY(-150%);
+  font-size: 1rem;
+  color: $custom-color;
 }
 
 @mixin after {
-    transform: translateX(0%);
-    transition: all 0.3s ease;
+  transform: translateX(0%);
+  transition: all 0.3s ease;
 }
 
 .custom {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: max(3rem, 4vh);
+  overflow: hidden;
+
+  &__label {
+    color: $light;
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
     width: 100%;
-    height: max(3rem, 4vh);
-    overflow: hidden;
-
-    &__label {
-        color: $light;
-        position: absolute;
-        bottom: 0px;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        border-bottom: 1px solid;
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0px;
-            bottom: -1px;
-            width: 100%;
-            height: 100%;
-            border-bottom: 3px solid $custom-color;
-            transform: translateX(-100%);
-        }
-
-        &__dark {
-            color: $dark;
-        }
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0px;
+      bottom: -1px;
+      width: 100%;
+      height: 100%;
+      border-bottom: 3px solid $custom-color;
+      transform: translateX(-100%);
     }
 
-    &__name {
-        position: absolute;
-        bottom: 5px;
-        left: 0px;
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
+    &__dark {
+      color: $dark;
+    }
+  }
+
+  &__name {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+
+    &:hover + .custom__label .custom__name,
+    &:focus-within + .custom__label .custom__name,
+    &__active + .custom__label .custom__name {
+      @include style();
     }
 
-    &__input {
-        width: 100%;
-        height: 100%;
-        padding-top: 0.5rem;
-        padding-left: 0.5rem;
-        cursor: pointer;
-
-        &:hover + .custom__label .custom__name,
-        &:focus-within + .custom__label .custom__name,
-        &__active + .custom__label .custom__name {
-            @include style();
-        }
-
-        &:hover + .custom__label::after,
-        &:focus-within + .custom__label::after,
-        &__active + .custom__label::after {
-            @include after();
-        }
-
-        &__valid {
-            color: white;
-        }
-
-        &__invalid {
-            animation: danger 600ms ease infinite;
-            @keyframes danger {
-                from {
-                    color: white;
-                }
-                to {
-                    color: crimson;
-                }
-            }
-        }
+    &:hover + .custom__label::after,
+    &:focus-within + .custom__label::after,
+    &__active + .custom__label::after {
+      @include after();
     }
+
+    &__valid {
+      color: white;
+    }
+
+    &__invalid {
+      animation: danger 600ms ease infinite;
+      @keyframes danger {
+        from {
+          color: white;
+        }
+        to {
+          color: crimson;
+        }
+      }
+    }
+  }
 }

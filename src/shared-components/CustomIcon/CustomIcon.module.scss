@@ -1,62 +1,62 @@
 @use "css/variables" as var;
 
 $iconTypes: (
-    "disabled": crimson,
-    "check": limegreen,
-    "danger": rgba(221, 23, 63, 0.767),
-    "delete": crimson,
-    "edit": rgba(51, 51, 177, 0.8),
-    "confirm": limegreen,
-    "cancel": crimson,
+  "disabled": crimson,
+  "check": limegreen,
+  "danger": rgba(221, 23, 63, 0.767),
+  "delete": crimson,
+  "edit": rgba(51, 51, 177, 0.8),
+  "confirm": limegreen,
+  "cancel": crimson,
 );
 
 .icon {
-    display: inline-flex;
+  display: inline-flex;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  transition: all 150ms ease 20ms;
+
+  &__small {
+    padding: 3px;
+  }
+  &__medium {
+    padding: 6px;
+    font-size: 1.3rem;
+  }
+  &__large {
+    padding: 9px;
+    font-size: 1.5rem;
+    flex-shrink: 1;
+  }
+  &__xxl {
+    padding: 15px;
+    font-size: 1.8rem;
+    flex-shrink: 1;
+  }
+
+  &:hover {
+    background-color: darken(var.$darkModeWhite, 85%);
     border-radius: 50%;
-    cursor: pointer;
-    flex-shrink: 0;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-    transition: all 150ms ease 20ms;
+    svg {
+      color: lighten(var.$darkModeWhite, 60%);
+      stroke: "black";
+      fill: "white";
+    }
+  }
 
-    &__small {
-        padding: 3px;
+  @each $key, $value in $iconTypes {
+    &__#{$key} {
+      color: $value;
     }
-    &__medium {
-        padding: 6px;
-        font-size: 1.3rem;
-    }
-    &__large {
-        padding: 9px;
-        font-size: 1.5rem;
-        flex-shrink: 1;
-    }
-    &__xxl {
-        padding: 15px;
-        font-size: 1.8rem;
-        flex-shrink: 1;
-    }
+  }
 
+  &__disabled {
+    opacity: 0.3;
+    // pointer-events: none;
     &:hover {
-        background-color: darken(var.$darkModeWhite, 85%);
-        border-radius: 50%;
-        svg {
-            color: lighten(var.$darkModeWhite, 60%);
-            stroke: "black";
-            fill: "white";
-        }
+      cursor: not-allowed;
     }
-
-    @each $key, $value in $iconTypes {
-        &__#{$key} {
-            color: $value;
-        }
-    }
-
-    &__disabled {
-        opacity: 0.3;
-        // pointer-events: none;
-        &:hover {
-            cursor: not-allowed;
-        }
-    }
+  }
 }

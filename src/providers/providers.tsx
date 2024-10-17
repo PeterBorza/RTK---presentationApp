@@ -8,16 +8,16 @@ import { QueryProvider } from "providers";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <Provider store={store}>
-            <PagesContextProvider>
-                <QueryProvider>
-                    {children}
-                    <ReactQueryDevtools initialIsOpen={false} />
-                </QueryProvider>
-            </PagesContextProvider>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <PagesContextProvider>
+        <QueryProvider>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryProvider>
+      </PagesContextProvider>
+    </Provider>
+  );
 };
 
 export default Providers;

@@ -3,34 +3,34 @@
 $backColor: rgb(9, 77, 9);
 
 .container {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include mix.flex(center, column);
+  @include mix.shadowSB();
+  overflow: hidden;
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    @include mix.flex(center, column);
-    @include mix.shadowSB();
-    overflow: hidden;
+    opacity: 0.2;
+  }
+  &__minions {
     &::after {
-        position: absolute;
-        content: "";
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
+      background: black url(../images/Minions.png) no-repeat center/cover;
     }
-    &__minions {
-        &::after {
-            background: black url(../images/Minions.png) no-repeat center/cover;
-        }
+  }
+  &__christmas {
+    &::after {
+      background: black url(../images/christmas-background_640.jpg) no-repeat center/cover;
     }
-    &__christmas {
-        &::after {
-            background: black url(../images/christmas-background_640.jpg) no-repeat center/cover;
-        }
+  }
+  &__cute_animals {
+    &::after {
+      background: black url(../images/sheep-bg.jpg) no-repeat center/cover;
     }
-    &__cute_animals {
-        &::after {
-            background: black url(../images/sheep-bg.jpg) no-repeat center/cover;
-        }
-    }
+  }
 }

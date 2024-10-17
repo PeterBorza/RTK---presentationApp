@@ -1,19 +1,19 @@
 .manageWrapper {
-    display: flex;
-    gap: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.355);
-    padding: 0.2rem 0.5rem;
-    border-radius: 10px 3px;
-    svg {
-        color: white;
-    }
+  display: flex;
+  gap: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.355);
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px 3px;
+  svg {
+    color: white;
+  }
 
-    &__selected {
-        border: 1px solid white;
-        background-color: rgba(255, 255, 255, 0.2);
-        svg {
-            transition: color 250ms;
-            color: unset;
-        }
+  &__selected {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.2);
+    svg {
+      transition: color 250ms;
+      color: unset;
     }
+  }
 }

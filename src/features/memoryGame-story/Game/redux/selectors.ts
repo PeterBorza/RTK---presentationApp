@@ -11,11 +11,11 @@ const gamePhotosSelector = ({ memoryGame }: RootState) => memoryGame.gamePhotos;
 const finishedGameSelector = (state: RootState) => state.memoryGame.gameFinished;
 
 const flippedCardsSelector = createSelector(gamePhotosSelector, items =>
-    items.filter(item => item.isFlipped === true),
+  items.filter(item => item.isFlipped === true),
 );
 
 const matchCardsSelector = createSelector(gamePhotosSelector, items =>
-    items.filter(item => item.match === true),
+  items.filter(item => item.match === true),
 );
 
 // const finishedGameSelector = createSelector(gamePhotosSelector, items =>
@@ -23,11 +23,11 @@ const matchCardsSelector = createSelector(gamePhotosSelector, items =>
 // );
 
 export const useMGameRedux = () => ({
-    memoryGame: useSelector(memoryGameState),
-    photos: useSelector(photoSelector),
-    gamePhotos: useSelector(gamePhotosSelector),
-    flippedCards: useSelector(flippedCardsSelector),
-    matchingCards: useSelector(matchCardsSelector),
-    isGameFinished: useSelector(finishedGameSelector),
-    dispatch: useDispatch(),
+  memoryGame: useSelector(memoryGameState),
+  photos: useSelector(photoSelector),
+  gamePhotos: useSelector(gamePhotosSelector),
+  flippedCards: useSelector(flippedCardsSelector),
+  matchingCards: useSelector(matchCardsSelector),
+  isGameFinished: useSelector(finishedGameSelector),
+  dispatch: useDispatch(),
 });

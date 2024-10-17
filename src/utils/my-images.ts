@@ -37,49 +37,49 @@ import ls15 from "images/ls/x900/ls15_900.jpg";
 export type ImageType = string | undefined;
 
 export type ImageDataType = {
-    id: string;
-    src: ImageType;
-    caption: string;
+  id: string;
+  src: ImageType;
+  caption: string;
 };
 
 export const myImages: ImageType[] = [
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img10,
-    img11,
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img10,
+  img11,
 ];
 
 export const miniLandscapes: ImageType[] = [ls1, ls2, ls3, ls4, ls5, ls6, ls7, ls8, ls9, ls10];
 
 export const landScapes: ImageType[] = [ls11, ls12, ls13, ls14, ls15];
 const textForMyImages: { [key: string]: ImageType } = {
-    "Javascript Object": img1,
-    "Javascript operator": img2,
-    String: img3,
-    "HTTP status code": img4,
-    Regex: img5,
-    "Command line": img6,
-    "Javascript DOM": img7,
-    Date: img8,
-    Array: img9,
-    Cron: img10,
-    "Array methods": img11,
+  "Javascript Object": img1,
+  "Javascript operator": img2,
+  String: img3,
+  "HTTP status code": img4,
+  Regex: img5,
+  "Command line": img6,
+  "Javascript DOM": img7,
+  Date: img8,
+  Array: img9,
+  Cron: img10,
+  "Array methods": img11,
 };
 
 export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
 
 export const imageData = Object.entries(textForMyImages).map(
-    ([key, value]) =>
-        ({
-            id: key,
-            src: value,
-            caption: key,
-        }) as ImageDataType,
+  ([key, value]) =>
+    ({
+      id: key,
+      src: value,
+      caption: key,
+    }) as ImageDataType,
 );

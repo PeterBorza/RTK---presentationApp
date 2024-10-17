@@ -1,35 +1,35 @@
 $size: 100px;
 @mixin centering {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .boxWrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 20vh auto;
-    border: 1px solid;
-    border-radius: 5px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 20vh auto;
+  border: 1px solid;
+  border-radius: 5px;
 }
 
 .one {
-    @include centering();
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: $size;
-    height: $size;
-    background-color: honeydew;
+  @include centering();
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $size;
+  height: $size;
+  background-color: honeydew;
 }
 
 .two {
-    @include centering();
-    position: absolute;
-    left: calc(100% - $size);
-    top: calc(100% - $size);
-    width: $size;
-    height: $size;
-    background-color: rgb(104, 198, 127);
+  @include centering();
+  position: absolute;
+  left: calc(100% - $size);
+  top: calc(100% - $size);
+  width: $size;
+  height: $size;
+  background-color: rgb(104, 198, 127);
 }

@@ -11,26 +11,26 @@ import styles from "./Building.module.scss";
 import ManageLevels from "../ManageLevels";
 
 const ElevatorSystem = () => {
-    const {
-        lifts: [liftA, liftB],
-    } = useLiftRedux();
+  const {
+    lifts: [liftA, liftB],
+  } = useLiftRedux();
 
-    return (
-        <div className={styles.container}>
-            <ManageLevels />
-            <div className={styles.systemContainer}>
-                <LiftSystem data={liftA} />
-                <BlockSystem />
-                <LiftSystem data={liftB} />
-            </div>
-        </div>
-    );
+  return (
+    <div className={styles.container}>
+      <ManageLevels />
+      <div className={styles.systemContainer}>
+        <LiftSystem data={liftA} />
+        <BlockSystem />
+        <LiftSystem data={liftB} />
+      </div>
+    </div>
+  );
 };
 
 const Building = () => (
-    <FloatingImage src={city900}>
-        <ElevatorSystem />
-    </FloatingImage>
+  <FloatingImage src={city900}>
+    <ElevatorSystem />
+  </FloatingImage>
 );
 
 export default Building;

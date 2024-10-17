@@ -1,20 +1,20 @@
 @use "css/variables" as var;
 
 .buttonWrapper {
-    width: 100%;
-    display: flex;
-    padding: 0.5rem;
-    gap: 5px;
-    &__dark {
-        background-color: var.$darkMode;
-    }
-    &--start {
-        align-items: flex-start;
-    }
-    &--center {
-        justify-content: center;
-    }
-    &--end {
-        justify-content: flex-end;
-    }
+  width: 100%;
+  display: flex;
+  padding: 0.5rem;
+  gap: 5px;
+  &__dark {
+    background-color: var.$darkMode;
+  }
+  &--start {
+    align-items: flex-start;
+  }
+  &--center {
+    justify-content: center;
+  }
+  &--end {
+    justify-content: flex-end;
+  }
 }

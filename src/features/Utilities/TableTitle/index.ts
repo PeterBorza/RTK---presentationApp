@@ -1,1 +1,1 @@
-export {default} from "./TableTitle"
+export { default } from "./TableTitle";

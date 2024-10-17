@@ -4,49 +4,55 @@ $bubble-label-color: rgb(255 255 255 / 0.85);
 $bubble-label-active-color: rgb(119, 22, 22);
 
 .bubbleStyle {
-    position: absolute;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2), -1px -1px 5px rgba(240, 240, 240, 0.5);
-    display: grid;
-    place-items: center;
-    z-index: 1;
-    backdrop-filter: blur(3px);
-    filter: blur(1px);
-    translate: -50% -50%;
-    cursor: pointer;
+  position: absolute;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  box-shadow:
+    4px 6px 10px rgba(0, 0, 0, 0.2),
+    -1px -1px 5px rgba(240, 240, 240, 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+  filter: blur(1px);
+  translate: -50% -50%;
+  cursor: pointer;
 
-    &:hover {
-        border: 1px solid rgba(255, 255, 255, 0.4);
+  &:hover {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  &__id {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
+    font-family: fantasy, sans-serif;
+    user-select: none;
+  }
+
+  &__active {
+    outline: 2px dashed white;
+    outline-offset: -4px;
+    filter: none;
+    animation: circling $rotationSpeed infinite forwards linear;
+
+    .bubbleStyle__id {
+      color: rgb(119, 22, 22);
     }
 
-    &__id {
-        color: white;
-        text-shadow: 2px 2px 4px rgba(206, 73, 25, 0.185);
-        font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
-        font-family: fantasy, sans-serif;
-        user-select: none;
+    @keyframes circling {
+      from {
+        translate:
+          -50%,
+          -50%;
+        rotate: Z 0deg;
+      }
+      to {
+        translate:
+          -50%,
+          -50%;
+        rotate: Z 360deg;
+      }
     }
-
-    &__active {
-        outline: 2px dashed white;
-        outline-offset: -4px;
-        filter: none;
-        animation: circling $rotationSpeed infinite forwards linear;
-
-        .bubbleStyle__id {
-            color: rgb(119, 22, 22);
-        }
-
-        @keyframes circling {
-            from {
-                translate: -50%, -50%;
-                rotate: Z 0deg;
-            }
-            to {
-                translate: -50%, -50%;
-                rotate: Z 360deg;
-            }
-        }
-    }
+  }
 }

@@ -9,20 +9,20 @@ import UtilityContainer from "./UtilityContainer";
 import UtilityPlatform from "./UtilityPlatform";
 
 export const utilitiesRoute: RouteObject = {
-    path: NavLinkUrls.UTILITIES,
-    element: <UtilityContainer />,
-    children: [
-        {
-            index: true,
-            element: <UtilityPlatform />,
-        },
-        {
-            path: LinkUrls.GAS,
-            element: <Gas />,
-        },
-        {
-            path: LinkUrls.LIGHT,
-            element: <Light />,
-        },
-    ],
+  path: NavLinkUrls.UTILITIES,
+  element: <UtilityContainer />,
+  children: [
+    {
+      index: true,
+      element: <UtilityPlatform />,
+    },
+    {
+      path: LinkUrls.GAS,
+      element: <Gas />,
+    },
+    {
+      path: LinkUrls.LIGHT,
+      element: <Light />,
+    },
+  ],
 };

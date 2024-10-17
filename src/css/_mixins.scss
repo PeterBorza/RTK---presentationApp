@@ -1,256 +1,256 @@
 @use "./variables" as var;
 
 @function modal-black($opacity) {
-    @return rgba(0, 0, 0, $opacity);
+  @return rgba(0, 0, 0, $opacity);
 }
 
 @mixin centered {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 @mixin flexWrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    // child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for
-    // flexgrow, flexshrink, and flex-basis
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // child is flex: 1 1 <baseWidth>   or 0 1 <baseWidth> stand for
+  // flexgrow, flexshrink, and flex-basis
 }
 
 @mixin sideBar($px, $percentage) {
-    display: grid;
-    grid-template-columns: minmax($px, $percentage), 1fr;
+  display: grid;
+  grid-template-columns: minmax($px, $percentage), 1fr;
 }
 
 @mixin headerMainFooter {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 @mixin headFooterAndBetween {
-    display: grid;
-    grid-template: auto 1fr auto/auto 1fr auto;
-    // header grcol 1/4   left-side grcol 1/2  main grcol 2/3  right-side 3/4  footer grcol 1/4
+  display: grid;
+  grid-template: auto 1fr auto/auto 1fr auto;
+  // header grcol 1/4   left-side grcol 1/2  main grcol 2/3  right-side 3/4  footer grcol 1/4
 }
 
 @mixin twelveColumnsGrid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    // children displayed with grid-column ex. 1/7, 2/5 etc.
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  // children displayed with grid-column ex. 1/7, 2/5 etc.
 }
 
 @mixin RAM($min, $max) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax($min, $max));
-    // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    // with auto-fill baseline does not increase !
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, $max));
+  // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  // with auto-fill baseline does not increase !
 }
 
 @mixin lineUp($rows) {
-    display: grid;
-    grid-template-columns: repeat($rows, 1fr);
+  display: grid;
+  grid-template-columns: repeat($rows, 1fr);
 }
 
 // TODO flex mixins below should be one mixin with justify-content param added near direction
 
 @mixin flex($content: "center", $direction: "row") {
-    display: flex;
-    justify-content: $content;
-    align-items: center;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: $content;
+  align-items: center;
+  flex-direction: $direction;
 }
 
 @mixin fAround($direction: "row") {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: $direction;
 }
 
 @mixin fCenter($direction: "row") {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
 }
 
 @mixin fEven($direction: "row") {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: $direction;
 }
 
 @mixin fBetween($direction: "row") {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: $direction;
 }
 
 @mixin fixedDiv {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    left: 0px;
-    top: 0px;
-    background-color: rgba(0, 0, 0, 0.9);
-    @include centered();
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.9);
+  @include centered();
 }
 
 @mixin nightMode {
-    background-color: rgba(14, 13, 13, 0.8);
-    color: whitesmoke;
+  background-color: rgba(14, 13, 13, 0.8);
+  color: whitesmoke;
 }
 
 @mixin absoluteMiddle {
-    left: 50%;
-    top: 50%;
-    translate: -50% -50%;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
 }
 
 @mixin landScape {
-    width: 90%;
-    height: 80vh;
-    padding: 0.5rem;
-    border: 3px solid rgba(128, 128, 128, 0.5);
-    border-radius: 5px;
-    margin-top: 10vh;
-    @include centered();
-    background: rgba(128, 128, 128, 0.2);
-    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.5);
-    transition: box-shadow 200ms ease;
-    &:hover {
-        box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.8);
-    }
+  width: 90%;
+  height: 80vh;
+  padding: 0.5rem;
+  border: 3px solid rgba(128, 128, 128, 0.5);
+  border-radius: 5px;
+  margin-top: 10vh;
+  @include centered();
+  background: rgba(128, 128, 128, 0.2);
+  box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.5);
+  transition: box-shadow 200ms ease;
+  &:hover {
+    box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.8);
+  }
 }
 
 @mixin shadow($speed) {
-    transition: box-shadow $speed ease;
-    box-shadow:
-        0px 0px 2px modal-black(0.1),
-        -1px -1px 2px modal-black(0.1);
-    &:hover {
-        box-shadow: 4px 4px 12px modal-black(0.3);
-    }
+  transition: box-shadow $speed ease;
+  box-shadow:
+    0px 0px 2px modal-black(0.1),
+    -1px -1px 2px modal-black(0.1);
+  &:hover {
+    box-shadow: 4px 4px 12px modal-black(0.3);
+  }
 }
 
 @mixin shadow2 {
-    box-shadow: 0 5px 15px 0 modal-black(0.35);
-    // box-shadow: inset 0 5px 15px  rgba(0,0,0,0.5);
-    &:hover {
-        box-shadow: 0 15px 70px 0 modal-black(0.35);
-        scale: 1.001;
-        transition:
-            scale 200ms,
-            box-shadow 200ms;
-    }
+  box-shadow: 0 5px 15px 0 modal-black(0.35);
+  // box-shadow: inset 0 5px 15px  rgba(0,0,0,0.5);
+  &:hover {
+    box-shadow: 0 15px 70px 0 modal-black(0.35);
+    scale: 1.001;
+    transition:
+      scale 200ms,
+      box-shadow 200ms;
+  }
 }
 
 @mixin shadow3 {
-    box-shadow: 0px 6px 15px modal-black(0.3);
-    transition: box-shadow 300ms ease-in-out;
-    &:hover {
-        box-shadow: 0px 2px 4px modal-black(0.3);
-    }
+  box-shadow: 0px 6px 15px modal-black(0.3);
+  transition: box-shadow 300ms ease-in-out;
+  &:hover {
+    box-shadow: 0px 2px 4px modal-black(0.3);
+  }
 }
 
 @mixin shadowSB {
-    $color: #0000004d;
-    box-shadow: 0px 6px 15px $color;
-    &:hover {
-        box-shadow: 0px 2px 4px $color;
-    }
+  $color: #0000004d;
+  box-shadow: 0px 6px 15px $color;
+  &:hover {
+    box-shadow: 0px 2px 4px $color;
+  }
 }
 
 @mixin noVisibleScrollBar {
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @mixin truncate {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @mixin pop {
-    animation: pop 300ms ease-in-out forwards;
-    @keyframes pop {
-        from {
-            opacity: 0;
-            scale: 0;
-        }
-        to {
-            opacity: 1;
-            scale: 1;
-        }
+  animation: pop 300ms ease-in-out forwards;
+  @keyframes pop {
+    from {
+      opacity: 0;
+      scale: 0;
     }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
 }
 
 @mixin truncater($line-clamp) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: $line-clamp;
-    line-height: 165%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: $line-clamp;
+  line-height: 165%;
 }
 
 @mixin circle($size: "100px") {
-    width: $size;
-    height: $size;
-    border-radius: 50%;
-    aspect-ratio: 1;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  aspect-ratio: 1;
 }
 
 @mixin linksAnchorStyle {
-    a {
-        color: $appYellow;
-        &:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
+  a {
+    color: $appYellow;
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
     }
+  }
 }
 
 @mixin darkModeSelector($darkMode: var.$darkMode) {
-    &__darkMode {
-        background-color: $darkMode;
-    }
+  &__darkMode {
+    background-color: $darkMode;
+  }
 }
 
 @mixin appContainer($darkMode, $lineUp: 2, $boxSize: 350px) {
-    position: relative;
-    overflow: scroll;
-    @include flex(center, column);
-    // @include RAM($boxSize, 1fr);
-    min-height: 100vh;
-    padding: 1rem;
-    padding-top: 6rem;
-    gap: 1rem;
-    @include darkModeSelector($darkMode);
-    @include noVisibleScrollBar();
+  position: relative;
+  overflow: scroll;
+  @include flex(center, column);
+  // @include RAM($boxSize, 1fr);
+  min-height: 100vh;
+  padding: 1rem;
+  padding-top: 6rem;
+  gap: 1rem;
+  @include darkModeSelector($darkMode);
+  @include noVisibleScrollBar();
 }
 
 @mixin underline($bgColor) {
-    &::after {
-        position: absolute;
-        content: "";
-        width: 120%;
-        height: 2px;
-        background-color: $bgColor;
-        top: 100%;
-        left: -10%;
-        scale: 0;
-        transition: scale 150ms;
-    }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 120%;
+    height: 2px;
+    background-color: $bgColor;
+    top: 100%;
+    left: -10%;
+    scale: 0;
+    transition: scale 150ms;
+  }
 
-    &:hover {
-        &::after {
-            scale: 1;
-        }
+  &:hover {
+    &::after {
+      scale: 1;
     }
+  }
 }

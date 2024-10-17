@@ -1,10 +1,10 @@
 @use "css/z-index" as z;
 
 .controls {
-    width: 400px;
-    @include z.z-index();
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
+  width: 400px;
+  @include z.z-index();
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
 }

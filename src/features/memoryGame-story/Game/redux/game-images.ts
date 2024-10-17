@@ -46,53 +46,53 @@ import { GameImage } from "../redux/types";
 const SQUARES = 16;
 
 const frontImages = (src: ImageType, gameId: number) => ({
-    src,
-    gameId: gameId + 100,
+  src,
+  gameId: gameId + 100,
 });
 
 const duplicates = <T>(arr: T[]): T[] => [...arr, ...arr];
 
 const getGameImages = (arr: GameImage[]) =>
-    new Array(SQUARES).fill(null).map((_, idx) => ({
-        id: (idx + 1).toLocaleString(),
-        frontSrc: duplicates<GameImage>(arr)[idx],
-        isFlipped: false,
-        match: false,
-    }));
+  new Array(SQUARES).fill(null).map((_, idx) => ({
+    id: (idx + 1).toLocaleString(),
+    frontSrc: duplicates<GameImage>(arr)[idx],
+    isFlipped: false,
+    match: false,
+  }));
 
 const minions: ImageType[] = [
-    min0,
-    min1,
-    min2,
-    min3,
-    min4,
-    min5,
-    min6,
-    min7,
-    min8,
-    min9,
-    min10,
-    min11,
-    min12,
+  min0,
+  min1,
+  min2,
+  min3,
+  min4,
+  min5,
+  min6,
+  min7,
+  min8,
+  min9,
+  min10,
+  min11,
+  min12,
 ];
 
 const christmas: ImageType[] = [
-    santa,
-    tree,
-    snowman,
-    rudolf,
-    candy,
-    bell,
-    snowman01,
-    globe,
-    butterfly,
-    snowFlake,
-    ribbon,
-    gift,
-    star,
-    hat,
-    sledge,
-    wreath,
+  santa,
+  tree,
+  snowman,
+  rudolf,
+  candy,
+  bell,
+  snowman01,
+  globe,
+  butterfly,
+  snowFlake,
+  ribbon,
+  gift,
+  star,
+  hat,
+  sledge,
+  wreath,
 ];
 
 const cuteAnimals = [snail, bird, chicken, owl, elephant, rabbit, butterflyIcon, clown_fish];
