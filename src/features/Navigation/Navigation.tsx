@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 
-import { NavLinkUrls, updateDarkMode, useAppRedux } from "app";
+import { updateDarkMode, useAppRedux } from "app";
 import { useLocalStorage, useWindowSize } from "hooks";
-import { useLinkContext } from "providers";
 import { LocalStorageKeys } from "common/localStorageKeys";
 import { ToggleButton } from "shared-components";
 
@@ -11,14 +10,14 @@ import NavBar from "./NavBar";
 
 import styles from "./Navigation.module.scss";
 
+import { appInternalLinks } from "providers";
 export interface NavProps {
-  links: NavLinkUrls[];
+  links: typeof appInternalLinks;
 }
 
 // TODO useWindowSize is not working. Why? was adding ref as param a good idea?
 
 const Navigation = () => {
-  const { links } = useLinkContext();
   const { dispatch, isDarkMode } = useAppRedux();
 
   const ref = useRef<HTMLDivElement>(null);
@@ -36,10 +35,10 @@ const Navigation = () => {
     <nav ref={ref} className={styles.nav}>
       {!SMALL_SCREEN ? (
         <ul className={styles.list}>
-          <NavBar links={links} />
+          <NavBar links={appInternalLinks} />
         </ul>
       ) : (
-        <SmallNavBar links={links} />
+        <SmallNavBar links={appInternalLinks} />
       )}
       <ToggleButton
         variant="darkMode"

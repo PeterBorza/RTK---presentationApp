@@ -34,3 +34,11 @@ export const mapToObject = (
   arr.reduce<ResultedObjectType[]>((acc, value, index) => {
     return { ...acc, [value]: cb(value, index) };
   }, []);
+
+export const moveArrayItem = <T>(arr: T[], fromIndex: number, toIndex: number): T[] => {
+  const array = [...arr];
+  const element = array[fromIndex];
+  array.splice(fromIndex, 1);
+  array.splice(toIndex, 0, element);
+  return array;
+};

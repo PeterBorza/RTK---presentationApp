@@ -7,9 +7,9 @@ import { AsidePlatform } from "shared-components";
 import { UtilityTableLabels as messages } from "..";
 
 import styles from "./UtilityContainer.module.scss";
-import { useLinkContext } from "providers";
 import { getAsyncUtility } from "features/Gas/thunks";
 import { getLight } from "features/Light/thunks";
+import { toInternalLink } from "utils";
 
 type LinkType = LinkUrls | NavLinkUrls;
 
@@ -18,7 +18,6 @@ const UtilityContainer = () => {
     () => [LinkUrls.GAS, LinkUrls.LIGHT, NavLinkUrls.UTILITIES, NavLinkUrls.HOME],
     [],
   );
-  const { toInternalLink } = useLinkContext();
   const { isDarkMode, isUtilsOpen, dispatch } = useAppRedux();
 
   const closeSidePanel = useCallback(
