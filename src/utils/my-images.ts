@@ -34,6 +34,17 @@ import ls13 from "images/ls/x900/ls13_900.jpg";
 import ls14 from "images/ls/x900/ls14_900.jpg";
 import ls15 from "images/ls/x900/ls15_900.jpg";
 
+import clr1 from "images/colors/image1.png";
+import clr2 from "images/colors/image2.png";
+import clr3 from "images/colors/image3.png";
+import clr4 from "images/colors/image4.png";
+import clr5 from "images/colors/image5.png";
+import clr6 from "images/colors/image6.png";
+import clr7 from "images/colors/image7.png";
+import clr8 from "images/colors/image8.png";
+import clr9 from "images/colors/image9.png";
+import clr10 from "images/colors/image10.png";
+
 export type ImageType = string | undefined;
 
 export type ImageDataType = {
@@ -74,6 +85,18 @@ const textForMyImages: { [key: string]: ImageType } = {
 };
 
 export const rainPhotos: ImageType[] = [rd1900, rd2900, rd3900, rd4900, rd5900, rd6900];
+export const colorImages: ImageType[] = [
+  clr1,
+  clr2,
+  clr3,
+  clr4,
+  clr5,
+  clr6,
+  clr7,
+  clr8,
+  clr9,
+  clr10,
+];
 
 export const imageData = Object.entries(textForMyImages).map(
   ([key, value]) =>

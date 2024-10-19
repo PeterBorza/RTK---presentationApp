@@ -254,3 +254,38 @@
     }
   }
 }
+
+.ladyLips {
+  background: rgb(255, 155, 159);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 155, 159, 1) 0%,
+    rgba(255, 155, 159, 1) 40%,
+    rgba(254, 207, 239, 1) 100%
+  );
+}
+
+.nightFade {
+  background: rgb(162, 141, 210);
+  background: linear-gradient(90deg, rgba(162, 141, 210, 1) 0%, rgba(251, 194, 235, 1) 100%);
+}
+
+.juicyPeach {
+  background: rgb(255, 236, 210);
+  background: linear-gradient(90deg, rgba(255, 236, 210, 1) 0%, rgba(252, 183, 160, 1) 100%);
+}
+
+.frozenDreams {
+  background: rgb(253, 203, 241);
+  background: linear-gradient(90deg, rgba(253, 203, 241, 1) 0%, rgba(248, 238, 248, 1) 100%);
+}
+
+.winterNeva {
+  background: rgb(161, 196, 253);
+  background: linear-gradient(90deg, rgba(161, 196, 253, 1) 0%, rgba(194, 233, 251, 1) 100%);
+}
+
+.milkyWay {
+  background: rgb(207, 217, 224);
+  background: linear-gradient(90deg, rgba(207, 217, 224, 1) 0%, rgba(226, 235, 240, 1) 100%);
+}
