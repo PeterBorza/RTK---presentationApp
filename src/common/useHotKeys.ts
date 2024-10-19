@@ -1,19 +1,21 @@
-import { NavLinkUrls } from "app";
+import { appInternalLinks as links } from "providers";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+type LinksType = typeof links;
 
 const useHotKeys = () => {
   const navigate = useNavigate();
   const [currentKey, setCurrentKey] = useState("");
 
-  const features: Record<string, NavLinkUrls> = useMemo(
+  const features = useMemo(
     () => ({
-      H: NavLinkUrls.HOME,
-      F: NavLinkUrls.FEATURES,
-      P: NavLinkUrls.PHOTOS,
-      T: NavLinkUrls.TESTER,
-      U: NavLinkUrls.UTILITIES,
-      D: NavLinkUrls.DRAG,
+      H: links.HOME,
+      F: links.FEATURES,
+      P: links.PHOTOS,
+      T: links.TESTER,
+      U: links.UTILITIES,
+      D: links.DRAG,
     }),
     [],
   );

@@ -1,7 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
-import { useLinkContext } from "providers";
 
 import { AnimatedDropdown, AsidePlatform } from "shared-components";
 
@@ -12,9 +11,9 @@ import { PhotosMessages } from "../messages";
 
 import classNames from "classnames";
 import styles from "./Photos.module.scss";
+import { toInternalLink } from "utils";
 
 const Photos = () => {
-  const { toInternalLink } = useLinkContext();
   const { photos, dispatch } = useMGameRedux();
   const { isPhotosOpen: openSideBar, isDarkMode } = useAppRedux();
 

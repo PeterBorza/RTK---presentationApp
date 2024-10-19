@@ -16,7 +16,7 @@ const SmallNavBar = ({ links }: NavProps) => {
       [active]: isActive,
     });
 
-  const menuItems = links.map((item, idx) => (
+  const menuItems = Object.values(links).map((item, idx) => (
     <NavLink key={idx} className={({ isActive }) => linkClasses(isActive)} to={item}>
       {urlToLabel(item)}
     </NavLink>

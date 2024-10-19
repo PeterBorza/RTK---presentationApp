@@ -1,7 +1,8 @@
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { App, Error, NavLinkUrls } from "app";
+import { App, Error } from "app";
 import { AlertModal, Loader } from "shared-components";
+import { appInternalLinks as links } from "../providers";
 
 import Home from "features/Home";
 import ScrollPage from "features/scroll-pages";
@@ -20,17 +21,17 @@ const appRoutes: RouteObject[] = [
         element: <Home />,
       },
       utilitiesRoute,
-      photosRoute(NavLinkUrls.PHOTOS),
+      photosRoute(links.PHOTOS),
       {
-        path: NavLinkUrls.FEATURES,
+        path: links.FEATURES,
         element: <ScrollPage />,
       },
       {
-        path: NavLinkUrls.TESTER,
+        path: links.TESTER,
         element: <ScrollTester />,
       },
       {
-        path: NavLinkUrls.DRAG,
+        path: links.DRAG,
         element: <DragContainer />,
       },
       {
