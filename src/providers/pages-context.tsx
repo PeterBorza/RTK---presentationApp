@@ -24,7 +24,7 @@ export const PagesContextProvider = ({ children }: { children?: React.ReactNode 
     Bubbles: <BubbleContainer />,
     Lift: <Building />,
     Slidehow: <SlideContainer />,
-    Landscapes: <ImageBox />,
+    Colors: <ImageBox />,
   };
 
   // TODO move Puzzles to PHOTOS section

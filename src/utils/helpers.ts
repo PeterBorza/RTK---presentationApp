@@ -25,3 +25,22 @@ const debounce2 = (fn: (e: React.UIEvent) => void, timeout: number) => {
 //jest.mock("comon/utils/debounce", () => ({
 //debounce: (fn: () => void) => fn
 //}))
+
+export const whites = [
+  {
+    hex: "F9F6EE",
+    name: "bone white",
+  },
+  {
+    hex: "FFFAFA",
+    name: "snow",
+  },
+  {
+    hex: "FAFAFA",
+    name: "antiflesh",
+  },
+  {
+    hex: "FFFFF0",
+    name: "ivory",
+  },
+];

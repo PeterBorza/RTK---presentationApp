@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GameTheme, GameThemeType, MemoryGameState } from "./types";
-import { imageData } from "utils";
+import { imageData, colorImages } from "utils";
 import { GamePhotoData } from "./types";
 import { shuffledChristmas, shuffledMinions, shuffledCuteAnimals } from "./game-images";
 
