@@ -37,7 +37,7 @@ const ImageBox = () => {
             </div>
           ))
         : null}
-      {selected && <BlackModal onClose={closeModal} renderFields={() => <img src={selected} />} />}
+      {open && <BlackModal onClose={closeModal} renderFields={() => <img src={selected} />} />}
     </div>
   );
 };

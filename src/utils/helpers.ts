@@ -14,7 +14,7 @@ export const debounce = <T>(callback: (...args: T[]) => void, wait: number) => {
   };
 };
 
-const debounce2 = (fn: (e: React.UIEvent) => void, timeout: number) => {
+export const debounce2 = (fn: (e: React.UIEvent) => void, timeout: number) => {
   let timer: number;
   return (e: React.UIEvent) => {
     clearTimeout(timer);

@@ -1,59 +1,53 @@
 {
-    "folderTemplates.structures": [
+  "folderTemplates.structures": [
+    {
+      "name": "React Component Barrel",
+      "omitParentDirectory": false,
+      "openFilesWhenDone": ["Typescript Functional Component"],
+      "structure": [
         {
-            "name": "React Component Barrel",
-            "omitParentDirectory": false,
-            "openFilesWhenDone": ["Typescript Functional Component"],
-            "structure": [
-                {
-                    "fileName": "<FTName % pascalcase>.tsx",
-                    "template": "Typescript Functional Component"
-                },
-                {
-                    "fileName": "<FTName % pascalcase>.module.scss",
-                    "template": "Css Module"
-                },
-                {
-                    "fileName": "index.ts",
-                    "template": "IndexFile"
-                }
-            ]
+          "fileName": "<FTName % pascalcase>.tsx",
+          "template": "Typescript Functional Component"
+        },
+        {
+          "fileName": "<FTName % pascalcase>.module.scss",
+          "template": "Css Module"
+        },
+        {
+          "fileName": "index.ts",
+          "template": "IndexFile"
         }
+      ]
+    }
+  ],
+  "workbench.startupEditor": "none",
+  "folderTemplates.fileTemplates": {
+    "Typescript Functional Component": [
+      "import styles from './<FTName % pascalcase>.module.scss'",
+      "",
+      "interface <FTName % pascalcase>Props {",
+      "}",
+      "",
+      "const <FTName % pascalcase> = (props: <FTName % pascalcase>Props) => {",
+      "  return <div className={styles.container}><FTName % pascalcase> component</div>;",
+      "};",
+      "",
+      "export default <FTName % pascalcase>;"
     ],
-    "workbench.startupEditor": "none",
-    "folderTemplates.fileTemplates": {
-        "Typescript Functional Component": [
-            "import styles from './<FTName % pascalcase>.module.scss'",
-            "",
-            "interface <FTName % pascalcase>Props {",
-            "}",
-            "",
-            "const <FTName % pascalcase> = (props: <FTName % pascalcase>Props) => {",
-            "  return <div className={styles.container}><FTName % pascalcase> component</div>;",
-            "};",
-            "",
-            "export default <FTName % pascalcase>;"
-        ],
-        "Css Module": [
-            ".container {",
-            "width: 50px;",
-            "height: 50px;",
-            "background-color: red;",
-            "}"
-        ],
-        "IndexFile": ["export {default} from './<FTName % pascalcase>';"]
-    },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.fontFamily": "Cascadia Code",
-    "editor.fontLigatures": true,
-    "json.schemas": [],
-    "editor.lineHeight": 22,
-    "terminal.integrated.fontFamily": "Fira Code Medium",
-    "terminal.integrated.fontSize": 14,
-    "files.autoSave": "onFocusChange",
-    "workbench.preferredHighContrastColorTheme": "Default Dark Modern"
+    "Css Module": [".container {", "width: 50px;", "height: 50px;", "background-color: red;", "}"],
+    "IndexFile": ["export {default} from './<FTName % pascalcase>';"]
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontLigatures": true,
+  "json.schemas": [],
+  "editor.lineHeight": 22,
+  "terminal.integrated.fontFamily": "Fira Code Medium",
+  "terminal.integrated.fontSize": 14,
+  "files.autoSave": "onFocusChange",
+  "workbench.preferredHighContrastColorTheme": "Default Dark Modern"
 }

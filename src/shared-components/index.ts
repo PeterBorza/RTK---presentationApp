@@ -45,8 +45,10 @@ import Container from "./Container";
 import GlowText from "./GlowText";
 import FadeOnScroll from "./FadeOnScroll";
 import Icon from "./Icon";
+export { default as Suspensed } from "./Suspensed";
 
 // TODO create split screen component
+// Organize exports
 
 export {
   TabMenu,

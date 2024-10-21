@@ -4,7 +4,7 @@ import { NavLinkUrls, useAppRedux } from "app";
 import { useForm, useToggle } from "hooks";
 import { icons } from "utils";
 
-import DemoBox from "../Home/DemoBox";
+import DemoBox from "../DemoPage/DemoBox";
 import { MenuType } from "shared-components/DropSelect/DropSelect";
 import { PagesType } from "shared-components/ScrollPage/ScrollPage";
 
