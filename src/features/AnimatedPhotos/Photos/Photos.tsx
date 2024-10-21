@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 
 import { useAppRedux, togglePhotos, NavLinkUrls } from "app";
 
-import { AnimatedDropdown, AsidePlatform } from "shared-components";
+import { AnimatedDropdown, Suspensed } from "shared-components";
 
 import { MemoryGameMessages as messages } from "../../memoryGame-story/Game/redux/messages";
 import { useMGameRedux } from "../../memoryGame-story/Game/redux/selectors";
@@ -12,6 +12,9 @@ import { PhotosMessages } from "../messages";
 import classNames from "classnames";
 import styles from "./Photos.module.scss";
 import { toInternalLink } from "utils";
+import { lazy } from "react";
+
+const Layout = lazy(() => import("shared-components/AsidePlatform"));
 
 const Photos = () => {
   const { photos, dispatch } = useMGameRedux();
@@ -44,17 +47,19 @@ const Photos = () => {
   };
 
   return (
-    <AsidePlatform
-      isOpen={openSideBar}
-      onClose={closeSidePanel}
-      label={messages.HEADER_LABEL}
-      renderSideBar={renderMenu}
-      onOpen={openSidePanel}
-      buttonLabel={PhotosMessages.BUTTON_LABEL}
-      isDarkMode={isDarkMode}
-    >
-      <Outlet />
-    </AsidePlatform>
+    <Suspensed>
+      <Layout
+        isOpen={openSideBar}
+        onClose={closeSidePanel}
+        label={messages.HEADER_LABEL}
+        renderSideBar={renderMenu}
+        onOpen={openSidePanel}
+        buttonLabel={PhotosMessages.BUTTON_LABEL}
+        isDarkMode={isDarkMode}
+      >
+        <Outlet />
+      </Layout>
+    </Suspensed>
   );
 };
 

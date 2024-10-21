@@ -1,24 +1,25 @@
 import { RouteObject, createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { App, Error } from "app";
+import { Error } from "app";
 import { AlertModal, Loader } from "shared-components";
 import { appInternalLinks as links } from "../providers";
 
-import Home from "features/Home";
+import DemoPage from "features/DemoPage";
 import ScrollPage from "features/scroll-pages";
 import ScrollTester from "features/tester-pages";
 import { utilitiesRoute } from "features/Utilities";
 import DragContainer from "features/drag-api/DragContainer";
 import { photosRoute } from "features/AnimatedPhotos";
+import Home from "features/Home";
 
 const appRoutes: RouteObject[] = [
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <DemoPage />,
       },
       utilitiesRoute,
       photosRoute(links.PHOTOS),

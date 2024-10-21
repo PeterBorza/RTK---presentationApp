@@ -2,8 +2,6 @@ import { appInternalLinks as links } from "providers";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-type LinksType = typeof links;
-
 const useHotKeys = () => {
   const navigate = useNavigate();
   const [currentKey, setCurrentKey] = useState("");
