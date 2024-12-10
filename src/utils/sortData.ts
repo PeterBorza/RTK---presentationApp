@@ -14,10 +14,8 @@ const sortData = <T>({ data, dataProperty: key, reversed = false }: SortType<T>)
   const sortObject = (a: T, b: T) => {
     const x = getObjectKey(a);
     const y = getObjectKey(b);
-    const checkType = (type: string) => {
-      if (typeof x === type && typeof y === type) return true;
-      return false;
-    };
+    const checkType = (type: string) => typeof x === type && typeof y === type;
+
     if (checkType("boolean")) {
       return x === y ? 0 : (reversed ? x : y) ? -1 : 1;
     }

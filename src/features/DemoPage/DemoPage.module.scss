@@ -5,7 +5,7 @@ $lineUp: 3;
 
 .container {
   @include mix.appContainer(var.$darkMode, $lineUp);
-  @include mix.flex(center, row);
+  @include mix.flex(center, column);
   gap: 1px;
 }
 
